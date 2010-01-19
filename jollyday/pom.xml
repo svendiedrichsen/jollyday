@@ -2,5 +2,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>de.jollyday</groupId>
   <artifactId>jollyday</artifactId>
+  <name>Jollyday</name>
   <version>0.0.1-SNAPSHOT</version>
+  <url>http://jollyday.sourceforge.net</url>
+  <inceptionYear>18.01.2010</inceptionYear>
+  <build>
+  	<plugins>
+  	</plugins>
+  </build>
 </project>
