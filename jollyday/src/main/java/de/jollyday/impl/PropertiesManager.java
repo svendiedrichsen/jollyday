@@ -26,8 +26,8 @@ public class PropertiesManager extends Manager {
 	private static final Map<String, Integer> WEEKDAYS = new HashMap<String, Integer>();
 	
 	private Set<String> fixed = new HashSet<String>();
-	private Set<String> variable = new HashSet<String>();
-	private Set<String> variableToFixed = new HashSet<String>();
+	private Set<String> relativeToEastern = new HashSet<String>();
+	private Set<String> relativeToFixed = new HashSet<String>();
 
 	
 	static{
@@ -43,27 +43,39 @@ public class PropertiesManager extends Manager {
 	@Override
 	public Set<Calendar> getHolidays(int year) {
 		Set<Calendar> holidays = new HashSet<Calendar>();
-		for (String md : fixed) {
-			Calendar holiday = parseFixed(year, md);
+		for (String monthDay : fixed) {
+			Calendar holiday = parseFixed(year, monthDay);
 			holidays.add(holiday);
 		}
-		for (String v2f : variableToFixed){
+		for (String v2f : relativeToFixed){
 			Calendar holiday = parseRelativeToFixed(year, v2f);
 			holidays.add(holiday);
 		}
-		for (String rel : variable) {
-			Calendar holiday = parseRelative(year, rel);
+		for (String rel : relativeToEastern) {
+			Calendar holiday = parseRelativeToEastern(year, rel);
 			holidays.add(holiday);
 		}
 		return holidays;
 	}
 
-	private Calendar parseRelative(int year, String rel) {
+	/**
+	 * Parses integer strings and add it to easter sunday.
+	 * @param year
+	 * @param rel
+	 * @return
+	 */
+	private Calendar parseRelativeToEastern(int year, String rel) {
 		Calendar holiday = getEasterSunday(year);
 		holiday.add(Calendar.DAY_OF_YEAR, Integer.valueOf(rel));
 		return holiday;
 	}
 
+	/**
+	 * Parses strings like [weekday]-[before|after]-[month]/[day]
+	 * @param year
+	 * @param v2f
+	 * @return
+	 */
 	private Calendar parseRelativeToFixed(int year, String v2f) {
 		String[] v2fArray = v2f.split("-");
 		Calendar holiday = createFixedCalendar(year, v2fArray[2].split("/"));
@@ -74,6 +86,12 @@ public class PropertiesManager extends Manager {
 		return holiday;
 	}
 
+	/**
+	 * Parses strings like [month]/[day]
+	 * @param year
+	 * @param rel
+	 * @return
+	 */
 	private Calendar parseFixed(int year, String md) {
 		String[] mdArray = md.split("/");
 		Calendar holiday = createFixedCalendar(year, mdArray);
@@ -109,8 +127,8 @@ public class PropertiesManager extends Manager {
 		p.load(ClassLoader.getSystemResourceAsStream(FILE_PREFIX + "_"
 				+ subName + FILE_SUFFIX));
 		readConfiguration(p, CONFIG_PARAM_FIXED, fixed);
-		readConfiguration(p, CONFIG_PARAM_RELATIVE_TO_FIXED, variableToFixed);
-		readConfiguration(p, CONFIG_PARAM_RELATIVE, variable);
+		readConfiguration(p, CONFIG_PARAM_RELATIVE_TO_FIXED, relativeToFixed);
+		readConfiguration(p, CONFIG_PARAM_RELATIVE, relativeToEastern);
 	}
 
 	private static void readConfiguration(Properties p, String configParam, Set<String> values) {
