@@ -1,7 +1,7 @@
 package de.jollyday.impl;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.io.InputStream;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,101 +12,37 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.jollyday.Manager;
-import de.jollyday.util.CalendarUtil;
+import de.jollyday.parser.FixedParser;
+import de.jollyday.parser.PropertiesParser;
+import de.jollyday.parser.RelativeToEasternParser;
+import de.jollyday.parser.RelativeToFixedParser;
 
 public class PropertiesManager extends Manager {
 
 	private static final Logger LOG = Logger.getLogger(PropertiesManager.class.getName());
-	private static final String CONFIG_PARAM_RELATIVE = "holidays.relative.eastern";
-	private static final String CONFIG_PARAM_RELATIVE_TO_FIXED = "holidays.relative.to.fixed";
-	private static final String CONFIG_PARAM_FIXED = "holidays.fixed";
-	private static final String LIST_SEPARATOR = ",";
 	private static final String FILE_PREFIX = "holidays";
 	private static final String FILE_SUFFIX = ".properties";
-	private static final Map<String, Integer> WEEKDAYS = new HashMap<String, Integer>();
-	
-	private Set<String> fixed = new HashSet<String>();
-	private Set<String> relativeToEastern = new HashSet<String>();
-	private Set<String> relativeToFixed = new HashSet<String>();
+	private static Map<String, Class> PARSER_CLASSES = new HashMap<String, Class>();
 
-	
+	private Map<String, PropertiesParser> parser = new HashMap<String, PropertiesParser>();
+
 	static{
-		WEEKDAYS.put("SUNDAY", Calendar.SUNDAY);
-		WEEKDAYS.put("MONDAY", Calendar.MONDAY);
-		WEEKDAYS.put("TUESDAY", Calendar.TUESDAY);
-		WEEKDAYS.put("WEDNESDAY", Calendar.WEDNESDAY);
-		WEEKDAYS.put("THURSDAY", Calendar.THURSDAY);
-		WEEKDAYS.put("FRIDAY", Calendar.FRIDAY);
-		WEEKDAYS.put("SATURDAY", Calendar.SATURDAY);
+		PARSER_CLASSES.put("holidays.fixed", FixedParser.class);
+		PARSER_CLASSES.put("holidays.relative.eastern", RelativeToEasternParser.class);
+		PARSER_CLASSES.put("holidays.relative.to.fixed", RelativeToFixedParser.class);
 	}
 	
 	@Override
 	public Set<Calendar> getHolidays(int year) {
 		Set<Calendar> holidays = new HashSet<Calendar>();
-		for (String monthDay : fixed) {
-			Calendar holiday = parseFixed(year, monthDay);
-			holidays.add(holiday);
-		}
-		for (String v2f : relativeToFixed){
-			Calendar holiday = parseRelativeToFixed(year, v2f);
-			holidays.add(holiday);
-		}
-		for (String rel : relativeToEastern) {
-			Calendar holiday = parseRelativeToEastern(year, rel);
-			holidays.add(holiday);
+		for(PropertiesParser p : this.parser.values()){
+			holidays.addAll(p.parse(year));
 		}
 		return holidays;
 	}
-
-	/**
-	 * Parses integer strings and add it to easter sunday.
-	 * @param year
-	 * @param rel
-	 * @return
-	 */
-	private Calendar parseRelativeToEastern(int year, String rel) {
-		Calendar holiday = getEasterSunday(year);
-		holiday.add(Calendar.DAY_OF_YEAR, Integer.valueOf(rel));
-		return holiday;
-	}
-
-	/**
-	 * Parses strings like [weekday]-[before|after]-[month]/[day]
-	 * @param year
-	 * @param v2f
-	 * @return
-	 */
-	private Calendar parseRelativeToFixed(int year, String v2f) {
-		String[] v2fArray = v2f.split("-");
-		Calendar holiday = createFixedCalendar(year, v2fArray[2].split("/"));
-		int direction = (v2fArray[1].equalsIgnoreCase("before") ? -1 : 1);
-		do{
-			holiday.add(Calendar.DAY_OF_YEAR, direction);
-		}while(holiday.get(Calendar.DAY_OF_WEEK) != WEEKDAYS.get(v2fArray[0]));
-		return holiday;
-	}
-
-	/**
-	 * Parses strings like [month]/[day]
-	 * @param year
-	 * @param rel
-	 * @return
-	 */
-	private Calendar parseFixed(int year, String md) {
-		String[] mdArray = md.split("/");
-		Calendar holiday = createFixedCalendar(year, mdArray);
-		return holiday;
-	}
-
-	private static Calendar createFixedCalendar(int year, String[] mdArray) {
-		Calendar holiday = CalendarUtil.create();
-		holiday.set(year, Integer.valueOf(mdArray[0]) - 1, Integer
-				.valueOf(mdArray[1]));
-		return holiday;
-	}
-
+	
 	@Override
-	public void init(String country, String... args) throws IOException {
+	public void init(String country, String... args) throws IOException, InstantiationException, IllegalAccessException {
 		loadProperties(country);
 		String sub = country;
 		for (String arg : args) {
@@ -122,20 +58,19 @@ public class PropertiesManager extends Manager {
 		}
 	}
 
-	private void loadProperties(String subName) throws IOException {
+	private void loadProperties(String subName) throws IOException, InstantiationException, IllegalAccessException {
 		Properties p = new Properties();
-		p.load(ClassLoader.getSystemResourceAsStream(FILE_PREFIX + "_"
-				+ subName + FILE_SUFFIX));
-		readConfiguration(p, CONFIG_PARAM_FIXED, fixed);
-		readConfiguration(p, CONFIG_PARAM_RELATIVE_TO_FIXED, relativeToFixed);
-		readConfiguration(p, CONFIG_PARAM_RELATIVE, relativeToEastern);
-	}
-
-	private static void readConfiguration(Properties p, String configParam, Set<String> values) {
-		String list = p.getProperty(configParam);
-		if (list != null) {
-			String[] fixedArray = list.split(LIST_SEPARATOR);
-			values.addAll(Arrays.asList(fixedArray));
+		InputStream stream = ClassLoader.getSystemResourceAsStream(FILE_PREFIX + "_"
+				+ subName + FILE_SUFFIX);
+		p.load(stream);
+		stream.close();
+		for(String name : p.stringPropertyNames()){
+			PropertiesParser pParser = parser.get(name);
+			if(null == pParser){
+				pParser = (PropertiesParser)PARSER_CLASSES.get(name).newInstance();
+				parser.put(name, pParser);
+			}
+			pParser.init(p);
 		}
 	}
 
