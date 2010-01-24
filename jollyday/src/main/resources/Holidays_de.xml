@@ -11,55 +11,55 @@
 	  <tns:RelativeToEastern days="39"/>
 	  <tns:RelativeToEastern days="50"/>
   </tns:Holidays>
-  <tns:SubConfiguration hierarchy="bb">
+  <tns:SubConfigurations hierarchy="bb">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="bw">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="bw">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6"/>
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:RelativeToEastern days="60"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="by">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="by">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6"/>
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:RelativeToEastern days="60"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="he">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="he">
   	<tns:Holidays>
   		<tns:RelativeToEastern days="60"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="mv">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="mv">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="nw">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nw">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:RelativeToEastern days="60"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="rp">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="rp">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:RelativeToEastern days="60"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="sl">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sl">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:RelativeToEastern days="60"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="sn">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sn">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31"/>
   		<tns:RelativeToFixed>
@@ -68,16 +68,16 @@
   			<tns:Date month="NOVEMBER" day="23"/>
   		</tns:RelativeToFixed>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="st">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="st">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31"/>
   		<tns:Fixed month="JANUARY" day="6"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
-  <tns:SubConfiguration hierarchy="th">
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="th">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31"/>
   	</tns:Holidays>
-  </tns:SubConfiguration>
+  </tns:SubConfigurations>
 </tns:Configuration>

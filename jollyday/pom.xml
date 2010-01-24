@@ -32,7 +32,7 @@
 						<configuration>
 							<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
 							<schemaDirectory>src/main/resources</schemaDirectory>
-							<packageName>de.jollyday</packageName>
+							<packageName>de.jollyday.config</packageName>
 						</configuration>
 					</execution>
 				</executions>

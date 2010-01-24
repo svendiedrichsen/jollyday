@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.jollyday.config.Fixed;
+
 public abstract class CalendarUtil {
 
 	private static final Map<String, Integer> WEEKDAYS = new HashMap<String, Integer>();
@@ -36,8 +38,13 @@ public abstract class CalendarUtil {
 	
 	public static Calendar create(int year, int month, int day){
 		Calendar c = create();
+		c.clear();
 		c.set(year, month, day);
 		return c;
+	}
+	
+	public static Calendar create(int year, Fixed fixed){
+		return create(year, fixed.getMonth().ordinal(), fixed.getDay());
 	}
 
 	public static Calendar getEasterSunday(int year){
