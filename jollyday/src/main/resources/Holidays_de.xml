@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="de" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1"/>
+	  <tns:Fixed month="MAY" day="1"/>
+	  <tns:Fixed month="OCTOBER" day="3"/>
+	  <tns:Fixed month="DECEMBER" day="25"/>
+	  <tns:Fixed month="DECEMBER" day="26"/>
+	  <tns:RelativeToEastern days="-2"/>
+	  <tns:RelativeToEastern days="1"/>
+	  <tns:RelativeToEastern days="39"/>
+	  <tns:RelativeToEastern days="50"/>
+  </tns:Holidays>
+  <tns:SubConfiguration hierarchy="bb">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="bw">
+  	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="6"/>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:RelativeToEastern days="60"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="by">
+  	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="6"/>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:RelativeToEastern days="60"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="he">
+  	<tns:Holidays>
+  		<tns:RelativeToEastern days="60"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="mv">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="nw">
+  	<tns:Holidays>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:RelativeToEastern days="60"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="rp">
+  	<tns:Holidays>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:RelativeToEastern days="60"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="sl">
+  	<tns:Holidays>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:Fixed month="AUGUST" day="15"/>
+  		<tns:RelativeToEastern days="60"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="sn">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  		<tns:RelativeToFixed>
+  			<tns:Weekday>WEDNESDAY</tns:Weekday>
+  			<tns:When>BEFORE</tns:When>
+  			<tns:Date month="NOVEMBER" day="23"/>
+  		</tns:RelativeToFixed>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="st">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  		<tns:Fixed month="JANUARY" day="6"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+  <tns:SubConfiguration hierarchy="th">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  	</tns:Holidays>
+  </tns:SubConfiguration>
+</tns:Configuration>
