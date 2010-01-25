@@ -10,6 +10,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
 
+import org.joda.time.LocalDate;
+
 import de.jollyday.Manager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Fixed;
@@ -29,8 +31,8 @@ public class XMLManager extends Manager {
 	private Configuration configuration;
 	
 	@Override
-	public Set<Calendar> getHolidays(int year, String... args) {
-		Set<Calendar> holidays = new HashSet<Calendar>();
+	public Set<LocalDate> getHolidays(int year, String... args) {
+		Set<LocalDate> holidays = new HashSet<LocalDate>();
 		parseHolidays(year, holidays, configuration.getHolidays());
 		for(String arg : args){
 			for(Configuration config : configuration.getSubConfigurations()){
@@ -43,39 +45,38 @@ public class XMLManager extends Manager {
 		return holidays;
 	}
 
-	private void parseHolidays(int year, Set<Calendar> holidays, Holidays config) {
+	private void parseHolidays(int year, Set<LocalDate> holidays, Holidays config) {
 		parseFixed(year, holidays, config.getFixed());
 		parseRelativeToEastern(year, holidays, config.getRelativeToEastern());
 		parseRelativeToFixed(year, holidays, config.getRelativeToFixed());
 	}
 
-	private void parseRelativeToFixed(int year, Set<Calendar> holidays,
+	private void parseRelativeToFixed(int year, Set<LocalDate> holidays,
 			List<RelativeToFixed> relativeToFixed) {
 		for(RelativeToFixed rf : relativeToFixed){
-			Calendar fixed = CalendarUtil.create(year, rf.getDate());
+			LocalDate fixed = CalendarUtil.create(year, rf.getDate());
 			if(rf.getWeekday() != null){
 				int day = XMLUtil.getWeekday(rf.getWeekday());
 				int direction = (rf.getWhen() == When.BEFORE ? -1 : 1);
 				do{
-					fixed.add(Calendar.DAY_OF_YEAR, direction);
-				}while(fixed.get(Calendar.DAY_OF_WEEK) != day);
+					fixed = fixed.plusDays(direction);
+				}while(fixed.getDayOfWeek() != day);
 			}else if(rf.getDays() != null){
-				fixed.add(Calendar.DAY_OF_YEAR, ( rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays()));
+				fixed = fixed.plusDays( rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays());
 			}
 			holidays.add(fixed);
 		}
 	}
 
-	private void parseRelativeToEastern(int year, Set<Calendar> holidays,
+	private void parseRelativeToEastern(int year, Set<LocalDate> holidays,
 			List<RelativeToEastern> relative) {
 		for(RelativeToEastern re : relative){
-			Calendar easterSunday = CalendarUtil.getEasterSunday(year);
-			easterSunday.add(Calendar.DAY_OF_YEAR, re.getDays());
-			holidays.add(easterSunday);
+			LocalDate easterSunday = CalendarUtil.getEasterSunday(year);
+			holidays.add(easterSunday.plusDays(re.getDays()));
 		}
 	}
 
-	private void parseFixed(int year, Set<Calendar> holidays, List<Fixed> fixed) {
+	private void parseFixed(int year, Set<LocalDate> holidays, List<Fixed> fixed) {
 		for(Fixed f : fixed){
 			holidays.add(CalendarUtil.create(year, f));
 		}

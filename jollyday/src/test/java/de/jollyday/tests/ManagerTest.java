@@ -1,9 +1,10 @@
 package de.jollyday.tests;
 
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,43 +14,60 @@ import de.jollyday.util.CalendarUtil;
 public class ManagerTest {
 
 	private static final int YEAR = 2010;
-	private static Set<Calendar> de = new HashSet<Calendar>();
+	private static Set<LocalDate> de = new HashSet<LocalDate>();
+	private static Set<LocalDate> de_by = new HashSet<LocalDate>();
+	private static Set<LocalDate> de_sn = new HashSet<LocalDate>();
 	
 	static{
-		de.add(CalendarUtil.create(YEAR, Calendar.JANUARY, 1));
-		de.add(CalendarUtil.create(YEAR, Calendar.MAY, 1));
-		de.add(CalendarUtil.create(YEAR, Calendar.OCTOBER, 3));
-		de.add(CalendarUtil.create(YEAR, Calendar.DECEMBER, 25));
-		de.add(CalendarUtil.create(YEAR, Calendar.DECEMBER, 26));
-		de.add(CalendarUtil.create(YEAR, Calendar.APRIL, 2));
-		de.add(CalendarUtil.create(YEAR, Calendar.APRIL, 5));
-		Calendar c = CalendarUtil.getEasterSunday(YEAR);
-		c.add(Calendar.DAY_OF_YEAR, 39);
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 1));
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 3));
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 26));
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
+		de.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 5));
+		LocalDate c = CalendarUtil.getEasterSunday(YEAR);
+		c = c.plusDays(39);
 		de.add(c);
 		c = CalendarUtil.getEasterSunday(YEAR);
-		c.add(Calendar.DAY_OF_YEAR, 50);
+		c = c.plusDays(50);
 		de.add(c);
+		
+		de_by.addAll(de);
+		de_by.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 6));
+		de_by.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 1));
+		c = CalendarUtil.getEasterSunday(YEAR);
+		c = c.plusDays(60);
+		de_by.add(c);
+		
+		de_sn.addAll(de);
+		de_sn.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 31));
+		de_sn.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 17));
+
 	}
 	
 	@Test
 	public void testManagerDE() throws Exception{
 		Manager m = Manager.getInstance("de");
-		Set<Calendar> holidays = m.getHolidays(2010);
+		Set<LocalDate> holidays = m.getHolidays(2010);
 		Assert.assertEquals("Wrong number of holidays.", 9, holidays.size());
+		Assert.assertEquals("Wrong dates.", de, holidays);
 	}
 	
 	@Test
 	public void testManagerDE_BY() throws Exception{
 		Manager m = Manager.getInstance("de");
-		Set<Calendar> holidays = m.getHolidays(2010, "by");
+		Set<LocalDate> holidays = m.getHolidays(2010, "by");
 		Assert.assertEquals("Wrong number of holidays.", 12, holidays.size());
+		Assert.assertEquals("Wrong dates.", de_by, holidays);
 	}
 
 	@Test
 	public void testManagerDE_SN() throws Exception{
 		Manager m = Manager.getInstance("de");
-		Set<Calendar> holidays = m.getHolidays(2010, "sn");
+		Set<LocalDate> holidays = m.getHolidays(2010, "sn");
 		Assert.assertEquals("Wrong number of holidays.", 11, holidays.size());
+		Assert.assertEquals("Wrong dates.", de_sn, holidays);
 	}
 	
 }

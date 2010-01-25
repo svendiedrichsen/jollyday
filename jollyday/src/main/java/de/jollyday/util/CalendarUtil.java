@@ -1,53 +1,26 @@
 package de.jollyday.util;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
+import org.joda.time.chrono.GregorianChronology;
 
 import de.jollyday.config.Fixed;
 
 public abstract class CalendarUtil {
 
-	private static final Map<String, Integer> WEEKDAYS = new HashMap<String, Integer>();
-	
-	static{
-		WEEKDAYS.put("SUNDAY", Calendar.SUNDAY);
-		WEEKDAYS.put("MONDAY", Calendar.MONDAY);
-		WEEKDAYS.put("TUESDAY", Calendar.TUESDAY);
-		WEEKDAYS.put("WEDNESDAY", Calendar.WEDNESDAY);
-		WEEKDAYS.put("THURSDAY", Calendar.THURSDAY);
-		WEEKDAYS.put("FRIDAY", Calendar.FRIDAY);
-		WEEKDAYS.put("SATURDAY", Calendar.SATURDAY);
+	public static LocalDate create() {
+		return new LocalDate(GregorianChronology.getInstance());
 	}
 	
-	public static int getWeekday(String name){
-		return WEEKDAYS.get(name);
+	public static LocalDate create(int year, int month, int day){
+		return new LocalDate(year, month, day, GregorianChronology.getInstance());
+	}
+	
+	public static LocalDate create(int year, Fixed fixed){
+		return create(year, XMLUtil.getMonth(fixed.getMonth()), fixed.getDay());
 	}
 
-	public static Calendar truncate(Calendar c) {
-		c.clear(Calendar.HOUR);
-		c.clear(Calendar.MINUTE);
-		c.clear(Calendar.SECOND);
-		c.clear(Calendar.MILLISECOND);
-		return c;
-	}
-
-	public static Calendar create() {
-		return truncate(Calendar.getInstance());
-	}
-	
-	public static Calendar create(int year, int month, int day){
-		Calendar c = create();
-		c.clear();
-		c.set(year, month, day);
-		return c;
-	}
-	
-	public static Calendar create(int year, Fixed fixed){
-		return create(year, fixed.getMonth().ordinal(), fixed.getDay());
-	}
-
-	public static Calendar getEasterSunday(int year){
+	public static LocalDate getEasterSunday(int year){
 		int a,b,c,d,e,f,g,h,i,j,k,l;
 		int x,month,day;
 		
@@ -80,9 +53,7 @@ public abstract class CalendarUtil {
 			month = x/31;
 			day = (x%31)+1;	
 		}
-		Calendar easterSunday = create();
-		easterSunday.set(year, (month == 3 ? Calendar.MARCH : Calendar.APRIL), day);
-		return easterSunday;
+		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day);
 	}
 
 }

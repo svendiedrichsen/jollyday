@@ -30,6 +30,7 @@
     		<enumeration value="OCTOBER"></enumeration>
     		<enumeration value="NOVEMBER"></enumeration>
     		<enumeration value="DECEMBER"></enumeration>
+    		<enumeration value="APRIL"></enumeration>
     	</restriction>
     </simpleType>
 
@@ -55,26 +56,32 @@
     
 
     <complexType name="Holidays">
-        <sequence>
-        	<sequence maxOccurs="unbounded" minOccurs="0">
-        		<element name="Fixed" type="tns:Fixed"></element>
-        	</sequence>
-        	<sequence maxOccurs="unbounded" minOccurs="0">
-        		<element name="RelativeToEastern" type="tns:RelativeToEastern">
-        		</element>
-        	</sequence>
-        	<sequence maxOccurs="unbounded" minOccurs="0">
-        		<element name="RelativeToFixed" type="tns:RelativeToFixed">
-        		</element>
-        	</sequence>
-        </sequence>
+    	<sequence>
+    		<sequence maxOccurs="unbounded" minOccurs="0">
+    			<element name="Fixed" type="tns:Fixed"></element>
+    		</sequence>
+    		<sequence maxOccurs="unbounded" minOccurs="0">
+    			<element name="RelativeToEastern"
+    				type="tns:RelativeToEastern">
+    			</element>
+    		</sequence>
+    		<sequence maxOccurs="unbounded" minOccurs="0">
+    			<element name="RelativeToFixed"
+    				type="tns:RelativeToFixed">
+    			</element>
+    		</sequence>
+    		<sequence maxOccurs="unbounded" minOccurs="0">
+    			<element name="FixedMoving" type="tns:FixedMoving"></element>
+    		</sequence>
+    		<sequence maxOccurs="unbounded" minOccurs="0"><element name="FixedWeekday" type="tns:FixedWeekdayInMonth"></element></sequence>
+    	</sequence>
 
 
 
 
     </complexType>
 
-    
+
     <element name="Configuration" type="tns:Configuration"></element>
     
     <complexType name="Configuration">
@@ -102,6 +109,30 @@
     	<restriction base="string">
     		<enumeration value="BEFORE"></enumeration>
     		<enumeration value="AFTER"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="FixedMoving">
+    	<sequence>
+    		<element name="Date" type="tns:Fixed"></element>
+    		<element name="NextWeekday" type="tns:Weekday"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="FixedWeekdayInMonth">
+    	<sequence>
+    		<element name="Which" type="tns:Which" maxOccurs="1" minOccurs="1"></element>
+    		<element name="Weekday" type="tns:Weekday" maxOccurs="1" minOccurs="1"></element>
+    		<element name="Month" type="tns:Month" maxOccurs="1" minOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <simpleType name="Which">
+    	<restriction base="string">
+    		<enumeration value="FIRST"></enumeration>
+    		<enumeration value="SECOND"></enumeration>
+    		<enumeration value="THIRD"></enumeration>
+    		<enumeration value="LAST"></enumeration>
     	</restriction>
     </simpleType>
 </schema>

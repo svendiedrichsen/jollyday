@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="uk" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+  <tns:Holidays>
+	  <tns:RelativeToEastern days="-2"/>
+	  <tns:FixedMoving>
+	  	<tns:Date month="DECEMBER" day="25"/>
+	  	<tns:NextWeekday>TUESDAY</tns:NextWeekday>
+	  </tns:FixedMoving>
+	  <tns:FixedMoving>
+	  	<tns:Date month="DECEMBER" day="26"/>
+	  	<tns:NextWeekday>MONDAY</tns:NextWeekday>
+	  </tns:FixedMoving>
+	  <tns:FixedWeekday>
+	  	<tns:Which>FIRST</tns:Which>
+	  	<tns:Weekday>MONDAY</tns:Weekday>
+	  	<tns:Month>MAY</tns:Month>
+	  </tns:FixedWeekday>
+	  <tns:FixedWeekday>
+	  	<tns:Which>LAST</tns:Which>
+	  	<tns:Weekday>MONDAY</tns:Weekday>
+	  	<tns:Month>MAY</tns:Month>
+	  </tns:FixedWeekday>
+  </tns:Holidays>
+</tns:Configuration>

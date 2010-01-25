@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Properties;
 import java.util.Set;
 
-import de.jollyday.util.CalendarUtil;
+import org.joda.time.LocalDate;
 
 public abstract class Manager {
 	
@@ -20,12 +20,14 @@ public abstract class Manager {
 	}
 	
 	public boolean isHoliday(Calendar c, String...args){
-		Calendar cal = CalendarUtil.truncate((Calendar)c.clone());
-		int year = cal.get(Calendar.YEAR);
-		return getHolidays(year, args).contains(cal);
+		return isHoliday(new LocalDate(c), args);
 	}
 	
-	abstract public Set<Calendar> getHolidays(int year, String...args);
+	public boolean isHoliday(LocalDate c, String...args){
+		return getHolidays(c.getYear(), args).contains(c);
+	}
+	
+	abstract public Set<LocalDate> getHolidays(int year, String...args);
 	
 	abstract public void init(String country) throws Exception;
 	
