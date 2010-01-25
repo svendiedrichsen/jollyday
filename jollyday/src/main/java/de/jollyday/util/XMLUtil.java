@@ -1,7 +1,5 @@
 package de.jollyday.util;
 
-import java.util.Calendar;
-
 import org.joda.time.DateTimeConstants;
 
 import de.jollyday.config.Month;
