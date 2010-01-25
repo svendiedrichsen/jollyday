@@ -17,6 +17,8 @@ public class ManagerTest {
 	private static Set<LocalDate> de = new HashSet<LocalDate>();
 	private static Set<LocalDate> de_by = new HashSet<LocalDate>();
 	private static Set<LocalDate> de_sn = new HashSet<LocalDate>();
+	private static Set<LocalDate> uk = new HashSet<LocalDate>();
+
 	
 	static{
 		de.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
@@ -44,6 +46,14 @@ public class ManagerTest {
 		de_sn.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 31));
 		de_sn.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 17));
 
+		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 27));
+		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 28));
+		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 3));
+		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 31));
+		c = CalendarUtil.getEasterSunday(YEAR);
+		c = c.plusDays(-2);
+		uk.add(c);
+
 	}
 	
 	@Test
@@ -69,5 +79,13 @@ public class ManagerTest {
 		Assert.assertEquals("Wrong number of holidays.", 11, holidays.size());
 		Assert.assertEquals("Wrong dates.", de_sn, holidays);
 	}
-	
+
+	@Test
+	public void testManagerUK() throws Exception{
+		Manager m = Manager.getInstance("uk");
+		Set<LocalDate> holidays = m.getHolidays(2010);
+		Assert.assertEquals("Wrong number of holidays.", 5, holidays.size());
+		Assert.assertEquals("Wrong dates.", uk, holidays);
+	}
+
 }

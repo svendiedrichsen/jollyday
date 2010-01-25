@@ -15,10 +15,13 @@ import org.joda.time.LocalDate;
 import de.jollyday.Manager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Fixed;
+import de.jollyday.config.FixedMoving;
+import de.jollyday.config.FixedWeekdayInMonth;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToEastern;
 import de.jollyday.config.RelativeToFixed;
 import de.jollyday.config.When;
+import de.jollyday.config.Which;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
@@ -49,6 +52,47 @@ public class XMLManager extends Manager {
 		parseFixed(year, holidays, config.getFixed());
 		parseRelativeToEastern(year, holidays, config.getRelativeToEastern());
 		parseRelativeToFixed(year, holidays, config.getRelativeToFixed());
+		parseFixedMoving(year, holidays, config.getFixedMoving());
+		parseFixedWeekdayInMonth(year, holidays, config.getFixedWeekday());
+	}
+
+	private void parseFixedWeekdayInMonth(int year, Set<LocalDate> holidays,
+			List<FixedWeekdayInMonth> fixedWeekday) {
+		for(FixedWeekdayInMonth fwm : fixedWeekday){
+			LocalDate date = CalendarUtil.create(year, XMLUtil.getMonth(fwm.getMonth()), 1);
+			int direction = 1;
+			if(fwm.getWhich() == Which.LAST){
+				date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
+				direction = -1;
+			}
+			int weekDay = XMLUtil.getWeekday(fwm.getWeekday());
+			while(date.getDayOfWeek() != weekDay){
+				date = date.plusDays(direction);
+			}
+			switch(fwm.getWhich()){
+				case SECOND:
+					date = date.plusDays(7);
+					break;
+				case THIRD:
+					date = date.plusDays(14);
+					break;
+			}
+			holidays.add(date);
+		}
+	}
+
+	private void parseFixedMoving(int year, Set<LocalDate> holidays,
+			List<FixedMoving> fixedMoving) {
+		for(FixedMoving fm : fixedMoving){
+			LocalDate fixed = CalendarUtil.create(year, fm.getDate());
+			if(CalendarUtil.isWeekend(fixed)){
+				int weekday = XMLUtil.getWeekday(fm.getNextWeekday());
+				while(fixed.getDayOfWeek() != weekday){
+					fixed = fixed.plusDays(1);
+				}
+			}
+			holidays.add(fixed);
+		}
 	}
 
 	private void parseRelativeToFixed(int year, Set<LocalDate> holidays,

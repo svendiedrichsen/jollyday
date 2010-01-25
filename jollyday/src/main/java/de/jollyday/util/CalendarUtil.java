@@ -56,4 +56,9 @@ public abstract class CalendarUtil {
 		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day);
 	}
 
+	public static boolean isWeekend(LocalDate date) {
+		return date.getDayOfWeek() == DateTimeConstants.SATURDAY
+			|| date.getDayOfWeek() == DateTimeConstants.SUNDAY; 
+	}
+
 }
