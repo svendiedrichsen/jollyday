@@ -6,11 +6,31 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+/**
+ * Abstract base class for all holiday manager implementations. Upon call of getInstance
+ * method the implementing class will be read from the application.properties file and
+ * instantiated.
+ * @author Sven Diedrichsen
+ *
+ */
 public abstract class Manager {
 
+	/**
+	 * Configuration property for implementing Manager class
+	 */
 	private static final String MANAGER_IMPL_CLASS_PREFIX = "manager.impl";
+	/**
+	 * The name of the configuration file.
+	 */
 	private static final String CONFIG_FILE = "application.properties";
 
+	/**
+	 * Creates an Manager instance. The implementing Manager class will be read from the
+	 * application.properties file.
+	 * @param country
+	 * @return Manager implementation for the provided country.
+	 * @throws Exception
+	 */
 	public static final Manager getInstance(String country) throws Exception {
 		Properties props = new Properties();
 		props.load(ClassLoader.getSystemResourceAsStream(CONFIG_FILE));
