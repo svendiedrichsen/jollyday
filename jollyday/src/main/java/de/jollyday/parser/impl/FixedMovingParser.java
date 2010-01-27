@@ -14,7 +14,7 @@ public class FixedMovingParser implements HolidayParser {
 
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(FixedMoving fm : config.getFixedMoving()){
-			LocalDate fixed = CalendarUtil.create(year, fm.getDate());
+			LocalDate fixed = CalendarUtil.create(year, fm);
 			if(CalendarUtil.isWeekend(fixed)){
 				int weekday = XMLUtil.getWeekday(fm.getNextWeekday());
 				while(fixed.getDayOfWeek() != weekday){

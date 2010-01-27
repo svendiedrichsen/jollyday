@@ -56,18 +56,16 @@
     
 
     <complexType name="Holidays">
-    	<sequence>
+        <sequence>
     		<sequence maxOccurs="unbounded" minOccurs="0">
     			<element name="Fixed" type="tns:Fixed"></element>
     		</sequence>
     		<sequence maxOccurs="unbounded" minOccurs="0">
-    			<element name="RelativeToEastern"
-    				type="tns:RelativeToEastern">
+    			<element name="RelativeToEastern" type="tns:RelativeToEastern">
     			</element>
     		</sequence>
     		<sequence maxOccurs="unbounded" minOccurs="0">
-    			<element name="RelativeToFixed"
-    				type="tns:RelativeToFixed">
+    			<element name="RelativeToFixed" type="tns:RelativeToFixed">
     			</element>
     		</sequence>
     		<sequence maxOccurs="unbounded" minOccurs="0">
@@ -87,9 +85,12 @@
     <complexType name="Configuration">
     	<sequence>
     		<element name="Holidays" type="tns:Holidays"></element>
-    		<element name="SubConfigurations" type="tns:Configuration" minOccurs="0" maxOccurs="unbounded"></element>
+    		<element name="SubConfigurations" type="tns:Configuration"
+    			minOccurs="0" maxOccurs="unbounded">
+    		</element>
     	</sequence>
     	<attribute name="hierarchy" type="string"></attribute>
+    	<attribute name="description" type="string"></attribute>
     </complexType>
 
     <complexType name="Fixed">
@@ -113,18 +114,17 @@
     </simpleType>
 
     <complexType name="FixedMoving">
-    	<sequence>
-    		<element name="Date" type="tns:Fixed"></element>
-    		<element name="NextWeekday" type="tns:Weekday"></element>
-    	</sequence>
+    	<complexContent>
+    		<extension base="tns:Fixed">
+    			<attribute name="nextWeekday" type="tns:Weekday"></attribute>
+    		</extension>
+    	</complexContent>
     </complexType>
 
     <complexType name="FixedWeekdayInMonth">
-    	<sequence>
-    		<element name="Which" type="tns:Which" maxOccurs="1" minOccurs="1"></element>
-    		<element name="Weekday" type="tns:Weekday" maxOccurs="1" minOccurs="1"></element>
-    		<element name="Month" type="tns:Month" maxOccurs="1" minOccurs="1"></element>
-    	</sequence>
+    	<attribute name="which" type="tns:Which"></attribute>
+    	<attribute name="weekday" type="tns:Weekday"></attribute>
+    	<attribute name="month" type="tns:Month"></attribute>
     </complexType>
 
     <simpleType name="Which">

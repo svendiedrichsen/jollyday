@@ -1,9 +1,12 @@
 package de.jollyday.impl;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -23,6 +26,7 @@ import de.jollyday.parser.impl.RelativeToFixedParser;
 
 public class XMLManager extends Manager {
 
+	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
 	private static final String PACKAGE = "de.jollyday.config";
 	private static final String FILE_PREFIX = "Holidays";
 	private static final String FILE_SUFFIX = ".xml";
@@ -41,17 +45,24 @@ public class XMLManager extends Manager {
 	
 	@Override
 	public Set<LocalDate> getHolidays(int year, String... args) {
-		Set<LocalDate> holidays = new HashSet<LocalDate>();
-		parseHolidays(year, holidays, configuration.getHolidays());
-		for(String arg : args){
-			for(Configuration config : configuration.getSubConfigurations()){
-				if(arg.equalsIgnoreCase(config.getHierarchy())){
-					parseHolidays(year, holidays, config.getHolidays());
+		return getHolidays(year, configuration, args);
+	}
+	
+	private Set<LocalDate> getHolidays(int year, Configuration c, String... args) {
+		Set<LocalDate> holidaySet = new HashSet<LocalDate>();
+		if(LOG.isLoggable(Level.FINER)){
+			LOG.finer("Adding holidays for "+c.getDescription());
+		}
+		parseHolidays(year, holidaySet, c.getHolidays());
+		if(args != null && args.length > 0){
+			for(Configuration config : c.getSubConfigurations()){
+				if(args[0].equalsIgnoreCase(config.getHierarchy())){
+					holidaySet.addAll(getHolidays(year, config, Arrays.copyOfRange(args, 1, args.length)));
 					break;
 				}
 			}
 		}
-		return holidays;
+		return holidaySet;
 	}
 
 	private void parseHolidays(int year, Set<LocalDate> holidays, Holidays config) {

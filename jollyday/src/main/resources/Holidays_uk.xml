@@ -1,24 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:Configuration hierarchy="uk" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+<tns:Configuration hierarchy="uk" description="United Kingdom" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
   <tns:Holidays>
 	  <tns:RelativeToEastern days="-2"/>
-	  <tns:FixedMoving>
-	  	<tns:Date month="DECEMBER" day="25"/>
-	  	<tns:NextWeekday>TUESDAY</tns:NextWeekday>
-	  </tns:FixedMoving>
-	  <tns:FixedMoving>
-	  	<tns:Date month="DECEMBER" day="26"/>
-	  	<tns:NextWeekday>MONDAY</tns:NextWeekday>
-	  </tns:FixedMoving>
-	  <tns:FixedWeekday>
-	  	<tns:Which>FIRST</tns:Which>
-	  	<tns:Weekday>MONDAY</tns:Weekday>
-	  	<tns:Month>MAY</tns:Month>
-	  </tns:FixedWeekday>
-	  <tns:FixedWeekday>
-	  	<tns:Which>LAST</tns:Which>
-	  	<tns:Weekday>MONDAY</tns:Weekday>
-	  	<tns:Month>MAY</tns:Month>
-	  </tns:FixedWeekday>
+	  <tns:FixedMoving month="DECEMBER" day="25" nextWeekday="TUESDAY"/>
+	  <tns:FixedMoving month="DECEMBER" day="26" nextWeekday="MONDAY"/>
+	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY"/>
+	  <tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY"/>
   </tns:Holidays>
+  <tns:SubConfigurations hierarchy="al" description="Alderney">
+	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="1"/>		
+  		<tns:Fixed month="DECEMBER" day="15"/>		
+  		<tns:RelativeToEastern days="1"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="en" description="England">
+	<tns:Holidays>
+  		<tns:Fixed month="DECEMBER" day="15"/>		
+  		<tns:RelativeToEastern days="1"/>
+  		<tns:FixedMoving month="JANUARY" day="1" nextWeekday="MONDAY"/>		
+  		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="gu" description="Guernsey">
+	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="1"/>		
+  		<tns:Fixed month="MAY" day="9"/>		
+  		<tns:RelativeToEastern days="1"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="im" description="Isle of Man">
+	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="1"/>		
+  		<tns:Fixed month="JULY" day="5"/>
+  		<tns:RelativeToEastern days="1"/>
+  		<tns:FixedWeekday which="SECOND" weekday="FRIDAY" month="JUNE"/>		
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="je" description="Jersey">
+	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="1"/>		
+  		<tns:Fixed month="MAY" day="9"/>		
+  		<tns:RelativeToEastern days="1"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ni" description="Northern Ireland">
+	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="1"/>		
+  		<tns:RelativeToEastern days="1"/>
+  		<tns:FixedMoving month="MARCH" day="17" nextWeekday="MONDAY"/>		
+  		<tns:FixedMoving month="JULY" day="12" nextWeekday="MONDAY"/>		
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sc" description="Scotland">
+	<tns:Holidays>
+  		<tns:FixedMoving month="JANUARY" day="1" nextWeekday="TUESDAY"/>		
+  		<tns:FixedMoving month="JANUARY" day="2" nextWeekday="MONDAY"/>
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST"/>	
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="wa" description="Wales">
+	<tns:Holidays>
+  		<tns:RelativeToEastern days="1"/>
+  		<tns:FixedMoving month="JANUARY" day="1" nextWeekday="MONDAY"/>		
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST"/>	
+  	</tns:Holidays>
+  </tns:SubConfigurations>
 </tns:Configuration>
