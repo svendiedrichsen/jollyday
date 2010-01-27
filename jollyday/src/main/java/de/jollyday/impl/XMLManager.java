@@ -80,6 +80,12 @@ public class XMLManager extends Manager {
 		JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 		configuration = el.getValue();
 		stream.close();
+		if(LOG.isLoggable(Level.FINER)){
+			LOG.finer("Found configuration for "+configuration.getDescription());
+			for(Configuration c : configuration.getSubConfigurations()){
+				LOG.finer("Sub-configuration "+c.getDescription()+"("+c.getHierarchy()+").");
+			}
+		}
 	}
 
 }
