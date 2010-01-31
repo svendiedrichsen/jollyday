@@ -44,16 +44,17 @@
     			<element name="Days" type="int"></element>
     			<element name="Weekday" type="tns:Weekday"></element>
     		</choice>
-    		<element name="When" maxOccurs="1" minOccurs="1" type="tns:When">
+    		<element name="When" maxOccurs="1" minOccurs="1"
+    			type="tns:When">
     		</element>
     		<element name="Date" type="tns:Fixed" maxOccurs="1"
     			minOccurs="1">
     		</element>
     	</sequence>
     </complexType>
-    
 
-    
+
+
 
     <complexType name="Holidays">
         <sequence>
@@ -63,7 +64,7 @@
             <element name="RelativeToFixed" type="tns:RelativeToFixed" maxOccurs="unbounded" minOccurs="0">
         		</element>
             <element name="RelativeToWeekdayInMonth" type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="FixedMoving" type="tns:FixedMoving" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="FixedMovingOnWeekend" type="tns:FixedMovingOnWeekend" maxOccurs="unbounded" minOccurs="0"></element>
             <element name="FixedWeekday" type="tns:FixedWeekdayInMonth" maxOccurs="unbounded" minOccurs="0">
         		</element>
         </sequence>
@@ -107,7 +108,7 @@
     	</restriction>
     </simpleType>
 
-    <complexType name="FixedMoving">
+    <complexType name="FixedMovingOnWeekend">
     	<complexContent>
     		<extension base="tns:Fixed">
     			<attribute name="nextWeekday" type="tns:Weekday"></attribute>

@@ -62,7 +62,7 @@
   <tns:SubConfigurations hierarchy="sn" description="Sachsen">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31"/>
-  		<tns:RelativeToFixed>
+  		<tns:RelativeToFixed >
   			<tns:Weekday>WEDNESDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="NOVEMBER" day="23"/>
