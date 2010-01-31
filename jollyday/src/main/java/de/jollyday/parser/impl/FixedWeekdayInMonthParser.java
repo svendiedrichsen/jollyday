@@ -30,26 +30,33 @@ public class FixedWeekdayInMonthParser implements HolidayParser {
 
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(FixedWeekdayInMonth fwm : config.getFixedWeekday()){
-			LocalDate date = CalendarUtil.create(year, XMLUtil.getMonth(fwm.getMonth()), 1);
-			int direction = 1;
-			if(fwm.getWhich() == Which.LAST){
-				date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
-				direction = -1;
-			}
-			int weekDay = XMLUtil.getWeekday(fwm.getWeekday());
-			while(date.getDayOfWeek() != weekDay){
-				date = date.plusDays(direction);
-			}
-			switch(fwm.getWhich()){
-				case SECOND:
-					date = date.plusDays(7);
-					break;
-				case THIRD:
-					date = date.plusDays(14);
-					break;
-			}
+			LocalDate date = parse(year, fwm);
 			holidays.add(date);
 		}
+	}
+
+	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
+		LocalDate date = CalendarUtil.create(year, XMLUtil.getMonth(fwm.getMonth()), 1);
+		int direction = 1;
+		if(fwm.getWhich() == Which.LAST){
+			date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
+			direction = -1;
+		}
+		int weekDay = XMLUtil.getWeekday(fwm.getWeekday());
+		while(date.getDayOfWeek() != weekDay){
+			date = date.plusDays(direction);
+		}
+		switch(fwm.getWhich()){
+			case SECOND:
+				date = date.plusDays(7);
+				break;
+			case THIRD:
+				date = date.plusDays(14);
+				break;
+			case FOURTH:
+				date = date.plusDays(21);
+		}
+		return date;
 	}
 
 }

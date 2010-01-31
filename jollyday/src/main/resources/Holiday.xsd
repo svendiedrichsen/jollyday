@@ -57,22 +57,16 @@
 
     <complexType name="Holidays">
         <sequence>
-    		<sequence maxOccurs="unbounded" minOccurs="0">
-    			<element name="Fixed" type="tns:Fixed"></element>
-    		</sequence>
-    		<sequence maxOccurs="unbounded" minOccurs="0">
-    			<element name="RelativeToEastern" type="tns:RelativeToEastern">
-    			</element>
-    		</sequence>
-    		<sequence maxOccurs="unbounded" minOccurs="0">
-    			<element name="RelativeToFixed" type="tns:RelativeToFixed">
-    			</element>
-    		</sequence>
-    		<sequence maxOccurs="unbounded" minOccurs="0">
-    			<element name="FixedMoving" type="tns:FixedMoving"></element>
-    		</sequence>
-    		<sequence maxOccurs="unbounded" minOccurs="0"><element name="FixedWeekday" type="tns:FixedWeekdayInMonth"></element></sequence>
-    	</sequence>
+            <element name="Fixed" type="tns:Fixed" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="RelativeToEastern" type="tns:RelativeToEastern" maxOccurs="unbounded" minOccurs="0">
+        		</element>
+            <element name="RelativeToFixed" type="tns:RelativeToFixed" maxOccurs="unbounded" minOccurs="0">
+        		</element>
+            <element name="RelativeToWeekdayInMonth" type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="FixedMoving" type="tns:FixedMoving" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="FixedWeekday" type="tns:FixedWeekdayInMonth" maxOccurs="unbounded" minOccurs="0">
+        		</element>
+        </sequence>
 
 
 
@@ -133,6 +127,15 @@
     		<enumeration value="SECOND"></enumeration>
     		<enumeration value="THIRD"></enumeration>
     		<enumeration value="LAST"></enumeration>
+    		<enumeration value="FOURTH"></enumeration>
     	</restriction>
     </simpleType>
+
+    <complexType name="RelativeToWeekdayInMonth">
+    	<sequence>
+    		<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"></element>
+    	</sequence>
+        <attribute name="weekday" type="tns:Weekday"></attribute>
+        <attribute name="when" type="tns:When"></attribute>
+    </complexType>
 </schema>

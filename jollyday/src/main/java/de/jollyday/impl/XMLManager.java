@@ -38,6 +38,7 @@ import de.jollyday.parser.impl.FixedParser;
 import de.jollyday.parser.impl.FixedWeekdayInMonthParser;
 import de.jollyday.parser.impl.RelativeToEasternParser;
 import de.jollyday.parser.impl.RelativeToFixedParser;
+import de.jollyday.parser.impl.RelativeToFixedWeekdayInMonthParser;
 
 /**
  * Manager implementation for reading data from XML files. The files
@@ -65,6 +66,7 @@ public class XMLManager extends Manager {
 		PARSER.add(new FixedMovingParser());
 		PARSER.add(new RelativeToEasternParser());
 		PARSER.add(new RelativeToFixedParser());
+		PARSER.add(new RelativeToFixedWeekdayInMonthParser());
 	}
 
 	@Override
