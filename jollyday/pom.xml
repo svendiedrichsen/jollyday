@@ -5,8 +5,19 @@
 	<artifactId>jollyday</artifactId>
 	<name>Jollyday</name>
 	<version>0.0.1-SNAPSHOT</version>
+	<description>This API determines the holidays for a given year, country and eventually state/region.</description>
 	<url>http://jollyday.sourceforge.net</url>
+	<issueManagement>
+		<system>Sourceforge</system>
+		<url>http://sourceforge.net/tracker/?group_id=299729&amp;atid=1264280</url>
+	</issueManagement>
 	<inceptionYear>18.01.2010</inceptionYear>
+	<scm>
+		<connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday</connection>
+		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday</developerConnection>
+		<tag>TRUNK</tag>
+		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday</url>
+	</scm>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -60,4 +71,18 @@
 			<version>1.6</version>
 		</dependency>
 	</dependencies>
+	<licenses>
+		<license>
+		  <name>Apache 2</name>
+		  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		  <distribution>repo</distribution>
+		  <comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+	  <reporting>
+    <plugins>
+    
+    </plugins>
+  </reporting>
+	
 </project>
