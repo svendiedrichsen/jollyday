@@ -84,5 +84,11 @@
     
     </plugins>
   </reporting>
-	
+	<distributionManagement>
+		<site>
+		  <id>jollyday.sf.net</id>
+		  <url>sftp://diedrichsen@web.sourceforge.net/home/groups/j/jo/jollyday/htdocs </url>
+		  <name>Sourceforge Site</name>
+		</site>
+	</distributionManagement>
 </project>
