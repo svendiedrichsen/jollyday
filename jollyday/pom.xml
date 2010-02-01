@@ -5,8 +5,21 @@
 	<artifactId>jollyday</artifactId>
 	<name>Jollyday</name>
 	<version>0.0.1-SNAPSHOT</version>
-	<description>This API determines the holidays for a given year, country and eventually state/region.</description>
-	<url>http://jollyday.sourceforge.net</url>
+	<description>
+		This API determines the holidays for a given year, country and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the system classpath. Currently the following countries are supported: United States, United Kingdom, Germany, Switzerland, Czech Republic, Slovakia, Italy, Netherlands, France. More to come. ;-)
+	</description>
+	<url>http://sourceforge.net/projects/jollyday</url>
+	<developers>
+		<developer>
+			<id>diedrichsen</id>
+			<email>sdiedrichsen@yahoo.de</email>
+			<name>Sven Diedrichsen</name>
+			<roles>
+				<role>Admin</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
 	<issueManagement>
 		<system>Sourceforge</system>
 		<url>http://sourceforge.net/tracker/?group_id=299729&amp;atid=1264280</url>
@@ -79,11 +92,6 @@
 		  <comments>A business-friendly OSS license</comments>
 		</license>
 	</licenses>
-	  <reporting>
-    <plugins>
-    
-    </plugins>
-  </reporting>
 	<distributionManagement>
 		<site>
 		  <id>jollyday.sf.net</id>

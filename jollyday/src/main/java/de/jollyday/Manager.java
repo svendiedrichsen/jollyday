@@ -60,16 +60,46 @@ public abstract class Manager {
 		return m;
 	}
 
+	/**
+	 * Calls isHoliday with JODA time object.
+	 * @see Manager.isHoliday(LocalDate c, String... args)
+	 */
 	public boolean isHoliday(Calendar c, String... args) {
 		return isHoliday(new LocalDate(c), args);
 	}
 
+	/**
+	 * Show if the requested date is a holiday.
+	 * @param c The potential holiday.
+	 * @param args Hierarchy to request the holidays for. i.e. args = {'ny'} -> New York holidays
+	 * @return is a holiday in the state/region
+	 */
 	public boolean isHoliday(LocalDate c, String... args) {
 		return getHolidays(c.getYear(), args).contains(c);
 	}
 
+	/**
+	 * Returns the the holidays for the requested year and hierarchy structure. 
+	 * @param year i.e. 2010
+	 * @param args i.e. args = {'ny'}. returns US/New York holidays. 
+	 * No args -> holidays common to whole country
+	 * @return the list of holidays for the requested year
+	 */
 	abstract public Set<LocalDate> getHolidays(int year, String... args);
 
+	/**
+	 * Initializes the implementing manager for the provided country.
+	 * @param country i.e. us, uk, de
+	 * @throws Exception
+	 */
 	abstract public void init(String country) throws Exception;
+	
+	/**
+	 * Returns the configured hierarchy structure for the specific manager.
+	 * This hierarchy shows how the configured holidays are structured and
+	 * can be retrieved.
+	 * @return
+	 */
+	abstract public Hierarchy getHierarchy();
 
 }

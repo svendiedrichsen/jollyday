@@ -50,6 +50,12 @@
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
   	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="be" description="Berkeley">
+  		<tns:Holidays>
+  			<tns:Fixed month="MARCH" day="8"/>
+  			<tns:Fixed month="OCTOBER" day="21"/>
+  		</tns:Holidays>	
+  	</tns:SubConfigurations>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="co" description="Colorado">
   	<tns:Holidays>
@@ -111,6 +117,7 @@
   <tns:SubConfigurations hierarchy="hi" description="Hawaii">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="26" />
+  		<tns:Fixed month="APRIL" day="15" />
   		<tns:Fixed month="JUNE" day="11" />
   		<tns:Fixed month="AUGUST" day="3" />
   		<tns:RelativeToEastern days="-2" />
@@ -137,12 +144,14 @@
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="id" description="Indiana">
+  <tns:SubConfigurations hierarchy="in" description="Indiana">
   	<tns:Holidays>
 		<tns:Fixed month="DECEMBER" day="24"/>
 		<tns:RelativeToEastern days="-2"/>
+  		<tns:RelativeToEastern days="1"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY"/>
 		</tns:RelativeToWeekdayInMonth>
@@ -224,11 +233,24 @@
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="APRIL" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="sc" description="Suffolk County">
+  		<tns:Holidays>
+  			<tns:Fixed month="MARCH" day="17"/>
+  			<tns:Fixed month="JUNE" day="17"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="ca" description="Cambridge">
+  		<tns:Holidays>
+  			<tns:Fixed month="MARCH" day="17"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="mi" description="Michigan">
   	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="30"/>
   		<tns:Fixed month="DECEMBER" day="24" />
   		<tns:Fixed month="DECEMBER" day="31" />
+  		<tns:RelativeToEastern days="1"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
@@ -329,6 +351,7 @@
   <tns:SubConfigurations hierarchy="ny" description="New York">
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="12"/>
+  		<tns:RelativeToEastern days="1"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
   			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
@@ -336,6 +359,11 @@
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="nyc" description="New York City">
+  		<tns:Holidays>
+  			<tns:FixedWeekday which="FIRST" weekday="THURSDAY" month="JUNE"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nc" description="North Carolina">
   	<tns:Holidays>
@@ -346,10 +374,21 @@
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
   	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="ce" description="Charlotte">
+  		<tns:Holidays>
+  			<tns:Fixed month="MAY" day="20"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="me" description="Mecklenburg">
+  		<tns:Holidays>
+  			<tns:Fixed month="MAY" day="20"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nd" description="North Dakota">
   	<tns:Holidays>
   		<tns:RelativeToEastern days="-2"/>
+  		<tns:RelativeToEastern days="1"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
   	</tns:Holidays>
@@ -398,13 +437,6 @@
   		<tns:Fixed month="DECEMBER" day="26"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
-  	</tns:Holidays>
-  </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="sd" description="South Dakota">
-  	<tns:Holidays>
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
-  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sd" description="South Dakota">

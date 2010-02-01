@@ -29,6 +29,7 @@ import javax.xml.bind.Unmarshaller;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.Hierarchy;
 import de.jollyday.Manager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
@@ -50,16 +51,31 @@ import de.jollyday.parser.impl.RelativeToFixedWeekdayInMonthParser;
  */
 public class XMLManager extends Manager {
 
-	private static final Logger LOG = Logger.getLogger(XMLManager.class
-			.getName());
+	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
+	/**
+	 * the package name to search for the generated java classes.
+	 */
 	private static final String PACKAGE = "de.jollyday.config";
+	/**
+	 * prefix of the config files.
+	 */
 	private static final String FILE_PREFIX = "Holidays";
+	/**
+	 * suffix of the config files.
+	 */
 	private static final String FILE_SUFFIX = ".xml";
-
+	/**
+	 * fixed list of parsers. this may move to the configuration.
+	 */
 	private static final Collection<HolidayParser> PARSER = new HashSet<HolidayParser>();
-
+	/**
+	 * Configuration parsed on initialization.
+	 */
 	private Configuration configuration;
 
+	/**
+	 * Class initalizer fills the list of parsers.
+	 */
 	static {
 		PARSER.add(new FixedWeekdayInMonthParser());
 		PARSER.add(new FixedParser());
@@ -74,6 +90,14 @@ public class XMLManager extends Manager {
 		return getHolidays(year, configuration, args);
 	}
 
+	/**
+	 * Parses the provided configuration for the provided year and
+	 * fills the list of holidays.
+	 * @param year
+	 * @param c
+	 * @param args
+	 * @return
+	 */
 	private Set<LocalDate> getHolidays(int year, Configuration c,
 			String... args) {
 		Set<LocalDate> holidaySet = new HashSet<LocalDate>();
@@ -82,17 +106,25 @@ public class XMLManager extends Manager {
 		}
 		parseHolidays(year, holidaySet, c.getHolidays());
 		if (args != null && args.length > 0) {
+			String hierarchy = args[0];
 			for (Configuration config : c.getSubConfigurations()) {
-				if (args[0].equalsIgnoreCase(config.getHierarchy())) {
-					holidaySet.addAll(getHolidays(year, config, Arrays
-							.copyOfRange(args, 1, args.length)));
+				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
+					Set<LocalDate> subHolidays = 
+						getHolidays(year, config, Arrays.copyOfRange(args, 1, args.length));
+					holidaySet.addAll(subHolidays);
 					break;
 				}
 			}
 		}
 		return holidaySet;
 	}
-
+	
+	/**
+	 * Iterates of the list of parsers and calls parse on each of them.
+	 * @param year
+	 * @param holidays
+	 * @param config
+	 */
 	private void parseHolidays(int year, Set<LocalDate> holidays,
 			Holidays config) {
 		for (HolidayParser p : PARSER) {
@@ -100,6 +132,11 @@ public class XMLManager extends Manager {
 		}
 	}
 
+	/**
+	 * Initializes the XMLManager by loading the holidays XML file as resource
+	 * from the system classpath. When the XML file is found it will be 
+	 * unmarshalled with JAXB to some Java classes.
+	 */
 	@Override
 	public void init(String country) throws Exception {
 		InputStream stream = ClassLoader.getSystemResourceAsStream(FILE_PREFIX
@@ -120,6 +157,32 @@ public class XMLManager extends Manager {
 						+ c.getHierarchy() + ").");
 			}
 		}
+	}
+
+	/**
+	 * Returns the configurations hierarchy.<br>
+	 * i.e. Hierarchy 'us' -> Children 'al','ak','ar', ... ,'wv','wy'.
+	 * Every child might itself have children. The ids be used
+	 * to call getHolidays()/isHoliday().
+	 */
+	@Override
+	public Hierarchy getHierarchy() {
+		return createConfigurationHierarchy(configuration);
+	}
+
+	/**
+	 * Creates the configuration hierarchy for the provided configuration.
+	 * @param c
+	 * @return configuration hierarchy
+	 */
+	private static Hierarchy createConfigurationHierarchy(Configuration c) {
+		Hierarchy h = new Hierarchy();
+		h.setId(c.getHierarchy());
+		h.setDescription(c.getDescription());
+		for(Configuration sub : c.getSubConfigurations()){
+			h.getChildren().add(createConfigurationHierarchy(sub));
+		}
+		return h;
 	}
 
 }

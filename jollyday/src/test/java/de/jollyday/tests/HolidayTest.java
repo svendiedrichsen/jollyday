@@ -24,6 +24,7 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 
+import de.jollyday.Hierarchy;
 import de.jollyday.Manager;
 import de.jollyday.util.CalendarUtil;
 
@@ -52,7 +53,16 @@ public class HolidayTest {
 	}
 	
 	@Test
-	public void testBase() throws Exception{
+	public void testBaseStructure() throws Exception{
+		Manager m = Manager.getInstance("test");
+		Hierarchy h = m.getHierarchy();
+		Assert.assertEquals("Wrong id.", "test", h.getId());
+		Assert.assertEquals("Wrong number of children on first level.", 1, h.getChildren().size());
+		Assert.assertEquals("Wrong number of children on second level.", 1, h.getChildren().iterator().next().getChildren().size());
+	}
+
+	@Test
+	public void testBaseDates() throws Exception{
 		Manager m = Manager.getInstance("test");
 		Set<LocalDate> holidays = m.getHolidays(2010);
 		Assert.assertNotNull(holidays);

@@ -29,36 +29,36 @@ import de.jollyday.Hierarchy;
 import de.jollyday.Manager;
 import de.jollyday.util.CalendarUtil;
 
-public class HolidayUKTest extends TestCase {
+public class HolidayUSTest extends TestCase {
 
+	private static final String US = "us";
 	private static final int YEAR = 2010;
-	private static Set<LocalDate> uk = new HashSet<LocalDate>();
-
+	private static Set<LocalDate> us = new HashSet<LocalDate>();
 	
 	static{
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 27));
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 28));
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 3));
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 31));
-		LocalDate c = CalendarUtil.getEasterSunday(YEAR);
-		c = c.plusDays(-2);
-		uk.add(c);
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 31));
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.JULY, 4));
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 6));
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 11));
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 25));
+		us.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
+	}
+
+	@Test
+	public void testManagerDEStructure() throws Exception{
+		Manager m = Manager.getInstance(US);
+		Hierarchy h = m.getHierarchy();
+		Assert.assertEquals("Wrong id.", US, h.getId());
+		Assert.assertEquals("Wrong number of children.", 51, h.getChildren().size());
 	}
 	
 	@Test
-	public void testManagerDEStructure() throws Exception{
-		Manager m = Manager.getInstance("uk");
-		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", "uk", h.getId());
-		Assert.assertEquals("Missing children.", 8, h.getChildren().size());
-	}
-
-	@Test
-	public void testManagerUKDates() throws Exception{
-		Manager m = Manager.getInstance("uk");
+	public void testManagerDEDates() throws Exception{
+		Manager m = Manager.getInstance(US);
 		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", 5, holidays.size());
-		Assert.assertEquals("Wrong dates.", uk, holidays);
+		Assert.assertEquals("Wrong number of holidays.", 7, holidays.size());
+		Assert.assertEquals("Wrong dates.", us, holidays);
 	}
-
+	
 }
