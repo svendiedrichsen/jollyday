@@ -58,15 +58,28 @@
 
     <complexType name="Holidays">
         <sequence>
-            <element name="Fixed" type="tns:Fixed" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="RelativeToEastern" type="tns:RelativeToEastern" maxOccurs="unbounded" minOccurs="0">
-        		</element>
-            <element name="RelativeToFixed" type="tns:RelativeToFixed" maxOccurs="unbounded" minOccurs="0">
-        		</element>
-            <element name="RelativeToWeekdayInMonth" type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="FixedMovingOnWeekend" type="tns:FixedMovingOnWeekend" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="FixedWeekday" type="tns:FixedWeekdayInMonth" maxOccurs="unbounded" minOccurs="0">
-        		</element>
+        	<element name="Fixed" type="tns:Fixed" maxOccurs="unbounded"
+        		minOccurs="0">
+        	</element>
+        	<element name="RelativeToEastern"
+        		type="tns:RelativeToEastern" maxOccurs="unbounded"
+        		minOccurs="0">
+        	</element>
+        	<element name="RelativeToFixed" type="tns:RelativeToFixed"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        	<element name="RelativeToWeekdayInMonth"
+        		type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded"
+        		minOccurs="0">
+        	</element>
+        	<element name="FixedMovingOnWeekend"
+        		type="tns:FixedMovingOnWeekend" maxOccurs="unbounded"
+        		minOccurs="0">
+        	</element>
+        	<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
+        	<element name="IslamicHoliday" type="tns:IslamicHoliday" maxOccurs="unbounded" minOccurs="0"></element>
         </sequence>
 
 
@@ -139,4 +152,24 @@
         <attribute name="weekday" type="tns:Weekday"></attribute>
         <attribute name="when" type="tns:When"></attribute>
     </complexType>
+
+    <complexType name="IslamicHoliday">
+    	<attribute name="type" type="tns:IslamicHolidayType">
+    	</attribute>
+    </complexType>
+
+
+    <simpleType name="IslamicHolidayType">
+    	<restriction base="string">
+    		<enumeration value="NEUJAHR"></enumeration>
+    		<enumeration value="ASCHURA"></enumeration>
+    		<enumeration value="MAWLID_AN_NABI"></enumeration>
+    		<enumeration value="LAILAT_AL_MIRAJ"></enumeration>
+    		<enumeration value="LAILAT_AL_BARAT"></enumeration>
+    		<enumeration value="RAMADAN"></enumeration>
+    		<enumeration value="LAILAT_AL_QADR"></enumeration>
+    		<enumeration value="ID_AL_FITR"></enumeration>
+    		<enumeration value="ID_UL_ADHA"></enumeration>
+    	</restriction>
+    </simpleType>
 </schema>

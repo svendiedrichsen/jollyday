@@ -78,6 +78,9 @@ public class HolidayDETest extends TestCase {
 		Set<LocalDate> holidays = m.getHolidays(2010);
 		Assert.assertEquals("Wrong number of holidays.", 9, holidays.size());
 		Assert.assertEquals("Wrong dates.", de, holidays);
+		for(LocalDate holiday : de){
+			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday));
+		}
 	}
 	
 	@Test
@@ -86,6 +89,9 @@ public class HolidayDETest extends TestCase {
 		Set<LocalDate> holidays = m.getHolidays(2010, "by");
 		Assert.assertEquals("Wrong number of holidays.", 12, holidays.size());
 		Assert.assertEquals("Wrong dates.", de_by, holidays);
+		for(LocalDate holiday : de_by){
+			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday, "by"));
+		}
 	}
 
 	@Test
@@ -94,6 +100,9 @@ public class HolidayDETest extends TestCase {
 		Set<LocalDate> holidays = m.getHolidays(2010, "sn");
 		Assert.assertEquals("Wrong number of holidays.", 11, holidays.size());
 		Assert.assertEquals("Wrong dates.", de_sn, holidays);
+		for(LocalDate holiday : de_sn){
+			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday, "sn"));
+		}
 	}
 
 }

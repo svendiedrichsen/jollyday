@@ -16,6 +16,8 @@
 package de.jollyday;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -38,7 +40,10 @@ public abstract class Manager {
 	 * The name of the configuration file.
 	 */
 	private static final String CONFIG_FILE = "application.properties";
-
+	/**
+	 * Caches the holidays for a given year and state/region.
+	 */
+	private Map<String, Set<LocalDate>> holidaysPerYear = new HashMap<String, Set<LocalDate>>();
 	/**
 	 * Creates an Manager instance. The implementing Manager class will be read from the
 	 * application.properties file.
@@ -75,7 +80,18 @@ public abstract class Manager {
 	 * @return is a holiday in the state/region
 	 */
 	public boolean isHoliday(LocalDate c, String... args) {
-		return getHolidays(c.getYear(), args).contains(c);
+		StringBuilder keyBuilder = new StringBuilder();
+		keyBuilder.append(c.getYear());
+		for(String arg : args){
+			keyBuilder.append("_");
+			keyBuilder.append(arg);
+		}
+		String key = keyBuilder.toString();
+		if(!holidaysPerYear.containsKey(key.toString())){
+			Set<LocalDate> holidays = getHolidays(c.getYear(), args);
+			holidaysPerYear.put(key, holidays);
+		}
+		return holidaysPerYear.get(key).contains(c);
 	}
 
 	/**
