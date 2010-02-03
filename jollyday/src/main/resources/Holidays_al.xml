@@ -10,7 +10,7 @@
 	  <tns:RelativeToEastern days="1"/>
 	  <tns:RelativeToEastern days="39"/>
 	  <tns:RelativeToEastern days="50"/>
-	  <tns:IslamicHoliday name="ID_UL_ADHA"/>
-	  <tns:IslamicHoliday name="ID_AL_FITR"/>
+	  <tns:IslamicHoliday type="ID_UL_ADHA"/>
+	  <tns:IslamicHoliday type="ID_AL_FITR"/>
   </tns:Holidays>
 </tns:Configuration>
