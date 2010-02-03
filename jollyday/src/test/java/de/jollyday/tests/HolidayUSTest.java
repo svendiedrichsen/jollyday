@@ -34,6 +34,8 @@ public class HolidayUSTest extends TestCase {
 	private static final String US = "us";
 	private static final int YEAR = 2010;
 	private static Set<LocalDate> us = new HashSet<LocalDate>();
+	private static Set<LocalDate> us_de = new HashSet<LocalDate>();
+	private static Set<LocalDate> us_ct = new HashSet<LocalDate>();
 	
 	static{
 		us.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
@@ -43,10 +45,23 @@ public class HolidayUSTest extends TestCase {
 		us.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 11));
 		us.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 25));
 		us.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
+		
+		us_de.addAll(us);
+		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
+		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 26));
+		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 18));
+		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 15));
+
+		us_ct.addAll(us);
+		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 12));
+		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
+		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 18));
+		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 15));
+		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 11));
 	}
 
 	@Test
-	public void testManagerDEStructure() throws Exception{
+	public void testManagerUSStructure() throws Exception{
 		Manager m = Manager.getInstance(US);
 		Hierarchy h = m.getHierarchy();
 		Assert.assertEquals("Wrong id.", US, h.getId());
@@ -54,11 +69,27 @@ public class HolidayUSTest extends TestCase {
 	}
 	
 	@Test
-	public void testManagerDEDates() throws Exception{
+	public void testManagerUSDates() throws Exception{
 		Manager m = Manager.getInstance(US);
 		Set<LocalDate> holidays = m.getHolidays(2010);
 		Assert.assertEquals("Wrong number of holidays.", 7, holidays.size());
 		Assert.assertEquals("Wrong dates.", us, holidays);
 	}
-	
+
+	@Test
+	public void testManagerUS_DEDates() throws Exception{
+		Manager m = Manager.getInstance(US);
+		Set<LocalDate> holidays = m.getHolidays(2010, "de");
+		Assert.assertEquals("Wrong number of holidays.", us_de.size(), holidays.size());
+		Assert.assertEquals("Wrong dates.", us_de, holidays);
+	}
+
+	@Test
+	public void testManagerUS_CTDates() throws Exception{
+		Manager m = Manager.getInstance(US);
+		Set<LocalDate> holidays = m.getHolidays(2010, "ct");
+		Assert.assertEquals("Wrong number of holidays.", us_ct.size(), holidays.size());
+		Assert.assertEquals("Wrong dates.", us_ct, holidays);
+	}
+
 }

@@ -151,8 +151,8 @@ public abstract class CalendarUtil {
 	/**
 	 * Returns a set of gregorian dates within a gregorian year which equal the islamic
 	 * month and day. Because the islamic year is about 11 days shorter than the gregorian
-	 * there may be more than one occurrence of an islamic 1/1 in an gregorian year.
-	 * i.e.: In the gregorian year 2008 there where two 1/1. They occurred on 1/10 and 12/29.  
+	 * there may be more than one occurrence of an islamic date in an gregorian year.
+	 * i.e.: In the gregorian year 2008 there were two 1/1. They occurred on 1/10 and 12/29.  
 	 * @param gregorianYear
 	 * @param islamicMonth
 	 * @param islamicDay
