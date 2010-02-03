@@ -174,12 +174,20 @@ public abstract class CalendarUtil {
 		for(;islamicYear <= lastDayI.getYear();){
 			LocalDate d = new LocalDate(islamicYear, islamicMonth, islamicDay, IslamicChronology.getInstance());
 			if(interv.contains(d.toDateTimeAtStartOfDay())){
-				holidays.add(new LocalDate(d.toDateTimeAtStartOfDay().getMillis(), GregorianChronology.getInstance()));
+				holidays.add(convertToGregorianDate(d));
 			}
 			islamicYear++;
 		}
 		
 		return holidays;
+	}
+
+	/**
+	 * Takes converts the provided date into a date within the gregorian chronology.
+	 * @param date
+	 */
+	public static LocalDate convertToGregorianDate(LocalDate date) {
+		return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(), GregorianChronology.getInstance());
 	}
 
 }

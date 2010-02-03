@@ -18,7 +18,9 @@ package de.jollyday.parser.impl;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
+import org.joda.time.chrono.GregorianChronology;
 
+import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToEastern;
 import de.jollyday.parser.HolidayParser;
@@ -28,8 +30,19 @@ public class RelativeToEasternParser implements HolidayParser {
 
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(RelativeToEastern re : config.getRelativeToEastern()){
-			LocalDate easterSunday = CalendarUtil.getEasterSunday(year);
-			holidays.add(easterSunday.plusDays(re.getDays()));
+			LocalDate easterSunday = null;
+			if(re.getChronology() == ChronologyType.JULIAN){
+				easterSunday = CalendarUtil.getJulianEasterSunday(year);
+			}else if(re.getChronology() == ChronologyType.GREGORIAN){
+				easterSunday = CalendarUtil.getGregorianEasterSunday(year);
+			}else{
+				easterSunday = 	CalendarUtil.getEasterSunday(year);
+			}
+			easterSunday = easterSunday.plusDays(re.getDays());
+			if(!(easterSunday.getChronology() instanceof GregorianChronology)){
+				easterSunday = CalendarUtil.convertToGregorianDate(easterSunday);
+			}
+			holidays.add(easterSunday);
 		}
 	}
 

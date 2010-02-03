@@ -36,8 +36,9 @@
 
     <complexType name="RelativeToEastern">
     	<attribute name="days" type="int"></attribute>
+    	<attribute name="chronology" type="tns:ChronologyType" use="optional"></attribute>
     </complexType>
-    
+
     <complexType name="RelativeToFixed">
     	<sequence>
     		<choice maxOccurs="1" minOccurs="1">
@@ -170,6 +171,13 @@
     		<enumeration value="LAILAT_AL_QADR"></enumeration>
     		<enumeration value="ID_AL_FITR"></enumeration>
     		<enumeration value="ID_UL_ADHA"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="ChronologyType">
+    	<restriction base="string">
+    		<enumeration value="JULIAN"></enumeration>
+    		<enumeration value="GREGORIAN"></enumeration>
     	</restriction>
     </simpleType>
 </schema>
