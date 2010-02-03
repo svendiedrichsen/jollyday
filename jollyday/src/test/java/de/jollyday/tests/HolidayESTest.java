@@ -31,6 +31,7 @@ import de.jollyday.util.CalendarUtil;
 
 public class HolidayESTest extends TestCase {
 
+	private static final String ISO_CODE = "es";
 	private static final int YEAR = 2010;
 	private static Set<LocalDate> es = new HashSet<LocalDate>();
 	private static Set<LocalDate> es_ce = new HashSet<LocalDate>();
@@ -55,15 +56,15 @@ public class HolidayESTest extends TestCase {
 
 	@Test
 	public void testManagerESStructure() throws Exception {
-		Manager m = Manager.getInstance("es");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", "es", h.getId());
+		Assert.assertEquals("Wrong id.", ISO_CODE, h.getId());
 		Assert.assertEquals("Missing children.", 19, h.getChildren().size());
 	}
 
 	@Test
 	public void testManagerESDates() throws Exception {
-		Manager m = Manager.getInstance("es");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010);
 		Assert.assertEquals("Wrong number of holidays.", es.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", es, holidays);
@@ -71,7 +72,7 @@ public class HolidayESTest extends TestCase {
 
 	@Test
 	public void testManagerES_CEDates() throws Exception {
-		Manager m = Manager.getInstance("es");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010, "ce");
 		Assert.assertEquals("Wrong number of holidays.", es_ce.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", es_ce, holidays);

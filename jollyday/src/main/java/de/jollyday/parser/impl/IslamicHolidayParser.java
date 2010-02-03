@@ -26,8 +26,8 @@ import de.jollyday.parser.HolidayParser;
 import de.jollyday.util.CalendarUtil;
 
 /**
- * @author svdi1de
- *
+ * This parser calculates gregorian dates for the different islamic holidays.
+ * @author Sven Diedrichsen
  */
 public class IslamicHolidayParser implements HolidayParser {
 

@@ -28,25 +28,60 @@ import org.joda.time.chrono.JulianChronology;
 
 import de.jollyday.config.Fixed;
 
+/**
+ * Utility class for date operations.
+ * @author Sven Diedrichsen
+ *
+ */
 public abstract class CalendarUtil {
 
+	/**
+	 * Creates the current date within the gregorian calendar.
+	 * @return today
+	 */
 	public static LocalDate create() {
 		return new LocalDate(GregorianChronology.getInstance());
 	}
 	
+	/**
+	 * Creates the given date within the julian/gregorian chronology.
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @return Gregorian/julian date.
+	 */
 	public static LocalDate create(int year, int month, int day){
 		Chronology c = ( year <= 1583 ? JulianChronology.getInstance() : GregorianChronology.getInstance()); 
 		return create(year, month, day, c);
 	}
 
+	/**
+	 * Creates the date within the provided chronology.
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @param c
+	 * @return date
+	 */
 	public static LocalDate create(int year, int month, int day, Chronology c){
 		return new LocalDate(year, month, day, c);
 	}
 	
+	/**
+	 * Creates the date from the month/day within the specified year.
+	 * @param year
+	 * @param fixed
+	 * @return
+	 */
 	public static LocalDate create(int year, Fixed fixed){
 		return create(year, XMLUtil.getMonth(fixed.getMonth()), fixed.getDay());
 	}
 
+	/**
+	 * Returns the easter sunday for a given year.
+	 * @param year 
+	 * @return Easter sunday.
+	 */
 	public static LocalDate getEasterSunday(int year){
 		int a,b,c,d,e,f,g,h,i,j,k,l;
 		int x,month,day;
@@ -82,11 +117,26 @@ public abstract class CalendarUtil {
 		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day);
 	}
 
+	/**
+	 * Returns if this date is on a wekkend.
+	 * @param date
+	 * @return is weekend
+	 */
 	public static boolean isWeekend(LocalDate date) {
 		return date.getDayOfWeek() == DateTimeConstants.SATURDAY
 			|| date.getDayOfWeek() == DateTimeConstants.SUNDAY; 
 	}
 	
+	/**
+	 * Returns a set of gregorian dates within a gregorian year which equal the islamic
+	 * month and day. Because the islamic year is about 11 days shorter than the gregorian
+	 * there may be more than one occurrence of an islamic 1/1 in an gregorian year.
+	 * i.e.: In the gregorian year 2008 there where two 1/1. They occurred on 1/10 and 12/29.  
+	 * @param gregorianYear
+	 * @param islamicMonth
+	 * @param islamicDay
+	 * @return List of gregorian dates for the islamic month/day.
+	 */
 	public static Set<LocalDate> getIslamicHolidaysInGregorianYear(int gregorianYear, int islamicMonth, int islamicDay){
 		Set<LocalDate> holidays = new HashSet<LocalDate>();
 		

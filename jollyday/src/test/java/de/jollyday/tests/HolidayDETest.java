@@ -31,6 +31,7 @@ import de.jollyday.util.CalendarUtil;
 
 public class HolidayDETest extends TestCase {
 
+	private static final String ISO_CODE = "de";
 	private static final int YEAR = 2010;
 	private static Set<LocalDate> de = new HashSet<LocalDate>();
 	private static Set<LocalDate> de_by = new HashSet<LocalDate>();
@@ -66,15 +67,15 @@ public class HolidayDETest extends TestCase {
 
 	@Test
 	public void testManagerDEStructure() throws Exception{
-		Manager m = Manager.getInstance("de");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", "de", h.getId());
+		Assert.assertEquals("Wrong id.", ISO_CODE, h.getId());
 		Assert.assertEquals("Missing children.", 11, h.getChildren().size());
 	}
 	
 	@Test
 	public void testManagerDEDates() throws Exception{
-		Manager m = Manager.getInstance("de");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010);
 		Assert.assertEquals("Wrong number of holidays.", 9, holidays.size());
 		Assert.assertEquals("Wrong dates.", de, holidays);
@@ -85,7 +86,7 @@ public class HolidayDETest extends TestCase {
 	
 	@Test
 	public void testManagerDE_BY() throws Exception{
-		Manager m = Manager.getInstance("de");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010, "by");
 		Assert.assertEquals("Wrong number of holidays.", 12, holidays.size());
 		Assert.assertEquals("Wrong dates.", de_by, holidays);
@@ -96,7 +97,7 @@ public class HolidayDETest extends TestCase {
 
 	@Test
 	public void testManagerDE_SN() throws Exception{
-		Manager m = Manager.getInstance("de");
+		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010, "sn");
 		Assert.assertEquals("Wrong number of holidays.", 11, holidays.size());
 		Assert.assertEquals("Wrong dates.", de_sn, holidays);
