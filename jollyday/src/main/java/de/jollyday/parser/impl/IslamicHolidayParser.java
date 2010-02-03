@@ -17,13 +17,9 @@ package de.jollyday.parser.impl;
 
 import java.util.Set;
 
-import org.joda.time.Chronology;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
-import org.joda.time.chrono.GregorianChronology;
-import org.joda.time.chrono.IslamicChronology;
 
-import de.jollyday.config.Fixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.IslamicHoliday;
 import de.jollyday.parser.HolidayParser;
@@ -40,36 +36,37 @@ public class IslamicHolidayParser implements HolidayParser {
 	 */
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(IslamicHoliday i : config.getIslamicHoliday()){
-			LocalDate d = null;
 			switch(i.getType()){
 			case NEUJAHR:
-				d = new LocalDate(year, DateTimeConstants.JANUARY, 1, IslamicChronology.getInstance());
-				d = new LocalDate(d, GregorianChronology.getInstance());
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 1));
 				break;
 			case ASCHURA:
-				d = new LocalDate(year, DateTimeConstants.JANUARY, 15, IslamicChronology.getInstance());
-				d = new LocalDate(d, GregorianChronology.getInstance());
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 10));
 				break;
 			case ID_AL_FITR:
-				d = new LocalDate(year, DateTimeConstants.OCTOBER, 1, IslamicChronology.getInstance());
-				d = new LocalDate(d, GregorianChronology.getInstance());
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.OCTOBER, 1));
 				break;
 			case ID_UL_ADHA:
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.DECEMBER, 10));
 				break;
 			case LAILAT_AL_BARAT:
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.AUGUST, 15));
 				break;
 			case LAILAT_AL_MIRAJ:
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JULY, 27));
 				break;
 			case LAILAT_AL_QADR:
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 27));
 				break;
 			case MAWLID_AN_NABI:
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.MARCH, 12));
 				break;
 			case RAMADAN:
+				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 1));
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown islamic holiday "+i.getType());
 			}
-			holidays.add(d);
 		}
 	}
 

@@ -15,9 +15,16 @@
  */
 package de.jollyday.util;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.joda.time.Chronology;
 import org.joda.time.DateTimeConstants;
+import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.GregorianChronology;
+import org.joda.time.chrono.IslamicChronology;
+import org.joda.time.chrono.JulianChronology;
 
 import de.jollyday.config.Fixed;
 
@@ -28,7 +35,12 @@ public abstract class CalendarUtil {
 	}
 	
 	public static LocalDate create(int year, int month, int day){
-		return new LocalDate(year, month, day, GregorianChronology.getInstance());
+		Chronology c = ( year <= 1583 ? JulianChronology.getInstance() : GregorianChronology.getInstance()); 
+		return create(year, month, day, c);
+	}
+
+	public static LocalDate create(int year, int month, int day, Chronology c){
+		return new LocalDate(year, month, day, c);
 	}
 	
 	public static LocalDate create(int year, Fixed fixed){
@@ -38,7 +50,6 @@ public abstract class CalendarUtil {
 	public static LocalDate getEasterSunday(int year){
 		int a,b,c,d,e,f,g,h,i,j,k,l;
 		int x,month,day;
-		
 		if (year <= 1583) 
 		{   
 			a = year%4;
@@ -66,7 +77,7 @@ public abstract class CalendarUtil {
 			l = (a+11*h+22*k)/451;
 			x = h+k-7*l+114;
 			month = x/31;
-			day = (x%31)+1;	
+			day = (x%31)+1;
 		}
 		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day);
 	}
@@ -74,6 +85,30 @@ public abstract class CalendarUtil {
 	public static boolean isWeekend(LocalDate date) {
 		return date.getDayOfWeek() == DateTimeConstants.SATURDAY
 			|| date.getDayOfWeek() == DateTimeConstants.SUNDAY; 
+	}
+	
+	public static Set<LocalDate> getIslamicHolidaysInGregorianYear(int gregorianYear, int islamicMonth, int islamicDay){
+		Set<LocalDate> holidays = new HashSet<LocalDate>();
+		
+		LocalDate firstDayG = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1, GregorianChronology.getInstance());
+		LocalDate lastDayG = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31, GregorianChronology.getInstance());
+		
+		LocalDate firstDayI = new LocalDate(firstDayG.toDateTimeAtStartOfDay().getMillis(), IslamicChronology.getInstance());
+		LocalDate lastDayI = new LocalDate(lastDayG.toDateTimeAtStartOfDay().getMillis(), IslamicChronology.getInstance());
+		
+		Interval interv = new Interval(firstDayI.toDateTimeAtStartOfDay(), lastDayI.plusDays(1).toDateTimeAtStartOfDay());
+		
+		int islamicYear = firstDayI.getYear();
+		
+		for(;islamicYear <= lastDayI.getYear();){
+			LocalDate d = new LocalDate(islamicYear, islamicMonth, islamicDay, IslamicChronology.getInstance());
+			if(interv.contains(d.toDateTimeAtStartOfDay())){
+				holidays.add(new LocalDate(d.toDateTimeAtStartOfDay().getMillis(), GregorianChronology.getInstance()));
+			}
+			islamicYear++;
+		}
+		
+		return holidays;
 	}
 
 }

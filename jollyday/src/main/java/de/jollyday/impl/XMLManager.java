@@ -37,6 +37,7 @@ import de.jollyday.parser.HolidayParser;
 import de.jollyday.parser.impl.FixedMovingOnWeekendParser;
 import de.jollyday.parser.impl.FixedParser;
 import de.jollyday.parser.impl.FixedWeekdayInMonthParser;
+import de.jollyday.parser.impl.IslamicHolidayParser;
 import de.jollyday.parser.impl.RelativeToEasternParser;
 import de.jollyday.parser.impl.RelativeToFixedParser;
 import de.jollyday.parser.impl.RelativeToFixedWeekdayInMonthParser;
@@ -83,6 +84,7 @@ public class XMLManager extends Manager {
 		PARSER.add(new RelativeToEasternParser());
 		PARSER.add(new RelativeToFixedParser());
 		PARSER.add(new RelativeToFixedWeekdayInMonthParser());
+		PARSER.add(new IslamicHolidayParser());
 	}
 
 	@Override

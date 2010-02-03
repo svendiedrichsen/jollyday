@@ -27,12 +27,14 @@
   	<tns:Holidays>
   		<tns:Fixed month="SEPTEMBER" day="2"/>
   		<tns:RelativeToEastern days="-3"/>
+  		<tns:IslamicHoliday type="ID_UL_ADHA"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ml" description="Melilla">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:RelativeToEastern days="-3"/>
+  		<tns:IslamicHoliday type="ID_UL_ADHA"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="cl" description="Castile and Leon">

@@ -46,7 +46,7 @@ public class HolidayUKTest extends TestCase {
 	}
 	
 	@Test
-	public void testManagerDEStructure() throws Exception{
+	public void testManagerUKStructure() throws Exception{
 		Manager m = Manager.getInstance("uk");
 		Hierarchy h = m.getHierarchy();
 		Assert.assertEquals("Wrong id.", "uk", h.getId());
