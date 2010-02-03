@@ -16,9 +16,14 @@
 package de.jollyday.impl;
 
 import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +33,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Unmarshaller;
 
 import org.joda.time.LocalDate;
+
+import sun.reflect.misc.ReflectUtil;
 
 import de.jollyday.Hierarchy;
 import de.jollyday.Manager;
@@ -40,7 +47,7 @@ import de.jollyday.parser.impl.FixedWeekdayInMonthParser;
 import de.jollyday.parser.impl.IslamicHolidayParser;
 import de.jollyday.parser.impl.RelativeToEasternParser;
 import de.jollyday.parser.impl.RelativeToFixedParser;
-import de.jollyday.parser.impl.RelativeToFixedWeekdayInMonthParser;
+import de.jollyday.parser.impl.RelativeToWeekdayInMonthParser;
 
 /**
  * Manager implementation for reading data from XML files. The files
@@ -66,27 +73,15 @@ public class XMLManager extends Manager {
 	 */
 	private static final String FILE_SUFFIX = ".xml";
 	/**
-	 * fixed list of parsers. this may move to the configuration.
-	 */
-	private static final Collection<HolidayParser> PARSER = new HashSet<HolidayParser>();
-	/**
 	 * Configuration parsed on initialization.
 	 */
 	private Configuration configuration;
 
 	/**
-	 * Class initalizer fills the list of parsers.
+	 * Calls <code>Set&lt;LocalDate&gt; getHolidays(int year, Configuration c, String... args)</code>
+	 * with the configuration from initialization.
+	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
-	static {
-		PARSER.add(new FixedWeekdayInMonthParser());
-		PARSER.add(new FixedParser());
-		PARSER.add(new FixedMovingOnWeekendParser());
-		PARSER.add(new RelativeToEasternParser());
-		PARSER.add(new RelativeToFixedParser());
-		PARSER.add(new RelativeToFixedWeekdayInMonthParser());
-		PARSER.add(new IslamicHolidayParser());
-	}
-
 	@Override
 	public Set<LocalDate> getHolidays(int year, String... args) {
 		return getHolidays(year, configuration, args);
@@ -129,10 +124,40 @@ public class XMLManager extends Manager {
 	 */
 	private void parseHolidays(int year, Set<LocalDate> holidays,
 			Holidays config) {
-		for (HolidayParser p : PARSER) {
+		for (HolidayParser p : getParsers(config)) {
 			p.parse(year, holidays, config);
 		}
 	}
+	
+	private Collection<HolidayParser> getParsers(Holidays config){
+		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
+ 		for(Method m : config.getClass().getMethods()){
+ 			if(isGetter(m) && m.getReturnType() == List.class){
+ 				try {
+					List l = (List)m.invoke(config);
+					if(l.size() >  0){
+						String className = l.get(0).getClass().getName();
+						String propName = "parser.impl."+className;
+						if(properties.stringPropertyNames().contains(propName)){
+							HolidayParser hp = (HolidayParser)Class.forName(properties.getProperty(propName)).newInstance();
+							parsers.add(hp);
+						}
+					}
+				} catch (Exception e) {
+					throw new IllegalStateException("Cannot create parsers.", e);
+				}
+ 			}
+ 		}
+		return parsers;
+	}
+
+	public static boolean isGetter(Method method){
+		  if(!method.getName().startsWith("get"))      return false;
+		  if(method.getParameterTypes().length != 0)   return false;  
+		  if(void.class.equals(method.getReturnType())) return false;
+		  return true;
+	}
+
 
 	/**
 	 * Initializes the XMLManager by loading the holidays XML file as resource

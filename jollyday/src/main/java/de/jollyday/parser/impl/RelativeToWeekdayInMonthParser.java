@@ -28,7 +28,7 @@ import de.jollyday.util.XMLUtil;
  * @author svdi1de
  *
  */
-public class RelativeToFixedWeekdayInMonthParser extends FixedWeekdayInMonthParser {
+public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 
 	/* (non-Javadoc)
 	 * @see de.jollyday.parser.impl.FixedWeekdayInMonthParser#parse(int, java.util.Set, de.jollyday.config.Holidays)

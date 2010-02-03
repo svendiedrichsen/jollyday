@@ -44,6 +44,9 @@ public abstract class Manager {
 	 * Caches the holidays for a given year and state/region.
 	 */
 	private Map<String, Set<LocalDate>> holidaysPerYear = new HashMap<String, Set<LocalDate>>();
+
+	protected Properties properties = new Properties();
+
 	/**
 	 * Creates an Manager instance. The implementing Manager class will be read from the
 	 * application.properties file.
@@ -62,6 +65,7 @@ public abstract class Manager {
 		}
 		Manager m = (Manager) Class.forName(managerImplClass).newInstance();
 		m.init(country);
+		m.properties = props;
 		return m;
 	}
 
