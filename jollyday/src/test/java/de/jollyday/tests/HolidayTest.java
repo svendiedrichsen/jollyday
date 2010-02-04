@@ -70,7 +70,13 @@ public class HolidayTest {
 		Hierarchy h = m.getHierarchy();
 		Assert.assertEquals("Wrong id.", "test", h.getId());
 		Assert.assertEquals("Wrong number of children on first level.", 2, h.getChildren().size());
-		Assert.assertEquals("Wrong number of children on second level.", 1, h.getChildren().iterator().next().getChildren().size());
+		for(Hierarchy hi : h.getChildren()){
+			if(hi.getId().equalsIgnoreCase("level1")){
+				Assert.assertEquals("Wrong number of children on second level of level 1.", 1, hi.getChildren().size());
+			}else if(hi.getId().equalsIgnoreCase("level11")){
+				Assert.assertEquals("Wrong number of children on second level of level 11.", 0, hi.getChildren().size());
+			}
+		}
 	}
 
 	@Test
