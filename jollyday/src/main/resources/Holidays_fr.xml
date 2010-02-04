@@ -9,9 +9,9 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="NOVEMBER" day="11"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="39"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="ma" description="Martinique">
   	<tns:Holidays>
@@ -36,13 +36,13 @@
   <tns:SubConfigurations hierarchy="br" description="Bas-Rhin">
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="26"/>
-  		<tns:RelativeToEastern days="-2"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="hr" description="Haut-Rhin">
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="26"/>
-  		<tns:RelativeToEastern days="-2"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="mo" description="Moselle">

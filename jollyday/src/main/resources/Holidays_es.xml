@@ -9,31 +9,31 @@
 	  <tns:Fixed month="DECEMBER" day="6"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
-	  <tns:RelativeToEastern days="-2"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="an" description="Andalucia">
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="28"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Aragon">
   	<tns:Holidays>
   		<tns:Fixed month="APRIL" day="23"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ce" description="Ceuta">
   	<tns:Holidays>
   		<tns:Fixed month="SEPTEMBER" day="2"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   		<tns:IslamicHoliday type="ID_UL_ADHA"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ml" description="Melilla">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   		<tns:IslamicHoliday type="ID_UL_ADHA"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
@@ -41,34 +41,34 @@
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="APRIL" day="23"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="cm" description="Castile - La Mancha">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="MAY" day="31"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="cn" description="Canary Islands">
   	<tns:Holidays>
   		<tns:Fixed month="MAY" day="30"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ct" description="Catalonia">
   	<tns:Holidays>
   		<tns:Fixed month="JUNE" day="24"/>
   		<tns:Fixed month="SEPTEMBER" day="11"/>
-  		<tns:RelativeToEastern days="1"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ex" description="Extremadura">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="SEPTEMBER" day="8"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ga" description="Galicia">
@@ -76,68 +76,68 @@
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="MAY" day="17"/>
   		<tns:Fixed month="JULY" day="25"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ib" description="Balearic Island">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="1"/>
-  		<tns:RelativeToEastern days="1"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="lo" description="La Rioja">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="JUNE" day="9"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="m" description="Madrid">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="MAY" day="2"/>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="mu" description="Murcia">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="JUNE" day="9"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="na" description="Navarre">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
-  		<tns:RelativeToEastern days="-3"/>
-  		<tns:RelativeToEastern days="1"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="o" description="Asturias">
   	<tns:Holidays>
   		<tns:Fixed month="SEPTEMBER" day="8"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="pv" description="Euskadi">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="25"/>
-  		<tns:RelativeToEastern days="-3"/>
-  		<tns:RelativeToEastern days="1"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="s" description="Cantabria">
   	<tns:Holidays>
   		<tns:Fixed month="SEPTEMBER" day="15"/>
-  		<tns:RelativeToEastern days="-3"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="vc" description="Valencia">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="OCTOBER" day="9"/>
-  		<tns:RelativeToEastern days="1"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
 </tns:Configuration>

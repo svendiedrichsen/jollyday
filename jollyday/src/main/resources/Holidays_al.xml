@@ -6,10 +6,10 @@
 	  <tns:Fixed month="NOVEMBER" day="28"/>
 	  <tns:Fixed month="NOVEMBER" day="29"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="39"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY"/>
 	  <tns:IslamicHoliday type="ID_UL_ADHA"/>
 	  <tns:IslamicHoliday type="ID_AL_FITR"/>
   </tns:Holidays>

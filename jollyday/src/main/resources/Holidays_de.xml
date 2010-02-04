@@ -6,10 +6,10 @@
 	  <tns:Fixed month="OCTOBER" day="3"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="39"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
   	<tns:Holidays>
@@ -20,19 +20,19 @@
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6"/>
   		<tns:Fixed month="NOVEMBER" day="1"/>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="by" description="Bayern">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6"/>
   		<tns:Fixed month="NOVEMBER" day="1"/>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="he" description="Hessen">
   	<tns:Holidays>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="mv" description="Mecklenburg-Vorpommern">
@@ -43,20 +43,20 @@
   <tns:SubConfigurations hierarchy="nw" description="Nordrhein-Westfalen">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1"/>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="rp" description="Rheinland-Pfalz">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1"/>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sl" description="Saarland">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:Fixed month="AUGUST" day="15"/>
-  		<tns:RelativeToEastern days="60"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sn" description="Sachsen">

@@ -34,10 +34,6 @@
     	</restriction>
     </simpleType>
 
-    <complexType name="RelativeToEastern">
-    	<attribute name="days" type="int"></attribute>
-    	<attribute name="chronology" type="tns:ChronologyType" use="optional"></attribute>
-    </complexType>
 
     <complexType name="RelativeToFixed">
     	<sequence>
@@ -62,10 +58,6 @@
         	<element name="Fixed" type="tns:Fixed" maxOccurs="unbounded"
         		minOccurs="0">
         	</element>
-        	<element name="RelativeToEastern"
-        		type="tns:RelativeToEastern" maxOccurs="unbounded"
-        		minOccurs="0">
-        	</element>
         	<element name="RelativeToFixed" type="tns:RelativeToFixed"
         		maxOccurs="unbounded" minOccurs="0">
         	</element>
@@ -80,7 +72,10 @@
         	<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
         		maxOccurs="unbounded" minOccurs="0">
         	</element>
-        	<element name="IslamicHoliday" type="tns:IslamicHoliday" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="ChristianHoliday" type="tns:ChristianHoliday" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="IslamicHoliday" type="tns:IslamicHoliday"
+        		maxOccurs="unbounded" minOccurs="0">
+        	</element>
         </sequence>
 
 
@@ -178,6 +173,24 @@
     	<restriction base="string">
     		<enumeration value="JULIAN"></enumeration>
     		<enumeration value="GREGORIAN"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="ChristianHoliday">
+    	<attribute name="type" type="tns:ChristianHolidayType"></attribute>
+    	<attribute name="chronology" type="tns:ChronologyType"></attribute>
+    </complexType>
+
+    <simpleType name="ChristianHolidayType">
+    	<restriction base="string">
+    		<enumeration value="GOOD_FRIDAY"></enumeration>
+    		<enumeration value="EASTER_MONDAY"></enumeration>
+    		<enumeration value="ASCENSION_DAY"></enumeration>
+    		<enumeration value="WHIT_MONDAY"></enumeration>
+    		<enumeration value="CORPUS_CHRISTI"></enumeration>
+    		<enumeration value="MAUNDY_THURSDAY"></enumeration>
+    		<enumeration value="ASH_WEDNESDAY"></enumeration>
+    		<enumeration value="MARDI_GRAS"></enumeration>
     	</restriction>
     </simpleType>
 </schema>

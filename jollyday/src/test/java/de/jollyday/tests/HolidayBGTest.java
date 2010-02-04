@@ -47,8 +47,6 @@ public class HolidayBGTest extends TestCase {
 		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
 		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 31));
 		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 3));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 4));
 		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 5));
 	}
 
@@ -64,7 +62,7 @@ public class HolidayBGTest extends TestCase {
 	public void testManagerBGDates() throws Exception{
 		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", 14, holidays.size());
+		Assert.assertEquals("Wrong number of holidays.", bg.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", bg, holidays);
 		for(LocalDate holiday : bg){
 			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday));

@@ -4,14 +4,14 @@
 	  <tns:Fixed month="JANUARY" day="1"/>
 	  <tns:Fixed month="AUGUST" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
-	  <tns:RelativeToEastern days="39"/>
+	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="ag" description="Aargau">
   	<tns:Holidays>
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ai" description="Appenzell Innerrhoden">
@@ -21,61 +21,61 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Appenzell Ausserrhoden">
   	<tns:Holidays>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-1"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="be" description="Bern">
   	<tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="bl" description="Basel-Landschaft">
   	<tns:Holidays>
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="bs" description="Basel-Stadt">
   	<tns:Holidays>
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="fr" description="Freiburg">
   	<tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ge" description="Genf">
   	<tns:Holidays>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="gl" description="Glarus">
@@ -83,17 +83,17 @@
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="gr" description="Graubünden">
   	<tns:Holidays>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ju" description="Jura">
@@ -102,10 +102,10 @@
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="AUGUST" day="15"/>
 	  <tns:Fixed month="NOVEMBER" day="1"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="lu" description="Luzern">
@@ -115,10 +115,10 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ne" description="Neuenburg">
@@ -126,9 +126,9 @@
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="AUGUST" day="15"/>
 	  <tns:Fixed month="MAY" day="1"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nw" description="Nidwalden">
@@ -138,10 +138,10 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ow" description="Obwalden">
@@ -151,18 +151,18 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sg" description="St.Gallen">
   	<tns:Holidays>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sh" description="Schaffhausen">
@@ -170,16 +170,16 @@
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="so" description="Solothurn">
   	<tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="MAY" day="1"/>
-	  <tns:RelativeToEastern days="-2"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sz" description="Schwyz">
@@ -190,10 +190,10 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="tg" description="Thurgau">
@@ -201,9 +201,9 @@
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ti" description="Tessin">
@@ -215,9 +215,9 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ur" description="Uri">
@@ -228,18 +228,18 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="vd" description="Waadt">
   	<tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="2"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="vs" description="Wallis">
@@ -248,7 +248,7 @@
 	  <tns:Fixed month="AUGUST" day="15"/>
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="zg" description="Zug">
@@ -258,10 +258,10 @@
 	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
-	  <tns:RelativeToEastern days="60"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="zh" description="Zürich">
@@ -269,9 +269,9 @@
 	  <tns:Fixed month="JANUARY" day="2"/>
 	  <tns:Fixed month="MAY" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
-	  <tns:RelativeToEastern days="-2"/>
-	  <tns:RelativeToEastern days="1"/>
-	  <tns:RelativeToEastern days="50"/>
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   	</tns:Holidays>
   </tns:SubConfigurations>
 </tns:Configuration>

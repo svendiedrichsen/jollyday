@@ -16,10 +16,7 @@
 package de.jollyday.impl;
 
 import java.io.InputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -34,20 +31,11 @@ import javax.xml.bind.Unmarshaller;
 
 import org.joda.time.LocalDate;
 
-import sun.reflect.misc.ReflectUtil;
-
 import de.jollyday.Hierarchy;
 import de.jollyday.Manager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
-import de.jollyday.parser.impl.FixedMovingOnWeekendParser;
-import de.jollyday.parser.impl.FixedParser;
-import de.jollyday.parser.impl.FixedWeekdayInMonthParser;
-import de.jollyday.parser.impl.IslamicHolidayParser;
-import de.jollyday.parser.impl.RelativeToEasternParser;
-import de.jollyday.parser.impl.RelativeToFixedParser;
-import de.jollyday.parser.impl.RelativeToWeekdayInMonthParser;
 
 /**
  * Manager implementation for reading data from XML files. The files

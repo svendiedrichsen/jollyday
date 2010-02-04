@@ -184,10 +184,14 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Takes converts the provided date into a date within the gregorian chronology.
+	 * If it is alreadya gregorian date it will return it.
 	 * @param date
 	 */
 	public static LocalDate convertToGregorianDate(LocalDate date) {
-		return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(), GregorianChronology.getInstance());
+		if(!(date.getChronology() instanceof GregorianChronology)){
+			return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(), GregorianChronology.getInstance());
+		}
+		return date;
 	}
 
 }

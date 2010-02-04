@@ -11,9 +11,7 @@
 	  <tns:Fixed month="DECEMBER" day="24"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
 	  <tns:Fixed month="DECEMBER" day="31"/>
-	  <tns:RelativeToEastern days="-2" chronology="JULIAN" />
-	  <tns:RelativeToEastern days="-1" chronology="JULIAN" />
-	  <tns:RelativeToEastern days="0" chronology="JULIAN" />
-	  <tns:RelativeToEastern days="1" chronology="JULIAN" />
+	  <tns:ChristianHoliday type="GOOD_FRIDAY" chronology="JULIAN"/>
+	  <tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN"/>
   </tns:Holidays>
 </tns:Configuration>
