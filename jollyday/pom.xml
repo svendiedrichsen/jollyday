@@ -95,7 +95,7 @@
 	<distributionManagement>
 		<site>
 		  <id>jollyday.sf.net</id>
-		  <url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/groups/j/jo/jollyday/htdocs </url>
+		  <url>sftp://diedrichsen,jollyday@web.sourceforge.net/home/groups/j/jo/jollyday/htdocs </url>
 		  <name>Sourceforge Site</name>
 		</site>
 	</distributionManagement>
