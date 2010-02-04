@@ -19,8 +19,11 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +50,14 @@ import de.jollyday.parser.HolidayParser;
  */
 public class XMLManager extends Manager {
 
+	/**
+	 * Logger
+	 */
 	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
+	/**
+	 * The configuration prefix for parser implementations. 
+	 */
+	private static final String PARSER_IMPL_PREFIX = "parser.impl.";
 	/**
 	 * the package name to search for the generated java classes.
 	 */
@@ -60,6 +70,10 @@ public class XMLManager extends Manager {
 	 * suffix of the config files.
 	 */
 	private static final String FILE_SUFFIX = ".xml";
+	/**
+	 * Parser cache by XML class name.
+	 */
+	private final Map<String, HolidayParser> parserCache = new HashMap<String, HolidayParser>();
 	/**
 	 * Configuration parsed on initialization.
 	 */
@@ -117,6 +131,12 @@ public class XMLManager extends Manager {
 		}
 	}
 	
+	/**
+	 * Creates a list of parsers by reading the configuration and trying to
+	 * find an <code>HolidayParser</code> implementation for by XML class type.
+	 * @param config
+	 * @return A list of parsers to for this configuration.
+	 */
 	private Collection<HolidayParser> getParsers(Holidays config){
 		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
  		for(Method m : config.getClass().getMethods()){
@@ -125,10 +145,16 @@ public class XMLManager extends Manager {
 					List l = (List)m.invoke(config);
 					if(l.size() >  0){
 						String className = l.get(0).getClass().getName();
-						String propName = "parser.impl."+className;
-						if(properties.stringPropertyNames().contains(propName)){
-							HolidayParser hp = (HolidayParser)Class.forName(properties.getProperty(propName)).newInstance();
-							parsers.add(hp);
+						if(!parserCache.containsKey(className)){
+							String propName = PARSER_IMPL_PREFIX+className;
+							Properties configProps = getProperties();
+							if(configProps.stringPropertyNames().contains(propName)){
+								HolidayParser hp = (HolidayParser)Class.forName(configProps.getProperty(propName)).newInstance();
+								parserCache.put(className, hp);
+							}
+						}
+						if(parserCache.containsKey(className)){
+							parsers.add(parserCache.get(className));
 						}
 					}
 				} catch (Exception e) {
@@ -139,11 +165,16 @@ public class XMLManager extends Manager {
 		return parsers;
 	}
 
-	public static boolean isGetter(Method method){
-		  if(!method.getName().startsWith("get"))      return false;
-		  if(method.getParameterTypes().length != 0)   return false;  
-		  if(void.class.equals(method.getReturnType())) return false;
-		  return true;
+	/**
+	 * Returns true if the provided <code>Method</code> is a getter
+	 * method.
+	 * @param method The method to check if it is a getter.
+	 * @return is a getter method
+	 */
+	private static boolean isGetter(Method method){
+		  return method.getName().startsWith("get") 
+		  	&& method.getParameterTypes().length == 0 
+		  	&& !void.class.equals(method.getReturnType());
 	}
 
 

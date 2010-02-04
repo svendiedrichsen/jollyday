@@ -40,8 +40,10 @@ public class HolidayTest {
 	private static final Set<LocalDate> test_days_l11 = new HashSet<LocalDate>();
 
 	static{
+		test_days.add(CalendarUtil.create(2010, DateTimeConstants.FEBRUARY, 17));
 		test_days.add(CalendarUtil.create(2010, DateTimeConstants.AUGUST, 30));
 		test_days.add(CalendarUtil.create(2010, DateTimeConstants.APRIL, 2));
+		test_days.add(CalendarUtil.create(2010, DateTimeConstants.APRIL, 5));
 		test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
 		test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 28));
 		test_days.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 1));

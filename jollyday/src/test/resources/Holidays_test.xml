@@ -18,6 +18,8 @@
    		<tns:FixedMovingOnWeekend month="JANUARY" day="16" nextWeekday="MONDAY"/>		
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="GREGORIAN"/>
+		<tns:ChristianHoliday type="ASH_WEDNESDAY" />
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="level1">
 		<tns:Holidays>
