@@ -37,6 +37,7 @@ public class HolidayTest {
 	private static final Set<LocalDate> test_days = new HashSet<LocalDate>();
 	private static final Set<LocalDate> test_days_l1 = new HashSet<LocalDate>();
 	private static final Set<LocalDate> test_days_l2 = new HashSet<LocalDate>();
+	private static final Set<LocalDate> test_days_l11 = new HashSet<LocalDate>();
 
 	static{
 		test_days.add(CalendarUtil.create(2010, DateTimeConstants.AUGUST, 30));
@@ -50,6 +51,17 @@ public class HolidayTest {
 		test_days_l1.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 2));
 		test_days_l2.addAll(test_days_l1);
 		test_days_l2.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 3));
+		
+		test_days_l11.addAll(test_days);
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.JULY, 27));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.JULY, 9));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.FEBRUARY, 26));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.AUGUST, 11));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.SEPTEMBER, 6));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.SEPTEMBER, 10));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER, 8));
+		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER, 17));
 	}
 	
 	@Test
@@ -57,7 +69,7 @@ public class HolidayTest {
 		Manager m = Manager.getInstance("test");
 		Hierarchy h = m.getHierarchy();
 		Assert.assertEquals("Wrong id.", "test", h.getId());
-		Assert.assertEquals("Wrong number of children on first level.", 1, h.getChildren().size());
+		Assert.assertEquals("Wrong number of children on first level.", 2, h.getChildren().size());
 		Assert.assertEquals("Wrong number of children on second level.", 1, h.getChildren().iterator().next().getChildren().size());
 	}
 
@@ -88,5 +100,13 @@ public class HolidayTest {
 		Assert.assertEquals("Wrong dates.", test_days_l2, holidays);
 	}
 
+	@Test
+	public void testLevel11() throws Exception{
+		Manager m = Manager.getInstance("test");
+		Set<LocalDate> holidays = m.getHolidays(2010, "level11");
+		Assert.assertNotNull(holidays);
+		// Assert.assertEquals("Wrong number of dates.", test_days_l11.size(), holidays.size());
+		Assert.assertEquals("Wrong dates.", test_days_l11, holidays);
+	}
 	
 }

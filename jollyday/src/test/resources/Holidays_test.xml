@@ -2,7 +2,6 @@
 <tns:Configuration hierarchy="test" description="Test holidays" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="1"/>
-		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 		<tns:RelativeToFixed >
 			<tns:Weekday>WEDNESDAY</tns:Weekday>
 			<tns:When>BEFORE</tns:When>
@@ -18,6 +17,7 @@
 		</tns:RelativeToWeekdayInMonth>
    		<tns:FixedMovingOnWeekend month="JANUARY" day="16" nextWeekday="MONDAY"/>		
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="level1">
 		<tns:Holidays>
@@ -28,5 +28,18 @@
 				<tns:Fixed month="JANUARY" day="3"/>
 			</tns:Holidays>
 		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="level11">
+		<tns:Holidays>
+			<tns:IslamicHoliday type="ID_AL_FITR"/>
+			<tns:IslamicHoliday type="ID_UL_ADHA"/>
+			<tns:IslamicHoliday type="NEUJAHR" />
+			<tns:IslamicHoliday type="ASCHURA" />
+			<tns:IslamicHoliday type="LAILAT_AL_BARAT" />
+			<tns:IslamicHoliday type="LAILAT_AL_MIRAJ" />
+			<tns:IslamicHoliday type="LAILAT_AL_QADR" />
+			<tns:IslamicHoliday type="MAWLID_AN_NABI" />
+			<tns:IslamicHoliday type="RAMADAN" />
+		</tns:Holidays>
 	</tns:SubConfigurations>
 </tns:Configuration>
