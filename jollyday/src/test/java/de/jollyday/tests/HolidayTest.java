@@ -22,6 +22,8 @@ import junit.framework.Assert;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import de.jollyday.Hierarchy;
@@ -64,6 +66,16 @@ public class HolidayTest {
 		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
 		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER, 8));
 		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER, 17));
+	}
+	
+	@Before
+	public void init(){
+		System.setProperty("de.jollyday.config", "./src/test/resources/test.app.properties");
+	}
+	
+	@After
+	public void destroy(){
+		System.clearProperty("de.jollyday.config");
 	}
 	
 	@Test
