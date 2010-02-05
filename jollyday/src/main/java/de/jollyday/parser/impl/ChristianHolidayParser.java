@@ -22,7 +22,7 @@ import org.joda.time.LocalDate;
 import de.jollyday.config.ChristianHoliday;
 import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holidays;
-import de.jollyday.parser.HolidayParser;
+import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -32,7 +32,7 @@ import de.jollyday.util.CalendarUtil;
  * @author Sven Diedrichsen
  * 
  */
-public class ChristianHolidayParser implements HolidayParser {
+public class ChristianHolidayParser extends AbstractHolidayParser {
 
 	/*
 	 * (non-Javadoc)
@@ -42,6 +42,7 @@ public class ChristianHolidayParser implements HolidayParser {
 	 */
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for (ChristianHoliday ch : config.getChristianHoliday()) {
+			if(!isValid(ch, year)) continue;
 			LocalDate easterSunday = null;
 			if (ch.getChronology() == ChronologyType.JULIAN) {
 				easterSunday = CalendarUtil.getJulianEasterSunday(year);

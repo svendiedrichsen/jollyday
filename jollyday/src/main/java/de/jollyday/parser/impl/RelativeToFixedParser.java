@@ -22,14 +22,15 @@ import org.joda.time.LocalDate;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToFixed;
 import de.jollyday.config.When;
-import de.jollyday.parser.HolidayParser;
+import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
-public class RelativeToFixedParser implements HolidayParser {
+public class RelativeToFixedParser extends AbstractHolidayParser {
 
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(RelativeToFixed rf : config.getRelativeToFixed()){
+			if(!isValid(rf, year)) continue;
 			LocalDate fixed = CalendarUtil.create(year, rf.getDate());
 			if(rf.getWeekday() != null){
 				int day = XMLUtil.getWeekday(rf.getWeekday());

@@ -11,7 +11,8 @@
 	  <tns:Fixed month="DECEMBER" day="25"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
-	  <tns:ChristianHoliday type="WHIT_MONDAY" />
+	  <tns:ChristianHoliday type="WHIT_MONDAY" validTo="2003"/>
+	  <tns:ChristianHoliday type="WHIT_MONDAY" validFrom="2008"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="ma" description="Martinique">
   	<tns:Holidays>

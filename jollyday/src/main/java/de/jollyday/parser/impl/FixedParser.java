@@ -21,13 +21,14 @@ import org.joda.time.LocalDate;
 
 import de.jollyday.config.Fixed;
 import de.jollyday.config.Holidays;
-import de.jollyday.parser.HolidayParser;
+import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 
-public class FixedParser implements HolidayParser {
+public class FixedParser extends AbstractHolidayParser {
 
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(Fixed f : config.getFixed()){
+			if(!isValid(f, year)) continue;
 			holidays.add(CalendarUtil.create(year, f));
 		}
 	}

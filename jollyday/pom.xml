@@ -6,7 +6,7 @@
 	<name>Jollyday</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>
-		This API determines the holidays for a given year, country and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the system classpath. Currently the following countries are supported: United States, United Kingdom, Germany, Switzerland, Czech Republic, Slovakia, Italy, Netherlands, France, Belgium. More to come. ;-)
+		This API determines the holidays for a given year, country and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the system classpath. Currently the following countries are supported: United States, most european countries. More to come.
 	</description>
 	<url>http://sourceforge.net/projects/jollyday</url>
 	<developers>
@@ -109,6 +109,7 @@
 							<report>scm</report>
 							<report>plugins</report>
 							<report>plugin-management</report>
+							<report>summary</report>
 			            </reports>
 					</reportSet>
 				</reportSets>

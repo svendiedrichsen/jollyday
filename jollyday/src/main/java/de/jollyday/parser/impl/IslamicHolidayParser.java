@@ -22,20 +22,21 @@ import org.joda.time.LocalDate;
 
 import de.jollyday.config.Holidays;
 import de.jollyday.config.IslamicHoliday;
-import de.jollyday.parser.HolidayParser;
+import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 
 /**
  * This parser calculates gregorian dates for the different islamic holidays.
  * @author Sven Diedrichsen
  */
-public class IslamicHolidayParser implements HolidayParser {
+public class IslamicHolidayParser extends AbstractHolidayParser {
 
 	/* (non-Javadoc)
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
 	 */
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(IslamicHoliday i : config.getIslamicHoliday()){
+			if(!isValid(i, year)) continue;
 			switch(i.getType()){
 			case NEUJAHR:
 				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 1));

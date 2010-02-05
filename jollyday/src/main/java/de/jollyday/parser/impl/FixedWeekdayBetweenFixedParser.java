@@ -21,7 +21,7 @@ import org.joda.time.LocalDate;
 
 import de.jollyday.config.FixedWeekdayBetweenFixed;
 import de.jollyday.config.Holidays;
-import de.jollyday.parser.HolidayParser;
+import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
@@ -30,13 +30,14 @@ import de.jollyday.util.XMLUtil;
  * dates.
  * @author Sven Diedrichsen
  */
-public class FixedWeekdayBetweenFixedParser implements HolidayParser {
+public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 
 	/**
 	 * Parses the provided configuration and creates holidays for the provided year.
 	 */
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(FixedWeekdayBetweenFixed fwm : config.getFixedWeekdayBetweenFixed()){
+			if(!isValid(fwm, year)) continue;
 			LocalDate from = CalendarUtil.create(year, fwm.getFrom());
 			LocalDate to = CalendarUtil.create(year, fwm.getTo());
 			LocalDate result = null;

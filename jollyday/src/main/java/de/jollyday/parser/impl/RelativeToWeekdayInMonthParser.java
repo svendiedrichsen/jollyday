@@ -36,6 +36,7 @@ public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 	@Override
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(RelativeToWeekdayInMonth rtfw : config.getRelativeToWeekdayInMonth()){
+			if(!isValid(rtfw, year)) continue;
 			LocalDate date = parse(year, rtfw.getFixedWeekday());
 			int direction = ( rtfw.getWhen() == When.BEFORE ? -1 : 1 );
 			while(date.getDayOfWeek() != XMLUtil.getWeekday(rtfw.getWeekday())){
