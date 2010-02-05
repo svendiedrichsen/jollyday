@@ -11,9 +11,7 @@
     </links>
 
     <menu name="Jollyday">
-      <item name="Introduction" href="introduction.html"/>
-      <item name="Test coverage" href="cobertura/index.html"/>
-      <item name="JavaDoc" href="apidocs/index.html"/>
+      <item name="Introduction" href="index.html"/>
     </menu>
 
     <menu ref="reports"/>

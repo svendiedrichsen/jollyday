@@ -6,14 +6,15 @@ Welcome to Jollyday
 
   The idea behind this is to have an independent API which can be used in any
   kind of environment. That means no network or database needed. The only external
-  API dependency is the one to JODA time API.
+  API dependency is to JODA time API.
   
   The jar file contains some XML configuration files named 'Holidays_[country].xml'
-  which are sufficient to determine the holidays for a year/country/region.
+  which contain the necessary information for determining the holidays for a 
+  year/country/region.
     
 Countries
 
-  The countries are defined by their ISO 3166-1-alpha-2 code.
+  The countries are stored by their ISO 3166-1-alpha-2 code in separate XML files.
   Currently the following countries are supported:
 
   [al] Albania
@@ -24,11 +25,11 @@ Countries
   
   [bg] Bulgaria
   
-  [ch] Switzerland
+  [ch] Switzerland - specific for all states
   
   [cz] Czech Republic
   
-  [de] Germany
+  [de] Germany - specific for all states
   
   [dk] Denmark
   
@@ -48,11 +49,12 @@ Countries
   
   [sk] Slovakia
   
-  [uk] United Kingdom
+  [uk] United Kingdom - specific for Alderney, England, Guernsey, Isle of Man, Jersey, Northern Ireland,
+  Scotland, Wales
   
-  [us] United States
+  [us] United States - specific for all states and some districts
   
-Examples
+Code Example
  
   To get the US holidays for the state New York:
  
