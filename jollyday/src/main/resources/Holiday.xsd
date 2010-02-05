@@ -54,33 +54,36 @@
 
 
     <complexType name="Holidays">
-        <sequence>
-        	<element name="Fixed" type="tns:Fixed" maxOccurs="unbounded"
-        		minOccurs="0">
-        	</element>
-        	<element name="RelativeToFixed" type="tns:RelativeToFixed"
-        		maxOccurs="unbounded" minOccurs="0">
-        	</element>
-        	<element name="RelativeToWeekdayInMonth"
-        		type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded"
-        		minOccurs="0">
-        	</element>
-        	<element name="FixedMovingOnWeekend"
-        		type="tns:FixedMovingOnWeekend" maxOccurs="unbounded"
-        		minOccurs="0">
-        	</element>
-        	<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
-        		maxOccurs="unbounded" minOccurs="0">
-        	</element>
-            <element name="ChristianHoliday" type="tns:ChristianHoliday" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="IslamicHoliday" type="tns:IslamicHoliday"
-        		maxOccurs="unbounded" minOccurs="0">
-        	</element>
-        </sequence>
+    	<sequence>
+    		<element name="Fixed" type="tns:Fixed" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</element>
+    		<element name="RelativeToFixed" type="tns:RelativeToFixed"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="RelativeToWeekdayInMonth"
+    			type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</element>
+    		<element name="FixedMovingOnWeekend"
+    			type="tns:FixedMovingOnWeekend" maxOccurs="unbounded"
+    			minOccurs="0">
+    		</element>
+    		<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="ChristianHoliday" type="tns:ChristianHoliday"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="IslamicHoliday" type="tns:IslamicHoliday"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="FixedWeekdayBetweenFixed" type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
 
 
 
-
+    	
     </complexType>
 
 
@@ -196,4 +199,12 @@
     		<enumeration value="SHROVE_MONDAY"></enumeration>
     	</restriction>
     </simpleType>
+
+    <complexType name="FixedWeekdayBetweenFixed">
+    	<sequence>
+    		<element name="from" type="tns:Fixed"></element>
+    		<element name="to" type="tns:Fixed"></element>
+    	</sequence>
+    	<attribute name="weekday" type="tns:Weekday"></attribute>
+    </complexType>
 </schema>

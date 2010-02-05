@@ -19,11 +19,11 @@ Countries
 
   [al] Albania
   
-  [ba] Bosnia and Herzegovina
+  [ba] Bosnia and Herzegovina - covering also islamic holidays
   
   [be] Belgium
   
-  [bg] Bulgaria
+  [bg] Bulgaria - covering also orthodox holidays
   
   [ch] Switzerland - specific for all states
   
@@ -35,7 +35,7 @@ Countries
   
   [ee] Estonia
 
-  [es] Spain
+  [es] Spain - specific for all provinces and also islamic holidays
   
   [fi] Finland
   
@@ -43,7 +43,15 @@ Countries
   
   [gr] Greece
   
+  [hr] Croatia
+  
+  [ie] Ireland
+  
+  [is] Iceland
+  
   [it] Italy
+  
+  [kz] Kazakhstan - covering also islamic holidays
   
   [nl] Netherlands
   
