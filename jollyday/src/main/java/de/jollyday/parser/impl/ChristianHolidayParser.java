@@ -56,6 +56,7 @@ public class ChristianHolidayParser implements HolidayParser {
 				easterSunday = easterSunday.minusDays(48);
 				break;
 			case MARDI_GRAS:
+			case CARNIVAL:
 				easterSunday = easterSunday.minusDays(47);
 				break;
 			case ASH_WEDNESDAY:

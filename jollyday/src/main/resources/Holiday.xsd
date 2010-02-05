@@ -36,18 +36,23 @@
 
 
     <complexType name="RelativeToFixed">
-    	<sequence>
-    		<choice maxOccurs="1" minOccurs="1">
-    			<element name="Days" type="int"></element>
-    			<element name="Weekday" type="tns:Weekday"></element>
-    		</choice>
-    		<element name="When" maxOccurs="1" minOccurs="1"
-    			type="tns:When">
-    		</element>
-    		<element name="Date" type="tns:Fixed" maxOccurs="1"
-    			minOccurs="1">
-    		</element>
-    	</sequence>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<sequence>
+    				<choice maxOccurs="1" minOccurs="1">
+    					<element name="Days" type="int" maxOccurs="1"
+    						minOccurs="0">
+    					</element>
+    					<element name="Weekday" type="tns:Weekday"
+    						maxOccurs="1" minOccurs="0">
+    					</element>
+    				</choice>
+                    <element name="When" type="tns:When"></element>
+                    <element name="Date" type="tns:Fixed"></element>
+    			</sequence>
+    			
+    		</extension>
+    	</complexContent>
     </complexType>
 
 
@@ -101,15 +106,21 @@
     </complexType>
 
     <complexType name="Fixed">
-    	<attribute name="month" type="tns:Month"></attribute>
-    	<attribute name="day">
-    		<simpleType>
-    			<restriction base="int">
-    				<minInclusive value="1"></minInclusive>
-    				<maxInclusive value="31"></maxInclusive>
-    			</restriction>
-    		</simpleType>
-    	</attribute>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<attribute name="month" type="tns:Month"></attribute>
+
+    			<attribute name="day">
+    				<simpleType>
+    					<restriction base="int">
+    						<minInclusive value="1"></minInclusive>
+    						<maxInclusive value="31"></maxInclusive>
+    					</restriction>
+    				</simpleType>
+    			</attribute>
+
+    		</extension>
+    	</complexContent>
     </complexType>
 
 
@@ -129,9 +140,16 @@
     </complexType>
 
     <complexType name="FixedWeekdayInMonth">
-    	<attribute name="which" type="tns:Which"></attribute>
-    	<attribute name="weekday" type="tns:Weekday"></attribute>
-    	<attribute name="month" type="tns:Month"></attribute>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<attribute name="which" type="tns:Which"></attribute>
+
+    			<attribute name="weekday" type="tns:Weekday"></attribute>
+
+    			<attribute name="month" type="tns:Month"></attribute>
+
+    		</extension>
+    	</complexContent>
     </complexType>
 
     <simpleType name="Which">
@@ -145,16 +163,25 @@
     </simpleType>
 
     <complexType name="RelativeToWeekdayInMonth">
-    	<sequence>
-    		<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"></element>
-    	</sequence>
-        <attribute name="weekday" type="tns:Weekday"></attribute>
-        <attribute name="when" type="tns:When"></attribute>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<sequence>
+    				<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"></element>
+    			</sequence>
+    			<attribute name="weekday" type="tns:Weekday"></attribute>
+    			<attribute name="when" type="tns:When"></attribute>
+    		</extension>
+    	</complexContent>
     </complexType>
 
     <complexType name="IslamicHoliday">
-    	<attribute name="type" type="tns:IslamicHolidayType">
-    	</attribute>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<attribute name="type" type="tns:IslamicHolidayType">
+    			</attribute>
+
+    		</extension>
+    	</complexContent>
     </complexType>
 
 
@@ -180,8 +207,18 @@
     </simpleType>
 
     <complexType name="ChristianHoliday">
-    	<attribute name="type" type="tns:ChristianHolidayType"></attribute>
-    	<attribute name="chronology" type="tns:ChronologyType"></attribute>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<attribute name="type"
+    				type="tns:ChristianHolidayType">
+    			</attribute>
+
+    			<attribute name="chronology"
+    				type="tns:ChronologyType">
+    			</attribute>
+
+    		</extension>
+    	</complexContent>
     </complexType>
 
     <simpleType name="ChristianHolidayType">
@@ -198,14 +235,25 @@
     		<enumeration value="CLEAN_MONDAY"></enumeration>
     		<enumeration value="SHROVE_MONDAY"></enumeration>
     		<enumeration value="PENTECOST"></enumeration>
+    		<enumeration value="CARNIVAL"></enumeration>
     	</restriction>
     </simpleType>
 
     <complexType name="FixedWeekdayBetweenFixed">
-    	<sequence>
-    		<element name="from" type="tns:Fixed"></element>
-    		<element name="to" type="tns:Fixed"></element>
-    	</sequence>
-    	<attribute name="weekday" type="tns:Weekday"></attribute>
+    	<complexContent>
+    		<extension base="tns:Holiday">
+    			<sequence>
+    				<element name="from" type="tns:Fixed"></element>
+    				<element name="to" type="tns:Fixed"></element>
+    			</sequence>
+    			<attribute name="weekday" type="tns:Weekday"></attribute>
+    		</extension>
+    	</complexContent>
     </complexType>
+
+    <complexType name="Holiday" abstract="true">
+    	<attribute name="validFrom" type="int" use="optional"></attribute>
+    	<attribute name="validTo" type="int"></attribute>
+    </complexType>
+
 </schema>
