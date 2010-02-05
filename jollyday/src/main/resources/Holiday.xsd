@@ -191,6 +191,7 @@
     		<enumeration value="MAUNDY_THURSDAY"></enumeration>
     		<enumeration value="ASH_WEDNESDAY"></enumeration>
     		<enumeration value="MARDI_GRAS"></enumeration>
+    		<enumeration value="GENERAL_PRAYER_DAY"></enumeration>
     	</restriction>
     </simpleType>
 </schema>

@@ -66,6 +66,9 @@ public class ChristianHolidayParser implements HolidayParser {
 			case EASTER_MONDAY:
 				easterSunday = easterSunday.plusDays(1);
 				break;
+			case GENERAL_PRAYER_DAY:
+				easterSunday = easterSunday.plusDays(26);
+				break;
 			case ASCENSION_DAY:
 				easterSunday = easterSunday.plusDays(39);
 				break;
