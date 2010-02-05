@@ -1,1 +1,0 @@
-mvn site:attach-descriptor site:site cobertura:cobertura javadoc:javadoc surefire-report:report
