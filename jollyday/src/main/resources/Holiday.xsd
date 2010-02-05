@@ -197,6 +197,7 @@
     		<enumeration value="GENERAL_PRAYER_DAY"></enumeration>
     		<enumeration value="CLEAN_MONDAY"></enumeration>
     		<enumeration value="SHROVE_MONDAY"></enumeration>
+    		<enumeration value="PENTECOST"></enumeration>
     	</restriction>
     </simpleType>
 
