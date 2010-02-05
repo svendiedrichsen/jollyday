@@ -51,6 +51,10 @@ public class ChristianHolidayParser implements HolidayParser {
 				easterSunday = CalendarUtil.getEasterSunday(year);
 			}
 			switch (ch.getType()) {
+			case CLEAN_MONDAY:
+			case SHROVE_MONDAY:
+				easterSunday = easterSunday.minusDays(48);
+				break;
 			case MARDI_GRAS:
 				easterSunday = easterSunday.minusDays(47);
 				break;
