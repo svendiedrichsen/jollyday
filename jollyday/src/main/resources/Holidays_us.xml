@@ -11,8 +11,9 @@
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="al" description="Alabama">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" />
   		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
@@ -21,34 +22,38 @@
   <tns:SubConfigurations hierarchy="ak" description="Alaska">
   	<tns:Holidays>
 		<tns:Fixed month="OCTOBER" day="18" />
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MARCH" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="az" description="Arizona">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Arkansas">
   	<tns:Holidays>
 		<tns:Fixed month="DECEMBER" day="24" />
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ca" description="California">
   	<tns:Holidays>
 		<tns:Fixed month="FEBRUARY" day="12" />
 		<tns:Fixed month="MARCH" day="31" />
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
 		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   	<tns:SubConfigurations hierarchy="be" description="Berkeley">
   		<tns:Holidays>
@@ -59,57 +64,63 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="co" description="Colorado">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ct" description="Connecticut">
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="12"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="de" description="Delaware">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="dc" description="District of Columbia">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="fl" description="Florida">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ga" description="Georgia">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="APRIL" />
   	</tns:Holidays>
@@ -120,21 +131,24 @@
   		<tns:Fixed month="APRIL" day="15" />
   		<tns:Fixed month="JUNE" day="11" />
   		<tns:Fixed month="AUGUST" day="3" />
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="id" description="Idaho">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="il" description="Illinois">
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="12" />
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
   			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
   		</tns:RelativeToWeekdayInMonth>
@@ -142,7 +156,7 @@
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" />
   	</tns:Holidays>
@@ -202,16 +216,18 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="me" description="Maine">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="md" description="Maryland">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="BEFORE">
 			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY"/>
 		</tns:RelativeToWeekdayInMonth>
@@ -222,14 +238,15 @@
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ma" description="Massachusetts">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="APRIL" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
@@ -250,27 +267,30 @@
   		<tns:Fixed month="OCTOBER" day="30"/>
   		<tns:Fixed month="DECEMBER" day="24" />
   		<tns:Fixed month="DECEMBER" day="31" />
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="mn" description="Minnesota">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ms" description="Mississippi">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="APRIL" />
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -278,8 +298,9 @@
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="12"/>
   		<tns:Fixed month="MAY" day="8"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -287,6 +308,7 @@
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="24"/>
   		<tns:Fixed month="DECEMBER" day="31"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
   			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
@@ -294,47 +316,51 @@
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ne" description="Nebraska">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="LAST" weekday="FRIDAY" month="APRIL" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nv" description="Nevada">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="LAST" weekday="FRIDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nh" description="New Hampshire">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nj" description="New Jersey">
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="12"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
   			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
@@ -350,12 +376,13 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ny" description="New York">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:Fixed month="FEBRUARY" day="12"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
   			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
@@ -387,41 +414,46 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nd" description="North Dakota">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="oh" description="Ohio">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ok" description="Oklahoma">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="or" description="Oregon">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="pa" description="Pennsylvania">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -435,25 +467,28 @@
   	<tns:Holidays>
   		<tns:Fixed month="MAY" day="10"/>
   		<tns:Fixed month="DECEMBER" day="26"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sd" description="South Dakota">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="tn" description="Tennesee">
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="24"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -461,25 +496,28 @@
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="24"/>
   		<tns:Fixed month="DECEMBER" day="26"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ut" description="Utah">
   	<tns:Holidays>
   		<tns:Fixed month="JULY" day="24"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="vt" description="Vermont">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="AUGUST" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
@@ -487,6 +525,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="va" description="Virginia">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="BEFORE">
   			<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
   		</tns:RelativeToWeekdayInMonth>
@@ -494,45 +533,49 @@
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wa" description="Washington">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wv" description="West Virginia">
   	<tns:Holidays>
   		<tns:Fixed month="JUNE" day="20"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wi" description="Wisconsin">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
   			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   		<tns:FixedWeekday which="SECOND" weekday="TUESDAY" month="SEPTEMBER" />
   		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wy" description="Wyoming">
   	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
   </tns:SubConfigurations>
 </tns:Configuration>
