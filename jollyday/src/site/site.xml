@@ -6,12 +6,18 @@
   <body>
   
     <links>
+      <item name="Jollyday" href="http://sourceforge.net/projects/jollyday/" />
       <item name="Apache" href="http://www.apache.org/" />
       <item name="Maven 2" href="http://maven.apache.org/"/>
     </links>
 
     <menu name="Jollyday">
-      <item name="Introduction" href="index.html"/>
+		<item name="Introduction" href="index.html"/>
+		<item name="Configuration">
+			<description>The API configuration</description>
+			<item name="API properties" href="properties.html"/>
+			<item name="XML data" href="data.html"/>
+		</item>
     </menu>
 
     <menu ref="reports"/>
