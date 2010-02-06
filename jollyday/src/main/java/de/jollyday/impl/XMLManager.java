@@ -195,6 +195,7 @@ public class XMLManager extends Manager {
 		} finally {
 			stream.close();
 		}
+		validateConfigurationHierarchy(configuration);
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Found configuration for "
 					+ configuration.getDescription());
@@ -202,6 +203,37 @@ public class XMLManager extends Manager {
 				LOG.finer("Sub-configuration " + c.getDescription() + "("
 						+ c.getHierarchy() + ").");
 			}
+		}
+	}
+
+	/**
+	 * Validates the content of the provided configuration by checking
+	 * for multiple hierarchy entries within one configuration. It traverses
+	 * down the configuration tree.
+	 */
+	private static void validateConfigurationHierarchy(Configuration c) {
+		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
+		Set<String> multipleHierarchies = new HashSet<String>();
+		for(Configuration subConfig : c.getSubConfigurations()){
+			String hierarchy = subConfig.getHierarchy();
+			if(!hierarchyMap.containsKey(hierarchy)){
+				hierarchyMap.put(hierarchy, Integer.valueOf(1));
+			}else{
+				int count = hierarchyMap.get(hierarchy).intValue();
+				hierarchyMap.put(hierarchy, Integer.valueOf(++count));
+				multipleHierarchies.add(hierarchy);
+			}
+		}
+		if(multipleHierarchies.size() > 0){
+			StringBuilder msg = new StringBuilder();
+			msg.append("Configuration for "+c.getHierarchy()+" contains  multiple SubConfigurations with the same hierarchy id. ");
+			for(String hierarchy : multipleHierarchies){
+				msg.append(hierarchy+" "+hierarchyMap.get(hierarchy).toString()+" times ");
+			}
+			throw new IllegalArgumentException(msg.toString().trim());
+		}
+		for(Configuration subConfig : c.getSubConfigurations()){
+			validateConfigurationHierarchy(subConfig);
 		}
 	}
 

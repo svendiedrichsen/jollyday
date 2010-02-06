@@ -128,5 +128,10 @@ public class HolidayTest {
 		// Assert.assertEquals("Wrong number of dates.", test_days_l11.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", test_days_l11, holidays);
 	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testFail() throws Exception{
+		Manager.getInstance("test_fail");
+	}
 	
 }
