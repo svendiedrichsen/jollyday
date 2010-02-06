@@ -17,6 +17,8 @@ Countries
   The countries are stored by their ISO 3166-1-alpha-2 code in separate XML files.
   Currently the following countries are supported:
 
+* Europe
+
   [al] Albania
   
   [at] Austria - specific for all states
@@ -88,7 +90,17 @@ Countries
   [uk] United Kingdom - specific for Alderney, England, Guernsey, Isle of Man, Jersey, Northern Ireland,
   Scotland, Wales
   
+* United States of America
+  
   [us] United States - specific for all states and some districts
+  
+* South America
+
+  [ar] Argentina
+  
+  [bo] Bolivia
+  
+  [br] Brazil
   
 Code Example
  
