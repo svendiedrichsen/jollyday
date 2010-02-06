@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ar" description="Argentina"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" />
+		<tns:Fixed month="MARCH" day="24" validFrom="2006"/>
+		<tns:Fixed month="APRIL" day="2" validFrom="2001"/>
+		<tns:Fixed month="MAY" day="1"/>
+		<tns:Fixed month="MAY" day="18"/>
+		<tns:Fixed month="MAY" day="25"/>
+		<tns:Fixed month="JULY" day="9"/>
+		<tns:Fixed month="DECEMBER" day="8"/>
+		<tns:Fixed month="DECEMBER" day="24"/>
+		<tns:Fixed month="DECEMBER" day="25"/>
+		<tns:Fixed month="DECEMBER" day="31"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JUNE"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="AUGUST"/>
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER"/>
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	</tns:Holidays>
+</tns:Configuration>
