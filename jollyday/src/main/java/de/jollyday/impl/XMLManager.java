@@ -187,6 +187,9 @@ public class XMLManager extends Manager {
 	public void init(String country) throws Exception {
 		InputStream stream = ClassLoader.getSystemResourceAsStream(FILE_PREFIX
 				+ "_" + country + FILE_SUFFIX);
+		if(stream == null){
+			throw new IllegalArgumentException("Country "+country+" currently not supported. Please contact sdiedrichsen@yahoo.de and provide the data.");
+		}
 		try {
 			JAXBContext ctx = JAXBContext.newInstance(PACKAGE);
 			Unmarshaller um = ctx.createUnmarshaller();
