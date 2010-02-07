@@ -77,6 +77,11 @@ public class HolidayTest {
 	public void destroy(){
 		System.clearProperty("de.jollyday.config");
 	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void testMissingCountry() throws Exception{
+		Manager.getInstance("XXX");
+	}
 	
 	@Test
 	public void testBaseStructure() throws Exception{
