@@ -34,6 +34,7 @@ public class HolidayDETest extends TestCase {
 	private static final String ISO_CODE = "de";
 	private static final int YEAR = 2010;
 	private static Set<LocalDate> de = new HashSet<LocalDate>();
+	private static Set<LocalDate> de_1990 = new HashSet<LocalDate>();
 	private static Set<LocalDate> de_by = new HashSet<LocalDate>();
 	private static Set<LocalDate> de_sn = new HashSet<LocalDate>();
 	
@@ -62,7 +63,21 @@ public class HolidayDETest extends TestCase {
 		de_sn.addAll(de);
 		de_sn.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 31));
 		de_sn.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 17));
-
+		
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.JANUARY, 1));
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.MAY, 1));
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.OCTOBER, 3));
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.DECEMBER, 25));
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.DECEMBER, 26));
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.APRIL, 13));
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.APRIL, 16));
+		c = CalendarUtil.getEasterSunday(1990);
+		c = c.plusDays(39);
+		de_1990.add(c);
+		c = CalendarUtil.getEasterSunday(1990);
+		c = c.plusDays(50);
+		de_1990.add(c);
+		de_1990.add(CalendarUtil.create(1990, DateTimeConstants.JUNE, 17));
 	}
 
 	@Test
@@ -76,10 +91,21 @@ public class HolidayDETest extends TestCase {
 	@Test
 	public void testManagerDEDates() throws Exception{
 		Manager m = Manager.getInstance(ISO_CODE);
-		Set<LocalDate> holidays = m.getHolidays(2010);
+		Set<LocalDate> holidays = m.getHolidays(YEAR);
 		Assert.assertEquals("Wrong number of holidays.", 9, holidays.size());
 		Assert.assertEquals("Wrong dates.", de, holidays);
 		for(LocalDate holiday : de){
+			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday));
+		}
+	}
+
+	@Test
+	public void testManagerDEDates1990() throws Exception{
+		Manager m = Manager.getInstance(ISO_CODE);
+		Set<LocalDate> holidays = m.getHolidays(1990);
+		Assert.assertEquals("Wrong number of holidays.", de_1990.size(), holidays.size());
+		Assert.assertEquals("Wrong dates.", de_1990, holidays);
+		for(LocalDate holiday : de_1990){
 			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday));
 		}
 	}
