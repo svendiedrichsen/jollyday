@@ -7,9 +7,13 @@
 		<tns:Fixed month="MARCH" day="24" validFrom="2006"/>
 		<tns:Fixed month="APRIL" day="2" validFrom="2001"/>
 		<tns:Fixed month="MAY" day="1"/>
-		<tns:Fixed month="MAY" day="18"/>
 		<tns:Fixed month="MAY" day="25"/>
+		<tns:Fixed month="JUNE" day="21"/>
 		<tns:Fixed month="JULY" day="9"/>
+		<tns:Fixed month="AUGUST" day="16"/>
+		<tns:Fixed month="OCTOBER" day="11"/>
+		<tns:Fixed month="OCTOBER" day="27" validFrom="2010" validTo="2010"/>
+		<tns:Fixed month="NOVEMBER" day="6"/>
 		<tns:Fixed month="DECEMBER" day="8"/>
 		<tns:Fixed month="DECEMBER" day="24"/>
 		<tns:Fixed month="DECEMBER" day="25"/>
