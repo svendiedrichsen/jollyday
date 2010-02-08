@@ -40,7 +40,7 @@ public class HolidayESTest extends TestCase {
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 6));
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 1));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.AUGUST, 15));
+		es.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER,1));
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 12));
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 6));
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 8));
@@ -48,6 +48,7 @@ public class HolidayESTest extends TestCase {
 		es.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
 		
 		es_ce.addAll(es);
+		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.AUGUST, 15));
 		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 2));
 		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 1));
 		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 17));
@@ -66,7 +67,6 @@ public class HolidayESTest extends TestCase {
 	public void testManagerESDates() throws Exception {
 		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", es.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", es, holidays);
 	}
 
@@ -74,7 +74,6 @@ public class HolidayESTest extends TestCase {
 	public void testManagerES_CEDates() throws Exception {
 		Manager m = Manager.getInstance(ISO_CODE);
 		Set<LocalDate> holidays = m.getHolidays(2010, "ce");
-		Assert.assertEquals("Wrong number of holidays.", es_ce.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", es_ce, holidays);
 	}
 
