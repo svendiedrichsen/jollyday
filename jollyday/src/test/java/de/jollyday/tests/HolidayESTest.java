@@ -15,66 +15,18 @@
  */
 package de.jollyday.tests;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-import org.junit.Assert;
 import org.junit.Test;
 
-import de.jollyday.Hierarchy;
-import de.jollyday.Manager;
-import de.jollyday.util.CalendarUtil;
+import de.jollyday.tests.base.AbstractCountryTestBase;
 
-public class HolidayESTest extends TestCase {
+public class HolidayESTest extends AbstractCountryTestBase {
 
 	private static final String ISO_CODE = "es";
 	private static final int YEAR = 2010;
-	private static Set<LocalDate> es = new HashSet<LocalDate>();
-	private static Set<LocalDate> es_ce = new HashSet<LocalDate>();
-
-	static {
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 6));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 1));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER,1));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 12));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 6));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 8));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
-		es.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		
-		es_ce.addAll(es);
-		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.AUGUST, 15));
-		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 2));
-		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 1));
-		es_ce.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 17));
-		
-	}
 
 	@Test
 	public void testManagerESStructure() throws Exception {
-		Manager m = Manager.getInstance(ISO_CODE);
-		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", ISO_CODE, h.getId());
-		Assert.assertEquals("Missing children.", 19, h.getChildren().size());
-	}
-
-	@Test
-	public void testManagerESDates() throws Exception {
-		Manager m = Manager.getInstance(ISO_CODE);
-		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong dates.", es, holidays);
-	}
-
-	@Test
-	public void testManagerES_CEDates() throws Exception {
-		Manager m = Manager.getInstance(ISO_CODE);
-		Set<LocalDate> holidays = m.getHolidays(2010, "ce");
-		Assert.assertEquals("Wrong dates.", es_ce, holidays);
+		validateCountryData(ISO_CODE, YEAR);
 	}
 
 }

@@ -15,58 +15,18 @@
  */
 package de.jollyday.tests;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-import org.junit.Assert;
 import org.junit.Test;
 
-import de.jollyday.Hierarchy;
-import de.jollyday.Manager;
-import de.jollyday.util.CalendarUtil;
+import de.jollyday.tests.base.AbstractCountryTestBase;
 
-public class HolidayBGTest extends TestCase {
+public class HolidayBGTest extends AbstractCountryTestBase {
 
 	private static final String ISO_CODE = "bg";
 	private static final int YEAR = 2010;
-	private static Set<LocalDate> bg = new HashSet<LocalDate>();
-	
-	static{
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.MARCH, 3));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 1));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 6));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 24));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 6));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 22));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 24));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 31));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		bg.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 5));
-	}
 
 	@Test
 	public void testManagerBGStructure() throws Exception{
-		Manager m = Manager.getInstance(ISO_CODE);
-		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", ISO_CODE, h.getId());
-		Assert.assertEquals("Missing children.", 0, h.getChildren().size());
-	}
-	
-	@Test
-	public void testManagerBGDates() throws Exception{
-		Manager m = Manager.getInstance(ISO_CODE);
-		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", bg.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", bg, holidays);
-		for(LocalDate holiday : bg){
-			Assert.assertTrue("Holiday missing "+holiday, m.isHoliday(holiday));
-		}
+		validateCountryData(ISO_CODE, YEAR);
 	}
 	
 }
