@@ -90,7 +90,7 @@ Countries
   [uk] United Kingdom - specific for Alderney, England, Guernsey, Isle of Man, Jersey, Northern Ireland,
   Scotland, Wales
   
-* United States of America
+* North America
   
   [us] United States - specific for all states and some districts
   
@@ -100,7 +100,11 @@ Countries
   
   [bo] Bolivia
   
-  [br] Brazil
+  [br] Brazil specific for all provinces
+  
+* Australia
+
+  [au] Australia specific for all provinces
   
 Code Example
  

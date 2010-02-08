@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="au" description="Australia"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="26" />
+		<tns:Fixed month="APRIL" day="25"/>
+		<tns:FixedMoving month="JANUARY" day="1" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validTo="2007"/>
+		<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validTo="2007"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:ChristianHoliday type="EASTER_SATURDAY"/>
+		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="act" description="Australian Capital Territory">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
+			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="nsw" description="New South Wales">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="nt" description="Nothern Territory">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="qld" description="Queensland">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="sa" description="South Australia">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="tas" description="Tasmania">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:ChristianHoliday type="EASTER_TUESDAY"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="h" description="Hobard Area">
+			<tns:Holidays>
+				<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="FEBRUARY" />
+			</tns:Holidays>
+		</tns:SubConfigurations>
+		<tns:SubConfigurations hierarchy="nh" description="Non-Hobard Area">
+			<tns:Holidays>
+				<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="vic" description="Victoria">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_SUNDAY" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="wa" description="West Australia">
+		<tns:Holidays>
+			<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" validFrom="2008"/>
+			<tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="SEPTEMBER"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>

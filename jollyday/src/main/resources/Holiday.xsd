@@ -66,8 +66,8 @@
     			type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded"
     			minOccurs="0">
     		</element>
-    		<element name="FixedMovingOnWeekend"
-    			type="tns:FixedMovingOnWeekend" maxOccurs="unbounded"
+    		<element name="FixedMoving"
+    			type="tns:FixedMoving" maxOccurs="unbounded"
     			minOccurs="0">
     		</element>
     		<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
@@ -127,10 +127,12 @@
     	</restriction>
     </simpleType>
 
-    <complexType name="FixedMovingOnWeekend">
+    <complexType name="FixedMoving">
     	<complexContent>
     		<extension base="tns:Fixed">
-    			<attribute name="nextWeekday" type="tns:Weekday"></attribute>
+                <attribute name="substituted" type="tns:Substituted"></attribute>
+                <attribute name="weekday" type="tns:Weekday"></attribute>
+    			<attribute name="with" type="tns:With"></attribute>
     		</extension>
     	</complexContent>
     </complexType>
@@ -232,6 +234,8 @@
     		<enumeration value="SHROVE_MONDAY"></enumeration>
     		<enumeration value="PENTECOST"></enumeration>
     		<enumeration value="CARNIVAL"></enumeration>
+    		<enumeration value="EASTER_SATURDAY"></enumeration>
+    		<enumeration value="EASTER_TUESDAY"></enumeration>
     	</restriction>
     </simpleType>
 
@@ -252,4 +256,19 @@
     	<attribute name="validTo" type="int"></attribute>
     </complexType>
 
+
+    <simpleType name="Substituted">
+    	<restriction base="string">
+    		<enumeration value="ON_SATURDAY"></enumeration>
+    		<enumeration value="ON_SUNDAY"></enumeration>
+    		<enumeration value="ON_WEEKEND"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="With">
+    	<restriction base="string">
+    		<enumeration value="NEXT"></enumeration>
+    		<enumeration value="PREVIOUS"></enumeration>
+    	</restriction>
+    </simpleType>
 </schema>

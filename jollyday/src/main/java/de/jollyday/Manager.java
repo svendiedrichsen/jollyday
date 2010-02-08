@@ -17,8 +17,10 @@ package de.jollyday;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -46,7 +48,11 @@ public abstract class Manager {
 	 */
 	private static final String SYSTEM_CONFIG_PROPERTY = "de.jollyday.config";
 	/**
-	 * Configuration property for implementing Manager class
+	 *  Configuration property for the list of supported countries.
+	 */
+	private static final String MANAGER_SUPPORTED_COUNTRIES = "manager.supported.countries";
+	/**
+	 * Configuration property for the implementing Manager class
 	 */
 	private static final String MANAGER_IMPL_CLASS_PREFIX = "manager.impl";
 	/**
@@ -71,20 +77,33 @@ public abstract class Manager {
 	 * @throws Exception
 	 */
 	public static final Manager getInstance(String country) throws Exception {
-		Properties props = readPropertiesFromSystemClasspath();
-		props.putAll(readPropertiesFromConfigFile());
+		Properties props = readProperties();
 		String managerImplClass = null;
 		if (props.stringPropertyNames().contains(
 				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
 			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
 					+ "." + country);
-		} else {
+		} else if(props.stringPropertyNames().contains(MANAGER_IMPL_CLASS_PREFIX)) {
 			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
+		} else {
+			throw new IllegalStateException("Missing configuration '"+MANAGER_IMPL_CLASS_PREFIX+"'. Cannot create manager.");
 		}
 		Manager m = (Manager) Class.forName(managerImplClass).newInstance();
 		m.init(country);
 		m.setProperties(props);
 		return m;
+	}
+
+	/**
+	 * Reads all configuration properties from classpath and config file
+	 * and merges them.
+	 * @return Merged config properties.
+	 * @throws IOException
+	 */
+	private static Properties readProperties() throws IOException {
+		Properties props = readPropertiesFromSystemClasspath();
+		props.putAll(readPropertiesFromConfigFile());
+		return props;
 	}
 
 	/**
@@ -155,6 +174,23 @@ public abstract class Manager {
 		}
 		return holidaysPerYear.get(key).contains(c);
 	}
+	
+	/**
+	 * Returns a set of all currently supported country codes.
+	 * @return Set of supported country codes.
+ 	 */
+	public static Set<String> getSupportedCountryCodes() throws Exception{
+		Set<String> supportedCountries = new HashSet<String>();
+		Properties p = readProperties();
+		if(p.stringPropertyNames().contains(MANAGER_SUPPORTED_COUNTRIES)){
+			String strSupportedCountries = p.getProperty(MANAGER_SUPPORTED_COUNTRIES);
+			if(null != strSupportedCountries){
+				supportedCountries.addAll(Arrays.asList(strSupportedCountries.split(",")));
+			}
+		}
+		return supportedCountries;
+	}
+
 
 	/**
 	 * @return the configuration properties

@@ -34,11 +34,8 @@ import de.jollyday.util.CalendarUtil;
  */
 public class ChristianHolidayParser extends AbstractHolidayParser {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
-	 * de.jollyday.config.Holidays)
+	/**
+	 * Parses all christian holidays relative to eastern.
 	 */
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for (ChristianHoliday ch : config.getChristianHoliday()) {
@@ -69,8 +66,14 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 			case GOOD_FRIDAY:
 				easterSunday = easterSunday.minusDays(2);
 				break;
+			case EASTER_SATURDAY:
+				easterSunday = easterSunday.minusDays(1);
+				break;
 			case EASTER_MONDAY:
 				easterSunday = easterSunday.plusDays(1);
+				break;
+			case EASTER_TUESDAY:
+				easterSunday = easterSunday.plusDays(2);
 				break;
 			case GENERAL_PRAYER_DAY:
 				easterSunday = easterSunday.plusDays(26);

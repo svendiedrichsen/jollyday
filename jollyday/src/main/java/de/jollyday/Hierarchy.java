@@ -15,8 +15,8 @@
  */
 package de.jollyday;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Bean class for describing the configuration hierarchy.
@@ -25,7 +25,7 @@ import java.util.HashSet;
 public class Hierarchy {
 	private String id;
 	private String description;
-	private Collection<Hierarchy> children = new HashSet<Hierarchy>();
+	private Map<String, Hierarchy> children = new HashMap<String, Hierarchy>();
 	/**
 	 * @return the id
 	 */
@@ -50,16 +50,28 @@ public class Hierarchy {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	/**
+	 * Compares Hierarchies by id.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Hierarchy){
+			return ((Hierarchy)obj).getId().equals(this.getId());
+		}
+		return super.equals(obj);
+	}
 	/**
 	 * @param children the children to set
 	 */
-	public void setChildren(Collection<Hierarchy> children) {
+	public void setChildren(Map<String, Hierarchy> children) {
 		this.children = children;
 	}
 	/**
 	 * @return the children
 	 */
-	public Collection<Hierarchy> getChildren() {
+	public Map<String, Hierarchy> getChildren() {
 		return children;
 	}
+	
 }

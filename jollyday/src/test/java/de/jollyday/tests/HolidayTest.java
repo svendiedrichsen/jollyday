@@ -89,7 +89,7 @@ public class HolidayTest {
 		Hierarchy h = m.getHierarchy();
 		Assert.assertEquals("Wrong id.", "test", h.getId());
 		Assert.assertEquals("Wrong number of children on first level.", 2, h.getChildren().size());
-		for(Hierarchy hi : h.getChildren()){
+		for(Hierarchy hi : h.getChildren().values()){
 			if(hi.getId().equalsIgnoreCase("level1")){
 				Assert.assertEquals("Wrong number of children on second level of level 1.", 1, hi.getChildren().size());
 			}else if(hi.getId().equalsIgnoreCase("level11")){
@@ -138,5 +138,17 @@ public class HolidayTest {
 	public void testFail() throws Exception{
 		Manager.getInstance("test_fail");
 	}
+	
+	@Test
+	public void testAllAvailableManagers() throws Exception{
+		Set<String> supportedCountryCodes = Manager.getSupportedCountryCodes();
+		Assert.assertNotNull(supportedCountryCodes);
+		Assert.assertFalse(supportedCountryCodes.isEmpty());
+		for(String country : supportedCountryCodes){
+			Manager manager = Manager.getInstance(country);
+			Assert.assertNotNull(manager);
+		}
+	}
+	
 	
 }

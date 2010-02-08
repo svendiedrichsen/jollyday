@@ -15,54 +15,18 @@
  */
 package de.jollyday.tests;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-import org.junit.Assert;
 import org.junit.Test;
 
-import de.jollyday.Hierarchy;
-import de.jollyday.Manager;
-import de.jollyday.util.CalendarUtil;
+import de.jollyday.tests.base.AbstractCountryTestBase;
 
-public class HolidayALTest extends TestCase {
+public class HolidayALTest extends AbstractCountryTestBase {
 
 	private static final String ISO_CODE = "al";
 	private static final int YEAR = 2010;
-	private static Set<LocalDate> al = new HashSet<LocalDate>();
-
-	static {
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 1));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 28));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 29));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 5));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 13));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 24));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 17));
-		al.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 10));
-	}
 
 	@Test
 	public void testManagerALStructure() throws Exception {
-		Manager m = Manager.getInstance(ISO_CODE);
-		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", ISO_CODE, h.getId());
-		Assert.assertEquals("Missing children.", 0, h.getChildren().size());
-	}
-
-	@Test
-	public void testManagerALDates() throws Exception {
-		Manager m = Manager.getInstance(ISO_CODE);
-		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", al.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", al, holidays);
+		validateCountryData(ISO_CODE, YEAR);
 	}
 
 }

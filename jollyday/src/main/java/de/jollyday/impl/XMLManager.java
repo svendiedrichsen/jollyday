@@ -30,6 +30,7 @@ import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 import org.joda.time.LocalDate;
@@ -195,6 +196,8 @@ public class XMLManager extends Manager {
 			Unmarshaller um = ctx.createUnmarshaller();
 			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 			configuration = el.getValue();
+		}catch (UnmarshalException ue){
+			throw new IllegalStateException("Cannot parse holidays XML file for country '"+country+"'.", ue);
 		} finally {
 			stream.close();
 		}
@@ -250,6 +253,7 @@ public class XMLManager extends Manager {
 	public Hierarchy getHierarchy() {
 		return createConfigurationHierarchy(configuration);
 	}
+	
 
 	/**
 	 * Creates the configuration hierarchy for the provided configuration.
@@ -261,7 +265,8 @@ public class XMLManager extends Manager {
 		h.setId(c.getHierarchy());
 		h.setDescription(c.getDescription());
 		for(Configuration sub : c.getSubConfigurations()){
-			h.getChildren().add(createConfigurationHierarchy(sub));
+			Hierarchy subHierarchy = createConfigurationHierarchy(sub);
+			h.getChildren().put(subHierarchy.getId(), subHierarchy);
 		}
 		return h;
 	}
