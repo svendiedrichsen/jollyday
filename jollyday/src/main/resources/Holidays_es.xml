@@ -4,8 +4,8 @@
 	  <tns:Fixed month="JANUARY" day="1"/>
 	  <tns:Fixed month="JANUARY" day="6"/>
 	  <tns:Fixed month="MAY" day="1"/>
-	  <tns:Fixed month="AUGUST" day="15"/>
 	  <tns:Fixed month="OCTOBER" day="12"/>
+	  <tns:Fixed month="NOVEMBER" day="1"/>
 	  <tns:Fixed month="DECEMBER" day="6" validFrom="1978"/>
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
@@ -13,34 +13,40 @@
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="an" description="Andalucia">
   	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="1"/>
   		<tns:Fixed month="FEBRUARY" day="28"/>
+  		<tns:FixedMovingOnWeekend month="AUGUST" day="15" nextWeekday="MONDAY"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Aragon">
   	<tns:Holidays>
   		<tns:Fixed month="APRIL" day="23"/>
+  		<tns:FixedMovingOnWeekend month="AUGUST" day="15" nextWeekday="MONDAY"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ce" description="Ceuta">
   	<tns:Holidays>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="SEPTEMBER" day="2"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
-  		<tns:IslamicHoliday type="ID_UL_ADHA"/>
+  		<tns:IslamicHoliday type="ID_UL_ADHA" validFrom="2010"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ml" description="Melilla">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
-  		<tns:IslamicHoliday type="ID_UL_ADHA"/>
+  		<tns:IslamicHoliday type="ID_UL_ADHA" validFrom="2010"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="cl" description="Castile and Leon">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="APRIL" day="23"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
@@ -48,12 +54,14 @@
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="MAY" day="31"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="cn" description="Canary Islands">
   	<tns:Holidays>
-  		<tns:Fixed month="MAY" day="30"/>
+  		<tns:Fixed month="MAY" day="31"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
@@ -61,12 +69,14 @@
   	<tns:Holidays>
   		<tns:Fixed month="JUNE" day="24"/>
   		<tns:Fixed month="SEPTEMBER" day="11"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ex" description="Extremadura">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="SEPTEMBER" day="8"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
@@ -76,12 +86,14 @@
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="MAY" day="17"/>
   		<tns:Fixed month="JULY" day="25"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ib" description="Balearic Island">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="1"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
@@ -90,26 +102,32 @@
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="JUNE" day="9"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="m" description="Madrid">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
-  		<tns:Fixed month="MAY" day="2"/>
+  		<tns:Fixed month="MAY" day="15"/>
+		<tns:Fixed month="AUGUST" day="15"/>
+		<tns:Fixed month="NOVEMBER" day="9"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="mu" description="Murcia">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
   		<tns:Fixed month="JUNE" day="9"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="na" description="Navarre">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
@@ -117,11 +135,14 @@
  <tns:SubConfigurations hierarchy="o" description="Asturias">
   	<tns:Holidays>
   		<tns:Fixed month="SEPTEMBER" day="8"/>
+  		<tns:FixedMovingOnWeekend month="AUGUST" day="15" nextWeekday="MONDAY"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="pv" description="Euskadi">
   	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="OCTOBER" day="25"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
@@ -129,6 +150,8 @@
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="s" description="Cantabria">
   	<tns:Holidays>
+  		<tns:Fixed month="JULY" day="28"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="SEPTEMBER" day="15"/>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
@@ -136,6 +159,7 @@
  <tns:SubConfigurations hierarchy="vc" description="Valencia">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
+		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="OCTOBER" day="9"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
