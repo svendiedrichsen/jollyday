@@ -1,0 +1,6 @@
+Switzerland
+
+  This XML file is used to calculate the holidays in Switzerland.
+  
+%{snippet|url=file:src/main/resources/Holidays_ch.xml}
+  

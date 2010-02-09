@@ -1,4 +1,4 @@
-Welcome to Jollyday
+Welcome to Jollyday.
 
   I decided to create this project and solve the holiday 'problem' generally 
   after I had to implement some kind holiday aware code for the third software project
@@ -7,10 +7,20 @@ Welcome to Jollyday
   The idea behind this is to have an independent API which can be used in any
   kind of environment. That means no network or database needed. The only external
   API dependency is to JODA time API.
+
+Your help would be very much appreciated
   
-  The jar file contains some XML configuration files named 'Holidays_[country].xml'
+  The most important thing is the validation of the holiday XML data files. 
+  If you like you could look at your countries XML file and see if you
+  can find a missing/wrong holiday rule. The smaller your country is the more
+  important it would be to have your opinion on the XML data.
+  
+  If you would rather like to have the XML data file offline then you can download
+  the jar file. It contains some XML configuration files named 'Holidays_[country].xml'
   which contain the necessary information for determining the holidays for a 
   year/country/region.
+  
+  For the very latest XML data please refer to the SVN repository.
     
 Countries
 
@@ -106,22 +116,6 @@ Countries
 
   [au] Australia specific for all provinces
   
-Code Example
- 
-  To get the US holidays for the state New York:
- 
------------------------
-  Manager m = Manager.getInstance("us");
-  Set<LocalDate> holidays = m.getHolidays(2010, "ny");
------------------------ 
-  
-  To get the US holidays for New York City in the state New York:
-
------------------------
-  Manager m = Manager.getInstance("us");
-  Set<LocalDate> holidays = m.getHolidays(2010, "ny", "nyc");
------------------------
-
 XML Configuration 
 
   The XML configuration file contained in the JAR file looks in this area like this:

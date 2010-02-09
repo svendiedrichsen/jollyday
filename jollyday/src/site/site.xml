@@ -4,7 +4,6 @@
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
   <version/>
   <body>
-  
     <links>
       <item name="Jollyday" href="http://sourceforge.net/projects/jollyday/" />
       <item name="Apache" href="http://www.apache.org/" />
@@ -13,10 +12,58 @@
 
     <menu name="Jollyday">
 		<item name="Introduction" href="index.html"/>
-		<item name="Configuration">
-			<description>The API configuration</description>
-			<item name="API properties" href="properties.html"/>
-			<item name="XML data" href="data.html"/>
+		<item name="Configuration" href="properties.html"/>
+		<item name="Usage" href="usage.html"/>
+    </menu>
+
+    <menu name="XML Data">
+		<item name="Introduction" href="data.html"/>
+		<item name="XSD-Schema" href="schema.html"/>
+		<item name="Australia" href="data/au.html"/>
+		<item name="Europe" collapse="true" href="europe.html">
+			<item name="Albania" href="data/al.html"/>
+  			<item name="Austria" href="data/at.html"/>
+  			<item name="Bosnia and Herzegovina" href="data/ba.html"/>
+  			<item name="Belgium" href="data/be.html"/>
+  			<item name="Bulgaria" href="data/bg.html"/>
+  			<item name="Croatia" href="data/hr.html"/>
+  			<item name="Czech Republic" href="data/cz.html"/>
+  			<item name="Denmark" href="data/dk.html"/>
+  			<item name="Estonia" href="data/ee.html"/>
+  			<item name="Finland" href="data/fi.html"/>
+  			<item name="France" href="data/fr.html"/>
+  			<item name="Germany" href="data/de.html"/>
+  			<item name="Greece" href="data/gr.html"/>
+  			<item name="Hungary" href="data/hu.html"/>
+  			<item name="Iceland" href="data/is.html"/>
+  			<item name="Ireland" href="data/ie.html"/>
+  			<item name="Italy" href="data/it.html"/>
+  			<item name="Kazakhstan" href="data/kz.html"/>
+  			<item name="Liechtenstein" href="data/li.html"/>
+  			<item name="Luxembourg" href="data/lu.html"/>
+  			<item name="Latvia" href="data/lv.html"/>
+  			<item name="Macedonia" href="data/mk.html"/>
+  			<item name="Malta" href="data/mt.html"/>
+  			<item name="Montenegro" href="data/me.html"/>
+  			<item name="Netherlands" href="data/nl.html"/>
+  			<item name="Norway" href="data/no.html"/>
+  			<item name="Poland" href="data/pl.html"/>
+  			<item name="Portugal" href="data/pt.html"/>
+  			<item name="Serbia" href="data/rs.html"/>
+  			<item name="Spain" href="data/es.html"/>
+  			<item name="Sweden" href="data/se.html"/>
+  			<item name="Slovakia" href="data/sk.html"/>
+  			<item name="Switzerland" href="data/ch.html"/>
+  			<item name="Ukraine" href="data/ua.html"/>
+  			<item name="United Kingdom" href="data/uk.html"/>
+		</item>
+		<item name="North America" collapse="true" href="northamerica.html">
+			<item name="United States" href="data/us.html"/>
+		</item>
+		<item name="South America" collapse="true" href="southamerica.html">
+			<item name="Argentina" href="data/ar.html"/>
+			<item name="Bolivia" href="data/bo.html"/>
+			<item name="Brazil" href="data/br.html"/>
 		</item>
     </menu>
 
