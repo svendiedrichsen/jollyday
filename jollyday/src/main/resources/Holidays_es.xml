@@ -70,6 +70,7 @@
   		<tns:Fixed month="JUNE" day="24"/>
   		<tns:Fixed month="SEPTEMBER" day="11"/>
 		<tns:Fixed month="AUGUST" day="15"/>
+		<tns:Fixed month="DECEMBER" day="26"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
