@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tns:Configuration hierarchy="uk" description="United Kingdom" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
   <tns:Holidays>
-	  <tns:FixedMoving month="DECEMBER" day="25" substituted="ON_WEEKEND" with="NEXT" weekday="TUESDAY"/>
-	  <tns:FixedMoving month="DECEMBER" day="26" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>
-	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY"/>
-	  <tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY"/>
-	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:FixedMoving month="DECEMBER" day="25">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="TUESDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="TUESDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedMoving month="DECEMBER" day="25">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY"/>
+		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="al" description="Alderney">
 	<tns:Holidays>
@@ -17,7 +23,10 @@
   <tns:SubConfigurations hierarchy="en" description="England">
 	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="15"/>		
-  		<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>		
+		<tns:FixedMoving month="JANUARY" day="1">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
@@ -46,22 +55,37 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ni" description="Northern Ireland">
 	<tns:Holidays>
-  		<tns:Fixed month="JANUARY" day="1"/>		
-  		<tns:FixedMoving month="MARCH" day="17" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>		
-  		<tns:FixedMoving month="JULY" day="12" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>		
+  		<tns:Fixed month="JANUARY" day="1"/>
+		<tns:FixedMoving month="MARCH" day="17">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>  				
+		<tns:FixedMoving month="JULY" day="12">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>  				
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="sc" description="Scotland">
 	<tns:Holidays>
-  		<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="TUESDAY"/>		
-  		<tns:FixedMoving month="JANUARY" day="2" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>
+		<tns:FixedMoving month="JANUARY" day="1">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="TUESDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="TUESDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedMoving month="JANUARY" day="2">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
   		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST"/>	
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wa" description="Wales">
 	<tns:Holidays>
-  		<tns:FixedMoving month="JANUARY" day="1" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>		
+		<tns:FixedMoving month="JANUARY" day="1">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
   		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST"/>	
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>

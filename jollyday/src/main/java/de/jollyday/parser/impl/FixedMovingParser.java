@@ -17,12 +17,11 @@ package de.jollyday.parser.impl;
 
 import java.util.Set;
 
-import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
 import de.jollyday.config.FixedMoving;
 import de.jollyday.config.Holidays;
-import de.jollyday.config.Substituted;
+import de.jollyday.config.MovingCondition;
 import de.jollyday.config.With;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
@@ -34,26 +33,40 @@ public class FixedMovingParser extends AbstractHolidayParser{
 		for(FixedMoving fm : config.getFixedMoving()){
 			if(!isValid(fm, year)) continue;
 			LocalDate fixed = CalendarUtil.create(year, fm);
-			if(shallBeSubstituted(fixed, fm.getSubstituted())){
-				int weekday = XMLUtil.getWeekday(fm.getWeekday());
-				int direction = (fm.getWith() == With.NEXT ? 1 : -1 );
-				while(fixed.getDayOfWeek() != weekday){
-					fixed = fixed.plusDays(direction);
+			for(MovingCondition mc : fm.getCondition()){
+				if(shallBeSubstituted(fixed, mc)){
+					fixed = moveDate(mc, fixed);
+					break;
 				}
 			}
+			
+			
 			holidays.add(fixed);
 		}
 	}
 
 	/**
+	 * Moves the date using the FixedMoving information
+	 * @param mc
+	 * @param fixed
+	 * @return
+	 */
+	protected LocalDate moveDate(MovingCondition mc, LocalDate fixed) {
+		int weekday = XMLUtil.getWeekday(mc.getWeekday());
+		int direction = (mc.getWith() == With.NEXT ? 1 : -1 );
+		while(fixed.getDayOfWeek() != weekday){
+			fixed = fixed.plusDays(direction);
+		}
+		return fixed;
+	}
+
+	/**
 	 * Determines if the provided date shall be substituted.
 	 * @param fixed
-	 * @param substituted
+	 * @param mc
 	 */
-	private boolean shallBeSubstituted(LocalDate fixed, Substituted substituted) {
-		return (substituted == Substituted.ON_SATURDAY && fixed.getDayOfWeek() == DateTimeConstants.SATURDAY)
-			|| (substituted == Substituted.ON_SUNDAY && fixed.getDayOfWeek() == DateTimeConstants.SUNDAY)
-			|| (substituted == Substituted.ON_WEEKEND && CalendarUtil.isWeekend(fixed));
+	protected boolean shallBeSubstituted(LocalDate fixed, MovingCondition mc) {
+		return fixed.getDayOfWeek() == XMLUtil.getWeekday(mc.getSubstitute());
 	}
 	
 	

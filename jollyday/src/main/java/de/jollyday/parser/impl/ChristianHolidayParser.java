@@ -90,6 +90,9 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 			case CORPUS_CHRISTI:
 				easterSunday = easterSunday.plusDays(60);
 				break;
+			case SACRED_HEART:	
+				easterSunday = easterSunday.plusDays(68);
+				break;
 			default:
 				throw new IllegalArgumentException("Unknown christian holiday type " + ch.getType());
 			}

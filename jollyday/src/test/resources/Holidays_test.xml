@@ -15,7 +15,10 @@
 		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
 		</tns:RelativeToWeekdayInMonth>
-   		<tns:FixedMoving month="JANUARY" day="16" substituted="ON_WEEKEND" with="NEXT" weekday="MONDAY"/>		
+		<tns:FixedMoving month="JANUARY" day="16">
+			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
+		</tns:FixedMoving>
   		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="GREGORIAN"/>
