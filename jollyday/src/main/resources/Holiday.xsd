@@ -82,7 +82,10 @@
 				type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
-			<element name="FixedMovingConditional" type="string" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="FixedMovingConditional" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="HinduHoliday" type="tns:HinduHoliday" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 
 
@@ -282,5 +285,20 @@
 		<attribute name="substitute" type="tns:Weekday"></attribute>
 		<attribute name="with" type="tns:With"></attribute>
 		<attribute name="weekday" type="tns:Weekday"></attribute>
+	</complexType>
+
+	<simpleType name="HinduHolidayType">
+		<restriction base="string">
+			<enumeration value="HOLI"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="HinduHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type" type="tns:HinduHolidayType"></attribute>
+
+			</extension>
+		</complexContent>
 	</complexType>
 </schema>

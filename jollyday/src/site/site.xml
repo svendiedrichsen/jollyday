@@ -58,6 +58,7 @@
   			<item name="United Kingdom" href="data/uk.html"/>
 		</item>
 		<item name="North America" collapse="true" href="northamerica.html">
+			<item name="Canada" href="data/ca.html"/>
 			<item name="United States" href="data/us.html"/>
 		</item>
 		<item name="South America" collapse="true" href="southamerica.html">
@@ -66,6 +67,11 @@
 			<item name="Brazil" href="data/br.html"/>
 			<item name="Chile" href="data/cl.html"/>
 			<item name="Colombia" href="data/co.html"/>
+			<item name="Ecuador" href="data/ec.html"/>
+			<item name="Paraguay" href="data/py.html"/>
+			<item name="Peru" href="data/pe.html"/>
+			<item name="Uruguay" href="data/uy.html"/>
+			<item name="Venezuela" href="data/ve.html"/>
 		</item>
     </menu>
 
