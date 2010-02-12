@@ -184,7 +184,7 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Takes converts the provided date into a date within the gregorian chronology.
-	 * If it is alreadya gregorian date it will return it.
+	 * If it is already a gregorian date it will return it.
 	 * @param date
 	 */
 	public static LocalDate convertToGregorianDate(LocalDate date) {
