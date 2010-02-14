@@ -29,7 +29,7 @@ import org.joda.time.MutableDateTime;
  * @author Sven Diedrichsen
  *
  */
-public class HinduChronology extends BasicChronology {
+public class IndianPublicChronology extends BasicChronology {
 	
 	private static final long serialVersionUID = 6685772155652627821L;
 
@@ -67,25 +67,25 @@ public class HinduChronology extends BasicChronology {
     /** A singleton era field. */
     private static final DateTimeField ERA_FIELD = new BasicSingleEraDateTimeField("SAKA");
 
-    private static Map<DateTimeZone, HinduChronology> cCache = new HashMap<DateTimeZone, HinduChronology>();
+    private static Map<DateTimeZone, IndianPublicChronology> cCache = new HashMap<DateTimeZone, IndianPublicChronology>();
     
     /** Singleton instance of a UTC HinduChronology */
-    private static final HinduChronology INSTANCE_UTC;
+    private static final IndianPublicChronology INSTANCE_UTC;
     static {
         // init after static fields
         INSTANCE_UTC = getInstance(DateTimeZone.UTC);
     }
 
-    public static HinduChronology getInstance(){
+    public static IndianPublicChronology getInstance(){
     	return getInstance(DateTimeZone.getDefault());
     }
     
-    public static HinduChronology getInstance(DateTimeZone zone){
+    public static IndianPublicChronology getInstance(DateTimeZone zone){
     	if(zone == null){
     		zone = DateTimeZone.getDefault();
     	}
     	if(!cCache.containsKey(zone)){
-            HinduChronology chrono = new HinduChronology(null, null);
+            IndianPublicChronology chrono = new IndianPublicChronology(null, null);
             cCache.put(zone, chrono);
     	}
     	return cCache.get(zone);
@@ -96,7 +96,7 @@ public class HinduChronology extends BasicChronology {
      * @param param
      * @param minDaysInFirstWeek
      */
-    HinduChronology(Chronology base, Object param) {
+    IndianPublicChronology(Chronology base, Object param) {
     	super(base, param, 4);
     }
 

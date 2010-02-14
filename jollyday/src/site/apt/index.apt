@@ -8,14 +8,14 @@ Welcome to Jollyday.
   kind of environment. That means no network or database needed. The only external
   API dependency is to JODA time API.
 
-Your help would be very much appreciated
+Your help will be very much appreciated
   
   The most important thing is the validation of the holiday XML data files. 
   If you like you could look at your countries XML file and see if you
   can find a missing/wrong holiday rule. The smaller your country is the more
   important it would be to have your opinion on the XML data.
   
-  If you would rather like to have the XML data file offline then you can download
+  If you would rather like to have the XML data file offline then you can {{{https://sourceforge.net/projects/jollyday/}download}}
   the jar file. It contains some XML configuration files named 'Holidays_[country].xml'
   which contain the necessary information for determining the holidays for a 
   year/country/region.
