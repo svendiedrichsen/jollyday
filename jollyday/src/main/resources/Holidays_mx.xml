@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="mx" description="Mexico"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="FEBRUARY" day="19"/>
+		<tns:Fixed month="FEBRUARY" day="24" validFrom="1937"/>
+		<tns:Fixed month="MARCH" day="18" validFrom="1938"/>
+		<tns:Fixed month="APRIL" day="21" validFrom="1914"/>
+		<tns:Fixed month="MAY" day="8" />
+		<tns:Fixed month="JUNE" day="1" />
+		<tns:Fixed month="SEPTEMBER" day="13" />
+		<tns:Fixed month="SEPTEMBER" day="15" />
+		<tns:Fixed month="SEPTEMBER" day="27" />
+		<tns:Fixed month="SEPTEMBER" day="30" />
+		<tns:Fixed month="OCTOBER" day="12" />
+		<tns:FixedMoving month="JANUARY" day="1">
+			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedMoving month="MAY" day="1">
+			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedMoving month="SEPTEMBER" day="16">
+			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedMoving month="DECEMBER" day="1" validFrom="1934" cycle="6_YEARS">
+			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedMoving month="DECEMBER" day="25">
+			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:FixedMoving>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="FEBRUARY"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="MARCH"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="NOVEMBER"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="pue" description="Puebla">
+		<tns:Holidays>
+			<tns:Fixed month="MAY" day="5"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>

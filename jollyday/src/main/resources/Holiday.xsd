@@ -259,6 +259,7 @@
 	<complexType name="Holiday" abstract="true">
 		<attribute name="validFrom" type="int" use="optional"></attribute>
 		<attribute name="validTo" type="int"></attribute>
+		<attribute name="every" type="tns:HolidayCycleType"></attribute>
 	</complexType>
 
 
@@ -301,4 +302,12 @@
 			</extension>
 		</complexContent>
 	</complexType>
+
+	<simpleType name="HolidayCycleType">
+		<restriction base="string">
+			<enumeration value="4_YEARS"></enumeration>
+			<enumeration value="6_YEARS"></enumeration>
+			<enumeration value="2_YEARS"></enumeration>
+		</restriction>
+	</simpleType>
 </schema>

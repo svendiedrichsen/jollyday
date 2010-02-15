@@ -33,8 +33,48 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @return is valid for the year.
 	 */
 	protected <T extends Holiday> boolean isValid(T h, int year) {
+		boolean valid = checkValidDates(h, year);
+		if(valid){
+			valid = valid || checkCyclicHolidays(h, year);  
+		}
+		return valid;
+	}
+
+	/**
+	 * Checks cyclic holidays and checks if the requested year is
+	 * hit within the cycles.
+	 * @param <T> Holiday
+	 * @param h Holiday
+	 * @param year the year to check against
+	 * @return is valid
+	 */
+	private <T extends Holiday> boolean checkCyclicHolidays(T h, int year) {
+		if(h.getValidFrom() != null && h.getEvery() != null){
+			int cycleYears = 0;
+			if("2_YEARS".equalsIgnoreCase(h.getEvery())){
+				cycleYears = 2;
+			}else if("4_YEARS".equalsIgnoreCase(h.getEvery())){
+				cycleYears = 4;
+			}else if("6_YEARS".equalsIgnoreCase(h.getEvery())){
+				cycleYears = 6;
+			}else{
+				throw new IllegalArgumentException("Cannot handle unknown cycle type '"+h.getEvery()+"'.");
+			}
+			return (year - h.getValidFrom().intValue()) % cycleYears == 0;
+		}
+		return true;
+	}
+
+	/**
+	 * Checks whether the holiday is within the valid date range.
+	 * @param <T>
+	 * @param h
+	 * @param year
+	 * @return is valid.
+	 */
+	private <T extends Holiday> boolean checkValidDates(T h, int year) {
 		return (h.getValidFrom() == null || h.getValidFrom().intValue() <= year)
-				&& (h.getValidTo() == null || h.getValidTo().intValue() >= year);
+			&& (h.getValidTo() == null || h.getValidTo().intValue() >= year);
 	}
 
 }

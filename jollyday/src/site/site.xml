@@ -60,6 +60,7 @@
 		</item>
 		<item name="North America" collapse="true" href="northamerica.html">
 			<item name="Canada" href="data/ca.html"/>
+			<item name="Mexico" href="data/mx.html"/>
 			<item name="United States" href="data/us.html"/>
 		</item>
 		<item name="South America" collapse="true" href="southamerica.html">

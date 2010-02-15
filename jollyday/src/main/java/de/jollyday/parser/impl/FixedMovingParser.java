@@ -39,8 +39,6 @@ public class FixedMovingParser extends AbstractHolidayParser{
 					break;
 				}
 			}
-			
-			
 			holidays.add(fixed);
 		}
 	}
