@@ -17,7 +17,6 @@ package de.jollyday.tests.hebrew;
 
 import junit.framework.Assert;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.HebrewChronology;
@@ -27,13 +26,13 @@ import org.junit.Test;
  * @author svdi1de
  *
  */
-public class HebrewTest {
+public class TestHebrewChronology {
 
 	@Test
 	public void testRoshHashanah5770(){
 		LocalDate hebrew = new LocalDate(5770,1,1,HebrewChronology.getInstanceUTC());
 		LocalDate greg = new LocalDate(2009,9,19, GregorianChronology.getInstanceUTC());
-		baseTestHebrew("RoshHashanah",hebrew, greg);
+		baseTestHebrew("Rosh Hashanah",hebrew, greg);
 	}
 
 	@Test
@@ -43,6 +42,27 @@ public class HebrewTest {
 		baseTestHebrew("Sukkot",hebrew, greg);
 	}
 
+	@Test
+	public void testSheminiAtzeret5770(){
+		LocalDate hebrew = new LocalDate(5770,1,22,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2009,10,10, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Shemini Atzeret",hebrew, greg);
+	}
+
+	@Test
+	public void testSimchatTorah5770(){
+		LocalDate hebrew = new LocalDate(5770,1,23,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2009,10,11, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Simchat Torah",hebrew, greg);
+	}
+	
+	@Test
+	public void testHanukkah5770(){
+		LocalDate hebrew = new LocalDate(5770,3,25,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2009,12,12, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Hanukkah",hebrew, greg);
+	}
+	
 	public void baseTestHebrew(String name, LocalDate hebrew, LocalDate correctGregorianDate){
 		System.out.println("Test: "+name);
 		System.out.println("Hebrew date: "+hebrew);
