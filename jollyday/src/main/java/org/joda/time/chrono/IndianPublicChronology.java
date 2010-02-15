@@ -26,6 +26,11 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.MutableDateTime;
 
 /**
+ * The indian public chronology represents the official indian calendar
+ * used by the indian government.
+ * It is implemented like described in 
+ * http://en.wikipedia.org/wiki/Indian_national_calendar.
+ * 
  * @author Sven Diedrichsen
  *
  */
