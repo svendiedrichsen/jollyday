@@ -15,7 +15,10 @@
  */
 package de.jollyday.tests.hebrew;
 
+import junit.framework.Assert;
+
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.HebrewChronology;
 import org.junit.Test;
@@ -27,11 +30,26 @@ import org.junit.Test;
 public class HebrewTest {
 
 	@Test
-	public void testBase(){
-		DateTime dt = new DateTime(5769,1,1,0,0,0,0, HebrewChronology.getInstance());
-		System.out.println("Hebrew: "+dt);
-		DateTime greg = dt.toDateTime(GregorianChronology.getInstance());
-		System.out.println("Gregorian: "+greg);
+	public void testRoshHashanah5770(){
+		LocalDate hebrew = new LocalDate(5770,1,1,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2009,9,19, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("RoshHashanah",hebrew, greg);
 	}
+
+	@Test
+	public void testSukkot5770(){
+		LocalDate hebrew = new LocalDate(5770,1,15,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2009,10,3, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Sukkot",hebrew, greg);
+	}
+
+	public void baseTestHebrew(String name, LocalDate hebrew, LocalDate correctGregorianDate){
+		System.out.println("Test: "+name);
+		System.out.println("Hebrew date: "+hebrew);
+		LocalDate calculatedGregorianDate = new LocalDate(hebrew.toDateTimeAtStartOfDay(), GregorianChronology.getInstanceUTC());
+		System.out.println("Greg. date: calculated="+calculatedGregorianDate+", expexted="+correctGregorianDate);
+		Assert.assertEquals("Wrong date.", correctGregorianDate, calculatedGregorianDate);
+	}
+
 	
 }

@@ -22,8 +22,6 @@ import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
-import org.joda.time.Interval;
-import org.joda.time.MutableDateTime;
 
 /**
  * @author svdi1de
@@ -52,14 +50,18 @@ public class HebrewChronology extends BasicChronology {
     static {
         // init after static fields
         INSTANCE_UTC = getInstance(DateTimeZone.UTC);
-        BEGIN = new DateTime(-3760,DateTimeConstants.OCTOBER, 6, 0,0,0,0,JulianChronology.getInstance());
+        BEGIN = new DateTime(-3759,DateTimeConstants.NOVEMBER, 12, 0,0,0,0, JulianChronology.getInstanceUTC());
         SYNODIC_MONTH_MILLIS = 29L * DateTimeConstants.MILLIS_PER_DAY + 12L * DateTimeConstants.MILLIS_PER_HOUR + DateTimeConstants.MILLIS_PER_HOUR * 793L / PARTS_OF_AN_HOUR;
     }
 
     public static HebrewChronology getInstance(){
     	return getInstance(DateTimeZone.getDefault());
     }
-    
+
+    public static HebrewChronology getInstanceUTC(){
+    	return INSTANCE_UTC;
+    }
+
     public static HebrewChronology getInstance(DateTimeZone zone){
     	if(zone == null){
     		zone = DateTimeZone.getDefault();
@@ -155,7 +157,10 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	int getDaysInYearMonth(int year, int month) {
-		return month % 2 == 0 ? 29 : 30;
+		if(isLeapYear(year) && month > 5){
+			return getDaysInMonthMax(month - 1);
+		}
+		return getDaysInMonthMax(month);
 	}
 
 	/* (non-Javadoc)
@@ -244,7 +249,7 @@ public class HebrewChronology extends BasicChronology {
 	@Override
 	long getYearMillis(int year) {
 		long beginMillis = BEGIN.getMillis();
-		for(int i = 0; i < year; i++){
+		for(int i = 1; i <= year; i++){
 			for(int m = 1; m <= getMaxMonth(i); m++){
 				beginMillis += ((long)getDaysInYearMonth(i, m)) * DateTimeConstants.MILLIS_PER_DAY;
 			}

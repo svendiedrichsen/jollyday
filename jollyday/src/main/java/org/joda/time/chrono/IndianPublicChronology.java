@@ -84,7 +84,11 @@ public class IndianPublicChronology extends BasicChronology {
     public static IndianPublicChronology getInstance(){
     	return getInstance(DateTimeZone.getDefault());
     }
-    
+
+    public static IndianPublicChronology getInstanceUTC(){
+    	return INSTANCE_UTC;
+    }
+
     public static IndianPublicChronology getInstance(DateTimeZone zone){
     	if(zone == null){
     		zone = DateTimeZone.getDefault();

@@ -30,50 +30,50 @@ public class TestHinduChronology {
 	
 	@Test
 	public void testHinduBase2078(){
-		LocalDate hinduDate = new LocalDate(2000,1,1,IndianPublicChronology.getInstance());
-		LocalDate correctGregorianDate = new LocalDate(2078,3,22, GregorianChronology.getInstance());
+		LocalDate hinduDate = new LocalDate(2000,1,1,IndianPublicChronology.getInstanceUTC());
+		LocalDate correctGregorianDate = new LocalDate(2078,3,22, GregorianChronology.getInstanceUTC());
 		baseTestHindu("2078", hinduDate, correctGregorianDate);
 	}
 
 	@Test
 	public void testHinduBase1970(){
-		LocalDate hinduDate = new LocalDate(1892,1,1, IndianPublicChronology.getInstance());
-		LocalDate correctGregorianDate = new LocalDate(1970,3,22, GregorianChronology.getInstance());
+		LocalDate hinduDate = new LocalDate(1892,1,1, IndianPublicChronology.getInstanceUTC());
+		LocalDate correctGregorianDate = new LocalDate(1970,3,22, GregorianChronology.getInstanceUTC());
 		baseTestHindu("1970", hinduDate, correctGregorianDate);
 	}
 
 	@Test
 	public void testHinduHoli(){
-		LocalDate hinduDate = new LocalDate(1929,12,15, IndianPublicChronology.getInstance());
-		LocalDate correctGregorianDate = new LocalDate(2008,3,5, GregorianChronology.getInstance());
+		LocalDate hinduDate = new LocalDate(1929,12,15, IndianPublicChronology.getInstanceUTC());
+		LocalDate correctGregorianDate = new LocalDate(2008,3,5, GregorianChronology.getInstanceUTC());
 		baseTestHindu("Holi", hinduDate, correctGregorianDate);
 	}
 
 	@Test
 	public void testHinduGudiPadwa(){
-		LocalDate hinduDate = new LocalDate(1930,1,1, IndianPublicChronology.getInstance());
-		LocalDate correctGregorianDate = new LocalDate(2008,3,21, GregorianChronology.getInstance());
+		LocalDate hinduDate = new LocalDate(1930,1,1, IndianPublicChronology.getInstanceUTC());
+		LocalDate correctGregorianDate = new LocalDate(2008,3,21, GregorianChronology.getInstanceUTC());
 		baseTestHindu("GudiPadwa", hinduDate, correctGregorianDate);
 	}
 
 	@Test
 	public void testHinduVatPurnima(){
-		LocalDate hinduDate = new LocalDate(1930,3,15, IndianPublicChronology.getInstance());
-		LocalDate correctGregorianDate = new LocalDate(2008,6,5,GregorianChronology.getInstance());
+		LocalDate hinduDate = new LocalDate(1930,3,15, IndianPublicChronology.getInstanceUTC());
+		LocalDate correctGregorianDate = new LocalDate(2008,6,5,GregorianChronology.getInstanceUTC());
 		baseTestHindu("VatPurnima", hinduDate, correctGregorianDate);
 	}
 
 	@Test
 	public void testHinduGuruPurnima(){
-		LocalDate hinduDate = new LocalDate(1930,4,22,IndianPublicChronology.getInstance());
-		LocalDate correctGregorianDate = new LocalDate(2008,7,13, GregorianChronology.getInstance());
+		LocalDate hinduDate = new LocalDate(1930,4,22,IndianPublicChronology.getInstanceUTC());
+		LocalDate correctGregorianDate = new LocalDate(2008,7,13, GregorianChronology.getInstanceUTC());
 		baseTestHindu("GuruPurnima", hinduDate, correctGregorianDate);
 	}
 
 	public void baseTestHindu(String name, LocalDate hinduDate, LocalDate correctGregorianDate){
 		System.out.println("Test: "+name);
 		System.out.println("Hindu date: "+hinduDate);
-		LocalDate calculatedGregorianDate = new LocalDate(hinduDate.plusDays(1).toDateTimeAtStartOfDay(), GregorianChronology.getInstance());
+		LocalDate calculatedGregorianDate = new LocalDate(hinduDate.plusDays(1).toDateTimeAtStartOfDay(), GregorianChronology.getInstanceUTC());
 		System.out.println("Greg. date: calculated="+calculatedGregorianDate+", expexted="+correctGregorianDate);
 		Assert.assertEquals("Wrong date.", correctGregorianDate, calculatedGregorianDate);
 	}
