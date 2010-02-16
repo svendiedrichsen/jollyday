@@ -106,7 +106,9 @@ public class HebrewChronology extends BasicChronology {
 	long calculateFirstDayOfYearMillis(int year) {
 		long millis = BEGIN.getMillis();
 		for(int i = 1; i < year; i++){
-			millis += getMaxMonth(year) * SYNODIC_MONTH_MILLIS;
+			for( int m = 1; m <= getMaxMonth(year); m++  ){
+				millis += ((long)getDaysInYearMonth(i, m)) * DateTimeConstants.MILLIS_PER_DAY;
+			}
 		}
 		return millis;
 	}
@@ -200,7 +202,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	int getDaysInYear(int year) {
-		return (int)(((long)getMaxMonth()) * SYNODIC_MONTH_MILLIS / DateTimeConstants.MILLIS_PER_DAY);
+		return (int)(((long)getMaxMonth(year)) * SYNODIC_MONTH_MILLIS / DateTimeConstants.MILLIS_PER_DAY);
 	}
 	
 	/* (non-Javadoc)
@@ -236,9 +238,9 @@ public class HebrewChronology extends BasicChronology {
 	int getMonthOfYear(long millis, int year) {
 		long millisInYear = millis - getYearMillis(year);
 		int month = 1;
-		while(millisInYear < 0){
-			millisInYear += ((long)getDaysInYearMonth(year, month)) * DateTimeConstants.MILLIS_PER_DAY;
-			month++;
+		while(millisInYear > 0){
+			millisInYear -= ((long)getDaysInYearMonth(year, month)) * DateTimeConstants.MILLIS_PER_DAY;
+			if(millisInYear > 0) month++;
 		}
 		return month;
 	}
@@ -264,7 +266,7 @@ public class HebrewChronology extends BasicChronology {
 	long getTotalMillisByYearMonth(int year, int month) {
 		long millis = 0;
 		for(int i = 1; i < month; i++){
-			millis += getDaysInYearMonth(year, month) * DateTimeConstants.MILLIS_PER_DAY;
+			millis += ((long)getDaysInYearMonth(year, i)) * DateTimeConstants.MILLIS_PER_DAY;
 		}
 		return millis;
 	}

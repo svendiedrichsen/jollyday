@@ -56,12 +56,12 @@ public class TestHebrewChronology {
 		baseTestHebrew("Simchat Torah",hebrew, greg);
 	}
 	
-//	@Test
-//	public void testHanukkah5770(){
-//		LocalDate hebrew = new LocalDate(5770,3,25,HebrewChronology.getInstanceUTC());
-//		LocalDate greg = new LocalDate(2009,12,12, GregorianChronology.getInstanceUTC());
-//		baseTestHebrew("Hanukkah",hebrew, greg);
-//	}
+	@Test
+	public void testHanukkah5770(){
+		LocalDate hebrew = new LocalDate(5770,3,25,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2009,12,11, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Hanukkah",hebrew, greg);
+	}
 	
 	public void baseTestHebrew(String name, LocalDate hebrew, LocalDate correctGregorianDate){
 		System.out.println("Test: "+name);
