@@ -45,3 +45,53 @@ parser.impl.de.jollyday.config.FixedWeekdayBetweenFixed=de.jollyday.parser.impl.
   The configuration property name starts with <<<parser.impl>>> and finishes with the XML class
   name. The value is the parser implementation class name which implements the 
   <<<HolidayParser>>> interface.	
+  
+XML Configuration 
+
+  The XML configuration file contained in the JAR file looks in this area like this:
+  
+-----------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="us" description="United States" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+  
+  <!-- These are the nationwide common holidays. -->
+  
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1" />
+	  <tns:Fixed month="JULY" day="4" />
+	  <tns:Fixed month="NOVEMBER" day="11" />
+	  <tns:Fixed month="DECEMBER" day="25" />
+	  <tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" />
+	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" />
+	  <tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
+  </tns:Holidays>
+
+  -SNIP-
+  
+  <!-- These are the additional NY holidays -->
+  
+  <tns:SubConfigurations hierarchy="ny" description="New York">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="12"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
+  			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" />
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" />
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+  	
+  	<!-- These are the additional NYC holidays. -->
+  	
+  	<tns:SubConfigurations hierarchy="nyc" description="New York City">
+  		<tns:Holidays>
+  			<tns:FixedWeekday which="FIRST" weekday="THURSDAY" month="JUNE"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  </tns:SubConfigurations>
+  
+  -SNIP-
+</tns:Configuration>
+----------------------- 
+  

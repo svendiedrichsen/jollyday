@@ -8,14 +8,14 @@ Code Example
   To get the US holidays for the state New York:
  
 -----------------------
-  Manager m = Manager.getInstance("us");
+  Manager m = Manager.getInstance("us"); //-> Instantiates the US holiday manager
   Set<LocalDate> holidays = m.getHolidays(2010, "ny");
 ----------------------- 
   
   To get the US holidays for New York City in the state New York:
 
 -----------------------
-  Manager m = Manager.getInstance("us");
+  Manager m = Manager.getInstance("us"); //-> Instantiates the US holiday manager
   Set<LocalDate> holidays = m.getHolidays(2010, "ny", "nyc");
 -----------------------
   
