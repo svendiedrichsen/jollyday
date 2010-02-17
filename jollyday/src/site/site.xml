@@ -21,6 +21,10 @@
 		<item name="Introduction" href="data.html"/>
 		<item name="XSD-Schema" href="schema.html"/>
 		<item name="Australia" href="data/au.html"/>
+		<item name="Asia" collapse="true" href="asia.html">
+			<item name="Japan" href="data/jp.html"/>
+			<item name="Russian Federation" href="data/ru.html"/>
+		</item>
 		<item name="Europe" collapse="true" href="europe.html">
 			<item name="Albania" href="data/al.html"/>
   			<item name="Austria" href="data/at.html"/>
