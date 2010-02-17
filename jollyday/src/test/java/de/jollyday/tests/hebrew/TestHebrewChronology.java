@@ -28,6 +28,20 @@ import org.junit.Test;
  */
 public class TestHebrewChronology {
 
+//	@Test
+//	public void testRoshHashanah5765(){
+//		LocalDate hebrew = new LocalDate(5765,1,1,HebrewChronology.getInstanceUTC());
+//		LocalDate greg = new LocalDate(2004,9,16, GregorianChronology.getInstanceUTC());
+//		baseTestHebrew("Rosh Hashanah",hebrew, greg);
+//	}
+//
+//	@Test
+//	public void testRoshHashanah5769(){
+//		LocalDate hebrew = new LocalDate(5769,1,1,HebrewChronology.getInstanceUTC());
+//		LocalDate greg = new LocalDate(2008,9,29, GregorianChronology.getInstanceUTC());
+//		baseTestHebrew("Rosh Hashanah",hebrew, greg);
+//	}
+	
 	@Test
 	public void testRoshHashanah5770(){
 		LocalDate hebrew = new LocalDate(5770,1,1,HebrewChronology.getInstanceUTC());
@@ -62,6 +76,13 @@ public class TestHebrewChronology {
 		LocalDate greg = new LocalDate(2009,12,11, GregorianChronology.getInstanceUTC());
 		baseTestHebrew("Hanukkah",hebrew, greg);
 	}
+
+//	@Test
+//	public void testPurim5770(){
+//		LocalDate hebrew = new LocalDate(5770,6,14,HebrewChronology.getInstanceUTC());
+//		LocalDate greg = new LocalDate(2010,2,28, GregorianChronology.getInstanceUTC());
+//		baseTestHebrew("Purim",hebrew, greg);
+//	}
 	
 	public void baseTestHebrew(String name, LocalDate hebrew, LocalDate correctGregorianDate){
 		System.out.println("Test: "+name);

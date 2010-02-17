@@ -37,9 +37,12 @@ public class HebrewChronology extends BasicChronology {
     /** The highest year that can be fully supported. */
     private static final int MAX_YEAR = 292272992;
 	
-	private static final long PARTS_OF_AN_HOUR = 1080L;
+    private static final long PARTS_OF_AN_HOUR = 1080L;
+    private static final long SYNODIC_MONTH_MILLIS = 
+    	29L * DateTimeConstants.MILLIS_PER_DAY + 12L * DateTimeConstants.MILLIS_PER_HOUR + DateTimeConstants.MILLIS_PER_HOUR * 793L / PARTS_OF_AN_HOUR;
 
-	private static final long SYNODIC_MONTH_MILLIS;
+	private static final long LEAP_CYCLE_YEARS = 19L;
+	private static final long LEAP_CYCLE_MILLIS = 12L * 12L * SYNODIC_MONTH_MILLIS  + 7L * 13L * SYNODIC_MONTH_MILLIS ;
 	
 	private static final DateTime BEGIN; 
 
@@ -50,8 +53,7 @@ public class HebrewChronology extends BasicChronology {
     static {
         // init after static fields
         INSTANCE_UTC = getInstance(DateTimeZone.UTC);
-        BEGIN = new DateTime(-3759,DateTimeConstants.NOVEMBER, 12, 0,0,0,0, JulianChronology.getInstanceUTC());
-        SYNODIC_MONTH_MILLIS = 29L * DateTimeConstants.MILLIS_PER_DAY + 12L * DateTimeConstants.MILLIS_PER_HOUR + DateTimeConstants.MILLIS_PER_HOUR * 793L / PARTS_OF_AN_HOUR;
+        BEGIN = new DateTime(-3760,DateTimeConstants.FEBRUARY, 2, 0,0,0,0, JulianChronology.getInstanceUTC());
     }
 
     public static HebrewChronology getInstance(){
@@ -84,33 +86,17 @@ public class HebrewChronology extends BasicChronology {
     
 	@Override
 	int getYear(long instant) {
-		long beginMillis = BEGIN.getMillis();
-		long hebrewMillis = instant - beginMillis;
-		int year = 1;
-		while(hebrewMillis > 0){
-			for(int m = 1; m <= getMaxMonth(year); m++){
-				hebrewMillis -= ((long)getDaysInYearMonth(year, m)) * DateTimeConstants.MILLIS_PER_DAY;
-				if(hebrewMillis < 0) break;
-			}
-			if(hebrewMillis < 0) break;
-			year++;
-		}
-		return --year;
+		long hebrewMillis = instant - BEGIN.getMillis();
+		return (int)((hebrewMillis / SYNODIC_MONTH_MILLIS - hebrewMillis / LEAP_CYCLE_MILLIS * 7L) / 12L) + 1;
 	}
-	
 	
 	/* (non-Javadoc)
 	 * @see org.joda.time.chrono.BasicChronology#calculateFirstDayOfYearMillis(int)
 	 */
 	@Override
 	long calculateFirstDayOfYearMillis(int year) {
-		long millis = BEGIN.getMillis();
-		for(int i = 1; i < year; i++){
-			for( int m = 1; m <= getMaxMonth(year); m++  ){
-				millis += ((long)getDaysInYearMonth(i, m)) * DateTimeConstants.MILLIS_PER_DAY;
-			}
-		}
-		return millis;
+		year--;
+		return year * 12L * SYNODIC_MONTH_MILLIS + year / LEAP_CYCLE_YEARS * 7L * SYNODIC_MONTH_MILLIS;
 	}
 
 	/* (non-Javadoc)
@@ -118,7 +104,6 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getApproxMillisAtEpochDividedByTwo() {
-		// TODO Auto-generated method stub
 		return BEGIN.getMillis() / 2;
 	}
 
@@ -127,7 +112,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getAverageMillisPerMonth() {
-		return SYNODIC_MONTH_MILLIS;
+		return getAverageMillisPerYear() / 12L;
 	}
 
 	/* (non-Javadoc)
@@ -237,12 +222,7 @@ public class HebrewChronology extends BasicChronology {
 	@Override
 	int getMonthOfYear(long millis, int year) {
 		long millisInYear = millis - getYearMillis(year);
-		int month = 1;
-		while(millisInYear > 0){
-			millisInYear -= ((long)getDaysInYearMonth(year, month)) * DateTimeConstants.MILLIS_PER_DAY;
-			if(millisInYear > 0) month++;
-		}
-		return month;
+		return (int)(millisInYear / SYNODIC_MONTH_MILLIS) + 1;
 	}
 	
 	/* (non-Javadoc)
@@ -250,13 +230,8 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getYearMillis(int year) {
-		long beginMillis = BEGIN.getMillis();
-		for(int i = 1; i <= year; i++){
-			for(int m = 1; m <= getMaxMonth(i); m++){
-				beginMillis += ((long)getDaysInYearMonth(i, m)) * DateTimeConstants.MILLIS_PER_DAY;
-			}
-		}
-		return beginMillis;
+		year--;
+		return BEGIN.getMillis() + ((long)year) * 12L * SYNODIC_MONTH_MILLIS + ((long)year) / 19L * 7L * SYNODIC_MONTH_MILLIS;
 	}
 
 	/* (non-Javadoc)
@@ -276,8 +251,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getYearDifference(long minuendInstant, long subtrahendInstant) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (minuendInstant - subtrahendInstant) / SYNODIC_MONTH_MILLIS / 12L;
 	}
 
 	/* (non-Javadoc)
