@@ -40,6 +40,7 @@ import de.jollyday.Manager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
+import de.jollyday.util.XMLUtil;
 
 /**
  * Manager implementation for reading data from XML files. The files
@@ -59,10 +60,6 @@ public class XMLManager extends Manager {
 	 * The configuration prefix for parser implementations. 
 	 */
 	private static final String PARSER_IMPL_PREFIX = "parser.impl.";
-	/**
-	 * the package name to search for the generated java classes.
-	 */
-	private static final String PACKAGE = "de.jollyday.config";
 	/**
 	 * prefix of the config files.
 	 */
@@ -192,7 +189,7 @@ public class XMLManager extends Manager {
 			throw new IllegalArgumentException("Country "+country+" currently not supported. Please contact sdiedrichsen@yahoo.de and provide the data.");
 		}
 		try {
-			JAXBContext ctx = JAXBContext.newInstance(PACKAGE);
+			JAXBContext ctx = JAXBContext.newInstance(XMLUtil.PACKAGE);
 			Unmarshaller um = ctx.createUnmarshaller();
 			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 			configuration = el.getValue();

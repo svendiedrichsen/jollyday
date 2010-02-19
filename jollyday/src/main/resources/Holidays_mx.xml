@@ -26,7 +26,7 @@
 			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
 			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:FixedMoving>
-		<tns:FixedMoving month="DECEMBER" day="1" validFrom="1934" cycle="6_YEARS">
+		<tns:FixedMoving month="DECEMBER" day="1" validFrom="1934" every="6_YEARS">
 			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
 			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:FixedMoving>

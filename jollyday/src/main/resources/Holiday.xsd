@@ -82,9 +82,6 @@
 				type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
-			<element name="FixedMovingConditional" type="string"
-				maxOccurs="unbounded" minOccurs="0">
-			</element>
 			<element name="HinduHoliday" type="tns:HinduHoliday" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 

@@ -55,5 +55,10 @@ public class XMLUtil {
 				throw new IllegalArgumentException("Unknown month "+month);
 		}
 	}
+
+	/**
+	 * the package name to search for the generated java classes.
+	 */
+	public static final String PACKAGE = "de.jollyday.config";
 	
 }
