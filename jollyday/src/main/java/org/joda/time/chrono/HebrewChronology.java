@@ -24,7 +24,7 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
 
 /**
- * @author svdi1de
+ * @author Sven Diedrichsen
  *
  */
 public class HebrewChronology extends BasicChronology {
@@ -48,12 +48,17 @@ public class HebrewChronology extends BasicChronology {
 
 	private static Map<DateTimeZone, HebrewChronology> cCache = new HashMap<DateTimeZone, HebrewChronology>();
 	
+	/* Caches the calculated millis for a given year */
+	private final Map<Integer, Long> YEAR_MILLIS = new HashMap<Integer, Long>();
+	/* Caches the calculated days for a given year */
+	private final Map<Integer, Long> YEAR_DAYS = new HashMap<Integer, Long>();
+	
     /** Singleton instance of a UTC HinduChronology */
     private static final HebrewChronology INSTANCE_UTC;
     static {
         // init after static fields
         INSTANCE_UTC = getInstance(DateTimeZone.UTC);
-        BEGIN = new DateTime(-3760,DateTimeConstants.FEBRUARY, 2, 0,0,0,0, JulianChronology.getInstanceUTC());
+        BEGIN = new DateTime(-3761,DateTimeConstants.OCTOBER, 7, 0,0,0,0, JulianChronology.getInstanceUTC());
     }
 
     public static HebrewChronology getInstance(){
@@ -87,7 +92,8 @@ public class HebrewChronology extends BasicChronology {
 	@Override
 	int getYear(long instant) {
 		long hebrewMillis = instant - BEGIN.getMillis();
-		return (int)((hebrewMillis / SYNODIC_MONTH_MILLIS - hebrewMillis / LEAP_CYCLE_MILLIS * 7L) / 12L) + 1;
+		long year = ((hebrewMillis / SYNODIC_MONTH_MILLIS - hebrewMillis / LEAP_CYCLE_MILLIS * 7L) / 12L) + 1;
+		return (int)year;
 	}
 	
 	/* (non-Javadoc)
@@ -95,8 +101,44 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long calculateFirstDayOfYearMillis(int year) {
-		year--;
-		return year * 12L * SYNODIC_MONTH_MILLIS + year / LEAP_CYCLE_YEARS * 7L * SYNODIC_MONTH_MILLIS;
+		return (getHebrewCalendarElapsedDays(year)-1) * DateTimeConstants.MILLIS_PER_DAY;
+	}
+	
+	private long getHebrewCalendarElapsedDays(int year) {
+		if(!YEAR_DAYS.containsKey(Integer.valueOf(year))){
+			long monthsElapsed = (235L * ((year - 1) / LEAP_CYCLE_YEARS)) // Months in complete
+			// cycles so far.//
+			+ (12 * ((year - 1) % LEAP_CYCLE_YEARS)) // Regular months in this cycle.//
+			+ (7 * ((year - 1) % LEAP_CYCLE_YEARS) + 1) / LEAP_CYCLE_YEARS; // Leap months this cycle//
+			long partsElapsed = 204L + 793L * (monthsElapsed % PARTS_OF_AN_HOUR);
+			long hoursElapsed = 5L + 12L * monthsElapsed + 793L
+			* (monthsElapsed / PARTS_OF_AN_HOUR) + partsElapsed / PARTS_OF_AN_HOUR;
+			long conjunctionDay = 1 + 29 * monthsElapsed + hoursElapsed / 24;
+			long conjunctionParts = PARTS_OF_AN_HOUR * (hoursElapsed % 24) + partsElapsed % PARTS_OF_AN_HOUR;
+			long alternativeDay;
+			if ((conjunctionParts >= 19440) // If new moon is at or after midday,//
+					|| (((conjunctionDay % 7) == 2) // ...or is on a Tuesday...//
+							&& (conjunctionParts >= 9924) // at 9 hours, 204 parts
+							// or later...//
+							&& !isLeapYear(year)) // ...of a common year,//
+							|| (((conjunctionDay % 7) == 1) // ...or is on a Monday at...//
+									&& (conjunctionParts >= 16789) // 15 hours, 589 parts or
+									// later...//
+									&& (isLeapYear(year - 1))))// at the end of a leap year//
+				// Then postpone Rosh HaShanah one day//
+				alternativeDay = conjunctionDay + 1;
+			else
+				alternativeDay = conjunctionDay;
+			if (((alternativeDay % 7) == 0)// If Rosh HaShanah would occur on
+					// Sunday,//
+					|| ((alternativeDay % 7) == 3) // or Wednesday,//
+					|| ((alternativeDay % 7) == 5)) // or Friday//
+				// Then postpone it one (more) day//
+				alternativeDay = (1 + alternativeDay);
+			
+			YEAR_DAYS.put(Integer.valueOf(year), Long.valueOf(alternativeDay));
+		}
+		return YEAR_DAYS.get(Integer.valueOf(year));
 	}
 
 	/* (non-Javadoc)
@@ -120,7 +162,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getAverageMillisPerYear() {
-		return (12L * 12L * SYNODIC_MONTH_MILLIS + 7L * 13L * SYNODIC_MONTH_MILLIS) / 19L;
+		return (12L * 12L * SYNODIC_MONTH_MILLIS + 7L * 13L * SYNODIC_MONTH_MILLIS) / LEAP_CYCLE_YEARS;
 	}
 
 	/* (non-Javadoc)
@@ -144,11 +186,37 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	int getDaysInYearMonth(int year, int month) {
-		if(isLeapYear(year) && month > 5){
-			return getDaysInMonthMax(month - 1);
-		}
-		return getDaysInMonthMax(month);
+		if ((month == 2) || (month == 4) || (month == 6)
+				|| ((month == 8) && !(isCheshvanLong(year)))
+				|| ((month == 9) && isKislevShort(year)) || (month == 10)
+				|| ((month == 12) && !(isLeapYear(year))) || (month == 13))
+			return 29;
+		else
+			return 30;
 	}
+	
+	// ND+ER //
+	// True if Heshvan is long in Hebrew year. //
+	boolean isCheshvanLong(int hYear) {
+		if ((getDaysInHebrewYear(hYear) % 10) == 5)
+			return true;
+		else
+			return false;
+	}
+
+	// ND+ER //
+	// True if Kislev is short in Hebrew year.//
+	boolean isKislevShort(int hYear) {
+		if ((getDaysInHebrewYear(hYear) % 10) == 3)
+			return true;
+		else
+			return false;
+	}
+
+	long getDaysInHebrewYear(int hYear) {
+		return ((getHebrewCalendarElapsedDays(hYear + 1)) - (getHebrewCalendarElapsedDays(hYear)));
+	}			   
+
 
 	/* (non-Javadoc)
 	 * @see org.joda.time.chrono.BasicChronology#getMaxYear()
@@ -222,7 +290,13 @@ public class HebrewChronology extends BasicChronology {
 	@Override
 	int getMonthOfYear(long millis, int year) {
 		long millisInYear = millis - getYearMillis(year);
-		return (int)(millisInYear / SYNODIC_MONTH_MILLIS) + 1;
+		int month = 0;
+		do{
+			month++;
+			millisInYear -= ((long)getDaysInYearMonth(year, month)) * DateTimeConstants.MILLIS_PER_DAY;
+		}while(millisInYear > 0);
+		if(millisInYear == 0) month++;
+		return month;
 	}
 	
 	/* (non-Javadoc)
@@ -230,8 +304,14 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getYearMillis(int year) {
-		year--;
-		return BEGIN.getMillis() + ((long)year) * 12L * SYNODIC_MONTH_MILLIS + ((long)year) / 19L * 7L * SYNODIC_MONTH_MILLIS;
+		if(!YEAR_MILLIS.containsKey(Integer.valueOf(year))){
+			long millis = BEGIN.getMillis(); 
+			for(int y = 1; y < year; y++){
+				millis += ((long)getDaysInHebrewYear(y)) * DateTimeConstants.MILLIS_PER_DAY;
+			}
+			YEAR_MILLIS.put(Integer.valueOf(year), Long.valueOf(millis));
+		}
+		return YEAR_MILLIS.get(Integer.valueOf(year)).longValue();
 	}
 
 	/* (non-Javadoc)
@@ -245,7 +325,7 @@ public class HebrewChronology extends BasicChronology {
 		}
 		return millis;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.joda.time.chrono.BasicChronology#getYearDifference(long, long)
 	 */
@@ -269,8 +349,14 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long setYear(long instant, int year) {
-		// TODO Auto-generated method stub
-		return 0;
+        // optimsed implementation of set, due to fixed months
+        int thisYear = getYear(instant);
+        int dayOfYear = getDayOfYear(instant, thisYear);
+        int millisOfDay = getMillisOfDay(instant);
+
+        instant = getYearMonthDayMillis(year, 1, dayOfYear);
+        instant += millisOfDay;
+        return instant;
 	}
 
 	/* (non-Javadoc)

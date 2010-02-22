@@ -28,19 +28,27 @@ import org.junit.Test;
  */
 public class TestHebrewChronology {
 
-//	@Test
-//	public void testRoshHashanah5765(){
-//		LocalDate hebrew = new LocalDate(5765,1,1,HebrewChronology.getInstanceUTC());
-//		LocalDate greg = new LocalDate(2004,9,16, GregorianChronology.getInstanceUTC());
-//		baseTestHebrew("Rosh Hashanah",hebrew, greg);
-//	}
-//
-//	@Test
-//	public void testRoshHashanah5769(){
-//		LocalDate hebrew = new LocalDate(5769,1,1,HebrewChronology.getInstanceUTC());
-//		LocalDate greg = new LocalDate(2008,9,29, GregorianChronology.getInstanceUTC());
-//		baseTestHebrew("Rosh Hashanah",hebrew, greg);
-//	}
+
+	@Test
+	public void testRoshHashanah5761(){
+		LocalDate hebrew = new LocalDate(5761,1,1,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2000, 9, 30, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Rosh Hashanah",hebrew, greg);
+	}
+
+	@Test
+	public void testRoshHashanah5765(){
+		LocalDate hebrew = new LocalDate(5765,1,1,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2004,9,16, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Rosh Hashanah",hebrew, greg);
+	}
+
+	@Test
+	public void testRoshHashanah5769(){
+		LocalDate hebrew = new LocalDate(5769,1,1,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2008,9,30, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Rosh Hashanah",hebrew, greg);
+	}
 	
 	@Test
 	public void testRoshHashanah5770(){
@@ -77,13 +85,48 @@ public class TestHebrewChronology {
 		baseTestHebrew("Hanukkah",hebrew, greg);
 	}
 
+	@Test
+	public void testPurim5770(){
+		LocalDate hebrew = new LocalDate(5770,6,14,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2010,2,27, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Purim",hebrew, greg);
+	}
+
+	@Test
+	public void testTuBishvat5770(){
+		LocalDate hebrew = new LocalDate(5770,5,15,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2010,1,29, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Tu Bishvat",hebrew, greg);
+	}
+
+	@Test
+	public void testRoshHaShanah5768(){
+		LocalDate hebrew = new LocalDate(5768,1,1,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2007,9,13, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Rosh HaShanah",hebrew, greg);
+	}
+
+	@Test
+	public void testYomKippur5768(){
+		LocalDate hebrew = new LocalDate(5768,1,10,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2007,9,22, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Rosh HaShanah",hebrew, greg);
+	}
+
+	@Test
+	public void testYomHaatzmaut5762(){
+		LocalDate hebrew = new LocalDate(5762,8,5,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2002,4,17, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Yom Ha'atzmaut",hebrew, greg);
+	}
+
 //	@Test
-//	public void testPurim5770(){
-//		LocalDate hebrew = new LocalDate(5770,6,14,HebrewChronology.getInstanceUTC());
-//		LocalDate greg = new LocalDate(2010,2,28, GregorianChronology.getInstanceUTC());
-//		baseTestHebrew("Purim",hebrew, greg);
+//	public void testLagBaomer5765(){
+//		LocalDate hebrew = new LocalDate(5765,8,18,HebrewChronology.getInstanceUTC());
+//		LocalDate greg = new LocalDate(2005,5,27, GregorianChronology.getInstanceUTC());
+//		baseTestHebrew("Lag Ba'omer",hebrew, greg);
 //	}
-	
+
 	public void baseTestHebrew(String name, LocalDate hebrew, LocalDate correctGregorianDate){
 		System.out.println("Test: "+name);
 		System.out.println("Hebrew date: "+hebrew);
