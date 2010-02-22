@@ -96,7 +96,7 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 			default:
 				throw new IllegalArgumentException("Unknown christian holiday type " + ch.getType());
 			}
-			holidays.add(CalendarUtil.convertToGregorianDate(easterSunday));
+			holidays.add(moveDate(ch, CalendarUtil.convertToGregorianDate(easterSunday)));
 		}
 	}
 

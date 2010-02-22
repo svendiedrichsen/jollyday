@@ -3,37 +3,37 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
 	<tns:Holidays>
-		<tns:FixedMoving month="JANUARY" day="1">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="JANUARY" day="7">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="FEBRUARY" day="23">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="MARCH" day="8">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="MAY" day="1">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="MAY" day="9">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="JUNE" day="12" validFrom="1994">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="NOVEMBER" day="4" validFrom="2005">
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
+		<tns:Fixed month="JANUARY" day="1">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JANUARY" day="7">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="FEBRUARY" day="23">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MARCH" day="8">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="1">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="9">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JUNE" day="12" validFrom="1994">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="NOVEMBER" day="4" validFrom="2005">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
 	</tns:Holidays>
 </tns:Configuration>

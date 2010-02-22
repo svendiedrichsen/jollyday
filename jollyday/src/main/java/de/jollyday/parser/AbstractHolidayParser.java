@@ -15,7 +15,12 @@
  */
 package de.jollyday.parser;
 
+import org.joda.time.LocalDate;
+
 import de.jollyday.config.Holiday;
+import de.jollyday.config.MovingCondition;
+import de.jollyday.config.With;
+import de.jollyday.util.XMLUtil;
 
 /**
  * The abstract base class for all HolidayParser implementations.
@@ -76,5 +81,47 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 		return (h.getValidFrom() == null || h.getValidFrom().intValue() <= year)
 			&& (h.getValidTo() == null || h.getValidTo().intValue() >= year);
 	}
+
+	/**
+	 * Moves a date if there are any moving conditions for this
+	 * holiday and any of them fit.
+	 * @param fm
+	 * @param fixed
+	 * @return the moved date
+	 */
+	protected LocalDate moveDate(Holiday fm, LocalDate fixed) {
+		for(MovingCondition mc : fm.getMovingCondition()){
+			if(shallBeMoved(fixed, mc)){
+				fixed = moveDate(mc, fixed);
+				break;
+			}
+		}
+		return fixed;
+	}
+
+	/**
+	 * Determines if the provided date shall be substituted.
+	 * @param fixed
+	 * @param mc
+	 */
+	protected boolean shallBeMoved(LocalDate fixed, MovingCondition mc) {
+		return fixed.getDayOfWeek() == XMLUtil.getWeekday(mc.getSubstitute());
+	}
+
+	/**
+	 * Moves the date using the FixedMoving information
+	 * @param mc
+	 * @param fixed
+	 * @return
+	 */
+	private LocalDate moveDate(MovingCondition mc, LocalDate fixed) {
+		int weekday = XMLUtil.getWeekday(mc.getWeekday());
+		int direction = (mc.getWith() == With.NEXT ? 1 : -1 );
+		while(fixed.getDayOfWeek() != weekday){
+			fixed = fixed.plusDays(direction);
+		}
+		return fixed;
+	}
+
 
 }

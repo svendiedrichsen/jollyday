@@ -66,9 +66,6 @@
 				type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
-			<element name="FixedMoving" type="tns:FixedMoving"
-				maxOccurs="unbounded" minOccurs="0">
-			</element>
 			<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
 				maxOccurs="unbounded" minOccurs="0">
 			</element>
@@ -130,15 +127,6 @@
 		</restriction>
 	</simpleType>
 
-	<complexType name="FixedMoving">
-		<complexContent>
-			<extension base="tns:Fixed">
-				<sequence>
-					<element name="condition" type="tns:MovingCondition" maxOccurs="unbounded" minOccurs="1"></element>
-				</sequence>
-			</extension>
-		</complexContent>
-	</complexType>
 
 	<complexType name="FixedWeekdayInMonth">
 		<complexContent>
@@ -254,6 +242,9 @@
 	</complexType>
 
 	<complexType name="Holiday" abstract="true">
+		<sequence>
+			<element name="MovingCondition" type="tns:MovingCondition" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
 		<attribute name="validFrom" type="int" use="optional"></attribute>
 		<attribute name="validTo" type="int"></attribute>
 		<attribute name="every" type="tns:HolidayCycleType"></attribute>
@@ -307,4 +298,5 @@
 			<enumeration value="2_YEARS"></enumeration>
 		</restriction>
 	</simpleType>
+
 </schema>

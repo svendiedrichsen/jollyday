@@ -15,22 +15,22 @@
 		<tns:Fixed month="NOVEMBER" day="11" />
 		<tns:Fixed month="DECEMBER" day="8" />
 		<tns:Fixed month="DECEMBER" day="25" />
-		<tns:FixedMoving month="JANUARY" day="6">
-			<tns:condition substitute="TUESDAY" with="NEXT"	weekday="MONDAY" />
-			<tns:condition substitute="WEDNESDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="THURSDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="FRIDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
-		</tns:FixedMoving>
-		<tns:FixedMoving month="MARCH" day="19">
-			<tns:condition substitute="TUESDAY" with="NEXT"	weekday="MONDAY" />
-			<tns:condition substitute="WEDNESDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="THURSDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="FRIDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
-		</tns:FixedMoving>
+		<tns:Fixed month="JANUARY" day="6">
+			<tns:MovingCondition substitute="TUESDAY" with="NEXT"	weekday="MONDAY" />
+			<tns:MovingCondition substitute="WEDNESDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="THURSDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="FRIDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
+		</tns:Fixed>
+		<tns:Fixed month="MARCH" day="19">
+			<tns:MovingCondition substitute="TUESDAY" with="NEXT"	weekday="MONDAY" />
+			<tns:MovingCondition substitute="WEDNESDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="THURSDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="FRIDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
+		</tns:Fixed>
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" />

@@ -14,26 +14,26 @@
 		<tns:Fixed month="SEPTEMBER" day="27" />
 		<tns:Fixed month="SEPTEMBER" day="30" />
 		<tns:Fixed month="OCTOBER" day="12" />
-		<tns:FixedMoving month="JANUARY" day="1">
-			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="MAY" day="1">
-			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="SEPTEMBER" day="16">
-			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="DECEMBER" day="1" validFrom="1934" every="6_YEARS">
-			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="DECEMBER" day="25">
-			<tns:condition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
+		<tns:Fixed month="JANUARY" day="1">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="1">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="SEPTEMBER" day="16">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="1" validFrom="1934" every="6_YEARS">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="FEBRUARY"/>
 		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="MARCH"/>
 		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="NOVEMBER"/>

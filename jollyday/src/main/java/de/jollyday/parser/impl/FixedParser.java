@@ -29,7 +29,8 @@ public class FixedParser extends AbstractHolidayParser {
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(Fixed f : config.getFixed()){
 			if(!isValid(f, year)) continue;
-			holidays.add(CalendarUtil.create(year, f));
+			LocalDate date = CalendarUtil.create(year, f);
+			holidays.add(moveDate(f, date));
 		}
 	}
 

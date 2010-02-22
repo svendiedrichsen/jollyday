@@ -37,36 +37,40 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
 		for(IslamicHoliday i : config.getIslamicHoliday()){
 			if(!isValid(i, year)) continue;
+			Set<LocalDate> islamicHolidays = null;
 			switch(i.getType()){
 			case NEUJAHR:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 1));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 1);
 				break;
 			case ASCHURA:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 10));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 10);
 				break;
 			case ID_AL_FITR:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.OCTOBER, 1));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.OCTOBER, 1);
 				break;
 			case ID_UL_ADHA:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.DECEMBER, 10));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.DECEMBER, 10);
 				break;
 			case LAILAT_AL_BARAT:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.AUGUST, 15));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.AUGUST, 15);
 				break;
 			case LAILAT_AL_MIRAJ:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JULY, 27));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JULY, 27);
 				break;
 			case LAILAT_AL_QADR:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 27));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 27);
 				break;
 			case MAWLID_AN_NABI:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.MARCH, 12));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.MARCH, 12);
 				break;
 			case RAMADAN:
-				holidays.addAll(CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 1));
+				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 1);
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown islamic holiday "+i.getType());
+			}
+			for(LocalDate date : islamicHolidays){
+				holidays.add(moveDate(i, date));
 			}
 		}
 	}

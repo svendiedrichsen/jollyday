@@ -15,20 +15,20 @@
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="1"/>
   		<tns:Fixed month="FEBRUARY" day="28"/>
-  		<tns:FixedMoving month="AUGUST" day="15">
-  			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-  			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-  		</tns:FixedMoving>
+  		<tns:Fixed month="AUGUST" day="15">
+  			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+  			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+  		</tns:Fixed>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Aragon">
   	<tns:Holidays>
   		<tns:Fixed month="APRIL" day="23"/>
-  		<tns:FixedMoving month="AUGUST" day="15">
-  			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-  			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-  		</tns:FixedMoving>
+  		<tns:Fixed month="AUGUST" day="15">
+  			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+  			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+  		</tns:Fixed>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>
@@ -142,10 +142,10 @@
  <tns:SubConfigurations hierarchy="o" description="Asturias">
   	<tns:Holidays>
   		<tns:Fixed month="SEPTEMBER" day="8"/>
-  		<tns:FixedMoving month="AUGUST" day="15">
-  			<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-  			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-  		</tns:FixedMoving>
+  		<tns:Fixed month="AUGUST" day="15">
+  			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+  			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+  		</tns:Fixed>
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
  </tns:SubConfigurations>

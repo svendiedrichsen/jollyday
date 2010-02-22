@@ -6,34 +6,34 @@
 		<tns:Fixed month="JANUARY" day="26" validTo="2007"/>
 		<tns:Fixed month="APRIL" day="25" validTo="2007"/>
 		<tns:Fixed month="JANUARY" day="1" validTo="2007"/>
-		<tns:FixedMoving month="DECEMBER" day="25" validTo="2007">
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
-		<tns:FixedMoving month="DECEMBER" day="26" validTo="2007">
-			<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:FixedMoving>
+		<tns:Fixed month="DECEMBER" day="25" validTo="2007">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="26" validTo="2007">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 		<tns:ChristianHoliday type="EASTER_SATURDAY"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY"/>
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="act" description="Australian Capital Territory">
 		<tns:Holidays>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="APRIL" day="25" validTo="2007">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="APRIL" day="25" validTo="2007">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
@@ -42,41 +42,41 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="nsw" description="New South Wales">
 		<tns:Holidays>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="APRIL" day="25" validTo="2007">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="APRIL" day="25" validTo="2007">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="nt" description="Nothern Territory">
 		<tns:Holidays>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="APRIL" day="25" validTo="2007">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="APRIL" day="25" validTo="2007">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" />
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" />
@@ -84,39 +84,39 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="qld" description="Queensland">
 		<tns:Holidays>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="APRIL" day="25" validTo="2007">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="APRIL" day="25" validTo="2007">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" />
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="sa" description="South Australia">
 		<tns:Holidays>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="APRIL" day="25" validTo="2007">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="APRIL" day="25" validTo="2007">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
@@ -125,18 +125,18 @@
 	<tns:SubConfigurations hierarchy="tas" description="Tasmania">
 		<tns:Holidays>
 			<tns:Fixed month="APRIL" day="25"/>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 			<tns:ChristianHoliday type="EASTER_TUESDAY"/>
@@ -155,17 +155,17 @@
 	<tns:SubConfigurations hierarchy="vic" description="Victoria">
 		<tns:Holidays>
 			<tns:Fixed month="APRIL" day="25"/>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
 			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" />
@@ -173,22 +173,22 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="wa" description="West Australia">
 		<tns:Holidays>
-			<tns:FixedMoving month="JANUARY" day="1" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="APRIL" day="25" validTo="2007">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="25" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
-			<tns:FixedMoving month="DECEMBER" day="26" validFrom="2008">
-				<tns:condition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
-				<tns:condition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-			</tns:FixedMoving>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="APRIL" day="25" validTo="2007">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" />
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" />
 			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="SEPTEMBER"/>

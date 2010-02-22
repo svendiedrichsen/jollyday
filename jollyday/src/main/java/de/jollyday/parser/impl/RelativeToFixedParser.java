@@ -41,7 +41,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 			}else if(rf.getDays() != null){
 				fixed = fixed.plusDays( rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays());
 			}
-			holidays.add(fixed);
+			holidays.add(moveDate(rf,fixed));
 		}
 	}
 
