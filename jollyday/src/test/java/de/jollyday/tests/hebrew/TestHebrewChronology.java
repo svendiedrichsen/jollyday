@@ -120,12 +120,12 @@ public class TestHebrewChronology {
 		baseTestHebrew("Yom Ha'atzmaut",hebrew, greg);
 	}
 
-//	@Test
-//	public void testLagBaomer5765(){
-//		LocalDate hebrew = new LocalDate(5765,8,18,HebrewChronology.getInstanceUTC());
-//		LocalDate greg = new LocalDate(2005,5,27, GregorianChronology.getInstanceUTC());
-//		baseTestHebrew("Lag Ba'omer",hebrew, greg);
-//	}
+	@Test
+	public void testLagBaomer5765(){
+		LocalDate hebrew = new LocalDate(5765,9,18,HebrewChronology.getInstanceUTC());
+		LocalDate greg = new LocalDate(2005,5,27, GregorianChronology.getInstanceUTC());
+		baseTestHebrew("Lag Ba'omer",hebrew, greg);
+	}
 
 	public void baseTestHebrew(String name, LocalDate hebrew, LocalDate correctGregorianDate){
 		System.out.println("Test: "+name);
