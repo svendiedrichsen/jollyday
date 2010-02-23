@@ -79,7 +79,10 @@
 				type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
-			<element name="HinduHoliday" type="tns:HinduHoliday" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="HinduHoliday" type="tns:HinduHoliday"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="HebrewHoliday" type="tns:HebrewHoliday" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 
 
@@ -306,4 +309,40 @@
 			</extension>
 		</complexContent>
 	</complexType>
+
+	<complexType name="HebrewHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type" type="tns:HebrewHolidayType"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="HebrewHolidayType">
+		<restriction base="string">
+			<enumeration value="ROSH_HASHANAH"></enumeration>
+			<enumeration value="ASERET_YEMEI_TESHUVA"></enumeration>
+			<enumeration value="YOM_KIPPUR"></enumeration>
+			<enumeration value="SUKKOT"></enumeration>
+			<enumeration value="SHEMINI_ATZERET"></enumeration>
+			<enumeration value="HANUKKAH"></enumeration>
+			<enumeration value="ASARAH_BETEVET"></enumeration>
+			<enumeration value="TU_BISHVAT"></enumeration>
+			<enumeration value="PURIM"></enumeration>
+			<enumeration value="1_NISAN"></enumeration>
+			<enumeration value="PESACH"></enumeration>
+			<enumeration value="SEFIRAH"></enumeration>
+			<enumeration value="LAG_BAOMER"></enumeration>
+			<enumeration value="SHAVOUT"></enumeration>
+			<enumeration value="17_TAMMUZ"></enumeration>
+			<enumeration value="TISHA_BAV"></enumeration>
+			<enumeration value="1_ELUL"></enumeration>
+			<enumeration value="ROSH_CODESH"></enumeration>
+			<enumeration value="SHABBAT"></enumeration>
+			<enumeration value="YOM_HASHOAH"></enumeration>
+			<enumeration value="YOM_HAZIKARON"></enumeration>
+			<enumeration value="YOM_HAATZAMAUT"></enumeration>
+			<enumeration value="YOM_YERUSHALAIM"></enumeration>
+		</restriction>
+	</simpleType>
 </schema>
