@@ -69,9 +69,7 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			default:
 				throw new IllegalArgumentException("Unknown islamic holiday "+i.getType());
 			}
-			for(LocalDate date : islamicHolidays){
-				holidays.add(moveDate(i, date));
-			}
+			holidays.addAll(islamicHolidays);
 		}
 	}
 

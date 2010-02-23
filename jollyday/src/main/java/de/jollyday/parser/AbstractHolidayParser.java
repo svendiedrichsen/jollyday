@@ -18,6 +18,7 @@ package de.jollyday.parser;
 import org.joda.time.LocalDate;
 
 import de.jollyday.config.Holiday;
+import de.jollyday.config.MoveableHoliday;
 import de.jollyday.config.MovingCondition;
 import de.jollyday.config.With;
 import de.jollyday.util.XMLUtil;
@@ -89,7 +90,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @param fixed
 	 * @return the moved date
 	 */
-	protected LocalDate moveDate(Holiday fm, LocalDate fixed) {
+	protected LocalDate moveDate(MoveableHoliday fm, LocalDate fixed) {
 		for(MovingCondition mc : fm.getMovingCondition()){
 			if(shallBeMoved(fixed, mc)){
 				fixed = moveDate(mc, fixed);

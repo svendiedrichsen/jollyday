@@ -32,16 +32,18 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 		for(RelativeToFixed rf : config.getRelativeToFixed()){
 			if(!isValid(rf, year)) continue;
 			LocalDate fixed = CalendarUtil.create(year, rf.getDate());
-			if(rf.getWeekday() != null){
+			if(rf.getWeekday() != null){ 
+				// if weekday is set -> move to weekday
 				int day = XMLUtil.getWeekday(rf.getWeekday());
 				int direction = (rf.getWhen() == When.BEFORE ? -1 : 1);
 				do{
 					fixed = fixed.plusDays(direction);
 				}while(fixed.getDayOfWeek() != day);
-			}else if(rf.getDays() != null){
+			}else if(rf.getDays() != null){ 
+				// if number of days set -> move number of days
 				fixed = fixed.plusDays( rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays());
 			}
-			holidays.add(moveDate(rf,fixed));
+			holidays.add(fixed);
 		}
 	}
 

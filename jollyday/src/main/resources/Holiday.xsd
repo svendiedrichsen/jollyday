@@ -103,7 +103,7 @@
 
 	<complexType name="Fixed">
 		<complexContent>
-			<extension base="tns:Holiday">
+			<extension base="tns:MoveableHoliday">
 				<attribute name="month" type="tns:Month"></attribute>
 
 				<attribute name="day">
@@ -242,9 +242,6 @@
 	</complexType>
 
 	<complexType name="Holiday" abstract="true">
-		<sequence>
-			<element name="MovingCondition" type="tns:MovingCondition" maxOccurs="unbounded" minOccurs="0"></element>
-		</sequence>
 		<attribute name="validFrom" type="int" use="optional"></attribute>
 		<attribute name="validTo" type="int"></attribute>
 		<attribute name="every" type="tns:HolidayCycleType"></attribute>
@@ -299,4 +296,14 @@
 		</restriction>
 	</simpleType>
 
+
+	<complexType name="MoveableHoliday" abstract="true">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="MovingCondition" type="tns:MovingCondition" maxOccurs="unbounded" minOccurs="0"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
 </schema>
