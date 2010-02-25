@@ -32,7 +32,6 @@ manager.impl.us=de.jollyday.impl.MyXMLManager
   configured depending on the class to parse the info from.
   
 --------
-parser.impl.de.jollyday.config.FixedMovingOnWeekend=de.jollyday.parser.impl.FixedMovingOnWeekendParser
 parser.impl.de.jollyday.config.Fixed=de.jollyday.parser.impl.FixedParser
 parser.impl.de.jollyday.config.FixedWeekdayInMonth=de.jollyday.parser.impl.FixedWeekdayInMonthParser
 parser.impl.de.jollyday.config.IslamicHoliday=de.jollyday.parser.impl.IslamicHolidayParser
