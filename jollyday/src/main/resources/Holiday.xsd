@@ -345,4 +345,5 @@
 			<enumeration value="YOM_YERUSHALAIM"></enumeration>
 		</restriction>
 	</simpleType>
+
 </schema>

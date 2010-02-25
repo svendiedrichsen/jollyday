@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="za" description="South Africa"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JANUARY" day="2" validFrom="2000" validTo="2000">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MARCH" day="21">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="APRIL" day="6" validFrom="1952" validTo="1974"/>
+		<tns:Fixed month="APRIL" day="6" validFrom="1980" validTo="1994"/>
+		<tns:Fixed month="APRIL" day="22" validFrom="2009" validTo="2009">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="APRIL" day="27">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="1" validFrom="1990">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="2" validFrom="2008" validTo="2008">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="24" validTo="1951"/>
+		<tns:Fixed month="MAY" day="31" validTo="1993"/>
+		<tns:Fixed month="JUNE" day="16">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JULY" day="10" validFrom="1961" validTo="1974"/>
+		<tns:Fixed month="AUGUST" day="9">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="SEPTEMBER" day="24">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="OCTOBER" day="10" validFrom="1952" validTo="1993"/>
+		<tns:Fixed month="DECEMBER" day="16">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="26">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="31" validFrom="1999" validTo="1999">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:FixedWeekday which="FIRST" weekday="FRIDAY" month="MAY" validFrom="1987" validTo="1989"/>
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JULY" validFrom="1952" validTo="1960"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" validTo="1951"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" validFrom="1952" validTo="1979"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:ChristianHoliday type="ASCENSION_DAY" validTo="1993"/>
+	</tns:Holidays>
+</tns:Configuration>
