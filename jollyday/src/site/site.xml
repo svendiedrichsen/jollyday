@@ -27,6 +27,8 @@
 		<item name="XSD-Schema" href="schema.html"/>
 		<item name="Australia" href="data/au.html"/>
 		<item name="Africa" collapse="true" href="africa.html">
+			<item name="Ethiopia" href="data/et.html"/>
+			<item name="Nigeria" href="data/ng.html"/>
 			<item name="South Africa" href="data/za.html"/>
 		</item>
 		<item name="Asia" collapse="true" href="asia.html">

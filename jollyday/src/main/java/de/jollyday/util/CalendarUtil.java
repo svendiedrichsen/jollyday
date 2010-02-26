@@ -22,6 +22,7 @@ import org.joda.time.Chronology;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
+import org.joda.time.chrono.CopticChronology;
 import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.IslamicChronology;
 import org.joda.time.chrono.JulianChronology;
@@ -159,29 +160,53 @@ public abstract class CalendarUtil {
 	 * @return List of gregorian dates for the islamic month/day.
 	 */
 	public static Set<LocalDate> getIslamicHolidaysInGregorianYear(int gregorianYear, int islamicMonth, int islamicDay){
+		return getDatesFromChronologyWithinGregorianYear(islamicMonth, islamicDay, gregorianYear, IslamicChronology.getInstanceUTC());
+	}
+
+	/**
+	 * Returns a set of gregorian dates within a gregorian year which equal the ethiopian orthodox
+	 * month and day. Because the ethiopian orthodox year different from the gregorian
+	 * there may be more than one occurrence of an ethiopian orthodox date in an gregorian year.
+	 * @param gregorianYear
+	 * @param ethiopian orthodox month
+	 * @param ethiopian orthodox day
+	 * @return List of gregorian dates for the ethiopian orthodox month/day.
+	 */
+	public static Set<LocalDate> getEthiopianOrthodoxHolidaysInGregorianYear(int gregorianYear, int eoMonth, int eoDay){
+		return getDatesFromChronologyWithinGregorianYear(eoMonth, eoDay, gregorianYear, CopticChronology.getInstanceUTC());
+	}
+
+	/**
+	 * Searches for the occurrences of a month/day in one chronology within one gregorian year.
+	 * @param targetMonth
+	 * @param targetDay
+	 * @param gregorianYear
+	 * @param targetChronoUTC
+	 * @return the list of gregorian dates.
+	 */
+	private static Set<LocalDate> getDatesFromChronologyWithinGregorianYear(int targetMonth, int targetDay, int gregorianYear, Chronology targetChronoUTC) {
 		Set<LocalDate> holidays = new HashSet<LocalDate>();
+		LocalDate firstGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1, GregorianChronology.getInstanceUTC());
+		LocalDate lastGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31, GregorianChronology.getInstanceUTC());
 		
-		LocalDate firstDayG = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1, GregorianChronology.getInstance());
-		LocalDate lastDayG = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31, GregorianChronology.getInstance());
+		LocalDate firstTargetDate = new LocalDate(firstGregorianDate.toDateTimeAtStartOfDay().getMillis(), targetChronoUTC);
+		LocalDate lastTargetDate = new LocalDate(lastGregorianDate.toDateTimeAtStartOfDay().getMillis(), targetChronoUTC);
 		
-		LocalDate firstDayI = new LocalDate(firstDayG.toDateTimeAtStartOfDay().getMillis(), IslamicChronology.getInstance());
-		LocalDate lastDayI = new LocalDate(lastDayG.toDateTimeAtStartOfDay().getMillis(), IslamicChronology.getInstance());
+		Interval interv = new Interval(firstTargetDate.toDateTimeAtStartOfDay(), lastTargetDate.plusDays(1).toDateTimeAtStartOfDay());
 		
-		Interval interv = new Interval(firstDayI.toDateTimeAtStartOfDay(), lastDayI.plusDays(1).toDateTimeAtStartOfDay());
+		int targetYear = firstTargetDate.getYear();
 		
-		int islamicYear = firstDayI.getYear();
-		
-		for(;islamicYear <= lastDayI.getYear();){
-			LocalDate d = new LocalDate(islamicYear, islamicMonth, islamicDay, IslamicChronology.getInstance());
+		for(;targetYear <= lastTargetDate.getYear();){
+			LocalDate d = new LocalDate(targetYear, targetMonth, targetDay, targetChronoUTC);
 			if(interv.contains(d.toDateTimeAtStartOfDay())){
 				holidays.add(convertToGregorianDate(d));
 			}
-			islamicYear++;
+			targetYear++;
 		}
-		
 		return holidays;
 	}
-
+	
+	
 	/**
 	 * Takes converts the provided date into a date within the gregorian chronology.
 	 * If it is already a gregorian date it will return it.

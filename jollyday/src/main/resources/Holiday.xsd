@@ -82,7 +82,10 @@
 			<element name="HinduHoliday" type="tns:HinduHoliday"
 				maxOccurs="unbounded" minOccurs="0">
 			</element>
-			<element name="HebrewHoliday" type="tns:HebrewHoliday" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="HebrewHoliday" type="tns:HebrewHoliday"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="EthiopianOrthodoxHoliday" type="tns:EthiopianOrthodoxHoliday" maxOccurs="unbounded" minOccurs="0"></element>
 		</sequence>
 
 
@@ -346,4 +349,23 @@
 		</restriction>
 	</simpleType>
 
+
+	<complexType name="EthiopianOrthodoxHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type"
+					type="tns:EthiopianOrthodoxHolidayType">
+				</attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="EthiopianOrthodoxHolidayType">
+    	<restriction base="string">
+    		<enumeration value="TIMKAT"></enumeration>
+    		<enumeration value="ENKUTATASH"></enumeration>
+    		<enumeration value="MESKEL"></enumeration>
+    	</restriction>
+    </simpleType>
 </schema>
