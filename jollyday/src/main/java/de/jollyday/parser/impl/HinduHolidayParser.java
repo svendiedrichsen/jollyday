@@ -17,8 +17,7 @@ package de.jollyday.parser.impl;
 
 import java.util.Set;
 
-import org.joda.time.LocalDate;
-
+import de.jollyday.Holiday;
 import de.jollyday.config.HinduHoliday;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
@@ -29,7 +28,7 @@ import de.jollyday.parser.AbstractHolidayParser;
  */
 public class HinduHolidayParser extends AbstractHolidayParser {
 
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (HinduHoliday hh : config.getHinduHoliday()) {
 			if(!isValid(hh, year)) continue;
 			switch(hh.getType()){

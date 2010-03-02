@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.FixedWeekdayInMonth;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.Which;
@@ -28,11 +29,11 @@ import de.jollyday.util.XMLUtil;
 
 public class FixedWeekdayInMonthParser extends AbstractHolidayParser{
 
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(FixedWeekdayInMonth fwm : config.getFixedWeekday()){
 			if(!isValid(fwm, year)) continue;
 			LocalDate date = parse(year, fwm);
-			holidays.add(date);
+			holidays.add(new Holiday(date, fwm.getDescriptionPropertiesKey()));
 		}
 	}
 

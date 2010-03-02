@@ -27,6 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jollyday.Hierarchy;
+import de.jollyday.Holiday;
 import de.jollyday.Manager;
 import de.jollyday.util.CalendarUtil;
 
@@ -101,7 +102,7 @@ public class HolidayTest {
 	@Test
 	public void testBaseDates() throws Exception{
 		Manager m = Manager.getInstance("test");
-		Set<LocalDate> holidays = m.getHolidays(2010);
+		Set<Holiday> holidays = m.getHolidays(2010);
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", test_days, holidays);
@@ -110,7 +111,7 @@ public class HolidayTest {
 	@Test
 	public void testLevel1() throws Exception{
 		Manager m = Manager.getInstance("test");
-		Set<LocalDate> holidays = m.getHolidays(2010, "level1");
+		Set<Holiday> holidays = m.getHolidays(2010, "level1");
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days_l1.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", test_days_l1, holidays);
@@ -119,7 +120,7 @@ public class HolidayTest {
 	@Test
 	public void testLevel2() throws Exception{
 		Manager m = Manager.getInstance("test");
-		Set<LocalDate> holidays = m.getHolidays(2010, "level1", "level2");
+		Set<Holiday> holidays = m.getHolidays(2010, "level1", "level2");
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days_l2.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", test_days_l2, holidays);
@@ -128,7 +129,7 @@ public class HolidayTest {
 	@Test
 	public void testLevel11() throws Exception{
 		Manager m = Manager.getInstance("test");
-		Set<LocalDate> holidays = m.getHolidays(2010, "level11");
+		Set<Holiday> holidays = m.getHolidays(2010, "level11");
 		Assert.assertNotNull(holidays);
 		// Assert.assertEquals("Wrong number of dates.", test_days_l11.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", test_days_l11, holidays);

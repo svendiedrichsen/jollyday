@@ -26,6 +26,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.jollyday.Hierarchy;
+import de.jollyday.Holiday;
 import de.jollyday.Manager;
 import de.jollyday.util.CalendarUtil;
 
@@ -78,7 +79,7 @@ public class HolidayUSTest extends TestCase {
 	@Test
 	public void testManagerUSDates() throws Exception{
 		Manager m = Manager.getInstance(US);
-		Set<LocalDate> holidays = m.getHolidays(2010);
+		Set<Holiday> holidays = m.getHolidays(2010);
 		Assert.assertEquals("Wrong number of holidays.", 7, holidays.size());
 		Assert.assertEquals("Wrong dates.", us, holidays);
 	}
@@ -86,7 +87,7 @@ public class HolidayUSTest extends TestCase {
 	@Test
 	public void testManagerUS_DEDates() throws Exception{
 		Manager m = Manager.getInstance(US);
-		Set<LocalDate> holidays = m.getHolidays(2010, "de");
+		Set<Holiday> holidays = m.getHolidays(2010, "de");
 		Assert.assertEquals("Wrong number of holidays.", us_de.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", us_de, holidays);
 	}
@@ -94,7 +95,7 @@ public class HolidayUSTest extends TestCase {
 	@Test
 	public void testManagerUS_CTDates() throws Exception{
 		Manager m = Manager.getInstance(US);
-		Set<LocalDate> holidays = m.getHolidays(2010, "ct");
+		Set<Holiday> holidays = m.getHolidays(2010, "ct");
 		Assert.assertEquals("Wrong number of holidays.", us_ct.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", us_ct, holidays);
 	}
@@ -102,7 +103,7 @@ public class HolidayUSTest extends TestCase {
 	@Test
 	public void testManagerUS_LADates() throws Exception{
 		Manager m = Manager.getInstance(US);
-		Set<LocalDate> holidays = m.getHolidays(2010, "la");
+		Set<Holiday> holidays = m.getHolidays(2010, "la");
 		Assert.assertEquals("Wrong number of holidays.", us_la.size(), holidays.size());
 		Assert.assertEquals("Wrong dates.", us_la, holidays);
 	}

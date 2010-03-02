@@ -29,6 +29,8 @@ import java.util.logging.Logger;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.util.CalendarUtil;
+
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
  * getInstance method the implementing class will be read from the
@@ -62,7 +64,7 @@ public abstract class Manager {
 	/**
 	 * Caches the holidays for a given year and state/region.
 	 */
-	private Map<String, Set<LocalDate>> holidaysPerYear = new HashMap<String, Set<LocalDate>>();
+	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
 	/**
 	 * The configuration properties
 	 */
@@ -169,10 +171,10 @@ public abstract class Manager {
 		}
 		String key = keyBuilder.toString();
 		if (!holidaysPerYear.containsKey(key.toString())) {
-			Set<LocalDate> holidays = getHolidays(c.getYear(), args);
+			Set<Holiday> holidays = getHolidays(c.getYear(), args);
 			holidaysPerYear.put(key, holidays);
 		}
-		return holidaysPerYear.get(key).contains(c);
+		return CalendarUtil.contains(holidaysPerYear.get(key), c);
 	}
 	
 	/**
@@ -217,7 +219,7 @@ public abstract class Manager {
 	 *            holidays common to whole country
 	 * @return the list of holidays for the requested year
 	 */
-	abstract public Set<LocalDate> getHolidays(int year, String... args);
+	abstract public Set<Holiday> getHolidays(int year, String... args);
 
 	/**
 	 * Initializes the implementing manager for the provided country.

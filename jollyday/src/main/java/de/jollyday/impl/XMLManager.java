@@ -36,6 +36,7 @@ import javax.xml.bind.Unmarshaller;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Hierarchy;
+import de.jollyday.Holiday;
 import de.jollyday.Manager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
@@ -83,7 +84,7 @@ public class XMLManager extends Manager {
 	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
 	@Override
-	public Set<LocalDate> getHolidays(int year, String... args) {
+	public Set<Holiday> getHolidays(int year, String... args) {
 		return getHolidays(year, configuration, args);
 	}
 
@@ -95,9 +96,9 @@ public class XMLManager extends Manager {
 	 * @param args
 	 * @return
 	 */
-	private Set<LocalDate> getHolidays(int year, Configuration c,
+	private Set<Holiday> getHolidays(int year, Configuration c,
 			String... args) {
-		Set<LocalDate> holidaySet = new HashSet<LocalDate>();
+		Set<Holiday> holidaySet = new HashSet<Holiday>();
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Adding holidays for " + c.getDescription());
 		}
@@ -106,7 +107,7 @@ public class XMLManager extends Manager {
 			String hierarchy = args[0];
 			for (Configuration config : c.getSubConfigurations()) {
 				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
-					Set<LocalDate> subHolidays = 
+					Set<Holiday> subHolidays = 
 						getHolidays(year, config, Arrays.copyOfRange(args, 1, args.length));
 					holidaySet.addAll(subHolidays);
 					break;
@@ -122,7 +123,7 @@ public class XMLManager extends Manager {
 	 * @param holidays
 	 * @param config
 	 */
-	private void parseHolidays(int year, Set<LocalDate> holidays,
+	private void parseHolidays(int year, Set<Holiday> holidays,
 			Holidays config) {
 		for (HolidayParser p : getParsers(config)) {
 			p.parse(year, holidays, config);

@@ -20,6 +20,9 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.Holiday;
+import de.jollyday.util.CalendarUtil;
+
 /**
  * @author svdi1de
  *
@@ -32,13 +35,14 @@ public class XMLManagerJapan extends XMLManager {
 	 * is also a holiday.
 	 */
 	@Override
-	public Set<LocalDate> getHolidays(int year, String... args) {
-		Set<LocalDate> holidays = super.getHolidays(year, args);
-		Set<LocalDate> additionalHolidays = new HashSet<LocalDate>();
-		for(LocalDate d : holidays){
-			LocalDate twoDaysLater = d.plusDays(2);
-			if(holidays.contains(twoDaysLater)){
-				additionalHolidays.add(twoDaysLater.minusDays(1));
+	public Set<Holiday> getHolidays(int year, String... args) {
+		Set<Holiday> holidays = super.getHolidays(year, args);
+		Set<Holiday> additionalHolidays = new HashSet<Holiday>();
+		for(Holiday d : holidays){
+			LocalDate twoDaysLater = d.getDate().plusDays(2);
+			if(CalendarUtil.contains(holidays, twoDaysLater)){
+				LocalDate bridgingDate = twoDaysLater.minusDays(1);
+				additionalHolidays.add(new Holiday(bridgingDate, "holliday.description.BRIDGING_HOLIDAY"));
 			}
 		}
 		holidays.addAll(additionalHolidays);

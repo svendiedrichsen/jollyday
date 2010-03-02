@@ -20,6 +20,7 @@ import java.util.Set;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.IslamicHoliday;
 import de.jollyday.parser.AbstractHolidayParser;
@@ -34,12 +35,12 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 	/* (non-Javadoc)
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
 	 */
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(IslamicHoliday i : config.getIslamicHoliday()){
 			if(!isValid(i, year)) continue;
 			Set<LocalDate> islamicHolidays = null;
 			switch(i.getType()){
-			case NEUJAHR:
+			case NEWYEAR:
 				islamicHolidays = CalendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 1);
 				break;
 			case ASCHURA:
@@ -69,7 +70,10 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			default:
 				throw new IllegalArgumentException("Unknown islamic holiday "+i.getType());
 			}
-			holidays.addAll(islamicHolidays);
+			String propertiesKey = "holiday.description.islamic." + i.getType().name();
+			for(LocalDate d : islamicHolidays){
+				holidays.add(new Holiday(d, propertiesKey));
+			}
 		}
 	}
 

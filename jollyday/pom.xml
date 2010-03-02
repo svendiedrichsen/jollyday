@@ -151,6 +151,10 @@
 			</plugin>
 		</plugins>
 	</reporting>
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
 	<distributionManagement>
 		<site>
 		  <id>jollyday.sf.net</id>

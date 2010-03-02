@@ -27,6 +27,7 @@ import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.IslamicChronology;
 import org.joda.time.chrono.JulianChronology;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.Fixed;
 
 /**
@@ -219,4 +220,17 @@ public abstract class CalendarUtil {
 		return date;
 	}
 
+	/**
+	 * Shows if the requested dat is contained in the Set of holidays.
+	 * @param holidays
+	 * @param date
+	 * @return contains this date
+	 */
+	public static boolean contains(Set<Holiday> holidays, LocalDate date){
+		for(Holiday h : holidays){
+			if(h.getDate().equals(date)) return true;
+		}
+		return false;
+	}
+	
 }

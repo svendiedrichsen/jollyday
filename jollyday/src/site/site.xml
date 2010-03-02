@@ -25,6 +25,10 @@
     <menu name="XML Data">
 		<item name="Introduction" href="data.html"/>
 		<item name="XSD-Schema" href="schema.html"/>
+		<item name="Holiday Names" collapse="true" href="holiday_names.html">
+			<item name="Default/English" href="names_default.html"/>
+			<item name="German/Germany" href="names_de_de.html"/>
+		</item>
 		<item name="Australia" href="data/au.html"/>
 		<item name="Africa" collapse="true" href="africa.html">
 			<item name="Ethiopia" href="data/et.html"/>

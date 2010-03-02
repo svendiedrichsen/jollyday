@@ -56,9 +56,9 @@ public class HebrewChronology extends BasicChronology {
     /** Singleton instance of a UTC HinduChronology */
     private static final HebrewChronology INSTANCE_UTC;
     static {
-        // init after static fields
-        INSTANCE_UTC = getInstance(DateTimeZone.UTC);
-        BEGIN = new DateTime(-3761,DateTimeConstants.OCTOBER, 7, 0,0,0,0, JulianChronology.getInstanceUTC());
+    	// init after static fields
+    	BEGIN = new DateTime(-3761,DateTimeConstants.OCTOBER, 7, 0,0,0,0, JulianChronology.getInstanceUTC());
+    	INSTANCE_UTC = getInstance(DateTimeZone.UTC);
     }
 
     public static HebrewChronology getInstance(){
@@ -74,7 +74,20 @@ public class HebrewChronology extends BasicChronology {
     		zone = DateTimeZone.getDefault();
     	}
     	if(!cCache.containsKey(zone)){
-    		HebrewChronology chrono = new HebrewChronology(null, null);
+    		HebrewChronology chrono = null;
+            if (zone == DateTimeZone.UTC) {
+                // First create without a lower limit.
+                chrono = new HebrewChronology(null, null);
+                // Impose lower limit and make another HebrewChronology.
+                DateTime lowerLimit = new DateTime(1, 1, 1, 0, 0, 0, 0, chrono);
+                chrono = new HebrewChronology(
+                    LimitChronology.getInstance(chrono, lowerLimit, null),
+                     null);
+            } else {
+                chrono = getInstance(DateTimeZone.UTC);
+                chrono = new HebrewChronology
+                    (ZonedChronology.getInstance(chrono, zone), null);
+            }
             cCache.put(zone, chrono);
     	}
     	return cCache.get(zone);

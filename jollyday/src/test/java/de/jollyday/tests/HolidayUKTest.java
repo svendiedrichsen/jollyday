@@ -15,50 +15,18 @@
  */
 package de.jollyday.tests;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-import org.junit.Assert;
 import org.junit.Test;
 
-import de.jollyday.Hierarchy;
-import de.jollyday.Manager;
-import de.jollyday.util.CalendarUtil;
+import de.jollyday.tests.base.AbstractCountryTestBase;
 
-public class HolidayUKTest extends TestCase {
+public class HolidayUKTest extends AbstractCountryTestBase {
 
 	private static final int YEAR = 2010;
-	private static Set<LocalDate> uk = new HashSet<LocalDate>();
+	private static final String ISO_CODE = "uk";
 
-	
-	static{
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 27));
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 28));
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 3));
-		uk.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 31));
-		LocalDate c = CalendarUtil.getEasterSunday(YEAR);
-		c = c.plusDays(-2);
-		uk.add(c);
-	}
-	
 	@Test
 	public void testManagerUKStructure() throws Exception{
-		Manager m = Manager.getInstance("uk");
-		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", "uk", h.getId());
-		Assert.assertEquals("Missing children.", 8, h.getChildren().size());
-	}
-
-	@Test
-	public void testManagerUKDates() throws Exception{
-		Manager m = Manager.getInstance("uk");
-		Set<LocalDate> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", 5, holidays.size());
-		Assert.assertEquals("Wrong dates.", uk, holidays);
+		validateCountryData(ISO_CODE, YEAR);
 	}
 
 }

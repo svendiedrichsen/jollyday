@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.Fixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
@@ -26,11 +27,13 @@ import de.jollyday.util.CalendarUtil;
 
 public class FixedParser extends AbstractHolidayParser {
 
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(Fixed f : config.getFixed()){
 			if(!isValid(f, year)) continue;
 			LocalDate date = CalendarUtil.create(year, f);
-			holidays.add(moveDate(f, date));
+			LocalDate movedDate = moveDate(f, date);
+			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey());
+			holidays.add(h);
 		}
 	}
 

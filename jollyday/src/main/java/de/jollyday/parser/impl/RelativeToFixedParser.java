@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToFixed;
 import de.jollyday.config.When;
@@ -28,7 +29,7 @@ import de.jollyday.util.XMLUtil;
 
 public class RelativeToFixedParser extends AbstractHolidayParser {
 
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(RelativeToFixed rf : config.getRelativeToFixed()){
 			if(!isValid(rf, year)) continue;
 			LocalDate fixed = CalendarUtil.create(year, rf.getDate());
@@ -43,7 +44,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 				// if number of days set -> move number of days
 				fixed = fixed.plusDays( rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays());
 			}
-			holidays.add(fixed);
+			holidays.add(new Holiday(fixed, rf.getDescriptionPropertiesKey()));
 		}
 	}
 

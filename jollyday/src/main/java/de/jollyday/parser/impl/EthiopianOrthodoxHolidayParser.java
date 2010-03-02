@@ -19,14 +19,16 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
-import de.jollyday.config.ChristianHoliday;
+import de.jollyday.Holiday;
 import de.jollyday.config.EthiopianOrthodoxHoliday;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 
 /**
- * @author svdi1de
+ * Calculates the ethiopian orthodox holidays.
+ * 
+ * @author Sven Diedrichsen
  *
  */
 public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
@@ -34,7 +36,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 	/* (non-Javadoc)
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
 	 */
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (EthiopianOrthodoxHoliday h : config.getEthiopianOrthodoxHoliday()) {
 			if(!isValid(h, year)) continue;
 			Set<LocalDate> ethiopianHolidays = null;
@@ -51,7 +53,10 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 			default:
 					throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type "+h.getType());
 			}
-			holidays.addAll(ethiopianHolidays);
+			String propertiesKey = "holiday.description.ethiopian.orthodox."+h.getType().name();
+			for(LocalDate d : ethiopianHolidays){
+				holidays.add(new Holiday(d, propertiesKey));
+			}
 		}
 	}
 

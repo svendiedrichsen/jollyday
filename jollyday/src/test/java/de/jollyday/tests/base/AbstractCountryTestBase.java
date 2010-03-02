@@ -19,17 +19,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.joda.time.LocalDate;
+import junit.framework.TestCase;
+
 import org.junit.Assert;
 
 import de.jollyday.Hierarchy;
+import de.jollyday.Holiday;
 import de.jollyday.Manager;
+import de.jollyday.util.CalendarUtil;
 
 /**
  * @author svdi1de
  *
  */
-public abstract class AbstractCountryTestBase {
+public abstract class AbstractCountryTestBase extends TestCase {
 
 	/**
 	 * Compares two hierarchy structure by traversing down.
@@ -57,9 +60,13 @@ public abstract class AbstractCountryTestBase {
 
 	private void compareDates(Manager expected, Manager found, Hierarchy h,
 			List<String> args, int year) {
-				Set<LocalDate> expectedHolidays = expected.getHolidays(year, args.toArray(new String[]{}));
-				Set<LocalDate> foundHolidays = found.getHolidays(year, args.toArray(new String[]{}));
-				Assert.assertEquals("Wrong dates found for "+args, expectedHolidays, foundHolidays);
+				Set<Holiday> expectedHolidays = expected.getHolidays(year, args.toArray(new String[]{}));
+				Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[]{}));
+				for(Holiday expectedHoliday : expectedHolidays){
+					if(!CalendarUtil.contains(foundHolidays, expectedHoliday.getDate())){
+						fail("Could not find "+expectedHoliday+" in "+foundHolidays);
+					}
+				}
 				for(String id : h.getChildren().keySet()){
 					ArrayList<String> newArgs = new ArrayList<String>(args);
 					newArgs.add(id);

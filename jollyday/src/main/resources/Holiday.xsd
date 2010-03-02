@@ -182,7 +182,7 @@
 
 	<simpleType name="IslamicHolidayType">
 		<restriction base="string">
-			<enumeration value="NEUJAHR"></enumeration>
+			<enumeration value="NEWYEAR"></enumeration>
 			<enumeration value="ASCHURA"></enumeration>
 			<enumeration value="MAWLID_AN_NABI"></enumeration>
 			<enumeration value="LAILAT_AL_MIRAJ"></enumeration>
@@ -251,6 +251,7 @@
 		<attribute name="validFrom" type="int" use="optional"></attribute>
 		<attribute name="validTo" type="int"></attribute>
 		<attribute name="every" type="tns:HolidayCycleType"></attribute>
+		<attribute name="descriptionPropertiesKey" type="string"></attribute>
 	</complexType>
 
 

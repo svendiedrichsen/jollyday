@@ -19,6 +19,7 @@ import java.util.Set;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.ChristianHoliday;
 import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holidays;
@@ -37,9 +38,10 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 	/**
 	 * Parses all christian holidays relative to eastern.
 	 */
-	public void parse(int year, Set<LocalDate> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (ChristianHoliday ch : config.getChristianHoliday()) {
-			if(!isValid(ch, year)) continue;
+			if (!isValid(ch, year))
+				continue;
 			LocalDate easterSunday = null;
 			if (ch.getChronology() == ChronologyType.JULIAN) {
 				easterSunday = CalendarUtil.getJulianEasterSunday(year);
@@ -90,13 +92,19 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 			case CORPUS_CHRISTI:
 				easterSunday = easterSunday.plusDays(60);
 				break;
-			case SACRED_HEART:	
+			case SACRED_HEART:
 				easterSunday = easterSunday.plusDays(68);
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown christian holiday type " + ch.getType());
+				throw new IllegalArgumentException(
+						"Unknown christian holiday type " + ch.getType());
 			}
-			holidays.add(CalendarUtil.convertToGregorianDate(easterSunday));
+			String propertiesKey = "holiday.description.christian."
+					+ ch.getType().name();
+			LocalDate convertedDate = CalendarUtil
+					.convertToGregorianDate(easterSunday);
+			Holiday h = new Holiday(convertedDate, propertiesKey);
+			holidays.add(h);
 		}
 	}
 
