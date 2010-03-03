@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
@@ -35,7 +36,7 @@ import de.jollyday.util.CalendarUtil;
  * @author svdi1de
  *
  */
-public class HolidayTest {
+public class HolidayTest extends TestCase {
 	
 	private static final Set<LocalDate> test_days = new HashSet<LocalDate>();
 	private static final Set<LocalDate> test_days_l1 = new HashSet<LocalDate>();
@@ -81,7 +82,10 @@ public class HolidayTest {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testMissingCountry() throws Exception{
-		Manager.getInstance("XXX");
+		try{
+			Manager.getInstance("XXX");
+			fail("Expected some IllegalArgumentException for this missing country.");
+		}catch(IllegalArgumentException e){}
 	}
 	
 	@Test
@@ -105,7 +109,15 @@ public class HolidayTest {
 		Set<Holiday> holidays = m.getHolidays(2010);
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", test_days, holidays);
+		assertDates(test_days, holidays);
+	}
+
+	private void assertDates(Set<LocalDate> dates, Set<Holiday> holidays) {
+		for(LocalDate d : dates){
+			if(!CalendarUtil.contains(holidays, d)){
+				fail("Missing "+d+" in "+holidays);
+			}
+		}
 	}
 
 	@Test
@@ -114,7 +126,7 @@ public class HolidayTest {
 		Set<Holiday> holidays = m.getHolidays(2010, "level1");
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days_l1.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", test_days_l1, holidays);
+		assertDates(test_days_l1, holidays);
 	}
 
 	@Test
@@ -123,7 +135,7 @@ public class HolidayTest {
 		Set<Holiday> holidays = m.getHolidays(2010, "level1", "level2");
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days_l2.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", test_days_l2, holidays);
+		assertDates(test_days_l2, holidays);
 	}
 
 	@Test
@@ -131,13 +143,16 @@ public class HolidayTest {
 		Manager m = Manager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level11");
 		Assert.assertNotNull(holidays);
-		// Assert.assertEquals("Wrong number of dates.", test_days_l11.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", test_days_l11, holidays);
+		assertDates(test_days_l11, holidays);
+
 	}
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testFail() throws Exception{
-		Manager.getInstance("test_fail");
+		try{
+			Manager.getInstance("test_fail");
+			fail("Should have thrown an IllegalArgumentException.");
+		}catch(IllegalArgumentException e){}
 	}
 	
 	@Test

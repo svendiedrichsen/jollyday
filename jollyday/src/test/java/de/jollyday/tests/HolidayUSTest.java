@@ -15,97 +15,18 @@
  */
 package de.jollyday.tests;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import junit.framework.TestCase;
-
-import org.joda.time.DateTimeConstants;
-import org.joda.time.LocalDate;
-import org.junit.Assert;
 import org.junit.Test;
 
-import de.jollyday.Hierarchy;
-import de.jollyday.Holiday;
-import de.jollyday.Manager;
-import de.jollyday.util.CalendarUtil;
+import de.jollyday.tests.base.AbstractCountryTestBase;
 
-public class HolidayUSTest extends TestCase {
+public class HolidayUSTest extends AbstractCountryTestBase {
 
-	private static final String US = "us";
+	private static final String ISO_CODE = "us";
 	private static final int YEAR = 2010;
-	private static Set<LocalDate> us = new HashSet<LocalDate>();
-	private static Set<LocalDate> us_de = new HashSet<LocalDate>();
-	private static Set<LocalDate> us_ct = new HashSet<LocalDate>();
-	private static Set<LocalDate> us_la = new HashSet<LocalDate>();
 	
-	static{
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 1));
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.MAY, 31));
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.JULY, 4));
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.SEPTEMBER, 6));
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 11));
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 25));
-		us.add(CalendarUtil.create(YEAR, DateTimeConstants.DECEMBER, 25));
-		
-		us_de.addAll(us);
-		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.NOVEMBER, 26));
-		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 18));
-		us_de.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 15));
-
-		us_ct.addAll(us);
-		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 12));
-		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 18));
-		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 15));
-		us_ct.add(CalendarUtil.create(YEAR, DateTimeConstants.OCTOBER, 11));
-		
-		us_la.addAll(us);
-		us_la.add(CalendarUtil.create(YEAR, DateTimeConstants.JANUARY, 18));
-		us_la.add(CalendarUtil.create(YEAR, DateTimeConstants.APRIL, 2));
-		us_la.add(CalendarUtil.create(YEAR, DateTimeConstants.FEBRUARY, 16));
-
-	}
-
 	@Test
 	public void testManagerUSStructure() throws Exception{
-		Manager m = Manager.getInstance(US);
-		Hierarchy h = m.getHierarchy();
-		Assert.assertEquals("Wrong id.", US, h.getId());
-		Assert.assertEquals("Wrong number of children.", 51, h.getChildren().size());
-	}
-	
-	@Test
-	public void testManagerUSDates() throws Exception{
-		Manager m = Manager.getInstance(US);
-		Set<Holiday> holidays = m.getHolidays(2010);
-		Assert.assertEquals("Wrong number of holidays.", 7, holidays.size());
-		Assert.assertEquals("Wrong dates.", us, holidays);
-	}
-
-	@Test
-	public void testManagerUS_DEDates() throws Exception{
-		Manager m = Manager.getInstance(US);
-		Set<Holiday> holidays = m.getHolidays(2010, "de");
-		Assert.assertEquals("Wrong number of holidays.", us_de.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", us_de, holidays);
-	}
-
-	@Test
-	public void testManagerUS_CTDates() throws Exception{
-		Manager m = Manager.getInstance(US);
-		Set<Holiday> holidays = m.getHolidays(2010, "ct");
-		Assert.assertEquals("Wrong number of holidays.", us_ct.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", us_ct, holidays);
-	}
-
-	@Test
-	public void testManagerUS_LADates() throws Exception{
-		Manager m = Manager.getInstance(US);
-		Set<Holiday> holidays = m.getHolidays(2010, "la");
-		Assert.assertEquals("Wrong number of holidays.", us_la.size(), holidays.size());
-		Assert.assertEquals("Wrong dates.", us_la, holidays);
+		validateCountryData(ISO_CODE, YEAR);
 	}
 
 }

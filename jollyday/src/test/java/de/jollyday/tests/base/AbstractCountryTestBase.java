@@ -64,7 +64,7 @@ public abstract class AbstractCountryTestBase extends TestCase {
 				Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[]{}));
 				for(Holiday expectedHoliday : expectedHolidays){
 					if(!CalendarUtil.contains(foundHolidays, expectedHoliday.getDate())){
-						fail("Could not find "+expectedHoliday+" in "+foundHolidays);
+						fail("Could not find "+expectedHoliday+" in "+h.getDescription()+" - "+foundHolidays);
 					}
 				}
 				for(String id : h.getChildren().keySet()){
