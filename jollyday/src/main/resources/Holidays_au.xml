@@ -3,13 +3,13 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
 	<tns:Holidays>
-		<tns:Fixed month="JANUARY" day="26" validTo="2007"/>
-		<tns:Fixed month="APRIL" day="25" validTo="2007"/>
-		<tns:Fixed month="JANUARY" day="1" validTo="2007"/>
-		<tns:Fixed month="DECEMBER" day="25" validTo="2007">
+		<tns:Fixed month="JANUARY" day="26" validTo="2007" descriptionPropertiesKey="holiday.description.NATIONAL_DAY"/>
+		<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC"/>
+		<tns:Fixed month="JANUARY" day="1" validTo="2007" descriptionPropertiesKey="holiday.description.NEW_YEAR"/>
+		<tns:Fixed month="DECEMBER" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:Fixed month="DECEMBER" day="26" validTo="2007">
+		<tns:Fixed month="DECEMBER" day="26" validTo="2007" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
@@ -18,179 +18,179 @@
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="act" description="Australian Capital Territory">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="APRIL" day="25" validTo="2007">
+			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
-			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="holiday.description.CANBERRA_DAY"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="holiday.description.LABOUR_DAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" descriptionPropertiesKey="holiday.description.FAMILY_COMMUNITY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="nsw" description="New South Wales">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="APRIL" day="25" validTo="2007">
+			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="holiday.description.LABOUR_DAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="nt" description="Nothern Territory">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="APRIL" day="25" validTo="2007">
+			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" />
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="holiday.description.MAY_DAY"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="holiday.description.PICNIC"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="qld" description="Queensland">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="APRIL" day="25" validTo="2007">
+			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" />
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="holiday.description.LABOUR_DAY"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="sa" description="South Australia">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="APRIL" day="25" validTo="2007">
+			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.PROCLAMATION">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="holiday.description.ADELAIDE_CUP"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="holiday.description.LABOUR_DAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="tas" description="Tasmania">
 		<tns:Holidays>
-			<tns:Fixed month="APRIL" day="25"/>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="APRIL" day="25" descriptionPropertiesKey="holiday.description.ANZAC"/>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="holiday.description.EIGHT"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
 			<tns:ChristianHoliday type="EASTER_TUESDAY"/>
 		</tns:Holidays>
-		<tns:SubConfigurations hierarchy="h" description="Hobard Area">
+		<tns:SubConfigurations hierarchy="ho" description="Hobard Area">
 			<tns:Holidays>
-				<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="FEBRUARY" />
+				<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="FEBRUARY" descriptionPropertiesKey="holiday.description.HOBART"/>
 			</tns:Holidays>
 		</tns:SubConfigurations>
 		<tns:SubConfigurations hierarchy="nh" description="Non-Hobard Area">
 			<tns:Holidays>
-				<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
+				<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" descriptionPropertiesKey="holiday.description.RECREATION"/>
 			</tns:Holidays>
 		</tns:SubConfigurations>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="vic" description="Victoria">
 		<tns:Holidays>
-			<tns:Fixed month="APRIL" day="25"/>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="APRIL" day="25" descriptionPropertiesKey="holiday.description.ANZAC"/>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" />
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" />
-			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" />
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="holiday.description.LABOUR_DAY"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" descriptionPropertiesKey="holiday.description.MELBOURNE_CUP"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="wa" description="West Australia">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="holiday.description.NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="APRIL" day="25" validTo="2007">
+			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="holiday.description.ANZAC">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="holiday.description.CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="holiday.description.BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" />
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" />
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="holiday.description.LABOUR_DAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="holiday.description.FOUNDATION"/>
 			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="SEPTEMBER"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
