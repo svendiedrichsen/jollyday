@@ -19,6 +19,5 @@
 		<tns:ChristianHoliday type="ASCENSION_DAY" />
 		<tns:ChristianHoliday type="WHIT_MONDAY" />
 		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
-		
 	</tns:Holidays>
 </tns:Configuration>

@@ -33,8 +33,6 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
-import org.joda.time.LocalDate;
-
 import de.jollyday.Hierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.Manager;
@@ -249,7 +247,7 @@ public class XMLManager extends Manager {
 	 */
 	@Override
 	public Hierarchy getHierarchy() {
-		return createConfigurationHierarchy(configuration);
+		return createConfigurationHierarchy(configuration, null);
 	}
 	
 
@@ -258,12 +256,10 @@ public class XMLManager extends Manager {
 	 * @param c
 	 * @return configuration hierarchy
 	 */
-	private static Hierarchy createConfigurationHierarchy(Configuration c) {
-		Hierarchy h = new Hierarchy();
-		h.setId(c.getHierarchy());
-		h.setDescription(c.getDescription());
+	private static Hierarchy createConfigurationHierarchy(Configuration c, Hierarchy h) {
+		h =  new Hierarchy(h, c.getHierarchy());
 		for(Configuration sub : c.getSubConfigurations()){
-			Hierarchy subHierarchy = createConfigurationHierarchy(sub);
+			Hierarchy subHierarchy = createConfigurationHierarchy(sub, h);
 			h.getChildren().put(subHierarchy.getId(), subHierarchy);
 		}
 		return h;

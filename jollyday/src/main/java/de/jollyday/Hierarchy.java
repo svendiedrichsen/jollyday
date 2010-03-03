@@ -16,7 +16,9 @@
 package de.jollyday;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 /**
  * Bean class for describing the configuration hierarchy.
@@ -24,8 +26,22 @@ import java.util.Map;
  */
 public class Hierarchy {
 	private String id;
-	private String description;
 	private Map<String, Hierarchy> children = new HashMap<String, Hierarchy>();
+	private final Hierarchy parent;
+	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS = 
+		new HashMap<Locale, ResourceBundle>();
+	
+	/**
+	 * Constructor which takes a eventually existing parent hierarchy node and
+	 * the ID of this hierarchy.
+	 * @param parent
+	 * @param id
+	 */
+	public Hierarchy(Hierarchy parent, String id){
+		this.parent = parent;
+		this.id = id;
+	}
+	
 	/**
 	 * @return the id
 	 */
@@ -33,22 +49,40 @@ public class Hierarchy {
 		return id;
 	}
 	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
-	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return description;
+		return getDescription(Locale.getDefault());
 	}
+	
 	/**
-	 * @param description the description to set
+	 * Returns the hierarchys description text from the resource bundle.
+	 * @param l Locale to return the description text for.
+	 * @return Description text
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public String getDescription(Locale l){
+		if(!COUNTRY_DESCRIPTIONS.containsKey(l)){
+			ResourceBundle bundle = ResourceBundle.getBundle("descriptions.country_descriptions", l);
+			COUNTRY_DESCRIPTIONS.put(l, bundle);
+		}
+		ResourceBundle resourceBundle = COUNTRY_DESCRIPTIONS.get(l);
+		String propertiesKey = getPropertiesKey();
+		if(!resourceBundle.containsKey(propertiesKey)) {
+			return "UNKNOWN";
+		}
+		return resourceBundle.getString(propertiesKey);
+	}
+	
+	/**
+	 * Recursively returns the properties key to retrieve the description
+	 * from the localized resource bundle. 
+	 * @return
+	 */
+	private String getPropertiesKey(){
+		if(parent != null){
+			return parent.getPropertiesKey()+"."+getId();
+		}
+		return "country.description." + getId();
 	}
 	
 	/**
@@ -61,6 +95,15 @@ public class Hierarchy {
 		}
 		return super.equals(obj);
 	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return getId().hashCode();
+	}
+	
 	/**
 	 * @param children the children to set
 	 */

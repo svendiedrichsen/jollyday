@@ -40,6 +40,7 @@ public abstract class AbstractCountryTestBase extends TestCase {
 	 * @param found This is the real live data structure.
 	 */
 	protected void compareHierarchies(Hierarchy expected, Hierarchy found) {
+		Assert.assertNotNull("Null description", found.getDescription());
 		Assert.assertEquals("Wrong hierarchy id.", expected.getId(), found.getId());
 		Assert.assertEquals("Number of children wrong.", expected.getChildren().size(), found.getChildren().size());
 		for(String id : expected.getChildren().keySet()){
@@ -63,6 +64,7 @@ public abstract class AbstractCountryTestBase extends TestCase {
 				Set<Holiday> expectedHolidays = expected.getHolidays(year, args.toArray(new String[]{}));
 				Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[]{}));
 				for(Holiday expectedHoliday : expectedHolidays){
+					Assert.assertNotNull("Description is null.", expectedHoliday.getDescription());
 					if(!CalendarUtil.contains(foundHolidays, expectedHoliday.getDate())){
 						fail("Could not find "+expectedHoliday+" in "+h.getDescription()+" - "+foundHolidays);
 					}
