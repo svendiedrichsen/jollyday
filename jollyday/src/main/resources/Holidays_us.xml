@@ -94,17 +94,6 @@
   		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="dc" description="District of Columbia">
-  	<tns:Holidays>
-  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
-  		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
-			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
-		</tns:RelativeToWeekdayInMonth>
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" />
-  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
-  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934"/>
-  	</tns:Holidays>
-  </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="fl" description="Florida">
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
@@ -549,6 +538,17 @@
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
   	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="dc" description="District of Columbia">
+	<tns:Holidays>
+		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
+		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
+			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
+		</tns:RelativeToWeekdayInMonth>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" />
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934"/>
+	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wv" description="West Virginia">
   	<tns:Holidays>
