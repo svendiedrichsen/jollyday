@@ -15,13 +15,39 @@
  */
 package de.jollyday.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.UnmarshalException;
+import javax.xml.bind.Unmarshaller;
+
 import org.joda.time.DateTimeConstants;
 
+import de.jollyday.config.Configuration;
 import de.jollyday.config.Month;
 import de.jollyday.config.Weekday;
 
 
 public class XMLUtil {
+
+	public static Configuration unmarshallConfiguration(InputStream stream) throws JAXBException, IOException {
+		if(stream == null){
+			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
+		}
+		try {
+			JAXBContext ctx = JAXBContext.newInstance(XMLUtil.PACKAGE);
+			Unmarshaller um = ctx.createUnmarshaller();
+			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
+			return el.getValue();
+		}catch (UnmarshalException ue){
+			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
+		} finally {
+			stream.close();
+		}
+	}
 
 	public static final int getWeekday(Weekday w){
 		switch(w){

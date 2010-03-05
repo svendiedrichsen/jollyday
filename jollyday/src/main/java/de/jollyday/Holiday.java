@@ -15,12 +15,11 @@
  */
 package de.jollyday;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
 
 import org.joda.time.LocalDate;
+
+import de.jollyday.util.ResourceUtil;
 
 /**
  * Represents the holiday and contains the actual date and an
@@ -30,18 +29,6 @@ import org.joda.time.LocalDate;
  *
  */
 public final class Holiday {
-	/**
-	 * The prefix of the descriptions file.
-	 */
-	private static final String DESCRITOPNS_FILE_PREFIX = "descriptions.holiday_descriptions";
-	/**
-	 * Unknown constant will be returned when there is no description configured.
-	 */
-	private static final String UNKNOWN = "UNKNOWN";
-	/**
-	 * Cache for the holiday descriptions.
-	 */
-	private static final Map<Locale, ResourceBundle> DESCRIPTION_CACHE= new HashMap<Locale, ResourceBundle>();
 	/**
 	 * The date the holiday occurrs. 
 	 */
@@ -59,19 +46,6 @@ public final class Holiday {
 		this.propertiesKey = propertiesKey == null ? "" : propertiesKey;
 	}
 	
-	/**
-	 * Returns the eventually cached ResourceBundle for the holiday descriptions.
-	 * @param l Locale to retrieve the descriptions for.
-	 * @return ResourceBundle containing the descriptions for the locale.
-	 */
-	private static synchronized ResourceBundle getDescriptions(Locale l){
-		if(!DESCRIPTION_CACHE.containsKey(l)){
-			ResourceBundle bundle = ResourceBundle.getBundle(DESCRITOPNS_FILE_PREFIX, l);
-			DESCRIPTION_CACHE.put(l, bundle);
-		}
-		return DESCRIPTION_CACHE.get(l);
-	}
-
 	/**
 	 * @return the holiday date
 	 */
@@ -91,7 +65,7 @@ public final class Holiday {
 	 * @return
 	 */
 	public String getDescription(){
-		return getDescription(Locale.getDefault());
+		return ResourceUtil.getHolidayDescription(Locale.getDefault(), getPropertiesKey());
 	}
 	
 	/**
@@ -100,13 +74,8 @@ public final class Holiday {
 	 * @return
 	 */
 	public String getDescription(Locale locale){
-		ResourceBundle bundle = getDescriptions(locale);
-		if(bundle.containsKey(getPropertiesKey())){
-			return bundle.getString(getPropertiesKey());
-		}
-		return UNKNOWN;
+		return ResourceUtil.getHolidayDescription(locale, getPropertiesKey());
 	}
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */

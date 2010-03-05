@@ -15,6 +15,7 @@
  */
 package de.jollyday.impl;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -30,6 +31,7 @@ import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
@@ -182,21 +184,8 @@ public class XMLManager extends Manager {
 	 */
 	@Override
 	public void init(String country) throws Exception {
-		InputStream stream = ClassLoader.getSystemResourceAsStream(FILE_PREFIX
-				+ "_" + country + FILE_SUFFIX);
-		if(stream == null){
-			throw new IllegalArgumentException("Country "+country+" currently not supported. Please contact sdiedrichsen@yahoo.de and provide the data.");
-		}
-		try {
-			JAXBContext ctx = JAXBContext.newInstance(XMLUtil.PACKAGE);
-			Unmarshaller um = ctx.createUnmarshaller();
-			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
-			configuration = el.getValue();
-		}catch (UnmarshalException ue){
-			throw new IllegalStateException("Cannot parse holidays XML file for country '"+country+"'.", ue);
-		} finally {
-			stream.close();
-		}
+		String fileName = FILE_PREFIX+ "_" + country + FILE_SUFFIX;
+		configuration = XMLUtil.unmarshallConfiguration(ClassLoader.getSystemResourceAsStream(fileName));
 		validateConfigurationHierarchy(configuration);
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Found configuration for "
@@ -207,6 +196,7 @@ public class XMLManager extends Manager {
 			}
 		}
 	}
+
 
 	/**
 	 * Validates the content of the provided configuration by checking

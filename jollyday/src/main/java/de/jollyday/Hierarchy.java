@@ -18,7 +18,8 @@ package de.jollyday;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
+
+import de.jollyday.util.ResourceUtil;
 
 /**
  * Bean class for describing the configuration hierarchy.
@@ -28,8 +29,6 @@ public class Hierarchy {
 	private String id;
 	private Map<String, Hierarchy> children = new HashMap<String, Hierarchy>();
 	private final Hierarchy parent;
-	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS = 
-		new HashMap<Locale, ResourceBundle>();
 	
 	/**
 	 * Constructor which takes a eventually existing parent hierarchy node and
@@ -52,7 +51,7 @@ public class Hierarchy {
 	 * @return the description
 	 */
 	public String getDescription() {
-		return getDescription(Locale.getDefault());
+		return ResourceUtil.getCountryDescription(Locale.getDefault(), getPropertiesKey());
 	}
 	
 	/**
@@ -61,16 +60,7 @@ public class Hierarchy {
 	 * @return Description text
 	 */
 	public String getDescription(Locale l){
-		if(!COUNTRY_DESCRIPTIONS.containsKey(l)){
-			ResourceBundle bundle = ResourceBundle.getBundle("descriptions.country_descriptions", l);
-			COUNTRY_DESCRIPTIONS.put(l, bundle);
-		}
-		ResourceBundle resourceBundle = COUNTRY_DESCRIPTIONS.get(l);
-		String propertiesKey = getPropertiesKey();
-		if(!resourceBundle.containsKey(propertiesKey)) {
-			return "UNKNOWN";
-		}
-		return resourceBundle.getString(propertiesKey);
+		return ResourceUtil.getCountryDescription(l, getPropertiesKey());
 	}
 	
 	/**
