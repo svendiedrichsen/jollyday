@@ -16,9 +16,11 @@
 package de.jollyday.util;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * @author svdi1de
@@ -89,6 +91,23 @@ public class ResourceUtil {
 	public static String getCountryDescription(Locale l, String key){
 		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key, getCountryDescriptions(l));
 	}
+
+	/**
+	 * Returns a list of ISO codes.
+	 * @return 2-digit ISO codes. 
+	 */
+	public static final Set<String> getISOCodes(){
+		Set<String> codes = new HashSet<String>();
+		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
+		for(String property : countryDescriptions.keySet()){
+			String[] split = property.split("\\.");
+			if(split != null && split.length > 2){
+				codes.add(split[2].toLowerCase());
+			}
+		}
+		return codes;
+	}
+
 	
 	/**
 	 * Returns the description from the resource bundle if the key is
@@ -136,6 +155,5 @@ public class ResourceUtil {
 			return CACHE.get(l);
 		}
 	}
-
 
 }
