@@ -42,7 +42,7 @@ public class XMLManagerJapan extends XMLManager {
 			LocalDate twoDaysLater = d.getDate().plusDays(2);
 			if(CalendarUtil.contains(holidays, twoDaysLater)){
 				LocalDate bridgingDate = twoDaysLater.minusDays(1);
-				additionalHolidays.add(new Holiday(bridgingDate, "holliday.description.BRIDGING_HOLIDAY"));
+				additionalHolidays.add(new Holiday(bridgingDate, "BRIDGING_HOLIDAY"));
 			}
 		}
 		holidays.addAll(additionalHolidays);

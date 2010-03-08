@@ -72,7 +72,7 @@ public class Hierarchy {
 		if(parent != null){
 			return parent.getPropertiesKey()+"."+getId();
 		}
-		return "country.description." + getId();
+		return getId();
 	}
 	
 	/**

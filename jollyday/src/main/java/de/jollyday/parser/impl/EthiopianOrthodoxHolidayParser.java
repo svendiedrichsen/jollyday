@@ -53,7 +53,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 			default:
 					throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type "+h.getType());
 			}
-			String propertiesKey = "holiday.description.ethiopian.orthodox."+h.getType().name();
+			String propertiesKey = "ethiopian.orthodox."+h.getType().name();
 			for(LocalDate d : ethiopianHolidays){
 				holidays.add(new Holiday(d, propertiesKey));
 			}

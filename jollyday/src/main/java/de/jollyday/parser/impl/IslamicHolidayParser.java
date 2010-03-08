@@ -70,7 +70,7 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			default:
 				throw new IllegalArgumentException("Unknown islamic holiday "+i.getType());
 			}
-			String propertiesKey = "holiday.description.islamic." + i.getType().name();
+			String propertiesKey = "islamic." + i.getType().name();
 			for(LocalDate d : islamicHolidays){
 				holidays.add(new Holiday(d, propertiesKey));
 			}
