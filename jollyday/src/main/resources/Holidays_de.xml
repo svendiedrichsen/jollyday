@@ -3,8 +3,8 @@
   <tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 	  <tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-	  <tns:Fixed month="JUNE" day="17" validFrom="1954" validTo="1990" descriptionPropertiesKey="GERMAN_UNITY"/>
-	  <tns:Fixed month="OCTOBER" day="3" validFrom="1990"  descriptionPropertiesKey="GERMAN_UNITY"/>
+	  <tns:Fixed month="JUNE" day="17" validFrom="1954" validTo="1990" descriptionPropertiesKey="UNIFICATION"/>
+	  <tns:Fixed month="OCTOBER" day="3" validFrom="1990"  descriptionPropertiesKey="UNIFICATION"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
