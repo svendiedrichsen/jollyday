@@ -35,7 +35,7 @@ import de.jollyday.util.CalendarUtil;
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
  * getInstance method the implementing class will be read from the
- * application.properties file and instantiated.
+ * jollyday.properties file and instantiated.
  * 
  * @author Sven Diedrichsen
  * 
@@ -61,7 +61,7 @@ public abstract class HolidayManager {
 	/**
 	 * The name of the configuration file.
 	 */
-	private static final String CONFIG_FILE = "application.properties";
+	private static final String CONFIG_FILE = "jollyday.properties";
 	/**
 	 * Caches the holidays for a given year and state/region.
 	 */
@@ -85,7 +85,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Creates an HolidayManager instance. The implementing HolidayManager class will be read
-	 * from the application.properties file. If the country is NULL or an empty string the
+	 * from the jollyday.properties file. If the country is NULL or an empty string the
 	 * default locales country code will be used.
 	 * 
 	 * @param country

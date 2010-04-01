@@ -1,6 +1,6 @@
 API properties
 
-  The general API configuration resides within the <<<application.properties>>> file contained
+  The general API configuration resides within the <<<jollyday.properties>>> file contained
   in the provided jar file. If you specify a system property <<<de.jollyday.config>>> with an
   additional configuration file the properties of this file will add to and override the
   original.
