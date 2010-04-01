@@ -2,5 +2,5 @@ Bulgaria
 
   This XML file is used to calculate the holidays in Bulgaria.
   
-%{snippet|url=file:src/main/resources/Holidays_bg.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_bg.xml}
   

@@ -2,5 +2,5 @@ Latvia
 
   This XML file is used to calculate the holidays in Latvia.
   
-%{snippet|url=file:src/main/resources/Holidays_lv.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_lv.xml}
   

@@ -2,5 +2,5 @@ Macedonia
 
   This XML file is used to calculate the holidays in Macedonia.
   
-%{snippet|url=file:src/main/resources/Holidays_mk.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_mk.xml}
   

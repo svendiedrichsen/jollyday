@@ -2,5 +2,5 @@ Paraguay
 
   This XML file is used to calculate the holidays in Paraguay.
   
-%{snippet|url=file:src/main/resources/Holidays_py.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_py.xml}
   

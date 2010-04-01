@@ -2,5 +2,5 @@ Uruguay
 
   This XML file is used to calculate the holidays in Uruguay.
   
-%{snippet|url=file:src/main/resources/Holidays_uy.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_uy.xml}
   

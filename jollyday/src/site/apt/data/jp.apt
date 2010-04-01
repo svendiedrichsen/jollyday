@@ -5,5 +5,5 @@ Japan
   this day will also be a holiday.' Is implemented with the class
   <<<XMLManagerJapan>>> which extends <<<XMLManager>>>.
   
-%{snippet|url=file:src/main/resources/Holidays_jp.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_jp.xml}
   

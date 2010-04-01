@@ -2,5 +2,5 @@ Chile
 
   This XML file is used to calculate the holidays in Chile.
   
-%{snippet|url=file:src/main/resources/Holidays_cl.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_cl.xml}
   

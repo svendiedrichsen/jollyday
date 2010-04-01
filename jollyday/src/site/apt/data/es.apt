@@ -2,5 +2,5 @@ Spain
 
   This XML file is used to calculate the holidays in Spain.
   
-%{snippet|url=file:src/main/resources/Holidays_es.xml}
+%{snippet|url=file:src/main/resources/holidays/Holidays_es.xml}
   
