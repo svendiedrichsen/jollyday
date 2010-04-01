@@ -27,9 +27,9 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import de.jollyday.Hierarchy;
+import de.jollyday.CountryHierarchy;
 import de.jollyday.Holiday;
-import de.jollyday.Manager;
+import de.jollyday.HolidayManager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
@@ -43,7 +43,7 @@ import de.jollyday.util.XMLUtil;
  * @author Sven Diedrichsen
  *
  */
-public class XMLManager extends Manager {
+public class XMLManager extends HolidayManager {
 
 	/**
 	 * Logger
@@ -228,7 +228,7 @@ public class XMLManager extends Manager {
 	 * to call getHolidays()/isHoliday().
 	 */
 	@Override
-	public Hierarchy getHierarchy() {
+	public CountryHierarchy getHierarchy() {
 		return createConfigurationHierarchy(configuration, null);
 	}
 	
@@ -238,10 +238,10 @@ public class XMLManager extends Manager {
 	 * @param c
 	 * @return configuration hierarchy
 	 */
-	private static Hierarchy createConfigurationHierarchy(Configuration c, Hierarchy h) {
-		h =  new Hierarchy(h, c.getHierarchy());
+	private static CountryHierarchy createConfigurationHierarchy(Configuration c, CountryHierarchy h) {
+		h =  new CountryHierarchy(h, c.getHierarchy());
 		for(Configuration sub : c.getSubConfigurations()){
-			Hierarchy subHierarchy = createConfigurationHierarchy(sub, h);
+			CountryHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
 			h.getChildren().put(subHierarchy.getId(), subHierarchy);
 		}
 		return h;

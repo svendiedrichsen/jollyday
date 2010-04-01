@@ -27,9 +27,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jollyday.Hierarchy;
+import de.jollyday.CountryHierarchy;
 import de.jollyday.Holiday;
-import de.jollyday.Manager;
+import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -83,18 +83,18 @@ public class HolidayTest extends TestCase {
 	@Test(expected=IllegalArgumentException.class)
 	public void testMissingCountry() throws Exception{
 		try{
-			Manager.getInstance("XXX");
+			HolidayManager.getInstance("XXX");
 			fail("Expected some IllegalArgumentException for this missing country.");
 		}catch(IllegalArgumentException e){}
 	}
 	
 	@Test
 	public void testBaseStructure() throws Exception{
-		Manager m = Manager.getInstance("test");
-		Hierarchy h = m.getHierarchy();
+		HolidayManager m = HolidayManager.getInstance("test");
+		CountryHierarchy h = m.getHierarchy();
 		Assert.assertEquals("Wrong id.", "test", h.getId());
 		Assert.assertEquals("Wrong number of children on first level.", 2, h.getChildren().size());
-		for(Hierarchy hi : h.getChildren().values()){
+		for(CountryHierarchy hi : h.getChildren().values()){
 			if(hi.getId().equalsIgnoreCase("level1")){
 				Assert.assertEquals("Wrong number of children on second level of level 1.", 1, hi.getChildren().size());
 			}else if(hi.getId().equalsIgnoreCase("level11")){
@@ -105,7 +105,7 @@ public class HolidayTest extends TestCase {
 
 	@Test
 	public void testBaseDates() throws Exception{
-		Manager m = Manager.getInstance("test");
+		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010);
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days.size(), holidays.size());
@@ -122,7 +122,7 @@ public class HolidayTest extends TestCase {
 
 	@Test
 	public void testLevel1() throws Exception{
-		Manager m = Manager.getInstance("test");
+		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1");
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days_l1.size(), holidays.size());
@@ -131,7 +131,7 @@ public class HolidayTest extends TestCase {
 
 	@Test
 	public void testLevel2() throws Exception{
-		Manager m = Manager.getInstance("test");
+		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1", "level2");
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of dates.", test_days_l2.size(), holidays.size());
@@ -140,7 +140,7 @@ public class HolidayTest extends TestCase {
 
 	@Test
 	public void testLevel11() throws Exception{
-		Manager m = Manager.getInstance("test");
+		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level11");
 		Assert.assertNotNull(holidays);
 		assertDates(test_days_l11, holidays);
@@ -150,18 +150,18 @@ public class HolidayTest extends TestCase {
 	@Test(expected=IllegalArgumentException.class)
 	public void testFail() throws Exception{
 		try{
-			Manager.getInstance("test_fail");
+			HolidayManager.getInstance("test_fail");
 			fail("Should have thrown an IllegalArgumentException.");
 		}catch(IllegalArgumentException e){}
 	}
 	
 	@Test
 	public void testAllAvailableManagers() throws Exception{
-		Set<String> supportedCountryCodes = Manager.getSupportedCountryCodes();
+		Set<String> supportedCountryCodes = HolidayManager.getSupportedCountryCodes();
 		Assert.assertNotNull(supportedCountryCodes);
 		Assert.assertFalse(supportedCountryCodes.isEmpty());
 		for(String country : supportedCountryCodes){
-			Manager manager = Manager.getInstance(country);
+			HolidayManager manager = HolidayManager.getInstance(country);
 			Assert.assertNotNull(manager);
 		}
 	}

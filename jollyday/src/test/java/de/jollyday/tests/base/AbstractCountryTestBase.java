@@ -23,9 +23,9 @@ import junit.framework.TestCase;
 
 import org.junit.Assert;
 
-import de.jollyday.Hierarchy;
+import de.jollyday.CountryHierarchy;
 import de.jollyday.Holiday;
-import de.jollyday.Manager;
+import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -39,7 +39,7 @@ public abstract class AbstractCountryTestBase extends TestCase {
 	 * @param expected This is the test structure which is how it should be.
 	 * @param found This is the real live data structure.
 	 */
-	protected void compareHierarchies(Hierarchy expected, Hierarchy found) {
+	protected void compareHierarchies(CountryHierarchy expected, CountryHierarchy found) {
 		Assert.assertNotNull("Null description", found.getDescription());
 		Assert.assertEquals("Wrong hierarchy id.", expected.getId(), found.getId());
 		Assert.assertEquals("Number of children wrong.", expected.getChildren().size(), found.getChildren().size());
@@ -53,13 +53,13 @@ public abstract class AbstractCountryTestBase extends TestCase {
 	 * @param testManager
 	 * @param m
 	 */
-	protected void compareData(Manager expected, Manager found, int year) {
-		Hierarchy expectedHierarchy = expected.getHierarchy();
+	protected void compareData(HolidayManager expected, HolidayManager found, int year) {
+		CountryHierarchy expectedHierarchy = expected.getHierarchy();
 		ArrayList<String> args = new ArrayList<String>();
 		compareDates(expected, found, expectedHierarchy, args, year);
 	}
 
-	private void compareDates(Manager expected, Manager found, Hierarchy h,
+	private void compareDates(HolidayManager expected, HolidayManager found, CountryHierarchy h,
 			List<String> args, int year) {
 				Set<Holiday> expectedHolidays = expected.getHolidays(year, args.toArray(new String[]{}));
 				Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[]{}));
@@ -78,11 +78,11 @@ public abstract class AbstractCountryTestBase extends TestCase {
 
 	protected void validateCountryData(String countryCode, int year)
 			throws Exception {
-				Manager dataManager = Manager.getInstance(countryCode);
-				Manager testManager = Manager.getInstance("test_"+countryCode+"_"+Integer.toString(year));
+				HolidayManager dataManager = HolidayManager.getInstance(countryCode);
+				HolidayManager testManager = HolidayManager.getInstance("test_"+countryCode+"_"+Integer.toString(year));
 			
-				Hierarchy dataHierarchy = dataManager.getHierarchy();
-				Hierarchy testHierarchy = testManager.getHierarchy();
+				CountryHierarchy dataHierarchy = dataManager.getHierarchy();
+				CountryHierarchy testHierarchy = testManager.getHierarchy();
 				
 				compareHierarchies(testHierarchy, dataHierarchy);
 				compareData(testManager, dataManager, year);

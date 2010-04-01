@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -39,12 +40,12 @@ import de.jollyday.util.CalendarUtil;
  * @author Sven Diedrichsen
  * 
  */
-public abstract class Manager {
+public abstract class HolidayManager {
 
 	/**
 	 * Logger
 	 */
-	private static final Logger LOG = Logger.getLogger(Manager.class.getName());
+	private static final Logger LOG = Logger.getLogger(HolidayManager.class.getName());
 	/**
 	 * System property to define overriding configuration file.
 	 */
@@ -71,15 +72,29 @@ public abstract class Manager {
 	private Properties properties = new Properties();
 
 	/**
-	 * Creates an Manager instance. The implementing Manager class will be read
-	 * from the application.properties file.
+	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus using
+	 * the default locales country code.
+	 * code.
 	 * 
-	 * @param country
-	 * @return Manager implementation for the provided country.
+	 * @return default locales HolidayManager
 	 * @throws Exception
 	 */
-	public static final Manager getInstance(String country) throws Exception {
+	public static final HolidayManager getInstance() throws Exception {
+		return getInstance(null);
+	}
+
+	/**
+	 * Creates an HolidayManager instance. The implementing HolidayManager class will be read
+	 * from the application.properties file. If the country is NULL or an empty string the
+	 * default locales country code will be used.
+	 * 
+	 * @param country
+	 * @return HolidayManager implementation for the provided country.
+	 * @throws Exception
+	 */
+	public static final HolidayManager getInstance(String country) throws Exception {
 		Properties props = readProperties();
+		country = prepareCountryCode(country);
 		String managerImplClass = null;
 		if (props.stringPropertyNames().contains(
 				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
@@ -90,10 +105,28 @@ public abstract class Manager {
 		} else {
 			throw new IllegalStateException("Missing configuration '"+MANAGER_IMPL_CLASS_PREFIX+"'. Cannot create manager.");
 		}
-		Manager m = (Manager) Class.forName(managerImplClass).newInstance();
+		HolidayManager m = (HolidayManager) Class.forName(managerImplClass).newInstance();
 		m.init(country);
 		m.setProperties(props);
 		return m;
+	}
+
+	/**
+	 * Handles NULL or empty country codes and returns the default locales country
+	 * codes for those. For all others the country code will be trimmed and set to 
+	 * lower case letters.
+	 *  
+	 * @param country
+	 * @return trimmed and lower case country code.
+	 */
+	private static String prepareCountryCode(String country) {
+		if(country == null || "".equals(country.trim())){
+			country = Locale.getDefault().getCountry().toLowerCase();
+		}
+		else{
+			country = country.trim().toLowerCase();
+		}
+		return country;
 	}
 
 	/**
@@ -237,6 +270,6 @@ public abstract class Manager {
 	 * 
 	 * @return
 	 */
-	abstract public Hierarchy getHierarchy();
+	abstract public CountryHierarchy getHierarchy();
 
 }
