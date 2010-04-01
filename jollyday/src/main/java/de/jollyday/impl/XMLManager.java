@@ -56,7 +56,7 @@ public class XMLManager extends HolidayManager {
 	/**
 	 * prefix of the config files.
 	 */
-	private static final String FILE_PREFIX = "Holidays";
+	private static final String FILE_PREFIX = "holidays/Holidays";
 	/**
 	 * suffix of the config files.
 	 */

@@ -71,8 +71,7 @@
   		<tns:Fixed month="SEPTEMBER" day="11"/>
 		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="APRIL" day="5" />
-  		<tns:Fixed month="DECEMBER" day="26" />
-  	</tns:Holidays>
+ju  	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ex" description="Extremadura">
   	<tns:Holidays>
@@ -110,9 +109,7 @@
  <tns:SubConfigurations hierarchy="m" description="Madrid">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
-  		<tns:Fixed month="MAY" day="15"/>
 		<tns:Fixed month="AUGUST" day="15"/>
-		<tns:Fixed month="NOVEMBER" day="9"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   		<tns:Fixed month="APRIL" day="1" />
   	</tns:Holidays>
@@ -144,14 +141,12 @@
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
 		<tns:Fixed month="AUGUST" day="15"/>
-  		<tns:Fixed month="OCTOBER" day="25"/>
   		<tns:Fixed month="APRIL" day="1" />
   		<tns:Fixed month="APRIL" day="5" />
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="s" description="Cantabria">
   	<tns:Holidays>
-  		<tns:Fixed month="JULY" day="28"/>
 		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="SEPTEMBER" day="15"/>
   		<tns:Fixed month="APRIL" day="1" />
