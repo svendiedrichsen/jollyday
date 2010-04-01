@@ -1,6 +1,6 @@
 API usage
 
-  The API usage is very simple. Instantiate a <<<Manager>>> by calling <<<getInstance()>>> for one
+  The API usage is very simple. Instantiate a <<<HolidayManager>>> by calling <<<getInstance()>>> for one
   country and use this manager to determine the holidays for a year/state/district.
   
 Code Example
@@ -8,14 +8,14 @@ Code Example
   To get the US holidays for the state New York:
  
 -----------------------
-  Manager m = Manager.getInstance("us"); //-> Instantiates the US holiday manager
-  Set<LocalDate> holidays = m.getHolidays(2010, "ny");
+  HolidayManager m = HolidayManager.getInstance("us"); //-> Instantiates the US holiday manager
+  Set<Holiday> holidays = m.getHolidays(2010, "ny");
 ----------------------- 
   
   To get the US holidays for New York City in the state New York:
 
 -----------------------
-  Manager m = Manager.getInstance("us"); //-> Instantiates the US holiday manager
-  Set<LocalDate> holidays = m.getHolidays(2010, "ny", "nyc");
+  HolidayManager m = HolidayManager.getInstance("us"); //-> Instantiates the US holiday manager
+  Set<Holiday> holidays = m.getHolidays(2010, "ny", "nyc");
 -----------------------
   
