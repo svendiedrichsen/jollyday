@@ -149,7 +149,7 @@ public abstract class HolidayManager {
 	private static Properties readPropertiesFromSystemClasspath()
 			throws IOException {
 		Properties props = new Properties();
-		props.load(ClassLoader.getSystemResourceAsStream(CONFIG_FILE));
+		props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_FILE));
 		return props;
 	}
 
