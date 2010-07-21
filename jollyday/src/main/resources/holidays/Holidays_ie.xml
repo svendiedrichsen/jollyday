@@ -8,9 +8,9 @@
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey=""/>
-		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey=""/>
-		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey=""/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="BANK_HOLIDAY"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BANK_HOLIDAY"/>
+		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY"/>
 	</tns:Holidays>
 </tns:Configuration>

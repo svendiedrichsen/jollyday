@@ -9,8 +9,8 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="EARLY_MAY_BANK"/>
-		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="SPRING_BANK_HOLIDAY"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="BANK_HOLIDAY"/>
+		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="al" description="Alderney">
@@ -27,7 +27,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-  		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="AUGUST_BANK_HOLIDAY"/>
+  		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BANK_HOLIDAY"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -77,7 +77,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="AUGUST_BANK_HOLIDAY"/>	
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BANK_HOLIDAY"/>	
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wa" description="Wales">
@@ -86,7 +86,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="AUGUST_BANK_HOLIDAY"/>	
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BANK_HOLIDAY"/>	
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
