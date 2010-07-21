@@ -3,9 +3,9 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
 	<tns:Holidays>
-		<tns:Fixed month="JANUARY" day="26" />
-		<tns:Fixed month="AUGUST" day="15" />
-		<tns:Fixed month="OCTOBER" day="2"/>
+		<tns:Fixed month="JANUARY" day="26" descriptionPropertiesKey="REPUBLIC_DAY"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="OCTOBER" day="2" descriptionPropertiesKey="GHANDIS_BIRTHDAY"/>
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="ap" description="Andhra Pradesh">
 		<tns:Holidays>
