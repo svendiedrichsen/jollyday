@@ -136,7 +136,7 @@ public abstract class HolidayManager {
 	 * @throws IOException
 	 */
 	private static Properties readProperties() throws IOException {
-		Properties props = readPropertiesFromSystemClasspath();
+		Properties props = readPropertiesFromClasspath();
 		props.putAll(readPropertiesFromConfigFile());
 		return props;
 	}
@@ -146,7 +146,7 @@ public abstract class HolidayManager {
 	 * @return Properties
 	 * @throws IOException
 	 */
-	private static Properties readPropertiesFromSystemClasspath()
+	private static Properties readPropertiesFromClasspath()
 			throws IOException {
 		Properties props = new Properties();
 		props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_FILE));
@@ -203,7 +203,7 @@ public abstract class HolidayManager {
 			keyBuilder.append(arg);
 		}
 		String key = keyBuilder.toString();
-		if (!holidaysPerYear.containsKey(key.toString())) {
+		if (!holidaysPerYear.containsKey(key)) {
 			Set<Holiday> holidays = getHolidays(c.getYear(), args);
 			holidaysPerYear.put(key, holidays);
 		}

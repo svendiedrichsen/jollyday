@@ -171,13 +171,13 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * Initializes the XMLManager by loading the holidays XML file as resource
-	 * from the system classpath. When the XML file is found it will be 
+	 * from the classpath. When the XML file is found it will be 
 	 * unmarshalled with JAXB to some Java classes.
 	 */
 	@Override
 	public void init(String country) throws Exception {
 		String fileName = FILE_PREFIX+ "_" + country + FILE_SUFFIX;
-		configuration = XMLUtil.unmarshallConfiguration(ClassLoader.getSystemResourceAsStream(fileName));
+		configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResourceAsStream(fileName));
 		validateConfigurationHierarchy(configuration);
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Found configuration for "
