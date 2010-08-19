@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="kz" description="Kazakhstan"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" />
+		<tns:Fixed month="JANUARY" day="7" />
+		<tns:Fixed month="MARCH" day="8" />
+		<tns:Fixed month="MARCH" day="22" />
+		<tns:Fixed month="MAY" day="1" />
+		<tns:Fixed month="MAY" day="9" />
+		<tns:Fixed month="JULY" day="6" />
+		<tns:Fixed month="AUGUST" day="30" />
+		<tns:Fixed month="DECEMBER" day="16" />
+		<tns:IslamicHoliday type="ID_UL_ADHA"/>
+	</tns:Holidays>
+</tns:Configuration>
