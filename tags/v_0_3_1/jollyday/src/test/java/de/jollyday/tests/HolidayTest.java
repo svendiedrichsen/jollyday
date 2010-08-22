@@ -17,11 +17,15 @@ package de.jollyday.tests;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import junit.framework.Assert;
 
 import org.joda.time.DateTimeConstants;
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
+import org.joda.time.chrono.GregorianChronology;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +39,8 @@ import de.jollyday.util.CalendarUtil;
  *
  */
 public class HolidayTest {
+	
+	private final static Logger LOG = Logger.getLogger(HolidayTest.class.getName());
 	
 	private static final Set<LocalDate> test_days = new HashSet<LocalDate>();
 	private static final Set<LocalDate> test_days_l1 = new HashSet<LocalDate>();
@@ -95,6 +101,36 @@ public class HolidayTest {
 			}else if(hi.getId().equalsIgnoreCase("level11")){
 				Assert.assertEquals("Wrong number of children on second level of level 11.", 0, hi.getChildren().size());
 			}
+		}
+	}
+	
+	@Test
+	public void testIsHolidayPerformance() throws Exception{
+		Manager m = Manager.getInstance("test");
+		LocalDate date = CalendarUtil.create(2010, 1, 1);
+		long start = System.currentTimeMillis();
+		m.isHoliday(date);
+		long duration = System.currentTimeMillis() - start;
+		LOG.log(Level.INFO, "isHoliday took "+duration+" millis for the first call.");
+		int count = 0;
+		long sumDuration = 0;
+		while(date.getYear() < 2011){
+			date = date.plusDays(1);
+			start = System.currentTimeMillis();
+			m.isHoliday(date);
+			duration = System.currentTimeMillis() - start;
+			count++;
+			sumDuration += duration;
+		}
+		LOG.log(Level.INFO, "isHoliday took "+sumDuration/count+" millis average.");
+	}
+	
+	@Test
+	public void testChronology() throws Exception{
+		Manager m = Manager.getInstance("test");
+		Set<LocalDate> holidays = m.getHolidays(2010);
+		for(LocalDate d : holidays){
+			Assert.assertEquals("Wrong chronology.", GregorianChronology.getInstance(DateTimeZone.UTC), d.getChronology());
 		}
 	}
 
