@@ -30,6 +30,8 @@ import java.util.logging.Logger;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.util.CalendarUtil;
+
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
  * getInstance method the implementing class will be read from the
@@ -61,6 +63,11 @@ public abstract class Manager {
 	 */
 	private static final String CONFIG_FILE = "application.properties";
 	/**
+	 * This map represents a cache for manager instances on a per country basis.
+	 */
+	private static final Map<String, Manager> MANAGER_CHACHE = new HashMap<String, Manager>();
+	
+	/**
 	 * Caches the holidays for a given year and state/region.
 	 */
 	private Map<String, Set<LocalDate>> holidaysPerYear = new HashMap<String, Set<LocalDate>>();
@@ -78,21 +85,47 @@ public abstract class Manager {
 	 * @throws Exception
 	 */
 	public static final Manager getInstance(String country) throws Exception {
-		Properties props = readProperties();
-		String managerImplClass = null;
-		if (props.stringPropertyNames().contains(
-				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
-			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
-					+ "." + country);
-		} else if(props.stringPropertyNames().contains(MANAGER_IMPL_CLASS_PREFIX)) {
-			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
-		} else {
-			throw new IllegalStateException("Missing configuration '"+MANAGER_IMPL_CLASS_PREFIX+"'. Cannot create manager.");
+		Manager manager = getFromCache(country);
+		if(manager == null){
+			Properties props = readProperties();
+			String managerImplClass = null;
+			if (props.stringPropertyNames().contains(
+					MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
+				managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
+						+ "." + country);
+			} else if(props.stringPropertyNames().contains(MANAGER_IMPL_CLASS_PREFIX)) {
+				managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
+			} else {
+				throw new IllegalStateException("Missing configuration '"+MANAGER_IMPL_CLASS_PREFIX+"'. Cannot create manager.");
+			}
+			manager = (Manager) Class.forName(managerImplClass).newInstance();
+			manager.init(country);
+			manager.setProperties(props);
+			putToCache(country, manager);
 		}
-		Manager m = (Manager) Class.forName(managerImplClass).newInstance();
-		m.init(country);
-		m.setProperties(props);
-		return m;
+		return manager;
+	}
+
+	/**
+	 * Caches the manager instance for this country.
+	 * @param country
+	 * @param manager
+	 */
+	private static void putToCache(String country, Manager manager) {
+		synchronized(MANAGER_CHACHE){
+			MANAGER_CHACHE.put(country, manager);
+		}
+	}
+	
+	/**
+	 * Tries to retrieve a manager instance from cache by country.
+	 * @param country
+	 * @return Manager instance for this country. NULL if none is cached yet.
+	 */
+	private static Manager getFromCache(String country){
+		synchronized(MANAGER_CHACHE){
+			return MANAGER_CHACHE.get(country);
+		}
 	}
 
 	/**
@@ -115,11 +148,16 @@ public abstract class Manager {
 	private static Properties readPropertiesFromClasspath()
 			throws IOException {
 		Properties props = new Properties();
-		InputStream stream = Manager.class.getClassLoader().getResourceAsStream(CONFIG_FILE);
-		if(stream != null){
-			props.load(stream);
-		}else{
-			LOG.warning("Could not load properties file '"+CONFIG_FILE+"' from classpath.");
+		InputStream stream = null;
+		try{
+			stream = Manager.class.getClassLoader().getResourceAsStream(CONFIG_FILE);
+			if(stream != null){
+				props.load(stream);
+			}else{
+				LOG.warning("Could not load properties file '"+CONFIG_FILE+"' from classpath.");
+			}
+		}finally{
+			if(stream != null) stream.close();
 		}
 		return props;
 	}
@@ -153,7 +191,7 @@ public abstract class Manager {
 	 * @see Manager.isHoliday(LocalDate c, String... args)
 	 */
 	public boolean isHoliday(Calendar c, String... args) {
-		return isHoliday(new LocalDate(c), args);
+		return isHoliday(CalendarUtil.create(c), args);
 	}
 
 	/**
