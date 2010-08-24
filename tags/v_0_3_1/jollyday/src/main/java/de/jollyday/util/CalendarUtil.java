@@ -15,6 +15,7 @@
  */
 package de.jollyday.util;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -71,10 +72,19 @@ public abstract class CalendarUtil {
 	 * Creates the date from the month/day within the specified year.
 	 * @param year
 	 * @param fixed
-	 * @return
+	 * @return A local date instance.
 	 */
 	public static LocalDate create(int year, Fixed fixed){
 		return create(year, XMLUtil.getMonth(fixed.getMonth()), fixed.getDay());
+	}
+	
+	/**
+	 * Creates a LocalDate. Does not use the Chronology of the Calendar.
+	 * @param c
+	 * @return The local date representing the provided date.
+	 */
+	public static LocalDate create(Calendar c) {
+		return create(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 	}
 
 	/**
@@ -193,5 +203,6 @@ public abstract class CalendarUtil {
 		}
 		return date;
 	}
+
 
 }
