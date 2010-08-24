@@ -15,6 +15,7 @@
  */
 package de.jollyday.tests;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -123,6 +124,18 @@ public class HolidayTest {
 			sumDuration += duration;
 		}
 		LOG.log(Level.INFO, "isHoliday took "+sumDuration/count+" millis average.");
+	}
+
+	@Test
+	public void testCalendarChronology() throws Exception{
+		Manager m = Manager.getInstance("test");
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, 2010);
+		c.set(Calendar.MONTH, Calendar.FEBRUARY);
+		c.set(Calendar.DAY_OF_MONTH, 16);
+		Assert.assertFalse("This date should NOT be a doliday.", m.isHoliday(c));
+		c.add(Calendar.DAY_OF_YEAR, 1);
+		Assert.assertTrue("This date should be a doliday.", m.isHoliday(c));
 	}
 	
 	@Test
