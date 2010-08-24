@@ -63,6 +63,11 @@ public abstract class Manager {
 	 */
 	private static final String CONFIG_FILE = "application.properties";
 	/**
+	 * Signifies if caching of manager instances is enabled. If not every call to
+	 * getInstance will return a newly instantiated and initialized manager.
+	 */
+	private static boolean managerCachingEnabled = true; 
+	/**
 	 * This map represents a cache for manager instances on a per country basis.
 	 */
 	private static final Map<String, Manager> MANAGER_CHACHE = new HashMap<String, Manager>();
@@ -85,7 +90,7 @@ public abstract class Manager {
 	 * @throws Exception
 	 */
 	public static final Manager getInstance(String country) throws Exception {
-		Manager manager = getFromCache(country);
+		Manager manager = isManagerCachingEnabled() ? getFromCache(country) : null;
 		if(manager == null){
 			Properties props = readProperties();
 			String managerImplClass = null;
@@ -101,7 +106,9 @@ public abstract class Manager {
 			manager = (Manager) Class.forName(managerImplClass).newInstance();
 			manager.init(country);
 			manager.setProperties(props);
-			putToCache(country, manager);
+			if(isManagerCachingEnabled()) {
+				putToCache(country, manager);
+			}
 		}
 		return manager;
 	}
@@ -126,6 +133,22 @@ public abstract class Manager {
 		synchronized(MANAGER_CHACHE){
 			return MANAGER_CHACHE.get(country);
 		}
+	}
+
+	/**
+	 * If true, instantiated managers will be cached. If false every call to
+	 * getInstance will create new manager. True by default.
+	 * @param managerCachingEnabled the managerCachingEnabled to set
+	 */
+	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
+		Manager.managerCachingEnabled = managerCachingEnabled;
+	}
+
+	/**
+	 * @return the managerCachingEnabled
+	 */
+	public static boolean isManagerCachingEnabled() {
+		return managerCachingEnabled;
 	}
 
 	/**
