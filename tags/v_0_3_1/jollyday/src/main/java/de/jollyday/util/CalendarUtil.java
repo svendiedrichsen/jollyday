@@ -52,8 +52,17 @@ public abstract class CalendarUtil {
 	 * @return Gregorian/julian date.
 	 */
 	public static LocalDate create(int year, int month, int day){
-		Chronology c = ( year <= 1583 ? JulianChronology.getInstance() : GregorianChronology.getInstance()); 
+		Chronology c = getChronology(year); 
 		return create(year, month, day, c);
+	}
+
+	/**
+	 * Returns the Chronology depending on the provided year. year <= 1583 -> Julian, Gregorian otherwise.
+	 * @param year
+	 * @return Chronology
+	 */
+	private static Chronology getChronology(int year) {
+		return ( year <= 1583 ? JulianChronology.getInstance() : GregorianChronology.getInstance());
 	}
 
 	/**
@@ -84,7 +93,7 @@ public abstract class CalendarUtil {
 	 * @return The local date representing the provided date.
 	 */
 	public static LocalDate create(Calendar c) {
-		return create(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+		return new LocalDate(c, getChronology(c.get(Calendar.YEAR)));
 	}
 
 	/**
