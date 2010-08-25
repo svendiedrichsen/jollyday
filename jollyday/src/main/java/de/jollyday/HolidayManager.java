@@ -17,6 +17,7 @@ package de.jollyday;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -63,6 +64,16 @@ public abstract class HolidayManager {
 	 */
 	private static final String CONFIG_FILE = "jollyday.properties";
 	/**
+	 * Signifies if caching of manager instances is enabled. If not every call to
+	 * getInstance will return a newly instantiated and initialized manager.
+	 */
+	private static boolean managerCachingEnabled = true; 
+	/**
+	 * This map represents a cache for manager instances on a per country basis.
+	 */
+	private static final Map<String, HolidayManager> MANAGER_CHACHE = new HashMap<String, HolidayManager>();
+	
+	/**
 	 * Caches the holidays for a given year and state/region.
 	 */
 	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
@@ -93,21 +104,27 @@ public abstract class HolidayManager {
 	 * @throws Exception
 	 */
 	public static final HolidayManager getInstance(String country) throws Exception {
-		Properties props = readProperties();
 		country = prepareCountryCode(country);
-		String managerImplClass = null;
-		if (props.stringPropertyNames().contains(
-				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
-			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
-					+ "." + country);
-		} else if(props.stringPropertyNames().contains(MANAGER_IMPL_CLASS_PREFIX)) {
-			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
-		} else {
-			throw new IllegalStateException("Missing configuration '"+MANAGER_IMPL_CLASS_PREFIX+"'. Cannot create manager.");
+		HolidayManager m = isManagerCachingEnabled() ? getFromCache(country) : null;
+		if(m == null){
+			Properties props = readProperties();
+			String managerImplClass = null;
+			if (props.stringPropertyNames().contains(
+					MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
+				managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
+						+ "." + country);
+			} else if(props.stringPropertyNames().contains(MANAGER_IMPL_CLASS_PREFIX)) {
+				managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
+			} else {
+				throw new IllegalStateException("Missing configuration '"+MANAGER_IMPL_CLASS_PREFIX+"'. Cannot create manager.");
+			}
+			m = (HolidayManager) Class.forName(managerImplClass).newInstance();
+			m.init(country);
+			m.setProperties(props);
+			if(isManagerCachingEnabled()) {
+				putToCache(country, m);
+			}
 		}
-		HolidayManager m = (HolidayManager) Class.forName(managerImplClass).newInstance();
-		m.init(country);
-		m.setProperties(props);
 		return m;
 	}
 
@@ -130,6 +147,44 @@ public abstract class HolidayManager {
 	}
 
 	/**
+	 * Caches the manager instance for this country.
+	 * @param country
+	 * @param manager
+	 */
+	private static void putToCache(String country, HolidayManager manager) {
+		synchronized(MANAGER_CHACHE){
+			MANAGER_CHACHE.put(country, manager);
+		}
+	}
+	
+	/**
+	 * Tries to retrieve a manager instance from cache by country.
+	 * @param country
+	 * @return Manager instance for this country. NULL if none is cached yet.
+	 */
+	private static HolidayManager getFromCache(String country){
+		synchronized(MANAGER_CHACHE){
+			return MANAGER_CHACHE.get(country);
+		}
+	}
+
+	/**
+	 * If true, instantiated managers will be cached. If false every call to
+	 * getInstance will create new manager. True by default.
+	 * @param managerCachingEnabled the managerCachingEnabled to set
+	 */
+	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
+		HolidayManager.managerCachingEnabled = managerCachingEnabled;
+	}
+
+	/**
+	 * @return the managerCachingEnabled
+	 */
+	public static boolean isManagerCachingEnabled() {
+		return managerCachingEnabled;
+	}
+
+	/**
 	 * Reads all configuration properties from classpath and config file
 	 * and merges them.
 	 * @return Merged config properties.
@@ -149,7 +204,17 @@ public abstract class HolidayManager {
 	private static Properties readPropertiesFromClasspath()
 			throws IOException {
 		Properties props = new Properties();
-		props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_FILE));
+		InputStream stream = null;
+		try{
+			stream = HolidayManager.class.getClassLoader().getResourceAsStream(CONFIG_FILE);
+			if(stream != null){
+				props.load(stream);
+			}else{
+				LOG.warning("Could not load properties file '"+CONFIG_FILE+"' from classpath.");
+			}
+		}finally{
+			if(stream != null) stream.close();
+		}
 		return props;
 	}
 
@@ -182,7 +247,7 @@ public abstract class HolidayManager {
 	 * @see Manager.isHoliday(LocalDate c, String... args)
 	 */
 	public boolean isHoliday(Calendar c, String... args) {
-		return isHoliday(new LocalDate(c), args);
+		return isHoliday(CalendarUtil.create(c), args);
 	}
 
 	/**
