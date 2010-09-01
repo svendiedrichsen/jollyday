@@ -30,6 +30,11 @@ import de.jollyday.util.CalendarUtil;
 public class XMLManagerJapan extends XMLManager {
 
 	/**
+	 * The properties key for japanese bridging holidays.
+	 */
+	private static final String BRIDGING_HOLIDAY_PROPERTIES_KEY = "BRIDGING_HOLIDAY";
+
+	/**
 	 * Implements the rule which requests if two holidays
 	 * have one non holiday between each other than this day
 	 * is also a holiday.
@@ -42,7 +47,7 @@ public class XMLManagerJapan extends XMLManager {
 			LocalDate twoDaysLater = d.getDate().plusDays(2);
 			if(CalendarUtil.contains(holidays, twoDaysLater)){
 				LocalDate bridgingDate = twoDaysLater.minusDays(1);
-				additionalHolidays.add(new Holiday(bridgingDate, "BRIDGING_HOLIDAY"));
+				additionalHolidays.add(new Holiday(bridgingDate, BRIDGING_HOLIDAY_PROPERTIES_KEY));
 			}
 		}
 		holidays.addAll(additionalHolidays);
