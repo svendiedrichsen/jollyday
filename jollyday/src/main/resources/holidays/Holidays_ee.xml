@@ -9,6 +9,7 @@
 	  <tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+	  <tns:ChristianHoliday type="EASTER" />
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
   </tns:Holidays>
 </tns:Configuration>

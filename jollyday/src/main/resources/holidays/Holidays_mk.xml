@@ -13,6 +13,7 @@
 		<tns:Fixed month="OCTOBER" day="11" />
 		<tns:Fixed month="OCTOBER" day="23" />
 		<tns:Fixed month="DECEMBER" day="8" />
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY" chronology="JULIAN" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN" />
 		<tns:IslamicHoliday/>

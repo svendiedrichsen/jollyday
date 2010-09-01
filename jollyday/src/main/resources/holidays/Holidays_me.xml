@@ -11,6 +11,7 @@
 		<tns:Fixed month="MAY" day="9" />
 		<tns:Fixed month="MAY" day="21" />
 		<tns:Fixed month="JULY" day="13" />
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY" chronology="JULIAN" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN" />
 		<tns:IslamicHoliday/>

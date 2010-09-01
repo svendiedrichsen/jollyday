@@ -232,6 +232,8 @@
 			<enumeration value="EASTER_SATURDAY"></enumeration>
 			<enumeration value="EASTER_TUESDAY"></enumeration>
 			<enumeration value="SACRED_HEART"></enumeration>
+			<enumeration value="EASTER"></enumeration>
+			<enumeration value="PENTECOST_MONDAY"></enumeration>
 		</restriction>
 	</simpleType>
 

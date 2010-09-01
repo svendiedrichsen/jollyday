@@ -12,6 +12,7 @@
 		<tns:Fixed month="OCTOBER" day="28" descriptionPropertiesKey="OCHI"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRSITMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="CLEAN_MONDAY"
 			chronology="JULIAN" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY"

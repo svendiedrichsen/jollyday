@@ -12,6 +12,7 @@
 	  <tns:Fixed month="DECEMBER" day="8"/>
 	  <tns:Fixed month="DECEMBER" day="25"/>
 	  <tns:Fixed month="DECEMBER" day="26"/>
+	  <tns:ChristianHoliday type="EASTER" />
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="bz" description="Südtirol">

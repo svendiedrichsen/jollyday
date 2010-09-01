@@ -8,6 +8,7 @@
 			descriptionPropertiesKey="CHRISTMAS" />
 		<tns:Fixed month="DECEMBER" day="26"
 			descriptionPropertiesKey="STEPHENS" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />

@@ -9,6 +9,7 @@
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="5" descriptionPropertiesKey="VICTORY"/>
 		<tns:Fixed month="MAY" day="28" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY" chronology="JULIAN" />
 		<tns:IslamicHoliday type="RAMADAN"/>
 		<tns:IslamicHoliday type="MAWLID_AN_NABI"/>

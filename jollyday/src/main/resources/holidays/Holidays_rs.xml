@@ -13,6 +13,7 @@
 		<tns:Fixed month="MAY" day="9" />
 		<tns:Fixed month="JUNE" day="6" />
 		<tns:Fixed month="JUNE" day="28" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" chronology="JULIAN" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN" />
 	</tns:Holidays>

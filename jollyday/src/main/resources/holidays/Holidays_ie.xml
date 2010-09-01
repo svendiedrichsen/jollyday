@@ -11,6 +11,7 @@
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="BANK_HOLIDAY"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY"/>
 	</tns:Holidays>
 </tns:Configuration>

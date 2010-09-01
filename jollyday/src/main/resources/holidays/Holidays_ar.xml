@@ -24,6 +24,7 @@
 		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
 		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="FLAG_DAY"/>
 		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="MARTIN_DAY"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	</tns:Holidays>

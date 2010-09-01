@@ -26,6 +26,7 @@
 		<tns:Fixed month="NOVEMBER" day="28" descriptionPropertiesKey="INDEPENDENCE"/>
 		<tns:Fixed month="NOVEMBER" day="29" descriptionPropertiesKey="LIBERATION"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:IslamicHoliday type="ID_UL_ADHA" />

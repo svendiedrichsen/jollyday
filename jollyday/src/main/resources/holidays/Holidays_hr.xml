@@ -17,6 +17,7 @@
 			descriptionPropertiesKey="CHRISTMAS" />
 		<tns:Fixed month="DECEMBER" day="26"
 			descriptionPropertiesKey="STEPHENS" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
 	</tns:Holidays>

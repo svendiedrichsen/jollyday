@@ -11,6 +11,7 @@
 		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS"/>
 		<tns:Fixed month="NOVEMBER" day="15" descriptionPropertiesKey="NATIONAL_DAY"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="CARNIVAL"/>
 		<tns:ChristianHoliday type="ASH_WEDNESDAY"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>

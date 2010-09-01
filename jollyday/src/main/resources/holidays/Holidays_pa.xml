@@ -13,6 +13,7 @@
 		<tns:Fixed month="NOVEMBER" day="28" />
 		<tns:Fixed month="DECEMBER" day="8" />
 		<tns:Fixed month="DECEMBER" day="25" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="CLEAN_MONDAY"/>
 		<tns:ChristianHoliday type="CARNIVAL"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>

@@ -51,6 +51,8 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 				easterSunday = CalendarUtil.getEasterSunday(year);
 			}
 			switch (ch.getType()) {
+			case EASTER:
+				break;
 			case CLEAN_MONDAY:
 			case SHROVE_MONDAY:
 				easterSunday = easterSunday.minusDays(48);
@@ -87,6 +89,7 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 				easterSunday = easterSunday.plusDays(49);
 				break;
 			case WHIT_MONDAY:
+			case PENTECOST_MONDAY:
 				easterSunday = easterSunday.plusDays(50);
 				break;
 			case CORPUS_CHRISTI:

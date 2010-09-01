@@ -11,6 +11,7 @@
 		</tns:Fixed>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="BANK_HOLIDAY"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="al" description="Alderney">

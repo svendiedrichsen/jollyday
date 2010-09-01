@@ -13,6 +13,7 @@
 		<tns:Fixed month="OCTOBER" day="11" />
 		<tns:Fixed month="OCTOBER" day="23" />
 		<tns:Fixed month="DECEMBER" day="8" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN" />
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="ch" description="Chisinau">

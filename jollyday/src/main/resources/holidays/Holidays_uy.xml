@@ -14,6 +14,7 @@
 		<tns:Fixed month="NOVEMBER" day="2" />
 		<tns:Fixed month="DECEMBER" day="25"/>
 		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="CARNIVAL"/>
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>

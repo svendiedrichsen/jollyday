@@ -22,6 +22,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -31,6 +32,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="MAY" day="1"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -41,6 +43,7 @@
 			<tns:Fixed month="MAY" day="1"/>
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
@@ -61,6 +64,7 @@
 			<tns:Fixed month="MAY" day="1"/>
 			<tns:Fixed month="DECEMBER" day="3"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
@@ -97,6 +101,7 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="jh" description="Jharkhand">
 		<tns:Holidays>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
 		</tns:Holidays>
@@ -108,6 +113,7 @@
 			<tns:Fixed month="NOVEMBER" day="1"/>
 			<tns:Fixed month="NOVEMBER" day="5"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
@@ -120,6 +126,7 @@
 			<tns:Fixed month="MAY" day="1"/>
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -151,6 +158,7 @@
 			<tns:Fixed month="MAY" day="1"/>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -160,6 +168,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -169,6 +178,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
@@ -178,6 +188,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -211,6 +222,7 @@
 			<tns:Fixed month="MAY" day="16"/>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 		</tns:Holidays>
@@ -221,6 +233,7 @@
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
@@ -242,6 +255,7 @@
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="MARCH" day="15"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
@@ -252,6 +266,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
@@ -264,6 +279,7 @@
 			<tns:Fixed month="MAY" day="1"/>
 			<tns:Fixed month="JANUARY" day="23" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
@@ -273,6 +289,7 @@
 	<tns:SubConfigurations hierarchy="an" description="Andaman and Nicobar Islands">
 		<tns:Holidays>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
@@ -284,6 +301,7 @@
 		<tns:Holidays>
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
@@ -293,6 +311,7 @@
 	<tns:SubConfigurations hierarchy="dn" description="Dadra and Nagar Haveli">
 		<tns:Holidays>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -301,6 +320,7 @@
 	<tns:SubConfigurations hierarchy="dd" description="Daman and Diu">
 		<tns:Holidays>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
@@ -309,6 +329,7 @@
 	<tns:SubConfigurations hierarchy="ld" description="Lakshadweep">
 		<tns:Holidays>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ID_UL_ADHA"/>
 		</tns:Holidays>
@@ -316,6 +337,7 @@
 	<tns:SubConfigurations hierarchy="dl" description="Delhi">
 		<tns:Holidays>
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="ID_AL_FITR"/>
@@ -328,6 +350,7 @@
 			<tns:Fixed month="APRIL" day="14"/>
 			<tns:Fixed month="JANUARY" day="1" />
 			<tns:Fixed month="DECEMBER" day="25"/>
+			<tns:ChristianHoliday type="EASTER" />
 			<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 			<tns:IslamicHoliday type="ASCHURA"/>
 			<tns:IslamicHoliday type="MAWLID_AN_NABI"/>

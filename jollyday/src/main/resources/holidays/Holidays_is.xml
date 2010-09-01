@@ -21,6 +21,7 @@
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" />
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" />
 		<tns:FixedWeekday which="LAST" weekday="MONDAY"	month="OCTOBER" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:FixedWeekdayBetweenFixed weekday="FRIDAY">
 			<tns:from month="JANUARY" day="19" />

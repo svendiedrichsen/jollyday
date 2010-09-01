@@ -18,6 +18,7 @@
 		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="EASTER_SATURDAY" />
 		<tns:ChristianHoliday type="CORPUS_CHRISTI"	validTo="2006" />

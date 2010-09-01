@@ -55,6 +55,7 @@
 		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JULY" validFrom="1952" validTo="1960"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" validTo="1951"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" validFrom="1952" validTo="1979"/>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" validTo="1993"/>

@@ -12,6 +12,7 @@
 		<tns:Fixed month="DECEMBER" day="26" validTo="2007" descriptionPropertiesKey="BOXING_DAY">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 		<tns:ChristianHoliday type="EASTER_SATURDAY"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY"/>

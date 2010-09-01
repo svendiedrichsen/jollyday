@@ -15,6 +15,7 @@
 		<tns:Fixed month="DECEMBER" day="12" />
 		<tns:Fixed month="DECEMBER" day="25" />
 		<tns:Fixed month="DECEMBER" day="31" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="bo" description="Boaco">

@@ -18,6 +18,7 @@
 		<tns:Fixed month="DECEMBER" day="8" />
 		<tns:Fixed month="DECEMBER" day="24" />
 		<tns:Fixed month="DECEMBER" day="31" />
+		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="SHROVE_MONDAY" />
 		<tns:ChristianHoliday type="CARNIVAL" />
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY" />

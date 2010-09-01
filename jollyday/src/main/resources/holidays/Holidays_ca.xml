@@ -6,6 +6,7 @@
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" descriptionPropertiesKey="LABOUR_DAY"/>
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	  <tns:ChristianHoliday type="EASTER" />
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="on" description="Ontario">
   	<tns:Holidays>
