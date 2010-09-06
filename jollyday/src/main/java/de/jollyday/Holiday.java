@@ -30,6 +30,10 @@ import de.jollyday.util.ResourceUtil;
  */
 public final class Holiday {
 	/**
+	 * The calculated hashcode cached for performance.
+	 */
+	private int hashCode = 0;
+	/**
 	 * The date the holiday occurrs. 
 	 */
 	private final LocalDate date;
@@ -94,10 +98,13 @@ public final class Holiday {
 	 */
 	@Override
 	public int hashCode() {
-	    int hash = 1;
-	    hash = hash * 31 + date.hashCode();
-	    hash = hash * 31 + propertiesKey.hashCode();
-	    return hash;
+	    if(hashCode == 0){
+	    	int hash = 1;
+	    	hash = hash * 31 + date.hashCode();
+	    	hash = hash * 31 + propertiesKey.hashCode();
+	    	hashCode = hash;
+	    }
+	    return hashCode;
 	}
 	
 	/* (non-Javadoc)
