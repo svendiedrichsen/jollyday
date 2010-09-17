@@ -183,6 +183,15 @@ public abstract class HolidayManager {
 	public static boolean isManagerCachingEnabled() {
 		return managerCachingEnabled;
 	}
+	
+	/**
+	 * Clears the manager cache from all cached manager instances.
+	 */
+	public static void clearManagerCache(){
+		synchronized(MANAGER_CHACHE){
+			MANAGER_CHACHE.clear();
+		}
+	}
 
 	/**
 	 * Reads all configuration properties from classpath and config file
