@@ -238,12 +238,22 @@ public abstract class HolidayManager {
 		if (systemProps.stringPropertyNames().contains(SYSTEM_CONFIG_PROPERTY)) {
 			String configFileName = 
 				systemProps.getProperty(SYSTEM_CONFIG_PROPERTY);
+			InputStream input = null;
 			try {
-				p.load(new FileInputStream(configFileName));
+				input = new FileInputStream(configFileName);
+				p.load(input);
 			} catch (IOException e) {
 				if (LOG.isLoggable(Level.WARNING)) {
 					LOG.warning("Cannot read specified configuration file "
 							+ configFileName + ". " + e.getMessage());
+				}
+			}finally{
+				if(input != null){
+					try {
+						input.close();
+					} catch (IOException e) {
+						LOG.warning("Could not close input stream for loading properties "+configFileName+".");
+					}
 				}
 			}
 		}
