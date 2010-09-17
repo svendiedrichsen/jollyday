@@ -33,6 +33,14 @@ import de.jollyday.config.Weekday;
 
 public class XMLUtil {
 
+	/**
+	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
+	 * this.
+	 * @param stream
+	 * @return The unmarshalled configuration.
+	 * @throws JAXBException
+	 * @throws IOException
+	 */
 	public static Configuration unmarshallConfiguration(InputStream stream) throws JAXBException, IOException {
 		if(stream == null){
 			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
@@ -49,8 +57,13 @@ public class XMLUtil {
 		}
 	}
 
-	public static final int getWeekday(Weekday w){
-		switch(w){
+	/**
+	 * Returns the <code>DateTimeConstants</code> value for the given weekday.
+	 * @param weekday
+	 * @return DateTimeConstants value.
+	 */
+	public static final int getWeekday(Weekday weekday){
+		switch(weekday){
 			case MONDAY: return DateTimeConstants.MONDAY;
 			case TUESDAY: return DateTimeConstants.TUESDAY;
 			case WEDNESDAY: return DateTimeConstants.WEDNESDAY;
@@ -59,10 +72,15 @@ public class XMLUtil {
 			case SATURDAY: return DateTimeConstants.SATURDAY;
 			case SUNDAY: return DateTimeConstants.SUNDAY;
 			default:
-				throw new IllegalArgumentException("Unknown weekday "+w);
+				throw new IllegalArgumentException("Unknown weekday "+weekday);
 		}
 	}
 
+	/**
+	 * Returns the <code>DateTimeConstants</code> value for the given month.
+	 * @param month
+	 * @return DateTimeConstants value.
+	 */
 	public static int getMonth(Month month) {
 		switch (month){
 			case JANUARY: return DateTimeConstants.JANUARY;
