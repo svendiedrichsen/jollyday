@@ -112,18 +112,16 @@ public class HolidayTest extends TestCase {
 	
 	@Test
 	public void testIsHolidayPerformance() throws Exception{
-		HolidayManager m = HolidayManager.getInstance("test");
 		LocalDate date = CalendarUtil.create(2010, 1, 1);
-		long start = System.currentTimeMillis();
-		m.isHoliday(date);
-		long duration = System.currentTimeMillis() - start;
-		LOG.log(Level.INFO, "isHoliday took "+duration+" millis for the first call.");
 		int count = 0;
 		long sumDuration = 0;
 		while(date.getYear() < 2011){
-			date = date.plusDays(1);
-			start = System.currentTimeMillis();
+			long start = System.currentTimeMillis();
+			HolidayManager m = HolidayManager.getInstance("test");
 			m.isHoliday(date);
+			long duration = System.currentTimeMillis() - start;
+			LOG.log(Level.INFO, "isHoliday took "+duration+" millis.");
+			date = date.plusDays(1);
 			duration = System.currentTimeMillis() - start;
 			count++;
 			sumDuration += duration;

@@ -107,6 +107,9 @@ public abstract class HolidayManager {
 		country = prepareCountryCode(country);
 		HolidayManager m = isManagerCachingEnabled() ? getFromCache(country) : null;
 		if(m == null){
+			if(LOG.isLoggable(Level.FINER)){
+				LOG.finer("Creating HolidayManager for country '"+country+"'. Caching enabled: "+isManagerCachingEnabled());
+			}
 			Properties props = readProperties();
 			String managerImplClass = null;
 			if (props.stringPropertyNames().contains(
