@@ -15,25 +15,131 @@
  */
 package de.jollyday.tests;
 
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 import junit.framework.Assert;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import de.jollyday.util.ResourceUtil;
 
 /**
+ * The Class ISOCodesTest.
+ * 
  * @author svdi1de
- *
  */
 public class ISOCodesTest {
+	
+	private static final int NUMBER_OF_ISOCOUNTRIES = 246;
+	
+	private Locale defaultLocale;
+	
+	/**
+	 * Inits
+	 */
+	@Before
+	public void init() {
+		defaultLocale = Locale.getDefault();
+		Locale.setDefault(Locale.ENGLISH);
+	}
+	
+	/**
+	 * Cleanup.
+	 */
+	@After
+	public void cleanup() {
+		Locale.setDefault(defaultLocale);
+	}
 
+	/**
+	 * Test iso codes.
+	 */
 	@Test
 	public void testISOCodes(){
 		Set<String> isoCodes = ResourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.", 246, isoCodes.size());
+		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+	}
+	
+	/**
+	 * Test iso codes.
+	 */
+	@Test
+	public void testISOCodesEN(){		
+		Set<String> isoCodes = ResourceUtil.getISOCodes();
+		Assert.assertNotNull(isoCodes);
+		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+	}	
+
+	/**
+	 * Test iso codes.
+	 */
+	@Test
+	public void testISOCodesDE(){
+		Locale.setDefault(Locale.GERMANY);
+		Set<String> isoCodes = ResourceUtil.getISOCodes();
+		Assert.assertNotNull(isoCodes);
+		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+	}
+	
+	/**
+	 * Test iso codes compare en with de.
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testISOCodesCompareENWithDE() throws IOException {
+		ResourceBundle en = load(Locale.ENGLISH);
+		ResourceBundle de = load(Locale.GERMANY);
+		compareL1WithL2(en, de);
+		compareL1WithL2(de, en);
+	}
+
+	/**
+	 * Compare l1 with l2.
+	 * 
+	 * @param l1
+	 *            the first language
+	 * @param l2
+	 *            the second language
+	 */
+	private void compareL1WithL2(ResourceBundle l1, ResourceBundle l2) {
+		Locale locale = "".equals(l2.getLocale().getCountry()) ? Locale.ENGLISH : l2.getLocale();
+		Enumeration<String> keys = l1.getKeys();
+		StringBuilder misses = new StringBuilder();
+		while (keys.hasMoreElements()) {
+			String propertyName = keys.nextElement();
+			if (!l2.containsKey(propertyName)) {				
+				misses.append(locale).append(" misses ").append(propertyName).append('\n');
+			}
+		}
+		if (misses.length() > 0) {
+			Assert.fail(misses.toString());
+		}
+	}
+
+	/**
+	 * Load.
+	 * 
+	 * @param filename
+	 *            the filename
+	 * @param locale
+	 *            the locale
+	 * 
+	 * @return the properties
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private ResourceBundle load(Locale locale) throws IOException {
+		return ResourceBundle.getBundle("descriptions.country_descriptions", locale);
 	}
 	
 }
