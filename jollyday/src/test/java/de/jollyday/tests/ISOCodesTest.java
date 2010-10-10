@@ -62,6 +62,7 @@ public class ISOCodesTest {
 	 */
 	@Test
 	public void testISOCodes(){
+		Locale.setDefault(defaultLocale);
 		Set<String> isoCodes = ResourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
 		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
