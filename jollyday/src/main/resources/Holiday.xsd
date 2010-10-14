@@ -79,13 +79,17 @@
 				type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
-			<element name="HinduHoliday" type="tns:HinduHoliday"
+            <element name="FixedWeekdayRelativeToFixed" type="tns:FixedWeekdayRelativeToFixed" maxOccurs="unbounded" minOccurs="0"></element>
+            <element name="HinduHoliday" type="tns:HinduHoliday"
 				maxOccurs="unbounded" minOccurs="0">
 			</element>
 			<element name="HebrewHoliday" type="tns:HebrewHoliday"
 				maxOccurs="unbounded" minOccurs="0">
 			</element>
-			<element name="EthiopianOrthodoxHoliday" type="tns:EthiopianOrthodoxHoliday" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="EthiopianOrthodoxHoliday"
+				type="tns:EthiopianOrthodoxHoliday" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
 		</sequence>
 
 
@@ -371,4 +375,17 @@
     		<enumeration value="MESKEL"></enumeration>
     	</restriction>
     </simpleType>
+
+	<complexType name="FixedWeekdayRelativeToFixed">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="day" type="tns:Fixed"></element>
+				</sequence>
+				<attribute name="which" type="tns:Which"></attribute>
+				<attribute name="weekday" type="tns:Weekday"></attribute>
+				<attribute name="when" type="tns:When"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
 </schema>
