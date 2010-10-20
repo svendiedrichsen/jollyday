@@ -176,7 +176,7 @@ public class XMLManager extends HolidayManager {
 	 */
 	@Override
 	public void init(String country) throws Exception {
-		String fileName = FILE_PREFIX+ "_" + country + FILE_SUFFIX;
+		String fileName = getConfigurationFileName(country);
 		configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResourceAsStream(fileName));
 		validateConfigurationHierarchy(configuration);
 		if (LOG.isLoggable(Level.FINER)) {
@@ -187,6 +187,15 @@ public class XMLManager extends HolidayManager {
 						+ c.getHierarchy() + ").");
 			}
 		}
+	}
+
+	/**
+	 * Returns the configuration file name for the country.
+	 * @param country
+	 * @return file name
+	 */
+	public static String getConfigurationFileName(String country) {
+		return FILE_PREFIX+ "_" + country + FILE_SUFFIX;
 	}
 
 
