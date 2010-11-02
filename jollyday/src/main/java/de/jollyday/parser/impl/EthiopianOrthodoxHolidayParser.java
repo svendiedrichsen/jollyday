@@ -20,10 +20,12 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.EthiopianOrthodoxHoliday;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
+import de.jollyday.util.XMLUtil;
 
 /**
  * Calculates the ethiopian orthodox holidays.
@@ -38,7 +40,9 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (EthiopianOrthodoxHoliday h : config.getEthiopianOrthodoxHoliday()) {
-			if(!isValid(h, year)) continue;
+			if(!isValid(h, year)) {
+				continue;
+			}
 			Set<LocalDate> ethiopianHolidays = null;
 			switch(h.getType()){
 			case TIMKAT:
@@ -54,8 +58,9 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 					throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type "+h.getType());
 			}
 			String propertiesKey = "ethiopian.orthodox."+h.getType().name();
+			HolidayType type = XMLUtil.getType(h.getLocalizedType());
 			for(LocalDate d : ethiopianHolidays){
-				holidays.add(new Holiday(d, propertiesKey));
+				holidays.add(new Holiday(d, propertiesKey, type));
 			}
 		}
 	}

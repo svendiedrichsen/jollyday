@@ -20,6 +20,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToWeekdayInMonth;
 import de.jollyday.config.When;
@@ -37,13 +38,16 @@ public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 	@Override
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(RelativeToWeekdayInMonth rtfw : config.getRelativeToWeekdayInMonth()){
-			if(!isValid(rtfw, year)) continue;
+			if(!isValid(rtfw, year)) {
+				continue;
+			}
 			LocalDate date = parse(year, rtfw.getFixedWeekday());
 			int direction = ( rtfw.getWhen() == When.BEFORE ? -1 : 1 );
 			while(date.getDayOfWeek() != XMLUtil.getWeekday(rtfw.getWeekday())){
 				date = date.plusDays(direction);
 			}
-			holidays.add(new Holiday(date, rtfw.getDescriptionPropertiesKey()));
+			HolidayType type = XMLUtil.getType(rtfw.getLocalizedType());
+			holidays.add(new Holiday(date, rtfw.getDescriptionPropertiesKey(), type));
 		}
 	}
 	

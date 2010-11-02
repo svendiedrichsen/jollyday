@@ -20,6 +20,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.FixedWeekdayBetweenFixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
@@ -38,7 +39,9 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(FixedWeekdayBetweenFixed fwm : config.getFixedWeekdayBetweenFixed()){
-			if(!isValid(fwm, year)) continue;
+			if(!isValid(fwm, year)) {
+				continue;
+			}
 			LocalDate from = CalendarUtil.create(year, fwm.getFrom());
 			LocalDate to = CalendarUtil.create(year, fwm.getTo());
 			LocalDate result = null;
@@ -50,7 +53,8 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 				from = from.plusDays(1);
 			}
 			if(result != null){
-				holidays.add(new Holiday(result, fwm.getDescriptionPropertiesKey()));
+				HolidayType type = XMLUtil.getType(fwm.getLocalizedType());
+				holidays.add(new Holiday(result, fwm.getDescriptionPropertiesKey(), type));
 			}
 		}
 	}

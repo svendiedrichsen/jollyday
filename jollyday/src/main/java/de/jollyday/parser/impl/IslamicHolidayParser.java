@@ -21,10 +21,12 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.IslamicHoliday;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
+import de.jollyday.util.XMLUtil;
 
 /**
  * This parser calculates gregorian dates for the different islamic holidays.
@@ -37,7 +39,9 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(IslamicHoliday i : config.getIslamicHoliday()){
-			if(!isValid(i, year)) continue;
+			if(!isValid(i, year)) {
+				continue;
+			}
 			Set<LocalDate> islamicHolidays = null;
 			switch(i.getType()){
 			case NEWYEAR:
@@ -71,8 +75,9 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 				throw new IllegalArgumentException("Unknown islamic holiday "+i.getType());
 			}
 			String propertiesKey = "islamic." + i.getType().name();
+			HolidayType type = XMLUtil.getType(i.getLocalizedType());
 			for(LocalDate d : islamicHolidays){
-				holidays.add(new Holiday(d, propertiesKey));
+				holidays.add(new Holiday(d, propertiesKey, type));
 			}
 		}
 	}

@@ -26,12 +26,19 @@ import javax.xml.bind.Unmarshaller;
 
 import org.joda.time.DateTimeConstants;
 
+import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Month;
 import de.jollyday.config.Weekday;
+import de.jollyday.holidaytype.LocalizedHolidayType;
 
 
 public class XMLUtil {
+	
+	/**
+	 * the package name to search for the generated java classes.
+	 */
+	public static final String PACKAGE = "de.jollyday.config";
 
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
@@ -41,6 +48,7 @@ public class XMLUtil {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unchecked")
 	public static Configuration unmarshallConfiguration(InputStream stream) throws JAXBException, IOException {
 		if(stream == null){
 			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
@@ -99,10 +107,22 @@ public class XMLUtil {
 				throw new IllegalArgumentException("Unknown month "+month);
 		}
 	}
-
+	
 	/**
-	 * the package name to search for the generated java classes.
+	 * Gets the type.
+	 * 
+	 * @param type
+	 *            the type of holiday in the config
+	 * 
+	 * @return the type of holiday
 	 */
-	public static final String PACKAGE = "de.jollyday.config";
+	public static HolidayType getType(de.jollyday.config.HolidayType type) {
+		switch (type) {
+			case OFFICIAL_HOLIDAY: return LocalizedHolidayType.OFFICIAL_HOLIDAY;
+			case UNOFFICIAL_HOLIDAY: return LocalizedHolidayType.UNOFFICIAL_HOLIDAY;
+			default:
+				throw new IllegalArgumentException("Unknown type " + type);
+		}
+	}
 	
 }

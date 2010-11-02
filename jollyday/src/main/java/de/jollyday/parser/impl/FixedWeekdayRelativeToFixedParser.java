@@ -20,6 +20,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.FixedWeekdayRelativeToFixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.When;
@@ -40,7 +41,9 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(FixedWeekdayRelativeToFixed f : config.getFixedWeekdayRelativeToFixed()){
-			if(!isValid(f, year)) continue;
+			if(!isValid(f, year)) {
+				continue;
+			}
 			// parsing fixed day
 			LocalDate day = CalendarUtil.create(year, f.getDay());
 			do{
@@ -61,7 +64,8 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 			}
 			// move day further if it is second, third or fourth weekday
 			day = f.getWhen() == When.AFTER ? day.plusDays(days) : day.minusDays(days);
-			holidays.add(new Holiday(day, f.getDescriptionPropertiesKey()));
+			HolidayType type = XMLUtil.getType(f.getLocalizedType());
+			holidays.add(new Holiday(day, f.getDescriptionPropertiesKey(), type));
 		}
 	}
 

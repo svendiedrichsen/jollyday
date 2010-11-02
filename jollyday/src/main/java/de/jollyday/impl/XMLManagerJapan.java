@@ -21,6 +21,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.holidaytype.LocalizedHolidayType;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -47,7 +48,7 @@ public class XMLManagerJapan extends XMLManager {
 			LocalDate twoDaysLater = d.getDate().plusDays(2);
 			if(CalendarUtil.contains(holidays, twoDaysLater)){
 				LocalDate bridgingDate = twoDaysLater.minusDays(1);
-				additionalHolidays.add(new Holiday(bridgingDate, BRIDGING_HOLIDAY_PROPERTIES_KEY));
+				additionalHolidays.add(new Holiday(bridgingDate, BRIDGING_HOLIDAY_PROPERTIES_KEY, LocalizedHolidayType.OFFICIAL_HOLIDAY));
 			}
 		}
 		holidays.addAll(additionalHolidays);

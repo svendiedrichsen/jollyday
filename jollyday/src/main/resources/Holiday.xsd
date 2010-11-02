@@ -218,6 +218,13 @@
 		</complexContent>
 	</complexType>
 
+	<simpleType name="HolidayType">
+		<restriction base="string">
+			<enumeration value="OFFICIAL_HOLIDAY" />
+			<enumeration value="UNOFFICIAL_HOLIDAY" />
+		</restriction>
+	</simpleType>
+
 	<simpleType name="ChristianHolidayType">
 		<restriction base="string">
 			<enumeration value="GOOD_FRIDAY"></enumeration>
@@ -254,10 +261,11 @@
 	</complexType>
 
 	<complexType name="Holiday" abstract="true">
-		<attribute name="validFrom" type="int" use="optional"></attribute>
-		<attribute name="validTo" type="int"></attribute>
-		<attribute name="every" type="tns:HolidayCycleType"></attribute>
-		<attribute name="descriptionPropertiesKey" type="string"></attribute>
+		<attribute name="validFrom" type="int" use="optional" />
+		<attribute name="validTo" type="int" />
+		<attribute name="every" type="tns:HolidayCycleType" />
+		<attribute name="descriptionPropertiesKey" type="string" />
+		<attribute name="localizedType" type="tns:HolidayType" default="OFFICIAL_HOLIDAY" />
 	</complexType>
 
 

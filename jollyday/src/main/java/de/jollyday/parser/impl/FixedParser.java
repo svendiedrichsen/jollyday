@@ -20,19 +20,33 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.Fixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
+import de.jollyday.util.XMLUtil;
 
+/**
+ * The Class FixedParser.
+ * Parses a fixed date
+ * 
+ * @author tboven
+ */
 public class FixedParser extends AbstractHolidayParser {
 
+	/* (non-Javadoc)
+	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
+	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(Fixed f : config.getFixed()){
-			if(!isValid(f, year)) continue;
+			if(!isValid(f, year)) {
+				continue;
+			}
 			LocalDate date = CalendarUtil.create(year, f);
 			LocalDate movedDate = moveDate(f, date);
-			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey());
+			HolidayType type = XMLUtil.getType(f.getLocalizedType());
+			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey(), type);
 			holidays.add(h);
 		}
 	}

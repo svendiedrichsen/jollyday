@@ -41,11 +41,20 @@ public final class Holiday {
 	 * The properties key to retrieve the description with. 
 	 */
 	private final String propertiesKey;
+	
+	/** 
+	 * The type of holiday.
+	 * e.g. official holiday or not. 
+	 * */
+	private final HolidayType typeHoliday;
+	
 	/**
 	 * Constructs a holiday for a date using the provided properties
 	 * key to retrieve the description with.
 	 */
-	public Holiday(LocalDate date, String propertiesKey){
+	public Holiday(LocalDate date, String propertiesKey, HolidayType type){
+		super();
+		this.typeHoliday = type;
 		this.date = date;
 		this.propertiesKey = propertiesKey == null ? "" : propertiesKey;
 	}
@@ -85,10 +94,13 @@ public final class Holiday {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == this) return true;
+		if(obj == this) {
+			return true;
+		}
 		if(obj instanceof Holiday){
 			Holiday other = (Holiday) obj;
-			return other.date.equals(this.date) && other.propertiesKey == this.propertiesKey;
+			return other.date.equals(this.date) && other.propertiesKey == this.propertiesKey
+					&& typeHoliday.equals(other.typeHoliday);
 		}
 		return false;
 	}
@@ -113,5 +125,14 @@ public final class Holiday {
 	@Override
 	public String toString() {
 		return date.toString() + " (" + getDescription() + ")";
+	}
+
+	/**
+	 * Gets the type holiday.
+	 * 
+	 * @return the type holiday
+	 */
+	public HolidayType getTypeHoliday() {
+		return typeHoliday;
 	}
 }

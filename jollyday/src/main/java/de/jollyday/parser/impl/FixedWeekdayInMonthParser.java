@@ -20,6 +20,7 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
 import de.jollyday.config.FixedWeekdayInMonth;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.Which;
@@ -27,16 +28,37 @@ import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
+/**
+ * The Class FixedWeekdayInMonthParser.
+ * 
+ * @author tboven
+ */
 public class FixedWeekdayInMonthParser extends AbstractHolidayParser{
 
+	/* (non-Javadoc)
+	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
+	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for(FixedWeekdayInMonth fwm : config.getFixedWeekday()){
-			if(!isValid(fwm, year)) continue;
+			if(!isValid(fwm, year)) {
+				continue;
+			}
 			LocalDate date = parse(year, fwm);
-			holidays.add(new Holiday(date, fwm.getDescriptionPropertiesKey()));
+			HolidayType type = XMLUtil.getType(fwm.getLocalizedType());
+			holidays.add(new Holiday(date, fwm.getDescriptionPropertiesKey(), type));
 		}
 	}
 
+	/**
+	 * Parses the.
+	 * 
+	 * @param year
+	 *            the year
+	 * @param fwm
+	 *            the fwm
+	 * 
+	 * @return the local date
+	 */
 	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
 		LocalDate date = CalendarUtil.create(year, XMLUtil.getMonth(fwm.getMonth()), 1);
 		int direction = 1;
