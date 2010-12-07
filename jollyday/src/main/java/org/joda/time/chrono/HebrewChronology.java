@@ -15,13 +15,19 @@
  */
 package org.joda.time.chrono;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.joda.time.Chronology;
+import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
+import org.joda.time.Days;
+import org.joda.time.Hours;
+import org.joda.time.chrono.hebrew.MoladPeriod;
+import org.joda.time.chrono.hebrew.Parts;
 
 /**
  * @author Sven Diedrichsen
@@ -30,6 +36,9 @@ import org.joda.time.DateTimeZone;
 public class HebrewChronology extends BasicChronology {
 
 	private static final long serialVersionUID = -4095519300332478503L;
+
+	private static DateMidnight MIN_TISHRI = new DateMidnight(108, Calendar.SEPTEMBER, 22, GregorianChronology.getInstanceUTC());
+	private static MoladPeriod MIN_TISHRI_MOLAD = new MoladPeriod(Days.days(7), Hours.hours(9), Parts.parts(957));
 	
     /** The lowest year that can be fully supported. */
     private static final int MIN_YEAR = -292269054;
@@ -44,8 +53,6 @@ public class HebrewChronology extends BasicChronology {
 	private static final long LEAP_CYCLE_YEARS = 19L;
 	private static final long LEAP_CYCLE_MILLIS = 12L * 12L * SYNODIC_MONTH_MILLIS  + 7L * 13L * SYNODIC_MONTH_MILLIS ;
 	
-	private static final DateTime BEGIN; 
-
 	private static Map<DateTimeZone, HebrewChronology> cCache = new HashMap<DateTimeZone, HebrewChronology>();
 	
 	/* Caches the calculated millis for a given year */
@@ -55,12 +62,11 @@ public class HebrewChronology extends BasicChronology {
 	
     /** Singleton instance of a UTC HinduChronology */
     private static final HebrewChronology INSTANCE_UTC;
+    
     static {
-    	// init after static fields
-    	BEGIN = new DateTime(-3761,DateTimeConstants.OCTOBER, 7, 0,0,0,0, JulianChronology.getInstanceUTC());
     	INSTANCE_UTC = getInstance(DateTimeZone.UTC);
     }
-
+    
     public static HebrewChronology getInstance(){
     	return getInstance(DateTimeZone.getDefault());
     }
@@ -104,7 +110,7 @@ public class HebrewChronology extends BasicChronology {
     
 	@Override
 	int getYear(long instant) {
-		long hebrewMillis = instant - BEGIN.getMillis();
+		long hebrewMillis = instant - MIN_TISHRI.getMillis();
 		long year = ((hebrewMillis / SYNODIC_MONTH_MILLIS - hebrewMillis / LEAP_CYCLE_MILLIS * 7L) / 12L) + 1;
 		return (int)year;
 	}
@@ -159,7 +165,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getApproxMillisAtEpochDividedByTwo() {
-		return BEGIN.getMillis() / 2;
+		return MIN_TISHRI.getMillis() / 2;
 	}
 
 	/* (non-Javadoc)
@@ -244,7 +250,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	int getMinYear() {
-		return MIN_YEAR;
+		return MIN_TISHRI.getYear();
 	}
 
 	/* (non-Javadoc)
@@ -318,7 +324,7 @@ public class HebrewChronology extends BasicChronology {
 	@Override
 	long getYearMillis(int year) {
 		if(!YEAR_MILLIS.containsKey(Integer.valueOf(year))){
-			long millis = BEGIN.getMillis(); 
+			long millis = MIN_TISHRI.getMillis(); 
 			for(int y = 1; y < year; y++){
 				millis += ((long)getDaysInHebrewYear(y)) * DateTimeConstants.MILLIS_PER_DAY;
 			}
