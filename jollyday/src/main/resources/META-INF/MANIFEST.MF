@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: de.jollyday;uses:="org.joda.time",
  de.jollyday.holidaytype;uses:="de.jollyday"
-Bundle-Version: 4.0.0
+Bundle-Version: 0.4.0
 Tool: Bundlor 1.0.0.RELEASE
 Bundle-Name: Jollyday
 Bundle-ManifestVersion: 2
@@ -9,4 +9,4 @@ Import-Package: javax.xml.bind,javax.xml.bind.annotation,javax.xml.nam
  espace,junit.framework,junit.textui,org.joda.time,org.joda.time.base,
  org.junit
 Bundle-SymbolicName: Jollyday
-
+Bundle-Description: A bundle which provides a service for calculating holidays.
