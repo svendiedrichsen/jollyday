@@ -209,7 +209,7 @@ public class HolidayTest extends TestCase {
 		Assert.assertFalse(supportedCountryCodes.isEmpty());
 		for(String country : supportedCountryCodes){
 			HolidayManager manager = HolidayManager.getInstance(country);
-			Assert.assertNotNull(manager);
+			Assert.assertNotNull("Manager for country "+country+" is NULL.", manager);
 		}
 	}
 	

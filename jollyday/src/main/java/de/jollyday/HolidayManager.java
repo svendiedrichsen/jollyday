@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -51,10 +52,6 @@ public abstract class HolidayManager {
 	 * System property to define overriding configuration file.
 	 */
 	private static final String SYSTEM_CONFIG_PROPERTY = "de.jollyday.config";
-	/**
-	 *  Configuration property for the list of supported countries.
-	 */
-	private static final String MANAGER_SUPPORTED_COUNTRIES = "manager.supported.countries";
 	/**
 	 * Configuration property for the implementing Manager class
 	 */
@@ -91,9 +88,18 @@ public abstract class HolidayManager {
 	 * @throws Exception
 	 */
 	public static final HolidayManager getInstance() throws Exception {
-		return getInstance(null);
+		return getInstance((String)null);
 	}
 
+	/**
+	 * Returns a HolidayManager for the provided country. 
+	 * @param c Country
+	 * @return HolidayManager
+	 * @throws Exception
+	 */
+	public static final HolidayManager getInstance(Country c) throws Exception {
+		return getInstance(c.getId());
+	}
 	/**
 	 * Creates an HolidayManager instance. The implementing HolidayManager class will be read
 	 * from the jollyday.properties file. If the country is NULL or an empty string the
@@ -303,12 +309,8 @@ public abstract class HolidayManager {
  	 */
 	public static Set<String> getSupportedCountryCodes() throws Exception{
 		Set<String> supportedCountries = new HashSet<String>();
-		Properties p = readProperties();
-		if(p.stringPropertyNames().contains(MANAGER_SUPPORTED_COUNTRIES)){
-			String strSupportedCountries = p.getProperty(MANAGER_SUPPORTED_COUNTRIES);
-			if(null != strSupportedCountries){
-				supportedCountries.addAll(Arrays.asList(strSupportedCountries.split(",")));
-			}
+		for(Country c : Country.values()){
+			supportedCountries.add(c.getId());
 		}
 		return supportedCountries;
 	}
