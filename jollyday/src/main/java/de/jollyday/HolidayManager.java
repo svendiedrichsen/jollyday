@@ -31,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.joda.time.LocalDate;
+import org.joda.time.ReadableInterval;
 
 import de.jollyday.util.CalendarUtil;
 
@@ -332,7 +333,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Returns the the holidays for the requested year and hierarchy structure.
+	 * Returns the holidays for the requested year and hierarchy structure.
 	 * 
 	 * @param year
 	 *            i.e. 2010
@@ -342,6 +343,15 @@ public abstract class HolidayManager {
 	 * @return the list of holidays for the requested year
 	 */
 	abstract public Set<Holiday> getHolidays(int year, String... args);
+
+	/**
+	 * Returns the holidays for the requested interval and hierarchy structure.
+	 * 
+	 * @param interval the interval in which the holidays lie.
+	 * @param args
+	 * @return list of holidays within the interval
+	 */
+	abstract public Set<Holiday> getHolidays(ReadableInterval interval, String... args);
 
 	/**
 	 * Initializes the implementing manager for the provided country.

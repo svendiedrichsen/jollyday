@@ -27,6 +27,8 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.joda.time.ReadableInterval;
+
 import de.jollyday.CountryHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
@@ -78,6 +80,25 @@ public class XMLManager extends HolidayManager {
 	@Override
 	public Set<Holiday> getHolidays(int year, String... args) {
 		return getHolidays(year, configuration, args);
+	}
+	
+	/**
+	 * Calls <code>getHolidays(year, args)</code> for each year within the interval
+	 * and returns a list of holidays which are then contained in the interval.
+	 */
+	@Override
+	public Set<Holiday> getHolidays(ReadableInterval interval, String... args) {
+		Set<Holiday> holidays = new HashSet<Holiday>();
+		for (int year = interval.getStart().getYear(); year <= interval
+				.getEnd().getYear(); year++) {
+			Set<Holiday> yearHolidays = getHolidays(year, args);
+			for (Holiday h : yearHolidays) {
+				if (interval.contains(h.getDate().toDateMidnight())) {
+					holidays.add(h);
+				}
+			}
+		}
+		return holidays;
 	}
 
 	/**
