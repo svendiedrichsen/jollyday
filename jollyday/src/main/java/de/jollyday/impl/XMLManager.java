@@ -88,6 +88,9 @@ public class XMLManager extends HolidayManager {
 	 */
 	@Override
 	public Set<Holiday> getHolidays(ReadableInterval interval, String... args) {
+		if(interval == null){
+			throw new IllegalArgumentException("Interval is NULL.");
+		}
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		for (int year = interval.getStart().getYear(); year <= interval
 				.getEnd().getYear(); year++) {
