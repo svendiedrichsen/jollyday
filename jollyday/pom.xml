@@ -19,6 +19,14 @@
 				<role>Developer</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>tboven</id>
+			<email>tim.boven@telenet.be</email>
+			<name>Tim Boven</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
 	</developers>
 	<issueManagement>
 		<system>Sourceforge</system>
