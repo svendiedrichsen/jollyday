@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tns:Configuration hierarchy="mx" description="Mexico"
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
 		<tns:Fixed month="FEBRUARY" day="19"/>
 		<tns:Fixed month="FEBRUARY" day="24" validFrom="1937"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tns:Configuration hierarchy="is" description="Iceland"
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
@@ -18,14 +18,14 @@
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
 		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="COMMERCE_DAY"/>
-		<tns:FixedWeekdayRelativeFixed which="FIRST" weekday="THURSDAY" when="AFTER" descriptionPropertiesKey="FIRST_DAY_SUMMER">
-			<tns:Fixed month="APRIL" day="18"/>
-		</tns:FixedWeekdayRelativeFixed>
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:FixedWeekdayBetweenFixed weekday="FRIDAY" descriptionPropertiesKey="HUSBANDS_DAY">
 			<tns:from month="JANUARY" day="19" />
 			<tns:to month="JANUARY" day="25" />
 		</tns:FixedWeekdayBetweenFixed>
+		<tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="THURSDAY" when="AFTER" descriptionPropertiesKey="FIRST_DAY_SUMMER">
+			<tns:day month="APRIL" day="18"/>
+		</tns:FixedWeekdayRelativeToFixed>
 	</tns:Holidays>
 </tns:Configuration>

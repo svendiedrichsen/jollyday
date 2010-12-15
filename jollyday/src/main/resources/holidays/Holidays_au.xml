@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tns:Configuration hierarchy="au" description="Australia"
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="26" validTo="2007" descriptionPropertiesKey="NATIONAL_DAY"/>
 		<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="ANZAC"/>
