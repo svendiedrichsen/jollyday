@@ -16,7 +16,7 @@
 		<tns:Fixed month="OCTOBER" day="12" />
 		<tns:Fixed month="NOVEMBER" day="1" />
 		<tns:Fixed month="DECEMBER" day="8" />
-		<tns:Fixed month="DECEMBER" day="24" />
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="31" />
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="SHROVE_MONDAY" />

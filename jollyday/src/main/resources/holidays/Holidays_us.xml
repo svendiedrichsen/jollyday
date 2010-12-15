@@ -41,7 +41,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Arkansas">
   	<tns:Holidays>
-		<tns:Fixed month="DECEMBER" day="24" />
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" />
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" />
@@ -155,7 +155,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="in" description="Indiana">
   	<tns:Holidays>
-		<tns:Fixed month="DECEMBER" day="24"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY"/>
 		</tns:RelativeToWeekdayInMonth>
@@ -172,7 +172,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ia" description="Iowa">
   	<tns:Holidays>
-		<tns:Fixed month="DECEMBER" day="24"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="31"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
@@ -190,7 +190,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ky" description="Kentucky">
   	<tns:Holidays>
-		<tns:Fixed month="DECEMBER" day="24"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="31"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
 			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
@@ -257,7 +257,7 @@
   <tns:SubConfigurations hierarchy="mi" description="Michigan">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="30"/>
-  		<tns:Fixed month="DECEMBER" day="24" />
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="DECEMBER" day="31" />
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
@@ -298,7 +298,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="mt" description="Montana">
   	<tns:Holidays>
-  		<tns:Fixed month="DECEMBER" day="24"/>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="DECEMBER" day="31"/>
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER">
@@ -386,7 +386,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nc" description="North Carolina">
   	<tns:Holidays>
-  		<tns:Fixed month="DECEMBER" day="24"/>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
   		</tns:RelativeToWeekdayInMonth>
@@ -474,7 +474,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="tn" description="Tennesee">
   	<tns:Holidays>
-  		<tns:Fixed month="DECEMBER" day="24"/>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
   			<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER"/>
@@ -486,7 +486,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="tx" description="Texas">
   	<tns:Holidays>
-  		<tns:Fixed month="DECEMBER" day="24"/>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="DECEMBER" day="26"/>
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967"/>
   		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">

@@ -6,7 +6,7 @@
 		<tns:Fixed month="APRIL" day="4"/>
 		<tns:Fixed month="MAY" day="1"/>
 		<tns:Fixed month="DECEMBER" day="26"/>
-		<tns:Fixed month="DECEMBER" day="24"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="JANUARY" day="1"/>
 		<tns:Fixed month="JANUARY" day="6"/>
 		<tns:Fixed month="MAY" day="13"/>
