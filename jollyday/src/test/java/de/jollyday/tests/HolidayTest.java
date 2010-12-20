@@ -136,17 +136,18 @@ public class HolidayTest extends TestCase {
 		c.set(Calendar.YEAR, 2010);
 		c.set(Calendar.MONTH, Calendar.FEBRUARY);
 		c.set(Calendar.DAY_OF_MONTH, 16);
-		Assert.assertFalse("This date should NOT be a doliday.", m.isHoliday(c));
+		Assert.assertFalse("This date should NOT be a holiday.", m.isHoliday(c));
 		c.add(Calendar.DAY_OF_YEAR, 1);
-		Assert.assertTrue("This date should be a doliday.", m.isHoliday(c));
+		Assert.assertTrue("This date should be a holiday.", m.isHoliday(c));
 	}
 	
 	@Test
 	public void testChronology() throws Exception{
+		GregorianChronology gregorianChronoUTC = GregorianChronology.getInstance(DateTimeZone.UTC);
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010);
 		for(Holiday d : holidays){
-			Assert.assertEquals("Wrong chronology.", GregorianChronology.getInstance(DateTimeZone.UTC), d.getDate().getChronology());
+			Assert.assertEquals("Wrong chronology.", gregorianChronoUTC, d.getDate().getChronology());
 		}
 	}
 
@@ -155,12 +156,12 @@ public class HolidayTest extends TestCase {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010);
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals("Wrong number of dates.", test_days.size(), holidays.size());
 		assertDates(test_days, holidays);
 	}
 
-	private void assertDates(Set<LocalDate> dates, Set<Holiday> holidays) {
-		for(LocalDate d : dates){
+	private void assertDates(Set<LocalDate> expected, Set<Holiday> holidays) {
+		Assert.assertEquals("Wrong number of dates.", expected.size(), holidays.size());
+		for(LocalDate d : expected){
 			if(!CalendarUtil.contains(holidays, d)){
 				fail("Missing "+d+" in "+holidays);
 			}
@@ -172,7 +173,6 @@ public class HolidayTest extends TestCase {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1");
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals("Wrong number of dates.", test_days_l1.size(), holidays.size());
 		assertDates(test_days_l1, holidays);
 	}
 
@@ -181,7 +181,6 @@ public class HolidayTest extends TestCase {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1", "level2");
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals("Wrong number of dates.", test_days_l2.size(), holidays.size());
 		assertDates(test_days_l2, holidays);
 	}
 
@@ -191,7 +190,6 @@ public class HolidayTest extends TestCase {
 		Set<Holiday> holidays = m.getHolidays(2010, "level11");
 		Assert.assertNotNull(holidays);
 		assertDates(test_days_l11, holidays);
-
 	}
 
 	@Test(expected=IllegalArgumentException.class)
@@ -204,12 +202,12 @@ public class HolidayTest extends TestCase {
 	
 	@Test
 	public void testAllAvailableManagers() throws Exception{
-		Set<String> supportedCountryCodes = HolidayManager.getSupportedCountryCodes();
-		Assert.assertNotNull(supportedCountryCodes);
-		Assert.assertFalse(supportedCountryCodes.isEmpty());
-		for(String country : supportedCountryCodes){
-			HolidayManager manager = HolidayManager.getInstance(country);
-			Assert.assertNotNull("Manager for country "+country+" is NULL.", manager);
+		Set<String> supportedCalendarCodes = HolidayManager.getSupportedCalendarCodes();
+		Assert.assertNotNull(supportedCalendarCodes);
+		Assert.assertFalse(supportedCalendarCodes.isEmpty());
+		for(String calendar : supportedCalendarCodes){
+			HolidayManager manager = HolidayManager.getInstance(calendar);
+			Assert.assertNotNull("Manager for calendar "+calendar+" is NULL.", manager);
 		}
 	}
 	

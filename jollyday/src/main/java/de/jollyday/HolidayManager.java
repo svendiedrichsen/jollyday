@@ -303,15 +303,15 @@ public abstract class HolidayManager {
 	}
 	
 	/**
-	 * Returns a set of all currently supported country codes.
-	 * @return Set of supported country codes.
+	 * Returns a set of all currently supported calendar codes.
+	 * @return Set of supported calendar codes.
  	 */
-	public static Set<String> getSupportedCountryCodes() throws Exception{
-		Set<String> supportedCountries = new HashSet<String>();
+	public static Set<String> getSupportedCalendarCodes() throws Exception{
+		Set<String> supportedCalendars = new HashSet<String>();
 		for(HolidayCalendar c : HolidayCalendar.values()){
-			supportedCountries.add(c.getId());
+			supportedCalendars.add(c.getId());
 		}
-		return supportedCountries;
+		return supportedCalendars;
 	}
 
 
