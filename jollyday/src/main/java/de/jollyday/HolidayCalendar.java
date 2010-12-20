@@ -87,7 +87,7 @@ public enum HolidayCalendar {
 	UNITED_KINGDOM("UK"),
 	URUGUAY("UY"),
 	VENEZUELA("VE"),
-	NYSE("nyse");
+	NYSE("NYSE");
 
 	private String id;
 	
