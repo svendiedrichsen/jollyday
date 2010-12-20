@@ -26,7 +26,7 @@ public class HolidayFITest extends AbstractCountryTestBase {
 
 	@Test
 	public void testManagerFIStructure() throws Exception{
-		validateCountryData(ISO_CODE, YEAR);
+		validateCalendarData(ISO_CODE, YEAR);
 	}
 	
 }

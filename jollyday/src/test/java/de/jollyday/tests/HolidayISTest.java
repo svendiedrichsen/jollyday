@@ -30,7 +30,7 @@ public class HolidayISTest extends AbstractCountryTestBase {
 
 	@Test
 	public void testManagerISStructure() throws Exception{
-		validateCountryData(ISO_CODE, YEAR);
+		validateCalendarData(ISO_CODE, YEAR);
 	}
 
 

@@ -18,12 +18,12 @@ package de.jollyday;
 import java.util.Locale;
 
 /**
- * This enum provides a list of all supported countries.
+ * This enum provides a list of all supported holiday calendars.
  * 
  * @author Sven
  *
  */
-public enum Country {
+public enum HolidayCalendar {
 	
 	ALBANIA("AL"),
 	ARGENTINA("AR"),
@@ -90,7 +90,7 @@ public enum Country {
 
 	private String id;
 	
-	private Country(String id) {
+	private HolidayCalendar(String id) {
 		this.id = id;
 	}
 	

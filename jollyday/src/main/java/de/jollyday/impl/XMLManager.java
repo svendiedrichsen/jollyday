@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 
 import org.joda.time.ReadableInterval;
 
-import de.jollyday.CountryHierarchy;
+import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
 import de.jollyday.config.Configuration;
@@ -261,7 +261,7 @@ public class XMLManager extends HolidayManager {
 	 * to call getHolidays()/isHoliday().
 	 */
 	@Override
-	public CountryHierarchy getHierarchy() {
+	public CalendarHierarchy getCalendarHierarchy() {
 		return createConfigurationHierarchy(configuration, null);
 	}
 	
@@ -271,10 +271,10 @@ public class XMLManager extends HolidayManager {
 	 * @param c
 	 * @return configuration hierarchy
 	 */
-	private static CountryHierarchy createConfigurationHierarchy(Configuration c, CountryHierarchy h) {
-		h =  new CountryHierarchy(h, c.getHierarchy());
+	private static CalendarHierarchy createConfigurationHierarchy(Configuration c, CalendarHierarchy h) {
+		h =  new CalendarHierarchy(h, c.getHierarchy());
 		for(Configuration sub : c.getSubConfigurations()){
-			CountryHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
+			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
 			h.getChildren().put(subHierarchy.getId(), subHierarchy);
 		}
 		return h;

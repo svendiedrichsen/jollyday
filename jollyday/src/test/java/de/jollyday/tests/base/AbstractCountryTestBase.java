@@ -23,29 +23,37 @@ import junit.framework.TestCase;
 
 import org.junit.Assert;
 
-import de.jollyday.CountryHierarchy;
+import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
 
 /**
  * @author svdi1de
- *
+ * 
  */
 public abstract class AbstractCountryTestBase extends TestCase {
 
 	/**
 	 * Compares two hierarchy structure by traversing down.
-	 * @param expected This is the test structure which is how it should be.
-	 * @param found This is the real live data structure.
+	 * 
+	 * @param expected
+	 *            This is the test structure which is how it should be.
+	 * @param found
+	 *            This is the real live data structure.
 	 */
-	protected void compareHierarchies(CountryHierarchy expected, CountryHierarchy found) {
+	protected void compareHierarchies(CalendarHierarchy expected,
+			CalendarHierarchy found) {
 		Assert.assertNotNull("Null description", found.getDescription());
-		Assert.assertEquals("Wrong hierarchy id.", expected.getId(), found.getId());
-		Assert.assertEquals("Number of children wrong.", expected.getChildren().size(), found.getChildren().size());
-		for(String id : expected.getChildren().keySet()){
-			Assert.assertTrue("Missing "+id+" within "+found.getId(), found.getChildren().containsKey(id));
-			compareHierarchies(expected.getChildren().get(id), found.getChildren().get(id));
+		Assert.assertEquals("Wrong hierarchy id.", expected.getId(),
+				found.getId());
+		Assert.assertEquals("Number of children wrong.", expected.getChildren()
+				.size(), found.getChildren().size());
+		for (String id : expected.getChildren().keySet()) {
+			Assert.assertTrue("Missing " + id + " within " + found.getId(),
+					found.getChildren().containsKey(id));
+			compareHierarchies(expected.getChildren().get(id), found
+					.getChildren().get(id));
 		}
 	}
 
@@ -53,39 +61,47 @@ public abstract class AbstractCountryTestBase extends TestCase {
 	 * @param testManager
 	 * @param m
 	 */
-	protected void compareData(HolidayManager expected, HolidayManager found, int year) {
-		CountryHierarchy expectedHierarchy = expected.getHierarchy();
+	protected void compareData(HolidayManager expected, HolidayManager found,
+			int year) {
+		CalendarHierarchy expectedHierarchy = expected.getCalendarHierarchy();
 		ArrayList<String> args = new ArrayList<String>();
 		compareDates(expected, found, expectedHierarchy, args, year);
 	}
 
-	private void compareDates(HolidayManager expected, HolidayManager found, CountryHierarchy h,
-			List<String> args, int year) {
-				Set<Holiday> expectedHolidays = expected.getHolidays(year, args.toArray(new String[]{}));
-				Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[]{}));
-				for(Holiday expectedHoliday : expectedHolidays){
-					Assert.assertNotNull("Description is null.", expectedHoliday.getDescription());
-					if(!CalendarUtil.contains(foundHolidays, expectedHoliday.getDate())){
-						fail("Could not find "+expectedHoliday+" in "+h.getDescription()+" - "+foundHolidays);
-					}
-				}
-				for(String id : h.getChildren().keySet()){
-					ArrayList<String> newArgs = new ArrayList<String>(args);
-					newArgs.add(id);
-					compareDates(expected, found, h.getChildren().get(id), newArgs, year);
-				}
+	private void compareDates(HolidayManager expected, HolidayManager found,
+			CalendarHierarchy h, List<String> args, int year) {
+		Set<Holiday> expectedHolidays = expected.getHolidays(year,
+				args.toArray(new String[] {}));
+		Set<Holiday> foundHolidays = found.getHolidays(year,
+				args.toArray(new String[] {}));
+		for (Holiday expectedHoliday : expectedHolidays) {
+			Assert.assertNotNull("Description is null.",
+					expectedHoliday.getDescription());
+			if (!CalendarUtil
+					.contains(foundHolidays, expectedHoliday.getDate())) {
+				fail("Could not find " + expectedHoliday + " in "
+						+ h.getDescription() + " - " + foundHolidays);
 			}
+		}
+		for (String id : h.getChildren().keySet()) {
+			ArrayList<String> newArgs = new ArrayList<String>(args);
+			newArgs.add(id);
+			compareDates(expected, found, h.getChildren().get(id), newArgs,
+					year);
+		}
+	}
 
-	protected void validateCountryData(String countryCode, int year)
+	protected void validateCalendarData(String countryCode, int year)
 			throws Exception {
-				HolidayManager dataManager = HolidayManager.getInstance(countryCode);
-				HolidayManager testManager = HolidayManager.getInstance("test_"+countryCode+"_"+Integer.toString(year));
-			
-				CountryHierarchy dataHierarchy = dataManager.getHierarchy();
-				CountryHierarchy testHierarchy = testManager.getHierarchy();
-				
-				compareHierarchies(testHierarchy, dataHierarchy);
-				compareData(testManager, dataManager, year);
-			}
+		HolidayManager dataManager = HolidayManager.getInstance(countryCode);
+		HolidayManager testManager = HolidayManager.getInstance("test_"
+				+ countryCode + "_" + Integer.toString(year));
+
+		CalendarHierarchy dataHierarchy = dataManager.getCalendarHierarchy();
+		CalendarHierarchy testHierarchy = testManager.getCalendarHierarchy();
+
+		compareHierarchies(testHierarchy, dataHierarchy);
+		compareData(testManager, dataManager, year);
+	}
 
 }

@@ -26,7 +26,7 @@ public class HolidayBGTest extends AbstractCountryTestBase {
 
 	@Test
 	public void testManagerBGStructure() throws Exception{
-		validateCountryData(ISO_CODE, YEAR);
+		validateCalendarData(ISO_CODE, YEAR);
 	}
 	
 }

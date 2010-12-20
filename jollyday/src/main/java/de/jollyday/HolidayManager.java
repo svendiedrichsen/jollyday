@@ -96,7 +96,7 @@ public abstract class HolidayManager {
 	 * @return HolidayManager
 	 * @throws Exception
 	 */
-	public static final HolidayManager getInstance(Country c) throws Exception {
+	public static final HolidayManager getInstance(HolidayCalendar c) throws Exception {
 		return getInstance(c.getId());
 	}
 	/**
@@ -308,7 +308,7 @@ public abstract class HolidayManager {
  	 */
 	public static Set<String> getSupportedCountryCodes() throws Exception{
 		Set<String> supportedCountries = new HashSet<String>();
-		for(Country c : Country.values()){
+		for(HolidayCalendar c : HolidayCalendar.values()){
 			supportedCountries.add(c.getId());
 		}
 		return supportedCountries;
@@ -367,6 +367,6 @@ public abstract class HolidayManager {
 	 * 
 	 * @return
 	 */
-	abstract public CountryHierarchy getHierarchy();
+	abstract public CalendarHierarchy getCalendarHierarchy();
 
 }

@@ -25,10 +25,10 @@ import de.jollyday.util.ResourceUtil;
  * Bean class for describing the configuration hierarchy.
  * @author Sven Diedrichsen
  */
-public class CountryHierarchy {
+public class CalendarHierarchy {
 	private String id;
-	private Map<String, CountryHierarchy> children = new HashMap<String, CountryHierarchy>();
-	private final CountryHierarchy parent;
+	private Map<String, CalendarHierarchy> children = new HashMap<String, CalendarHierarchy>();
+	private final CalendarHierarchy parent;
 	
 	/**
 	 * Constructor which takes a eventually existing parent hierarchy node and
@@ -36,7 +36,7 @@ public class CountryHierarchy {
 	 * @param parent
 	 * @param id
 	 */
-	public CountryHierarchy(CountryHierarchy parent, String id){
+	public CalendarHierarchy(CalendarHierarchy parent, String id){
 		this.parent = parent;
 		this.id = id;
 	}
@@ -80,8 +80,8 @@ public class CountryHierarchy {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof CountryHierarchy){
-			return ((CountryHierarchy)obj).getId().equals(this.getId());
+		if(obj instanceof CalendarHierarchy){
+			return ((CalendarHierarchy)obj).getId().equals(this.getId());
 		}
 		return super.equals(obj);
 	}
@@ -97,13 +97,13 @@ public class CountryHierarchy {
 	/**
 	 * @param children the children to set
 	 */
-	public void setChildren(Map<String, CountryHierarchy> children) {
+	public void setChildren(Map<String, CalendarHierarchy> children) {
 		this.children = children;
 	}
 	/**
 	 * @return the children
 	 */
-	public Map<String, CountryHierarchy> getChildren() {
+	public Map<String, CalendarHierarchy> getChildren() {
 		return children;
 	}
 	

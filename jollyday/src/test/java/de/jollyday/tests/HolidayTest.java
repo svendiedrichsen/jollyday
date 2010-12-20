@@ -32,7 +32,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jollyday.CountryHierarchy;
+import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
@@ -98,10 +98,10 @@ public class HolidayTest extends TestCase {
 	@Test
 	public void testBaseStructure() throws Exception{
 		HolidayManager m = HolidayManager.getInstance("test");
-		CountryHierarchy h = m.getHierarchy();
+		CalendarHierarchy h = m.getCalendarHierarchy();
 		Assert.assertEquals("Wrong id.", "test", h.getId());
 		Assert.assertEquals("Wrong number of children on first level.", 2, h.getChildren().size());
-		for(CountryHierarchy hi : h.getChildren().values()){
+		for(CalendarHierarchy hi : h.getChildren().values()){
 			if(hi.getId().equalsIgnoreCase("level1")){
 				Assert.assertEquals("Wrong number of children on second level of level 1.", 1, hi.getChildren().size());
 			}else if(hi.getId().equalsIgnoreCase("level11")){
