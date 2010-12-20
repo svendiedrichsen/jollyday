@@ -86,7 +86,8 @@ public enum HolidayCalendar {
 	UNITED_STATES(Locale.US.getCountry()),
 	UNITED_KINGDOM("UK"),
 	URUGUAY("UY"),
-	VENEZUELA("VE");
+	VENEZUELA("VE"),
+	NYSE("nyse");
 
 	private String id;
 	
