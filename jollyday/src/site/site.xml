@@ -8,6 +8,11 @@
 	  <src>images/jolly.gif</src>
 	  <href>https://sourceforge.net/projects/jollyday</href>
   </bannerLeft>
+  <bannerRight>
+  	<href>http://sourceforge.net/projects/jollyday</href>
+  	<src>http://sflogo.sourceforge.net/sflogo.php?group_id=299729&amp;type=16</src>
+  	<alt>Get Jollyday at SourceForge.net. Fast, secure and Free Open Source software downloads</alt>
+  </bannerRight>
   <body>
     <links>
       <item name="Jollyday" href="http://sourceforge.net/projects/jollyday/" />
