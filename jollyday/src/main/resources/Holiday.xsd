@@ -314,6 +314,7 @@
 			<enumeration value="4_YEARS"></enumeration>
 			<enumeration value="6_YEARS"></enumeration>
 			<enumeration value="2_YEARS"></enumeration>
+			<enumeration value="5_YEARS"></enumeration>
 		</restriction>
 	</simpleType>
 
