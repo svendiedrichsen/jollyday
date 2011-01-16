@@ -16,14 +16,20 @@
 package de.jollyday.impl;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -63,6 +69,9 @@ public class XMLManager extends HolidayManager {
 	 * suffix of the config files.
 	 */
 	private static final String FILE_SUFFIX = ".xml";
+	
+	private static final ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();
+
 	/**
 	 * Parser cache by XML class name.
 	 */
@@ -79,7 +88,9 @@ public class XMLManager extends HolidayManager {
 	 */
 	@Override
 	public Set<Holiday> getHolidays(int year, String... args) {
-		return getHolidays(year, configuration, args);
+		Set<Holiday> holidaySet = Collections.synchronizedSet(new HashSet<Holiday>());
+		getHolidays(year, configuration, holidaySet, args);
+		return holidaySet;
 	}
 	
 	/**
@@ -109,12 +120,11 @@ public class XMLManager extends HolidayManager {
 	 * fills the list of holidays.
 	 * @param year
 	 * @param c
+	 * @param holidaySet
 	 * @param args
-	 * @return
 	 */
-	private Set<Holiday> getHolidays(int year, Configuration c,
+	private void getHolidays(int year, Configuration c, Set<Holiday> holidaySet,
 			String... args) {
-		Set<Holiday> holidaySet = new HashSet<Holiday>();
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Adding holidays for " + c.getDescription());
 		}
@@ -123,14 +133,10 @@ public class XMLManager extends HolidayManager {
 			String hierarchy = args[0];
 			for (Configuration config : c.getSubConfigurations()) {
 				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
-					Set<Holiday> subHolidays = 
-						getHolidays(year, config, Arrays.copyOfRange(args, 1, args.length));
-					holidaySet.addAll(subHolidays);
-					break;
+					getHolidays(year, config, holidaySet, Arrays.copyOfRange(args, 1, args.length));
 				}
 			}
 		}
-		return holidaySet;
 	}
 	
 	/**
@@ -141,9 +147,43 @@ public class XMLManager extends HolidayManager {
 	 */
 	private void parseHolidays(int year, Set<Holiday> holidays,
 			Holidays config) {
-		for (HolidayParser p : getParsers(config)) {
-			p.parse(year, holidays, config);
+		Collection<HolidayParser> parsers = getParsers(config);
+		List<Future> futures = new ArrayList<Future>(parsers.size());
+		for (HolidayParser p : parsers) {
+			futures.add(newCachedThreadPool.submit(new HolidayParserRunner(year, holidays, config, p)));
 		}
+		for(Future f : futures){
+			try {
+				f.get();
+			} catch (InterruptedException e) {
+				throw new IllegalStateException("Error during holiday parsing.", e);
+			} catch (ExecutionException e) {
+				throw new IllegalStateException("Error during holiday parsing.", e.getCause());
+			}
+		}
+	}
+	
+	private class HolidayParserRunner implements Runnable{
+
+		private final int year;
+		private final Set<Holiday> holidays;
+		private final Holidays config;
+		private final HolidayParser parser;
+
+		public HolidayParserRunner(int year, Set<Holiday> holidays,
+			Holidays config, HolidayParser parser)
+		{
+			this.year = year;
+			this.holidays = holidays;
+			this.config = config;
+			this.parser = parser;
+		}
+		
+		@Override
+		public void run() {
+			parser.parse(year, holidays, config);
+		}
+		
 	}
 	
 	/**
