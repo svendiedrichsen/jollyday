@@ -3,7 +3,7 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
-		<tns:Fixed month="JANUARY" day="1" />
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="JANUARY" day="7" />
 		<tns:Fixed month="MARCH" day="8" />
 		<tns:Fixed month="MAY" day="1" />
