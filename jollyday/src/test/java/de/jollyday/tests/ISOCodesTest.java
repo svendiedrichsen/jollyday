@@ -32,7 +32,7 @@ import de.jollyday.util.ResourceUtil;
 /**
  * The Class ISOCodesTest.
  * 
- * @author svdi1de
+ * @author Sven
  */
 public class ISOCodesTest {
 	

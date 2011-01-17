@@ -20,7 +20,7 @@ import org.joda.time.DurationField;
 import org.joda.time.DurationFieldType;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class PartsDurationFieldType extends DurationFieldType{

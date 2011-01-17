@@ -20,7 +20,7 @@ import org.joda.time.PeriodType;
 import org.joda.time.base.BaseSingleFieldPeriod;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class Parts extends BaseSingleFieldPeriod {

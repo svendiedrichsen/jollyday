@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class ResourceUtil {

@@ -27,7 +27,7 @@ import org.junit.Test;
 import de.jollyday.util.CalendarUtil;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class UtilTest {

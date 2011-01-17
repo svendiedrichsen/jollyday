@@ -18,7 +18,7 @@ package org.joda.time.chrono.hebrew;
 import org.joda.time.PeriodType;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class PartsPeriodType extends PeriodType{

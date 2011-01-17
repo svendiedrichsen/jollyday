@@ -23,7 +23,7 @@ import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class HinduHolidayParser extends AbstractHolidayParser {

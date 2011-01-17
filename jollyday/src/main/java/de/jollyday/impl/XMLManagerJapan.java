@@ -25,7 +25,7 @@ import de.jollyday.holidaytype.LocalizedHolidayType;
 import de.jollyday.util.CalendarUtil;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class XMLManagerJapan extends XMLManager {

@@ -23,7 +23,7 @@ import org.joda.time.chrono.HebrewChronology;
 import org.junit.Test;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class TestHebrewChronology {

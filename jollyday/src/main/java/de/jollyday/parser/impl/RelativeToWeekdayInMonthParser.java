@@ -27,7 +27,7 @@ import de.jollyday.config.When;
 import de.jollyday.util.XMLUtil;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {

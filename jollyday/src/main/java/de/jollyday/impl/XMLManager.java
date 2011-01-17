@@ -91,9 +91,9 @@ public class XMLManager extends HolidayManager {
 	@Override
 	public Set<Holiday> getHolidays(int year, String... args) {
 		Set<Holiday> holidaySet = Collections.synchronizedSet(new HashSet<Holiday>());
-		List<Future> futures = new ArrayList<Future>();
+		List<Future<?>> futures = new ArrayList<Future<?>>();
 		getHolidays(year, configuration, holidaySet, futures, args);
-		for(Future f : futures){
+		for(Future<?> f : futures){
 			try {
 				f.get();
 			} catch (InterruptedException e) {
@@ -138,7 +138,7 @@ public class XMLManager extends HolidayManager {
 	 * @param args
 	 */
 	private void getHolidays(int year, Configuration c, Set<Holiday> holidaySet,
-			List<Future> futures, String... args) {
+			List<Future<?>> futures, String... args) {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Adding holidays for " + c.getDescription());
 		}
@@ -161,7 +161,7 @@ public class XMLManager extends HolidayManager {
 	 * @param config
 	 */
 	private void parseHolidays(int year, Set<Holiday> holidays,
-			Holidays config, List<Future> futures) {
+			Holidays config, List<Future<?>> futures) {
 		Collection<HolidayParser> parsers = getParsers(config);
 		for (HolidayParser p : parsers) {
 			futures.add(PARSER_THREAD_POOL.submit(new HolidayParserRunner(year, holidays, config, p)));
@@ -170,7 +170,7 @@ public class XMLManager extends HolidayManager {
 	
 	/**
 	 * Private class which is used to asyncronisly parse holiday configuration.
-	 * @author svdi1de
+	 * @author Sven
 	 *
 	 */
 	private class HolidayParserRunner implements Runnable{

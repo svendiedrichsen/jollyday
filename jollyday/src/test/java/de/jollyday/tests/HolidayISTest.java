@@ -20,7 +20,7 @@ import org.junit.Test;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class HolidayISTest extends AbstractCountryTestBase {

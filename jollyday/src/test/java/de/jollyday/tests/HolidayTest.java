@@ -38,7 +38,7 @@ import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
 
 /**
- * @author svdi1de
+ * @author Sven
  *
  */
 public class HolidayTest extends TestCase {
