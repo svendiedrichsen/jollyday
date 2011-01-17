@@ -6,13 +6,13 @@
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="JANUARY" day="6" />
 		<tns:Fixed month="APRIL" day="19" />
-		<tns:Fixed month="MAY" day="1" />
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="18" />
 		<tns:Fixed month="JUNE" day="19" />
 		<tns:Fixed month="JULY" day="18" />
 		<tns:Fixed month="AUGUST" day="25" />
 		<tns:Fixed month="NOVEMBER" day="2" />
-		<tns:Fixed month="DECEMBER" day="25"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" />
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="CARNIVAL"/>

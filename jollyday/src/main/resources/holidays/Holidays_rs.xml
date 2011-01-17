@@ -8,7 +8,7 @@
 		<tns:Fixed month="JANUARY" day="7" />
 		<tns:Fixed month="JANUARY" day="27" />
 		<tns:Fixed month="FEBRUARY" day="15" />
-		<tns:Fixed month="MAY" day="1" />
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="2" />
 		<tns:Fixed month="MAY" day="9" />
 		<tns:Fixed month="JUNE" day="6" />
