@@ -21,7 +21,7 @@ import org.junit.Test;
  * @author Sven
  *
  */
-public class TestHebrewChronology {
+public class HebrewChronologyTest {
 
 	@Test
 	public void test(){

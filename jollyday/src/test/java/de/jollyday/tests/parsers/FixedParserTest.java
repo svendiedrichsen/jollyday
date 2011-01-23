@@ -41,7 +41,7 @@ import de.jollyday.util.CalendarUtil;
  * @author Sven
  * 
  */
-public class FixedTests{
+public class FixedParserTest{
 
 	private FixedParser fixedParser = new FixedParser();
 
