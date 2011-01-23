@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import junit.framework.Assert;
-import junit.framework.TestCase;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.DateTimeZone;
@@ -41,7 +40,7 @@ import de.jollyday.util.CalendarUtil;
  * @author Sven
  *
  */
-public class HolidayTest extends TestCase {
+public class HolidayTest {
 
 	private final static Logger LOG = Logger.getLogger(HolidayTest.class.getName());
 	
@@ -89,10 +88,7 @@ public class HolidayTest extends TestCase {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testMissingCountry() throws Exception{
-		try{
-			HolidayManager.getInstance("XXX");
-			fail("Expected some IllegalArgumentException for this missing country.");
-		}catch(IllegalArgumentException e){}
+		HolidayManager.getInstance("XXX");
 	}
 	
 	@Test
@@ -163,7 +159,7 @@ public class HolidayTest extends TestCase {
 		Assert.assertEquals("Wrong number of dates.", expected.size(), holidays.size());
 		for(LocalDate d : expected){
 			if(!CalendarUtil.contains(holidays, d)){
-				fail("Missing "+d+" in "+holidays);
+				Assert.fail("Missing "+d+" in "+holidays);
 			}
 		}
 	}
@@ -194,10 +190,7 @@ public class HolidayTest extends TestCase {
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testFail() throws Exception{
-		try{
-			HolidayManager.getInstance("test_fail");
-			fail("Should have thrown an IllegalArgumentException.");
-		}catch(IllegalArgumentException e){}
+		HolidayManager.getInstance("test_fail");
 	}
 	
 	@Test

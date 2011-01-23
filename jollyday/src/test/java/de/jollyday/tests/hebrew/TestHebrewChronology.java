@@ -15,11 +15,6 @@
  */
 package de.jollyday.tests.hebrew;
 
-import junit.framework.Assert;
-
-import org.joda.time.LocalDate;
-import org.joda.time.chrono.GregorianChronology;
-import org.joda.time.chrono.HebrewChronology;
 import org.junit.Test;
 
 /**

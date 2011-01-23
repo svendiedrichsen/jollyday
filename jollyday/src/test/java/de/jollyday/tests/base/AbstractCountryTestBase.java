@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.TestCase;
-
 import org.junit.Assert;
 
 import de.jollyday.CalendarHierarchy;
@@ -32,7 +30,7 @@ import de.jollyday.util.CalendarUtil;
  * @author Sven
  * 
  */
-public abstract class AbstractCountryTestBase extends TestCase {
+public abstract class AbstractCountryTestBase {
 
 	/**
 	 * Compares two hierarchy structure by traversing down.
@@ -79,7 +77,7 @@ public abstract class AbstractCountryTestBase extends TestCase {
 					expectedHoliday.getDescription());
 			if (!CalendarUtil
 					.contains(foundHolidays, expectedHoliday.getDate())) {
-				fail("Could not find " + expectedHoliday + " in "
+				Assert.fail("Could not find " + expectedHoliday + " in "
 						+ h.getDescription() + " - " + foundHolidays);
 			}
 		}
