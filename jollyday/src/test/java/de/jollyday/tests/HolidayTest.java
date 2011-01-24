@@ -116,7 +116,6 @@ public class HolidayTest {
 			HolidayManager m = HolidayManager.getInstance("test");
 			m.isHoliday(date);
 			long duration = System.currentTimeMillis() - start;
-			LOG.log(Level.INFO, "isHoliday took "+duration+" millis.");
 			date = date.plusDays(1);
 			duration = System.currentTimeMillis() - start;
 			count++;
