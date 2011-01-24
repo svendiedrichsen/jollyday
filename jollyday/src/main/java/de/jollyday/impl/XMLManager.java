@@ -253,12 +253,23 @@ public class XMLManager extends HolidayManager {
 		String fileName = getConfigurationFileName(country);
 		configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResourceAsStream(fileName));
 		validateConfigurationHierarchy(configuration);
+		logHierarchy(configuration, 0);
+	}
+
+	/**
+	 * Logs the hierarchy structure.
+	 * @param c Configuration to log hierarchy for.
+	 */
+	private static void logHierarchy(Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
-			LOG.finer("Found configuration for "
-					+ configuration.getDescription());
-			for (Configuration c : configuration.getSubConfigurations()) {
-				LOG.finer("Sub-configuration " + c.getDescription() + "("
-						+ c.getHierarchy() + ").");
+			String space = "";
+			for(int i = 0; i < level;i++){
+				space += "-";
+			}
+			LOG.finer(space+c.getDescription()+ "("
+					+ c.getHierarchy() + ").");
+			for (Configuration sub : c.getSubConfigurations()) {
+				logHierarchy(sub, level+1);
 			}
 		}
 	}
