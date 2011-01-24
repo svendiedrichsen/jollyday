@@ -15,6 +15,7 @@
  */
 package de.jollyday.tests;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -171,9 +172,19 @@ public class UtilTest {
 	}
 	
 	@Test
-	public void testCalendarUtilEaster(){
+	public void testCalendarUtilEasterJulian(){
 		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(1583, 3, 31, JulianChronology.getInstance()), CalendarUtil.getEasterSunday(1583));
+	}
+
+	@Test
+	public void testCalendarUtilEasterGregorian(){
 		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(1584, 4, 1, GregorianChronology.getInstance()), CalendarUtil.getEasterSunday(1584));
+	}
+
+	@Test
+	public void testCalendarUtilToday(){
+		LocalDate today = new LocalDate(Calendar.getInstance(), GregorianChronology.getInstance());
+		Assert.assertEquals("Wrong date.", today, CalendarUtil.create());
 	}
 
 
