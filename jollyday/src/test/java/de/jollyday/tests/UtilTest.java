@@ -95,5 +95,71 @@ public class UtilTest {
 		Assert.assertEquals("Wrong number of islamic IdAlFitr holidays in 2009.", expected.size(), holidays.size());
 		Assert.assertEquals("Wrong islamic IdAlFitr holidays in 2009.", expected, holidays);
 	}
+	
+	@Test
+	public void testEaster2000(){
+		checkEasterDate(2000,4,23);
+	}
+	@Test
+	public void testEaster2001(){
+		checkEasterDate(2001,4,15);
+	}
+	@Test
+	public void testEaster2002(){
+		checkEasterDate(2002,3,31);
+	}
+	@Test
+	public void testEaster2003(){
+		checkEasterDate(2003,4,20);
+	}
+	@Test
+	public void testEaster2004(){
+		checkEasterDate(2004,4,11);
+	}
+	@Test
+	public void testEaster2005(){
+		checkEasterDate(2005,3,27);
+	}
+	@Test
+	public void testEaster2006(){
+		checkEasterDate(2006,4,16);
+	}
+	@Test
+	public void testEaster2007(){
+		checkEasterDate(2007,4,8);
+	}
+	@Test
+	public void testEaster2008(){
+		checkEasterDate(2008,3,23);
+	}
+
+	@Test
+	public void testEaster2009(){
+		checkEasterDate(2009,4,12);
+	}
+	@Test
+	public void testEaster2010(){
+		checkEasterDate(2010,4,4);
+	}
+	@Test
+	public void testEaster2011(){
+		checkEasterDate(2011,4,24);
+	}
+	@Test
+	public void testEaster2012(){
+		checkEasterDate(2012,4,8);
+	}
+	@Test
+	public void testEaster2013(){
+		checkEasterDate(2013,3,31);
+	}
+
+	/**
+	 * @param year
+	 * @param monthDay
+	 */
+	public void checkEasterDate(Integer year, int month, int day) {
+		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(year, month, day), CalendarUtil.getEasterSunday(year));
+	}
 
 }
