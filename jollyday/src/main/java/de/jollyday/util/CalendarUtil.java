@@ -63,7 +63,7 @@ public abstract class CalendarUtil {
 	 * @param year
 	 * @return Chronology
 	 */
-	private static Chronology getChronology(int year) {
+	public static Chronology getChronology(int year) {
 		return ( year <= 1583 ? JulianChronology.getInstance() : GregorianChronology.getInstance());
 	}
 
