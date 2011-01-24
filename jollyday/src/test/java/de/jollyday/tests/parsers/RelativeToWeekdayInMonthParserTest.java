@@ -18,9 +18,10 @@ package de.jollyday.tests.parsers;
 import java.util.HashSet;
 import java.util.Set;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
-import junit.framework.Assert;
 import de.jollyday.Holiday;
 import de.jollyday.config.FixedWeekdayInMonth;
 import de.jollyday.config.Holidays;
@@ -34,22 +35,22 @@ import de.jollyday.util.CalendarUtil;
 
 /**
  * @author svdi1de
- *
+ * 
  */
 public class RelativeToWeekdayInMonthParserTest {
 
 	private RelativeToWeekdayInMonthParser rtwim = new RelativeToWeekdayInMonthParser();
-	
+
 	@Test
-	public void testEmpty(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testEmpty() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		rtwim.parse(2011, result, config);
 		Assert.assertTrue("Result is not empty.", result.isEmpty());
 	}
-	
+
 	@Test
-	public void testInvalid(){
+	public void testInvalid() {
 		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
@@ -67,7 +68,7 @@ public class RelativeToWeekdayInMonthParserTest {
 	}
 
 	@Test
-	public void testTueAfter2ndMondayJuly(){
+	public void testTueAfter2ndMondayJuly() {
 		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
@@ -81,7 +82,8 @@ public class RelativeToWeekdayInMonthParserTest {
 		config.getRelativeToWeekdayInMonth().add(rule);
 		rtwim.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 7, 12), result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 7, 12),
+				result.iterator().next().getDate());
 	}
 
 }

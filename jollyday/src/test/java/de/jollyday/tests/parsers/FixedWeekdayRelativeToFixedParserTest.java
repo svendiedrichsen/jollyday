@@ -35,23 +35,23 @@ import de.jollyday.util.CalendarUtil;
 
 /**
  * @author Sven
- *
+ * 
  */
 public class FixedWeekdayRelativeToFixedParserTest {
 
 	private FixedWeekdayRelativeToFixedParser fwrtf = new FixedWeekdayRelativeToFixedParser();
-	
+
 	@Test
-	public void testEmpty(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testEmpty() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		fwrtf.parse(2011, result, config);
 		Assert.assertTrue("Result is not empty.", result.isEmpty());
 	}
-	
+
 	@Test
-	public void testInvalid(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testInvalid() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.FIRST);
@@ -68,8 +68,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testParserFirstBefore(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testParserFirstBefore() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.FIRST);
@@ -82,12 +82,13 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 24), result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 24),
+				result.iterator().next().getDate());
 	}
 
 	@Test
-	public void testParserSecondBefore(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testParserSecondBefore() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.SECOND);
@@ -100,12 +101,13 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 17), result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 17),
+				result.iterator().next().getDate());
 	}
 
 	@Test
-	public void testParserThirdAfter(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testParserThirdAfter() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.THIRD);
@@ -118,12 +120,13 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 2, 14), result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 2, 14),
+				result.iterator().next().getDate());
 	}
 
 	@Test
-	public void testParserFourthAfter(){
-		Set<Holiday> result =new HashSet<Holiday>();
+	public void testParserFourthAfter() {
+		Set<Holiday> result = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.FOURTH);
@@ -136,7 +139,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 4, 12), result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 4, 12),
+				result.iterator().next().getDate());
 	}
 
 }
