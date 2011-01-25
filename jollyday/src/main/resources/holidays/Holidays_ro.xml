@@ -4,14 +4,15 @@
 	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
-		<tns:Fixed month="JANUARY" day="2" />
+		<tns:Fixed month="JANUARY" day="2" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="AUGUST" day="15" />
-		<tns:Fixed month="DECEMBER" day="1" />
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="NAVY_DAY"/>
+		<tns:Fixed month="DECEMBER" day="1" descriptionPropertiesKey="NATIONAL_DAY"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
-		<tns:Fixed month="DECEMBER" day="26" />
-		<tns:ChristianHoliday type="EASTER" />
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN"/>
+		<tns:ChristianHoliday type="PENTECOST" chronology="JULIAN" />
 		<tns:ChristianHoliday type="WHIT_MONDAY" chronology="JULIAN" />
 	</tns:Holidays>
 </tns:Configuration>

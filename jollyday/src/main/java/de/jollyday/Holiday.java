@@ -114,6 +114,7 @@ public final class Holiday {
 	    	int hash = 1;
 	    	hash = hash * 31 + date.hashCode();
 	    	hash = hash * 31 + propertiesKey.hashCode();
+	    	hash = hash * 31 + typeHoliday.hashCode();
 	    	hashCode = hash;
 	    }
 	    return hashCode;
