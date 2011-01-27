@@ -41,7 +41,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	protected <T extends Holiday> boolean isValid(T h, int year) {
 		return isValidInYear(h, year) && isValidForCycle(h, year);  
 	}
-
+	
 	/**
 	 * Checks cyclic holidays and checks if the requested year is
 	 * hit within the cycles.
@@ -51,20 +51,30 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @return is valid
 	 */
 	private <T extends Holiday> boolean isValidForCycle(T h, int year) {
-		if(h.getValidFrom() != null && h.getEvery() != null){
-			int cycleYears = 0;
-			if("2_YEARS".equalsIgnoreCase(h.getEvery())){
-				cycleYears = 2;
-			}else if("4_YEARS".equalsIgnoreCase(h.getEvery())){
-				cycleYears = 4;
-			}else if("6_YEARS".equalsIgnoreCase(h.getEvery())){
-				cycleYears = 6;
-			}else if("5_YEARS".equalsIgnoreCase(h.getEvery())){
-				cycleYears = 5;
-			}else{
-				throw new IllegalArgumentException("Cannot handle unknown cycle type '"+h.getEvery()+"'.");
+		if(h.getEvery() != null){
+			if(!"EVERY_YEAR".equals(h.getEvery())){
+				if("ODD_YEARS".equals(h.getEvery())){
+					return year % 2 != 0; 
+				}else if("EVEN_YEARS".equals(h.getEvery())){
+					return year % 2 == 0;
+				}else{
+					if(h.getValidFrom() != null){
+						int cycleYears = 0;
+						if("2_YEARS".equalsIgnoreCase(h.getEvery())){
+							cycleYears = 2;
+						}else if("4_YEARS".equalsIgnoreCase(h.getEvery())){
+							cycleYears = 4;
+						}else if("6_YEARS".equalsIgnoreCase(h.getEvery())){
+							cycleYears = 6;
+						}else if("5_YEARS".equalsIgnoreCase(h.getEvery())){
+							cycleYears = 5;
+						}else{
+							throw new IllegalArgumentException("Cannot handle unknown cycle type '"+h.getEvery()+"'.");
+						}
+						return (year - h.getValidFrom().intValue()) % cycleYears == 0;
+					}
+				}
 			}
-			return (year - h.getValidFrom().intValue()) % cycleYears == 0;
 		}
 		return true;
 	}

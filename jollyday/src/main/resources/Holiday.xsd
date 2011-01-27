@@ -263,9 +263,10 @@
 	<complexType name="Holiday" abstract="true">
 		<attribute name="validFrom" type="int" use="optional" />
 		<attribute name="validTo" type="int" />
-		<attribute name="every" type="tns:HolidayCycleType" />
+		<attribute name="every" type="tns:HolidayCycleType" default="EVERY_YEAR" />
 		<attribute name="descriptionPropertiesKey" type="string" />
-		<attribute name="localizedType" type="tns:HolidayType" default="OFFICIAL_HOLIDAY" />
+		<attribute name="localizedType" type="tns:HolidayType"
+			default="OFFICIAL_HOLIDAY" />
 	</complexType>
 
 
@@ -309,14 +310,6 @@
 		</complexContent>
 	</complexType>
 
-	<simpleType name="HolidayCycleType">
-		<restriction base="string">
-			<enumeration value="4_YEARS"></enumeration>
-			<enumeration value="6_YEARS"></enumeration>
-			<enumeration value="2_YEARS"></enumeration>
-			<enumeration value="5_YEARS"></enumeration>
-		</restriction>
-	</simpleType>
 
 
 	<complexType name="MoveableHoliday" abstract="true">
@@ -397,4 +390,17 @@
 			</extension>
 		</complexContent>
 	</complexType>
+
+
+	<simpleType name="HolidayCycleType">
+		<restriction base="string">
+			<enumeration value="EVERY_YEAR"></enumeration>
+			<enumeration value="2_YEARS"></enumeration>
+			<enumeration value="4_YEARS"></enumeration>
+			<enumeration value="5_YEARS"></enumeration>
+			<enumeration value="6_YEARS"></enumeration>
+			<enumeration value="ODD_YEARS"></enumeration>
+			<enumeration value="EVEN_YEARS"></enumeration>
+		</restriction>
+	</simpleType>
 </schema>
