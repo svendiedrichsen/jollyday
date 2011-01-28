@@ -7,13 +7,13 @@
 		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
 		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey="PATRIOT"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="18" />
-		<tns:Fixed month="JUNE" day="19" descriptionPropertiesKey=""/>
+		<tns:Fixed month="MAY" day="18" descriptionPropertiesKey="LAS_PIEDRAS"/>
+		<tns:Fixed month="JUNE" day="19" descriptionPropertiesKey="ARTIGAS"/>
 		<tns:Fixed month="JULY" day="18" descriptionPropertiesKey="CONSTITUTION_DAY"/>
 		<tns:Fixed month="AUGUST" day="25" descriptionPropertiesKey="INDEPENDENCE"/>
 		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
-		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey=""/>
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="RACE"/>
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="CARNIVAL"/>
 		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>

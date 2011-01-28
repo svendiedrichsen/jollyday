@@ -6,13 +6,13 @@
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
 		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
-		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey=""/>
+		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey="REPUBLIC_DAY"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey=""/>
+		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="CARABOBO"/>
 		<tns:Fixed month="JULY" day="5" descriptionPropertiesKey="INDEPENDENCE"/>
-		<tns:Fixed month="JULY" day="24" descriptionPropertiesKey=""/>
-		<tns:Fixed month="AUGUST" day="3" validFrom="2006" descriptionPropertiesKey="FALG_DAY"/>
-		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey=""/>
+		<tns:Fixed month="JULY" day="24" descriptionPropertiesKey="NAVY_DAY"/>
+		<tns:Fixed month="AUGUST" day="3" validFrom="2006" descriptionPropertiesKey="FLAG_DAY"/>
+		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="INDIGENOUS_RESISTANCE"/>
 		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
 		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
 		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
