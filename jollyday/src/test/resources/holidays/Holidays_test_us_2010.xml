@@ -49,7 +49,6 @@
 		<tns:Fixed month="MARCH" day="31" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
-  		<tns:Fixed month="NOVEMBER" day="26" />
   	</tns:Holidays>
   	<tns:SubConfigurations hierarchy="be" description="Berkeley">
   		<tns:Holidays>
@@ -76,7 +75,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="de" description="Delaware">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="APRIL" day="2" />
@@ -84,7 +82,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="dc" description="District of Columbia">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -92,7 +89,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="fl" description="Florida">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -100,7 +96,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ga" description="Georgia">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -110,9 +105,7 @@
   <tns:SubConfigurations hierarchy="hi" description="Hawaii">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="26" />
-  		<tns:Fixed month="APRIL" day="15" />
   		<tns:Fixed month="JUNE" day="11" />
-  		<tns:Fixed month="AUGUST" day="3" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="APRIL" day="2" />
@@ -129,7 +122,6 @@
   	<tns:Holidays>
   		<tns:Fixed month="FEBRUARY" day="12" />
 		<tns:Fixed month="NOVEMBER" day="2" />
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -141,7 +133,6 @@
 		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="MAY" day="4"/>
 		<tns:Fixed month="NOVEMBER" day="2" />
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
 		<tns:Fixed month="APRIL" day="2" />
   		<tns:Fixed month="APRIL" day="5" />
@@ -151,13 +142,11 @@
   	<tns:Holidays>
 		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="31"/>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ks" description="Kansas">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -165,7 +154,6 @@
   	<tns:Holidays>
 		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="31"/>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
 		<tns:Fixed month="APRIL" day="2" />
   	</tns:Holidays>
@@ -179,7 +167,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="me" description="Maine">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -187,7 +174,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="md" description="Maryland">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -219,7 +205,6 @@
   		<tns:Fixed month="OCTOBER" day="30"/>
   		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="DECEMBER" day="31" />
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="APRIL" day="5" />
@@ -227,7 +212,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="mn" description="Minnesota">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   	</tns:Holidays>
@@ -252,7 +236,6 @@
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
   		<tns:Fixed month="DECEMBER" day="31"/>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="NOVEMBER" day="2" />
@@ -260,7 +243,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ne" description="Nebraska">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -269,7 +251,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nv" description="Nevada">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="29" />
@@ -277,7 +258,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nh" description="New Hampshire">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   	</tns:Holidays>
@@ -294,7 +274,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="nm" description="New Mexico">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="OCTOBER" day="11" />
   	</tns:Holidays>
@@ -317,7 +296,6 @@
   <tns:SubConfigurations hierarchy="nc" description="North Carolina">
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="APRIL" day="2" />
   	</tns:Holidays>
@@ -349,7 +327,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ok" description="Oklahoma">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   	</tns:Holidays>
@@ -362,7 +339,6 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="pa" description="Pennsylvania">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
@@ -377,7 +353,6 @@
   <tns:SubConfigurations hierarchy="sc" description="South Carolina">
   	<tns:Holidays>
   		<tns:Fixed month="MAY" day="10"/>
-  		<tns:Fixed month="DECEMBER" day="26"/>
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   	</tns:Holidays>
@@ -395,14 +370,11 @@
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="APRIL" day="2" />
-  		<tns:Fixed month="NOVEMBER" day="26" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="tx" description="Texas">
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
-  		<tns:Fixed month="DECEMBER" day="26"/>
-  		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   	</tns:Holidays>
@@ -420,7 +392,6 @@
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
-  		<tns:Fixed month="MARCH" day="1" />
   		<tns:Fixed month="AUGUST" day="16" />
   	</tns:Holidays>
   </tns:SubConfigurations>
@@ -430,12 +401,10 @@
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
   		<tns:Fixed month="JANUARY" day="15" />
-  		<tns:Fixed month="NOVEMBER" day="26" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="wa" description="Washington">
   	<tns:Holidays>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   	</tns:Holidays>
@@ -443,7 +412,6 @@
   <tns:SubConfigurations hierarchy="wv" description="West Virginia">
   	<tns:Holidays>
   		<tns:Fixed month="JUNE" day="20"/>
-		<tns:Fixed month="NOVEMBER" day="26" />
   		<tns:Fixed month="JANUARY" day="18" />
   		<tns:Fixed month="FEBRUARY" day="15" />
   		<tns:Fixed month="OCTOBER" day="11" />
