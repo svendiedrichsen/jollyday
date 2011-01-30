@@ -26,7 +26,7 @@ import de.jollyday.util.CalendarUtil;
 
 /**
  * @author Sven
- *
+ * 
  */
 public class XMLManagerJapan extends XMLManager {
 
@@ -36,23 +36,24 @@ public class XMLManagerJapan extends XMLManager {
 	private static final String BRIDGING_HOLIDAY_PROPERTIES_KEY = "BRIDGING_HOLIDAY";
 
 	/**
-	 * Implements the rule which requests if two holidays
-	 * have one non holiday between each other than this day
-	 * is also a holiday.
+	 * Implements the rule which requests if two holidays have one non holiday
+	 * between each other than this day is also a holiday.
 	 */
 	@Override
 	public Set<Holiday> getHolidays(int year, String... args) {
 		Set<Holiday> holidays = super.getHolidays(year, args);
 		Set<Holiday> additionalHolidays = new HashSet<Holiday>();
-		for(Holiday d : holidays){
+		for (Holiday d : holidays) {
 			LocalDate twoDaysLater = d.getDate().plusDays(2);
-			if(CalendarUtil.contains(holidays, twoDaysLater)){
+			if (CalendarUtil.contains(holidays, twoDaysLater)) {
 				LocalDate bridgingDate = twoDaysLater.minusDays(1);
-				additionalHolidays.add(new Holiday(bridgingDate, BRIDGING_HOLIDAY_PROPERTIES_KEY, LocalizedHolidayType.OFFICIAL_HOLIDAY));
+				additionalHolidays.add(new Holiday(bridgingDate,
+						BRIDGING_HOLIDAY_PROPERTIES_KEY,
+						LocalizedHolidayType.OFFICIAL_HOLIDAY));
 			}
 		}
 		holidays.addAll(additionalHolidays);
 		return holidays;
 	}
-	
+
 }

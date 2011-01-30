@@ -21,82 +21,35 @@ import java.util.Locale;
  * This enum provides a list of all supported holiday calendars.
  * 
  * @author Sven
- *
+ * 
  */
 public enum HolidayCalendar {
-	
-	ALBANIA("AL"),
-	ARGENTINA("AR"),
-	AUSTRIA("AT"),
-	AUSTRALIA("AU"),
-	BOSNIA_HERZIGOWINA("BA"),
-	BELGIUM("BE"),
-	BULGARIA("BG"),
-	BOLIVIA("BO"),
-	BRAZIL("BR"),
-	BELARUS("BY"),
-	CANADA(Locale.CANADA.getCountry()),
-	CHILE("CL"),
-	COOMBIA("CO"),
-	COSTA_RICA("CR"),
-	CROATIA("HR"),
-	CZECH_REPUBLIC("CZ"),
-	DENMARK("DK"),
-	ECUADOR("EC"),
-	ESTONIA("EE"),
-	ETHIOPIA("ET"),
-	FINLAND("FI"),
-	FRANCE(Locale.FRANCE.getCountry()),
-	GERMANY(Locale.GERMANY.getCountry()),
-	GREECE("GR"),
-	HUNGARY("HU"),
-	ICELAND("IS"),
-	IRELAND("IE"),
-	ITALY(Locale.ITALY.getCountry()),
-	JAPAN("JP"),
-	KAZAKHSTAN("KZ"),
-	LATVIA("LV"),
-	LIECHTENSTEIN("LI"),
-	LITHUANIA("LT"),
-	LUXEMBOURG("LU"),
-	MACEDONIA("MK"),
-	MALTA("MT"),
-	MEXICO("MX"),
-	MOLDOVA("MD"),
-	MONTENEGRO("ME"),
-	NETHERLANDS("NL"),
-	NICARAGUA("NI"),
-	NIGERIA("NG"),
-	NORWAY("NO"),
-	PANAMA("PA"),
-	PARAGUAY("PY"),
-	PERU("PE"),
-	POLAND("PL"),
-	PORTUGAL("PT"),
-	ROMANIA("RO"),
-	RUSSIA("RU"),
-	SERBIA("RS"),
-	SLOWAKIA("SK"),
-	SLOWENIA("SI"),
-	SOUTH_AFRICA("ZA"),
-	SPAIN("ES"),
-	SWEDEN("SE"),
-	SWITZERLAND("CH"),
-	UKRAINE("UA"),
-	UNITED_STATES(Locale.US.getCountry()),
-	UNITED_KINGDOM("UK"),
-	URUGUAY("UY"),
-	VENEZUELA("VE"),
-	NYSE("NYSE");
+
+	ALBANIA("AL"), ARGENTINA("AR"), AUSTRIA("AT"), AUSTRALIA("AU"), BOSNIA_HERZIGOWINA(
+			"BA"), BELGIUM("BE"), BULGARIA("BG"), BOLIVIA("BO"), BRAZIL("BR"), BELARUS(
+			"BY"), CANADA(Locale.CANADA.getCountry()), CHILE("CL"), COOMBIA(
+			"CO"), COSTA_RICA("CR"), CROATIA("HR"), CZECH_REPUBLIC("CZ"), DENMARK(
+			"DK"), ECUADOR("EC"), ESTONIA("EE"), ETHIOPIA("ET"), FINLAND("FI"), FRANCE(
+			Locale.FRANCE.getCountry()), GERMANY(Locale.GERMANY.getCountry()), GREECE(
+			"GR"), HUNGARY("HU"), ICELAND("IS"), IRELAND("IE"), ITALY(
+			Locale.ITALY.getCountry()), JAPAN("JP"), KAZAKHSTAN("KZ"), LATVIA(
+			"LV"), LIECHTENSTEIN("LI"), LITHUANIA("LT"), LUXEMBOURG("LU"), MACEDONIA(
+			"MK"), MALTA("MT"), MEXICO("MX"), MOLDOVA("MD"), MONTENEGRO("ME"), NETHERLANDS(
+			"NL"), NICARAGUA("NI"), NIGERIA("NG"), NORWAY("NO"), PANAMA("PA"), PARAGUAY(
+			"PY"), PERU("PE"), POLAND("PL"), PORTUGAL("PT"), ROMANIA("RO"), RUSSIA(
+			"RU"), SERBIA("RS"), SLOWAKIA("SK"), SLOWENIA("SI"), SOUTH_AFRICA(
+			"ZA"), SPAIN("ES"), SWEDEN("SE"), SWITZERLAND("CH"), UKRAINE("UA"), UNITED_STATES(
+			Locale.US.getCountry()), UNITED_KINGDOM("UK"), URUGUAY("UY"), VENEZUELA(
+			"VE"), NYSE("NYSE");
 
 	private String id;
-	
+
 	private HolidayCalendar(String id) {
 		this.id = id;
 	}
-	
-	public String getId(){
+
+	public String getId() {
 		return id;
 	}
-	
+
 }

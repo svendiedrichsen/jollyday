@@ -16,8 +16,9 @@
 package de.jollyday;
 
 /**
- * Type of holiday. Each holiday can be placed in a category and this is represented by this type.
- * The categories can mark a holiday as a official holiday or not.
+ * Type of holiday. Each holiday can be placed in a category and this is
+ * represented by this type. The categories can mark a holiday as a official
+ * holiday or not.
  * 
  * @author tboven
  */
@@ -29,5 +30,5 @@ public interface HolidayType {
 	 * @return true, if is official holiday
 	 */
 	boolean isOfficialHoliday();
-	
+
 }

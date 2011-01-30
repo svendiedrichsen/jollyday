@@ -23,88 +23,99 @@ import de.jollyday.util.ResourceUtil;
 
 /**
  * Bean class for describing the configuration hierarchy.
+ * 
  * @author Sven Diedrichsen
  */
 public class CalendarHierarchy {
 	private String id;
 	private Map<String, CalendarHierarchy> children = new HashMap<String, CalendarHierarchy>();
 	private final CalendarHierarchy parent;
-	
+
 	/**
 	 * Constructor which takes a eventually existing parent hierarchy node and
 	 * the ID of this hierarchy.
+	 * 
 	 * @param parent
 	 * @param id
 	 */
-	public CalendarHierarchy(CalendarHierarchy parent, String id){
+	public CalendarHierarchy(CalendarHierarchy parent, String id) {
 		this.parent = parent;
 		this.id = id;
 	}
-	
+
 	/**
 	 * @return the id
 	 */
 	public String getId() {
 		return id;
 	}
+
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return ResourceUtil.getCountryDescription(Locale.getDefault(), getPropertiesKey());
+		return ResourceUtil.getCountryDescription(Locale.getDefault(),
+				getPropertiesKey());
 	}
-	
+
 	/**
 	 * Returns the hierarchys description text from the resource bundle.
-	 * @param l Locale to return the description text for.
+	 * 
+	 * @param l
+	 *            Locale to return the description text for.
 	 * @return Description text
 	 */
-	public String getDescription(Locale l){
+	public String getDescription(Locale l) {
 		return ResourceUtil.getCountryDescription(l, getPropertiesKey());
 	}
-	
+
 	/**
-	 * Recursively returns the properties key to retrieve the description
-	 * from the localized resource bundle. 
+	 * Recursively returns the properties key to retrieve the description from
+	 * the localized resource bundle.
+	 * 
 	 * @return
 	 */
-	private String getPropertiesKey(){
-		if(parent != null){
-			return parent.getPropertiesKey()+"."+getId();
+	private String getPropertiesKey() {
+		if (parent != null) {
+			return parent.getPropertiesKey() + "." + getId();
 		}
 		return getId();
 	}
-	
+
 	/**
 	 * Compares Hierarchies by id.
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof CalendarHierarchy){
-			return ((CalendarHierarchy)obj).getId().equals(this.getId());
+		if (obj instanceof CalendarHierarchy) {
+			return ((CalendarHierarchy) obj).getId().equals(this.getId());
 		}
 		return super.equals(obj);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		return getId().hashCode();
 	}
-	
+
 	/**
-	 * @param children the children to set
+	 * @param children
+	 *            the children to set
 	 */
 	public void setChildren(Map<String, CalendarHierarchy> children) {
 		this.children = children;
 	}
+
 	/**
 	 * @return the children
 	 */
 	public Map<String, CalendarHierarchy> getChildren() {
 		return children;
 	}
-	
+
 }

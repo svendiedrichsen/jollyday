@@ -31,35 +31,45 @@ import de.jollyday.util.XMLUtil;
  * Calculates the ethiopian orthodox holidays.
  * 
  * @author Sven Diedrichsen
- *
+ * 
  */
 public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 
-	/* (non-Javadoc)
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
+	 * de.jollyday.config.Holidays)
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (EthiopianOrthodoxHoliday h : config.getEthiopianOrthodoxHoliday()) {
-			if(!isValid(h, year)) {
+			if (!isValid(h, year)) {
 				continue;
 			}
 			Set<LocalDate> ethiopianHolidays = null;
-			switch(h.getType()){
+			switch (h.getType()) {
 			case TIMKAT:
-				ethiopianHolidays = CalendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 5, 10);
+				ethiopianHolidays = CalendarUtil
+						.getEthiopianOrthodoxHolidaysInGregorianYear(year, 5,
+								10);
 				break;
 			case ENKUTATASH:
-				ethiopianHolidays = CalendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1, 1);
+				ethiopianHolidays = CalendarUtil
+						.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1, 1);
 				break;
 			case MESKEL:
-				ethiopianHolidays = CalendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1, 17);
+				ethiopianHolidays = CalendarUtil
+						.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1,
+								17);
 				break;
 			default:
-					throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type "+h.getType());
+				throw new IllegalArgumentException(
+						"Unknown ethiopian orthodox holiday type "
+								+ h.getType());
 			}
-			String propertiesKey = "ethiopian.orthodox."+h.getType().name();
+			String propertiesKey = "ethiopian.orthodox." + h.getType().name();
 			HolidayType type = XMLUtil.getType(h.getLocalizedType());
-			for(LocalDate d : ethiopianHolidays){
+			for (LocalDate d : ethiopianHolidays) {
 				holidays.add(new Holiday(d, propertiesKey, type));
 			}
 		}

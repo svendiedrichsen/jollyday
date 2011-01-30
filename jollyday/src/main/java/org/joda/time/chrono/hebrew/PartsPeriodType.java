@@ -19,14 +19,17 @@ import org.joda.time.PeriodType;
 
 /**
  * @author Sven
- *
+ * 
  */
-public class PartsPeriodType extends PeriodType{
+public class PartsPeriodType extends PeriodType {
 
 	private static final long serialVersionUID = 4993755239509123208L;
 
 	protected PartsPeriodType() {
-		super("PartsPeriod", new PartsDurationFieldType[]{PartsDurationFieldType.parts()}, new int[]{3});
+		super(
+				"PartsPeriod",
+				new PartsDurationFieldType[] { PartsDurationFieldType.parts() },
+				new int[] { 3 });
 	}
-	
+
 }

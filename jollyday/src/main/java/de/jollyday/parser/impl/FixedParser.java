@@ -28,25 +28,28 @@ import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
- * The Class FixedParser.
- * Parses a fixed date
+ * The Class FixedParser. Parses a fixed date
  * 
  * @author tboven
  */
 public class FixedParser extends AbstractHolidayParser {
 
-	/* (non-Javadoc)
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
+	 * de.jollyday.config.Holidays)
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
-		for(Fixed f : config.getFixed()){
-			if(!isValid(f, year)) {
+		for (Fixed f : config.getFixed()) {
+			if (!isValid(f, year)) {
 				continue;
 			}
 			LocalDate date = CalendarUtil.create(year, f);
 			LocalDate movedDate = moveDate(f, date);
 			HolidayType type = XMLUtil.getType(f.getLocalizedType());
-			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey(), type);
+			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey(),
+					type);
 			holidays.add(h);
 		}
 	}

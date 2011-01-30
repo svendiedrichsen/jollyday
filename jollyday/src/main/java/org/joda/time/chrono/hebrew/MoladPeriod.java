@@ -66,7 +66,8 @@ public class MoladPeriod implements ReadablePeriod {
 		case 2:
 			return p.getParts();
 		default:
-			throw new IllegalArgumentException("Unknown value of index " + index);
+			throw new IllegalArgumentException("Unknown value of index "
+					+ index);
 		}
 	}
 

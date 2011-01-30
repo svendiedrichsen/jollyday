@@ -105,7 +105,7 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 				throw new IllegalArgumentException(
 						"Unknown christian holiday type " + ch.getType());
 			}
-			String propertiesKey = "christian."	+ ch.getType().name();
+			String propertiesKey = "christian." + ch.getType().name();
 			LocalDate convertedDate = CalendarUtil
 					.convertToGregorianDate(easterSunday);
 			HolidayType type = XMLUtil.getType(ch.getLocalizedType());

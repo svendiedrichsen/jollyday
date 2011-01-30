@@ -22,11 +22,11 @@ import org.joda.time.LocalDate;
 import de.jollyday.util.ResourceUtil;
 
 /**
- * Represents the holiday and contains the actual date and an
- * localized desription.
+ * Represents the holiday and contains the actual date and an localized
+ * desription.
  * 
  * @author Sven Diedrichsen
- *
+ * 
  */
 public final class Holiday {
 	/**
@@ -34,31 +34,30 @@ public final class Holiday {
 	 */
 	private int hashCode = 0;
 	/**
-	 * The date the holiday occurrs. 
+	 * The date the holiday occurrs.
 	 */
 	private final LocalDate date;
 	/**
-	 * The properties key to retrieve the description with. 
+	 * The properties key to retrieve the description with.
 	 */
 	private final String propertiesKey;
-	
-	/** 
-	 * The type of holiday.
-	 * e.g. official holiday or not. 
+
+	/**
+	 * The type of holiday. e.g. official holiday or not.
 	 * */
 	private final HolidayType typeHoliday;
-	
+
 	/**
-	 * Constructs a holiday for a date using the provided properties
-	 * key to retrieve the description with.
+	 * Constructs a holiday for a date using the provided properties key to
+	 * retrieve the description with.
 	 */
-	public Holiday(LocalDate date, String propertiesKey, HolidayType type){
+	public Holiday(LocalDate date, String propertiesKey, HolidayType type) {
 		super();
 		this.typeHoliday = type;
 		this.date = date;
 		this.propertiesKey = propertiesKey == null ? "" : propertiesKey;
 	}
-	
+
 	/**
 	 * @return the holiday date
 	 */
@@ -72,55 +71,66 @@ public final class Holiday {
 	public String getPropertiesKey() {
 		return propertiesKey;
 	}
-	
+
 	/**
 	 * The description read with the default locale.
+	 * 
 	 * @return
 	 */
-	public String getDescription(){
-		return ResourceUtil.getHolidayDescription(Locale.getDefault(), getPropertiesKey());
+	public String getDescription() {
+		return ResourceUtil.getHolidayDescription(Locale.getDefault(),
+				getPropertiesKey());
 	}
-	
+
 	/**
 	 * The description read with the provided locale.
+	 * 
 	 * @param locale
 	 * @return
 	 */
-	public String getDescription(Locale locale){
+	public String getDescription(Locale locale) {
 		return ResourceUtil.getHolidayDescription(locale, getPropertiesKey());
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == this) {
+		if (obj == this) {
 			return true;
 		}
-		if(obj instanceof Holiday){
+		if (obj instanceof Holiday) {
 			Holiday other = (Holiday) obj;
-			return other.date.equals(this.date) && other.propertiesKey == this.propertiesKey
+			return other.date.equals(this.date)
+					&& other.propertiesKey == this.propertiesKey
 					&& typeHoliday.equals(other.typeHoliday);
 		}
 		return false;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
-	    if(hashCode == 0){
-	    	int hash = 1;
-	    	hash = hash * 31 + date.hashCode();
-	    	hash = hash * 31 + propertiesKey.hashCode();
-	    	hash = hash * 31 + typeHoliday.hashCode();
-	    	hashCode = hash;
-	    }
-	    return hashCode;
+		if (hashCode == 0) {
+			int hash = 1;
+			hash = hash * 31 + date.hashCode();
+			hash = hash * 31 + propertiesKey.hashCode();
+			hash = hash * 31 + typeHoliday.hashCode();
+			hashCode = hash;
+		}
+		return hashCode;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

@@ -32,38 +32,42 @@ import de.jollyday.util.XMLUtil;
  * Parses fixed weekday relative to fixed date.
  * 
  * @author Sven Diedrichsen
- *
+ * 
  */
 public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 
 	/**
-	 * Parses the provided configuration and creates holidays for the provided year.
+	 * Parses the provided configuration and creates holidays for the provided
+	 * year.
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
-		for(FixedWeekdayRelativeToFixed f : config.getFixedWeekdayRelativeToFixed()){
-			if(!isValid(f, year)) {
+		for (FixedWeekdayRelativeToFixed f : config
+				.getFixedWeekdayRelativeToFixed()) {
+			if (!isValid(f, year)) {
 				continue;
 			}
 			// parsing fixed day
 			LocalDate day = CalendarUtil.create(year, f.getDay());
-			do{
+			do {
 				// move fixed to first occurrence of weekday
-				day = f.getWhen() == When.AFTER ? day.plusDays(1) : day.minusDays(1); 
-			}while(day.getDayOfWeek() != XMLUtil.getWeekday(f.getWeekday()));
+				day = f.getWhen() == When.AFTER ? day.plusDays(1) : day
+						.minusDays(1);
+			} while (day.getDayOfWeek() != XMLUtil.getWeekday(f.getWeekday()));
 			int days = 0;
-			switch(f.getWhich()){
-				case SECOND:
-					days = 7;
-					break;
-				case THIRD:
-					days = 14;
-					break;
-				case FOURTH:
-					days = 21;
-					break;
+			switch (f.getWhich()) {
+			case SECOND:
+				days = 7;
+				break;
+			case THIRD:
+				days = 14;
+				break;
+			case FOURTH:
+				days = 21;
+				break;
 			}
 			// move day further if it is second, third or fourth weekday
-			day = f.getWhen() == When.AFTER ? day.plusDays(days) : day.minusDays(days);
+			day = f.getWhen() == When.AFTER ? day.plusDays(days) : day
+					.minusDays(days);
 			HolidayType type = XMLUtil.getType(f.getLocalizedType());
 			holidays.add(new Holiday(day, f.getDescriptionPropertiesKey(), type));
 		}

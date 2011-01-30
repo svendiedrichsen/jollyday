@@ -35,28 +35,33 @@ import de.jollyday.util.XMLUtil;
  */
 public class RelativeToFixedParser extends AbstractHolidayParser {
 
-	/* (non-Javadoc)
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
+	 * de.jollyday.config.Holidays)
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
-		for(RelativeToFixed rf : config.getRelativeToFixed()){
-			if(!isValid(rf, year)) {
+		for (RelativeToFixed rf : config.getRelativeToFixed()) {
+			if (!isValid(rf, year)) {
 				continue;
 			}
 			LocalDate fixed = CalendarUtil.create(year, rf.getDate());
-			if(rf.getWeekday() != null){ 
+			if (rf.getWeekday() != null) {
 				// if weekday is set -> move to weekday
 				int day = XMLUtil.getWeekday(rf.getWeekday());
 				int direction = (rf.getWhen() == When.BEFORE ? -1 : 1);
-				do{
+				do {
 					fixed = fixed.plusDays(direction);
-				}while(fixed.getDayOfWeek() != day);
-			}else if(rf.getDays() != null){ 
+				} while (fixed.getDayOfWeek() != day);
+			} else if (rf.getDays() != null) {
 				// if number of days set -> move number of days
-				fixed = fixed.plusDays( rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays());
+				fixed = fixed.plusDays(rf.getWhen() == When.BEFORE ? -rf
+						.getDays() : rf.getDays());
 			}
 			HolidayType type = XMLUtil.getType(rf.getLocalizedType());
-			holidays.add(new Holiday(fixed, rf.getDescriptionPropertiesKey(), type));
+			holidays.add(new Holiday(fixed, rf.getDescriptionPropertiesKey(),
+					type));
 		}
 	}
 

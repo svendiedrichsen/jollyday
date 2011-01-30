@@ -24,12 +24,12 @@ import java.util.Set;
 
 /**
  * @author Sven
- *
+ * 
  */
 public class ResourceUtil {
 
 	/**
-	 * Property prefix for country descriptions. 
+	 * Property prefix for country descriptions.
 	 */
 	private static final String COUNTRY_PROPERTY_PREFIX = "country.description";
 	/**
@@ -45,35 +45,37 @@ public class ResourceUtil {
 	 */
 	private static final String HOLIDAY_DESCRIPTIONS_FILE_PREFIX = "descriptions.holiday_descriptions";
 	/**
-	 * Unknown constant will be returned when there is no description configured.
+	 * Unknown constant will be returned when there is no description
+	 * configured.
 	 */
 	private static final String UNDEFINED = "undefined";
 	/**
 	 * Cache for the holiday descriptions resource bundles.
 	 */
-	private static final Map<Locale, ResourceBundle> HOLIDAY_DESCRIPTION_CACHE = 
-		new HashMap<Locale, ResourceBundle>();
+	private static final Map<Locale, ResourceBundle> HOLIDAY_DESCRIPTION_CACHE = new HashMap<Locale, ResourceBundle>();
 	/**
 	 * Cache for the country descriptions resource bundles.
 	 */
-	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS_CACHE = 
-		new HashMap<Locale, ResourceBundle>();
+	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS_CACHE = new HashMap<Locale, ResourceBundle>();
 
 	/**
 	 * The description read with the default locale.
+	 * 
 	 * @return
 	 */
-	public static String getHolidayDescription(String key){
+	public static String getHolidayDescription(String key) {
 		return getHolidayDescription(Locale.getDefault(), key);
 	}
-	
+
 	/**
 	 * The description read with the provided locale.
+	 * 
 	 * @param locale
 	 * @return
 	 */
-	public static String getHolidayDescription(Locale locale, String key){
-		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key, getHolidayDescriptions(locale));
+	public static String getHolidayDescription(Locale locale, String key) {
+		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key,
+				getHolidayDescriptions(locale));
 	}
 
 	/**
@@ -82,73 +84,89 @@ public class ResourceUtil {
 	public static String getCountryDescription(String key) {
 		return getCountryDescription(Locale.getDefault(), key);
 	}
-	
+
 	/**
 	 * Returns the hierarchys description text from the resource bundle.
-	 * @param l Locale to return the description text for.
+	 * 
+	 * @param l
+	 *            Locale to return the description text for.
 	 * @return Description text
 	 */
-	public static String getCountryDescription(Locale l, String key){
-		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key, getCountryDescriptions(l));
+	public static String getCountryDescription(Locale l, String key) {
+		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key,
+				getCountryDescriptions(l));
 	}
 
 	/**
 	 * Returns a list of ISO codes.
-	 * @return 2-digit ISO codes. 
+	 * 
+	 * @return 2-digit ISO codes.
 	 */
-	public static final Set<String> getISOCodes(){
+	public static final Set<String> getISOCodes() {
 		Set<String> codes = new HashSet<String>();
-		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
-		for(String property : countryDescriptions.keySet()){
+		ResourceBundle countryDescriptions = getCountryDescriptions(Locale
+				.getDefault());
+		for (String property : countryDescriptions.keySet()) {
 			String[] split = property.split("\\.");
-			if(split != null && split.length > 2){
+			if (split != null && split.length > 2) {
 				codes.add(split[2].toLowerCase());
 			}
 		}
 		return codes;
 	}
 
-	
 	/**
-	 * Returns the description from the resource bundle if the key is
-	 * contained. It will return 'undefined' otherwise.
+	 * Returns the description from the resource bundle if the key is contained.
+	 * It will return 'undefined' otherwise.
+	 * 
 	 * @param key
 	 * @param bundle
 	 * @return description
 	 */
-	private static String getDescription(String key, ResourceBundle bundle){
-		if(!bundle.containsKey(key)) {
+	private static String getDescription(String key, ResourceBundle bundle) {
+		if (!bundle.containsKey(key)) {
 			return UNDEFINED;
 		}
 		return bundle.getString(key);
 	}
 
 	/**
-	 * Returns the eventually cached ResourceBundle for the holiday descriptions.
-	 * @param l Locale to retrieve the descriptions for.
+	 * Returns the eventually cached ResourceBundle for the holiday
+	 * descriptions.
+	 * 
+	 * @param l
+	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getHolidayDescriptions(Locale l){
-		return getResourceBundle(l, HOLIDAY_DESCRIPTION_CACHE, HOLIDAY_DESCRIPTIONS_FILE_PREFIX);
+	private static ResourceBundle getHolidayDescriptions(Locale l) {
+		return getResourceBundle(l, HOLIDAY_DESCRIPTION_CACHE,
+				HOLIDAY_DESCRIPTIONS_FILE_PREFIX);
 	}
 
 	/**
-	 * Returns the eventually cached ResourceBundle for the holiday descriptions.
-	 * @param l Locale to retrieve the descriptions for.
+	 * Returns the eventually cached ResourceBundle for the holiday
+	 * descriptions.
+	 * 
+	 * @param l
+	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getCountryDescriptions(Locale l){
-		return getResourceBundle(l, COUNTRY_DESCRIPTIONS_CACHE, COUNTRY_DESCRIPTIONS_FILE_PREFIX);
+	private static ResourceBundle getCountryDescriptions(Locale l) {
+		return getResourceBundle(l, COUNTRY_DESCRIPTIONS_CACHE,
+				COUNTRY_DESCRIPTIONS_FILE_PREFIX);
 	}
 
 	/**
 	 * Returns the eventually cached ResourceBundle for the descriptions.
-	 * @param l Locale to retrieve the descriptions for.
+	 * 
+	 * @param l
+	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getResourceBundle(Locale l, Map<Locale, ResourceBundle> CACHE, String filePrefix){
-		synchronized(CACHE){
-			if(!CACHE.containsKey(l)){
+	private static ResourceBundle getResourceBundle(Locale l,
+			Map<Locale, ResourceBundle> CACHE, String filePrefix) {
+		synchronized (CACHE) {
+			if (!CACHE.containsKey(l)) {
 				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l);
 				CACHE.put(l, bundle);
 			}

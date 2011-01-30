@@ -33,19 +33,23 @@ import de.jollyday.util.XMLUtil;
  * 
  * @author tboven
  */
-public class FixedWeekdayInMonthParser extends AbstractHolidayParser{
+public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 
-	/* (non-Javadoc)
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set, de.jollyday.config.Holidays)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
+	 * de.jollyday.config.Holidays)
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
-		for(FixedWeekdayInMonth fwm : config.getFixedWeekday()){
-			if(!isValid(fwm, year)) {
+		for (FixedWeekdayInMonth fwm : config.getFixedWeekday()) {
+			if (!isValid(fwm, year)) {
 				continue;
 			}
 			LocalDate date = parse(year, fwm);
 			HolidayType type = XMLUtil.getType(fwm.getLocalizedType());
-			holidays.add(new Holiday(date, fwm.getDescriptionPropertiesKey(), type));
+			holidays.add(new Holiday(date, fwm.getDescriptionPropertiesKey(),
+					type));
 		}
 	}
 
@@ -60,25 +64,26 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser{
 	 * @return the local date
 	 */
 	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
-		LocalDate date = CalendarUtil.create(year, XMLUtil.getMonth(fwm.getMonth()), 1);
+		LocalDate date = CalendarUtil.create(year,
+				XMLUtil.getMonth(fwm.getMonth()), 1);
 		int direction = 1;
-		if(fwm.getWhich() == Which.LAST){
+		if (fwm.getWhich() == Which.LAST) {
 			date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
 			direction = -1;
 		}
 		int weekDay = XMLUtil.getWeekday(fwm.getWeekday());
-		while(date.getDayOfWeek() != weekDay){
+		while (date.getDayOfWeek() != weekDay) {
 			date = date.plusDays(direction);
 		}
-		switch(fwm.getWhich()){
-			case SECOND:
-				date = date.plusDays(7);
-				break;
-			case THIRD:
-				date = date.plusDays(14);
-				break;
-			case FOURTH:
-				date = date.plusDays(21);
+		switch (fwm.getWhich()) {
+		case SECOND:
+			date = date.plusDays(7);
+			break;
+		case THIRD:
+			date = date.plusDays(14);
+			break;
+		case FOURTH:
+			date = date.plusDays(21);
 		}
 		return date;
 	}

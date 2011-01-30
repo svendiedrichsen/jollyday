@@ -44,21 +44,22 @@ import de.jollyday.parser.HolidayParser;
 import de.jollyday.util.XMLUtil;
 
 /**
- * Manager implementation for reading data from XML files. The files
- * with the name pattern Holidays_[country].xml will be read from
- * the system classpath. It uses a list a parsers for parsing the
- * different type of XML nodes.
+ * Manager implementation for reading data from XML files. The files with the
+ * name pattern Holidays_[country].xml will be read from the system classpath.
+ * It uses a list a parsers for parsing the different type of XML nodes.
+ * 
  * @author Sven Diedrichsen
- *
+ * 
  */
 public class XMLManager extends HolidayManager {
 
 	/**
 	 * Logger
 	 */
-	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
+	private static final Logger LOG = Logger.getLogger(XMLManager.class
+			.getName());
 	/**
-	 * The configuration prefix for parser implementations. 
+	 * The configuration prefix for parser implementations.
 	 */
 	private static final String PARSER_IMPL_PREFIX = "parser.impl.";
 	/**
@@ -72,7 +73,8 @@ public class XMLManager extends HolidayManager {
 	/**
 	 * Thread pool for async holiday parsing
 	 */
-	private static final ExecutorService PARSER_THREAD_POOL = Executors.newCachedThreadPool();
+	private static final ExecutorService PARSER_THREAD_POOL = Executors
+			.newCachedThreadPool();
 
 	/**
 	 * Parser cache by XML class name.
@@ -84,35 +86,41 @@ public class XMLManager extends HolidayManager {
 	private Configuration configuration;
 
 	/**
-	 * Calls <code>Set&lt;LocalDate&gt; getHolidays(int year, Configuration c, String... args)</code>
+	 * Calls
+	 * <code>Set&lt;LocalDate&gt; getHolidays(int year, Configuration c, String... args)</code>
 	 * with the configuration from initialization.
+	 * 
 	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
 	@Override
 	public Set<Holiday> getHolidays(int year, String... args) {
-		Set<Holiday> holidaySet = Collections.synchronizedSet(new HashSet<Holiday>());
+		Set<Holiday> holidaySet = Collections
+				.synchronizedSet(new HashSet<Holiday>());
 		List<Future<?>> futures = new ArrayList<Future<?>>();
 		getHolidays(year, configuration, holidaySet, futures, args);
-		for(Future<?> f : futures){
+		for (Future<?> f : futures) {
 			try {
 				f.get();
 			} catch (InterruptedException e) {
-				throw new IllegalStateException("Error during holiday parsing.", e);
+				throw new IllegalStateException(
+						"Error during holiday parsing.", e);
 			} catch (ExecutionException e) {
-				throw new IllegalStateException("Error during holiday parsing.", e.getCause());
+				throw new IllegalStateException(
+						"Error during holiday parsing.", e.getCause());
 			}
 		}
 		futures.clear();
 		return holidaySet;
 	}
-	
+
 	/**
-	 * Calls <code>getHolidays(year, args)</code> for each year within the interval
-	 * and returns a list of holidays which are then contained in the interval.
+	 * Calls <code>getHolidays(year, args)</code> for each year within the
+	 * interval and returns a list of holidays which are then contained in the
+	 * interval.
 	 */
 	@Override
 	public Set<Holiday> getHolidays(ReadableInterval interval, String... args) {
-		if(interval == null){
+		if (interval == null) {
 			throw new IllegalArgumentException("Interval is NULL.");
 		}
 		Set<Holiday> holidays = new HashSet<Holiday>();
@@ -129,16 +137,17 @@ public class XMLManager extends HolidayManager {
 	}
 
 	/**
-	 * Parses the provided configuration for the provided year and
-	 * fills the list of holidays.
+	 * Parses the provided configuration for the provided year and fills the
+	 * list of holidays.
+	 * 
 	 * @param year
 	 * @param c
 	 * @param holidaySet
-	 * @param futures 
+	 * @param futures
 	 * @param args
 	 */
-	private void getHolidays(int year, Configuration c, Set<Holiday> holidaySet,
-			List<Future<?>> futures, String... args) {
+	private void getHolidays(int year, Configuration c,
+			Set<Holiday> holidaySet, List<Future<?>> futures, String... args) {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Adding holidays for " + c.getDescription());
 		}
@@ -147,15 +156,17 @@ public class XMLManager extends HolidayManager {
 			String hierarchy = args[0];
 			for (Configuration config : c.getSubConfigurations()) {
 				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
-					getHolidays(year, config, holidaySet, futures, Arrays.copyOfRange(args, 1, args.length));
+					getHolidays(year, config, holidaySet, futures,
+							Arrays.copyOfRange(args, 1, args.length));
 					break;
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Iterates of the list of parsers and calls parse on each of them.
+	 * 
 	 * @param year
 	 * @param holidays
 	 * @param config
@@ -164,16 +175,18 @@ public class XMLManager extends HolidayManager {
 			Holidays config, List<Future<?>> futures) {
 		Collection<HolidayParser> parsers = getParsers(config);
 		for (HolidayParser p : parsers) {
-			futures.add(PARSER_THREAD_POOL.submit(new HolidayParserRunner(year, holidays, config, p)));
+			futures.add(PARSER_THREAD_POOL.submit(new HolidayParserRunner(year,
+					holidays, config, p)));
 		}
 	}
-	
+
 	/**
 	 * Private class which is used to asyncronisly parse holiday configuration.
+	 * 
 	 * @author Sven
-	 *
+	 * 
 	 */
-	private class HolidayParserRunner implements Runnable{
+	private class HolidayParserRunner implements Runnable {
 
 		private final int year;
 		private final Set<Holiday> holidays;
@@ -181,161 +194,174 @@ public class XMLManager extends HolidayManager {
 		private final HolidayParser parser;
 
 		public HolidayParserRunner(int year, Set<Holiday> holidays,
-			Holidays config, HolidayParser parser)
-		{
+				Holidays config, HolidayParser parser) {
 			this.year = year;
 			this.holidays = holidays;
 			this.config = config;
 			this.parser = parser;
 		}
-		
+
 		@Override
 		public void run() {
 			parser.parse(year, holidays, config);
 		}
-		
+
 	}
-	
+
 	/**
-	 * Creates a list of parsers by reading the configuration and trying to
-	 * find an <code>HolidayParser</code> implementation for by XML class type.
+	 * Creates a list of parsers by reading the configuration and trying to find
+	 * an <code>HolidayParser</code> implementation for by XML class type.
+	 * 
 	 * @param config
 	 * @return A list of parsers to for this configuration.
 	 */
-	private Collection<HolidayParser> getParsers(Holidays config){
+	private Collection<HolidayParser> getParsers(Holidays config) {
 		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
- 		for(Method m : config.getClass().getMethods()){
- 			if(isGetter(m) && m.getReturnType() == List.class){
- 				try {
-					List l = (List)m.invoke(config);
-					if(l.size() >  0){
+		for (Method m : config.getClass().getMethods()) {
+			if (isGetter(m) && m.getReturnType() == List.class) {
+				try {
+					List l = (List) m.invoke(config);
+					if (l.size() > 0) {
 						String className = l.get(0).getClass().getName();
-						if(!parserCache.containsKey(className)){
-							String propName = PARSER_IMPL_PREFIX+className;
+						if (!parserCache.containsKey(className)) {
+							String propName = PARSER_IMPL_PREFIX + className;
 							Properties configProps = getProperties();
-							if(configProps.stringPropertyNames().contains(propName)){
-								HolidayParser hp = (HolidayParser)Class.forName(configProps.getProperty(propName)).newInstance();
+							if (configProps.stringPropertyNames().contains(
+									propName)) {
+								HolidayParser hp = (HolidayParser) Class
+										.forName(
+												configProps
+														.getProperty(propName))
+										.newInstance();
 								parserCache.put(className, hp);
 							}
 						}
-						if(parserCache.containsKey(className)){
+						if (parserCache.containsKey(className)) {
 							parsers.add(parserCache.get(className));
 						}
 					}
 				} catch (Exception e) {
 					throw new IllegalStateException("Cannot create parsers.", e);
 				}
- 			}
- 		}
+			}
+		}
 		return parsers;
 	}
 
 	/**
-	 * Returns true if the provided <code>Method</code> is a getter
-	 * method.
-	 * @param method The method to check if it is a getter.
+	 * Returns true if the provided <code>Method</code> is a getter method.
+	 * 
+	 * @param method
+	 *            The method to check if it is a getter.
 	 * @return is a getter method
 	 */
-	private static boolean isGetter(Method method){
-		  return method.getName().startsWith("get") 
-		  	&& method.getParameterTypes().length == 0 
-		  	&& !void.class.equals(method.getReturnType());
+	private static boolean isGetter(Method method) {
+		return method.getName().startsWith("get")
+				&& method.getParameterTypes().length == 0
+				&& !void.class.equals(method.getReturnType());
 	}
-
 
 	/**
 	 * Initializes the XMLManager by loading the holidays XML file as resource
-	 * from the classpath. When the XML file is found it will be 
-	 * unmarshalled with JAXB to some Java classes.
+	 * from the classpath. When the XML file is found it will be unmarshalled
+	 * with JAXB to some Java classes.
 	 */
 	@Override
 	public void init(String country) throws Exception {
 		String fileName = getConfigurationFileName(country);
-		configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResourceAsStream(fileName));
+		configuration = XMLUtil.unmarshallConfiguration(getClass()
+				.getClassLoader().getResourceAsStream(fileName));
 		validateConfigurationHierarchy(configuration);
 		logHierarchy(configuration, 0);
 	}
 
 	/**
 	 * Logs the hierarchy structure.
-	 * @param c Configuration to log hierarchy for.
+	 * 
+	 * @param c
+	 *            Configuration to log hierarchy for.
 	 */
 	private static void logHierarchy(Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
 			String space = "";
-			for(int i = 0; i < level;i++){
+			for (int i = 0; i < level; i++) {
 				space += "-";
 			}
-			LOG.finer(space+c.getDescription()+ "("
-					+ c.getHierarchy() + ").");
+			LOG.finer(space + c.getDescription() + "(" + c.getHierarchy()
+					+ ").");
 			for (Configuration sub : c.getSubConfigurations()) {
-				logHierarchy(sub, level+1);
+				logHierarchy(sub, level + 1);
 			}
 		}
 	}
 
 	/**
 	 * Returns the configuration file name for the country.
+	 * 
 	 * @param country
 	 * @return file name
 	 */
 	public static String getConfigurationFileName(String country) {
-		return FILE_PREFIX+ "_" + country + FILE_SUFFIX;
+		return FILE_PREFIX + "_" + country + FILE_SUFFIX;
 	}
 
-
 	/**
-	 * Validates the content of the provided configuration by checking
-	 * for multiple hierarchy entries within one configuration. It traverses
-	 * down the configuration tree.
+	 * Validates the content of the provided configuration by checking for
+	 * multiple hierarchy entries within one configuration. It traverses down
+	 * the configuration tree.
 	 */
 	private static void validateConfigurationHierarchy(Configuration c) {
 		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
 		Set<String> multipleHierarchies = new HashSet<String>();
-		for(Configuration subConfig : c.getSubConfigurations()){
+		for (Configuration subConfig : c.getSubConfigurations()) {
 			String hierarchy = subConfig.getHierarchy();
-			if(!hierarchyMap.containsKey(hierarchy)){
+			if (!hierarchyMap.containsKey(hierarchy)) {
 				hierarchyMap.put(hierarchy, Integer.valueOf(1));
-			}else{
+			} else {
 				int count = hierarchyMap.get(hierarchy).intValue();
 				hierarchyMap.put(hierarchy, Integer.valueOf(++count));
 				multipleHierarchies.add(hierarchy);
 			}
 		}
-		if(multipleHierarchies.size() > 0){
+		if (multipleHierarchies.size() > 0) {
 			StringBuilder msg = new StringBuilder();
-			msg.append("Configuration for "+c.getHierarchy()+" contains  multiple SubConfigurations with the same hierarchy id. ");
-			for(String hierarchy : multipleHierarchies){
-				msg.append(hierarchy+" "+hierarchyMap.get(hierarchy).toString()+" times ");
+			msg.append("Configuration for "
+					+ c.getHierarchy()
+					+ " contains  multiple SubConfigurations with the same hierarchy id. ");
+			for (String hierarchy : multipleHierarchies) {
+				msg.append(hierarchy + " "
+						+ hierarchyMap.get(hierarchy).toString() + " times ");
 			}
 			throw new IllegalArgumentException(msg.toString().trim());
 		}
-		for(Configuration subConfig : c.getSubConfigurations()){
+		for (Configuration subConfig : c.getSubConfigurations()) {
 			validateConfigurationHierarchy(subConfig);
 		}
 	}
 
 	/**
 	 * Returns the configurations hierarchy.<br>
-	 * i.e. Hierarchy 'us' -> Children 'al','ak','ar', ... ,'wv','wy'.
-	 * Every child might itself have children. The ids be used
-	 * to call getHolidays()/isHoliday().
+	 * i.e. Hierarchy 'us' -> Children 'al','ak','ar', ... ,'wv','wy'. Every
+	 * child might itself have children. The ids be used to call
+	 * getHolidays()/isHoliday().
 	 */
 	@Override
 	public CalendarHierarchy getCalendarHierarchy() {
 		return createConfigurationHierarchy(configuration, null);
 	}
-	
 
 	/**
 	 * Creates the configuration hierarchy for the provided configuration.
+	 * 
 	 * @param c
 	 * @return configuration hierarchy
 	 */
-	private static CalendarHierarchy createConfigurationHierarchy(Configuration c, CalendarHierarchy h) {
-		h =  new CalendarHierarchy(h, c.getHierarchy());
-		for(Configuration sub : c.getSubConfigurations()){
-			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
+	private static CalendarHierarchy createConfigurationHierarchy(
+			Configuration c, CalendarHierarchy h) {
+		h = new CalendarHierarchy(h, c.getHierarchy());
+		for (Configuration sub : c.getSubConfigurations()) {
+			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub,
+					h);
 			h.getChildren().put(subHierarchy.getId(), subHierarchy);
 		}
 		return h;

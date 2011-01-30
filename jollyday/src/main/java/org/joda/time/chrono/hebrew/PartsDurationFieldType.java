@@ -21,9 +21,9 @@ import org.joda.time.DurationFieldType;
 
 /**
  * @author Sven
- *
+ * 
  */
-public class PartsDurationFieldType extends DurationFieldType{
+public class PartsDurationFieldType extends DurationFieldType {
 
 	private static final long serialVersionUID = -1519048586565098191L;
 
@@ -37,9 +37,9 @@ public class PartsDurationFieldType extends DurationFieldType{
 	public DurationField getField(Chronology chronology) {
 		return new PartsDurationField();
 	}
-	
-	public static PartsDurationFieldType parts(){
+
+	public static PartsDurationFieldType parts() {
 		return PARTS_FIELD_TYPE;
 	}
-	
+
 }

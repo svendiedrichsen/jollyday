@@ -21,28 +21,28 @@ import org.joda.time.base.BaseSingleFieldPeriod;
 
 /**
  * @author Sven
- *
+ * 
  */
 public class Parts extends BaseSingleFieldPeriod {
 
 	private static final long serialVersionUID = -4176038471643062232L;
 
-	public Parts(){
+	public Parts() {
 		super(0);
 	}
-	
-	public Parts(int p){
+
+	public Parts(int p) {
 		super(p);
-	}  
-	
-	public static Parts parts(int p){
+	}
+
+	public static Parts parts(int p) {
 		return new Parts(p);
 	}
-	
-	public int getParts(){
+
+	public int getParts() {
 		return super.getValue();
 	}
-	
+
 	@Override
 	public DurationFieldType getFieldType() {
 		return new PartsDurationFieldType();
@@ -52,8 +52,5 @@ public class Parts extends BaseSingleFieldPeriod {
 	public PeriodType getPeriodType() {
 		return new PartsPeriodType();
 	}
-	
-	
-	
 
 }

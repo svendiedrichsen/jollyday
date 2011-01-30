@@ -33,14 +33,14 @@ import de.jollyday.util.CalendarUtil;
 
 /**
  * @author Sven
- *
+ * 
  */
 public class RelativeToFixedParserTest {
-	
+
 	private RelativeToFixedParser rtfp = new RelativeToFixedParser();
-	
+
 	@Test
-	public void testEmpty(){
+	public void testEmpty() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		rtfp.parse(2010, holidays, config);
@@ -48,7 +48,7 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testInvalid(){
+	public void testInvalid() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
@@ -59,7 +59,7 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
-	public void testWeekday(){
+	public void testWeekday() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
@@ -72,11 +72,12 @@ public class RelativeToFixedParserTest {
 		config.getRelativeToFixed().add(rule);
 		rtfp.parse(2011, holidays, config);
 		Assert.assertEquals("Number of holidays wrong.", 1, holidays.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 8, 11), holidays.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 8, 11),
+				holidays.iterator().next().getDate());
 	}
 
 	@Test
-	public void testNumberOfDays(){
+	public void testNumberOfDays() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
@@ -89,7 +90,8 @@ public class RelativeToFixedParserTest {
 		config.getRelativeToFixed().add(rule);
 		rtfp.parse(2011, holidays, config);
 		Assert.assertEquals("Number of holidays wrong.", 1, holidays.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 8, 2), holidays.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 8, 2),
+				holidays.iterator().next().getDate());
 	}
-	
+
 }

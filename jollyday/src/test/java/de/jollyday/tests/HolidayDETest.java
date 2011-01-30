@@ -15,7 +15,6 @@
  */
 package de.jollyday.tests;
 
-
 import org.junit.Test;
 
 import de.jollyday.tests.base.AbstractCountryTestBase;
@@ -26,8 +25,8 @@ public class HolidayDETest extends AbstractCountryTestBase {
 	private static final String ISO_CODE = "de";
 
 	@Test
-	public void testManagerDEStructure() throws Exception{
+	public void testManagerDEStructure() throws Exception {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
-	
+
 }

@@ -25,7 +25,7 @@ public class HolidayUKTest extends AbstractCountryTestBase {
 	private static final String ISO_CODE = "uk";
 
 	@Test
-	public void testManagerUKStructure() throws Exception{
+	public void testManagerUKStructure() throws Exception {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
 

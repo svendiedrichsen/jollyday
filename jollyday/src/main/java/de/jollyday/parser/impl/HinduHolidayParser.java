@@ -24,20 +24,22 @@ import de.jollyday.parser.AbstractHolidayParser;
 
 /**
  * @author Sven
- *
+ * 
  */
 public class HinduHolidayParser extends AbstractHolidayParser {
 
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (HinduHoliday hh : config.getHinduHoliday()) {
-			if(!isValid(hh, year)) continue;
-			switch(hh.getType()){
-				case HOLI:
-					// 20 February and ending on 21 March (20th march in leap years)
-					// TODO: Calculate with hindu calendar.
-					break;
-					default:
-						throw new IllegalArgumentException("Unknown hindu holiday "+hh.getType());
+			if (!isValid(hh, year))
+				continue;
+			switch (hh.getType()) {
+			case HOLI:
+				// 20 February and ending on 21 March (20th march in leap years)
+				// TODO: Calculate with hindu calendar.
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown hindu holiday "
+						+ hh.getType());
 			}
 		}
 	}

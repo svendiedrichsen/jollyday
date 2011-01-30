@@ -28,14 +28,14 @@ import de.jollyday.parser.impl.FixedWeekdayInMonthParser;
 
 /**
  * @author svdi1de
- *
+ * 
  */
 public class FixedWeekdayInMonthParserTest {
-	
+
 	private FixedWeekdayInMonthParser parser = new FixedWeekdayInMonthParser();
-	
+
 	@Test
-	public void testEmpty(){
+	public void testEmpty() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
@@ -43,7 +43,7 @@ public class FixedWeekdayInMonthParserTest {
 	}
 
 	@Test
-	public void testInvalid(){
+	public void testInvalid() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		FixedWeekdayInMonth e = new FixedWeekdayInMonth();
