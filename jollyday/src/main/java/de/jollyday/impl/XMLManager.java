@@ -267,10 +267,15 @@ public class XMLManager extends HolidayManager {
 	 * with JAXB to some Java classes.
 	 */
 	@Override
-	public void init(String country) throws Exception {
+	public void init(String country) {
 		String fileName = getConfigurationFileName(country);
-		configuration = XMLUtil.unmarshallConfiguration(getClass()
-				.getClassLoader().getResourceAsStream(fileName));
+		try {
+			configuration = XMLUtil.unmarshallConfiguration(getClass()
+					.getClassLoader().getResourceAsStream(fileName));
+		} catch (Exception e) {
+			throw new IllegalStateException(
+					"Cannot instantiate configuration.", e);
+		}
 		validateConfigurationHierarchy(configuration);
 		logHierarchy(configuration, 0);
 	}

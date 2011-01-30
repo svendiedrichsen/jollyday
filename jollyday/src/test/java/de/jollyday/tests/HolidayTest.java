@@ -102,7 +102,7 @@ public class HolidayTest {
 		System.clearProperty("de.jollyday.config");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalStateException.class)
 	public void testMissingCountry() throws Exception {
 		HolidayManager.getInstance("XXX");
 	}

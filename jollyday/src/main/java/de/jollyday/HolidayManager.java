@@ -84,9 +84,8 @@ public abstract class HolidayManager {
 	 * using the default locales country code. code.
 	 * 
 	 * @return default locales HolidayManager
-	 * @throws Exception
 	 */
-	public static final HolidayManager getInstance() throws Exception {
+	public static final HolidayManager getInstance() {
 		return getInstance((String) null);
 	}
 
@@ -96,10 +95,8 @@ public abstract class HolidayManager {
 	 * @param c
 	 *            Country
 	 * @return HolidayManager
-	 * @throws Exception
 	 */
-	public static final HolidayManager getInstance(HolidayCalendar c)
-			throws Exception {
+	public static final HolidayManager getInstance(HolidayCalendar c) {
 		return getInstance(c.getId());
 	}
 
@@ -110,38 +107,54 @@ public abstract class HolidayManager {
 	 * 
 	 * @param country
 	 * @return HolidayManager implementation for the provided country.
-	 * @throws Exception
 	 */
-	public static final HolidayManager getInstance(String country)
-			throws Exception {
+	public static final HolidayManager getInstance(String country) {
 		country = prepareCountryCode(country);
 		HolidayManager m = isManagerCachingEnabled() ? getFromCache(country)
 				: null;
 		if (m == null) {
-			if (LOG.isLoggable(Level.FINER)) {
-				LOG.finer("Creating HolidayManager for country '" + country
-						+ "'. Caching enabled: " + isManagerCachingEnabled());
-			}
-			Properties props = readProperties();
-			String managerImplClass = null;
-			if (props.stringPropertyNames().contains(
-					MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
-				managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
-						+ "." + country);
-			} else if (props.stringPropertyNames().contains(
-					MANAGER_IMPL_CLASS_PREFIX)) {
-				managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
-			} else {
-				throw new IllegalStateException("Missing configuration '"
-						+ MANAGER_IMPL_CLASS_PREFIX
-						+ "'. Cannot create manager.");
-			}
+			m = createManager(country);
+		}
+		return m;
+	}
+
+	/**
+	 * Creates a new <code>HolidayManager</code> instance for the country and
+	 * puts it to the manager cache.
+	 * 
+	 * @param country
+	 *            <code>HolidayManager</code> instance for the country
+	 * @return new
+	 */
+	private static HolidayManager createManager(String country) {
+		HolidayManager m;
+		if (LOG.isLoggable(Level.FINER)) {
+			LOG.finer("Creating HolidayManager for country '" + country
+					+ "'. Caching enabled: " + isManagerCachingEnabled());
+		}
+		Properties props = readProperties();
+		String managerImplClass = null;
+		if (props.stringPropertyNames().contains(
+				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
+			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
+					+ "." + country);
+		} else if (props.stringPropertyNames().contains(
+				MANAGER_IMPL_CLASS_PREFIX)) {
+			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
+		} else {
+			throw new IllegalStateException("Missing configuration '"
+					+ MANAGER_IMPL_CLASS_PREFIX + "'. Cannot create manager.");
+		}
+		try {
 			m = (HolidayManager) Class.forName(managerImplClass).newInstance();
-			m.init(country);
-			m.setProperties(props);
-			if (isManagerCachingEnabled()) {
-				putToCache(country, m);
-			}
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot create manager class "
+					+ managerImplClass, e);
+		}
+		m.init(country);
+		m.setProperties(props);
+		if (isManagerCachingEnabled()) {
+			putToCache(country, m);
 		}
 		return m;
 	}
@@ -221,7 +234,7 @@ public abstract class HolidayManager {
 	 * @return Merged config properties.
 	 * @throws IOException
 	 */
-	private static Properties readProperties() throws IOException {
+	private static Properties readProperties() {
 		Properties props = readPropertiesFromClasspath();
 		props.putAll(readPropertiesFromConfigFile());
 		return props;
@@ -231,23 +244,28 @@ public abstract class HolidayManager {
 	 * Opens the default configuration file from classpath.
 	 * 
 	 * @return Properties
-	 * @throws IOException
 	 */
-	private static Properties readPropertiesFromClasspath() throws IOException {
+	private static Properties readPropertiesFromClasspath() {
 		Properties props = new Properties();
 		InputStream stream = null;
 		try {
-			stream = HolidayManager.class.getClassLoader().getResourceAsStream(
-					CONFIG_FILE);
-			if (stream != null) {
-				props.load(stream);
-			} else {
-				LOG.warning("Could not load properties file '" + CONFIG_FILE
-						+ "' from classpath.");
+			try {
+				stream = HolidayManager.class.getClassLoader()
+						.getResourceAsStream(CONFIG_FILE);
+				if (stream != null) {
+					props.load(stream);
+				} else {
+					LOG.warning("Could not load properties file '"
+							+ CONFIG_FILE + "' from classpath.");
+				}
+			} finally {
+				if (stream != null) {
+					stream.close();
+				}
 			}
-		} finally {
-			if (stream != null)
-				stream.close();
+		} catch (IOException e) {
+			throw new IllegalStateException(
+					"Could not load properties from classpath.", e);
 		}
 		return props;
 	}
@@ -326,7 +344,7 @@ public abstract class HolidayManager {
 	 * 
 	 * @return Set of supported calendar codes.
 	 */
-	public static Set<String> getSupportedCalendarCodes() throws Exception {
+	public static Set<String> getSupportedCalendarCodes() {
 		Set<String> supportedCalendars = new HashSet<String>();
 		for (HolidayCalendar c : HolidayCalendar.values()) {
 			supportedCalendars.add(c.getId());
@@ -377,9 +395,8 @@ public abstract class HolidayManager {
 	 * 
 	 * @param country
 	 *            i.e. us, uk, de
-	 * @throws Exception
 	 */
-	abstract public void init(String country) throws Exception;
+	abstract public void init(String country);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This
