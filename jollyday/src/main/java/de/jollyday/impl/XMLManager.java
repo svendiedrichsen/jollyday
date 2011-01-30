@@ -220,6 +220,7 @@ public class XMLManager extends HolidayManager {
 		for (Method m : config.getClass().getMethods()) {
 			if (isGetter(m) && m.getReturnType() == List.class) {
 				try {
+					@SuppressWarnings("rawtypes")
 					List l = (List) m.invoke(config);
 					if (l.size() > 0) {
 						String className = l.get(0).getClass().getName();
