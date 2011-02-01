@@ -97,7 +97,20 @@
 					</execution>
 				</executions>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>jar-javadoc</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -116,10 +129,10 @@
 	</dependencies>
 	<licenses>
 		<license>
-		  <name>Apache 2</name>
-		  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		  <distribution>repo</distribution>
-		  <comments>A business-friendly OSS license</comments>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
 		</license>
 	</licenses>
 	<reporting>
@@ -154,9 +167,9 @@
 	</dependencyManagement>
 	<distributionManagement>
 		<site>
-		  <id>jollyday.sf.net</id>
-		  <url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/groups/j/jo/jollyday/htdocs</url>
-		  <name>Sourceforge Site</name>
+			<id>jollyday.sf.net</id>
+			<url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/groups/j/jo/jollyday/htdocs</url>
+			<name>Sourceforge Site</name>
 		</site>
 	</distributionManagement>
 </project>
