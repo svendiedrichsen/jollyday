@@ -123,7 +123,7 @@ public class ResourceUtil {
 	 * @param bundle
 	 * @return description
 	 */
-	private static String getDescription(String key, ResourceBundle bundle) {
+	private static String getDescription(String key, final ResourceBundle bundle) {
 		if (!bundle.containsKey(key)) {
 			return UNDEFINED;
 		}
@@ -164,13 +164,13 @@ public class ResourceUtil {
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
 	private static ResourceBundle getResourceBundle(Locale l,
-			Map<Locale, ResourceBundle> CACHE, String filePrefix) {
-		synchronized (CACHE) {
-			if (!CACHE.containsKey(l)) {
+			Map<Locale, ResourceBundle> resourceCache, String filePrefix) {
+		synchronized (resourceCache) {
+			if (!resourceCache.containsKey(l)) {
 				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l);
-				CACHE.put(l, bundle);
+				resourceCache.put(l, bundle);
 			}
-			return CACHE.get(l);
+			return resourceCache.get(l);
 		}
 	}
 

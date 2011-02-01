@@ -44,7 +44,7 @@ import de.jollyday.util.CalendarUtil;
 public abstract class HolidayManager {
 
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger LOG = Logger.getLogger(HolidayManager.class
 			.getName());
@@ -53,7 +53,7 @@ public abstract class HolidayManager {
 	 */
 	private static final String SYSTEM_CONFIG_PROPERTY = "de.jollyday.config";
 	/**
-	 * Configuration property for the implementing Manager class
+	 * Configuration property for the implementing Manager class.
 	 */
 	private static final String MANAGER_IMPL_CLASS_PREFIX = "manager.impl";
 	/**
@@ -75,7 +75,7 @@ public abstract class HolidayManager {
 	 */
 	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
 	/**
-	 * The configuration properties
+	 * The configuration properties.
 	 */
 	private Properties properties = new Properties();
 
@@ -96,7 +96,7 @@ public abstract class HolidayManager {
 	 *            Country
 	 * @return HolidayManager
 	 */
-	public static final HolidayManager getInstance(HolidayCalendar c) {
+	public static final HolidayManager getInstance(final HolidayCalendar c) {
 		return getInstance(c.getId());
 	}
 
@@ -126,7 +126,7 @@ public abstract class HolidayManager {
 	 *            <code>HolidayManager</code> instance for the country
 	 * @return new
 	 */
-	private static HolidayManager createManager(String country) {
+	private static HolidayManager createManager(final String country) {
 		HolidayManager m;
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Creating HolidayManager for country '" + country
@@ -160,10 +160,9 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Handles NULL or empty country codes and returns the default locales
-	 * country codes for those. For all others the country code will be trimmed
-	 * and set to lower case letters.
-	 * 
+	 * Handles NULL or empty country codes and returns the default locals
+	 * country codes for those. For all others the country code will be
+	 * trimmed and set to lower case letters.
 	 * @param country
 	 * @return trimmed and lower case country code.
 	 */
@@ -178,11 +177,10 @@ public abstract class HolidayManager {
 
 	/**
 	 * Caches the manager instance for this country.
-	 * 
 	 * @param country
 	 * @param manager
 	 */
-	private static void putToCache(String country, HolidayManager manager) {
+	private static void putToCache(final String country, final HolidayManager manager) {
 		synchronized (MANAGER_CHACHE) {
 			MANAGER_CHACHE.put(country, manager);
 		}
@@ -190,11 +188,10 @@ public abstract class HolidayManager {
 
 	/**
 	 * Tries to retrieve a manager instance from cache by country.
-	 * 
 	 * @param country
 	 * @return Manager instance for this country. NULL if none is cached yet.
 	 */
-	private static HolidayManager getFromCache(String country) {
+	private static HolidayManager getFromCache(final String country) {
 		synchronized (MANAGER_CHACHE) {
 			return MANAGER_CHACHE.get(country);
 		}
@@ -203,7 +200,6 @@ public abstract class HolidayManager {
 	/**
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
-	 * 
 	 * @param managerCachingEnabled
 	 *            the managerCachingEnabled to set
 	 */
@@ -230,7 +226,6 @@ public abstract class HolidayManager {
 	/**
 	 * Reads all configuration properties from classpath and config file and
 	 * merges them.
-	 * 
 	 * @return Merged config properties.
 	 * @throws IOException
 	 */
@@ -242,7 +237,6 @@ public abstract class HolidayManager {
 
 	/**
 	 * Opens the default configuration file from classpath.
-	 * 
 	 * @return Properties
 	 */
 	private static Properties readPropertiesFromClasspath() {
@@ -273,7 +267,6 @@ public abstract class HolidayManager {
 	/**
 	 * Tries to read a configuration file from an eventually defined system
 	 * property. Exceptions will be caught and put into the log.
-	 * 
 	 * @return Properties
 	 */
 	private static Properties readPropertiesFromConfigFile() {
@@ -307,10 +300,9 @@ public abstract class HolidayManager {
 
 	/**
 	 * Calls isHoliday with JODA time object.
-	 * 
 	 * @see Manager.isHoliday(LocalDate c, String... args)
 	 */
-	public boolean isHoliday(Calendar c, String... args) {
+	public boolean isHoliday(final Calendar c, final String... args) {
 		return isHoliday(CalendarUtil.create(c), args);
 	}
 
@@ -324,7 +316,7 @@ public abstract class HolidayManager {
 	 *            New York holidays
 	 * @return is a holiday in the state/region
 	 */
-	public boolean isHoliday(LocalDate c, String... args) {
+	public boolean isHoliday(final LocalDate c, final String... args) {
 		StringBuilder keyBuilder = new StringBuilder();
 		keyBuilder.append(c.getYear());
 		for (String arg : args) {

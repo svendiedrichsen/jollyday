@@ -67,7 +67,7 @@ public abstract class AbstractCountryTestBase {
 	}
 
 	private void compareDates(HolidayManager expected, HolidayManager found,
-			CalendarHierarchy h, List<String> args, int year) {
+			CalendarHierarchy h,final List<String> args, int year) {
 		Set<Holiday> expectedHolidays = expected.getHolidays(year,
 				args.toArray(new String[] {}));
 		Set<Holiday> foundHolidays = found.getHolidays(year,
@@ -89,7 +89,7 @@ public abstract class AbstractCountryTestBase {
 		}
 	}
 
-	protected void validateCalendarData(String countryCode, int year)
+	protected void validateCalendarData(final String countryCode, int year)
 			throws Exception {
 		HolidayManager dataManager = HolidayManager.getInstance(countryCode);
 		HolidayManager testManager = HolidayManager.getInstance("test_"

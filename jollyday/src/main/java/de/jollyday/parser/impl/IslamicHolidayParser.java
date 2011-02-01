@@ -41,7 +41,7 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (IslamicHoliday i : config.getIslamicHoliday()) {
 			if (!isValid(i, year)) {
 				continue;

@@ -40,7 +40,7 @@ public class XMLManagerJapan extends XMLManager {
 	 * between each other than this day is also a holiday.
 	 */
 	@Override
-	public Set<Holiday> getHolidays(int year, String... args) {
+	public Set<Holiday> getHolidays(int year, final String... args) {
 		Set<Holiday> holidays = super.getHolidays(year, args);
 		Set<Holiday> additionalHolidays = new HashSet<Holiday>();
 		for (Holiday d : holidays) {

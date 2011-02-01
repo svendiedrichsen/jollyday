@@ -41,7 +41,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (RelativeToFixed rf : config.getRelativeToFixed()) {
 			if (!isValid(rf, year)) {
 				continue;

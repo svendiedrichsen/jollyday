@@ -83,7 +83,7 @@ public class HinduChronologyTest {
 	}
 
 	public void baseTestHindu(String name, LocalDate hinduDate,
-			LocalDate correctGregorianDate) {
+			final LocalDate correctGregorianDate) {
 		System.out.println("Test: " + name);
 		System.out.println("Hindu date: " + hinduDate);
 		LocalDate calculatedGregorianDate = new LocalDate(hinduDate.plusDays(1)

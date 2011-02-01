@@ -54,7 +54,7 @@ import de.jollyday.util.XMLUtil;
 public class XMLManager extends HolidayManager {
 
 	/**
-	 * Logger
+	 * Logger.
 	 */
 	private static final Logger LOG = Logger.getLogger(XMLManager.class
 			.getName());
@@ -71,7 +71,7 @@ public class XMLManager extends HolidayManager {
 	 */
 	private static final String FILE_SUFFIX = ".xml";
 	/**
-	 * Thread pool for async holiday parsing
+	 * Thread pool for async holiday parsing.
 	 */
 	private static final ExecutorService PARSER_THREAD_POOL = Executors
 			.newCachedThreadPool();
@@ -93,7 +93,7 @@ public class XMLManager extends HolidayManager {
 	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
 	@Override
-	public Set<Holiday> getHolidays(int year, String... args) {
+	public Set<Holiday> getHolidays(int year, final String... args) {
 		Set<Holiday> holidaySet = Collections
 				.synchronizedSet(new HashSet<Holiday>());
 		List<Future<?>> futures = new ArrayList<Future<?>>();
@@ -119,7 +119,7 @@ public class XMLManager extends HolidayManager {
 	 * interval.
 	 */
 	@Override
-	public Set<Holiday> getHolidays(ReadableInterval interval, String... args) {
+	public Set<Holiday> getHolidays(ReadableInterval interval, final String... args) {
 		if (interval == null) {
 			throw new IllegalArgumentException("Interval is NULL.");
 		}
@@ -146,8 +146,8 @@ public class XMLManager extends HolidayManager {
 	 * @param futures
 	 * @param args
 	 */
-	private void getHolidays(int year, Configuration c,
-			Set<Holiday> holidaySet, List<Future<?>> futures, String... args) {
+	private void getHolidays(int year, final Configuration c,
+			Set<Holiday> holidaySet, List<Future<?>> futures, final String... args) {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Adding holidays for " + c.getDescription());
 		}
@@ -172,7 +172,7 @@ public class XMLManager extends HolidayManager {
 	 * @param config
 	 */
 	private void parseHolidays(int year, Set<Holiday> holidays,
-			Holidays config, List<Future<?>> futures) {
+			final Holidays config, List<Future<?>> futures) {
 		Collection<HolidayParser> parsers = getParsers(config);
 		for (HolidayParser p : parsers) {
 			futures.add(PARSER_THREAD_POOL.submit(new HolidayParserRunner(year,
@@ -194,7 +194,7 @@ public class XMLManager extends HolidayManager {
 		private final HolidayParser parser;
 
 		public HolidayParserRunner(int year, Set<Holiday> holidays,
-				Holidays config, HolidayParser parser) {
+				final Holidays config, HolidayParser parser) {
 			this.year = year;
 			this.holidays = holidays;
 			this.config = config;
@@ -215,7 +215,7 @@ public class XMLManager extends HolidayManager {
 	 * @param config
 	 * @return A list of parsers to for this configuration.
 	 */
-	private Collection<HolidayParser> getParsers(Holidays config) {
+	private Collection<HolidayParser> getParsers(final Holidays config) {
 		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
 		for (Method m : config.getClass().getMethods()) {
 			if (isGetter(m) && m.getReturnType() == List.class) {
@@ -268,7 +268,7 @@ public class XMLManager extends HolidayManager {
 	 * with JAXB to some Java classes.
 	 */
 	@Override
-	public void init(String country) {
+	public void init(final String country) {
 		String fileName = getConfigurationFileName(country);
 		try {
 			configuration = XMLUtil.unmarshallConfiguration(getClass()
@@ -287,7 +287,7 @@ public class XMLManager extends HolidayManager {
 	 * @param c
 	 *            Configuration to log hierarchy for.
 	 */
-	private static void logHierarchy(Configuration c, int level) {
+	private static void logHierarchy(final Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
 			String space = "";
 			for (int i = 0; i < level; i++) {
@@ -307,7 +307,7 @@ public class XMLManager extends HolidayManager {
 	 * @param country
 	 * @return file name
 	 */
-	public static String getConfigurationFileName(String country) {
+	public static String getConfigurationFileName(final String country) {
 		return FILE_PREFIX + "_" + country + FILE_SUFFIX;
 	}
 
@@ -316,7 +316,7 @@ public class XMLManager extends HolidayManager {
 	 * multiple hierarchy entries within one configuration. It traverses down
 	 * the configuration tree.
 	 */
-	private static void validateConfigurationHierarchy(Configuration c) {
+	private static void validateConfigurationHierarchy(final Configuration c) {
 		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
 		Set<String> multipleHierarchies = new HashSet<String>();
 		for (Configuration subConfig : c.getSubConfigurations()) {
@@ -363,7 +363,7 @@ public class XMLManager extends HolidayManager {
 	 * @return configuration hierarchy
 	 */
 	private static CalendarHierarchy createConfigurationHierarchy(
-			Configuration c, CalendarHierarchy h) {
+			final Configuration c, CalendarHierarchy h) {
 		h = new CalendarHierarchy(h, c.getHierarchy());
 		for (Configuration sub : c.getSubConfigurations()) {
 			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub,

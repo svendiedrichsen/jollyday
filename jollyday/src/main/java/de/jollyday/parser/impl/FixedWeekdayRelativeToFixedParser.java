@@ -40,7 +40,7 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayRelativeToFixed f : config
 				.getFixedWeekdayRelativeToFixed()) {
 			if (!isValid(f, year)) {

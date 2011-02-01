@@ -107,7 +107,7 @@ public class CalendarHierarchy {
 	 * @param children
 	 *            the children to set
 	 */
-	public void setChildren(Map<String, CalendarHierarchy> children) {
+	public void setChildren(final Map<String, CalendarHierarchy> children) {
 		this.children = children;
 	}
 

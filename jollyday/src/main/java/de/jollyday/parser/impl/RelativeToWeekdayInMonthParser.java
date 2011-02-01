@@ -39,7 +39,7 @@ public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 	 * java.util.Set, de.jollyday.config.Holidays)
 	 */
 	@Override
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (RelativeToWeekdayInMonth rtfw : config
 				.getRelativeToWeekdayInMonth()) {
 			if (!isValid(rtfw, year)) {

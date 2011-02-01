@@ -108,7 +108,7 @@ public class HebrewChronology extends BasicChronology {
 	 * @param param
 	 * @param minDaysInFirstWeek
 	 */
-	HebrewChronology(Chronology base, Object param) {
+	HebrewChronology(final Chronology base, Object param) {
 		super(base, param, 4);
 	}
 

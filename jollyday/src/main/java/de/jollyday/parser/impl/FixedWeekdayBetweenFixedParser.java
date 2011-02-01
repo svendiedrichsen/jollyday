@@ -38,7 +38,7 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayBetweenFixed fwm : config
 				.getFixedWeekdayBetweenFixed()) {
 			if (!isValid(fwm, year)) {

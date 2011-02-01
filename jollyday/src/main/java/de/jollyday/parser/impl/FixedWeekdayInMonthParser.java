@@ -41,7 +41,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayInMonth fwm : config.getFixedWeekday()) {
 			if (!isValid(fwm, year)) {
 				continue;

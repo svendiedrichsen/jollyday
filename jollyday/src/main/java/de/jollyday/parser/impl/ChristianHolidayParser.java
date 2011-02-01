@@ -40,7 +40,7 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 	/**
 	 * Parses all christian holidays relative to eastern.
 	 */
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (ChristianHoliday ch : config.getChristianHoliday()) {
 			if (!isValid(ch, year)) {
 				continue;

@@ -28,7 +28,7 @@ import de.jollyday.parser.AbstractHolidayParser;
  */
 public class HinduHolidayParser extends AbstractHolidayParser {
 
-	public void parse(int year, Set<Holiday> holidays, Holidays config) {
+	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (HinduHoliday hh : config.getHinduHoliday()) {
 			if (!isValid(hh, year))
 				continue;

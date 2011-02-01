@@ -82,7 +82,8 @@ public abstract class CalendarUtil {
 	 * @param c
 	 * @return date
 	 */
-	public static LocalDate create(int year, int month, int day, Chronology c) {
+	public static LocalDate create(int year, int month, int day,
+			final Chronology c) {
 		return new LocalDate(year, month, day, c);
 	}
 
@@ -103,7 +104,7 @@ public abstract class CalendarUtil {
 	 * @param c
 	 * @return The local date representing the provided date.
 	 */
-	public static LocalDate create(Calendar c) {
+	public static LocalDate create(final Calendar c) {
 		return new LocalDate(c, getChronology(c.get(Calendar.YEAR)));
 	}
 
@@ -177,7 +178,7 @@ public abstract class CalendarUtil {
 	 * @param date
 	 * @return is weekend
 	 */
-	public static boolean isWeekend(LocalDate date) {
+	public static boolean isWeekend(final LocalDate date) {
 		return date.getDayOfWeek() == DateTimeConstants.SATURDAY
 				|| date.getDayOfWeek() == DateTimeConstants.SUNDAY;
 	}
@@ -268,7 +269,7 @@ public abstract class CalendarUtil {
 	 * 
 	 * @param date
 	 */
-	public static LocalDate convertToGregorianDate(LocalDate date) {
+	public static LocalDate convertToGregorianDate(final LocalDate date) {
 		if (!(date.getChronology() instanceof GregorianChronology)) {
 			return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(),
 					GregorianChronology.getInstance());
@@ -278,15 +279,16 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Shows if the requested dat is contained in the Set of holidays.
-	 * 
 	 * @param holidays
 	 * @param date
 	 * @return contains this date
 	 */
-	public static boolean contains(Set<Holiday> holidays, LocalDate date) {
+	public static boolean contains(final Set<Holiday> holidays,
+			final LocalDate date) {
 		for (Holiday h : holidays) {
-			if (h.getDate().equals(date))
+			if (h.getDate().equals(date)) {
 				return true;
+			}
 		}
 		return false;
 	}
