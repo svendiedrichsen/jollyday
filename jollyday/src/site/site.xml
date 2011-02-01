@@ -32,11 +32,12 @@
 		<item name="XSD-Schema" href="schema.html"/>
 		<item name="Country Names" collapse="true" href="country_names.html">
 			<item name="Default/English" href="names_country_default.html"/>
-			<item name="German/Germany" href="names_country_de_de.html"/>
+			<item name="German" href="names_country_de.html"/>
 		</item>
 		<item name="Holiday Names" collapse="true" href="holiday_names.html">
 			<item name="Default/English" href="names_holiday_default.html"/>
-			<item name="German/Germany" href="names_holiday_de_de.html"/>
+			<item name="German" href="names_holiday_de.html"/>
+			<item name="Dutch" href="names_holiday_nl.html"/>
 		</item>
 		<item name="Australia" href="data/au.html"/>
 		<item name="Africa" collapse="true" href="africa.html">
@@ -104,6 +105,9 @@
 			<item name="Peru" href="data/pe.html"/>
 			<item name="Uruguay" href="data/uy.html"/>
 			<item name="Venezuela" href="data/ve.html"/>
+		</item>
+		<item name="Special Calendars" collapse="true" href="special.html">
+			<item name="NYSE" href="data/nyse.html"/>
 		</item>
     </menu>
 

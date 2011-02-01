@@ -6,7 +6,7 @@ Welcome to Jollyday.
 
   The idea behind this is to have an independent API which can be used in any
   kind of environment. That means no network or database needed. The only external
-  API dependency is to JODA time API.
+  API dependency is to JODA time API which will be replaced by JSR310 when this is final.
 
 Your help will be very much appreciated
   
@@ -22,8 +22,16 @@ Your help will be very much appreciated
   
   For the very latest XML data please refer to the SVN repository.
     
-Countries
+Calendars
+
+  Jollyday comes with a list of holiday calendars for different countries.
 
   The countries are stored by their {{{http://www.iso.org/iso/country_codes/iso_3166_code_lists/english_country_names_and_code_elements.htm}ISO 3166-1-alpha-2}} code in separate XML files.
   To find out which countries are supported please see the navigation menu.
+  
+  Additionally there is currently a calendar for the holidays of the New York Stock Exchange (NYSE).
+  
+  Users may create their own holiday calendars following the general naming schema of the holiday
+  files and using the Holiday.xsd schema.   
+  
   

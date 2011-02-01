@@ -4,18 +4,35 @@ API usage
   country and use this manager to determine the holidays for a year/state/district.
   
 Code Example
- 
-  To get the US holidays for the state New York:
+
+ [[3]] To get a <<<HolidayManager>>> instance for US holidays:
+  
+-----------------------
+HolidayManager m = HolidayManager.getInstance(HolidayCalendar.UNITED_STATES);
+-----------------------
+
+ [[3]] To get the holidays for the state New York:
  
 -----------------------
-  HolidayManager m = HolidayManager.getInstance("us"); //-> Instantiates the US holiday manager
   Set<Holiday> holidays = m.getHolidays(2010, "ny");
 ----------------------- 
   
-  To get the US holidays for New York City in the state New York:
+ [[3]] To get the holidays for New York City in the state New York:
 
 -----------------------
-  HolidayManager m = HolidayManager.getInstance("us"); //-> Instantiates the US holiday manager
   Set<Holiday> holidays = m.getHolidays(2010, "ny", "nyc");
 -----------------------
+  
+ [[4]] To get a <<<HolidayManager>>> instance for your own holidays:
+   
+   [[a]] create a Holidays file i.e. <<<Holidays_MyOwn.xml>>>
+  
+   [[b]] put your holiday rules into this (for examples please the XML files in the provided JAR file in the folder holidays)
+  
+   [[c]] put your <<<Holidays_MyOwn.xml>>> in your applications classpath
+  
+   [[d]] to use your holiday rules create an <<<HolidayManager>>> instance by calling <<<HolidayManager m = HolidayManager.getInstance("MyOwn");>>>
+  
+   [[e]] call <<<Set<Holiday> holidays = m.getHolidays(2010);>>> to retrieve the holidays for 2010.  
+  
   

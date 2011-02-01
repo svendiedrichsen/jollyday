@@ -1,6 +1,6 @@
 Default/English country names
 
-  This is the list default country names. Please contact me if there are any
+  This is the default/english list of country names. Please contact me if there are any
   misspelled names. 
 
 %{snippet|url=file:src/main/resources/descriptions/country_descriptions.properties}

@@ -1,12 +1,15 @@
 XML data
 
-  The holiday configuration data is stored in XML files. Each country has its own file
-  named <<<Holidays_[country].xml>>>. If you want to use your own XML files with this API
-  you can provide them by putting it into the system classpath. 
+  The holiday configuration data is stored in XML files. Each holiday calendar has its own file
+  named <<<Holidays_[name].xml>>>. If you want to use your own XML files with this API
+  you can provide your own XML files by putting them into the applications classpath. 
   
   Each XML file conforms the a XML schema <<<Holiday.xsd>>> provided with the API and
   consist of a root <<<Configuration>>>. Each <<<Configuration>>> contains a list of
   holidays and zero or more <<<SubConfiguration>>> nodes.
+  
+  Those <<<Configuration>>> nodes form a hierarchical structure. Each child node will have all
+  parent holidays plus its own.
 
 --------
 <?xml version="1.0" encoding="UTF-8"?>
@@ -39,6 +42,16 @@ XML data
   There are several different holiday configuration types. Depending on the way the holidays
   shall be determined.
   
+  * Properties for any type of holiday
+  
+    [validFrom] The year this holiday first occurred.
+    
+    [validTo] The year this holiday will occur last.
+    
+    [every] The cycle in which this holiday will occur. i.e 2_YEARS or ODD_YEARS
+    
+    [descriptionPropertiesKey] The key under which you will find the localized holiday name.
+  
   * Fixed
   
 --------
@@ -50,7 +63,7 @@ XML data
   * FixedWeekday
   
 --------
-<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" validFrom="1968" />
+<tns:FixedWeekdayInMonth which="LAST" weekday="MONDAY" month="MAY" validFrom="1968" />
 --------
 
   This example defines a holiday as the last monday on may beginning in 1968.
