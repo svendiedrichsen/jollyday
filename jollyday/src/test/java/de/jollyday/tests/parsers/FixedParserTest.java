@@ -51,7 +51,7 @@ public class FixedParserTest {
 				createFixed(5, Month.MAY, 2011, null));
 		Set<Holiday> set = new HashSet<Holiday>();
 		fixedParser.parse(2010, set, h);
-		contains(new ArrayList<Holiday>(set), CalendarUtil.create(2010, 1, 1),
+		containsAll(new ArrayList<Holiday>(set), CalendarUtil.create(2010, 1, 1),
 				CalendarUtil.create(2010, 3, 3));
 	}
 
@@ -67,12 +67,34 @@ public class FixedParserTest {
 						createMoving(Weekday.SUNDAY, With.NEXT, Weekday.MONDAY)));
 		Set<Holiday> set = new HashSet<Holiday>();
 		fixedParser.parse(2011, set, h);
-		contains(new ArrayList<Holiday>(set), CalendarUtil.create(2011, 1, 7),
+		containsAll(new ArrayList<Holiday>(set), CalendarUtil.create(2011, 1, 7),
 				CalendarUtil.create(2011, 1, 24));
+	}
+	
+	@Test
+	public void testCyle2YearsInvalid(){
+		Fixed fixed = createFixed(4, Month.JANUARY);
+		fixed.setValidFrom(2010);
+		fixed.setEvery("2_YEARS");
+		Holidays holidays = createHolidays(fixed);
+		Set<Holiday> set = new HashSet<Holiday>();
+		fixedParser.parse(2011, set, holidays);
+		Assert.assertTrue("Expected to be empty.", set.isEmpty());
+	}
+
+	@Test
+	public void testCyle3Years(){
+		Fixed fixed = createFixed(4, Month.JANUARY);
+		fixed.setValidFrom(2010);
+		fixed.setEvery("3_YEARS");
+		Holidays holidays = createHolidays(fixed);
+		Set<Holiday> set = new HashSet<Holiday>();
+		fixedParser.parse(2013, set, holidays);
+		Assert.assertEquals("Wrong number of holidays.", 1, set.size());
 	}
 
 	@SuppressWarnings("unchecked")
-	private void contains(List<Holiday> list, LocalDate... dates) {
+	private void containsAll(List<Holiday> list, LocalDate... dates) {
 		Assert.assertEquals("Number of holidays.", dates.length, list.size());
 		List<LocalDate> expected = new ArrayList<LocalDate>(
 				Arrays.asList(dates));

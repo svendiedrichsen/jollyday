@@ -72,12 +72,14 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 						int cycleYears = 0;
 						if ("2_YEARS".equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 2;
+						}else if ("3_YEARS".equalsIgnoreCase(h.getEvery())) {
+								cycleYears = 3;
 						} else if ("4_YEARS".equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 4;
-						} else if ("6_YEARS".equalsIgnoreCase(h.getEvery())) {
-							cycleYears = 6;
 						} else if ("5_YEARS".equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 5;
+						} else if ("6_YEARS".equalsIgnoreCase(h.getEvery())) {
+							cycleYears = 6;
 						} else {
 							throw new IllegalArgumentException(
 									"Cannot handle unknown cycle type '"

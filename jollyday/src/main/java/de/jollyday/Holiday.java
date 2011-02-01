@@ -45,7 +45,7 @@ public final class Holiday {
 	/**
 	 * The type of holiday. e.g. official holiday or not.
 	 * */
-	private final HolidayType typeHoliday;
+	private final HolidayType type;
 
 	/**
 	 * Constructs a holiday for a date using the provided properties key to
@@ -53,7 +53,7 @@ public final class Holiday {
 	 */
 	public Holiday(LocalDate date, String propertiesKey, HolidayType type) {
 		super();
-		this.typeHoliday = type;
+		this.type = type;
 		this.date = date;
 		this.propertiesKey = propertiesKey == null ? "" : propertiesKey;
 	}
@@ -106,7 +106,7 @@ public final class Holiday {
 			Holiday other = (Holiday) obj;
 			return other.date.equals(this.date)
 					&& other.propertiesKey == this.propertiesKey
-					&& typeHoliday.equals(other.typeHoliday);
+					&& type.equals(other.type);
 		}
 		return false;
 	}
@@ -122,7 +122,7 @@ public final class Holiday {
 			int hash = 1;
 			hash = hash * 31 + date.hashCode();
 			hash = hash * 31 + propertiesKey.hashCode();
-			hash = hash * 31 + typeHoliday.hashCode();
+			hash = hash * 31 + type.hashCode();
 			hashCode = hash;
 		}
 		return hashCode;
@@ -143,7 +143,7 @@ public final class Holiday {
 	 * 
 	 * @return the type holiday
 	 */
-	public HolidayType getTypeHoliday() {
-		return typeHoliday;
+	public HolidayType getType() {
+		return type;
 	}
 }
