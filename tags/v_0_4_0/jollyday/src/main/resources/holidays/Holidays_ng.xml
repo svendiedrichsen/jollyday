@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ng" description="Nigeria"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="27" descriptionPropertiesKey="CHILDRENS_DAY"/>
+		<tns:Fixed month="MAY" day="29" descriptionPropertiesKey="FREEDOM_DEMOCRACY"/>
+		<tns:Fixed month="OCTOBER" day="1" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:IslamicHoliday type="RAMADAN"/>
+		<tns:IslamicHoliday type="MAWLID_AN_NABI"/>
+		<tns:IslamicHoliday type="ID_AL_FITR"/>
+		<tns:IslamicHoliday type="ID_UL_ADHA"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="lag" description="Lagos">
+		<tns:Holidays>
+			<tns:Fixed month="JUNE" day="12" descriptionPropertiesKey="ELECTION"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>
