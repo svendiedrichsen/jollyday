@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="jp" description="Japan" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+  <tns:Holidays>
+  	<tns:Fixed month="JANUARY" day="1" validFrom="1948" descriptionPropertiesKey="NEW_YEAR"/>
+  	<tns:Fixed month="JANUARY" day="15" validFrom="1948" validTo="1999" descriptionPropertiesKey="COMING_OF_AGE"/>
+  	<tns:Fixed month="FEBRUARY" day="11" validFrom="1967" descriptionPropertiesKey="FOUNDATION"/>
+  	<tns:Fixed month="APRIL" day="29" descriptionPropertiesKey="SHOWA_DAY"/>
+  	<tns:Fixed month="MAY" day="3" validFrom="1948" descriptionPropertiesKey="CONSTITUTION_DAY"/>
+  	<tns:Fixed month="MAY" day="4" validFrom="2007" descriptionPropertiesKey="GREENERY_DAY"/>
+  	<tns:Fixed month="MAY" day="5" validFrom="1948" descriptionPropertiesKey="CHILDRENS_DAY"/>
+  	<tns:Fixed month="JULY" day="20" validTo="2002" descriptionPropertiesKey="NAVY_DAY"/>
+  	<tns:Fixed month="SEPTEMBER" day="15" validFrom="1966" validTo="2002" descriptionPropertiesKey="RESPECT_AGED_DAY"/>
+  	<tns:Fixed month="OCTOBER" day="10" validFrom="1966" validTo="1999" descriptionPropertiesKey="HEALTH_SPORTS"/>
+  	<tns:Fixed month="NOVEMBER" day="3" validFrom="1948" descriptionPropertiesKey="CULTURE_DAY"/>
+  	<tns:Fixed month="NOVEMBER" day="23" validFrom="1948" descriptionPropertiesKey="LABOUR_DAY"/>
+  	<tns:Fixed month="DECEMBER" day="23" validFrom="1990" descriptionPropertiesKey="EMPERORS_BIRTHDAY"/>
+  	<tns:Fixed month="APRIL" day="10" validFrom="1959" validTo="1959" descriptionPropertiesKey="IMPERIAL_DAY"/>
+  	<tns:Fixed month="FEBRUARY" day="24" validFrom="1989" validTo="1989" descriptionPropertiesKey="IMPERIAL_DAY"/>
+  	<tns:Fixed month="NOVEMBER" day="12" validFrom="1990" validTo="1990" descriptionPropertiesKey="IMPERIAL_DAY"/>
+  	<tns:Fixed month="JUNE" day="9" validFrom="1993" validTo="1993" descriptionPropertiesKey="IMPERIAL_DAY"/>
+  	<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JANUARY" validFrom="2000" descriptionPropertiesKey="COMING_OF_AGE"/>
+  	<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JULY" validFrom="2003" descriptionPropertiesKey="NAVY_DAY"/>
+  	<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="SEPTEMBER" validFrom="2003" descriptionPropertiesKey="RESPECT_AGED_DAY"/>
+  	<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="2000" descriptionPropertiesKey="HEALTH_SPORTS"/>
+  </tns:Holidays>
+</tns:Configuration>
