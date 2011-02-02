@@ -4,9 +4,13 @@
 	<groupId>de.jollyday</groupId>
 	<artifactId>jollyday</artifactId>
 	<name>Jollyday</name>
-	<version>0.4.0-SNAPSHOT</version>
+	<version>0.4.0</version>
 	<description>
-		This API determines the holidays for a given year, country and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the classpath. Currently the following countries are supported: United States, most european countries. More to come.
+		This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday calendar XML file or use any of the provided ones.
+
+Currently there are 63 countries supported like the following: United States, most european countries, Russia, India, Australia. 
+
+Besides those there will be more special calendars like currently existing NYSE calendar (New York Stock Exchange).
 	</description>
 	<url>http://sourceforge.net/projects/jollyday</url>
 	<developers>

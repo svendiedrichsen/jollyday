@@ -7,7 +7,10 @@ Welcome to Jollyday.
   The idea behind this is to have an independent API which can be used in any
   kind of environment. That means no network or database needed. The only external
   API dependency is to JODA time API which will be replaced by JSR310 when this is final.
-
+  
+  At any time you can provide your own XML file containing your holiday rules. Please see the 
+  {{{./usage.html}usage}} page.
+  
 Your help will be very much appreciated
   
   The most important thing is the validation of the holiday XML data files. 
