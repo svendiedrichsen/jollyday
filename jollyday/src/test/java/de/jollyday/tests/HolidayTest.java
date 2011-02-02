@@ -17,6 +17,7 @@ package de.jollyday.tests;
 
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,6 +35,9 @@ import org.junit.Test;
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
+import de.jollyday.HolidayType;
+import de.jollyday.config.Month;
+import de.jollyday.holidaytype.LocalizedHolidayType;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -230,4 +234,11 @@ public class HolidayTest {
 		}
 	}
 
+	@Test
+	public void testHoliday(){
+		Holiday h = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Assert.assertEquals("falsche Bezeichnung", "Weihnachten", h.getDescription());
+		Assert.assertEquals("falsche Bezeichnung", "Christmas", h.getDescription(Locale.ENGLISH));
+	}
+	
 }
