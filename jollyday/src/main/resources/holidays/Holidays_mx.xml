@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="mx" description="Mexico"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="FEBRUARY" day="19" localizedType="UNOFFICIAL_HOLIDAY" descriptionPropertiesKey="ARMY_DAY"/>
+		<tns:Fixed month="FEBRUARY" day="24" validFrom="1937" localizedType="UNOFFICIAL_HOLIDAY" descriptionPropertiesKey="FLAG_DAY"/>
+		<tns:Fixed month="MARCH" day="18" validFrom="1938" localizedType="UNOFFICIAL_HOLIDAY" descriptionPropertiesKey=""/>
+		<tns:Fixed month="OCTOBER" day="12"  localizedType="UNOFFICIAL_HOLIDAY" descriptionPropertiesKey="COLUMBUS_DAY"/>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="SEPTEMBER" day="16" descriptionPropertiesKey="INDEPENDENCE">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="1" validFrom="1934" every="6_YEARS" descriptionPropertiesKey="GOVERNMENT_CHANGE">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="FEBRUARY" descriptionPropertiesKey="CONSTITUTION_DAY"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="JUAREZ_BIRTHDAY"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="NOVEMBER" descriptionPropertiesKey="REVOLUTION"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="pue" description="Puebla">
+		<tns:Holidays>
+			<tns:Fixed month="MAY" day="5" descriptionPropertiesKey="MAY_DAY" localizedType="UNOFFICIAL_HOLIDAY"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>
