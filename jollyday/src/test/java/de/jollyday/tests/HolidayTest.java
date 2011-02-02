@@ -35,8 +35,6 @@ import org.junit.Test;
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
-import de.jollyday.HolidayType;
-import de.jollyday.config.Month;
 import de.jollyday.holidaytype.LocalizedHolidayType;
 import de.jollyday.util.CalendarUtil;
 
@@ -235,10 +233,23 @@ public class HolidayTest {
 	}
 
 	@Test
-	public void testHoliday(){
+	public void testHolidayDescription(){
 		Holiday h = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
-		Assert.assertEquals("falsche Bezeichnung", "Weihnachten", h.getDescription());
-		Assert.assertEquals("falsche Bezeichnung", "Christmas", h.getDescription(Locale.ENGLISH));
+		Assert.assertEquals("Wrong description", "Weihnachten", h.getDescription());
+		Assert.assertEquals("Wrong description", "Christmas", h.getDescription(Locale.ENGLISH));
+		Assert.assertEquals("Wrong description", "Kerstmis", h.getDescription(new Locale("nl")));
+	}
+
+	@Test
+	public void testHolidayEquals(){
+		Holiday h1 = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Assert.assertTrue("Wrong equals implementation", h1.equals(h1));
+		Holiday h2 = new Holiday(CalendarUtil.create(2011, 2, 1), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Assert.assertFalse("Wrong equals implementation", h1.equals(h2));
+		Holiday h3 = new Holiday(CalendarUtil.create(2011, 2, 2), "NEW_YEAR", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Assert.assertFalse("Wrong equals implementation", h1.equals(h3));
+		Holiday h4 = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.UNOFFICIAL_HOLIDAY);
+		Assert.assertFalse("Wrong equals implementation", h1.equals(h4));
 	}
 	
 }
