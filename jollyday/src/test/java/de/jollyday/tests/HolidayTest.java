@@ -92,15 +92,20 @@ public class HolidayTest {
 		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER,
 				17));
 	}
+	
+	private Locale defaultLocale;
 
 	@Before
 	public void init() {
 		System.setProperty("de.jollyday.config",
 				"./src/test/resources/test.app.properties");
+		defaultLocale = Locale.getDefault();
+		Locale.setDefault(Locale.GERMAN);
 	}
 
 	@After
 	public void destroy() {
+		Locale.setDefault(defaultLocale);
 		System.clearProperty("de.jollyday.config");
 	}
 
