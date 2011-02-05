@@ -4,7 +4,7 @@
 	<groupId>de.jollyday</groupId>
 	<artifactId>jollyday</artifactId>
 	<name>Jollyday</name>
-	<version>0.4.0</version>
+	<version>0.4.1-SNAPSHOT</version>
 	<description>
 		This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday calendar XML file or use any of the provided ones.
 
