@@ -15,6 +15,7 @@
  */
 package org.joda.time.chrono.hebrew;
 
+import org.joda.time.DateTimeConstants;
 import org.joda.time.Days;
 import org.joda.time.DurationFieldType;
 import org.joda.time.Hours;
@@ -24,6 +25,12 @@ import org.joda.time.PeriodType;
 import org.joda.time.ReadablePeriod;
 
 public class MoladPeriod implements ReadablePeriod {
+
+	private static final long PARTS_OF_AN_HOUR = 1080L;
+	private static final long SYNODIC_MONTH_MILLIS = 29L
+			* DateTimeConstants.MILLIS_PER_DAY + 12L
+			* DateTimeConstants.MILLIS_PER_HOUR
+			+ DateTimeConstants.MILLIS_PER_HOUR * 793L / PARTS_OF_AN_HOUR;
 
 	private final Days d;
 	private final Hours h;
@@ -88,13 +95,14 @@ public class MoladPeriod implements ReadablePeriod {
 				|| DurationFieldType.hours().equals(field)
 				|| PartsDurationFieldType.parts().equals(field);
 	}
+	
 
 	public Period toPeriod() {
-		return null;
+		return new Period(d.getDays()*DateTimeConstants.MILLIS_PER_DAY+h.getHours()*DateTimeConstants.MILLIS_PER_HOUR+p.getParts()*PartsDurationField.getOneUnitMillis());
 	}
 
 	public MutablePeriod toMutablePeriod() {
-		return null;
+		return new MutablePeriod(d.getDays()*DateTimeConstants.MILLIS_PER_DAY+h.getHours()*DateTimeConstants.MILLIS_PER_HOUR+p.getParts()*PartsDurationField.getOneUnitMillis());
 	}
 
 }

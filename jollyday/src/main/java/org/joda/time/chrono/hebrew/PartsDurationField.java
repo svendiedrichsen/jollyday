@@ -46,7 +46,7 @@ public class PartsDurationField extends DurationField {
 
 	@Override
 	public long getUnitMillis() {
-		return (3 + 1 / 3) * 1000;
+		return (long)getOneUnitMillis();
 	}
 
 	@Override
@@ -56,7 +56,14 @@ public class PartsDurationField extends DurationField {
 
 	@Override
 	public long getValueAsLong(long duration) {
-		return (long) duration / (long) (1000d * (3d + 1d / 3d));
+		return (long) (duration / getOneUnitMillis());
+	}
+
+	/**
+	 * @return
+	 */
+	public static double getOneUnitMillis() {
+		return 1000d * (3d + 1d / 3d);
 	}
 
 	@Override
@@ -71,12 +78,12 @@ public class PartsDurationField extends DurationField {
 
 	@Override
 	public long getMillis(int value) {
-		return (long) ((double) value / (3d + 1d / 3d) * 1000d);
+		return (long) ((double) value / (double)getOneUnitMillis());
 	}
 
 	@Override
 	public long getMillis(long value) {
-		return (long) ((double) value / (3d + 1d / 3d) * 1000d);
+		return (long) ((double) value / getOneUnitMillis());
 	}
 
 	@Override

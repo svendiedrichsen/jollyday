@@ -37,10 +37,11 @@ public class HebrewChronology extends BasicChronology {
 
 	private static final long serialVersionUID = -4095519300332478503L;
 
-	private static DateMidnight MIN_TISHRI = new DateMidnight(108,
+	private static DateMidnight MIN_MOLAD_TISHRI = new DateMidnight(108,
 			Calendar.SEPTEMBER, 22, GregorianChronology.getInstanceUTC());
-	private static MoladPeriod MIN_TISHRI_MOLAD = new MoladPeriod(Days.days(7),
-			Hours.hours(9), Parts.parts(957));
+	
+	private static MoladPeriod MOLAD_PERIOD = new MoladPeriod(Days.days(29),
+			Hours.hours(12), Parts.parts(793));
 
 	/** The lowest year that can be fully supported. */
 	private static final int MIN_YEAR = -292269054;
@@ -114,7 +115,7 @@ public class HebrewChronology extends BasicChronology {
 
 	@Override
 	int getYear(long instant) {
-		long hebrewMillis = instant - MIN_TISHRI.getMillis();
+		long hebrewMillis = instant - MIN_MOLAD_TISHRI.getMillis();
 		long year = ((hebrewMillis / SYNODIC_MONTH_MILLIS - hebrewMillis
 				/ LEAP_CYCLE_MILLIS * 7L) / 12L) + 1;
 		return (int) year;
@@ -189,7 +190,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	long getApproxMillisAtEpochDividedByTwo() {
-		return MIN_TISHRI.getMillis() / 2;
+		return MIN_MOLAD_TISHRI.getMillis() / 2;
 	}
 
 	/*
@@ -290,7 +291,7 @@ public class HebrewChronology extends BasicChronology {
 	 */
 	@Override
 	int getMinYear() {
-		return MIN_TISHRI.getYear();
+		return MIN_MOLAD_TISHRI.getYear();
 	}
 
 	/*
@@ -382,7 +383,7 @@ public class HebrewChronology extends BasicChronology {
 	@Override
 	long getYearMillis(int year) {
 		if (!YEAR_MILLIS.containsKey(Integer.valueOf(year))) {
-			long millis = MIN_TISHRI.getMillis();
+			long millis = MIN_MOLAD_TISHRI.getMillis();
 			for (int y = 1; y < year; y++) {
 				millis += ((long) getDaysInHebrewYear(y))
 						* DateTimeConstants.MILLIS_PER_DAY;

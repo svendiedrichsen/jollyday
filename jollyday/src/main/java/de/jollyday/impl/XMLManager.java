@@ -186,7 +186,7 @@ public class XMLManager extends HolidayManager {
 	 * @author Sven
 	 * 
 	 */
-	private class HolidayParserRunner implements Runnable {
+	private static class HolidayParserRunner implements Runnable {
 
 		private final int year;
 		private final Set<Holiday> holidays;
@@ -289,11 +289,11 @@ public class XMLManager extends HolidayManager {
 	 */
 	private static void logHierarchy(final Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
-			String space = "";
+			StringBuilder space = new StringBuilder();
 			for (int i = 0; i < level; i++) {
-				space += "-";
+				space.append("-");
 			}
-			LOG.finer(space + c.getDescription() + "(" + c.getHierarchy()
+			LOG.finer(space + " " + c.getDescription() + "(" + c.getHierarchy()
 					+ ").");
 			for (Configuration sub : c.getSubConfigurations()) {
 				logHierarchy(sub, level + 1);
