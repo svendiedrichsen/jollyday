@@ -15,6 +15,7 @@
   </bannerRight>
   <body>
     <links>
+      <item name="Joda-Time" href="http://joda-time.sourceforge.net/"/>
       <item name="Jollyday" href="http://sourceforge.net/projects/jollyday/" />
       <item name="Apache" href="http://www.apache.org/" />
       <item name="Maven 2" href="http://maven.apache.org/"/>
@@ -24,6 +25,7 @@
 		<item name="Introduction" href="index.html"/>
 		<item name="Configuration" href="properties.html"/>
 		<item name="Usage" href="usage.html"/>
+		<item name="Integration scenarios" href="integration.html"/>
 		<item name="Download" href="https://sourceforge.net/projects/jollyday/"/>
     </menu>
 
