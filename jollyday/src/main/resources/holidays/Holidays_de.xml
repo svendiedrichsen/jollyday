@@ -31,6 +31,16 @@
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="mu" description="Munich">
+  		<tns:Holidays>
+  			<tns:ChristianHoliday descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="ag" description="Augsburg">
+  		<tns:Holidays>
+  			<tns:ChristianHoliday descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="he" description="Hessen">
   	<tns:Holidays>
