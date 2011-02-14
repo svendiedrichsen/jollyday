@@ -29,6 +29,32 @@
   		<tns:Fixed month="NOVEMBER" day="1"/>
   		<tns:Fixed month="JUNE" day="3"/>
   	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="mu" description="München">
+		<tns:Holidays>
+			<tns:Fixed month="AUGUST" day="15"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="ag" description="Augsburg">
+		<tns:Holidays>
+			<tns:Fixed month="AUGUST" day="8"/>
+			<tns:Fixed month="AUGUST" day="15"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="wu" description="Würzburg">
+		<tns:Holidays>
+			<tns:Fixed month="AUGUST" day="15"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="re" description="Regensburg">
+		<tns:Holidays>
+			<tns:Fixed month="AUGUST" day="15"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="in" description="Ingolstadt">
+		<tns:Holidays>
+			<tns:Fixed month="AUGUST" day="15"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="he" description="Hessen">
   	<tns:Holidays>

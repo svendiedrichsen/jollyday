@@ -52,34 +52,40 @@ public class JollydayCalendar extends HolidayCalendar {
 	how seamlessly it can be integrated with Jollyday:
 	
 --------------------------------------
-01	HolidayManager manager = HolidayManager.getInstance("UK"); // get UK HolidayManager
-02	
-03	// create or get the Holidays
-04	final Set<Holiday> holidays = manager.getHolidays(2006);
-05	 
-06	// create the HolidayCalendar ASSUMING that the set covers 2006!
-07	final HolidayCalendar<LocalDate> calendar = new DefaultHolidayCalendar<LocalDate>
-08	        (holidays, new LocalDate("2006-01-01"), new LocalDate("2006-12-31"));
-09	   
-10	// register the holidays, any calculator with name "UK"
-11	// asked from now on will receive an IMMUTABLE reference to this calendar
-12	LocalDateKitCalculatorsFactory.getDefaultInstance().registerHolidays("UK", calendar);
-13	 
-14	// ask for a LocalDate calculator for "UK"
-15	// (even if a new set of holidays is registered, this one calculator is not affected
-16	DateCalculator<LocalDate> cal = LocalDateKitCalculatorsFactory.getDefaultInstance()
-17	        .getDateCalculator("UK", HolidayHandlerType.FORWARD);
-18	         
-19	// set startDate, this will also set the current business date.
-20	cal.setStartDate(new LocalDate("2006-08-28"));
-21	 
-22	// startDate stays 28 Aug 06 BUT the currentDate has moved,
-23	// according to Forward handler to 29 Aug 2006.
-24	LocalDate start = cal.getStartDate();   // 28 Aug 06
-25	LocalDate current = cal.getCurrentBusinessDate(); // 29 Aug 06
-26	 
-27	LocalDate newCurrent = cal.moveByDays(4).getCurrentBusinessDate(); // 4 Sept 06 due to weekend!
-28	 
-29	// Example with Tenor, 1W with a 2 day spot lag
-30	LocalDate date1WeekFromSpot = cal.moveByTenor(StandardTenor.T_1W, 2).getCurrentBusinessDate();
+HolidayManager manager = HolidayManager.getInstance("UK"); // get UK HolidayManager
+	
+// create or get the Holidays
+final Set<Holiday> holidays = manager.getHolidays(2006);
+
+// fill dates into set of LocalDate
+Set<LocalDate> holidayDates = new HashSet<LocalDate>();
+for(Holiday h : holidays){
+	holidaysDates.add(h.getDate());
+}
+	 
+// create the HolidayCalendar ASSUMING that the set covers 2006!
+final HolidayCalendar<LocalDate> calendar = new DefaultHolidayCalendar<LocalDate>
+        (holidayDates, new LocalDate("2006-01-01"), new LocalDate("2006-12-31"));
+	   
+// register the holidays, any calculator with name "UK"
+// asked from now on will receive an IMMUTABLE reference to this calendar
+LocalDateKitCalculatorsFactory.getDefaultInstance().registerHolidays("UK", calendar);
+	 
+// ask for a LocalDate calculator for "UK"
+// (even if a new set of holidays is registered, this one calculator is not affected
+DateCalculator<LocalDate> cal = LocalDateKitCalculatorsFactory.getDefaultInstance()
+        .getDateCalculator("UK", HolidayHandlerType.FORWARD);
+	         
+// set startDate, this will also set the current business date.
+cal.setStartDate(new LocalDate("2006-08-28"));
+	 
+// startDate stays 28 Aug 06 BUT the currentDate has moved,
+// according to Forward handler to 29 Aug 2006.
+LocalDate start = cal.getStartDate();   // 28 Aug 06
+LocalDate current = cal.getCurrentBusinessDate(); // 29 Aug 06
+ 
+LocalDate newCurrent = cal.moveByDays(4).getCurrentBusinessDate(); // 4 Sept 06 due to weekend!
+	 
+// Example with Tenor, 1W with a 2 day spot lag
+LocalDate date1WeekFromSpot = cal.moveByTenor(StandardTenor.T_1W, 2).getCurrentBusinessDate();
 ----------------------------------	

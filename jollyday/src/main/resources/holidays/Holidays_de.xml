@@ -33,12 +33,28 @@
   	</tns:Holidays>
   	<tns:SubConfigurations hierarchy="mu" description="Munich">
   		<tns:Holidays>
-  			<tns:ChristianHoliday descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  			<tns:Fixed day="15" month="AUGUST" descriptionPropertiesKey="ASSUMPTION_DAY"/>
   		</tns:Holidays>
   	</tns:SubConfigurations>
   	<tns:SubConfigurations hierarchy="ag" description="Augsburg">
   		<tns:Holidays>
-  			<tns:ChristianHoliday descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  			<tns:Fixed day="8" month="AUGUST" descriptionPropertiesKey="PEACE"/>
+  			<tns:Fixed day="15" month="AUGUST" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="wu" description="Würzburg">
+  		<tns:Holidays>
+  			<tns:Fixed day="15" month="AUGUST" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="re" description="Regensburg">
+  		<tns:Holidays>
+  			<tns:Fixed day="15" month="AUGUST" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="in" description="Ingolstadt">
+  		<tns:Holidays>
+  			<tns:Fixed day="15" month="AUGUST" descriptionPropertiesKey="ASSUMPTION_DAY"/>
   		</tns:Holidays>
   	</tns:SubConfigurations>
   </tns:SubConfigurations>
