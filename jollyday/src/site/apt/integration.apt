@@ -22,11 +22,11 @@ Integration scenarios
 --------------------------------------
 public class JollydayCalendar extends HolidayCalendar {
 	
-	private HolidayManager manager = null;
+	private String calendarName;
 	
 	public JollydayCalendar(String calendarName, Calendar baseCalendar, TimeZone tz){
 		super(baseCalendar, tz);
-		manager = HolidayManager.getInstance(calendarName);
+		this.calendarName = calendarName;
 	}
 	
 	@Override
@@ -35,8 +35,12 @@ public class JollydayCalendar extends HolidayCalendar {
 			super.getTimeZone() == null
 			? java.util.Calendar.getInstance() 
 			: java.util.Calendar.getInstance(super.getTimeZone());
-		Set<Holiday> holidays = manager.getHolidays(c.get(java.util.Calendar.YEAR));
-		return new TreeSet(holidays);
+		Set<Holiday> holidays = HolidayManager.getInstance(calendarName).getHolidays(c.get(java.util.Calendar.YEAR));
+		TreeSet<LocalDate> dates = new TreeSet<LocalDate>();
+		for(Holiday h : holidays){
+			dates.add(h.getDate());
+		}
+		return dates;
 	}
 }
 --------------------------------------
