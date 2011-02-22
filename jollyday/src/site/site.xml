@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Jollyday" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+<project name="Jollyday" xmlns="http://maven.apache.org/DECORATION/1.0.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.1 http://maven.apache.org/xsd/decoration-1.0.1.xsd">
   <version/>
   <bannerLeft>
 	  <alt>Jollyday</alt>
@@ -14,6 +14,20 @@
   	<alt>Get Jollyday at SourceForge.net. Fast, secure and Free Open Source software downloads</alt>
   </bannerRight>
   <body>
+    <head>
+		<!-- Piwik -->
+		<script type="text/javascript">
+		var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/jollyday/" : "http://sourceforge.net/apps/piwik/jollyday/");
+		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script type="text/javascript">
+		try {
+			var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+			piwikTracker.trackPageView();
+			piwikTracker.enableLinkTracking();
+			} catch( err ) {}
+		</script>
+		<!-- End Piwik Tag -->    
+    </head>
     <links>
       <item name="Joda-Time" href="http://joda-time.sourceforge.net/"/>
       <item name="Jollyday" href="http://sourceforge.net/projects/jollyday/" />
