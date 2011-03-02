@@ -29,6 +29,7 @@ import org.joda.time.DateTimeConstants;
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Month;
+import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
 import de.jollyday.holidaytype.LocalizedHolidayType;
 
@@ -56,7 +57,8 @@ public class XMLUtil {
 					"Stream is NULL. Cannot read XML.");
 		}
 		try {
-			JAXBContext ctx = JAXBContext.newInstance(XMLUtil.PACKAGE);
+			JAXBContext ctx = JAXBContext.newInstance(XMLUtil.PACKAGE,
+					ObjectFactory.class.getClassLoader());
 			Unmarshaller um = ctx.createUnmarshaller();
 			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um
 					.unmarshal(stream);
