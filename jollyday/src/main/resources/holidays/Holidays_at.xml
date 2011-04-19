@@ -15,7 +15,6 @@
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
 		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
 		<tns:ChristianHoliday type="EASTER" />
-		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" />
 		<tns:ChristianHoliday type="WHIT_MONDAY" />
