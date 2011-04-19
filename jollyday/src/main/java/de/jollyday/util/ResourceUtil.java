@@ -15,10 +15,13 @@
  */
 package de.jollyday.util;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -167,11 +170,49 @@ public class ResourceUtil {
 			Map<Locale, ResourceBundle> resourceCache, String filePrefix) {
 		synchronized (resourceCache) {
 			if (!resourceCache.containsKey(l)) {
-				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l);
+				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l,
+						ResourceUtil.class.getClassLoader());
+				if (bundle instanceof PropertyResourceBundle) {
+					bundle = new Utf8PropertyResourceBundle(
+							(PropertyResourceBundle) bundle);
+				}
 				resourceCache.put(l, bundle);
 			}
 			return resourceCache.get(l);
 		}
+	}
+
+	/**
+	 * Own ResourceBundle implementation to overcome missing UTF-8 support of
+	 * PropertyResourceBundle in a backward compatible way.
+	 * 
+	 * @author svdi1de
+	 * 
+	 */
+	private static class Utf8PropertyResourceBundle extends ResourceBundle {
+		PropertyResourceBundle bundle;
+
+		private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
+			this.bundle = bundle;
+		}
+
+		public Enumeration<String> getKeys() {
+			return bundle.getKeys();
+		}
+
+		protected Object handleGetObject(String key) {
+			String value = (String) bundle.handleGetObject(key);
+			if (value == null) {
+				return null;
+			}
+			try {
+				return new String(value.getBytes("ISO-8859-1"), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				// should not fail - logging omitted
+				return null;
+			}
+		}
+
 	}
 
 }

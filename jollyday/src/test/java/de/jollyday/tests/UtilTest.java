@@ -22,11 +22,15 @@ import java.util.Set;
 import junit.framework.Assert;
 
 import org.joda.time.DateTimeConstants;
+import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.JulianChronology;
 import org.junit.Test;
 
+import de.jollyday.Holiday;
+import de.jollyday.HolidayCalendar;
+import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -233,6 +237,20 @@ public class UtilTest {
 		LocalDate today = new LocalDate(Calendar.getInstance(),
 				GregorianChronology.getInstance());
 		Assert.assertEquals("Wrong date.", today, CalendarUtil.create());
+	}
+
+	@Test
+	public void testUmlaut() {
+		final LocalDate aDate = CalendarUtil.create(2010,
+				DateTimeConstants.JANUARY, 6);
+		final HolidayManager aMgr = HolidayManager.getInstance(HolidayCalendar.AUSTRIA);
+		final Set<Holiday> hs = aMgr.getHolidays(new Interval(aDate
+				.toDateTimeAtStartOfDay(), aDate.toDateTimeAtStartOfDay()
+				.plusDays(1)));
+		Assert.assertNotNull(hs);
+		Assert.assertEquals(1, hs.size());
+		Assert.assertEquals("Heilige Drei Könige", hs.iterator().next()
+				.getDescription());
 	}
 
 }
