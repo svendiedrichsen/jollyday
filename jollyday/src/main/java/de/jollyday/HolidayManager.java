@@ -134,11 +134,11 @@ public abstract class HolidayManager {
 		}
 		Properties props = readProperties();
 		String managerImplClass = null;
-		if (props.stringPropertyNames().contains(
+		if (props.containsKey(
 				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
 			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
 					+ "." + country);
-		} else if (props.stringPropertyNames().contains(
+		} else if (props.containsKey(
 				MANAGER_IMPL_CLASS_PREFIX)) {
 			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
 		} else {
@@ -272,7 +272,7 @@ public abstract class HolidayManager {
 	private static Properties readPropertiesFromConfigFile() {
 		Properties p = new Properties();
 		Properties systemProps = System.getProperties();
-		if (systemProps.stringPropertyNames().contains(SYSTEM_CONFIG_PROPERTY)) {
+		if (systemProps.containsKey(SYSTEM_CONFIG_PROPERTY)) {
 			String configFileName = systemProps
 					.getProperty(SYSTEM_CONFIG_PROPERTY);
 			InputStream input = null;

@@ -201,7 +201,6 @@ public class XMLManager extends HolidayManager {
 			this.parser = parser;
 		}
 
-		@Override
 		public void run() {
 			parser.parse(year, holidays, config);
 		}
@@ -227,7 +226,7 @@ public class XMLManager extends HolidayManager {
 						if (!parserCache.containsKey(className)) {
 							String propName = PARSER_IMPL_PREFIX + className;
 							Properties configProps = getProperties();
-							if (configProps.stringPropertyNames().contains(
+							if (configProps.containsKey(
 									propName)) {
 								HolidayParser hp = (HolidayParser) Class
 										.forName(
