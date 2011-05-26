@@ -13,6 +13,9 @@ Currently there are 63 countries supported like the following: United States, mo
 Besides those there will be more special calendars like currently existing NYSE calendar (New York Stock Exchange).
 	</description>
 	<url>http://sourceforge.net/projects/jollyday</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<developers>
 		<developer>
 			<id>diedrichsen</id>
@@ -130,11 +133,11 @@ Besides those there will be more special calendars like currently existing NYSE 
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.2</version>
-        </dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2</version>
+		</dependency>
 	</dependencies>
 	<licenses>
 		<license>

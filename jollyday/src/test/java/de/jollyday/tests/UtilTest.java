@@ -17,6 +17,7 @@ package de.jollyday.tests;
 
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import junit.framework.Assert;
@@ -250,7 +251,7 @@ public class UtilTest {
 		Assert.assertNotNull(hs);
 		Assert.assertEquals(1, hs.size());
 		Assert.assertEquals("Heilige Drei Könige", hs.iterator().next()
-				.getDescription());
+				.getDescription(Locale.GERMANY));
 	}
 
 }
