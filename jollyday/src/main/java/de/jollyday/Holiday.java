@@ -105,7 +105,7 @@ public final class Holiday {
 		if (obj instanceof Holiday) {
 			Holiday other = (Holiday) obj;
 			return other.date.equals(this.date)
-					&& other.propertiesKey == this.propertiesKey
+					&& other.propertiesKey.equals(this.propertiesKey)
 					&& type.equals(other.type);
 		}
 		return false;
