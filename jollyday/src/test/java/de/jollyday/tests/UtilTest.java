@@ -250,7 +250,7 @@ public class UtilTest {
 				.plusDays(1)));
 		Assert.assertNotNull(hs);
 		Assert.assertEquals(1, hs.size());
-		Assert.assertEquals("Heilige Drei Könige", hs.iterator().next()
+		Assert.assertEquals("Heilige Drei K\u00F6nige", hs.iterator().next()
 				.getDescription(Locale.GERMANY));
 	}
 
