@@ -17,7 +17,6 @@ package de.jollyday.impl;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -157,11 +156,34 @@ public class XMLManager extends HolidayManager {
 			for (Configuration config : c.getSubConfigurations()) {
 				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
 					getHolidays(year, config, holidaySet, futures,
-							Arrays.copyOfRange(args, 1, args.length));
+							copyOfRange(args, 1, args.length));
 					break;
 				}
 			}
 		}
+	}
+
+	/**
+	 * Copies the specified range from the original array to a new array. This
+	 * is a replacement for Java 1.6 Arrays.copyOfRange() specialized in String.
+	 * 
+	 * @param original
+	 *            the original array to copy range from
+	 * @param from
+	 *            the start of the range to copy from the original array
+	 * @param to
+	 *            the inclusive end of the range to copy from the original array
+	 * @return the copied range
+	 */
+	private String[] copyOfRange(final String[] original, int from, int to) {
+		int newLength = to - from;
+		if (newLength < 0) {
+			throw new IllegalArgumentException(from + " > " + to);
+		}
+		String[] copy = new String[newLength];
+		System.arraycopy(original, from, copy, 0,
+				Math.min(original.length - from, newLength));
+		return copy;
 	}
 
 	/**
@@ -219,8 +241,7 @@ public class XMLManager extends HolidayManager {
 		for (Method m : config.getClass().getMethods()) {
 			if (isGetter(m) && m.getReturnType() == List.class) {
 				try {
-					@SuppressWarnings("rawtypes")
-					List l = (List) m.invoke(config);
+					List<?> l = (List<?>) m.invoke(config);
 					if (l.size() > 0) {
 						String className = l.get(0).getClass().getName();
 						if (!parserCache.containsKey(className)) {

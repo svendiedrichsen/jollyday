@@ -16,7 +16,9 @@
 package de.jollyday.tests;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -118,10 +120,11 @@ public class ISOCodesTest {
 		Locale locale = "".equals(l2.getLocale().getCountry()) ? Locale.ENGLISH
 				: l2.getLocale();
 		Enumeration<String> keys = l1.getKeys();
+		Set<String> l2KeySet = new HashSet<String>(Collections.list(l2.getKeys()));
 		StringBuilder misses = new StringBuilder();
 		while (keys.hasMoreElements()) {
 			String propertyName = keys.nextElement();
-			if (!l2.containsKey(propertyName)) {
+			if (!l2KeySet.contains(propertyName)) {
 				misses.append(locale).append(" misses ").append(propertyName)
 						.append('\n');
 			}

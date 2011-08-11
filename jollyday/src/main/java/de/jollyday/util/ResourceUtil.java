@@ -16,6 +16,7 @@
 package de.jollyday.util;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -109,7 +110,7 @@ public class ResourceUtil {
 		Set<String> codes = new HashSet<String>();
 		ResourceBundle countryDescriptions = getCountryDescriptions(Locale
 				.getDefault());
-		for (String property : countryDescriptions.keySet()) {
+		for (String property : Collections.list(countryDescriptions.getKeys())) {
 			String[] split = property.split("\\.");
 			if (split != null && split.length > 2) {
 				codes.add(split[2].toLowerCase());
@@ -127,7 +128,7 @@ public class ResourceUtil {
 	 * @return description
 	 */
 	private static String getDescription(String key, final ResourceBundle bundle) {
-		if (!bundle.containsKey(key)) {
+		if (!Collections.list(bundle.getKeys()).contains(key)) {
 			return UNDEFINED;
 		}
 		return bundle.getString(key);
