@@ -134,12 +134,10 @@ public abstract class HolidayManager {
 		}
 		Properties props = readProperties();
 		String managerImplClass = null;
-		if (props.containsKey(
-				MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
+		if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
 			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
 					+ "." + country);
-		} else if (props.containsKey(
-				MANAGER_IMPL_CLASS_PREFIX)) {
+		} else if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX)) {
 			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
 		} else {
 			throw new IllegalStateException("Missing configuration '"
@@ -151,8 +149,8 @@ public abstract class HolidayManager {
 			throw new IllegalStateException("Cannot create manager class "
 					+ managerImplClass, e);
 		}
-		m.init(country);
 		m.setProperties(props);
+		m.init(country);
 		if (isManagerCachingEnabled()) {
 			putToCache(country, m);
 		}
@@ -161,8 +159,9 @@ public abstract class HolidayManager {
 
 	/**
 	 * Handles NULL or empty country codes and returns the default locals
-	 * country codes for those. For all others the country code will be
-	 * trimmed and set to lower case letters.
+	 * country codes for those. For all others the country code will be trimmed
+	 * and set to lower case letters.
+	 * 
 	 * @param country
 	 * @return trimmed and lower case country code.
 	 */
@@ -177,10 +176,12 @@ public abstract class HolidayManager {
 
 	/**
 	 * Caches the manager instance for this country.
+	 * 
 	 * @param country
 	 * @param manager
 	 */
-	private static void putToCache(final String country, final HolidayManager manager) {
+	private static void putToCache(final String country,
+			final HolidayManager manager) {
 		synchronized (MANAGER_CHACHE) {
 			MANAGER_CHACHE.put(country, manager);
 		}
@@ -188,6 +189,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Tries to retrieve a manager instance from cache by country.
+	 * 
 	 * @param country
 	 * @return Manager instance for this country. NULL if none is cached yet.
 	 */
@@ -200,6 +202,7 @@ public abstract class HolidayManager {
 	/**
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
+	 * 
 	 * @param managerCachingEnabled
 	 *            the managerCachingEnabled to set
 	 */
@@ -226,6 +229,7 @@ public abstract class HolidayManager {
 	/**
 	 * Reads all configuration properties from classpath and config file and
 	 * merges them.
+	 * 
 	 * @return Merged config properties.
 	 * @throws IOException
 	 */
@@ -237,6 +241,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Opens the default configuration file from classpath.
+	 * 
 	 * @return Properties
 	 */
 	private static Properties readPropertiesFromClasspath() {
@@ -267,6 +272,7 @@ public abstract class HolidayManager {
 	/**
 	 * Tries to read a configuration file from an eventually defined system
 	 * property. Exceptions will be caught and put into the log.
+	 * 
 	 * @return Properties
 	 */
 	private static Properties readPropertiesFromConfigFile() {
@@ -300,6 +306,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Calls isHoliday with JODA time object.
+	 * 
 	 * @see Manager.isHoliday(LocalDate c, String... args)
 	 */
 	public boolean isHoliday(final Calendar c, final String... args) {

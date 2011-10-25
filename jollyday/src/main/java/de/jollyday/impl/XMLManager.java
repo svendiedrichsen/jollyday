@@ -82,7 +82,7 @@ public class XMLManager extends HolidayManager {
 	/**
 	 * Configuration parsed on initialization.
 	 */
-	private Configuration configuration;
+	protected Configuration configuration;
 
 	/**
 	 * Calls
@@ -307,7 +307,7 @@ public class XMLManager extends HolidayManager {
 	 * @param c
 	 *            Configuration to log hierarchy for.
 	 */
-	private static void logHierarchy(final Configuration c, int level) {
+	protected static void logHierarchy(final Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
 			StringBuilder space = new StringBuilder();
 			for (int i = 0; i < level; i++) {
@@ -336,7 +336,7 @@ public class XMLManager extends HolidayManager {
 	 * multiple hierarchy entries within one configuration. It traverses down
 	 * the configuration tree.
 	 */
-	private static void validateConfigurationHierarchy(final Configuration c) {
+	protected static void validateConfigurationHierarchy(final Configuration c) {
 		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
 		Set<String> multipleHierarchies = new HashSet<String>();
 		for (Configuration subConfig : c.getSubConfigurations()) {
