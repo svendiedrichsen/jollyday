@@ -75,7 +75,7 @@ public final class Holiday {
 	/**
 	 * The description read with the default locale.
 	 * 
-	 * @return
+	 * @return Description for this holiday
 	 */
 	public String getDescription() {
 		return ResourceUtil.getHolidayDescription(Locale.getDefault(),
@@ -86,7 +86,7 @@ public final class Holiday {
 	 * The description read with the provided locale.
 	 * 
 	 * @param locale
-	 * @return
+	 * @return Description for this holiday
 	 */
 	public String getDescription(Locale locale) {
 		return ResourceUtil.getHolidayDescription(locale, getPropertiesKey());

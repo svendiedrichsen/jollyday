@@ -402,7 +402,7 @@ public abstract class HolidayManager {
 	 * hierarchy shows how the configured holidays are structured and can be
 	 * retrieved.
 	 * 
-	 * @return
+	 * @return Current calendars hierarchy
 	 */
 	abstract public CalendarHierarchy getCalendarHierarchy();
 
