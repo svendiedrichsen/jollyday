@@ -306,8 +306,6 @@ public abstract class HolidayManager {
 
 	/**
 	 * Calls isHoliday with JODA time object.
-	 * 
-	 * @see Manager.isHoliday(LocalDate c, String... args)
 	 */
 	public boolean isHoliday(final Calendar c, final String... args) {
 		return isHoliday(CalendarUtil.create(c), args);

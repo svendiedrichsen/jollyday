@@ -17,10 +17,12 @@ package de.jollyday.parser;
 
 import org.joda.time.LocalDate;
 
+import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holiday;
 import de.jollyday.config.MoveableHoliday;
 import de.jollyday.config.MovingCondition;
 import de.jollyday.config.With;
+import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
@@ -30,7 +32,7 @@ import de.jollyday.util.XMLUtil;
  * 
  */
 public abstract class AbstractHolidayParser implements HolidayParser {
-
+	
 	/**
 	 * Evaluates if the provided <code>Holiday</code> instance is valid for the
 	 * provided year.
@@ -149,6 +151,18 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 			fixed = fixed.plusDays(direction);
 		}
 		return fixed;
+	}
+
+	protected LocalDate getEasterSunday(int year, ChronologyType ct) {
+		LocalDate easterSunday;
+		if (ct == ChronologyType.JULIAN) {
+			easterSunday = CalendarUtil.getJulianEasterSunday(year);
+		} else if (ct == ChronologyType.GREGORIAN) {
+			easterSunday = CalendarUtil.getGregorianEasterSunday(year);
+		} else {
+			easterSunday = CalendarUtil.getEasterSunday(year);
+		}
+		return easterSunday;
 	}
 
 }

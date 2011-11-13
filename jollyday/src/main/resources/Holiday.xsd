@@ -79,8 +79,11 @@
 				type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
-            <element name="FixedWeekdayRelativeToFixed" type="tns:FixedWeekdayRelativeToFixed" maxOccurs="unbounded" minOccurs="0"></element>
-            <element name="HinduHoliday" type="tns:HinduHoliday"
+			<element name="FixedWeekdayRelativeToFixed"
+				type="tns:FixedWeekdayRelativeToFixed" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="HinduHoliday" type="tns:HinduHoliday"
 				maxOccurs="unbounded" minOccurs="0">
 			</element>
 			<element name="HebrewHoliday" type="tns:HebrewHoliday"
@@ -90,6 +93,7 @@
 				type="tns:EthiopianOrthodoxHoliday" maxOccurs="unbounded"
 				minOccurs="0">
 			</element>
+			<element name="RelativeToEasterSunday" type="tns:RelativeToEasterSunday" minOccurs="0" maxOccurs="unbounded"></element>
 		</sequence>
 
 
@@ -403,4 +407,17 @@
 			<enumeration value="EVEN_YEARS"></enumeration>
 		</restriction>
 	</simpleType>
+
+	<complexType name="RelativeToEasterSunday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="chronology"
+						type="tns:ChronologyType">
+					</element>
+					<element name="days" type="int"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
 </schema>

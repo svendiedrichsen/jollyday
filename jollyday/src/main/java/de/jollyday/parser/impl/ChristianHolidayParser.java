@@ -20,13 +20,8 @@ import java.util.Set;
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
-import de.jollyday.HolidayType;
 import de.jollyday.config.ChristianHoliday;
-import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holidays;
-import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.CalendarUtil;
-import de.jollyday.util.XMLUtil;
 
 /**
  * This parser creates christian holidays for the given year relative to easter
@@ -35,7 +30,7 @@ import de.jollyday.util.XMLUtil;
  * @author Sven Diedrichsen
  * 
  */
-public class ChristianHolidayParser extends AbstractHolidayParser {
+public class ChristianHolidayParser extends RelativeToEasterSundayParser {
 
 	/**
 	 * Parses all christian holidays relative to eastern.
@@ -45,14 +40,7 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 			if (!isValid(ch, year)) {
 				continue;
 			}
-			LocalDate easterSunday = null;
-			if (ch.getChronology() == ChronologyType.JULIAN) {
-				easterSunday = CalendarUtil.getJulianEasterSunday(year);
-			} else if (ch.getChronology() == ChronologyType.GREGORIAN) {
-				easterSunday = CalendarUtil.getGregorianEasterSunday(year);
-			} else {
-				easterSunday = CalendarUtil.getEasterSunday(year);
-			}
+			LocalDate easterSunday = getEasterSunday(year, ch.getChronology());
 			switch (ch.getType()) {
 			case EASTER:
 				break;
@@ -106,11 +94,7 @@ public class ChristianHolidayParser extends AbstractHolidayParser {
 						"Unknown christian holiday type " + ch.getType());
 			}
 			String propertiesKey = "christian." + ch.getType().name();
-			LocalDate convertedDate = CalendarUtil
-					.convertToGregorianDate(easterSunday);
-			HolidayType type = XMLUtil.getType(ch.getLocalizedType());
-			Holiday h = new Holiday(convertedDate, propertiesKey, type);
-			holidays.add(h);
+			addChrstianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
 	}
 

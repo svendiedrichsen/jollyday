@@ -28,8 +28,12 @@ import org.junit.Test;
 import de.jollyday.Holiday;
 import de.jollyday.config.ChristianHoliday;
 import de.jollyday.config.ChristianHolidayType;
+import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holidays;
+import de.jollyday.config.RelativeToEasterSunday;
+import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.parser.impl.ChristianHolidayParser;
+import de.jollyday.parser.impl.RelativeToEasterSundayParser;
 import de.jollyday.util.CalendarUtil;
 
 /**
@@ -38,7 +42,7 @@ import de.jollyday.util.CalendarUtil;
  */
 public class ChristianHolidayParserTest {
 
-	private ChristianHolidayParser hp = new ChristianHolidayParser();
+	private AbstractHolidayParser hp = new ChristianHolidayParser();
 
 	@Test
 	public void testEmpty() {
@@ -66,6 +70,19 @@ public class ChristianHolidayParserTest {
 		config.getChristianHoliday().get(0).setValidTo(2010);
 		hp.parse(2011, holidays, config);
 		Assert.assertEquals("Wrong number of holidays.", 0, holidays.size());
+	}
+	
+	@Test
+	public void testRelativeToEasterSunday(){
+		Set<Holiday> holidays = new HashSet<Holiday>();
+		Holidays config = createConfig(1);
+		RelativeToEasterSundayParser p = new RelativeToEasterSundayParser();
+		p.parse(2011, holidays, config);
+		List<LocalDate> expected = new ArrayList<LocalDate>();
+		expected.add(CalendarUtil.create(2011, 4, 24));
+		Assert.assertEquals("Wrong number of holidays.", expected.size(),
+				holidays.size());
+		Assert.assertEquals("Wrong holiday.", expected.get(0), holidays.iterator().next().getDate());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -101,6 +118,17 @@ public class ChristianHolidayParserTest {
 					.getDate());
 		}
 
+	}
+	
+	private Holidays createConfig(int...days) {
+		Holidays config = new Holidays();
+		for (int day : days) {
+			RelativeToEasterSunday d = new RelativeToEasterSunday();
+			d.setDays(day);
+			d.setChronology(ChronologyType.GREGORIAN);
+			config.getRelativeToEasterSunday().add(d);
+		}
+		return config;
 	}
 
 	private Holidays createConfig(ChristianHolidayType... types) {

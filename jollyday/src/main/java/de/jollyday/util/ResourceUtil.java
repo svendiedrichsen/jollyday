@@ -65,7 +65,7 @@ public class ResourceUtil {
 	/**
 	 * The description read with the default locale.
 	 * 
-	 * @return
+	 * @return holiday description using default locale.
 	 */
 	public static String getHolidayDescription(String key) {
 		return getHolidayDescription(Locale.getDefault(), key);
@@ -75,7 +75,7 @@ public class ResourceUtil {
 	 * The description read with the provided locale.
 	 * 
 	 * @param locale
-	 * @return
+	 * @return holiday description using the provided locale.
 	 */
 	public static String getHolidayDescription(Locale locale, String key) {
 		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key,

@@ -210,8 +210,6 @@ public abstract class CalendarUtil {
 	 * @param gregorianYear
 	 * @param ethiopian
 	 *            orthodox month
-	 * @param ethiopian
-	 *            orthodox day
 	 * @return List of gregorian dates for the ethiopian orthodox month/day.
 	 */
 	public static Set<LocalDate> getEthiopianOrthodoxHolidaysInGregorianYear(
