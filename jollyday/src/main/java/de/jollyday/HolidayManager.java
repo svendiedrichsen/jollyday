@@ -250,7 +250,7 @@ public abstract class HolidayManager {
 		try {
 			try {
 				stream = HolidayManager.class.getClassLoader()
-						.getResourceAsStream(CONFIG_FILE);
+						.getResource(CONFIG_FILE).openStream();
 				if (stream != null) {
 					props.load(stream);
 				} else {

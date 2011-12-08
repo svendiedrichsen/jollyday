@@ -1,5 +1,10 @@
-#Mon Aug 08 00:37:52 CEST 2011
+#Thu Dec 08 18:49:18 CET 2011
 eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/resources=UTF-8
 encoding//src/main/resources/descriptions/holiday_descriptions.properties=UTF-8
 encoding//src/main/resources/descriptions/holiday_descriptions_de.properties=UTF-8
 encoding//src/main/resources/descriptions/holiday_descriptions_nl.properties=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding/<project>=UTF-8

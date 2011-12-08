@@ -292,7 +292,7 @@ public class XMLManager extends HolidayManager {
 		String fileName = getConfigurationFileName(country);
 		try {
 			configuration = XMLUtil.unmarshallConfiguration(getClass()
-					.getClassLoader().getResourceAsStream(fileName));
+					.getClassLoader().getResource(fileName).openStream());
 		} catch (Exception e) {
 			throw new IllegalStateException(
 					"Cannot instantiate configuration.", e);

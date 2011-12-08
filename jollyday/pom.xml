@@ -82,7 +82,6 @@ Besides those there will be more special calendars like currently existing NYSE 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>1.3</version>
 				<executions>
 					<execution>
 						<id>generate</id>
