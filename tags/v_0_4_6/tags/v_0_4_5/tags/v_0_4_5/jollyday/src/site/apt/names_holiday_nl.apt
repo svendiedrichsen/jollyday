@@ -1,6 +1,0 @@
-Dutch holiday names
-
-  This is the dutch list of holiday names. Please contact me if there are any
-  misspelled names. 
-
-%{snippet|url=file:src/main/resources/descriptions/holiday_descriptions_nl.properties}

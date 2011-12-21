@@ -1,6 +1,0 @@
-Czech Republic
-
-  This XML file is used to calculate the holidays in Czech Republic.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_cz.xml}
-  

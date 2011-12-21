@@ -1,6 +1,0 @@
-Peru
-
-  This XML file is used to calculate the holidays in Peru.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_pe.xml}
-  
