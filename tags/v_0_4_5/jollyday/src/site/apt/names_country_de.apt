@@ -1,6 +1,0 @@
-German country names
-
-  This is the german list of country names. Please contact me if there are any
-  misspelled names. 
-
-%{snippet|url=file:src/main/resources/descriptions/country_descriptions_de.properties}

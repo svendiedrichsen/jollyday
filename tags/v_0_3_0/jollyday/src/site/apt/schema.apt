@@ -1,6 +1,0 @@
-XSD schema
-
-  The XSD schema describes the format of the XML data files.
-  
-%{snippet|url=file:src/main/resources/Holiday.xsd}
-  
