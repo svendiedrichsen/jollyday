@@ -3,7 +3,7 @@
 	<groupId>de.jollyday</groupId>
 	<artifactId>jollyday</artifactId>
 	<name>Jollyday</name>
-	<version>0.4.5-SNAPSHOT</version>
+	<version>0.4.5</version>
 	<description>
 		This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday calendar XML file or use any of the provided ones.
 
@@ -53,9 +53,9 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</issueManagement>
 	<inceptionYear>18.01.2010</inceptionYear>
 	<scm>
-		<connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/jollyday</connection>
-		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/jollyday</developerConnection>
-		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/jollyday</url>
+		<connection>scm:svn:https://tags.svn.sourceforge.net/svnroot/tags/tags/v_0_4_5</connection>
+		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/v_0_4_5</developerConnection>
+		<url>https://tags.svn.sourceforge.net/svnroot/tags/tags/v_0_4_5</url>
 	</scm>
 	<build>
 		<pluginManagement>
