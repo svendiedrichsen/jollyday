@@ -1,6 +1,0 @@
-Argentina
-
-  This XML file is used to calculate the holidays in Argentina.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_ar.xml}
-  

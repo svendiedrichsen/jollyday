@@ -1,6 +1,0 @@
-Ireland
-
-  This XML file is used to calculate the holidays in Ireland.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_ie.xml}
-  
