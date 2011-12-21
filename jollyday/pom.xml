@@ -4,7 +4,7 @@
 	<groupId>de.jollyday</groupId>
 	<artifactId>jollyday</artifactId>
 	<name>Jollyday</name>
-	<version>0.4.5</version>
+	<version>0.4.5-SNAPSHOT</version>
 	<description>
 		This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday calendar XML file or use any of the provided ones.
 
@@ -13,6 +13,11 @@ Currently there are 63 countries supported like the following: United States, mo
 Besides those there will be more special calendars like currently existing NYSE calendar (New York Stock Exchange).
 	</description>
 	<url>http://sourceforge.net/projects/jollyday</url>
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -54,34 +59,6 @@ Besides those there will be more special calendars like currently existing NYSE 
 		<tag>TRUNK</tag>
 		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday</url>
 	</scm>
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -152,15 +129,6 @@ Besides those there will be more special calendars like currently existing NYSE 
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.2.1</version>
-				<configuration>
-					<!-- During release:perform, enable the "release" profile -->
-					<releaseProfiles>release-sign-artifacts</releaseProfiles>
-					<goals>deploy assembly:assembly</goals>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
