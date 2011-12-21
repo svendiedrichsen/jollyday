@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="pt" description="Portugal"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" />
+		<tns:Fixed month="MAY" day="1" />
+		<tns:Fixed month="APRIL" day="25" />
+		<tns:Fixed month="JUNE" day="10" />
+		<tns:Fixed month="AUGUST" day="15" />
+		<tns:Fixed month="OCTOBER" day="5" />
+		<tns:Fixed month="NOVEMBER" day="1" />
+		<tns:Fixed month="DECEMBER" day="1" />
+		<tns:Fixed month="DECEMBER" day="8" />
+		<tns:Fixed month="DECEMBER" day="25" />
+		<tns:ChristianHoliday type="CARNIVAL" />
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
+	</tns:Holidays>
+</tns:Configuration>

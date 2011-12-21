@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="hu" description="Hungary"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="MARCH" day="15" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="AUGUST" day="20" descriptionPropertiesKey="STEPHENS"/>
+		<tns:Fixed month="OCTOBER" day="23" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:ChristianHoliday type="WHIT_MONDAY" />
+	</tns:Holidays>
+</tns:Configuration>
