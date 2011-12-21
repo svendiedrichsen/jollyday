@@ -1,0 +1,6 @@
+Canada
+
+  This XML file is used to calculate the holidays in Canada.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_ca.xml}
+  

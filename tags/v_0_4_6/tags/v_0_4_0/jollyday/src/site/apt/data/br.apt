@@ -1,0 +1,6 @@
+Brazil
+
+  This XML file is used to calculate the holidays in Brazil.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_br.xml}
+  

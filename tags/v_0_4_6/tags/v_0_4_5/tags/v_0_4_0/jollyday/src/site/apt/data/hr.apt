@@ -1,0 +1,6 @@
+Croatia
+
+  This XML file is used to calculate the holidays in Croatia.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_hr.xml}
+  

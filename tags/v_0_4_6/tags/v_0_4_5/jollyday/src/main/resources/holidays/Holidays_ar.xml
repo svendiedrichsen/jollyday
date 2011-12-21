@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ar" description="Argentina"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="MARCH" day="24" validFrom="2006" descriptionPropertiesKey="REMEMBRANCE_TRUTH_JUSTICE"/>
+		<tns:Fixed month="APRIL" day="2" validFrom="2001" descriptionPropertiesKey="MALVINAS"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="25" descriptionPropertiesKey="MAY_REVOLUTION"/>
+		<tns:Fixed month="JULY" day="9" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="COLUMBUS_DAY">
+			<tns:MovingCondition substitute="TUESDAY" with="PREVIOUS" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="WEDNESDAY" with="PREVIOUS" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="THURSDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="FRIDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="OCTOBER" day="27" validFrom="2010" validTo="2010" />
+		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="FLAG_DAY"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="MARTIN_DAY"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	</tns:Holidays>
+</tns:Configuration>
