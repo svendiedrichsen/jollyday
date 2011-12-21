@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.jollyday</groupId>
 	<artifactId>jollyday</artifactId>
@@ -54,10 +53,10 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</issueManagement>
 	<inceptionYear>18.01.2010</inceptionYear>
 	<scm>
-		<connection>scm:svn:http://jollyday.svn.sourceforge.net/svnroot/jollyday</connection>
-		<developerConnection>scm:svn:http://jollyday.svn.sourceforge.net/svnroot/jollyday</developerConnection>
-		<tag>TRUNK</tag>
-		<url>http://jollyday.svn.sourceforge.net/svnroot/jollyday</url>
+		<connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/</connection>
+		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/</developerConnection>
+		<tag>v_0_4_5</tag>
+		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/</url>
 	</scm>
 	<build>
 		<pluginManagement>
