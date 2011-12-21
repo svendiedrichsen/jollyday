@@ -1,0 +1,6 @@
+Austria
+
+  This XML file is used to calculate the holidays in Austria.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_at.xml}
+  

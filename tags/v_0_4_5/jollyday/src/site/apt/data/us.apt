@@ -1,0 +1,6 @@
+United States
+
+  This XML file is used to calculate the holidays in the United States.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_us.xml}
+  
