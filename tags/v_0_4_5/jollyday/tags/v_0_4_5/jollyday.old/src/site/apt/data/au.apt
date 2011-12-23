@@ -1,6 +1,0 @@
-Australia
-
-  This XML file is used to calculate the holidays in Australia.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_au.xml}
-  

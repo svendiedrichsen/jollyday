@@ -1,6 +1,0 @@
-Italy
-
-  This XML file is used to calculate the holidays in Italy.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_it.xml}
-  
