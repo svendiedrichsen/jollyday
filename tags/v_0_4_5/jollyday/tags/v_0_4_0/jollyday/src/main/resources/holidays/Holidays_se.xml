@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="se" description="Sweden"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="JUNE" day="6" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:ChristianHoliday type="ASCENSION_DAY" />
+		<tns:ChristianHoliday type="PENTECOST" />
+		<tns:FixedWeekdayBetweenFixed weekday="SATURDAY" descriptionPropertiesKey="MIDSUMMER">
+			<tns:from month="JUNE" day="20"/>
+			<tns:to month="JUNE" day="26"/>
+		</tns:FixedWeekdayBetweenFixed>
+		<tns:FixedWeekdayBetweenFixed weekday="SATURDAY" descriptionPropertiesKey="ALL_SAINTS">
+			<tns:from month="OCTOBER" day="31"/>
+			<tns:to month="NOVEMBER" day="6"/>
+		</tns:FixedWeekdayBetweenFixed>
+	</tns:Holidays>
+</tns:Configuration>

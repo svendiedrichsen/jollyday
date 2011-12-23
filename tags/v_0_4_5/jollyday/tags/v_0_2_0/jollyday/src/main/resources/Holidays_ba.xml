@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ba" description="Bosnia and Herzegovina" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1"/>
+	  <tns:Fixed month="JANUARY" day="2"/>
+	  <tns:Fixed month="JANUARY" day="13"/>
+	  <tns:Fixed month="MARCH" day="1"/>
+	  <tns:Fixed month="MAY" day="1"/>
+	  <tns:Fixed month="MAY" day="2"/>
+	  <tns:Fixed month="MAY" day="9"/>
+	  <tns:Fixed month="NOVEMBER" day="25"/>
+	  <tns:IslamicHoliday type="ID_AL_FITR"/>
+	  <tns:IslamicHoliday type="ID_UL_ADHA"/>
+  </tns:Holidays>
+</tns:Configuration>

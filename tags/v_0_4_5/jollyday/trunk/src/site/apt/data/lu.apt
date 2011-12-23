@@ -1,0 +1,6 @@
+Luxembourg
+
+  This XML file is used to calculate the holidays in Luxembourg.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_lu.xml}
+  

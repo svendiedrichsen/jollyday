@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="de" description="Germany" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1"/>
+	  <tns:Fixed month="MAY" day="1"/>
+	  <tns:Fixed month="OCTOBER" day="3" />
+	  <tns:Fixed month="DECEMBER" day="25"/>
+	  <tns:Fixed month="DECEMBER" day="26"/>
+	  <tns:Fixed month="APRIL" day="2"/>
+	  <tns:Fixed month="APRIL" day="5"/>
+	  <tns:Fixed month="MAY" day="13"/>
+	  <tns:Fixed month="MAY" day="24"/>
+  </tns:Holidays>
+  <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="bw" description="Baden-Württenberg">
+  	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="6"/>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:Fixed month="JUNE" day="3"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="by" description="Bayern">
+  	<tns:Holidays>
+  		<tns:Fixed month="JANUARY" day="6"/>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:Fixed month="JUNE" day="3"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="he" description="Hessen">
+  	<tns:Holidays>
+  		<tns:Fixed month="JUNE" day="3"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="mv" description="Mecklenburg-Vorpommern">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nw" description="Nordrhein-Westfalen">
+  	<tns:Holidays>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:Fixed month="JUNE" day="3"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="rp" description="Rheinland-Pfalz">
+  	<tns:Holidays>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:Fixed month="JUNE" day="3"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sl" description="Saarland">
+  	<tns:Holidays>
+  		<tns:Fixed month="NOVEMBER" day="1"/>
+  		<tns:Fixed month="AUGUST" day="15"/>
+  		<tns:Fixed month="JUNE" day="3"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sn" description="Sachsen">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  		<tns:Fixed month="NOVEMBER" day="17"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="st" description="Sachsen-Anhalt">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  		<tns:Fixed month="JANUARY" day="6"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="th" description="Thüringen">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+</tns:Configuration>

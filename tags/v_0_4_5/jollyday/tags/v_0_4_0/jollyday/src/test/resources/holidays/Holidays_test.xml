@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="test" description="Test holidays" 
+	xmlns:tns="http://www.example.org/Holiday" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.example.org/Holiday ../../../main/resources/Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1"/>
+		<tns:Fixed month="JANUARY" day="16">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
+		</tns:Fixed>
+		<tns:RelativeToFixed>
+			<tns:Weekday>WEDNESDAY</tns:Weekday>
+			<tns:When>BEFORE</tns:When>
+			<tns:Date month="NOVEMBER" day="23"/>
+		</tns:RelativeToFixed>
+		<tns:RelativeToFixed >
+			<tns:Days>5</tns:Days>
+  			<tns:When>AFTER</tns:When>
+  			<tns:Date month="NOVEMBER" day="23"/>
+  		</tns:RelativeToFixed>
+		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
+			<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
+		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="AUGUST"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="GREGORIAN"/>
+		<tns:ChristianHoliday type="ASH_WEDNESDAY" />
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="level1">
+		<tns:Holidays>
+			<tns:Fixed month="JANUARY" day="2"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="level2">
+			<tns:Holidays>
+				<tns:Fixed month="JANUARY" day="3"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="level11">
+		<tns:Holidays>
+			<tns:IslamicHoliday type="ID_AL_FITR"/>
+			<tns:IslamicHoliday type="NEWYEAR" />
+			<tns:IslamicHoliday type="ASCHURA" />
+			<tns:IslamicHoliday type="LAILAT_AL_BARAT" />
+			<tns:IslamicHoliday type="LAILAT_AL_MIRAJ" />
+			<tns:IslamicHoliday type="LAILAT_AL_QADR" />
+			<tns:IslamicHoliday type="MAWLID_AN_NABI" />
+			<tns:IslamicHoliday type="RAMADAN" />
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>
