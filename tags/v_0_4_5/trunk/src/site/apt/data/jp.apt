@@ -1,0 +1,9 @@
+Japan
+
+  This XML file is used to calculate the holidays in Japan. The 
+  holiday rule: 'If two holidays have one non holiday in between,
+  this day will also be a holiday.' Is implemented with the class
+  <<<XMLManagerJapan>>> which extends <<<XMLManager>>>.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_jp.xml}
+  

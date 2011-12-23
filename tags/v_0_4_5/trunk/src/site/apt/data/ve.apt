@@ -1,0 +1,6 @@
+Venezuela
+
+  This XML file is used to calculate the holidays in Venezuela.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_ve.xml}
+  

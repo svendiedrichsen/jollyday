@@ -1,0 +1,6 @@
+Bolivia
+
+  This XML file is used to calculate the holidays in Bolivia.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_bo.xml}
+  
