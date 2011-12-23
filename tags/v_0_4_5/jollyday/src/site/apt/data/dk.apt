@@ -1,6 +1,0 @@
-Denmark
-
-  This XML file is used to calculate the holidays in Denmark.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_dk.xml}
-  
