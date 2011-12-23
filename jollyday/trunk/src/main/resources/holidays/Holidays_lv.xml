@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="lv" description="Latvia"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="4" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="JUNE" day="23" descriptionPropertiesKey="MIDSUMMER_EVE"/>
+		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="MIDSUMMER"/>
+		<tns:Fixed month="NOVEMBER" day="18" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+	</tns:Holidays>
+</tns:Configuration>

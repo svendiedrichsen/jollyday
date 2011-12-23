@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ni" description="Nicaragua"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="FEBRUARY" day="1" descriptionPropertiesKey="AIR_FORCE_DAY"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="27" descriptionPropertiesKey="ARMY_DAY"/>
+		<tns:Fixed month="JULY" day="19" descriptionPropertiesKey="LIBERATION"/>
+		<tns:Fixed month="SEPTEMBER" day="14" descriptionPropertiesKey="BATTLE_JACINTO"/>
+		<tns:Fixed month="SEPTEMBER" day="15" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="COLUMBUS_DAY"/>
+		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="bo" description="Boaco">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="25" descriptionPropertiesKey="SANTIAGO"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="so" description="Somoto">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="25" descriptionPropertiesKey="SANTIAGO"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="mn" description="Managua">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="25" descriptionPropertiesKey="SANTIAGO"/>
+			<tns:Fixed month="AUGUST" day="1" descriptionPropertiesKey="SANTO_DOMINGO"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="na" description="Nandaime">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="26" descriptionPropertiesKey="SANTA_ANA"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="ni" description="Niquinohomo">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="26" descriptionPropertiesKey="SANTA_ANA"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="mo" description="Moyogalpa">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="26" descriptionPropertiesKey="SANTA_ANA"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="om" description="Ometepe">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="26" descriptionPropertiesKey="SANTA_ANA"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>

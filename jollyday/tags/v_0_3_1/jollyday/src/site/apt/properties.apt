@@ -1,0 +1,47 @@
+API properties
+
+  The general API configuration resides within the <<<application.properties>>> file contained
+  in the provided jar file. If you specify a system property <<<de.jollyday.config>>> with an
+  additional configuration file the properties of this file will add to and override the
+  original.
+  
+  * Manager implementation
+  
+  A Manager implementation extends the abstract Manager class and does the actual holiday 
+  parsing. The basic API properties are used to define the Manager implementation class 
+  used for the specific country the Manager is created for.
+  
+--------
+manager.impl=de.jollyday.impl.XMLManager
+--------
+
+  This configuration defines an Manager implementation class used as a default for
+  every country. You can define a Manager implementation on a per country base.
+	
+--------
+manager.impl=de.jollyday.impl.XMLManager
+manager.impl.us=de.jollyday.impl.MyXMLManager
+--------
+	
+  This will let the MyXMLManager class be used for calculating US holidays and the
+  XMLManager for all other countries.
+	
+  * Parser implementation
+  
+  A parser implementation is used for parsing the XML file content. There are several parsers
+  configured depending on the class to parse the info from.
+  
+--------
+parser.impl.de.jollyday.config.FixedMovingOnWeekend=de.jollyday.parser.impl.FixedMovingOnWeekendParser
+parser.impl.de.jollyday.config.Fixed=de.jollyday.parser.impl.FixedParser
+parser.impl.de.jollyday.config.FixedWeekdayInMonth=de.jollyday.parser.impl.FixedWeekdayInMonthParser
+parser.impl.de.jollyday.config.IslamicHoliday=de.jollyday.parser.impl.IslamicHolidayParser
+parser.impl.de.jollyday.config.ChristianHoliday=de.jollyday.parser.impl.ChristianHolidayParser
+parser.impl.de.jollyday.config.RelativeToFixed=de.jollyday.parser.impl.RelativeToFixedParser
+parser.impl.de.jollyday.config.RelativeToWeekdayInMonth=de.jollyday.parser.impl.RelativeToWeekdayInMonthParser
+parser.impl.de.jollyday.config.FixedWeekdayBetweenFixed=de.jollyday.parser.impl.FixedWeekdayBetweenFixedParser
+--------
+	
+  The configuration property name starts with <<<parser.impl>>> and finishes with the XML class
+  name. The value is the parser implementation class name which implements the 
+  <<<HolidayParser>>> interface.	
