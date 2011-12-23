@@ -1,6 +1,0 @@
-France
-
-  This XML file is used to calculate the holidays in France.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_fr.xml}
-  
