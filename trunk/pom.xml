@@ -190,8 +190,8 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</reporting>
 	<distributionManagement>
 		<site>
-			<id>jollyday.sf.net</id>
-			<url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/groups/j/jo/jollyday/htdocs</url>
+			<id>shell.sourceforge.net</id>
+			<url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/project-web/jollyday/htdocs</url>
 			<name>Sourceforge Site</name>
 		</site>
 	</distributionManagement>
