@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="pa" description="Panama"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="JANUARY" day="9" descriptionPropertiesKey="MARTYRS_DAY"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="NOVEMBER" day="3" descriptionPropertiesKey="SEPARATION"/>
+		<tns:Fixed month="NOVEMBER" day="4" descriptionPropertiesKey="FLAG_DAY"/>
+		<tns:Fixed month="NOVEMBER" day="28" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="MOTHERS_DAY"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="CLEAN_MONDAY"/>
+		<tns:ChristianHoliday type="CARNIVAL"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	</tns:Holidays>
+</tns:Configuration>

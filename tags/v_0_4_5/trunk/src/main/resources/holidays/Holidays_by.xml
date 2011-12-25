@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="by" description="Belarus"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="MARCH" day="8" descriptionPropertiesKey="INTERNATIONAL_WOMAN"/>
+		<tns:Fixed month="MARCH" day="15" descriptionPropertiesKey="CONSTITUTION_DAY"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY"/>
+		<tns:Fixed month="JULY" day="3" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="NOVEMBER" day="7" descriptionPropertiesKey="OCT_REVOLUTION"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+	</tns:Holidays>
+</tns:Configuration>

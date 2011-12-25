@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="es" description="Spain" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+	  <tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
+	  <tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+	  <tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="NATIONAL_DAY"/>
+	  <tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
+	  <tns:Fixed month="DECEMBER" day="6" validFrom="1978" descriptionPropertiesKey="CONSTITUTION_DAY"/>
+	  <tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
+	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+	  <tns:ChristianHoliday type="EASTER" />
+	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  </tns:Holidays>
+  <tns:SubConfigurations hierarchy="an" description="Andalucia">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:Fixed month="FEBRUARY" day="28" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY">
+  			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+  			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+  		</tns:Fixed>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ar" description="Aragon">
+  	<tns:Holidays>
+  		<tns:Fixed month="APRIL" day="23" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY">
+  			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+  			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+  		</tns:Fixed>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="ce" description="Ceuta">
+  	<tns:Holidays>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:Fixed month="SEPTEMBER" day="2" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  		<tns:IslamicHoliday type="ID_UL_ADHA" validFrom="2010"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="ml" description="Melilla">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  		<tns:IslamicHoliday type="ID_UL_ADHA" validFrom="2010"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="cl" description="Castile and Leon">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+  		<tns:Fixed month="APRIL" day="23" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="cm" description="Castile - La Mancha">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+  		<tns:Fixed month="MAY" day="31" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="cn" description="Canary Islands">
+  	<tns:Holidays>
+  		<tns:Fixed month="MAY" day="31" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="ct" description="Catalonia">
+  	<tns:Holidays>
+  		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="ST_JOHN"/>
+  		<tns:Fixed month="SEPTEMBER" day="11" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="ex" description="Extremadura">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:Fixed month="SEPTEMBER" day="8" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="ga" description="Galicia">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+  		<tns:Fixed month="MAY" day="17" descriptionPropertiesKey="GALICIAN_LITERATURE"/>
+  		<tns:Fixed month="JULY" day="25" descriptionPropertiesKey="ST_JAMES"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="ib" description="Balearic Island">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="lo" description="La Rioja">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+  		<tns:Fixed month="JUNE" day="9" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="m" description="Madrid">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="mu" description="Murcia">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+  		<tns:Fixed month="JUNE" day="9" descriptionPropertiesKey="REGIONAL"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="na" description="Navarre">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="o" description="Asturias">
+  	<tns:Holidays>
+  		<tns:Fixed month="SEPTEMBER" day="8" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY">
+  			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+  			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+  		</tns:Fixed>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="pv" description="Euskadi">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:Fixed month="OCTOBER" day="25" validFrom="2011" descriptionPropertiesKey="NATIONAL_DAY"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="s" description="Cantabria">
+  	<tns:Holidays>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:Fixed month="SEPTEMBER" day="15" descriptionPropertiesKey="APARECIDA"/>
+  		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+ <tns:SubConfigurations hierarchy="vc" description="Valencia">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+  		<tns:Fixed month="OCTOBER" day="9" descriptionPropertiesKey="REGIONAL"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+ </tns:SubConfigurations>
+</tns:Configuration>
