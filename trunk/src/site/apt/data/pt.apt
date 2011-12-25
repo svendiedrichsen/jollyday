@@ -1,0 +1,6 @@
+Portugal
+
+  This XML file is used to calculate the holidays in Portugal.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_pt.xml}
+  
