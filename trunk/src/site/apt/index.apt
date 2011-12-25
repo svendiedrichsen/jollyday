@@ -35,6 +35,18 @@ Calendars
   Additionally there is currently a calendar for the holidays of the New York Stock Exchange (NYSE).
   
   Users may create their own holiday calendars following the general naming schema of the holiday
-  files and using the Holiday.xsd schema.   
+  files and using the Holiday.xsd schema.
+
+Maven
+
+  Jollyday is also available on Maven Central repository. 
+
+-----------------------
+<dependency>
+	<groupId>de.jollyday</groupId>
+	<artifactId>jollyday</artifactId>
+	<version>0.4.5</version>
+</dependency>
+-----------------------
   
   
