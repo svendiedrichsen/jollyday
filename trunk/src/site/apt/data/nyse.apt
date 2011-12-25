@@ -1,0 +1,6 @@
+New York Stock Exchange (NYSE)
+
+  This XML file is used to calculate the holidays for the NYSE.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_nyse.xml}
+  

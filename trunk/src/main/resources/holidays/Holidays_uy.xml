@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="uy" description="Uruguay"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
+		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey="PATRIOT"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="18" descriptionPropertiesKey="LAS_PIEDRAS"/>
+		<tns:Fixed month="JUNE" day="19" descriptionPropertiesKey="ARTIGAS"/>
+		<tns:Fixed month="JULY" day="18" descriptionPropertiesKey="CONSTITUTION_DAY"/>
+		<tns:Fixed month="AUGUST" day="25" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="RACE"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="CARNIVAL"/>
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:ChristianHoliday type="CORPUS_CHRISTI"/>
+	</tns:Holidays>
+</tns:Configuration>
