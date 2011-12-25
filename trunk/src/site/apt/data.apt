@@ -1,0 +1,114 @@
+XML data
+
+  The holiday configuration data is stored in XML files. Each holiday calendar has its own file
+  named <<<Holidays_[name].xml>>>. If you want to use your own XML files with this API
+  you can provide your own XML files by putting them into the applications classpath. 
+  
+  Each XML file conforms the a XML schema <<<Holiday.xsd>>> provided with the API and
+  consist of a root <<<Configuration>>>. Each <<<Configuration>>> contains a list of
+  holidays and zero or more <<<SubConfiguration>>> nodes.
+  
+  Those <<<Configuration>>> nodes form a hierarchical structure. Each child node will have all
+  parent holidays plus its own.
+
+--------
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="us" description="United States" 
+	xmlns:tns="http://www.example.org/Holiday" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.example.org/Holiday Holiday.xsd ">
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1" />
+	  <tns:Fixed month="JULY" day="4" validFrom="1776"/>
+	  <tns:Fixed month="NOVEMBER" day="11" validFrom="1938"/>
+	  <tns:Fixed month="DECEMBER" day="25" />
+	  <tns:Fixed month="MAY" day="30" validFrom="1869" validTo="1967" />
+	  <tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" validFrom="1968" />
+	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" validFrom="1895"/>
+	  <tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER" validFrom="1863"/>
+  </tns:Holidays>
+  <tns:SubConfigurations hierarchy="al" description="Alabama">
+  ...
+--------
+
+  The <<<Holidays>>> on the top most <<<Configuration>>> node represent the list of country-wide
+  holidays. Each <<<SubConfiguration>>> add holidays to this list for this sub-region. 
+  
+  Each holiday may have attributes <<<validFrom>>> and <<<validTo>>> which define the years this
+  holiday occurs.
+  
+* Holidays
+  
+  There are several different holiday configuration types. Depending on the way the holidays
+  shall be determined.
+  
+  * Properties for any type of holiday
+  
+    [validFrom] The year this holiday first occurred.
+    
+    [validTo] The year this holiday will occur last.
+    
+    [every] The cycle in which this holiday will occur. i.e 2_YEARS or ODD_YEARS
+    
+    [descriptionPropertiesKey] The key under which you will find the localized holiday name.
+  
+  * Fixed
+  
+--------
+<tns:Fixed month="JANUARY" day="1" />
+--------
+  
+  This example defines a holiday an the first of january.
+  
+  * FixedWeekday
+  
+--------
+<tns:FixedWeekdayInMonth which="LAST" weekday="MONDAY" month="MAY" validFrom="1968" />
+--------
+
+  This example defines a holiday as the last monday on may beginning in 1968.
+  
+  * RelativeToWeekdayInMonth
+  
+--------
+<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="AFTER">
+	<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="NOVEMBER"/>
+</tns:RelativeToWeekdayInMonth>
+--------
+
+  This example defines a holiday as the friday after the fourth monday in november.
+  
+  * ChristianHoliday
+  
+--------
+<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+--------
+
+  This example defines a holiday as the friday two days before easter sunday.
+  
+--------
+<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN"/>
+--------
+
+  This example defines a holiday as the monday after easter sunday in the julian chronology.
+  
+  
+  * RelativeToFixed
+  
+--------
+<tns:RelativeToFixed>
+	<tns:Weekday>WEDNESDAY</tns:Weekday>
+	<tns:When>BEFORE</tns:When>
+	<tns:Date month="NOVEMBER" day="23"/>
+</tns:RelativeToFixed>
+--------
+
+  This example defines a holiday as the wednesday before november 23rd.
+  
+  * IslamicHoliday
+  
+--------
+<tns:IslamicHoliday type="ID_UL_ADHA"/>
+--------
+
+  This example defines a holiday 'Festival of Sacrifice' in the islamic chronology.
