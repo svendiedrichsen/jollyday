@@ -1,6 +1,0 @@
-Ecuador
-
-  This XML file is used to calculate the holidays in Ecuador.
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_ec.xml}
-  

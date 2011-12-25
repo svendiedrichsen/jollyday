@@ -1,7 +1,0 @@
-Mexico
-
-  This XML file is used to calculate the holidays in Mexico. Please see
-  {{{http://en.wikipedia.org/wiki/Public_holidays_in_Mexico}wikipedia}} for details. 
-  
-%{snippet|url=file:src/main/resources/holidays/Holidays_mx.xml}
-  
