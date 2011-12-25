@@ -77,6 +77,7 @@ public class ChristianHolidayParser extends RelativeToEasterSundayParser {
 				easterSunday = easterSunday.plusDays(39);
 				break;
 			case PENTECOST:
+			case WHIT_SUNDAY:
 				easterSunday = easterSunday.plusDays(49);
 				break;
 			case WHIT_MONDAY:
