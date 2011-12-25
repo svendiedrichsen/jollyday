@@ -53,9 +53,9 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</issueManagement>
 	<inceptionYear>18.01.2010</inceptionYear>
 	<scm>
-		<connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/v_0_4_5</connection>
-		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/v_0_4_5</developerConnection>
-		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/tags/v_0_4_5</url>
+		<connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</connection>
+		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</developerConnection>
+		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</url>
 	</scm>
 	<build>
 		<pluginManagement>
