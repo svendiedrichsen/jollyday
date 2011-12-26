@@ -85,7 +85,6 @@ public class ChristianHolidayParserTest {
 		Assert.assertEquals("Wrong holiday.", expected.get(0), holidays.iterator().next().getDate());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Test
 	public void testChristianDates() {
 		Set<Holiday> holidays = new HashSet<Holiday>();

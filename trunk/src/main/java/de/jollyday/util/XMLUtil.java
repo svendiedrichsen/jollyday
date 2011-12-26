@@ -17,11 +17,11 @@ package de.jollyday.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 import org.joda.time.DateTimeConstants;
@@ -39,6 +39,8 @@ public class XMLUtil {
 	 * the package name to search for the generated java classes.
 	 */
 	public static final String PACKAGE = "de.jollyday.config";
+	
+	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
@@ -46,29 +48,45 @@ public class XMLUtil {
 	 * 
 	 * @param stream
 	 * @return The unmarshalled configuration.
-	 * @throws JAXBException
-	 * @throws IOException
+	 * @throws IOException Could not close the provided stream. 
 	 */
-	@SuppressWarnings("unchecked")
-	public static Configuration unmarshallConfiguration(InputStream stream)
-			throws JAXBException, IOException {
+	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException{
 		if (stream == null) {
 			throw new IllegalArgumentException(
 					"Stream is NULL. Cannot read XML.");
 		}
 		try {
-			JAXBContext ctx = JAXBContext.newInstance(XMLUtil.PACKAGE,
-					ObjectFactory.class.getClassLoader());
+			JAXBContext ctx = null;
+			try{
+				ctx = createJAXBContext(Thread.currentThread().getContextClassLoader());
+			}catch(Exception e){
+				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
+				ctx = null;
+			}
+			if(ctx == null){
+				ctx = createJAXBContext(ObjectFactory.class.getClassLoader());
+			}
 			Unmarshaller um = ctx.createUnmarshaller();
+			@SuppressWarnings("unchecked")
 			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um
 					.unmarshal(stream);
 			return el.getValue();
-		} catch (UnmarshalException ue) {
+		} catch (Exception ue) {
 			throw new IllegalStateException("Cannot parse holidays XML file.",
 					ue);
 		} finally {
 			stream.close();
 		}
+	}
+
+	/**
+	 * Loads the JAXB context using the provided classloader.
+	 * @param classLoader The classloader to use
+	 * @return JAXBContext
+	 * @throws JAXBException
+	 */
+	private static JAXBContext createJAXBContext(ClassLoader classLoader) throws JAXBException {
+		return JAXBContext.newInstance(XMLUtil.PACKAGE, classLoader);
 	}
 
 	/**
