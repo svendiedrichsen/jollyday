@@ -93,7 +93,6 @@ public class FixedParserTest {
 		Assert.assertEquals("Wrong number of holidays.", 1, set.size());
 	}
 
-	@SuppressWarnings("unchecked")
 	private void containsAll(List<Holiday> list, LocalDate... dates) {
 		Assert.assertEquals("Number of holidays.", dates.length, list.size());
 		List<LocalDate> expected = new ArrayList<LocalDate>(
