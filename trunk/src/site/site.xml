@@ -56,6 +56,7 @@
 			<item name="Default/English" href="names_holiday_default.html"/>
 			<item name="German" href="names_holiday_de.html"/>
 			<item name="Dutch" href="names_holiday_nl.html"/>
+			<item name="Portuguese" href="names_holiday_pt.html"/>
 		</item>
 		<item name="Australia" href="data/au.html"/>
 		<item name="Africa" collapse="true" href="africa.html">
