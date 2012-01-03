@@ -146,9 +146,7 @@ public abstract class HolidayManager {
 		}
 		try {
 			Class<?> managerImplClass = ReflectionUtils.loadClass(managerImplClassName);
-			Object managerImplObj = managerImplClass.newInstance();
-			m = HolidayManager.class.cast(managerImplObj);
-		
+			m = HolidayManager.class.cast(managerImplClass.newInstance());
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot create manager class "
 					+ managerImplClassName, e);

@@ -1,5 +1,5 @@
 /**
- * Copyright 2012 Sven Diedrichs en 
+ * Copyright 2012 Sven Diedrichsen 
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); 
  * you may not use this file except in compliance with the License. 
@@ -15,16 +15,24 @@
  */
 package de.jollyday.util;
 
+import java.util.logging.Logger;
+
 /**
  * @author José Pedro Pereira - Linkare TI
  * 
  */
 public final class ReflectionUtils {
-    public static final Class<?> loadClass(String className) throws ClassNotFoundException {
-	try {
-	    return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
-	} catch (Exception e) {
-	    return Class.forName(className);
+	
+	private static final Logger LOG = Logger.getLogger(ReflectionUtils.class.getName());
+	
+	public static final Class<?> loadClass(String className)
+			throws ClassNotFoundException {
+		try {
+			return Class.forName(className, true, Thread.currentThread()
+					.getContextClassLoader());
+		} catch (Exception e) {
+			LOG.warning("Could not load class with current threads context classloader. Using default. Reason: "+e.getMessage());
+			return Class.forName(className);
+		}
 	}
-    }
 }
