@@ -15,6 +15,8 @@
  */
 package de.jollyday.impl;
 
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,6 +42,7 @@ import de.jollyday.HolidayManager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
+import de.jollyday.util.ReflectionUtils;
 import de.jollyday.util.XMLUtil;
 
 /**
@@ -238,6 +241,16 @@ public class XMLManager extends HolidayManager {
 	 */
 	private Collection<HolidayParser> getParsers(final Holidays config) {
 		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
+		
+		//FIXME - instead of trying to check if it is a getter method, why not allow
+		//for javabeans specification by using
+		//PropertyDescriptor[] propertiesDescs=Introspector.getBeanInfo(config.getClass()).getPropertyDescriptors();
+		//and then check for the return type of each
+		//if(List.class.isAssignableFrom(propertiesDescs[0].getPropertyType())) {
+			//use the property "read" method
+			//propertiesDescs[0].getReadMethod().invoke(config)
+		//}
+		
 		for (Method m : config.getClass().getMethods()) {
 			if (isGetter(m) && m.getReturnType() == List.class) {
 				try {
@@ -249,12 +262,16 @@ public class XMLManager extends HolidayManager {
 							Properties configProps = getProperties();
 							if (configProps.containsKey(
 									propName)) {
-								HolidayParser hp = (HolidayParser) Class
-										.forName(
-												configProps
-														.getProperty(propName))
-										.newInstance();
-								parserCache.put(className, hp);
+								
+							    String parserClassName = configProps.getProperty(propName);
+							    
+							    Class<?> parserClass=ReflectionUtils.loadClass(parserClassName);
+							    
+							    Object parserObj = parserClass.newInstance();
+							    
+							    HolidayParser hp = HolidayParser.class.cast(parserObj);
+							    
+							    parserCache.put(className, hp);
 							}
 						}
 						if (parserCache.containsKey(className)) {
