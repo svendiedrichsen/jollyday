@@ -1,8 +1,8 @@
 Using inside an Application Server
 
-    If you have a maven project to build your war or ear and want to use jollyday, please
-    keep in mind that normally some of the dependencies of Jollyday (jaxb) are allready available
-    in your application server's classpath. So, to avoid colisions with the Application Server classpath, 
+    If you have a maven project to build your WAR or EAR and want to use Jollyday, please
+    keep in mind that normally some of the dependencies of Jollyday (i.e. JAXB) are already available
+    in your application server's classpath. To avoid collisions with the Application Server classpath 
     please include the dependency as follow:
     
 -----------------------
