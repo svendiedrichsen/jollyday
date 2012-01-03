@@ -15,7 +15,8 @@
  */
 package de.jollyday.impl;
 
-import java.lang.reflect.Method;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -239,36 +240,21 @@ public class XMLManager extends HolidayManager {
 	 */
 	private Collection<HolidayParser> getParsers(final Holidays config) {
 		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
-		
-		//FIXME - instead of trying to check if it is a getter method, why not allow
-		//for javabeans specification by using
-		//PropertyDescriptor[] propertiesDescs=Introspector.getBeanInfo(config.getClass()).getPropertyDescriptors();
-		//and then check for the return type of each
-		//if(List.class.isAssignableFrom(propertiesDescs[0].getPropertyType())) {
-			//use the property "read" method
-			//propertiesDescs[0].getReadMethod().invoke(config)
-		//}
-		
-		for (Method m : config.getClass().getMethods()) {
-			if (isGetter(m) && m.getReturnType() == List.class) {
-				try {
-					List<?> l = (List<?>) m.invoke(config);
-					if (l.size() > 0) {
+		try {
+			PropertyDescriptor[] propertiesDescs =
+					Introspector.getBeanInfo(config.getClass()).getPropertyDescriptors();
+			for (PropertyDescriptor propertyDescriptor : propertiesDescs) {
+				if(List.class.isAssignableFrom(propertyDescriptor.getPropertyType())) {
+					List<?> l = (List<?>) propertyDescriptor.getReadMethod().invoke(config);
+					if (!l.isEmpty()) {
 						String className = l.get(0).getClass().getName();
 						if (!parserCache.containsKey(className)) {
 							String propName = PARSER_IMPL_PREFIX + className;
 							Properties configProps = getProperties();
-							if (configProps.containsKey(
-									propName)) {
-								
+							if (configProps.containsKey(propName)) {
 							    String parserClassName = configProps.getProperty(propName);
-							    
 							    Class<?> parserClass=ReflectionUtils.loadClass(parserClassName);
-							    
-							    Object parserObj = parserClass.newInstance();
-							    
-							    HolidayParser hp = HolidayParser.class.cast(parserObj);
-							    
+							    HolidayParser hp = HolidayParser.class.cast(parserClass.newInstance());
 							    parserCache.put(className, hp);
 							}
 						}
@@ -276,25 +262,12 @@ public class XMLManager extends HolidayManager {
 							parsers.add(parserCache.get(className));
 						}
 					}
-				} catch (Exception e) {
-					throw new IllegalStateException("Cannot create parsers.", e);
 				}
 			}
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot create parsers.", e);
 		}
 		return parsers;
-	}
-
-	/**
-	 * Returns true if the provided <code>Method</code> is a getter method.
-	 * 
-	 * @param method
-	 *            The method to check if it is a getter.
-	 * @return is a getter method
-	 */
-	private static boolean isGetter(Method method) {
-		return method.getName().startsWith("get")
-				&& method.getParameterTypes().length == 0
-				&& !void.class.equals(method.getReturnType());
 	}
 
 	/**
