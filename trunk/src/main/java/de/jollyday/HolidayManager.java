@@ -32,6 +32,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.ReadableInterval;
 
 import de.jollyday.util.CalendarUtil;
+import de.jollyday.util.ReflectionUtils;
 
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
@@ -133,21 +134,24 @@ public abstract class HolidayManager {
 					+ "'. Caching enabled: " + isManagerCachingEnabled());
 		}
 		Properties props = readProperties();
-		String managerImplClass = null;
+		String managerImplClassName = null;
 		if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
-			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
+			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
 					+ "." + country);
 		} else if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX)) {
-			managerImplClass = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
+			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
 		} else {
 			throw new IllegalStateException("Missing configuration '"
 					+ MANAGER_IMPL_CLASS_PREFIX + "'. Cannot create manager.");
 		}
 		try {
-			m = (HolidayManager) Class.forName(managerImplClass).newInstance();
+			Class<?> managerImplClass = ReflectionUtils.loadClass(managerImplClassName);
+			Object managerImplObj = managerImplClass.newInstance();
+			m = HolidayManager.class.cast(managerImplObj);
+		
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot create manager class "
-					+ managerImplClass, e);
+					+ managerImplClassName, e);
 		}
 		m.setProperties(props);
 		m.init(country);
