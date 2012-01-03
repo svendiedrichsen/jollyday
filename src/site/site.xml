@@ -40,6 +40,7 @@
 		<item name="Configuration" href="properties.html"/>
 		<item name="Usage" href="usage.html"/>
 		<item name="Integration scenarios" href="integration.html"/>
+		<item name="Application Servers" href="appservers.html"/>
 		<item name="Download" href="https://sourceforge.net/projects/jollyday/"/>
     </menu>
 
@@ -49,6 +50,7 @@
 		<item name="Country Names" collapse="true" href="country_names.html">
 			<item name="Default/English" href="names_country_default.html"/>
 			<item name="German" href="names_country_de.html"/>
+			<item name="Portuguese" href="names_country_pt.html"/>
 		</item>
 		<item name="Holiday Names" collapse="true" href="holiday_names.html">
 			<item name="Default/English" href="names_holiday_default.html"/>
