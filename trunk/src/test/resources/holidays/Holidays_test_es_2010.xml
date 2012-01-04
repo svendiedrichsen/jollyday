@@ -71,7 +71,7 @@
   		<tns:Fixed month="SEPTEMBER" day="11"/>
 		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="APRIL" day="5" />
-ju  	</tns:Holidays>
+  	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ex" description="Extremadura">
   	<tns:Holidays>
@@ -110,8 +110,8 @@ ju  	</tns:Holidays>
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19"/>
 		<tns:Fixed month="AUGUST" day="15"/>
-  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   		<tns:Fixed month="APRIL" day="1" />
+  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="mu" description="Murcia">
