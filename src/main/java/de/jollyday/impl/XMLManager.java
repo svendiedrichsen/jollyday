@@ -254,7 +254,8 @@ public class XMLManager extends HolidayManager {
 							if (configProps.containsKey(propName)) {
 							    String parserClassName = configProps.getProperty(propName);
 							    Class<?> parserClass=ReflectionUtils.loadClass(parserClassName);
-							    HolidayParser hp = HolidayParser.class.cast(parserClass.newInstance());
+							    Object parserObject = parserClass.newInstance();
+								HolidayParser hp = HolidayParser.class.cast(parserObject);
 							    parserCache.put(className, hp);
 							}
 						}
