@@ -46,6 +46,22 @@ Besides those there will be more special calendars like currently existing NYSE 
 				<role>Developer</role>
 			</roles>
 		</developer>
+		<developer>
+			<id>jppereira</id>
+			<email>jpereira@linkare.com</email>
+			<name>José Pereira</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>paulozenida</id>
+			<email>pzenida@linkare.com</email>
+			<name>Paulo Zenida</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
 	</developers>
 	<issueManagement>
 		<system>Sourceforge</system>
