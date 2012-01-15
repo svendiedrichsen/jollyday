@@ -51,12 +51,14 @@
 			<item name="Default/English" href="names_country_default.html"/>
 			<item name="German" href="names_country_de.html"/>
 			<item name="Portuguese" href="names_country_pt.html"/>
+			<item name="French" href="names_country_fr.html"/>
 		</item>
 		<item name="Holiday Names" collapse="true" href="holiday_names.html">
 			<item name="Default/English" href="names_holiday_default.html"/>
 			<item name="German" href="names_holiday_de.html"/>
 			<item name="Dutch" href="names_holiday_nl.html"/>
 			<item name="Portuguese" href="names_holiday_pt.html"/>
+			<item name="French" href="names_holiday_fr.html"/>
 		</item>
 		<item name="Australia" href="data/au.html"/>
 		<item name="Africa" collapse="true" href="africa.html">
@@ -127,6 +129,7 @@
 		</item>
 		<item name="Special Calendars" collapse="true" href="special.html">
 			<item name="NYSE" href="data/nyse.html"/>
+			<item name="NYSE Euronext" href="data/nyse_euronext.html"/>
 		</item>
     </menu>
 
