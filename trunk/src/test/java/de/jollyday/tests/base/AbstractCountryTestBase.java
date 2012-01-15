@@ -17,12 +17,14 @@ package de.jollyday.tests.base;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.junit.Assert;
 
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
+import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
 
@@ -100,6 +102,45 @@ public abstract class AbstractCountryTestBase {
 
 		compareHierarchies(testHierarchy, dataHierarchy);
 		compareData(testManager, dataManager, year);
+	}
+	
+	/**
+	 * Validate Country calendar and Default calendar is same if local default is set to country local
+	 * 
+	 * @param countryLocale
+	 * @param countryCalendar
+	 * 
+	 */
+	protected void validateManagerSameInstance(Locale countryLocale,HolidayCalendar countryCalendar) {
+		Locale defaultLocale = Locale.getDefault();
+		Locale.setDefault(countryLocale);
+		try {
+		HolidayManager defaultManager = HolidayManager.getInstance();
+		HolidayManager countryManager = HolidayManager.getInstance(countryCalendar);
+		Assert.assertEquals("Unexpected manager found", defaultManager, countryManager);
+		} catch (Exception e) {
+			Assert.fail("Unexpected error occurred: "+e.getClass().getName()+" - "+e.getMessage());
+		}finally{
+			Locale.setDefault(defaultLocale);
+		}
+	}
+
+	protected void validateManagerDifferentInstance(HolidayCalendar countryCalendar)  {
+		Locale defaultLocale = Locale.getDefault();
+		if (countryCalendar == HolidayCalendar.UNITED_STATES) {
+			Locale.setDefault(Locale.FRANCE);
+		} else {
+			Locale.setDefault(Locale.US);			
+		}
+		try {
+		HolidayManager defaultManager = HolidayManager.getInstance();
+		HolidayManager countryManager = HolidayManager.getInstance(countryCalendar);
+		Assert.assertNotSame("Unexpected manager found", defaultManager, countryManager);
+		} catch (Exception e) {
+			Assert.fail("Unexpected error occurred: "+e.getClass().getName()+" - "+e.getMessage());
+		}finally{
+			Locale.setDefault(defaultLocale);
+		}
 	}
 
 }
