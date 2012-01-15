@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="us" description="United States"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+  <tns:Holidays>
+	  <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+	  <tns:Fixed month="JULY" day="4" validFrom="1776" descriptionPropertiesKey="INDEPENDENCE"/>
+	  <tns:Fixed month="NOVEMBER" day="11" validFrom="1938" descriptionPropertiesKey="VETERANS"/>
+	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+	  <tns:Fixed month="MAY" day="30" validFrom="1869" validTo="1967" descriptionPropertiesKey="MEMORIAL"/>
+	  <tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" validFrom="1968" descriptionPropertiesKey="MEMORIAL"/>
+	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" validFrom="1895" descriptionPropertiesKey="LABOUR_DAY"/>
+	  <tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER" validFrom="1863" descriptionPropertiesKey="THANKSGIVING"/>
+  </tns:Holidays>
+  <tns:SubConfigurations hierarchy="al" description="Alabama">
+  	<tns:Holidays>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="JEFFERSON_DAVIS"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ak" description="Alaska">
+  	<tns:Holidays>
+		<tns:Fixed month="OCTOBER" day="18" descriptionPropertiesKey="ALASKA"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="SEWARD"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="az" description="Arizona">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ar" description="Arkansas">
+  	<tns:Holidays>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ca" description="California">
+  	<tns:Holidays>
+		<tns:Fixed month="FEBRUARY" day="12" descriptionPropertiesKey="LINCOLN"/>
+		<tns:Fixed month="MARCH" day="31" descriptionPropertiesKey="CESAR_CHAVEZ"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="be" description="Berkeley">
+  		<tns:Holidays>
+  			<tns:Fixed month="MARCH" day="8"/>
+  			<tns:Fixed month="OCTOBER" day="21"/>
+  		</tns:Holidays>	
+  	</tns:SubConfigurations>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="co" description="Colorado">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1906" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ct" description="Connecticut">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="12" descriptionPropertiesKey="LINCOLN"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="de" description="Delaware">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="fl" description="Florida">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ga" description="Georgia">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="hi" description="Hawaii">
+  	<tns:Holidays>
+  		<tns:Fixed month="MARCH" day="26" descriptionPropertiesKey="KALANIANAOLE"/>
+  		<tns:Fixed month="JUNE" day="11" descriptionPropertiesKey="KAMEHAMEHA"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="FRIDAY" month="AUGUST" descriptionPropertiesKey="STATEHOOD"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="id" description="Idaho">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="il" description="Illinois">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="12" descriptionPropertiesKey="LINCOLN"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION" every="EVEN_YEARS">
+  			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="PULASKI"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="in" description="Indiana">
+  	<tns:Holidays>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION">
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY"/>
+		</tns:RelativeToWeekdayInMonth>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION">
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ia" description="Iowa">
+  	<tns:Holidays>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ks" description="Kansas">
+  	<tns:Holidays>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ky" description="Kentucky">
+  	<tns:Holidays>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="la" description="Louisiana">
+  	<tns:Holidays>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:ChristianHoliday type="MARDI_GRAS"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="me" description="Maine">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="md" description="Maryland">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="BEFORE" descriptionPropertiesKey="SERVICE_REDUCTION">
+			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY"/>
+		</tns:RelativeToWeekdayInMonth>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION">
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ma" description="Massachusetts">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="PATRIOT"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="sc" description="Suffolk County">
+  		<tns:Holidays>
+  			<tns:Fixed month="MARCH" day="17" descriptionPropertiesKey="EVACUATION"/>
+  			<tns:Fixed month="JUNE" day="17" descriptionPropertiesKey="BUNKER_HILL"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="ca" description="Cambridge">
+  		<tns:Holidays>
+  			<tns:Fixed month="MARCH" day="17" descriptionPropertiesKey="EVACUATION"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="mi" description="Michigan">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="30"/>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="mn" description="Minnesota">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ms" description="Mississippi">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="mo" description="Missouri">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="12" descriptionPropertiesKey="LINCOLN"/>
+  		<tns:Fixed month="MAY" day="8" descriptionPropertiesKey="TRUMAN"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="mt" description="Montana">
+  	<tns:Holidays>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="THANKSGIVING">
+  			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ne" description="Nebraska">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="LAST" weekday="FRIDAY" month="APRIL" descriptionPropertiesKey="ARBOR"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nv" description="Nevada">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="LAST" weekday="FRIDAY" month="OCTOBER" descriptionPropertiesKey="NEVADA"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nh" description="New Hampshire">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nj" description="New Jersey">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="12" descriptionPropertiesKey="LINCOLN"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION">
+  			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nm" description="New Mexico">
+  	<tns:Holidays>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ny" description="New York">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:Fixed month="FEBRUARY" day="12" descriptionPropertiesKey="LINCOLN"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION">
+  			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="nyc" description="New York City">
+  		<tns:Holidays>
+  			<tns:FixedWeekday which="FIRST" weekday="THURSDAY" month="JUNE" descriptionPropertiesKey="BROOKLY_QUEENS"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nc" description="North Carolina">
+  	<tns:Holidays>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="ce" description="Charlotte">
+  		<tns:Holidays>
+  			<tns:Fixed month="MAY" day="20" descriptionPropertiesKey="INDEPENDENCE"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  	<tns:SubConfigurations hierarchy="me" description="Mecklenburg">
+  		<tns:Holidays>
+  			<tns:Fixed month="MAY" day="20" descriptionPropertiesKey="INDEPENDENCE"/>
+  		</tns:Holidays>
+  	</tns:SubConfigurations>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="nd" description="North Dakota">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  		<tns:ChristianHoliday type="EASTER_MONDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="oh" description="Ohio">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ok" description="Oklahoma">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="or" description="Oregon">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="pa" description="Pennsylvania">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ri" description="Rhode Island">
+  	<tns:Holidays>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="VICTORY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sc" description="South Carolina">
+  	<tns:Holidays>
+  		<tns:Fixed month="MAY" day="10" descriptionPropertiesKey="CONFEDERATE"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="sd" description="South Dakota">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="tn" description="Tennesee">
+  	<tns:Holidays>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="tx" description="Texas">
+  	<tns:Holidays>
+  		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="APRIL" descriptionPropertiesKey="CONFEDERATE"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="ut" description="Utah">
+  	<tns:Holidays>
+  		<tns:Fixed month="JULY" day="24" descriptionPropertiesKey="PIONEER"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="vt" description="Vermont">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BENNINGTON"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="va" description="Virginia">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="BEFORE" descriptionPropertiesKey="LEE_JACKSON">
+  			<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="wa" description="Washington">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="dc" description="District of Columbia">
+	<tns:Holidays>
+		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="wv" description="West Virginia">
+  	<tns:Holidays>
+  		<tns:Fixed month="JUNE" day="20" descriptionPropertiesKey="WEST_VIRGINIA"/>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="wi" description="Wisconsin">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION">
+  			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER"/>
+  		</tns:RelativeToWeekdayInMonth>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="SECOND" weekday="TUESDAY" month="SEPTEMBER" descriptionPropertiesKey="ELECTION"/>
+  		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1934" descriptionPropertiesKey="COLUMBUS_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+  <tns:SubConfigurations hierarchy="wy" description="Wyoming">
+  	<tns:Holidays>
+  		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+  		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
+</tns:Configuration>

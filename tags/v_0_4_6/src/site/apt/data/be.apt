@@ -1,0 +1,6 @@
+Belgium
+
+  This XML file is used to calculate the holidays in Belgium.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_be.xml}
+  
