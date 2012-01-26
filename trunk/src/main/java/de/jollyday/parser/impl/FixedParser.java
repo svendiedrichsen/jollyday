@@ -29,8 +29,9 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * The Class FixedParser. Parses a fixed date
- * 
+ *
  * @author tboven
+ * @version $Id: $
  */
 public class FixedParser extends AbstractHolidayParser {
 
@@ -40,6 +41,7 @@ public class FixedParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
+	/** {@inheritDoc} */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (Fixed f : config.getFixed()) {
 			if (!isValid(f, year)) {

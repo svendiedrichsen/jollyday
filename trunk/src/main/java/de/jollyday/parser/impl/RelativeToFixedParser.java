@@ -30,8 +30,9 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * The Class RelativeToFixedParser.
- * 
+ *
  * @author tboven
+ * @version $Id: $
  */
 public class RelativeToFixedParser extends AbstractHolidayParser {
 
@@ -41,6 +42,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
+	/** {@inheritDoc} */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (RelativeToFixed rf : config.getRelativeToFixed()) {
 			if (!isValid(rf, year)) {

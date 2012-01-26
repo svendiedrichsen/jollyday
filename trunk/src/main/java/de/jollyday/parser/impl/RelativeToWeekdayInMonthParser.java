@@ -27,8 +27,10 @@ import de.jollyday.config.When;
 import de.jollyday.util.XMLUtil;
 
 /**
+ * <p>RelativeToWeekdayInMonthParser class.</p>
+ *
  * @author Sven
- * 
+ * @version $Id: $
  */
 public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 
@@ -38,6 +40,7 @@ public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 	 * @see de.jollyday.parser.impl.FixedWeekdayInMonthParser#parse(int,
 	 * java.util.Set, de.jollyday.config.Holidays)
 	 */
+	/** {@inheritDoc} */
 	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (RelativeToWeekdayInMonth rtfw : config

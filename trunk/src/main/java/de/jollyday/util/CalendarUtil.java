@@ -33,15 +33,15 @@ import de.jollyday.config.Fixed;
 
 /**
  * Utility class for date operations.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public abstract class CalendarUtil {
 
 	/**
 	 * Creates the current date within the gregorian calendar.
-	 * 
+	 *
 	 * @return today
 	 */
 	public static LocalDate create() {
@@ -50,10 +50,10 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Creates the given date within the julian/gregorian chronology.
-	 * 
-	 * @param year
-	 * @param month
-	 * @param day
+	 *
+	 * @param year a int.
+	 * @param month a int.
+	 * @param day a int.
 	 * @return Gregorian/julian date.
 	 */
 	public static LocalDate create(int year, int month, int day) {
@@ -64,8 +64,8 @@ public abstract class CalendarUtil {
 	/**
 	 * Returns the Chronology depending on the provided year. year <= 1583 ->
 	 * Julian, Gregorian otherwise.
-	 * 
-	 * @param year
+	 *
+	 * @param year a int.
 	 * @return Chronology
 	 */
 	public static Chronology getChronology(int year) {
@@ -75,11 +75,11 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Creates the date within the provided chronology.
-	 * 
-	 * @param year
-	 * @param month
-	 * @param day
-	 * @param c
+	 *
+	 * @param year a int.
+	 * @param month a int.
+	 * @param day a int.
+	 * @param c a {@link org.joda.time.Chronology} object.
 	 * @return date
 	 */
 	public static LocalDate create(int year, int month, int day,
@@ -89,9 +89,9 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Creates the date from the month/day within the specified year.
-	 * 
-	 * @param year
-	 * @param fixed
+	 *
+	 * @param year a int.
+	 * @param fixed a {@link de.jollyday.config.Fixed} object.
 	 * @return A local date instance.
 	 */
 	public static LocalDate create(int year, Fixed fixed) {
@@ -100,8 +100,8 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Creates a LocalDate. Does not use the Chronology of the Calendar.
-	 * 
-	 * @param c
+	 *
+	 * @param c a {@link java.util.Calendar} object.
 	 * @return The local date representing the provided date.
 	 */
 	public static LocalDate create(final Calendar c) {
@@ -110,8 +110,8 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday for a given year.
-	 * 
-	 * @param year
+	 *
+	 * @param year a int.
 	 * @return Easter sunday.
 	 */
 	public static LocalDate getEasterSunday(int year) {
@@ -124,8 +124,8 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday within the julian chronology.
-	 * 
-	 * @param year
+	 *
+	 * @param year a int.
 	 * @return julian easter sunday
 	 */
 	public static LocalDate getJulianEasterSunday(int year) {
@@ -145,8 +145,8 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday within the gregorian chronology.
-	 * 
-	 * @param year
+	 *
+	 * @param year a int.
 	 * @return gregorian easter sunday.
 	 */
 	public static LocalDate getGregorianEasterSunday(int year) {
@@ -174,8 +174,8 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Returns if this date is on a wekkend.
-	 * 
-	 * @param date
+	 *
+	 * @param date a {@link org.joda.time.LocalDate} object.
 	 * @return is weekend
 	 */
 	public static boolean isWeekend(final LocalDate date) {
@@ -189,10 +189,10 @@ public abstract class CalendarUtil {
 	 * than the gregorian there may be more than one occurrence of an islamic
 	 * date in an gregorian year. i.e.: In the gregorian year 2008 there were
 	 * two 1/1. They occurred on 1/10 and 12/29.
-	 * 
-	 * @param gregorianYear
-	 * @param islamicMonth
-	 * @param islamicDay
+	 *
+	 * @param gregorianYear a int.
+	 * @param islamicMonth a int.
+	 * @param islamicDay a int.
 	 * @return List of gregorian dates for the islamic month/day.
 	 */
 	public static Set<LocalDate> getIslamicHolidaysInGregorianYear(
@@ -206,11 +206,11 @@ public abstract class CalendarUtil {
 	 * ethiopian orthodox month and day. Because the ethiopian orthodox year
 	 * different from the gregorian there may be more than one occurrence of an
 	 * ethiopian orthodox date in an gregorian year.
-	 * 
-	 * @param gregorianYear
-	 * @param ethiopian
-	 *            orthodox month
+	 *
+	 * @param gregorianYear a int.
 	 * @return List of gregorian dates for the ethiopian orthodox month/day.
+	 * @param eoMonth a int.
+	 * @param eoDay a int.
 	 */
 	public static Set<LocalDate> getEthiopianOrthodoxHolidaysInGregorianYear(
 			int gregorianYear, int eoMonth, int eoDay) {
@@ -264,8 +264,9 @@ public abstract class CalendarUtil {
 	/**
 	 * Takes converts the provided date into a date within the gregorian
 	 * chronology. If it is already a gregorian date it will return it.
-	 * 
-	 * @param date
+	 *
+	 * @param date a {@link org.joda.time.LocalDate} object.
+	 * @return a {@link org.joda.time.LocalDate} object.
 	 */
 	public static LocalDate convertToGregorianDate(final LocalDate date) {
 		if (!(date.getChronology() instanceof GregorianChronology)) {
@@ -277,8 +278,9 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Shows if the requested dat is contained in the Set of holidays.
-	 * @param holidays
-	 * @param date
+	 *
+	 * @param holidays a {@link java.util.Set} object.
+	 * @param date a {@link org.joda.time.LocalDate} object.
 	 * @return contains this date
 	 */
 	public static boolean contains(final Set<Holiday> holidays,

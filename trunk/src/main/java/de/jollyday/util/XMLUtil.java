@@ -1,17 +1,21 @@
+
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author sven
+ * @version $Id: $
  */
 package de.jollyday.util;
 
@@ -32,7 +36,6 @@ import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
 import de.jollyday.holidaytype.LocalizedHolidayType;
-
 public class XMLUtil {
 
 	/**
@@ -45,10 +48,10 @@ public class XMLUtil {
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
 	 * this.
-	 * 
-	 * @param stream
+	 *
+	 * @param stream a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
-	 * @throws IOException Could not close the provided stream. 
+	 * @throws java.io.IOException Could not close the provided stream.
 	 */
 	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException{
 		if (stream == null) {
@@ -91,8 +94,8 @@ public class XMLUtil {
 
 	/**
 	 * Returns the <code>DateTimeConstants</code> value for the given weekday.
-	 * 
-	 * @param weekday
+	 *
+	 * @param weekday a {@link de.jollyday.config.Weekday} object.
 	 * @return DateTimeConstants value.
 	 */
 	public static final int getWeekday(Weekday weekday) {
@@ -118,8 +121,8 @@ public class XMLUtil {
 
 	/**
 	 * Returns the <code>DateTimeConstants</code> value for the given month.
-	 * 
-	 * @param month
+	 *
+	 * @param month a {@link de.jollyday.config.Month} object.
 	 * @return DateTimeConstants value.
 	 */
 	public static int getMonth(Month month) {
@@ -155,10 +158,9 @@ public class XMLUtil {
 
 	/**
 	 * Gets the type.
-	 * 
+	 *
 	 * @param type
 	 *            the type of holiday in the config
-	 * 
 	 * @return the type of holiday
 	 */
 	public static HolidayType getType(de.jollyday.config.HolidayType type) {

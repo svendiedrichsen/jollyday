@@ -27,8 +27,10 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
+ * <p>ResourceUtil class.</p>
+ *
  * @author Sven
- * 
+ * @version $Id: $
  */
 public class ResourceUtil {
 
@@ -64,8 +66,9 @@ public class ResourceUtil {
 
 	/**
 	 * The description read with the default locale.
-	 * 
+	 *
 	 * @return holiday description using default locale.
+	 * @param key a {@link java.lang.String} object.
 	 */
 	public static String getHolidayDescription(String key) {
 		return getHolidayDescription(Locale.getDefault(), key);
@@ -73,9 +76,10 @@ public class ResourceUtil {
 
 	/**
 	 * The description read with the provided locale.
-	 * 
-	 * @param locale
+	 *
+	 * @param locale a {@link java.util.Locale} object.
 	 * @return holiday description using the provided locale.
+	 * @param key a {@link java.lang.String} object.
 	 */
 	public static String getHolidayDescription(Locale locale, String key) {
 		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key,
@@ -83,7 +87,10 @@ public class ResourceUtil {
 	}
 
 	/**
+	 * <p>getCountryDescription.</p>
+	 *
 	 * @return the description
+	 * @param key a {@link java.lang.String} object.
 	 */
 	public static String getCountryDescription(String key) {
 		return getCountryDescription(Locale.getDefault(), key);
@@ -91,10 +98,11 @@ public class ResourceUtil {
 
 	/**
 	 * Returns the hierarchys description text from the resource bundle.
-	 * 
+	 *
 	 * @param l
 	 *            Locale to return the description text for.
 	 * @return Description text
+	 * @param key a {@link java.lang.String} object.
 	 */
 	public static String getCountryDescription(Locale l, String key) {
 		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key,
@@ -103,7 +111,7 @@ public class ResourceUtil {
 
 	/**
 	 * Returns a list of ISO codes.
-	 * 
+	 *
 	 * @return 2-digit ISO codes.
 	 */
 	public static final Set<String> getISOCodes() {

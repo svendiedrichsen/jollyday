@@ -30,8 +30,9 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * The Class FixedWeekdayInMonthParser.
- * 
+ *
  * @author tboven
+ * @version $Id: $
  */
 public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 
@@ -41,6 +42,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
+	/** {@inheritDoc} */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayInMonth fwm : config.getFixedWeekday()) {
 			if (!isValid(fwm, year)) {
@@ -55,12 +57,11 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 
 	/**
 	 * Parses the.
-	 * 
+	 *
 	 * @param year
 	 *            the year
 	 * @param fwm
 	 *            the fwm
-	 * 
 	 * @return the local date
 	 */
 	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {

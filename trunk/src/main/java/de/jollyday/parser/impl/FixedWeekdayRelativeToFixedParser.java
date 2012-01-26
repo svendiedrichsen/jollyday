@@ -30,13 +30,15 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * Parses fixed weekday relative to fixed date.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */

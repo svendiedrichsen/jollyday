@@ -48,9 +48,9 @@ import de.jollyday.util.XMLUtil;
  * Manager implementation for reading data from XML files. The files with the
  * name pattern Holidays_[country].xml will be read from the system classpath.
  * It uses a list a parsers for parsing the different type of XML nodes.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public class XMLManager extends HolidayManager {
 
@@ -87,10 +87,11 @@ public class XMLManager extends HolidayManager {
 	protected Configuration configuration;
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Calls
 	 * <code>Set&lt;LocalDate&gt; getHolidays(int year, Configuration c, String... args)</code>
 	 * with the configuration from initialization.
-	 * 
 	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
 	@Override
@@ -115,6 +116,8 @@ public class XMLManager extends HolidayManager {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Calls <code>getHolidays(year, args)</code> for each year within the
 	 * interval and returns a list of holidays which are then contained in the
 	 * interval.
@@ -272,6 +275,8 @@ public class XMLManager extends HolidayManager {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Initializes the XMLManager by loading the holidays XML file as resource
 	 * from the classpath. When the XML file is found it will be unmarshalled
 	 * with JAXB to some Java classes.
@@ -292,9 +297,10 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * Logs the hierarchy structure.
-	 * 
+	 *
 	 * @param c
 	 *            Configuration to log hierarchy for.
+	 * @param level a int.
 	 */
 	protected static void logHierarchy(final Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
@@ -312,8 +318,8 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * Returns the configuration file name for the country.
-	 * 
-	 * @param country
+	 *
+	 * @param country a {@link java.lang.String} object.
 	 * @return file name
 	 */
 	public static String getConfigurationFileName(final String country) {
@@ -324,6 +330,8 @@ public class XMLManager extends HolidayManager {
 	 * Validates the content of the provided configuration by checking for
 	 * multiple hierarchy entries within one configuration. It traverses down
 	 * the configuration tree.
+	 *
+	 * @param c a {@link de.jollyday.config.Configuration} object.
 	 */
 	protected static void validateConfigurationHierarchy(final Configuration c) {
 		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
@@ -355,6 +363,8 @@ public class XMLManager extends HolidayManager {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Returns the configurations hierarchy.<br>
 	 * i.e. Hierarchy 'us' -> Children 'al','ak','ar', ... ,'wv','wy'. Every
 	 * child might itself have children. The ids be used to call

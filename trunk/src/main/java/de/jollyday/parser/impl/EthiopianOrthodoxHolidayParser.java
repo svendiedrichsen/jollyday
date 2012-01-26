@@ -29,9 +29,9 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * Calculates the ethiopian orthodox holidays.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 
@@ -41,6 +41,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
+	/** {@inheritDoc} */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (EthiopianOrthodoxHoliday h : config.getEthiopianOrthodoxHoliday()) {
 			if (!isValid(h, year)) {
