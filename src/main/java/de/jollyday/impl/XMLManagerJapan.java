@@ -25,8 +25,10 @@ import de.jollyday.holidaytype.LocalizedHolidayType;
 import de.jollyday.util.CalendarUtil;
 
 /**
+ * <p>XMLManagerJapan class.</p>
+ *
  * @author Sven
- * 
+ * @version $Id: $
  */
 public class XMLManagerJapan extends XMLManager {
 
@@ -36,6 +38,8 @@ public class XMLManagerJapan extends XMLManager {
 	private static final String BRIDGING_HOLIDAY_PROPERTIES_KEY = "BRIDGING_HOLIDAY";
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Implements the rule which requests if two holidays have one non holiday
 	 * between each other than this day is also a holiday.
 	 */

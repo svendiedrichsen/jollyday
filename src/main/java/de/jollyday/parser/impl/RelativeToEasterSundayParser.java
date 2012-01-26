@@ -29,12 +29,15 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * This parser creates holidays relative to easter sunday.
- * @author Sven Diedrichsen
  *
+ * @author Sven Diedrichsen
+ * @version $Id: $
  */
 public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Parses relative to easter sunday holidays.
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
@@ -51,10 +54,11 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 	
 	/**
 	 * Adds the given day to the list of holidays.
-	 * @param day
-	 * @param propertiesKey
-	 * @param holidayType
-	 * @param holidays
+	 *
+	 * @param day a {@link org.joda.time.LocalDate} object.
+	 * @param propertiesKey a {@link java.lang.String} object.
+	 * @param holidayType a {@link de.jollyday.config.HolidayType} object.
+	 * @param holidays a {@link java.util.Set} object.
 	 */
 	protected void addChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType, Set<Holiday> holidays){
 		LocalDate convertedDate = CalendarUtil

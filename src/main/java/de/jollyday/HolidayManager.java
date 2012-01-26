@@ -38,9 +38,9 @@ import de.jollyday.util.ReflectionUtils;
  * Abstract base class for all holiday manager implementations. Upon call of
  * getInstance method the implementing class will be read from the
  * jollyday.properties file and instantiated.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public abstract class HolidayManager {
 
@@ -83,7 +83,7 @@ public abstract class HolidayManager {
 	/**
 	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
 	 * using the default locales country code. code.
-	 * 
+	 *
 	 * @return default locales HolidayManager
 	 */
 	public static final HolidayManager getInstance() {
@@ -92,7 +92,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns a HolidayManager for the provided country.
-	 * 
+	 *
 	 * @param c
 	 *            Country
 	 * @return HolidayManager
@@ -105,8 +105,8 @@ public abstract class HolidayManager {
 	 * Creates an HolidayManager instance. The implementing HolidayManager class
 	 * will be read from the jollyday.properties file. If the country is NULL or
 	 * an empty string the default locales country code will be used.
-	 * 
-	 * @param country
+	 *
+	 * @param country a {@link java.lang.String} object.
 	 * @return HolidayManager implementation for the provided country.
 	 */
 	public static final HolidayManager getInstance(String country) {
@@ -205,7 +205,7 @@ public abstract class HolidayManager {
 	/**
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
-	 * 
+	 *
 	 * @param managerCachingEnabled
 	 *            the managerCachingEnabled to set
 	 */
@@ -214,6 +214,8 @@ public abstract class HolidayManager {
 	}
 
 	/**
+	 * <p>isManagerCachingEnabled.</p>
+	 *
 	 * @return the managerCachingEnabled
 	 */
 	public static boolean isManagerCachingEnabled() {
@@ -309,6 +311,10 @@ public abstract class HolidayManager {
 
 	/**
 	 * Calls isHoliday with JODA time object.
+	 *
+	 * @param c a {@link java.util.Calendar} object.
+	 * @param args a {@link java.lang.String} object.
+	 * @return a boolean.
 	 */
 	public boolean isHoliday(final Calendar c, final String... args) {
 		return isHoliday(CalendarUtil.create(c), args);
@@ -316,7 +322,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Show if the requested date is a holiday.
-	 * 
+	 *
 	 * @param c
 	 *            The potential holiday.
 	 * @param args
@@ -341,7 +347,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns a set of all currently supported calendar codes.
-	 * 
+	 *
 	 * @return Set of supported calendar codes.
 	 */
 	public static Set<String> getSupportedCalendarCodes() {
@@ -353,6 +359,8 @@ public abstract class HolidayManager {
 	}
 
 	/**
+	 * <p>Getter for the field <code>properties</code>.</p>
+	 *
 	 * @return the configuration properties
 	 */
 	protected Properties getProperties() {
@@ -360,6 +368,8 @@ public abstract class HolidayManager {
 	}
 
 	/**
+	 * <p>Setter for the field <code>properties</code>.</p>
+	 *
 	 * @param properties
 	 *            the configuration properties to set
 	 */
@@ -369,7 +379,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns the holidays for the requested year and hierarchy structure.
-	 * 
+	 *
 	 * @param year
 	 *            i.e. 2010
 	 * @param args
@@ -381,10 +391,10 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns the holidays for the requested interval and hierarchy structure.
-	 * 
+	 *
 	 * @param interval
 	 *            the interval in which the holidays lie.
-	 * @param args
+	 * @param args a {@link java.lang.String} object.
 	 * @return list of holidays within the interval
 	 */
 	abstract public Set<Holiday> getHolidays(ReadableInterval interval,
@@ -392,7 +402,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Initializes the implementing manager for the provided country.
-	 * 
+	 *
 	 * @param country
 	 *            i.e. us, uk, de
 	 */
@@ -402,7 +412,7 @@ public abstract class HolidayManager {
 	 * Returns the configured hierarchy structure for the specific manager. This
 	 * hierarchy shows how the configured holidays are structured and can be
 	 * retrieved.
-	 * 
+	 *
 	 * @return Current calendars hierarchy
 	 */
 	abstract public CalendarHierarchy getCalendarHierarchy();

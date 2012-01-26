@@ -23,8 +23,9 @@ import de.jollyday.util.ResourceUtil;
 
 /**
  * Bean class for describing the configuration hierarchy.
- * 
+ *
  * @author Sven Diedrichsen
+ * @version $Id: $
  */
 public class CalendarHierarchy {
 	private String id;
@@ -34,9 +35,9 @@ public class CalendarHierarchy {
 	/**
 	 * Constructor which takes a eventually existing parent hierarchy node and
 	 * the ID of this hierarchy.
-	 * 
-	 * @param parent
-	 * @param id
+	 *
+	 * @param parent a {@link de.jollyday.CalendarHierarchy} object.
+	 * @param id a {@link java.lang.String} object.
 	 */
 	public CalendarHierarchy(CalendarHierarchy parent, String id) {
 		this.parent = parent;
@@ -44,6 +45,8 @@ public class CalendarHierarchy {
 	}
 
 	/**
+	 * <p>Getter for the field <code>id</code>.</p>
+	 *
 	 * @return the id
 	 */
 	public String getId() {
@@ -51,6 +54,8 @@ public class CalendarHierarchy {
 	}
 
 	/**
+	 * <p>getDescription.</p>
+	 *
 	 * @return the description
 	 */
 	public String getDescription() {
@@ -60,7 +65,7 @@ public class CalendarHierarchy {
 
 	/**
 	 * Returns the hierarchys description text from the resource bundle.
-	 * 
+	 *
 	 * @param l
 	 *            Locale to return the description text for.
 	 * @return Description text
@@ -83,6 +88,8 @@ public class CalendarHierarchy {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Compares Hierarchies by id.
 	 */
 	@Override
@@ -98,12 +105,15 @@ public class CalendarHierarchy {
 	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
+	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		return getId().hashCode();
 	}
 
 	/**
+	 * <p>Setter for the field <code>children</code>.</p>
+	 *
 	 * @param children
 	 *            the children to set
 	 */
@@ -112,6 +122,8 @@ public class CalendarHierarchy {
 	}
 
 	/**
+	 * <p>Getter for the field <code>children</code>.</p>
+	 *
 	 * @return the children
 	 */
 	public Map<String, CalendarHierarchy> getChildren() {

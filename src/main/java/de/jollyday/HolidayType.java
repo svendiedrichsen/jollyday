@@ -19,15 +19,16 @@ package de.jollyday;
  * Type of holiday. Each holiday can be placed in a category and this is
  * represented by this type. The categories can mark a holiday as a official
  * holiday or not.
- * 
+ *
  * @author tboven
+ * @version $Id: $
  */
 public interface HolidayType {
 
 	/**
 	 * Checks if is official holiday.
-	 * 
-	 * @return true, if is official holiday
+	 *
+	 * @return a boolean.
 	 */
 	boolean isOfficialHoliday();
 

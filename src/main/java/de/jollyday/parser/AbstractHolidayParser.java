@@ -27,19 +27,16 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * The abstract base class for all HolidayParser implementations.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public abstract class AbstractHolidayParser implements HolidayParser {
 	
 	/**
 	 * Evaluates if the provided <code>Holiday</code> instance is valid for the
 	 * provided year.
-	 * 
-	 * @param <T>
-	 *            <code>Holiday</code> is the base class for all holiday
-	 *            configuration entries.
+	 *
 	 * @param h
 	 *            The holiday configuration entry to validate
 	 * @param year
@@ -112,9 +109,9 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	/**
 	 * Moves a date if there are any moving conditions for this holiday and any
 	 * of them fit.
-	 * 
-	 * @param fm
-	 * @param fixed
+	 *
+	 * @param fm a {@link de.jollyday.config.MoveableHoliday} object.
+	 * @param fixed a {@link org.joda.time.LocalDate} object.
 	 * @return the moved date
 	 */
 	protected LocalDate moveDate(MoveableHoliday fm, LocalDate fixed) {
@@ -129,9 +126,10 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 
 	/**
 	 * Determines if the provided date shall be substituted.
-	 * 
-	 * @param fixed
-	 * @param mc
+	 *
+	 * @param fixed a {@link org.joda.time.LocalDate} object.
+	 * @param mc a {@link de.jollyday.config.MovingCondition} object.
+	 * @return a boolean.
 	 */
 	protected boolean shallBeMoved(LocalDate fixed, MovingCondition mc) {
 		return fixed.getDayOfWeek() == XMLUtil.getWeekday(mc.getSubstitute());
@@ -153,6 +151,13 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 		return fixed;
 	}
 
+	/**
+	 * <p>getEasterSunday.</p>
+	 *
+	 * @param year a int.
+	 * @param ct a {@link de.jollyday.config.ChronologyType} object.
+	 * @return a {@link org.joda.time.LocalDate} object.
+	 */
 	protected LocalDate getEasterSunday(int year, ChronologyType ct) {
 		LocalDate easterSunday;
 		if (ct == ChronologyType.JULIAN) {

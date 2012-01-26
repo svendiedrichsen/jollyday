@@ -26,13 +26,15 @@ import de.jollyday.config.Holidays;
 /**
  * This parser creates christian holidays for the given year relative to easter
  * sunday.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public class ChristianHolidayParser extends RelativeToEasterSundayParser {
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Parses all christian holidays relative to eastern.
 	 */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {

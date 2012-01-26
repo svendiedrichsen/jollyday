@@ -30,8 +30,9 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * This parser calculates gregorian dates for the different islamic holidays.
- * 
+ *
  * @author Sven Diedrichsen
+ * @version $Id: $
  */
 public class IslamicHolidayParser extends AbstractHolidayParser {
 
@@ -41,6 +42,7 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
 	 * de.jollyday.config.Holidays)
 	 */
+	/** {@inheritDoc} */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (IslamicHoliday i : config.getIslamicHoliday()) {
 			if (!isValid(i, year)) {

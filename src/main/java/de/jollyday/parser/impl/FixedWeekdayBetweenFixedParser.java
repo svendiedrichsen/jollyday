@@ -29,12 +29,15 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * Parses the configuration for fixed weekdays between two fixed dates.
- * 
+ *
  * @author Sven Diedrichsen
+ * @version $Id: $
  */
 public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */

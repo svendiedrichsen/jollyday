@@ -19,9 +19,9 @@ import java.util.Locale;
 
 /**
  * This enum provides a list of all supported holiday calendars.
- * 
+ *
  * @author Sven
- * 
+ * @version $Id: $
  */
 public enum HolidayCalendar {
 
@@ -48,6 +48,11 @@ public enum HolidayCalendar {
 		this.id = id;
 	}
 
+	/**
+	 * <p>Getter for the field <code>id</code>.</p>
+	 *
+	 * @return a {@link java.lang.String} object.
+	 */
 	public String getId() {
 		return id;
 	}

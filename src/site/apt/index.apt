@@ -45,7 +45,6 @@ Maven
 <dependency>
 	<groupId>de.jollyday</groupId>
 	<artifactId>jollyday</artifactId>
-	<version>0.4.5</version>
 </dependency>
 -----------------------
 	(Please check {{{./appservers.html}Application Servers}} to check for additional details of using 

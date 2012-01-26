@@ -24,9 +24,9 @@ import de.jollyday.util.ResourceUtil;
 /**
  * Represents the holiday and contains the actual date and an localized
  * desription.
- * 
+ *
  * @author Sven Diedrichsen
- * 
+ * @version $Id: $
  */
 public final class Holiday {
 	/**
@@ -47,10 +47,14 @@ public final class Holiday {
 	 * */
 	private final HolidayType type;
 
-	/**
-	 * Constructs a holiday for a date using the provided properties key to
-	 * retrieve the description with.
-	 */
+		/**
+		 * Constructs a holiday for a date using the provided properties key to
+		 * retrieve the description with.
+		 *
+		 * @param date a {@link org.joda.time.LocalDate} object.
+		 * @param propertiesKey a {@link java.lang.String} object.
+		 * @param type a {@link de.jollyday.HolidayType} object.
+		 */
 	public Holiday(LocalDate date, String propertiesKey, HolidayType type) {
 		super();
 		this.type = type;
@@ -59,6 +63,8 @@ public final class Holiday {
 	}
 
 	/**
+	 * <p>Getter for the field <code>date</code>.</p>
+	 *
 	 * @return the holiday date
 	 */
 	public LocalDate getDate() {
@@ -66,17 +72,19 @@ public final class Holiday {
 	}
 
 	/**
+	 * <p>Getter for the field <code>propertiesKey</code>.</p>
+	 *
 	 * @return the holidays properties key
 	 */
 	public String getPropertiesKey() {
 		return propertiesKey;
 	}
 
-	/**
-	 * The description read with the default locale.
-	 * 
-	 * @return Description for this holiday
-	 */
+				/**
+				 * The description read with the default locale.
+				 *
+				 * @return Description for this holiday
+				 */
 	public String getDescription() {
 		return ResourceUtil.getHolidayDescription(Locale.getDefault(),
 				getPropertiesKey());
@@ -84,8 +92,8 @@ public final class Holiday {
 
 	/**
 	 * The description read with the provided locale.
-	 * 
-	 * @param locale
+	 *
+	 * @param locale a {@link java.util.Locale} object.
 	 * @return Description for this holiday
 	 */
 	public String getDescription(Locale locale) {
@@ -99,6 +107,7 @@ public final class Holiday {
 	 */
 	@Override
 	public boolean equals(Object obj) {
+		/** {@inheritDoc} */
 		if (obj == this) {
 			return true;
 		}
@@ -118,6 +127,7 @@ public final class Holiday {
 	 */
 	@Override
 	public int hashCode() {
+		/** {@inheritDoc} */
 		if (hashCode == 0) {
 			int hash = 1;
 			hash = hash * 31 + date.hashCode();
@@ -135,12 +145,13 @@ public final class Holiday {
 	 */
 	@Override
 	public String toString() {
+		/** {@inheritDoc} */
 		return date.toString() + " (" + getDescription() + ")";
 	}
 
 	/**
 	 * Gets the type holiday.
-	 * 
+	 *
 	 * @return the type holiday
 	 */
 	public HolidayType getType() {

@@ -23,11 +23,14 @@ import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
 
 /**
+ * <p>HinduHolidayParser class.</p>
+ *
  * @author Sven
- * 
+ * @version $Id: $
  */
 public class HinduHolidayParser extends AbstractHolidayParser {
 
+	/** {@inheritDoc} */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (HinduHoliday hh : config.getHinduHoliday()) {
 			if (!isValid(hh, year))

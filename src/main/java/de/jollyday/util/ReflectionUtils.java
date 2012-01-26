@@ -18,13 +18,22 @@ package de.jollyday.util;
 import java.util.logging.Logger;
 
 /**
+ * <p>ReflectionUtils class.</p>
+ *
  * @author José Pedro Pereira - Linkare TI
- * 
+ * @version $Id: $
  */
 public final class ReflectionUtils {
 	
 	private static final Logger LOG = Logger.getLogger(ReflectionUtils.class.getName());
 	
+	/**
+	 * <p>loadClass.</p>
+	 *
+	 * @param className a {@link java.lang.String} object.
+	 * @return a {@link java.lang.Class} object.
+	 * @throws java.lang.ClassNotFoundException if any.
+	 */
 	public static final Class<?> loadClass(String className)
 			throws ClassNotFoundException {
 		try {
