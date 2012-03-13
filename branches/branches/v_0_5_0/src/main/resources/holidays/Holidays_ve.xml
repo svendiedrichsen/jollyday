@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ve" description="Venezuela"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey="REPUBLIC_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="CARABOBO" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="5" descriptionPropertiesKey="INDEPENDENCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="24" descriptionPropertiesKey="NAVY_DAY" />
+	</tns:Holiday>
+	<tns:Holiday validFrom="2006">
+		<tns:Fixed month="AUGUST" day="3" descriptionPropertiesKey="FLAG_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="OCTOBER" day="12"
+			descriptionPropertiesKey="INDIGENOUS_RESISTANCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="1"
+			descriptionPropertiesKey="ALL_SAINTS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="8"
+			descriptionPropertiesKey="IMMACULATE_CONCEPTION" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="24"
+			descriptionPropertiesKey="CHRISTMAS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="31"
+			descriptionPropertiesKey="NEW_YEARS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="SHROVE_MONDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="CARNIVAL" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+	</tns:Holiday>
+</tns:Configuration>

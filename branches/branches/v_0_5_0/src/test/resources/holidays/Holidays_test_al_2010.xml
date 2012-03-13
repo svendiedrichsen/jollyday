@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="al" description="Albania"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../../../main/resources/Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="4" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="15" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="3" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="OCTOBER" day="19" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="28" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="29" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25"
+			descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="APRIL" day="5" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="17" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="SEPTEMBER" day="10" />
+	</tns:Holiday>
+</tns:Configuration>

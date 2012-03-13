@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="mk" description="Macedonia"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="2" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="24" descriptionPropertiesKey="CYRUS_METHODIUS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="AUGUST" day="2" descriptionPropertiesKey="REPUBLIC_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="SEPTEMBER" day="8"
+			descriptionPropertiesKey="INDEPENDENCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="OCTOBER" day="11"
+			descriptionPropertiesKey="REVOLUTION" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="OCTOBER" day="23"
+			descriptionPropertiesKey="NATIONAL_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="8"
+			descriptionPropertiesKey="SAINT_CLEMENT" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"
+			chronology="JULIAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER_MONDAY"
+			chronology="JULIAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:IslamicHoliday type="ID_AL_FITR" />
+	</tns:Holiday>
+</tns:Configuration>

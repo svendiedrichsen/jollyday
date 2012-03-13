@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="uy" description="Uruguay"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey="PATRIOT" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="18" descriptionPropertiesKey="LAS_PIEDRAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JUNE" day="19" descriptionPropertiesKey="ARTIGAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="18" descriptionPropertiesKey="CONSTITUTION_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="AUGUST" day="25" descriptionPropertiesKey="INDEPENDENCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="2"
+			descriptionPropertiesKey="ALL_SOULS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25"
+			descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which = "SECOND"
+			weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="RACE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="CARNIVAL" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
+	</tns:Holiday>
+</tns:Configuration>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="bg" description="Bulgaria"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="3" descriptionPropertiesKey="LIBERATION" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="6" descriptionPropertiesKey="ST_GEORGE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="24" descriptionPropertiesKey="EDU_CULTURE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="SEPTEMBER" day="6"
+			descriptionPropertiesKey="UNIFICATION" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="SEPTEMBER" day="22"
+			descriptionPropertiesKey="INDEPENDENCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="24"
+			descriptionPropertiesKey="CHRISTMAS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25"
+			descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="31"
+			descriptionPropertiesKey="NEW_YEARS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"
+			chronology="JULIAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER_MONDAY"
+			chronology="JULIAN" />
+	</tns:Holiday>
+</tns:Configuration>

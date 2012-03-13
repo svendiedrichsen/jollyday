@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration xmlns:tns="http://jollyday.sourceforge.net/Jollyday"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd ">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:MovingCondition to="PREVIOUS" weekday="FRIDAY">
+			<tns:when>SATURDAY</tns:when>
+		</tns:MovingCondition>
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="4" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:MovingCondition to="PREVIOUS" weekday="FRIDAY">
+			<tns:when>SATURDAY</tns:when>
+		</tns:MovingCondition>
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:MovingCondition to="PREVIOUS" weekday="FRIDAY">
+			<tns:when>SATURDAY</tns:when>
+		</tns:MovingCondition>
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="THIRD" weekday="MONDAY" month="JANUARY" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="THIRD" weekday="MONDAY" month="FEBRUARY" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="LAST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="MEMORIAL"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="FIRST" weekday="MONDAY" month="SEPTEMBER" descriptionPropertiesKey="LABOUR_DAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="FOURTH" weekday="THURSDAY" month="NOVEMBER" descriptionPropertiesKey="THANKSGIVING"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	</tns:Holiday>
+</tns:Configuration>
