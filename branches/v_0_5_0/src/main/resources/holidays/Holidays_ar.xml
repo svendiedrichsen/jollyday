@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ar" description="Argentina"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+	</tns:Holiday>
+	<tns:Holiday validFrom="2006" >
+		<tns:Fixed month="MARCH" day="24" descriptionPropertiesKey="REMEMBRANCE_TRUTH_JUSTICE"/>
+	</tns:Holiday>
+	<tns:Holiday validFrom="2001">
+		<tns:Fixed month="APRIL" day="2"  descriptionPropertiesKey="MALVINAS"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="25" descriptionPropertiesKey="MAY_REVOLUTION"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="9" descriptionPropertiesKey="INDEPENDENCE"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="COLUMBUS_DAY"/>
+		<tns:MovingCondition to="PREVIOUS" weekday="MONDAY">
+			<tns:when>TUESDAY</tns:when>
+			<tns:when>WEDNESDAY</tns:when>
+		</tns:MovingCondition>
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>THURSDAY</tns:when>
+			<tns:when>FRIDAY</tns:when>
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday validFrom="2010" validTo="2010">
+		<tns:Fixed month="OCTOBER" day="27"  />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="THIRD" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="FLAG_DAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="THIRD" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="MARTIN_DAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	</tns:Holiday>
+</tns:Configuration>

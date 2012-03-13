@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="rs" description="Serbia"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="2" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="FEBRUARY" day="15"
+			descriptionPropertiesKey="CONSTITUTION_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY"
+			localizedType="UNOFFICIAL_HOLIDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"
+			chronology="JULIAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER_MONDAY"
+			chronology="JULIAN" />
+	</tns:Holiday>
+</tns:Configuration>

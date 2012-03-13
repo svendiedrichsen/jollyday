@@ -1,0 +1,6 @@
+NSYE Euronext
+
+  This XML file is used to calculate the holidays for the NYSE Euronext.
+  
+%{snippet|url=file:src/main/resources/holidays/Holidays_nsye_euronext.xml}
+  

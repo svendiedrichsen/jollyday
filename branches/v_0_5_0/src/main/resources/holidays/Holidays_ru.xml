@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ru" description="Russian Federation"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="2" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="3" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="4" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="5" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="8" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="9" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="10"
+			descriptionPropertiesKey="NEW_YEAR" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="FEBRUARY" day="23"
+			descriptionPropertiesKey="DEFENDER_FATHERLAND" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="8" descriptionPropertiesKey="INTERNATIONAL_WOMAN" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday validFrom="1992">
+		<tns:Fixed month="JUNE" day="12" descriptionPropertiesKey="INDEPENDENCE" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+	<tns:Holiday validFrom="2005">
+		<tns:Fixed month="NOVEMBER" day="4"
+			descriptionPropertiesKey="CONSOLIDATION" />
+		<tns:MovingCondition to="NEXT" weekday="MONDAY">
+			<tns:when>SATURDAY</tns:when>
+			<tns:when>SUNDAY</tns:when>
+		</tns:MovingCondition>
+	</tns:Holiday>
+</tns:Configuration>

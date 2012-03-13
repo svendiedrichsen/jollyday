@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="ec" description="Ecuador"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="24" descriptionPropertiesKey="PICHINCHA" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="24" descriptionPropertiesKey="BOLIVAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="AUGUST" day="10" descriptionPropertiesKey="INDEP_QUITO" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="OCTOBER" day="9" descriptionPropertiesKey="INDEP_GUYAQUIL" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="2"
+			descriptionPropertiesKey="ALL_SOULS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="3"
+			descriptionPropertiesKey="INDEP_CUENCA" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="6"
+			descriptionPropertiesKey="FOUND_QUITO" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25"
+			descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="31"
+			descriptionPropertiesKey="NEW_YEARS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="MAUNDY_THURSDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+	</tns:Holiday>
+</tns:Configuration>

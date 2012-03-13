@@ -1,0 +1,42 @@
+Using inside an Application Server
+
+    If you have a maven project to build your WAR or EAR and want to use Jollyday, please
+    keep in mind that normally some of the dependencies of Jollyday (i.e. JAXB) are already available
+    in your application server's classpath. To avoid collisions with the Application Server classpath 
+    please include the dependency as follow:
+    
+-----------------------
+<dependency>
+	<groupId>de.jollyday</groupId>
+	<artifactId>jollyday</artifactId>
+	<version>0.4.5</version>
+	<type>jar</type>
+    <scope>compile</scope>
+    <exclusions>
+      <exclusion>
+         <groupId>javax.xml.bind</groupId>
+         <artifactId>jaxb-api</artifactId>
+      </exclusion>
+    </exclusions>
+</dependency>
+-----------------------
+
+	At the time of this writing (<<January, 2nd - 2012>>), the current trunk code also integrates some changes
+	to use the Thread.currentThread().getContextClassLoader() to load some reflection based classes in order to
+	allow for the inclusion of the JAXB-API's inside the Web Archive or Enterprise Archive as this may be
+	required in some scenarios.
+	
+	Please, also check the documentation of your application server regarding two more situations that may arise
+	in your application:
+	
+		[[1]] <<Security Policy>> in your Application Server should allow reflection based classloading for the jollyday codebase
+			
+-----------------------
+grant codeBase "file:/my/path/to/jollyday.jar" {
+    permission java.lang.RuntimePermission "getClassLoader";
+};
+-----------------------
+			
+			Check {{http://docs.oracle.com/javase/6/docs/technotes/guides/security/permissions.html#RuntimePermission}} and {{http://docs.oracle.com/javase/6/docs/technotes/guides/security/spec/security-specTOC.fm.html}} for details.
+			
+		[[2]] <<Classloader parent delegation model>> (web application jar's preferred or Application Server jar's preferred - JEE model vs JSE model)

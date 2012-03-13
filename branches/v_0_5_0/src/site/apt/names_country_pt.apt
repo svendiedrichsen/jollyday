@@ -1,0 +1,6 @@
+Portuguese country names
+
+  This is the portuguese list of country names. Please contact __jpereira_at_linkare_dot_com__ if there are any
+  misspelled names. 
+
+%{snippet|url=file:src/main/resources/descriptions/country_descriptions_pt.properties}

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Jollyday" xmlns="http://maven.apache.org/DECORATION/1.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.1 http://maven.apache.org/xsd/decoration-1.0.1.xsd">
+  <version/>
+  <bannerLeft>
+	  <alt>Jollyday</alt>
+	  <src>images/jolly.gif</src>
+	  <href>https://sourceforge.net/projects/jollyday</href>
+  </bannerLeft>
+  <bannerRight>
+  	<href>http://sourceforge.net/projects/jollyday</href>
+  	<src>http://sflogo.sourceforge.net/sflogo.php?group_id=299729&amp;type=16</src>
+  	<alt>Get Jollyday at SourceForge.net. Fast, secure and Free Open Source software downloads</alt>
+  </bannerRight>
+  <body>
+    <head>
+		<!-- Piwik -->
+		<script type="text/javascript">
+		var pkBaseURL = (("https:" == document.location.protocol) ? "https://sourceforge.net/apps/piwik/jollyday/" : "http://sourceforge.net/apps/piwik/jollyday/");
+		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script type="text/javascript">
+		try {
+			var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 1);
+			piwikTracker.trackPageView();
+			piwikTracker.enableLinkTracking();
+			} catch( err ) {}
+		</script>
+		<!-- End Piwik Tag -->    
+    </head>
+    <links>
+      <item name="Joda-Time" href="http://joda-time.sourceforge.net/"/>
+      <item name="Jollyday" href="http://sourceforge.net/projects/jollyday/" />
+      <item name="Apache" href="http://www.apache.org/" />
+      <item name="Maven 2" href="http://maven.apache.org/"/>
+    </links>
+
+    <menu name="Jollyday">
+		<item name="Introduction" href="index.html"/>
+		<item name="Configuration" href="properties.html"/>
+		<item name="Usage" href="usage.html"/>
+		<item name="Integration scenarios" href="integration.html"/>
+		<item name="Application Servers" href="appservers.html"/>
+		<item name="Download" href="https://sourceforge.net/projects/jollyday/"/>
+    </menu>
+
+    <menu name="XML Data">
+		<item name="Introduction" href="data.html"/>
+		<item name="XSD-Schema" href="schema.html"/>
+		<item name="Country Names" collapse="true" href="country_names.html">
+			<item name="Default/English" href="names_country_default.html"/>
+			<item name="German" href="names_country_de.html"/>
+			<item name="Portuguese" href="names_country_pt.html"/>
+			<item name="French" href="names_country_fr.html"/>
+		</item>
+		<item name="Holiday Names" collapse="true" href="holiday_names.html">
+			<item name="Default/English" href="names_holiday_default.html"/>
+			<item name="German" href="names_holiday_de.html"/>
+			<item name="Dutch" href="names_holiday_nl.html"/>
+			<item name="Portuguese" href="names_holiday_pt.html"/>
+			<item name="French" href="names_holiday_fr.html"/>
+		</item>
+		<item name="Australia" href="data/au.html"/>
+		<item name="Africa" collapse="true" href="africa.html">
+			<item name="Ethiopia" href="data/et.html"/>
+			<item name="Nigeria" href="data/ng.html"/>
+			<item name="South Africa" href="data/za.html"/>
+		</item>
+		<item name="Asia" collapse="true" href="asia.html">
+			<item name="Japan" href="data/jp.html"/>
+			<item name="Russian Federation" href="data/ru.html"/>
+		</item>
+		<item name="Europe" collapse="true" href="europe.html">
+			<item name="Albania" href="data/al.html"/>
+  			<item name="Austria" href="data/at.html"/>
+  			<item name="Bosnia and Herzegovina" href="data/ba.html"/>
+  			<item name="Belgium" href="data/be.html"/>
+  			<item name="Bulgaria" href="data/bg.html"/>
+  			<item name="Croatia" href="data/hr.html"/>
+  			<item name="Czech Republic" href="data/cz.html"/>
+  			<item name="Denmark" href="data/dk.html"/>
+  			<item name="Estonia" href="data/ee.html"/>
+  			<item name="Finland" href="data/fi.html"/>
+  			<item name="France" href="data/fr.html"/>
+  			<item name="Germany" href="data/de.html"/>
+  			<item name="Greece" href="data/gr.html"/>
+  			<item name="Hungary" href="data/hu.html"/>
+  			<item name="Iceland" href="data/is.html"/>
+  			<item name="Ireland" href="data/ie.html"/>
+  			<item name="Italy" href="data/it.html"/>
+  			<item name="Kazakhstan" href="data/kz.html"/>
+  			<item name="Liechtenstein" href="data/li.html"/>
+  			<item name="Luxembourg" href="data/lu.html"/>
+  			<item name="Latvia" href="data/lv.html"/>
+  			<item name="Macedonia" href="data/mk.html"/>
+  			<item name="Malta" href="data/mt.html"/>
+  			<item name="Montenegro" href="data/me.html"/>
+  			<item name="Netherlands" href="data/nl.html"/>
+  			<item name="Norway" href="data/no.html"/>
+  			<item name="Poland" href="data/pl.html"/>
+  			<item name="Portugal" href="data/pt.html"/>
+  			<item name="Serbia" href="data/rs.html"/>
+  			<item name="Spain" href="data/es.html"/>
+  			<item name="Sweden" href="data/se.html"/>
+  			<item name="Slovakia" href="data/sk.html"/>
+  			<item name="Switzerland" href="data/ch.html"/>
+  			<item name="Ukraine" href="data/ua.html"/>
+  			<item name="United Kingdom" href="data/uk.html"/>
+		</item>
+		<item name="North America" collapse="true" href="northamerica.html">
+			<item name="Canada" href="data/ca.html"/>
+			<item name="Costa Rica" href="data/cr.html"/>
+			<item name="Mexico" href="data/mx.html"/>
+			<item name="Nicaragua" href="data/ni.html"/>
+			<item name="Panama" href="data/pa.html"/>
+			<item name="United States" href="data/us.html"/>
+		</item>
+		<item name="South America" collapse="true" href="southamerica.html">
+			<item name="Argentina" href="data/ar.html"/>
+			<item name="Bolivia" href="data/bo.html"/>
+			<item name="Brazil" href="data/br.html"/>
+			<item name="Chile" href="data/cl.html"/>
+			<item name="Colombia" href="data/co.html"/>
+			<item name="Ecuador" href="data/ec.html"/>
+			<item name="Paraguay" href="data/py.html"/>
+			<item name="Peru" href="data/pe.html"/>
+			<item name="Uruguay" href="data/uy.html"/>
+			<item name="Venezuela" href="data/ve.html"/>
+		</item>
+		<item name="Special Calendars" collapse="true" href="special.html">
+			<item name="NYSE" href="data/nyse.html"/>
+			<item name="NYSE Euronext" href="data/nyse_euronext.html"/>
+		</item>
+    </menu>
+
+    <menu ref="reports"/>
+
+  </body>
+</project>

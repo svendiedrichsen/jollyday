@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="kz" description="Kazakhstan"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="8" descriptionPropertiesKey="INTERNATIONAL_WOMAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="22" descriptionPropertiesKey="SPRING_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JULY" day="6" descriptionPropertiesKey="REPUBLIC_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="AUGUST" day="30" descriptionPropertiesKey="CONSTITUTION_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="16"
+			descriptionPropertiesKey="INDEPENDENCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:IslamicHoliday type="ID_UL_ADHA" />
+	</tns:Holiday>
+</tns:Configuration>

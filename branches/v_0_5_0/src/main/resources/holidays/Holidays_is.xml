@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="is" description="Iceland"
+	xmlns:tns="http://jollyday.sourceforge.net/Jollyday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jollyday.sourceforge.net/Jollyday ../Holiday.xsd">
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="FEBRUARY" day="18"
+			descriptionPropertiesKey="INTERNATIONAL_WOMAN" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="BEER_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="MAY_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="MAY" day="13" descriptionPropertiesKey="MOTHERS_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JUNE" day="17" descriptionPropertiesKey="NATIONAL_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="JONSMESSA" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="NOVEMBER" day="16"
+			descriptionPropertiesKey="LANGUAGE_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="1"
+			descriptionPropertiesKey="SELF_GOVERNANCE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="24"
+			descriptionPropertiesKey="CHRISTMAS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="25"
+			descriptionPropertiesKey="CHRISTMAS" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="26"
+			descriptionPropertiesKey="BOXING_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="DECEMBER" day="31"
+			descriptionPropertiesKey="NEW_YEARS_EVE" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:FixedWeekdayInMonth which="FIRST"
+			weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="COMMERCE_DAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="JANUARY" day="19" descriptionPropertiesKey="HUSBANDS_DAY"/>
+		<tns:MovingCondition to="NEXT" weekday="FRIDAY"/>
+	</tns:Holiday>
+	<tns:Holiday>
+		<tns:Fixed month="APRIL" day="18" descriptionPropertiesKey="FIRST_DAY_SUMMER" />
+		<tns:MovingCondition to="NEXT" weekday="THURSDAY"></tns:MovingCondition>
+	</tns:Holiday>
+</tns:Configuration>
