@@ -1,6 +1,0 @@
-Portuguese holiday names
-
-  This is the portuguese list of holiday names. Please contact __jpereira_at_linkare_dot_com__ if there are any
-  misspelled names. 
-
-%{snippet|url=file:src/main/resources/descriptions/holiday_descriptions_pt.properties}

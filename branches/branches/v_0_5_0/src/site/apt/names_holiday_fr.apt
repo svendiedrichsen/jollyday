@@ -1,6 +1,0 @@
-French holiday names
-
-  This is the french list of holiday names. Please contact me if there are any
-  misspelled names. 
-
-%{snippet|url=file:src/main/resources/descriptions/holiday_descriptions_fr.properties}
