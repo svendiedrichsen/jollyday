@@ -46,7 +46,7 @@
 			<tns:when>SUNDAY</tns:when>
 		</tns:MovingCondition>
 	</tns:Holiday>
-	<tns:Holiday validFrom="1934" every="6_YEARS">
+	<tns:Holiday validFrom="1934" every="SIX_YEARS">
 		<tns:Fixed month="DECEMBER" day="1"
 			descriptionPropertiesKey="GOVERNMENT_CHANGE" />
 		<tns:MovingCondition to="PREVIOUS" weekday="FRIDAY">

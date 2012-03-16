@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema targetNamespace="http://jollyday.sourceforge.net/Jollyday"
-	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:jolly="http://jollyday.sourceforge.net/Jollyday">
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:jolly="http://jollyday.sourceforge.net/Jollyday">
 
 	<simpleType name="Weekday">
 		<restriction base="string">
@@ -31,18 +32,31 @@
 		</restriction>
 	</simpleType>
 
-
-
-
-
-
-
+	<simpleType name="CycleType">
+		<annotation>
+			<appinfo>
+				<typesafeEnumClass map="true" />
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="EVERY_YEAR"></enumeration>
+			<enumeration value="TWO_YEARS"></enumeration>
+			<enumeration value="THREE_YEARS"></enumeration>
+			<enumeration value="FOUR_YEARS"></enumeration>
+			<enumeration value="FIVE_YEARS"></enumeration>
+			<enumeration value="SIX_YEARS"></enumeration>
+			<enumeration value="SEVEN_YEARS"></enumeration>
+			<enumeration value="ODD_YEARS"></enumeration>
+			<enumeration value="EVEN_YEARS"></enumeration>
+		</restriction>
+	</simpleType>
 
 	<element name="Configuration" type="jolly:Configuration"></element>
 
 	<complexType name="Configuration">
 		<sequence>
-			<element name="Holiday" type="jolly:HolidayRule" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="Holiday" type="jolly:HolidayRule" maxOccurs="unbounded"
+				minOccurs="0"></element>
 			<element name="SubConfigurations" type="jolly:Configuration"
 				minOccurs="0" maxOccurs="unbounded">
 			</element>
@@ -180,22 +194,11 @@
 
 
 	<complexType name="Holiday" abstract="true">
-		<attribute name="every" type="jolly:HolidayCycleType" default="EVERY_YEAR" />
 		<attribute name="descriptionPropertiesKey" type="string" />
 		<attribute name="localizedType" type="jolly:HolidayType"
 			default="OFFICIAL_HOLIDAY" />
 	</complexType>
 
-
-	<simpleType name="Substituted">
-		<restriction base="string">
-			<enumeration value="ON_SATURDAY"></enumeration>
-			<enumeration value="ON_SUNDAY"></enumeration>
-			<enumeration value="ON_WEEKEND"></enumeration>
-			<enumeration value="ON_TUESDAY"></enumeration>
-			<enumeration value="ON_WEDNESDAY"></enumeration>
-		</restriction>
-	</simpleType>
 
 	<simpleType name="To">
 		<restriction base="string">
@@ -204,11 +207,10 @@
 		</restriction>
 	</simpleType>
 
-
-
 	<complexType name="MovingCondition">
 		<sequence>
-			<element name="when" type="jolly:Weekday" minOccurs="0" maxOccurs="unbounded"></element>
+			<element name="when" type="jolly:Weekday" minOccurs="0"
+				maxOccurs="unbounded"></element>
 		</sequence>
 		<attribute name="to" type="jolly:To"></attribute>
 		<attribute name="weekday" type="jolly:Weekday"></attribute>
@@ -281,18 +283,6 @@
 
 
 
-	<simpleType name="HolidayCycleType">
-		<restriction base="string">
-			<enumeration value="EVERY_YEAR"></enumeration>
-			<enumeration value="2_YEARS"></enumeration>
-			<enumeration value="4_YEARS"></enumeration>
-			<enumeration value="5_YEARS"></enumeration>
-			<enumeration value="6_YEARS"></enumeration>
-			<enumeration value="ODD_YEARS"></enumeration>
-			<enumeration value="EVEN_YEARS"></enumeration>
-		</restriction>
-	</simpleType>
-
 	<complexType name="RelativeToEasterSunday">
 		<complexContent>
 			<extension base="jolly:Holiday">
@@ -307,32 +297,29 @@
 
 	<complexType name="HolidayRule">
 		<sequence>
-		<choice>
-			<element name="Fixed" type="jolly:Fixed"></element>
-			<element name="FixedWeekdayInMonth"
-				type="jolly:FixedWeekdayInMonth">
-			</element>
-			<element name="RelativeToEasterSunday"
-				type="jolly:RelativeToEasterSunday">
-			</element>
-			<element name="IslamicHoliday" type="jolly:IslamicHoliday"></element>
-			<element name="HinduHoliday" type="jolly:HinduHoliday"></element>
-			<element name="EthiopianOrthodoxHoliday"
-				type="jolly:EthiopianOrthodoxHoliday">
-			</element>
-			<element name="ChristianHoliday"
-				type="jolly:ChristianHoliday">
-			</element>
-		</choice>
-		<sequence>
-			<element name="MovingCondition" type="jolly:MovingCondition" minOccurs="0" maxOccurs="unbounded"></element>
+			<choice>
+				<element name="Fixed" type="jolly:Fixed"></element>
+				<element name="FixedWeekdayInMonth" type="jolly:FixedWeekdayInMonth">
+				</element>
+				<element name="RelativeToEasterSunday" type="jolly:RelativeToEasterSunday">
+				</element>
+				<element name="IslamicHoliday" type="jolly:IslamicHoliday"></element>
+				<element name="HinduHoliday" type="jolly:HinduHoliday"></element>
+				<element name="EthiopianOrthodoxHoliday" type="jolly:EthiopianOrthodoxHoliday">
+				</element>
+				<element name="ChristianHoliday" type="jolly:ChristianHoliday">
+				</element>
+			</choice>
+			<sequence>
+				<element name="MovingCondition" type="jolly:MovingCondition"
+					minOccurs="0" maxOccurs="unbounded"></element>
+			</sequence>
 		</sequence>
-		</sequence>
-		
+
 		<attribute name="id" type="string"></attribute>
-        <attribute name="validFrom" type="int"></attribute>
+		<attribute name="validFrom" type="int"></attribute>
 		<attribute name="validTo" type="int"></attribute>
-		<attribute name="every" type="jolly:HolidayCycleType"></attribute>
+		<attribute name="every" type="jolly:CycleType" default="EVERY_YEAR"></attribute>
 	</complexType>
 
 	<complexType name="HolidayRuleRef">

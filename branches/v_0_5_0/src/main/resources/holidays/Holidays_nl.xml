@@ -8,7 +8,7 @@
 	<tns:Holiday>
 		<tns:Fixed month="APRIL" day="30" descriptionPropertiesKey="QUEENS_BIRTHDAY" />
 	</tns:Holiday>
-	<tns:Holiday validFrom="2000" every="5_YEARS">
+	<tns:Holiday validFrom="2000" every="FIVE_YEARS">
 		<tns:Fixed month="MAY" day="5" descriptionPropertiesKey="LIBERATION" />
 	</tns:Holiday>
 	<tns:Holiday>

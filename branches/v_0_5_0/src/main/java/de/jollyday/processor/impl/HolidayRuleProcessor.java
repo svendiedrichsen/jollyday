@@ -32,7 +32,7 @@ import de.jollyday.processor.HolidayProcessor;
 
 /**
  * @author sven
- *
+ * 
  */
 public class HolidayRuleProcessor implements HolidayProcessor {
 
@@ -49,50 +49,53 @@ public class HolidayRuleProcessor implements HolidayProcessor {
 	}
 
 	/**
-	 * Initializes the {@link HolidayRuleProcessor} by creating the {@link HolidayProcessor}
-	 * instance to use.
+	 * Initializes the {@link HolidayRuleProcessor} by creating the
+	 * {@link HolidayProcessor} instance to use.
 	 */
 	public void init() {
-		if(holidayRule.getChristianHoliday() != null){
+		if (holidayRule.getChristianHoliday() != null) {
 			holidayProcessor = new ChristianHolidayProcessor(holidayRule.getChristianHoliday());
-		}else if(holidayRule.getEthiopianOrthodoxHoliday() != null){
+		} else if (holidayRule.getEthiopianOrthodoxHoliday() != null) {
 			holidayProcessor = new EthiopianOrthodoxHolidayProcessor(holidayRule.getEthiopianOrthodoxHoliday());
-		}else if(holidayRule.getFixed() != null){
+		} else if (holidayRule.getFixed() != null) {
 			holidayProcessor = new FixedProcessor(holidayRule.getFixed());
-		}else if(holidayRule.getFixedWeekdayInMonth() != null){
+		} else if (holidayRule.getFixedWeekdayInMonth() != null) {
 			holidayProcessor = new FixedWeekdayInMonthProcessor(holidayRule.getFixedWeekdayInMonth());
-		}else if(holidayRule.getHinduHoliday() != null){
+		} else if (holidayRule.getHinduHoliday() != null) {
 			holidayProcessor = new HinduHolidayProcessor(holidayRule.getHinduHoliday());
-		}else if(holidayRule.getIslamicHoliday() != null){
+		} else if (holidayRule.getIslamicHoliday() != null) {
 			holidayProcessor = new IslamicHolidayProcessor(holidayRule.getIslamicHoliday());
-		}else if(holidayRule.getRelativeToEasterSunday() != null){
+		} else if (holidayRule.getRelativeToEasterSunday() != null) {
 			holidayProcessor = new RelativeToEasterSundayProcessor(holidayRule.getRelativeToEasterSunday());
-		}else{
+		} else {
 			throw new IllegalArgumentException("Unhandled holiday rule found.");
 		}
 		holidayProcessor.init();
-		for(MovingCondition movingCondition : holidayRule.getMovingCondition()){
+		for (MovingCondition movingCondition : holidayRule.getMovingCondition()) {
 			movingProcessors.add(new MovingConditionProcessor(movingCondition));
 		}
-		
+
 	}
 
-	/* (non-Javadoc)
-	 * @see de.jollyday.processor.HolidayProcessor#process(int, java.lang.String[])
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.jollyday.processor.HolidayProcessor#process(int,
+	 * java.lang.String[])
 	 */
 	public Set<Holiday> process(int year, String... args) {
-		if(!isValid(year)){
+		if (!isValidInYear(year)) {
 			return Collections.emptySet();
 		}
 		Set<Holiday> holidays = holidayProcessor.process(year, args);
-		if(!movingProcessors.isEmpty()){
+		if (!movingProcessors.isEmpty()) {
 			Set<Holiday> movedHolidays = new HashSet<Holiday>();
-			for(Holiday holiday : holidays){
-				for(MovingConditionProcessor movingProcessor : movingProcessors){
+			for (Holiday holiday : holidays) {
+				for (MovingConditionProcessor movingProcessor : movingProcessors) {
 					LocalDate movedDate = movingProcessor.process(holiday.getDate());
-					if(!movedDate.equals(holiday.getDate())){
+					if (!movedDate.equals(holiday.getDate())) {
 						movedHolidays.add(holiday.copyWithDate(movedDate));
-					}else{
+					} else {
 						movedHolidays.add(holiday);
 					}
 				}
@@ -103,15 +106,38 @@ public class HolidayRuleProcessor implements HolidayProcessor {
 	}
 
 	/**
-	 * @param year
-	 * @return
+	 * Shows if the year is valid for the current {@link HolidayRule}.
+	 * @param year the year to inspect
+	 * @return year is valid
 	 */
-	private boolean isValid(int year) {
-		return (holidayRule.getValidFrom() == null || holidayRule.getValidFrom().intValue() <= year)
-				&& (holidayRule.getValidTo() == null || holidayRule.getValidTo().intValue() >= year)
-				&& holidayRule.getEvery();
+	private boolean isValidInYear(int year) {
+		boolean isInRange = (holidayRule.getValidFrom() == null || holidayRule.getValidFrom().intValue() <= year)
+				&& (holidayRule.getValidTo() == null || holidayRule.getValidTo().intValue() >= year);
+		if (isInRange && holidayRule.getValidFrom() != null && holidayRule.getEvery() != null) {
+			int yearDifference = year - holidayRule.getValidFrom().intValue();
+			switch (holidayRule.getEvery()) {
+			case EVERY_YEAR:
+				return true;
+			case TWO_YEARS:
+			case EVEN_YEARS:
+				return yearDifference % 2 == 0;
+			case THREE_YEARS:
+				return yearDifference % 3 == 0;
+			case FOUR_YEARS:
+				return yearDifference % 4 == 0;
+			case FIVE_YEARS:
+				return yearDifference % 5 == 0;
+			case SIX_YEARS:
+				return yearDifference % 6 == 0;
+			case SEVEN_YEARS:
+				return yearDifference % 7 == 0;
+			case ODD_YEARS:
+				return yearDifference % 2 == 1;
+				default:
+					throw new IllegalStateException("Unhandled CycleType "+holidayRule.getEvery());
+			}
+		}
+		return isInRange;
 	}
-	
-	
 
 }
