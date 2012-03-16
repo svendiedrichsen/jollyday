@@ -32,6 +32,7 @@ import org.joda.time.DateTimeConstants;
 
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
+import de.jollyday.config.HolidayRule;
 import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
@@ -120,7 +121,7 @@ public class XMLUtil {
 	}
 
 	/**
-	 * Returns the <code>DateTimeConstants</code> value for the given month.
+	 * Returns the {@link DateTimeConstants} value for the given month.
 	 *
 	 * @param month a {@link de.jollyday.config.Month} object.
 	 * @return DateTimeConstants value.
@@ -157,7 +158,7 @@ public class XMLUtil {
 	}
 
 	/**
-	 * Gets the type.
+	 * Gets the {@link HolidayType}.
 	 *
 	 * @param type
 	 *            the type of holiday in the config
@@ -173,5 +174,44 @@ public class XMLUtil {
 			throw new IllegalArgumentException("Unknown type " + type);
 		}
 	}
+	
+	/**
+	 * Shows if the year is valid for the current {@link HolidayRule}.
+	 * 
+	 * @param year
+	 *            the year to inspect
+	 * @return year is valid
+	 */
+	public static boolean isValidInYear(int year, HolidayRule holidayRule) {
+		boolean isInRange = (holidayRule.getValidFrom() == null || holidayRule.getValidFrom().intValue() <= year)
+				&& (holidayRule.getValidTo() == null || holidayRule.getValidTo().intValue() >= year);
+		if (isInRange && holidayRule.getValidFrom() != null && holidayRule.getEvery() != null) {
+			int yearDifference = year - holidayRule.getValidFrom().intValue();
+			switch (holidayRule.getEvery()) {
+			case EVERY_YEAR:
+				return true;
+			case TWO_YEARS:
+				return yearDifference % 2 == 0;
+			case THREE_YEARS:
+				return yearDifference % 3 == 0;
+			case FOUR_YEARS:
+				return yearDifference % 4 == 0;
+			case FIVE_YEARS:
+				return yearDifference % 5 == 0;
+			case SIX_YEARS:
+				return yearDifference % 6 == 0;
+			case SEVEN_YEARS:
+				return yearDifference % 7 == 0;
+			case EVEN_YEARS:
+				return year % 2 == 0;
+			case ODD_YEARS:
+				return year % 2 == 1;
+			default:
+				throw new IllegalStateException("Unhandled CycleType " + holidayRule.getEvery());
+			}
+		}
+		return isInRange;
+	}
+
 
 }
