@@ -38,7 +38,7 @@ public class HolidayRuleProcessor implements HolidayProcessor {
 
 	private final HolidayRule holidayRule;
 	private HolidayProcessor holidayProcessor;
-	private List<MovingConditionProcessor> movingProcessors = new ArrayList<MovingConditionProcessor>();
+	private final List<MovingConditionProcessor> movingProcessors = new ArrayList<MovingConditionProcessor>();
 
 	/**
 	 * 
@@ -107,7 +107,9 @@ public class HolidayRuleProcessor implements HolidayProcessor {
 
 	/**
 	 * Shows if the year is valid for the current {@link HolidayRule}.
-	 * @param year the year to inspect
+	 * 
+	 * @param year
+	 *            the year to inspect
 	 * @return year is valid
 	 */
 	private boolean isValidInYear(int year) {
@@ -119,7 +121,6 @@ public class HolidayRuleProcessor implements HolidayProcessor {
 			case EVERY_YEAR:
 				return true;
 			case TWO_YEARS:
-			case EVEN_YEARS:
 				return yearDifference % 2 == 0;
 			case THREE_YEARS:
 				return yearDifference % 3 == 0;
@@ -131,10 +132,12 @@ public class HolidayRuleProcessor implements HolidayProcessor {
 				return yearDifference % 6 == 0;
 			case SEVEN_YEARS:
 				return yearDifference % 7 == 0;
+			case EVEN_YEARS:
+				return year % 2 == 0;
 			case ODD_YEARS:
-				return yearDifference % 2 == 1;
-				default:
-					throw new IllegalStateException("Unhandled CycleType "+holidayRule.getEvery());
+				return year % 2 == 1;
+			default:
+				throw new IllegalStateException("Unhandled CycleType " + holidayRule.getEvery());
 			}
 		}
 		return isInRange;
