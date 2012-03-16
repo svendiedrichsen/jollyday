@@ -37,6 +37,7 @@ import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
 import de.jollyday.holidaytype.LocalizedHolidayType;
+
 public class XMLUtil {
 
 	/**
@@ -55,10 +56,7 @@ public class XMLUtil {
 	 * @throws java.io.IOException Could not close the provided stream.
 	 */
 	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException{
-		if (stream == null) {
-			throw new IllegalArgumentException(
-					"Stream is NULL. Cannot read XML.");
-		}
+		Check.notNull(stream, "Stream");
 		try {
 			JAXBContext ctx = null;
 			try{
@@ -84,12 +82,13 @@ public class XMLUtil {
 	}
 
 	/**
-	 * Loads the JAXB context using the provided classloader.
-	 * @param classLoader The classloader to use
-	 * @return JAXBContext
-	 * @throws JAXBException
+	 * Loads the {@link JAXBContext} using the provided {@link ClassLoader}.
+	 * @param classLoader The {@link ClassLoader} to use
+	 * @return JAXBContext the created context
+	 * @throws JAXBException Anything goes wrong with the context creation
 	 */
 	private static JAXBContext createJAXBContext(ClassLoader classLoader) throws JAXBException {
+		Check.notNull(classLoader, "ClassLoader");
 		return JAXBContext.newInstance(XMLUtil.PACKAGE, classLoader);
 	}
 
@@ -100,6 +99,7 @@ public class XMLUtil {
 	 * @return DateTimeConstants value.
 	 */
 	public static final int getWeekday(Weekday weekday) {
+		Check.notNull(weekday, "Weekday");
 		switch (weekday) {
 		case MONDAY:
 			return DateTimeConstants.MONDAY;
@@ -127,6 +127,7 @@ public class XMLUtil {
 	 * @return DateTimeConstants value.
 	 */
 	public static int getMonth(Month month) {
+		Check.notNull(month, "Month");
 		switch (month) {
 		case JANUARY:
 			return DateTimeConstants.JANUARY;
@@ -165,13 +166,14 @@ public class XMLUtil {
 	 * @return the type of holiday
 	 */
 	public static HolidayType getType(de.jollyday.config.HolidayType type) {
+		Check.notNull(type, "HolidayType");
 		switch (type) {
 		case OFFICIAL_HOLIDAY:
 			return LocalizedHolidayType.OFFICIAL_HOLIDAY;
 		case UNOFFICIAL_HOLIDAY:
 			return LocalizedHolidayType.UNOFFICIAL_HOLIDAY;
 		default:
-			throw new IllegalArgumentException("Unknown type " + type);
+			throw new IllegalArgumentException("Unknown holiday type " + type);
 		}
 	}
 	
@@ -183,6 +185,7 @@ public class XMLUtil {
 	 * @return year is valid
 	 */
 	public static boolean isValidInYear(int year, HolidayRule holidayRule) {
+		Check.notNull(holidayRule, "HolidayRule");
 		boolean isInRange = (holidayRule.getValidFrom() == null || holidayRule.getValidFrom().intValue() <= year)
 				&& (holidayRule.getValidTo() == null || holidayRule.getValidTo().intValue() >= year);
 		if (isInRange && holidayRule.getValidFrom() != null && holidayRule.getEvery() != null) {
