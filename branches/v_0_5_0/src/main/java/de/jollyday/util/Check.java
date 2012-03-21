@@ -17,16 +17,36 @@ package de.jollyday.util;
 
 /**
  * Utility class to implement check functionality.
+ * 
  * @author sven
- *
+ * 
  */
 public final class Check {
 
-	public static void notNull(Object object, String objectName){
-		if(object == null){
-			throw new NullPointerException(objectName+" is null.");
+	public static void notNull(Object object, String objectName) {
+		if (object == null) {
+			throw new NullPointerException(objectName + " is null.");
 		}
 	}
-	
-	
+
+	public static void greaterThan(int value, int minValue, String valueName) {
+		if (value <= minValue) {
+			throw new IllegalArgumentException("Value " + valueName + " of value " + value + " is less than "
+					+ minValue);
+		}
+	}
+
+	public static void equals(int value, int compareValue, String valueName) {
+		if (value != compareValue) {
+			throw new IllegalArgumentException("Value " + valueName + " of value " + value + " does not equal "
+					+ compareValue);
+		}
+	}
+
+	public static void notEquals(int value, int compareValue, String valueName) {
+		if (value == compareValue) {
+			throw new IllegalArgumentException("Value " + valueName + " of value " + value + " equals " + compareValue);
+		}
+	}
+
 }
