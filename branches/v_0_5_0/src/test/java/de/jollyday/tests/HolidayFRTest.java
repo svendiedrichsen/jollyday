@@ -17,11 +17,9 @@ package de.jollyday.tests;
 
 import java.util.Locale;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import de.jollyday.HolidayCalendar;
-import de.jollyday.HolidayManager;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 
 public class HolidayFRTest extends AbstractCountryTestBase {
