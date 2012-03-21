@@ -36,6 +36,7 @@ public final class ReflectionUtils {
 	 */
 	public static final Class<?> loadClass(String className)
 			throws ClassNotFoundException {
+		Check.notNull(className, "ClassName");
 		try {
 			return Class.forName(className, true, Thread.currentThread()
 					.getContextClassLoader());
