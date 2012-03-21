@@ -13,7 +13,7 @@
  * express or implied. See the License for the specific language 
  * governing permissions and limitations under the License. 
  */
-package de.jollyday.tests;
+package de.jollyday.util;
 
 import java.util.Calendar;
 import java.util.HashSet;
@@ -26,6 +26,7 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.GregorianChronology;
+import org.joda.time.chrono.ISOChronology;
 import org.joda.time.chrono.JulianChronology;
 import org.junit.Test;
 
@@ -38,7 +39,7 @@ import de.jollyday.util.CalendarUtil;
  * @author Sven
  * 
  */
-public class UtilTest {
+public class CalendarUtilTest {
 
 	@Test
 	public void testWeekend() {
@@ -212,7 +213,7 @@ public class UtilTest {
 		}
 		for (int i = 1584; i <= 2500; i++) {
 			Assert.assertEquals("Wrong chronology.",
-					GregorianChronology.getInstance(),
+					ISOChronology.getInstance(),
 					CalendarUtil.getChronology(i));
 		}
 	}
@@ -229,7 +230,7 @@ public class UtilTest {
 		Assert.assertEquals(
 				"Wrong easter date.",
 				CalendarUtil.create(1584, 4, 1,
-						GregorianChronology.getInstance()),
+						ISOChronology.getInstance()),
 				CalendarUtil.getEasterSunday(1584));
 	}
 

@@ -125,7 +125,7 @@ public class ChristianHolidayProcessor  implements HolidayProcessor {
 		if (ct == ChronologyType.JULIAN) {
 			easterSunday = CalendarUtil.getJulianEasterSunday(year);
 		} else if (ct == ChronologyType.GREGORIAN) {
-			easterSunday = CalendarUtil.getGregorianEasterSunday(year);
+			easterSunday = CalendarUtil.getISOEasterSunday(year);
 		} else {
 			easterSunday = CalendarUtil.getEasterSunday(year);
 		}
@@ -142,7 +142,7 @@ public class ChristianHolidayProcessor  implements HolidayProcessor {
 	 */
 	protected Holiday createChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType){
 		LocalDate convertedDate = CalendarUtil
-				.convertToGregorianDate(day);
+				.convertToISODate(day);
 		de.jollyday.HolidayType type = XMLUtil.getType(holidayType);
 		Holiday h = new Holiday(convertedDate, propertiesKey, type);
 		return h;
