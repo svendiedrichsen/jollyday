@@ -33,7 +33,6 @@ import org.junit.Test;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
-import de.jollyday.util.CalendarUtil;
 
 /**
  * @author Sven
@@ -42,15 +41,16 @@ import de.jollyday.util.CalendarUtil;
 public class CalendarUtilTest {
 
 	@Test
+	public void testISOChronology() throws Exception {
+		Assert.assertEquals(ISOChronology.getInstanceUTC(), CalendarUtil.getISOChronology());
+	}
+
+	@Test
 	public void testWeekend() {
-		LocalDate dateFriday = CalendarUtil.create(2010,
-				DateTimeConstants.MARCH, 12);
-		LocalDate dateSaturday = CalendarUtil.create(2010,
-				DateTimeConstants.MARCH, 13);
-		LocalDate dateSunday = CalendarUtil.create(2010,
-				DateTimeConstants.MARCH, 14);
-		LocalDate dateMonday = CalendarUtil.create(2010,
-				DateTimeConstants.MARCH, 15);
+		LocalDate dateFriday = CalendarUtil.create(2010, DateTimeConstants.MARCH, 12);
+		LocalDate dateSaturday = CalendarUtil.create(2010, DateTimeConstants.MARCH, 13);
+		LocalDate dateSunday = CalendarUtil.create(2010, DateTimeConstants.MARCH, 14);
+		LocalDate dateMonday = CalendarUtil.create(2010, DateTimeConstants.MARCH, 15);
 		Assert.assertFalse(CalendarUtil.isWeekend(dateFriday));
 		Assert.assertTrue(CalendarUtil.isWeekend(dateSaturday));
 		Assert.assertTrue(CalendarUtil.isWeekend(dateSunday));
@@ -62,27 +62,20 @@ public class CalendarUtilTest {
 		Set<LocalDate> expected = new HashSet<LocalDate>();
 		expected.add(CalendarUtil.create(2008, DateTimeConstants.JANUARY, 10));
 		expected.add(CalendarUtil.create(2008, DateTimeConstants.DECEMBER, 29));
-		Set<LocalDate> holidays = CalendarUtil
-				.getIslamicHolidaysInGregorianYear(2008, 1, 1);
+		Set<LocalDate> holidays = CalendarUtil.getIslamicHolidaysInGregorianYear(2008, 1, 1);
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals("Wrong number of islamic new years in 2008.",
-				expected.size(), holidays.size());
-		Assert.assertEquals("Wrong islamic New Year holidays in 2008.",
-				expected, holidays);
+		Assert.assertEquals("Wrong number of islamic new years in 2008.", expected.size(), holidays.size());
+		Assert.assertEquals("Wrong islamic New Year holidays in 2008.", expected, holidays);
 	}
 
 	@Test
 	public void testCalendarIslamicAschura2008() {
 		Set<LocalDate> expected = new HashSet<LocalDate>();
 		expected.add(CalendarUtil.create(2008, DateTimeConstants.JANUARY, 19));
-		Set<LocalDate> holidays = CalendarUtil
-				.getIslamicHolidaysInGregorianYear(2008, 1, 10);
+		Set<LocalDate> holidays = CalendarUtil.getIslamicHolidaysInGregorianYear(2008, 1, 10);
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals(
-				"Wrong number of islamic Aschura holidays in 2008.",
-				expected.size(), holidays.size());
-		Assert.assertEquals("Wrong islamic Aschura holidays in 2008.",
-				expected, holidays);
+		Assert.assertEquals("Wrong number of islamic Aschura holidays in 2008.", expected.size(), holidays.size());
+		Assert.assertEquals("Wrong islamic Aschura holidays in 2008.", expected, holidays);
 	}
 
 	@Test
@@ -90,42 +83,30 @@ public class CalendarUtilTest {
 		Set<LocalDate> expected = new HashSet<LocalDate>();
 		expected.add(CalendarUtil.create(2009, DateTimeConstants.JANUARY, 7));
 		expected.add(CalendarUtil.create(2009, DateTimeConstants.DECEMBER, 27));
-		Set<LocalDate> holidays = CalendarUtil
-				.getIslamicHolidaysInGregorianYear(2009, 1, 10);
+		Set<LocalDate> holidays = CalendarUtil.getIslamicHolidaysInGregorianYear(2009, 1, 10);
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals(
-				"Wrong number of islamic Aschura holidays in 2009.",
-				expected.size(), holidays.size());
-		Assert.assertEquals("Wrong islamic Aschura holidays in 2009.",
-				expected, holidays);
+		Assert.assertEquals("Wrong number of islamic Aschura holidays in 2009.", expected.size(), holidays.size());
+		Assert.assertEquals("Wrong islamic Aschura holidays in 2009.", expected, holidays);
 	}
 
 	@Test
 	public void testCalendarIslamicIdAlFitr2008() {
 		Set<LocalDate> expected = new HashSet<LocalDate>();
 		expected.add(CalendarUtil.create(2008, DateTimeConstants.OCTOBER, 2));
-		Set<LocalDate> holidays = CalendarUtil
-				.getIslamicHolidaysInGregorianYear(2008, 10, 1);
+		Set<LocalDate> holidays = CalendarUtil.getIslamicHolidaysInGregorianYear(2008, 10, 1);
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals(
-				"Wrong number of islamic IdAlFitr holidays in 2008.",
-				expected.size(), holidays.size());
-		Assert.assertEquals("Wrong islamic IdAlFitr holidays in 2008.",
-				expected, holidays);
+		Assert.assertEquals("Wrong number of islamic IdAlFitr holidays in 2008.", expected.size(), holidays.size());
+		Assert.assertEquals("Wrong islamic IdAlFitr holidays in 2008.", expected, holidays);
 	}
 
 	@Test
 	public void testCalendarIslamicIdAlFitr2009() {
 		Set<LocalDate> expected = new HashSet<LocalDate>();
 		expected.add(CalendarUtil.create(2009, DateTimeConstants.SEPTEMBER, 21));
-		Set<LocalDate> holidays = CalendarUtil
-				.getIslamicHolidaysInGregorianYear(2009, 10, 1);
+		Set<LocalDate> holidays = CalendarUtil.getIslamicHolidaysInGregorianYear(2009, 10, 1);
 		Assert.assertNotNull(holidays);
-		Assert.assertEquals(
-				"Wrong number of islamic IdAlFitr holidays in 2009.",
-				expected.size(), holidays.size());
-		Assert.assertEquals("Wrong islamic IdAlFitr holidays in 2009.",
-				expected, holidays);
+		Assert.assertEquals("Wrong number of islamic IdAlFitr holidays in 2009.", expected.size(), holidays.size());
+		Assert.assertEquals("Wrong islamic IdAlFitr holidays in 2009.", expected, holidays);
 	}
 
 	@Test
@@ -199,60 +180,47 @@ public class CalendarUtilTest {
 	}
 
 	private static void checkEasterDate(Integer year, int month, int day) {
-		Assert.assertEquals("Wrong easter date.",
-				CalendarUtil.create(year, month, day),
+		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(year, month, day),
 				CalendarUtil.getEasterSunday(year));
 	}
 
 	@Test
 	public void testCalendarUtilChronology() {
 		for (int i = 0; i <= 1583; i++) {
-			Assert.assertEquals("Wrong chronology.",
-					JulianChronology.getInstance(),
-					CalendarUtil.getChronology(i));
+			Assert.assertEquals("Wrong chronology.", JulianChronology.getInstance(), CalendarUtil.getChronology(i));
 		}
 		for (int i = 1584; i <= 2500; i++) {
-			Assert.assertEquals("Wrong chronology.",
-					ISOChronology.getInstance(),
-					CalendarUtil.getChronology(i));
+			Assert.assertEquals("Wrong chronology.", ISOChronology.getInstance(), CalendarUtil.getChronology(i));
 		}
 	}
 
 	@Test
 	public void testCalendarUtilEasterJulian() {
-		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(1583, 3,
-				31, JulianChronology.getInstance()), CalendarUtil
-				.getEasterSunday(1583));
+		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(1583, 3, 31, JulianChronology.getInstance()),
+				CalendarUtil.getEasterSunday(1583));
 	}
 
 	@Test
 	public void testCalendarUtilEasterGregorian() {
-		Assert.assertEquals(
-				"Wrong easter date.",
-				CalendarUtil.create(1584, 4, 1,
-						ISOChronology.getInstance()),
+		Assert.assertEquals("Wrong easter date.", CalendarUtil.create(1584, 4, 1, ISOChronology.getInstance()),
 				CalendarUtil.getEasterSunday(1584));
 	}
 
 	@Test
 	public void testCalendarUtilToday() {
-		LocalDate today = new LocalDate(Calendar.getInstance(),
-				GregorianChronology.getInstance());
+		LocalDate today = new LocalDate(Calendar.getInstance(), GregorianChronology.getInstance());
 		Assert.assertEquals("Wrong date.", today, CalendarUtil.create());
 	}
 
 	@Test
 	public void testUmlaut() {
-		final LocalDate aDate = CalendarUtil.create(2010,
-				DateTimeConstants.JANUARY, 6);
+		final LocalDate aDate = CalendarUtil.create(2010, DateTimeConstants.JANUARY, 6);
 		final HolidayManager aMgr = HolidayManager.getInstance(HolidayCalendar.AUSTRIA);
-		final Set<Holiday> hs = aMgr.getHolidays(new Interval(aDate
-				.toDateTimeAtStartOfDay(), aDate.toDateTimeAtStartOfDay()
-				.plusDays(1)));
+		final Set<Holiday> hs = aMgr.getHolidays(new Interval(aDate.toDateTimeAtStartOfDay(), aDate
+				.toDateTimeAtStartOfDay().plusDays(1)));
 		Assert.assertNotNull(hs);
 		Assert.assertEquals(1, hs.size());
-		Assert.assertEquals("Heilige Drei K\u00F6nige", hs.iterator().next()
-				.getDescription(Locale.GERMANY));
+		Assert.assertEquals("Heilige Drei K\u00F6nige", hs.iterator().next().getDescription(Locale.GERMANY));
 	}
 
 }

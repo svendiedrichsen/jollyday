@@ -35,15 +35,24 @@ import de.jollyday.config.Weekday;
 
 /**
  * Utility class for date operations.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
 public abstract class CalendarUtil {
 
 	/**
+	 * Returns the {@link ISOChronology} with UTC timezone.
+	 * 
+	 * @return {@link ISOChronology} with UTC timezone
+	 */
+	public static ISOChronology getISOChronology() {
+		return ISOChronology.getInstanceUTC();
+	}
+
+	/**
 	 * Creates the current date within the gregorian calendar.
-	 *
+	 * 
 	 * @return today
 	 */
 	public static LocalDate create() {
@@ -52,10 +61,13 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Creates the given date within the julian/gregorian chronology.
-	 *
-	 * @param year a int.
-	 * @param month a int.
-	 * @param day a int.
+	 * 
+	 * @param year
+	 *            a int.
+	 * @param month
+	 *            a int.
+	 * @param day
+	 *            a int.
 	 * @return Gregorian/julian date.
 	 */
 	public static LocalDate create(int year, int month, int day) {
@@ -66,34 +78,39 @@ public abstract class CalendarUtil {
 	/**
 	 * Returns the Chronology depending on the provided year. year <= 1583 ->
 	 * {@link JulianChronology}, {@link ISOChronology} otherwise.
-	 *
-	 * @param year a int.
+	 * 
+	 * @param year
+	 *            a int.
 	 * @return Chronology
 	 */
 	public static Chronology getChronology(int year) {
-		return (year <= 1583 ? JulianChronology.getInstance()
-				: ISOChronology.getInstance());
+		return (year <= 1583 ? JulianChronology.getInstance() : ISOChronology.getInstance());
 	}
 
 	/**
 	 * Creates the date within the provided chronology.
-	 *
-	 * @param year a int.
-	 * @param month a int.
-	 * @param day a int.
-	 * @param c a {@link org.joda.time.Chronology} object.
+	 * 
+	 * @param year
+	 *            a int.
+	 * @param month
+	 *            a int.
+	 * @param day
+	 *            a int.
+	 * @param c
+	 *            a {@link org.joda.time.Chronology} object.
 	 * @return date
 	 */
-	public static LocalDate create(int year, int month, int day,
-			final Chronology c) {
+	public static LocalDate create(int year, int month, int day, final Chronology c) {
 		return new LocalDate(year, month, day, c);
 	}
 
 	/**
 	 * Creates the date from the month/day within the specified year.
-	 *
-	 * @param year a int.
-	 * @param fixed a {@link de.jollyday.config.Fixed} object.
+	 * 
+	 * @param year
+	 *            a int.
+	 * @param fixed
+	 *            a {@link de.jollyday.config.Fixed} object.
 	 * @return A local date instance.
 	 */
 	public static LocalDate create(int year, Fixed fixed) {
@@ -102,8 +119,9 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Creates a LocalDate. Does not use the Chronology of the Calendar.
-	 *
-	 * @param c a {@link java.util.Calendar} object.
+	 * 
+	 * @param c
+	 *            a {@link java.util.Calendar} object.
 	 * @return The local date representing the provided date.
 	 */
 	public static LocalDate create(final Calendar c) {
@@ -112,8 +130,9 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday for a given year.
-	 *
-	 * @param year a int.
+	 * 
+	 * @param year
+	 *            a int.
 	 * @return Easter sunday.
 	 */
 	public static LocalDate getEasterSunday(int year) {
@@ -126,8 +145,9 @@ public abstract class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday within the julian chronology.
-	 *
-	 * @param year a int.
+	 * 
+	 * @param year
+	 *            a int.
 	 * @return julian easter sunday
 	 */
 	public static LocalDate getJulianEasterSunday(int year) {
@@ -141,15 +161,16 @@ public abstract class CalendarUtil {
 		x = d + e + 114;
 		month = x / 31;
 		day = (x % 31) + 1;
-		return create(year, (month == 3 ? DateTimeConstants.MARCH
-				: DateTimeConstants.APRIL), day, JulianChronology.getInstance());
+		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day,
+				JulianChronology.getInstance());
 	}
 
 	/**
-	 * Returns the easter sunday within the gregorian chronology.
-	 *
-	 * @param year a int.
-	 * @return gregorian easter sunday.
+	 * Returns the easter sunday within the ISO chronology.
+	 * 
+	 * @param year
+	 *            a int.
+	 * @return ISO easter sunday.
 	 */
 	public static LocalDate getISOEasterSunday(int year) {
 		int a, b, c, d, e, f, g, h, i, j, k, l;
@@ -169,20 +190,19 @@ public abstract class CalendarUtil {
 		x = h + k - 7 * l + 114;
 		month = x / 31;
 		day = (x % 31) + 1;
-		return create(year, (month == 3 ? DateTimeConstants.MARCH
-				: DateTimeConstants.APRIL), day,
+		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day,
 				ISOChronology.getInstance());
 	}
 
 	/**
 	 * Returns if this date is on a wekkend.
-	 *
-	 * @param date a {@link org.joda.time.LocalDate} object.
+	 * 
+	 * @param date
+	 *            a {@link org.joda.time.LocalDate} object.
 	 * @return is weekend
 	 */
 	public static boolean isWeekend(final LocalDate date) {
-		return date.getDayOfWeek() == DateTimeConstants.SATURDAY
-				|| date.getDayOfWeek() == DateTimeConstants.SUNDAY;
+		return date.getDayOfWeek() == DateTimeConstants.SATURDAY || date.getDayOfWeek() == DateTimeConstants.SUNDAY;
 	}
 
 	/**
@@ -191,16 +211,18 @@ public abstract class CalendarUtil {
 	 * than the gregorian there may be more than one occurrence of an islamic
 	 * date in an gregorian year. i.e.: In the gregorian year 2008 there were
 	 * two 1/1. They occurred on 1/10 and 12/29.
-	 *
-	 * @param gregorianYear a int.
-	 * @param islamicMonth a int.
-	 * @param islamicDay a int.
+	 * 
+	 * @param gregorianYear
+	 *            a int.
+	 * @param islamicMonth
+	 *            a int.
+	 * @param islamicDay
+	 *            a int.
 	 * @return List of gregorian dates for the islamic month/day.
 	 */
-	public static Set<LocalDate> getIslamicHolidaysInGregorianYear(
-			int gregorianYear, int islamicMonth, int islamicDay) {
-		return getDatesFromChronologyWithinGregorianYear(islamicMonth,
-				islamicDay, gregorianYear, IslamicChronology.getInstanceUTC());
+	public static Set<LocalDate> getIslamicHolidaysInGregorianYear(int gregorianYear, int islamicMonth, int islamicDay) {
+		return getDatesFromChronologyWithinGregorianYear(islamicMonth, islamicDay, gregorianYear,
+				IslamicChronology.getInstanceUTC());
 	}
 
 	/**
@@ -208,16 +230,18 @@ public abstract class CalendarUtil {
 	 * ethiopian orthodox month and day. Because the ethiopian orthodox year
 	 * different from the gregorian there may be more than one occurrence of an
 	 * ethiopian orthodox date in an gregorian year.
-	 *
-	 * @param gregorianYear a int.
+	 * 
+	 * @param gregorianYear
+	 *            a int.
 	 * @return List of gregorian dates for the ethiopian orthodox month/day.
-	 * @param eoMonth a int.
-	 * @param eoDay a int.
+	 * @param eoMonth
+	 *            a int.
+	 * @param eoDay
+	 *            a int.
 	 */
-	public static Set<LocalDate> getEthiopianOrthodoxHolidaysInGregorianYear(
-			int gregorianYear, int eoMonth, int eoDay) {
-		return getDatesFromChronologyWithinGregorianYear(eoMonth, eoDay,
-				gregorianYear, CopticChronology.getInstanceUTC());
+	public static Set<LocalDate> getEthiopianOrthodoxHolidaysInGregorianYear(int gregorianYear, int eoMonth, int eoDay) {
+		return getDatesFromChronologyWithinGregorianYear(eoMonth, eoDay, gregorianYear,
+				CopticChronology.getInstanceUTC());
 	}
 
 	/**
@@ -230,31 +254,26 @@ public abstract class CalendarUtil {
 	 * @param targetChronoUTC
 	 * @return the list of gregorian dates.
 	 */
-	private static Set<LocalDate> getDatesFromChronologyWithinGregorianYear(
-			int targetMonth, int targetDay, int gregorianYear,
-			Chronology targetChronoUTC) {
+	private static Set<LocalDate> getDatesFromChronologyWithinGregorianYear(int targetMonth, int targetDay,
+			int gregorianYear, Chronology targetChronoUTC) {
 		Set<LocalDate> holidays = new HashSet<LocalDate>();
-		LocalDate firstGregorianDate = new LocalDate(gregorianYear,
-				DateTimeConstants.JANUARY, 1,
+		LocalDate firstGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1,
 				ISOChronology.getInstanceUTC());
-		LocalDate lastGregorianDate = new LocalDate(gregorianYear,
-				DateTimeConstants.DECEMBER, 31,
+		LocalDate lastGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31,
 				ISOChronology.getInstanceUTC());
 
-		LocalDate firstTargetDate = new LocalDate(firstGregorianDate
-				.toDateTimeAtStartOfDay().getMillis(), targetChronoUTC);
-		LocalDate lastTargetDate = new LocalDate(lastGregorianDate
-				.toDateTimeAtStartOfDay().getMillis(), targetChronoUTC);
+		LocalDate firstTargetDate = new LocalDate(firstGregorianDate.toDateTimeAtStartOfDay().getMillis(),
+				targetChronoUTC);
+		LocalDate lastTargetDate = new LocalDate(lastGregorianDate.toDateTimeAtStartOfDay().getMillis(),
+				targetChronoUTC);
 
-		Interval interv = new Interval(
-				firstTargetDate.toDateTimeAtStartOfDay(), lastTargetDate
-						.plusDays(1).toDateTimeAtStartOfDay());
+		Interval interv = new Interval(firstTargetDate.toDateTimeAtStartOfDay(), lastTargetDate.plusDays(1)
+				.toDateTimeAtStartOfDay());
 
 		int targetYear = firstTargetDate.getYear();
 
 		for (; targetYear <= lastTargetDate.getYear();) {
-			LocalDate d = new LocalDate(targetYear, targetMonth, targetDay,
-					targetChronoUTC);
+			LocalDate d = new LocalDate(targetYear, targetMonth, targetDay, targetChronoUTC);
 			if (interv.contains(d.toDateTimeAtStartOfDay())) {
 				holidays.add(convertToISODate(d));
 			}
@@ -264,29 +283,30 @@ public abstract class CalendarUtil {
 	}
 
 	/**
-	 * Takes converts the provided date into a date within the {@link ISOChronology}.
-	 * If it is already a iso date it will return it.
-	 *
-	 * @param date a {@link org.joda.time.LocalDate} object.
+	 * Takes converts the provided date into a date within the
+	 * {@link ISOChronology}. If it is already a iso date it will return it.
+	 * 
+	 * @param date
+	 *            a {@link org.joda.time.LocalDate} object.
 	 * @return a {@link org.joda.time.LocalDate} object.
 	 */
 	public static LocalDate convertToISODate(final LocalDate date) {
 		if (!(date.getChronology() instanceof ISOChronology)) {
-			return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(),
-					ISOChronology.getInstance());
+			return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(), ISOChronology.getInstance());
 		}
 		return date;
 	}
 
 	/**
 	 * Shows if the requested dat is contained in the Set of holidays.
-	 *
-	 * @param holidays a {@link java.util.Set} object.
-	 * @param date a {@link org.joda.time.LocalDate} object.
+	 * 
+	 * @param holidays
+	 *            a {@link java.util.Set} object.
+	 * @param date
+	 *            a {@link org.joda.time.LocalDate} object.
 	 * @return contains this date
 	 */
-	public static boolean contains(final Set<Holiday> holidays,
-			final LocalDate date) {
+	public static boolean contains(final Set<Holiday> holidays, final LocalDate date) {
 		for (Holiday h : holidays) {
 			if (h.getDate().equals(date)) {
 				return true;
@@ -294,15 +314,18 @@ public abstract class CalendarUtil {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Returns <code>true</code> if the dates weekday equals the provided
 	 * weekday enum.
-	 * @param date date to check
-	 * @param weekday the weekday to compare
+	 * 
+	 * @param date
+	 *            date to check
+	 * @param weekday
+	 *            the weekday to compare
 	 * @return has the same wekkday.
 	 */
-	public static boolean isWeekday(LocalDate date, Weekday weekday){
+	public static boolean isWeekday(LocalDate date, Weekday weekday) {
 		return Weekday.values()[date.getDayOfWeek() - 1] == weekday;
 	}
 

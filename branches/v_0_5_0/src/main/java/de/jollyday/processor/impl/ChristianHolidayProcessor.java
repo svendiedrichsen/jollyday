@@ -33,10 +33,11 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * Parses christian holiday configurations.
+ * 
  * @author sven
  * 
  */
-public class ChristianHolidayProcessor  implements HolidayProcessor {
+public class ChristianHolidayProcessor implements HolidayProcessor {
 
 	private final ChristianHoliday christianHoliday;
 
@@ -47,7 +48,7 @@ public class ChristianHolidayProcessor  implements HolidayProcessor {
 		notNull(christianHoliday, "christianHoliday");
 		this.christianHoliday = christianHoliday;
 	}
-	
+
 	public void init() {
 	}
 
@@ -106,7 +107,8 @@ public class ChristianHolidayProcessor  implements HolidayProcessor {
 			throw new IllegalArgumentException("Unknown christian holiday type " + christianHoliday.getType());
 		}
 		String propertiesKey = "christian." + christianHoliday.getType().name();
-		return new HashSet<Holiday>(Arrays.asList(createChrstianHoliday(easterSunday, propertiesKey, christianHoliday.getLocalizedType())));
+		return new HashSet<Holiday>(Arrays.asList(createChrstianHoliday(easterSunday, propertiesKey,
+				christianHoliday.getLocalizedType())));
 	}
 
 	/**
@@ -131,22 +133,24 @@ public class ChristianHolidayProcessor  implements HolidayProcessor {
 		}
 		return easterSunday;
 	}
-	
+
 	/**
 	 * Adds the given day to the list of holidays.
-	 *
-	 * @param day a {@link org.joda.time.LocalDate} object.
-	 * @param propertiesKey a {@link java.lang.String} object.
-	 * @param holidayType a {@link de.jollyday.config.HolidayType} object.
-	 * @param holidays a {@link java.util.Set} object.
+	 * 
+	 * @param day
+	 *            a {@link org.joda.time.LocalDate} object.
+	 * @param propertiesKey
+	 *            a {@link java.lang.String} object.
+	 * @param holidayType
+	 *            a {@link de.jollyday.config.HolidayType} object.
+	 * @param holidays
+	 *            a {@link java.util.Set} object.
 	 */
-	protected Holiday createChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType){
-		LocalDate convertedDate = CalendarUtil
-				.convertToISODate(day);
+	protected Holiday createChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType) {
+		LocalDate convertedDate = CalendarUtil.convertToISODate(day);
 		de.jollyday.HolidayType type = XMLUtil.getType(holidayType);
 		Holiday h = new Holiday(convertedDate, propertiesKey, type);
 		return h;
 	}
-
 
 }
