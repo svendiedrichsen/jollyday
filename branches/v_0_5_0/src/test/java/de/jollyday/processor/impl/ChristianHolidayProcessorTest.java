@@ -16,14 +16,17 @@
 package de.jollyday.processor.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+
+import java.util.Set;
 
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.ISOChronology;
 import org.junit.Test;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.ChristianHoliday;
+import de.jollyday.config.ChristianHolidayType;
 import de.jollyday.config.ChronologyType;
 
 /**
@@ -61,7 +64,11 @@ public class ChristianHolidayProcessorTest {
 	 */
 	@Test
 	public void testProcess() {
-		fail("Not yet implemented");
+		christianHoliday.setType(ChristianHolidayType.EASTER_MONDAY);
+		Set<Holiday> process = christianHolidayProcessor.process(2001);
+		assertEquals("Wrong number of dates.", 1, process.size());
+		assertEquals("Wrong date for easter monday.", new LocalDate(2001, DateTimeConstants.APRIL, 16), process
+				.iterator().next().getDate());
 	}
 
 	/**
@@ -74,16 +81,6 @@ public class ChristianHolidayProcessorTest {
 		LocalDate easterSunday2001 = christianHolidayProcessor.getEasterSunday(2001, ChronologyType.GREGORIAN);
 		assertEquals("Wrong easter sunday.",
 				new LocalDate(2001, DateTimeConstants.APRIL, 15, ISOChronology.getInstanceUTC()), easterSunday2001);
-	}
-
-	/**
-	 * Test method for
-	 * {@link de.jollyday.processor.impl.ChristianHolidayProcessor#createChrstianHoliday(org.joda.time.LocalDate, java.lang.String, de.jollyday.config.HolidayType)}
-	 * .
-	 */
-	@Test
-	public void testCreateChrstianHoliday() {
-		fail("Not yet implemented");
 	}
 
 }

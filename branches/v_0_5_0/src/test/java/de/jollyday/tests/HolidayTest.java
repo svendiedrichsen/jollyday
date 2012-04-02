@@ -193,7 +193,7 @@ public class HolidayTest {
 		assertDates(test_days_l11, holidays);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalStateException.class)
 	public void testFail() throws Exception {
 		HolidayManager.getInstance("test_fail");
 	}
