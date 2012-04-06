@@ -18,13 +18,16 @@ package de.jollyday.processor.impl;
 import static de.jollyday.util.Check.notNull;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.config.ChristianHoliday;
+import de.jollyday.config.ChristianHolidayType;
 import de.jollyday.config.ChronologyType;
 import de.jollyday.config.HolidayType;
 import de.jollyday.processor.HolidayProcessor;
@@ -32,89 +35,86 @@ import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
- * Parses christian holiday configurations.
+ * Parses {@link ChristianHoliday} configurations.
  * 
  * @author sven
  * 
  */
 public class ChristianHolidayProcessor implements HolidayProcessor {
 
+	/**
+	 * the {@link ChristianHoliday} configuration
+	 */
 	private final ChristianHoliday christianHoliday;
+	/**
+	 * {@link Map} of {@link ChristianHolidayType} to {@link Integer} as days to
+	 * easter sunday
+	 */
+	private static Map<ChristianHolidayType, Integer> daysToEasterByChristianHolidayType = new HashMap<ChristianHolidayType, Integer>();
+
+	static {
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.EASTER, Integer.valueOf(0));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.CLEAN_MONDAY, Integer.valueOf(-48));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.SHROVE_MONDAY, Integer.valueOf(-48));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.MARDI_GRAS, Integer.valueOf(-47));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.CARNIVAL, Integer.valueOf(-47));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.ASH_WEDNESDAY, Integer.valueOf(-46));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.MAUNDY_THURSDAY, Integer.valueOf(-3));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.GOOD_FRIDAY, Integer.valueOf(-2));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.EASTER_SATURDAY, Integer.valueOf(-1));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.EASTER_MONDAY, Integer.valueOf(1));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.EASTER_TUESDAY, Integer.valueOf(2));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.GENERAL_PRAYER_DAY, Integer.valueOf(26));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.ASCENSION_DAY, Integer.valueOf(39));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.PENTECOST, Integer.valueOf(49));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.WHIT_SUNDAY, Integer.valueOf(49));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.WHIT_MONDAY, Integer.valueOf(50));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.PENTECOST_MONDAY, Integer.valueOf(50));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.CORPUS_CHRISTI, Integer.valueOf(60));
+		daysToEasterByChristianHolidayType.put(ChristianHolidayType.SACRED_HEART, Integer.valueOf(68));
+	}
 
 	/**
+	 * creates processor with a {@link ChristianHoliday} configuration. Checks
+	 * it for not null.
+	 * 
 	 * @param christianHoliday
+	 *            the configuration
 	 */
 	public ChristianHolidayProcessor(ChristianHoliday christianHoliday) {
 		notNull(christianHoliday, "christianHoliday");
 		this.christianHoliday = christianHoliday;
 	}
 
+	/**
+	 * initializes the processor
+	 */
 	public void init() {
 	}
 
+	/**
+	 * processes the configuration and returns the holidays.
+	 */
 	public Set<Holiday> process(int year, String... args) {
-		LocalDate easterSunday = getEasterSunday(year, christianHoliday.getChronology());
-		switch (christianHoliday.getType()) {
-		case EASTER:
-			break;
-		case CLEAN_MONDAY:
-		case SHROVE_MONDAY:
-			easterSunday = easterSunday.minusDays(48);
-			break;
-		case MARDI_GRAS:
-		case CARNIVAL:
-			easterSunday = easterSunday.minusDays(47);
-			break;
-		case ASH_WEDNESDAY:
-			easterSunday = easterSunday.minusDays(46);
-			break;
-		case MAUNDY_THURSDAY:
-			easterSunday = easterSunday.minusDays(3);
-			break;
-		case GOOD_FRIDAY:
-			easterSunday = easterSunday.minusDays(2);
-			break;
-		case EASTER_SATURDAY:
-			easterSunday = easterSunday.minusDays(1);
-			break;
-		case EASTER_MONDAY:
-			easterSunday = easterSunday.plusDays(1);
-			break;
-		case EASTER_TUESDAY:
-			easterSunday = easterSunday.plusDays(2);
-			break;
-		case GENERAL_PRAYER_DAY:
-			easterSunday = easterSunday.plusDays(26);
-			break;
-		case ASCENSION_DAY:
-			easterSunday = easterSunday.plusDays(39);
-			break;
-		case PENTECOST:
-		case WHIT_SUNDAY:
-			easterSunday = easterSunday.plusDays(49);
-			break;
-		case WHIT_MONDAY:
-		case PENTECOST_MONDAY:
-			easterSunday = easterSunday.plusDays(50);
-			break;
-		case CORPUS_CHRISTI:
-			easterSunday = easterSunday.plusDays(60);
-			break;
-		case SACRED_HEART:
-			easterSunday = easterSunday.plusDays(68);
-			break;
-		default:
+
+		if (!daysToEasterByChristianHolidayType.containsKey(christianHoliday.getType())) {
 			throw new IllegalArgumentException("Unknown christian holiday type " + christianHoliday.getType());
 		}
+
+		LocalDate easterSunday = getEasterSunday(year, christianHoliday.getChronology());
+
+		Integer daysToEaster = daysToEasterByChristianHolidayType.get(christianHoliday.getType());
+
+		LocalDate resultingDate = easterSunday.plusDays(daysToEaster);
+
 		String propertiesKey = "christian." + christianHoliday.getType().name();
-		return new HashSet<Holiday>(Arrays.asList(createChrstianHoliday(easterSunday, propertiesKey,
+
+		return new HashSet<Holiday>(Arrays.asList(createChrstianHoliday(resultingDate, propertiesKey,
 				christianHoliday.getLocalizedType())));
 	}
 
 	/**
-	 * <p>
-	 * getEasterSunday.
-	 * </p>
+	 * returns the easter sunday for the year and {@link ChronologyType}
 	 * 
 	 * @param year
 	 *            a int.
