@@ -34,7 +34,7 @@ import de.jollyday.util.GeneralUtils;
  * Processor for {@link Configuration} instances.
  * 
  * @author sven
- *
+ * 
  */
 public class ConfigurationProcessor implements HolidayProcessor {
 
@@ -43,44 +43,51 @@ public class ConfigurationProcessor implements HolidayProcessor {
 	private Map<String, HolidayProcessor> subConfigurationProcessors = new HashMap<String, HolidayProcessor>();
 	private List<HolidayProcessor> ruleProcessors = new ArrayList<HolidayProcessor>();
 
-	public ConfigurationProcessor(Configuration configuration){
+	public ConfigurationProcessor(Configuration configuration) {
 		notNull(configuration, "configuration");
 		this.configuration = configuration;
 	}
-	
-	public void init(){
-		for(HolidayRule rule : configuration.getHoliday()){
+
+	public void init() {
+		for (HolidayRule rule : configuration.getHoliday()) {
 			HolidayRuleProcessor ruleProcessor = new HolidayRuleProcessor(rule);
 			ruleProcessor.init();
 			ruleProcessors.add(ruleProcessor);
 		}
-		for(Configuration subConfiguration : configuration.getSubConfigurations()){
+		for (Configuration subConfiguration : configuration.getSubConfigurations()) {
 			ConfigurationProcessor subProcessor = new ConfigurationProcessor(subConfiguration);
 			subProcessor.init();
 			subConfigurationProcessors.put(subConfiguration.getHierarchy(), subProcessor);
 		}
 	}
-	
+
+	List<HolidayProcessor> getRuleProcessors() {
+		return ruleProcessors;
+	}
+
+	Map<String, HolidayProcessor> getSubConfigurationProcessors() {
+		return subConfigurationProcessors;
+	}
+
 	public Set<Holiday> process(int year, String... args) {
 		Set<Holiday> holidays = new HashSet<Holiday>();
-		for(HolidayProcessor processor : ruleProcessors){
+		for (HolidayProcessor processor : ruleProcessors) {
 			holidays.addAll(processor.process(year, args));
 		}
-		if(args != null && args.length > 0){
+		if (args != null && args.length > 0) {
 			HolidayProcessor configurationProcessor = subConfigurationProcessors.get(args[0]);
-			if(configurationProcessor != null){
+			if (configurationProcessor != null) {
 				holidays.addAll(configurationProcessor.process(year, GeneralUtils.copyOfRange(args, 1, args.length)));
 			}
 		}
 		return holidays;
 	}
-	
+
 	/**
 	 * @return the configuration
 	 */
 	public Configuration getConfiguration() {
 		return configuration;
 	}
-
 
 }
