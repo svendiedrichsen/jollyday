@@ -25,7 +25,6 @@ import junit.framework.Assert;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
-import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.ISOChronology;
 import org.joda.time.chrono.JulianChronology;
 import org.junit.Test;
@@ -33,12 +32,36 @@ import org.junit.Test;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
+import de.jollyday.holidaytype.LocalizedHolidayType;
 
 /**
  * @author Sven
  * 
  */
 public class CalendarUtilTest {
+
+	@Test
+	public void testCreateWithCalendar() throws Exception {
+		Assert.assertEquals(LocalDate.now(), CalendarUtil.create(Calendar.getInstance()));
+	}
+
+	@Test
+	public void testContainsFalse() throws Exception {
+		Set<Holiday> holidays = new HashSet<Holiday>();
+		Assert.assertFalse(CalendarUtil.contains(holidays, CalendarUtil.create()));
+	}
+
+	@Test
+	public void testContainsTrue() throws Exception {
+		Set<Holiday> holidays = new HashSet<Holiday>();
+		holidays.add(new Holiday(CalendarUtil.create(), "", LocalizedHolidayType.OFFICIAL_HOLIDAY));
+		Assert.assertTrue(CalendarUtil.contains(holidays, CalendarUtil.create()));
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testContainsNullCheck() throws Exception {
+		CalendarUtil.contains(null, null);
+	}
 
 	@Test
 	public void testISOChronology() throws Exception {
@@ -190,7 +213,7 @@ public class CalendarUtilTest {
 			Assert.assertEquals("Wrong chronology.", JulianChronology.getInstance(), CalendarUtil.getChronology(i));
 		}
 		for (int i = 1584; i <= 2500; i++) {
-			Assert.assertEquals("Wrong chronology.", ISOChronology.getInstance(), CalendarUtil.getChronology(i));
+			Assert.assertEquals("Wrong chronology.", ISOChronology.getInstanceUTC(), CalendarUtil.getChronology(i));
 		}
 	}
 
@@ -208,7 +231,7 @@ public class CalendarUtilTest {
 
 	@Test
 	public void testCalendarUtilToday() {
-		LocalDate today = new LocalDate(Calendar.getInstance(), GregorianChronology.getInstance());
+		LocalDate today = new LocalDate(Calendar.getInstance(), ISOChronology.getInstanceUTC());
 		Assert.assertEquals("Wrong date.", today, CalendarUtil.create());
 	}
 

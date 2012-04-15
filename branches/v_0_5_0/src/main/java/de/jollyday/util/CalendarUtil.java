@@ -24,7 +24,6 @@ import org.joda.time.DateTimeConstants;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.chrono.CopticChronology;
-import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.ISOChronology;
 import org.joda.time.chrono.IslamicChronology;
 import org.joda.time.chrono.JulianChronology;
@@ -51,12 +50,13 @@ public abstract class CalendarUtil {
 	}
 
 	/**
-	 * Creates the current date within the gregorian calendar.
+	 * Creates the current date as {@link LocalDate} within the ISO calendar
+	 * UTC.
 	 * 
 	 * @return today
 	 */
 	public static LocalDate create() {
-		return new LocalDate(GregorianChronology.getInstance());
+		return new LocalDate(getISOChronology());
 	}
 
 	/**
@@ -84,7 +84,7 @@ public abstract class CalendarUtil {
 	 * @return Chronology
 	 */
 	public static Chronology getChronology(int year) {
-		return (year <= 1583 ? JulianChronology.getInstance() : ISOChronology.getInstance());
+		return (year <= 1583 ? JulianChronology.getInstance() : getISOChronology());
 	}
 
 	/**
@@ -161,8 +161,8 @@ public abstract class CalendarUtil {
 		x = d + e + 114;
 		month = x / 31;
 		day = (x % 31) + 1;
-		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day,
-				JulianChronology.getInstance());
+		int datesMonth = month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL;
+		return create(year, datesMonth, day, getChronology(year));
 	}
 
 	/**
@@ -190,8 +190,8 @@ public abstract class CalendarUtil {
 		x = h + k - 7 * l + 114;
 		month = x / 31;
 		day = (x % 31) + 1;
-		return create(year, (month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL), day,
-				ISOChronology.getInstance());
+		int datesMonth = month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL;
+		return create(year, datesMonth, day, getChronology(year));
 	}
 
 	/**
@@ -228,7 +228,7 @@ public abstract class CalendarUtil {
 	/**
 	 * Returns a set of gregorian dates within a gregorian year which equal the
 	 * ethiopian orthodox month and day. Because the ethiopian orthodox year
-	 * different from the gregorian there may be more than one occurrence of an
+	 * differes from the gregorian there may be more than one occurrence of an
 	 * ethiopian orthodox date in an gregorian year.
 	 * 
 	 * @param gregorianYear
@@ -257,10 +257,8 @@ public abstract class CalendarUtil {
 	private static Set<LocalDate> getDatesFromChronologyWithinGregorianYear(int targetMonth, int targetDay,
 			int gregorianYear, Chronology targetChronoUTC) {
 		Set<LocalDate> holidays = new HashSet<LocalDate>();
-		LocalDate firstGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1,
-				ISOChronology.getInstanceUTC());
-		LocalDate lastGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31,
-				ISOChronology.getInstanceUTC());
+		LocalDate firstGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1, getISOChronology());
+		LocalDate lastGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31, getISOChronology());
 
 		LocalDate firstTargetDate = new LocalDate(firstGregorianDate.toDateTimeAtStartOfDay().getMillis(),
 				targetChronoUTC);
@@ -272,12 +270,11 @@ public abstract class CalendarUtil {
 
 		int targetYear = firstTargetDate.getYear();
 
-		for (; targetYear <= lastTargetDate.getYear();) {
+		for (; targetYear <= lastTargetDate.getYear(); targetYear++) {
 			LocalDate d = new LocalDate(targetYear, targetMonth, targetDay, targetChronoUTC);
 			if (interv.contains(d.toDateTimeAtStartOfDay())) {
 				holidays.add(convertToISODate(d));
 			}
-			targetYear++;
 		}
 		return holidays;
 	}
@@ -298,7 +295,8 @@ public abstract class CalendarUtil {
 	}
 
 	/**
-	 * Shows if the requested dat is contained in the Set of holidays.
+	 * Shows if the requested date is contained in the Set of holidays by using
+	 * {@link LocalDate.isEqual}
 	 * 
 	 * @param holidays
 	 *            a {@link java.util.Set} object.
@@ -307,8 +305,9 @@ public abstract class CalendarUtil {
 	 * @return contains this date
 	 */
 	public static boolean contains(final Set<Holiday> holidays, final LocalDate date) {
+		Check.notNull(holidays, "Holidays");
 		for (Holiday h : holidays) {
-			if (h.getDate().equals(date)) {
+			if (h.getDate().isEqual(date)) {
 				return true;
 			}
 		}
