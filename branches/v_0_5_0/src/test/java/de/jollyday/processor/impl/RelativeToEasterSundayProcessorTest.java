@@ -15,10 +15,17 @@
  */
 package de.jollyday.processor.impl;
 
-import static org.junit.Assert.fail;
+import java.util.Set;
 
+import junit.framework.Assert;
+
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
+import org.junit.Before;
 import org.junit.Test;
 
+import de.jollyday.Holiday;
+import de.jollyday.config.ChronologyType;
 import de.jollyday.config.RelativeToEasterSunday;
 
 /**
@@ -26,6 +33,16 @@ import de.jollyday.config.RelativeToEasterSunday;
  * 
  */
 public class RelativeToEasterSundayProcessorTest {
+
+	private RelativeToEasterSunday relativeToEasterSunday;
+	private RelativeToEasterSundayProcessor relativeToEasterSundayProcessor;
+
+	@Before
+	public void setup() {
+		relativeToEasterSunday = new RelativeToEasterSunday();
+		relativeToEasterSunday.setDays(1);
+		relativeToEasterSundayProcessor = new RelativeToEasterSundayProcessor(relativeToEasterSunday);
+	}
 
 	/**
 	 * Test method for
@@ -43,13 +60,6 @@ public class RelativeToEasterSundayProcessorTest {
 		new RelativeToEasterSundayProcessor(relativeToEasterSunday);
 	}
 
-	@Test
-	public void testRelativeToEasterSundayProcessorNonZeroDays() {
-		RelativeToEasterSunday relativeToEasterSunday = new RelativeToEasterSunday();
-		relativeToEasterSunday.setDays(1);
-		new RelativeToEasterSundayProcessor(relativeToEasterSunday);
-	}
-
 	/**
 	 * Test method for
 	 * {@link de.jollyday.processor.impl.RelativeToEasterSundayProcessor#init()}
@@ -57,7 +67,7 @@ public class RelativeToEasterSundayProcessorTest {
 	 */
 	@Test
 	public void testInit() {
-		fail("Not yet implemented");
+		relativeToEasterSundayProcessor.init();
 	}
 
 	/**
@@ -66,8 +76,32 @@ public class RelativeToEasterSundayProcessorTest {
 	 * .
 	 */
 	@Test
-	public void testProcess() {
-		fail("Not yet implemented");
+	public void testProcessISOChronology() {
+		Set<Holiday> holidays = relativeToEasterSundayProcessor.process(2011);
+		Assert.assertNotNull(holidays);
+		Assert.assertEquals(1, holidays.size());
+		LocalDate isoEaster = holidays.iterator().next().getDate();
+		Assert.assertEquals(new LocalDate(2011, DateTimeConstants.APRIL, 24), isoEaster);
+	}
+
+	@Test
+	public void testProcessGregorianChronology() throws Exception {
+		relativeToEasterSunday.setChronology(ChronologyType.GREGORIAN);
+		Set<Holiday> holidays = relativeToEasterSundayProcessor.process(2011);
+		Assert.assertNotNull(holidays);
+		Assert.assertEquals(1, holidays.size());
+		LocalDate gregorianEaster = holidays.iterator().next().getDate();
+		Assert.assertEquals(new LocalDate(2011, DateTimeConstants.APRIL, 24), gregorianEaster);
+	}
+
+	@Test
+	public void testProcessJulianChronology() throws Exception {
+		relativeToEasterSunday.setChronology(ChronologyType.JULIAN);
+		Set<Holiday> holidays = relativeToEasterSundayProcessor.process(2011);
+		Assert.assertNotNull(holidays);
+		Assert.assertEquals(1, holidays.size());
+		LocalDate julianEaster = holidays.iterator().next().getDate();
+		Assert.assertEquals(new LocalDate(2011, DateTimeConstants.APRIL, 11), julianEaster);
 	}
 
 }

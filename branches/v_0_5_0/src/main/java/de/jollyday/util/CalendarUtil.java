@@ -162,7 +162,7 @@ public abstract class CalendarUtil {
 		month = x / 31;
 		day = (x % 31) + 1;
 		int datesMonth = month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL;
-		return create(year, datesMonth, day, getChronology(year));
+		return create(year, datesMonth, day, getISOChronology());
 	}
 
 	/**
@@ -191,7 +191,7 @@ public abstract class CalendarUtil {
 		month = x / 31;
 		day = (x % 31) + 1;
 		int datesMonth = month == 3 ? DateTimeConstants.MARCH : DateTimeConstants.APRIL;
-		return create(year, datesMonth, day, getChronology(year));
+		return create(year, datesMonth, day, getISOChronology());
 	}
 
 	/**
@@ -257,8 +257,8 @@ public abstract class CalendarUtil {
 	private static Set<LocalDate> getDatesFromChronologyWithinGregorianYear(int targetMonth, int targetDay,
 			int gregorianYear, Chronology targetChronoUTC) {
 		Set<LocalDate> holidays = new HashSet<LocalDate>();
-		LocalDate firstGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.JANUARY, 1, getISOChronology());
-		LocalDate lastGregorianDate = new LocalDate(gregorianYear, DateTimeConstants.DECEMBER, 31, getISOChronology());
+		LocalDate firstGregorianDate = create(gregorianYear, DateTimeConstants.JANUARY, 1, getISOChronology());
+		LocalDate lastGregorianDate = create(gregorianYear, DateTimeConstants.DECEMBER, 31, getISOChronology());
 
 		LocalDate firstTargetDate = new LocalDate(firstGregorianDate.toDateTimeAtStartOfDay().getMillis(),
 				targetChronoUTC);
@@ -268,10 +268,8 @@ public abstract class CalendarUtil {
 		Interval interv = new Interval(firstTargetDate.toDateTimeAtStartOfDay(), lastTargetDate.plusDays(1)
 				.toDateTimeAtStartOfDay());
 
-		int targetYear = firstTargetDate.getYear();
-
-		for (; targetYear <= lastTargetDate.getYear(); targetYear++) {
-			LocalDate d = new LocalDate(targetYear, targetMonth, targetDay, targetChronoUTC);
+		for (int targetYear = firstTargetDate.getYear(); targetYear <= lastTargetDate.getYear(); targetYear++) {
+			LocalDate d = create(targetYear, targetMonth, targetDay, targetChronoUTC);
 			if (interv.contains(d.toDateTimeAtStartOfDay())) {
 				holidays.add(convertToISODate(d));
 			}
@@ -289,7 +287,7 @@ public abstract class CalendarUtil {
 	 */
 	public static LocalDate convertToISODate(final LocalDate date) {
 		if (!(date.getChronology() instanceof ISOChronology)) {
-			return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(), ISOChronology.getInstance());
+			return new LocalDate(date.toDateTimeAtStartOfDay().getMillis(), getISOChronology());
 		}
 		return date;
 	}

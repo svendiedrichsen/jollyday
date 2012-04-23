@@ -18,25 +18,25 @@ package de.jollyday.processor.impl;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jollyday.config.Fixed;
+import de.jollyday.config.FixedWeekdayInMonth;
 
 /**
  * @author sven
  * 
  */
-public class FixedProcessorTest {
+public class FixedWeekdayInMonthProcessorTest {
 
-	private Fixed fixed;
-	private FixedProcessor fixedProcessor;
+	private FixedWeekdayInMonthProcessor fixedWeekdayInMonthProcessor;
+	private FixedWeekdayInMonth fixedWeekdayInMonth;
 
 	@Before
-	public void setup() throws Exception {
-		fixedProcessor = new FixedProcessor(fixed);
+	public void setup() {
+		fixedWeekdayInMonthProcessor = new FixedWeekdayInMonthProcessor(fixedWeekdayInMonth);
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testConstructorNullCheck() throws Exception {
-		new FixedProcessor(null);
+		new FixedWeekdayInMonthProcessor(null);
 	}
 
 }
