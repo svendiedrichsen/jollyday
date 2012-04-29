@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2010 Sven Diedrichsen
  *
@@ -21,12 +20,16 @@ package de.jollyday.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Logger;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import org.joda.time.DateTimeConstants;
 
@@ -41,41 +44,55 @@ import de.jollyday.holidaytype.LocalizedHolidayType;
 public class XMLUtil {
 
 	/**
+	 * 
+	 */
+	private static final String SCHEMA_FILE_NAME = "Holiday.xsd";
+
+	/**
 	 * the package name to search for the generated java classes.
 	 */
 	public static final String PACKAGE = "de.jollyday.config";
-	
+
 	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
 	 * this.
-	 *
-	 * @param stream a {@link java.io.InputStream} object.
+	 * 
+	 * @param stream
+	 *            a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
-	 * @throws java.io.IOException Could not close the provided stream.
+	 * @throws java.io.IOException
+	 *             Could not close the provided stream.
 	 */
-	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException{
+	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException {
 		Check.notNull(stream, "Stream");
 		try {
 			JAXBContext ctx = null;
-			try{
+			try {
 				ctx = createJAXBContext(Thread.currentThread().getContextClassLoader());
-			}catch(Exception e){
+			} catch (Exception e) {
 				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
 				ctx = null;
 			}
-			if(ctx == null){
+			if (ctx == null) {
 				ctx = createJAXBContext(ObjectFactory.class.getClassLoader());
 			}
 			Unmarshaller um = ctx.createUnmarshaller();
+			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			URL resource = Thread.currentThread().getContextClassLoader().getResource(SCHEMA_FILE_NAME);
+			if (resource != null) {
+				Schema schema = schemaFactory.newSchema(resource);
+				um.setSchema(schema);
+			} else {
+				LOG.warning("Cannot find XSD schema " + SCHEMA_FILE_NAME
+						+ " for validation. Will load from stream without validation.");
+			}
 			@SuppressWarnings("unchecked")
-			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um
-					.unmarshal(stream);
+			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 			return el.getValue();
 		} catch (Exception ue) {
-			throw new IllegalStateException("Cannot parse holidays XML file.",
-					ue);
+			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
 		} finally {
 			stream.close();
 		}
@@ -83,9 +100,12 @@ public class XMLUtil {
 
 	/**
 	 * Loads the {@link JAXBContext} using the provided {@link ClassLoader}.
-	 * @param classLoader The {@link ClassLoader} to use
+	 * 
+	 * @param classLoader
+	 *            The {@link ClassLoader} to use
 	 * @return JAXBContext the created context
-	 * @throws JAXBException Anything goes wrong with the context creation
+	 * @throws JAXBException
+	 *             Anything goes wrong with the context creation
 	 */
 	private static JAXBContext createJAXBContext(ClassLoader classLoader) throws JAXBException {
 		Check.notNull(classLoader, "ClassLoader");
@@ -94,8 +114,9 @@ public class XMLUtil {
 
 	/**
 	 * Returns the <code>DateTimeConstants</code> value for the given weekday.
-	 *
-	 * @param weekday a {@link de.jollyday.config.Weekday} object.
+	 * 
+	 * @param weekday
+	 *            a {@link de.jollyday.config.Weekday} object.
 	 * @return DateTimeConstants value.
 	 */
 	public static final int getWeekday(Weekday weekday) {
@@ -122,8 +143,9 @@ public class XMLUtil {
 
 	/**
 	 * Returns the {@link DateTimeConstants} value for the given month.
-	 *
-	 * @param month a {@link de.jollyday.config.Month} object.
+	 * 
+	 * @param month
+	 *            a {@link de.jollyday.config.Month} object.
 	 * @return DateTimeConstants value.
 	 */
 	public static int getMonth(Month month) {
@@ -160,7 +182,7 @@ public class XMLUtil {
 
 	/**
 	 * Gets the {@link HolidayType}.
-	 *
+	 * 
 	 * @param type
 	 *            the type of holiday in the config
 	 * @return the type of holiday
@@ -176,7 +198,7 @@ public class XMLUtil {
 			throw new IllegalArgumentException("Unknown holiday type " + type);
 		}
 	}
-	
+
 	/**
 	 * Shows if the year is valid for the current {@link HolidayRule}.
 	 * 
@@ -215,6 +237,5 @@ public class XMLUtil {
 		}
 		return isInRange;
 	}
-
 
 }
