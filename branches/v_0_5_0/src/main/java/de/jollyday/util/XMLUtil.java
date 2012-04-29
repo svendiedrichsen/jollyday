@@ -24,6 +24,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import javax.xml.XMLConstants;
+import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -32,6 +33,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import org.joda.time.DateTimeConstants;
+import org.xml.sax.SAXException;
 
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
@@ -44,7 +46,7 @@ import de.jollyday.holidaytype.LocalizedHolidayType;
 public class XMLUtil {
 
 	/**
-	 * 
+	 * The schema files name
 	 */
 	private static final String SCHEMA_FILE_NAME = "Holiday.xsd";
 
@@ -56,46 +58,89 @@ public class XMLUtil {
 	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
 	/**
-	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
-	 * this.
+	 * Unmarshalls the configuration from the stream. Uses {@link JAXB} for this
+	 * and validates the against Holidays.xsd schema.
 	 * 
 	 * @param stream
 	 *            a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
-	 * @throws java.io.IOException
-	 *             Could not close the provided stream.
 	 */
-	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException {
+	public static Configuration unmarshallConfiguration(InputStream stream) {
 		Check.notNull(stream, "Stream");
 		try {
-			JAXBContext ctx = null;
-			try {
-				ctx = createJAXBContext(Thread.currentThread().getContextClassLoader());
-			} catch (Exception e) {
-				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
-				ctx = null;
-			}
-			if (ctx == null) {
-				ctx = createJAXBContext(ObjectFactory.class.getClassLoader());
-			}
-			Unmarshaller um = ctx.createUnmarshaller();
-			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			URL resource = Thread.currentThread().getContextClassLoader().getResource(SCHEMA_FILE_NAME);
-			if (resource != null) {
-				Schema schema = schemaFactory.newSchema(resource);
-				um.setSchema(schema);
-			} else {
-				LOG.warning("Cannot find XSD schema " + SCHEMA_FILE_NAME
-						+ " for validation. Will load from stream without validation.");
-			}
+			JAXBContext ctx = createJAXBContext();
+			Unmarshaller um = createUnmarshaller(ctx);
 			@SuppressWarnings("unchecked")
 			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 			return el.getValue();
 		} catch (Exception ue) {
 			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
 		} finally {
-			stream.close();
+			try {
+				stream.close();
+			} catch (IOException e) {
+				throw new IllegalStateException("Cannot close file stream.", e);
+			}
 		}
+	}
+
+	/**
+	 * Creates the {@link Unmarshaller} from the {@link JAXBContext} and sets a
+	 * {@link Schema}
+	 * 
+	 * @param ctx
+	 *            the {@link JAXBContext} to use
+	 * @return the {@link Unmarshaller} created
+	 * @throws JAXBException
+	 * @throws SAXException
+	 */
+	private static Unmarshaller createUnmarshaller(JAXBContext ctx) throws JAXBException, SAXException {
+		Unmarshaller um = ctx.createUnmarshaller();
+		URL resource = getSchemaResourceURL();
+		if (resource != null) {
+			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			Schema schema = schemaFactory.newSchema(resource);
+			um.setSchema(schema);
+		} else {
+			LOG.warning("Cannot find XSD schema " + SCHEMA_FILE_NAME
+					+ " for validation. Will load from stream without schema validation.");
+		}
+		return um;
+	}
+
+	/**
+	 * Creates the {@link JAXBContext} from the current thread or the
+	 * {@link ObjectFactory}s classloader.
+	 * 
+	 * @return the {@link JAXBContext}
+	 * @throws JAXBException
+	 */
+	private static JAXBContext createJAXBContext() throws JAXBException {
+		JAXBContext ctx = null;
+		try {
+			ctx = createJAXBContext(Thread.currentThread().getContextClassLoader());
+		} catch (Exception e) {
+			LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
+			ctx = null;
+		}
+		if (ctx == null) {
+			ctx = createJAXBContext(ObjectFactory.class.getClassLoader());
+		}
+		return ctx;
+	}
+
+	/**
+	 * Returns the schema resource {@link URL}.
+	 * 
+	 * @return Schema URL
+	 */
+	private static URL getSchemaResourceURL() {
+		URL resource = Thread.currentThread().getContextClassLoader().getResource(SCHEMA_FILE_NAME);
+		if (resource == null) {
+			LOG.info("Cannot load XSD schema from current threads classloader. Using ObjectFactorys classloader.");
+			resource = ObjectFactory.class.getClassLoader().getResource(SCHEMA_FILE_NAME);
+		}
+		return resource;
 	}
 
 	/**
