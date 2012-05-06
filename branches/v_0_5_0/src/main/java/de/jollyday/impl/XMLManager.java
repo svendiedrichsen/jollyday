@@ -28,8 +28,9 @@ import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
 import de.jollyday.config.Configuration;
+import de.jollyday.persistence.IPersistenceManager;
+import de.jollyday.persistence.PersistenceManagerFactory;
 import de.jollyday.processor.impl.ConfigurationProcessor;
-import de.jollyday.util.XMLUtil;
 
 /**
  * Manager implementation for reading data from XML files. The files with the
@@ -46,17 +47,14 @@ public class XMLManager extends HolidayManager {
 	 */
 	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
 	/**
-	 * prefix of the config files.
-	 */
-	private static final String FILE_PREFIX = "holidays/Holidays";
-	/**
-	 * suffix of the config files.
-	 */
-	private static final String FILE_SUFFIX = ".xml";
-	/**
 	 * the processor for calculating holidays
 	 */
 	protected ConfigurationProcessor processor;
+
+	/**
+	 * the persistence manager to use for configuration retrieval
+	 */
+	private IPersistenceManager persistenceManager = PersistenceManagerFactory.createPersistenceManager();
 
 	/**
 	 * {@inheritDoc}
@@ -71,7 +69,6 @@ public class XMLManager extends HolidayManager {
 	public Set<Holiday> getHolidays(int year, final String... args) {
 		return processor.process(year, args);
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -97,7 +94,6 @@ public class XMLManager extends HolidayManager {
 		return holidays;
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -106,18 +102,12 @@ public class XMLManager extends HolidayManager {
 	 * with JAXB to some Java classes.
 	 */
 	@Override
-	public void init(final String country) {
-		String fileName = getConfigurationFileName(country);
-		try {
-			Configuration configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResource(fileName)
-					.openStream());
-			validateConfigurationHierarchy(configuration);
-			logHierarchy(configuration, 0);
-			processor = new ConfigurationProcessor(configuration);
-			processor.init();
-		} catch (Exception e) {
-			throw new IllegalStateException("Cannot instantiate configuration.", e);
-		}
+	public void init(final String calendarName) {
+		Configuration configuration = persistenceManager.getConfiguration(calendarName);
+		validateConfigurationHierarchy(configuration);
+		logHierarchy(configuration, 0);
+		processor = new ConfigurationProcessor(configuration);
+		processor.init();
 	}
 
 	/**
@@ -139,17 +129,6 @@ public class XMLManager extends HolidayManager {
 				logHierarchy(sub, level + 1);
 			}
 		}
-	}
-
-	/**
-	 * Returns the configuration file name for the country.
-	 * 
-	 * @param country
-	 *            a {@link java.lang.String} object.
-	 * @return file name
-	 */
-	public static String getConfigurationFileName(final String country) {
-		return FILE_PREFIX + "_" + country + FILE_SUFFIX;
 	}
 
 	/**
