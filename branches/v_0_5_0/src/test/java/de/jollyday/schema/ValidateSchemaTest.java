@@ -25,7 +25,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.jollyday.config.Configuration;
-import de.jollyday.util.XMLUtil;
+import de.jollyday.persistence.ClasspathPersistenceManager;
 
 /**
  * @author sven
@@ -55,7 +55,7 @@ public class ValidateSchemaTest {
 			FileInputStream fs = null;
 			try {
 				fs = new FileInputStream(path + "/" + fileName);
-				Configuration unmarshallConfiguration = XMLUtil.unmarshallConfiguration(fs);
+				Configuration unmarshallConfiguration = ClasspathPersistenceManager.unmarshallConfiguration(fs);
 				Assert.assertNotNull(unmarshallConfiguration);
 			} catch (Exception e) {
 				Assert.fail("Error parsing file " + fileName + ": " + e.getMessage());

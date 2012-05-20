@@ -26,37 +26,38 @@ import de.jollyday.util.Check;
 /**
  * Moves the provided date until the target weekday is reached. If there are
  * when conditions provided there must at least match one to move the date.
+ * 
  * @author sven
- *
+ * 
  */
 public class MovingConditionProcessor {
 	private final MovingCondition movingCondition;
 
 	/**
-	 * 
+	 * Constructor with moving condition. Checks for not null moving condition.
 	 */
 	public MovingConditionProcessor(MovingCondition movingCondition) {
 		Check.notNull(movingCondition, "movingCondition");
 		this.movingCondition = movingCondition;
 	}
 
-	public LocalDate process(LocalDate date){
-		
-		boolean shallMoveDate = movingCondition.getWhen().isEmpty();
-		
-		for(Weekday weekday : movingCondition.getWhen()){
-			if(CalendarUtil.isWeekday(date, weekday)){
+	public LocalDate process(LocalDate date) {
+
+		boolean shallMoveDate = false;
+
+		for (Weekday weekday : movingCondition.getWhen()) {
+			if (CalendarUtil.isWeekday(date, weekday)) {
 				shallMoveDate = true;
 				break;
 			}
 		}
-		if(shallMoveDate){
-			int daysToAdd = movingCondition.getTo() == To.NEXT ? 1 : -1;
-			while(!CalendarUtil.isWeekday(date, movingCondition.getWeekday())){
+		if (shallMoveDate) {
+			int daysToAdd = movingCondition.getTo() == null || movingCondition.getTo() == To.NEXT ? 1 : -1;
+			while (!CalendarUtil.isWeekday(date, movingCondition.getWeekday())) {
 				date = date.plusDays(daysToAdd);
 			}
 		}
 		return date;
 	}
-	
+
 }

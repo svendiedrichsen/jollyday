@@ -31,6 +31,7 @@ public class FixedProcessorTest {
 
 	@Before
 	public void setup() throws Exception {
+		fixed = new Fixed();
 		fixedProcessor = new FixedProcessor(fixed);
 	}
 

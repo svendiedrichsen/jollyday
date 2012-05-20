@@ -161,13 +161,29 @@ public class HolidayTest {
 	}
 
 	private void assertDates(Set<LocalDate> expected, Set<Holiday> holidays) {
-		Assert.assertEquals("Wrong number of dates.", expected.size(), holidays.size());
+		Assert.assertEquals("Wrong number of dates. Found " + holidays, expected.size(), holidays.size());
 		for (LocalDate d : expected) {
 			if (!CalendarUtil.contains(holidays, d)) {
 				Assert.fail("Missing " + d + " in " + holidays);
 			}
 		}
 	}
+
+	/*
+	 * 2010-02-17 (Aschermittwoch), 2010-08-30 (undefined), 2010-04-02
+	 * (Karfreitag), 2010-04-05 (Ostermontag)] 2010-11-17 (undefined),
+	 * 2010-11-26 (undefined), 2010-01-01 (undefined), 2010-01-18 (undefined),
+	 * 
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.FEBRUARY, 17));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.AUGUST, 30));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.APRIL, 2));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.APRIL, 5));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 28));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 1));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 18));
+	 * test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 26));
+	 */
 
 	@Test
 	public void testLevel1() throws Exception {
@@ -193,7 +209,7 @@ public class HolidayTest {
 		assertDates(test_days_l11, holidays);
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testFail() throws Exception {
 		HolidayManager.getInstance("test_fail");
 	}

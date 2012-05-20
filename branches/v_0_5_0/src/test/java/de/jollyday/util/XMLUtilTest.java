@@ -30,36 +30,44 @@ import de.jollyday.config.HolidayRule;
 import de.jollyday.config.HolidayType;
 import de.jollyday.config.Month;
 import de.jollyday.config.Weekday;
+import de.jollyday.persistence.ClasspathPersistenceManager;
 
 /**
  * Tests for {@link de.jollyday.util.XMLUtil}.
+ * 
  * @author sven
- *
+ * 
  */
 @SuppressWarnings("deprecation")
 public class XMLUtilTest {
 
 	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#unmarshallConfiguration(java.io.InputStream)} with NULL parameter.
-	 * @throws IOException 
-	 */
-	@Test(expected=NullPointerException.class)
-	public void testUnmarshallConfigurationCalledWithNull() throws IOException {
-		XMLUtil.unmarshallConfiguration(null);
-	}
-	
-	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#unmarshallConfiguration(java.io.InputStream)} with empty
-	 * input stream.
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#unmarshallConfiguration(java.io.InputStream)}
+	 * with NULL parameter.
+	 * 
 	 * @throws IOException
 	 */
-	@Test(expected=IllegalStateException.class)
-	public void testUnmarshallConfigurationFromAnyInputStream() throws IOException {
-		XMLUtil.unmarshallConfiguration(new StringBufferInputStream(""));
+	@Test(expected = NullPointerException.class)
+	public void testUnmarshallConfigurationCalledWithNull() throws IOException {
+		ClasspathPersistenceManager.unmarshallConfiguration(null);
 	}
 
 	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#getWeekday(de.jollyday.config.Weekday)}.
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#unmarshallConfiguration(java.io.InputStream)}
+	 * with empty input stream.
+	 * 
+	 * @throws IOException
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void testUnmarshallConfigurationFromAnyInputStream() throws IOException {
+		ClasspathPersistenceManager.unmarshallConfiguration(new StringBufferInputStream(""));
+	}
+
+	/**
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#getWeekday(de.jollyday.config.Weekday)}.
 	 */
 	@Test
 	public void testGetWeekday() {
@@ -73,7 +81,8 @@ public class XMLUtilTest {
 	}
 
 	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#getMonth(de.jollyday.config.Month)}.
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#getMonth(de.jollyday.config.Month)}.
 	 */
 	@Test
 	public void testGetMonth() {
@@ -92,7 +101,8 @@ public class XMLUtilTest {
 	}
 
 	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#getType(de.jollyday.config.HolidayType)}.
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#getType(de.jollyday.config.HolidayType)}.
 	 */
 	@Test
 	public void testGetType() {
@@ -101,13 +111,15 @@ public class XMLUtilTest {
 	}
 
 	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#isValidInYear(int, de.jollyday.config.HolidayRule)}.
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#isValidInYear(int, de.jollyday.config.HolidayRule)}
+	 * .
 	 */
 	@Test
 	public void testIsValidInYearFromAndTo() {
 		HolidayRule rule = new HolidayRule();
 		assertTrue(XMLUtil.isValidInYear(2012, rule));
-		
+
 		rule.setValidFrom(2012);
 		assertTrue(XMLUtil.isValidInYear(2012, rule));
 
@@ -115,69 +127,70 @@ public class XMLUtilTest {
 		assertFalse(XMLUtil.isValidInYear(2012, rule));
 
 		rule.setValidFrom(null);
-		
+
 		rule.setValidTo(2012);
 		assertTrue(XMLUtil.isValidInYear(2012, rule));
 
 		rule.setValidTo(2011);
 		assertFalse(XMLUtil.isValidInYear(2012, rule));
 	}
-	
+
 	/**
-	 * Test method for {@link de.jollyday.util.XMLUtil#isValidInYear(int, de.jollyday.config.HolidayRule)}.
+	 * Test method for
+	 * {@link de.jollyday.util.XMLUtil#isValidInYear(int, de.jollyday.config.HolidayRule)}
+	 * .
 	 */
 	@Test
 	public void testIsValidInYearCycle() {
 		HolidayRule rule = new HolidayRule();
 		rule.setValidFrom(2000);
 		rule.setValidTo(2100);
-		
+
 		rule.setEvery(CycleType.EVERY_YEAR);
-		for(int i = 2000; i <= 2100; i++){
+		for (int i = 2000; i <= 2100; i++) {
 			assertTrue(XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.TWO_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", (i-2000) % 2 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", (i - 2000) % 2 == 0, XMLUtil.isValidInYear(i, rule));
 		}
-		
+
 		rule.setEvery(CycleType.THREE_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", (i-2000) % 3 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", (i - 2000) % 3 == 0, XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.FOUR_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", (i-2000) % 4 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", (i - 2000) % 4 == 0, XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.FIVE_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", (i-2000) % 5 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", (i - 2000) % 5 == 0, XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.SIX_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", (i-2000) % 6 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", (i - 2000) % 6 == 0, XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.SEVEN_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", (i-2000) % 7 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", (i - 2000) % 7 == 0, XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.EVEN_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", i % 2 == 0,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", i % 2 == 0, XMLUtil.isValidInYear(i, rule));
 		}
 
 		rule.setEvery(CycleType.ODD_YEARS);
-		for(int i = 2000; i <= 2100; i++){
-			assertEquals("Validation for year "+i+" failed.", i % 2 == 1,XMLUtil.isValidInYear(i, rule));
+		for (int i = 2000; i <= 2100; i++) {
+			assertEquals("Validation for year " + i + " failed.", i % 2 == 1, XMLUtil.isValidInYear(i, rule));
 		}
 
 	}
-
 
 }
