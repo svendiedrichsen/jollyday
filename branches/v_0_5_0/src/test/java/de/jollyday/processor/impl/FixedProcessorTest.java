@@ -15,10 +15,17 @@
  */
 package de.jollyday.processor.impl;
 
+import java.util.Set;
+
+import org.joda.time.DateTimeConstants;
+import org.joda.time.LocalDate;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.jollyday.Holiday;
 import de.jollyday.config.Fixed;
+import de.jollyday.config.Month;
 
 /**
  * @author sven
@@ -38,6 +45,15 @@ public class FixedProcessorTest {
 	@Test(expected = NullPointerException.class)
 	public void testConstructorNullCheck() throws Exception {
 		new FixedProcessor(null);
+	}
+
+	@Test
+	public void testFixedDate() throws Exception {
+		fixed.setDay(3);
+		fixed.setMonth(Month.FEBRUARY);
+		Set<Holiday> holidays = fixedProcessor.process(2012);
+		Assert.assertFalse(holidays.isEmpty());
+		Assert.assertEquals(new LocalDate(2012, DateTimeConstants.FEBRUARY, 3), holidays.iterator().next().getDate());
 	}
 
 }
