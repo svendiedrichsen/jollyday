@@ -17,6 +17,9 @@ package de.jollyday.impl;
 
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -250,11 +253,12 @@ public class XMLManager extends HolidayManager {
 	 * with JAXB to some Java classes.
 	 */
 	@Override
-	public void init(final String country) {
+	public void init(final String country, final String fileURL) {
 		String fileName = getConfigurationFileName(country);
 		try {
-			configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResource(fileName)
-					.openStream());
+			final InputStream inputStream = fileURL == null ? getClass().getClassLoader().getResource(fileName)
+					.openStream() : new FileInputStream(new File(fileURL));
+			configuration = XMLUtil.unmarshallConfiguration(inputStream);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot instantiate configuration.", e);
 		}
