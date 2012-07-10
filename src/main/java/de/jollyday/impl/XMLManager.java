@@ -17,7 +17,6 @@ package de.jollyday.impl;
 
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -26,10 +25,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,7 +43,7 @@ import de.jollyday.util.XMLUtil;
  * Manager implementation for reading data from XML files. The files with the
  * name pattern Holidays_[country].xml will be read from the system classpath.
  * It uses a list a parsers for parsing the different type of XML nodes.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -57,8 +52,7 @@ public class XMLManager extends HolidayManager {
 	/**
 	 * Logger.
 	 */
-	private static final Logger LOG = Logger.getLogger(XMLManager.class
-			.getName());
+	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
 	/**
 	 * The configuration prefix for parser implementations.
 	 */
@@ -71,11 +65,6 @@ public class XMLManager extends HolidayManager {
 	 * suffix of the config files.
 	 */
 	private static final String FILE_SUFFIX = ".xml";
-	/**
-	 * Thread pool for async holiday parsing.
-	 */
-	private static final ExecutorService PARSER_THREAD_POOL = Executors
-			.newCachedThreadPool();
 
 	/**
 	 * Parser cache by XML class name.
@@ -88,36 +77,23 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * Calls
 	 * <code>Set&lt;LocalDate&gt; getHolidays(int year, Configuration c, String... args)</code>
 	 * with the configuration from initialization.
+	 * 
 	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
 	@Override
 	public Set<Holiday> getHolidays(int year, final String... args) {
-		Set<Holiday> holidaySet = Collections
-				.synchronizedSet(new HashSet<Holiday>());
-		List<Future<?>> futures = new ArrayList<Future<?>>();
-		getHolidays(year, configuration, holidaySet, futures, args);
-		for (Future<?> f : futures) {
-			try {
-				f.get();
-			} catch (InterruptedException e) {
-				throw new IllegalStateException(
-						"Error during holiday parsing.", e);
-			} catch (ExecutionException e) {
-				throw new IllegalStateException(
-						"Error during holiday parsing.", e.getCause());
-			}
-		}
-		futures.clear();
+		Set<Holiday> holidaySet = Collections.synchronizedSet(new HashSet<Holiday>());
+		getHolidays(year, configuration, holidaySet, args);
 		return holidaySet;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * Calls <code>getHolidays(year, args)</code> for each year within the
 	 * interval and returns a list of holidays which are then contained in the
 	 * interval.
@@ -128,8 +104,7 @@ public class XMLManager extends HolidayManager {
 			throw new IllegalArgumentException("Interval is NULL.");
 		}
 		Set<Holiday> holidays = new HashSet<Holiday>();
-		for (int year = interval.getStart().getYear(); year <= interval
-				.getEnd().getYear(); year++) {
+		for (int year = interval.getStart().getYear(); year <= interval.getEnd().getYear(); year++) {
 			Set<Holiday> yearHolidays = getHolidays(year, args);
 			for (Holiday h : yearHolidays) {
 				if (interval.contains(h.getDate().toDateMidnight())) {
@@ -147,21 +122,18 @@ public class XMLManager extends HolidayManager {
 	 * @param year
 	 * @param c
 	 * @param holidaySet
-	 * @param futures
 	 * @param args
 	 */
-	private void getHolidays(int year, final Configuration c,
-			Set<Holiday> holidaySet, List<Future<?>> futures, final String... args) {
+	private void getHolidays(int year, final Configuration c, Set<Holiday> holidaySet, final String... args) {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Adding holidays for " + c.getDescription());
 		}
-		parseHolidays(year, holidaySet, c.getHolidays(), futures);
+		parseHolidays(year, holidaySet, c.getHolidays());
 		if (args != null && args.length > 0) {
 			String hierarchy = args[0];
 			for (Configuration config : c.getSubConfigurations()) {
 				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
-					getHolidays(year, config, holidaySet, futures,
-							copyOfRange(args, 1, args.length));
+					getHolidays(year, config, holidaySet, copyOfRange(args, 1, args.length));
 					break;
 				}
 			}
@@ -186,8 +158,7 @@ public class XMLManager extends HolidayManager {
 			throw new IllegalArgumentException(from + " > " + to);
 		}
 		String[] copy = new String[newLength];
-		System.arraycopy(original, from, copy, 0,
-				Math.min(original.length - from, newLength));
+		System.arraycopy(original, from, copy, 0, Math.min(original.length - from, newLength));
 		return copy;
 	}
 
@@ -198,12 +169,11 @@ public class XMLManager extends HolidayManager {
 	 * @param holidays
 	 * @param config
 	 */
-	private void parseHolidays(int year, Set<Holiday> holidays,
-			final Holidays config, List<Future<?>> futures) {
+	private void parseHolidays(int year, Set<Holiday> holidays, final Holidays config) {
 		Collection<HolidayParser> parsers = getParsers(config);
 		for (HolidayParser p : parsers) {
-			futures.add(PARSER_THREAD_POOL.submit(new HolidayParserRunner(year,
-					holidays, config, p)));
+			HolidayParserRunner holidayParserRunner = new HolidayParserRunner(year, holidays, config, p);
+			holidayParserRunner.run();
 		}
 	}
 
@@ -220,8 +190,7 @@ public class XMLManager extends HolidayManager {
 		private final Holidays config;
 		private final HolidayParser parser;
 
-		public HolidayParserRunner(int year, Set<Holiday> holidays,
-				final Holidays config, HolidayParser parser) {
+		public HolidayParserRunner(int year, Set<Holiday> holidays, final Holidays config, HolidayParser parser) {
 			this.year = year;
 			this.holidays = holidays;
 			this.config = config;
@@ -244,10 +213,9 @@ public class XMLManager extends HolidayManager {
 	private Collection<HolidayParser> getParsers(final Holidays config) {
 		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
 		try {
-			PropertyDescriptor[] propertiesDescs =
-					Introspector.getBeanInfo(config.getClass()).getPropertyDescriptors();
+			PropertyDescriptor[] propertiesDescs = Introspector.getBeanInfo(config.getClass()).getPropertyDescriptors();
 			for (PropertyDescriptor propertyDescriptor : propertiesDescs) {
-				if(List.class.isAssignableFrom(propertyDescriptor.getPropertyType())) {
+				if (List.class.isAssignableFrom(propertyDescriptor.getPropertyType())) {
 					List<?> l = (List<?>) propertyDescriptor.getReadMethod().invoke(config);
 					if (!l.isEmpty()) {
 						String className = l.get(0).getClass().getName();
@@ -255,11 +223,11 @@ public class XMLManager extends HolidayManager {
 							String propName = PARSER_IMPL_PREFIX + className;
 							Properties configProps = getProperties();
 							if (configProps.containsKey(propName)) {
-							    String parserClassName = configProps.getProperty(propName);
-							    Class<?> parserClass=ReflectionUtils.loadClass(parserClassName);
-							    Object parserObject = parserClass.newInstance();
+								String parserClassName = configProps.getProperty(propName);
+								Class<?> parserClass = ReflectionUtils.loadClass(parserClassName);
+								Object parserObject = parserClass.newInstance();
 								HolidayParser hp = HolidayParser.class.cast(parserObject);
-							    parserCache.put(className, hp);
+								parserCache.put(className, hp);
 							}
 						}
 						if (parserCache.containsKey(className)) {
@@ -276,7 +244,7 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * Initializes the XMLManager by loading the holidays XML file as resource
 	 * from the classpath. When the XML file is found it will be unmarshalled
 	 * with JAXB to some Java classes.
@@ -285,11 +253,10 @@ public class XMLManager extends HolidayManager {
 	public void init(final String country) {
 		String fileName = getConfigurationFileName(country);
 		try {
-			configuration = XMLUtil.unmarshallConfiguration(getClass()
-					.getClassLoader().getResource(fileName).openStream());
+			configuration = XMLUtil.unmarshallConfiguration(getClass().getClassLoader().getResource(fileName)
+					.openStream());
 		} catch (Exception e) {
-			throw new IllegalStateException(
-					"Cannot instantiate configuration.", e);
+			throw new IllegalStateException("Cannot instantiate configuration.", e);
 		}
 		validateConfigurationHierarchy(configuration);
 		logHierarchy(configuration, 0);
@@ -297,10 +264,11 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * Logs the hierarchy structure.
-	 *
+	 * 
 	 * @param c
 	 *            Configuration to log hierarchy for.
-	 * @param level a int.
+	 * @param level
+	 *            a int.
 	 */
 	protected static void logHierarchy(final Configuration c, int level) {
 		if (LOG.isLoggable(Level.FINER)) {
@@ -308,8 +276,7 @@ public class XMLManager extends HolidayManager {
 			for (int i = 0; i < level; i++) {
 				space.append("-");
 			}
-			LOG.finer(space + " " + c.getDescription() + "(" + c.getHierarchy()
-					+ ").");
+			LOG.finer(space + " " + c.getDescription() + "(" + c.getHierarchy() + ").");
 			for (Configuration sub : c.getSubConfigurations()) {
 				logHierarchy(sub, level + 1);
 			}
@@ -318,8 +285,9 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * Returns the configuration file name for the country.
-	 *
-	 * @param country a {@link java.lang.String} object.
+	 * 
+	 * @param country
+	 *            a {@link java.lang.String} object.
 	 * @return file name
 	 */
 	public static String getConfigurationFileName(final String country) {
@@ -330,8 +298,9 @@ public class XMLManager extends HolidayManager {
 	 * Validates the content of the provided configuration by checking for
 	 * multiple hierarchy entries within one configuration. It traverses down
 	 * the configuration tree.
-	 *
-	 * @param c a {@link de.jollyday.config.Configuration} object.
+	 * 
+	 * @param c
+	 *            a {@link de.jollyday.config.Configuration} object.
 	 */
 	protected static void validateConfigurationHierarchy(final Configuration c) {
 		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
@@ -348,12 +317,10 @@ public class XMLManager extends HolidayManager {
 		}
 		if (multipleHierarchies.size() > 0) {
 			StringBuilder msg = new StringBuilder();
-			msg.append("Configuration for "
-					+ c.getHierarchy()
+			msg.append("Configuration for " + c.getHierarchy()
 					+ " contains  multiple SubConfigurations with the same hierarchy id. ");
 			for (String hierarchy : multipleHierarchies) {
-				msg.append(hierarchy + " "
-						+ hierarchyMap.get(hierarchy).toString() + " times ");
+				msg.append(hierarchy + " " + hierarchyMap.get(hierarchy).toString() + " times ");
 			}
 			throw new IllegalArgumentException(msg.toString().trim());
 		}
@@ -364,7 +331,7 @@ public class XMLManager extends HolidayManager {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * Returns the configurations hierarchy.<br>
 	 * i.e. Hierarchy 'us' -> Children 'al','ak','ar', ... ,'wv','wy'. Every
 	 * child might itself have children. The ids be used to call
@@ -381,12 +348,10 @@ public class XMLManager extends HolidayManager {
 	 * @param c
 	 * @return configuration hierarchy
 	 */
-	private static CalendarHierarchy createConfigurationHierarchy(
-			final Configuration c, CalendarHierarchy h) {
+	private static CalendarHierarchy createConfigurationHierarchy(final Configuration c, CalendarHierarchy h) {
 		h = new CalendarHierarchy(h, c.getHierarchy());
 		for (Configuration sub : c.getSubConfigurations()) {
-			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub,
-					h);
+			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
 			h.getChildren().put(subHierarchy.getId(), subHierarchy);
 		}
 		return h;
