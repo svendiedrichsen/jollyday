@@ -38,7 +38,7 @@ import de.jollyday.util.ReflectionUtils;
  * Abstract base class for all holiday manager implementations. Upon call of
  * getInstance method the implementing class will be read from the
  * jollyday.properties file and instantiated.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -47,8 +47,7 @@ public abstract class HolidayManager {
 	/**
 	 * Logger.
 	 */
-	private static final Logger LOG = Logger.getLogger(HolidayManager.class
-			.getName());
+	private static final Logger LOG = Logger.getLogger(HolidayManager.class.getName());
 	/**
 	 * System property to define overriding configuration file.
 	 */
@@ -83,7 +82,7 @@ public abstract class HolidayManager {
 	/**
 	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
 	 * using the default locales country code. code.
-	 *
+	 * 
 	 * @return default locales HolidayManager
 	 */
 	public static final HolidayManager getInstance() {
@@ -92,7 +91,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns a HolidayManager for the provided country.
-	 *
+	 * 
 	 * @param c
 	 *            Country
 	 * @return HolidayManager
@@ -102,19 +101,29 @@ public abstract class HolidayManager {
 	}
 
 	/**
+	 * @see HolidayManager#getInstance(String)
+	 */
+	public static final HolidayManager getInstance(String country) {
+		return getInstance(country, null);
+	}
+
+	/**
 	 * Creates an HolidayManager instance. The implementing HolidayManager class
 	 * will be read from the jollyday.properties file. If the country is NULL or
 	 * an empty string the default locales country code will be used.
-	 *
-	 * @param country a {@link java.lang.String} object.
+	 * 
+	 * @param country
+	 *            a {@link java.lang.String} object.
+	 * @param fileURL
+	 *            the URL to the file when the calendar's file is coming from
+	 *            the outside
 	 * @return HolidayManager implementation for the provided country.
 	 */
-	public static final HolidayManager getInstance(String country) {
+	public static final HolidayManager getInstance(String country, final String fileURL) {
 		country = prepareCountryCode(country);
-		HolidayManager m = isManagerCachingEnabled() ? getFromCache(country)
-				: null;
+		HolidayManager m = isManagerCachingEnabled() ? getFromCache(country) : null;
 		if (m == null) {
-			m = createManager(country);
+			m = createManager(country, fileURL);
 		}
 		return m;
 	}
@@ -125,35 +134,35 @@ public abstract class HolidayManager {
 	 * 
 	 * @param country
 	 *            <code>HolidayManager</code> instance for the country
+	 * @param fileURL
+	 *            the URL, optionally, to a file containing the calendar
 	 * @return new
 	 */
-	private static HolidayManager createManager(final String country) {
+	private static HolidayManager createManager(final String country, final String fileURL) {
 		HolidayManager m;
 		if (LOG.isLoggable(Level.FINER)) {
-			LOG.finer("Creating HolidayManager for country '" + country
-					+ "'. Caching enabled: " + isManagerCachingEnabled());
+			LOG.finer("Creating HolidayManager for country '" + country + "'. Caching enabled: "
+					+ isManagerCachingEnabled());
 		}
 		Properties props = readProperties();
 		String managerImplClassName = null;
 		if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
-			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX
-					+ "." + country);
+			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX + "." + country);
 		} else if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX)) {
 			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
 		} else {
-			throw new IllegalStateException("Missing configuration '"
-					+ MANAGER_IMPL_CLASS_PREFIX + "'. Cannot create manager.");
+			throw new IllegalStateException("Missing configuration '" + MANAGER_IMPL_CLASS_PREFIX
+					+ "'. Cannot create manager.");
 		}
 		try {
 			Class<?> managerImplClass = ReflectionUtils.loadClass(managerImplClassName);
 			Object managerImplObject = managerImplClass.newInstance();
 			m = HolidayManager.class.cast(managerImplObject);
 		} catch (Exception e) {
-			throw new IllegalStateException("Cannot create manager class "
-					+ managerImplClassName, e);
+			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
 		m.setProperties(props);
-		m.init(country);
+		m.init(country, fileURL);
 		if (isManagerCachingEnabled()) {
 			putToCache(country, m);
 		}
@@ -183,8 +192,7 @@ public abstract class HolidayManager {
 	 * @param country
 	 * @param manager
 	 */
-	private static void putToCache(final String country,
-			final HolidayManager manager) {
+	private static void putToCache(final String country, final HolidayManager manager) {
 		synchronized (MANAGER_CHACHE) {
 			MANAGER_CHACHE.put(country, manager);
 		}
@@ -205,7 +213,7 @@ public abstract class HolidayManager {
 	/**
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
-	 *
+	 * 
 	 * @param managerCachingEnabled
 	 *            the managerCachingEnabled to set
 	 */
@@ -214,8 +222,10 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * <p>isManagerCachingEnabled.</p>
-	 *
+	 * <p>
+	 * isManagerCachingEnabled.
+	 * </p>
+	 * 
 	 * @return the managerCachingEnabled
 	 */
 	public static boolean isManagerCachingEnabled() {
@@ -254,13 +264,11 @@ public abstract class HolidayManager {
 		InputStream stream = null;
 		try {
 			try {
-				stream = HolidayManager.class.getClassLoader()
-						.getResource(CONFIG_FILE).openStream();
+				stream = HolidayManager.class.getClassLoader().getResource(CONFIG_FILE).openStream();
 				if (stream != null) {
 					props.load(stream);
 				} else {
-					LOG.warning("Could not load properties file '"
-							+ CONFIG_FILE + "' from classpath.");
+					LOG.warning("Could not load properties file '" + CONFIG_FILE + "' from classpath.");
 				}
 			} finally {
 				if (stream != null) {
@@ -268,8 +276,7 @@ public abstract class HolidayManager {
 				}
 			}
 		} catch (IOException e) {
-			throw new IllegalStateException(
-					"Could not load properties from classpath.", e);
+			throw new IllegalStateException("Could not load properties from classpath.", e);
 		}
 		return props;
 	}
@@ -284,24 +291,21 @@ public abstract class HolidayManager {
 		Properties p = new Properties();
 		Properties systemProps = System.getProperties();
 		if (systemProps.containsKey(SYSTEM_CONFIG_PROPERTY)) {
-			String configFileName = systemProps
-					.getProperty(SYSTEM_CONFIG_PROPERTY);
+			String configFileName = systemProps.getProperty(SYSTEM_CONFIG_PROPERTY);
 			InputStream input = null;
 			try {
 				input = new FileInputStream(configFileName);
 				p.load(input);
 			} catch (IOException e) {
 				if (LOG.isLoggable(Level.WARNING)) {
-					LOG.warning("Cannot read specified configuration file "
-							+ configFileName + ". " + e.getMessage());
+					LOG.warning("Cannot read specified configuration file " + configFileName + ". " + e.getMessage());
 				}
 			} finally {
 				if (input != null) {
 					try {
 						input.close();
 					} catch (IOException e) {
-						LOG.warning("Could not close input stream for loading properties "
-								+ configFileName + ".");
+						LOG.warning("Could not close input stream for loading properties " + configFileName + ".");
 					}
 				}
 			}
@@ -311,9 +315,11 @@ public abstract class HolidayManager {
 
 	/**
 	 * Calls isHoliday with JODA time object.
-	 *
-	 * @param c a {@link java.util.Calendar} object.
-	 * @param args a {@link java.lang.String} object.
+	 * 
+	 * @param c
+	 *            a {@link java.util.Calendar} object.
+	 * @param args
+	 *            a {@link java.lang.String} object.
 	 * @return a boolean.
 	 */
 	public boolean isHoliday(final Calendar c, final String... args) {
@@ -322,7 +328,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Show if the requested date is a holiday.
-	 *
+	 * 
 	 * @param c
 	 *            The potential holiday.
 	 * @param args
@@ -347,7 +353,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns a set of all currently supported calendar codes.
-	 *
+	 * 
 	 * @return Set of supported calendar codes.
 	 */
 	public static Set<String> getSupportedCalendarCodes() {
@@ -359,8 +365,10 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * <p>Getter for the field <code>properties</code>.</p>
-	 *
+	 * <p>
+	 * Getter for the field <code>properties</code>.
+	 * </p>
+	 * 
 	 * @return the configuration properties
 	 */
 	protected Properties getProperties() {
@@ -368,8 +376,10 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * <p>Setter for the field <code>properties</code>.</p>
-	 *
+	 * <p>
+	 * Setter for the field <code>properties</code>.
+	 * </p>
+	 * 
 	 * @param properties
 	 *            the configuration properties to set
 	 */
@@ -379,7 +389,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns the holidays for the requested year and hierarchy structure.
-	 *
+	 * 
 	 * @param year
 	 *            i.e. 2010
 	 * @param args
@@ -391,28 +401,30 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns the holidays for the requested interval and hierarchy structure.
-	 *
+	 * 
 	 * @param interval
 	 *            the interval in which the holidays lie.
-	 * @param args a {@link java.lang.String} object.
+	 * @param args
+	 *            a {@link java.lang.String} object.
 	 * @return list of holidays within the interval
 	 */
-	abstract public Set<Holiday> getHolidays(ReadableInterval interval,
-			String... args);
+	abstract public Set<Holiday> getHolidays(ReadableInterval interval, String... args);
 
 	/**
 	 * Initializes the implementing manager for the provided country.
-	 *
+	 * 
 	 * @param country
 	 *            i.e. us, uk, de
+	 * @param fileURL
+	 *            the URL, which is optional, to a file containing the calendar
 	 */
-	abstract public void init(String country);
+	abstract public void init(String country, final String fileURL);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This
 	 * hierarchy shows how the configured holidays are structured and can be
 	 * retrieved.
-	 *
+	 * 
 	 * @return Current calendars hierarchy
 	 */
 	abstract public CalendarHierarchy getCalendarHierarchy();
