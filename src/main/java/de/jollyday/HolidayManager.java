@@ -114,16 +114,15 @@ public abstract class HolidayManager {
 	 * 
 	 * @param country
 	 *            a {@link java.lang.String} object.
-	 * @param fileURL
-	 *            the URL to the file when the calendar's file is coming from
-	 *            the outside
+	 * @param url
+	 *            the URL to the calendar's file
 	 * @return HolidayManager implementation for the provided country.
 	 */
-	public static final HolidayManager getInstance(String country, final String fileURL) {
-		country = prepareCountryCode(country);
-		HolidayManager m = isManagerCachingEnabled() ? getFromCache(country) : null;
+	public static final HolidayManager getInstance(final String country, final String url) {
+		final String countryCode = prepareCountryCode(country);
+		HolidayManager m = isManagerCachingEnabled() ? getFromCache(countryCode) : null;
 		if (m == null) {
-			m = createManager(country, fileURL);
+			m = createManager(countryCode, url);
 		}
 		return m;
 	}
@@ -134,11 +133,11 @@ public abstract class HolidayManager {
 	 * 
 	 * @param country
 	 *            <code>HolidayManager</code> instance for the country
-	 * @param fileURL
+	 * @param url
 	 *            the URL, optionally, to a file containing the calendar
 	 * @return new
 	 */
-	private static HolidayManager createManager(final String country, final String fileURL) {
+	private static HolidayManager createManager(final String country, final String url) {
 		HolidayManager m;
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Creating HolidayManager for country '" + country + "'. Caching enabled: "
@@ -162,7 +161,7 @@ public abstract class HolidayManager {
 			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
 		m.setProperties(props);
-		m.init(country, fileURL);
+		m.init(country, url);
 		if (isManagerCachingEnabled()) {
 			putToCache(country, m);
 		}
@@ -411,14 +410,27 @@ public abstract class HolidayManager {
 	abstract public Set<Holiday> getHolidays(ReadableInterval interval, String... args);
 
 	/**
-	 * Initializes the implementing manager for the provided country.
+	 * Initialises the implementing manager for the provided country.
 	 * 
 	 * @param country
 	 *            i.e. us, uk, de
-	 * @param fileURL
-	 *            the URL, which is optional, to a file containing the calendar
+	 * @param url
+	 *            the URL, to a file containing the calendar
+	 *            <p style="color:red;font-style:italic">
+	 *            Note 1: This can be omitted, in which case the default
+	 *            behaviour of loading from the classpath with a specific name
+	 *            will be used
+	 *            </p>
+	 *            <p style="color:red;font-style:italic">
+	 *            Note 2: If this parameter is not omitted, then it may be a
+	 *            path to a file (relative or absolute) or a URL spec (such as
+	 *            http://somehos/somefile, or ftp://somehost/somefile or
+	 *            whatever is supported by the URL Stream Handlers installed on
+	 *            the JVM)
+	 *            </p>
+	 * 
 	 */
-	abstract public void init(String country, final String fileURL);
+	abstract public void init(String country, final String url);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This
