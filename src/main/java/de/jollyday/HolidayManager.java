@@ -18,6 +18,7 @@ package de.jollyday;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -101,28 +102,39 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @see HolidayManager#getInstance(String)
+	 * Creates an HolidayManager instance. The implementing HolidayManager class
+	 * will be read from the jollyday.properties file. If the calendar is NULL
+	 * or an empty string the default locales country code will be used.
+	 * 
+	 * @param calendar
+	 *            a {@link java.lang.String} object.
+	 * @return HolidayManager implementation for the provided country.
 	 */
-	public static final HolidayManager getInstance(String country) {
-		return getInstance(country, null);
+	public static final HolidayManager getInstance(final String calendar) {
+		final String calendarName = prepareCalendarName(calendar);
+		HolidayManager m = isManagerCachingEnabled() ? getFromCache(calendarName) : null;
+		if (m == null) {
+			m = createManager(calendarName);
+		}
+		return m;
 	}
 
 	/**
 	 * Creates an HolidayManager instance. The implementing HolidayManager class
-	 * will be read from the jollyday.properties file. If the country is NULL or
-	 * an empty string the default locales country code will be used.
+	 * will be read from the jollyday.properties file. If the URL is NULL an
+	 * exception will be thrown.
 	 * 
-	 * @param country
-	 *            a {@link java.lang.String} object.
 	 * @param url
 	 *            the URL to the calendar's file
 	 * @return HolidayManager implementation for the provided country.
 	 */
-	public static final HolidayManager getInstance(final String country, final String url) {
-		final String countryCode = prepareCountryCode(country);
-		HolidayManager m = isManagerCachingEnabled() ? getFromCache(countryCode) : null;
+	public static final HolidayManager getInstance(final URL url) {
+		if (url == null) {
+			throw new NullPointerException("Missing URL.");
+		}
+		HolidayManager m = isManagerCachingEnabled() ? getFromCache(url.toString()) : null;
 		if (m == null) {
-			m = createManager(countryCode, url);
+			m = createManager(url);
 		}
 		return m;
 	}
@@ -131,28 +143,41 @@ public abstract class HolidayManager {
 	 * Creates a new <code>HolidayManager</code> instance for the country and
 	 * puts it to the manager cache.
 	 * 
-	 * @param country
-	 *            <code>HolidayManager</code> instance for the country
-	 * @param url
-	 *            the URL, optionally, to a file containing the calendar
+	 * @param calendar
+	 *            <code>HolidayManager</code> instance for the calendar
 	 * @return new
 	 */
-	private static HolidayManager createManager(final String country, final String url) {
-		HolidayManager m;
+	private static HolidayManager createManager(final String calendar) {
 		if (LOG.isLoggable(Level.FINER)) {
-			LOG.finer("Creating HolidayManager for country '" + country + "'. Caching enabled: "
+			LOG.finer("Creating HolidayManager for calendar '" + calendar + "'. Caching enabled: "
 					+ isManagerCachingEnabled());
 		}
 		Properties props = readProperties();
+		String managerImplClassName = readManagerImplClassName(calendar, props);
+		HolidayManager m = instantiateManagerImpl(managerImplClassName);
+		m.setProperties(props);
+		m.init(calendar);
+		if (isManagerCachingEnabled()) {
+			putToCache(calendar, m);
+		}
+		return m;
+	}
+
+	private static String readManagerImplClassName(final String calendar, Properties props) {
 		String managerImplClassName = null;
-		if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + country)) {
-			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX + "." + country);
+		if (calendar != null && props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + calendar)) {
+			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX + "." + calendar);
 		} else if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX)) {
 			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
 		} else {
 			throw new IllegalStateException("Missing configuration '" + MANAGER_IMPL_CLASS_PREFIX
 					+ "'. Cannot create manager.");
 		}
+		return managerImplClassName;
+	}
+
+	private static HolidayManager instantiateManagerImpl(String managerImplClassName) {
+		HolidayManager m;
 		try {
 			Class<?> managerImplClass = ReflectionUtils.loadClass(managerImplClassName);
 			Object managerImplObject = managerImplClass.newInstance();
@@ -160,10 +185,28 @@ public abstract class HolidayManager {
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
+		return m;
+	}
+
+	/**
+	 * Creates a new <code>HolidayManager</code> instance for the URL and puts
+	 * it to the manager cache.
+	 * 
+	 * @param url
+	 *            the URL to a file containing the calendar
+	 * @return new
+	 */
+	private static HolidayManager createManager(final URL url) {
+		if (LOG.isLoggable(Level.FINER)) {
+			LOG.finer("Creating HolidayManager for URL '" + url + "'. Caching enabled: " + isManagerCachingEnabled());
+		}
+		Properties props = readProperties();
+		String managerImplClassName = readManagerImplClassName(null, props);
+		HolidayManager m = instantiateManagerImpl(managerImplClassName);
 		m.setProperties(props);
-		m.init(country, url);
+		m.init(url);
 		if (isManagerCachingEnabled()) {
-			putToCache(country, m);
+			putToCache(url.toString(), m);
 		}
 		return m;
 	}
@@ -173,16 +216,16 @@ public abstract class HolidayManager {
 	 * country codes for those. For all others the country code will be trimmed
 	 * and set to lower case letters.
 	 * 
-	 * @param country
+	 * @param calendar
 	 * @return trimmed and lower case country code.
 	 */
-	private static String prepareCountryCode(String country) {
-		if (country == null || "".equals(country.trim())) {
-			country = Locale.getDefault().getCountry().toLowerCase();
+	private static String prepareCalendarName(String calendar) {
+		if (calendar == null || "".equals(calendar.trim())) {
+			calendar = Locale.getDefault().getCountry().toLowerCase();
 		} else {
-			country = country.trim().toLowerCase();
+			calendar = calendar.trim().toLowerCase();
 		}
-		return country;
+		return calendar;
 	}
 
 	/**
@@ -410,15 +453,21 @@ public abstract class HolidayManager {
 	abstract public Set<Holiday> getHolidays(ReadableInterval interval, String... args);
 
 	/**
-	 * Initialises the implementing manager for the provided country.
+	 * Initializes the implementing manager for the provided calendar.
 	 * 
-	 * @param country
+	 * @param calendar
 	 *            i.e. us, uk, de
-	 * @param url
+	 */
+	abstract public void init(String calendar);
+
+	/**
+	 * Initializes the implementing manager for the provided URL.
+	 * 
+	 * @param resource
 	 *            the URL, to a file containing the calendar
 	 *            <p style="color:red;font-style:italic">
 	 *            Note 1: This can be omitted, in which case the default
-	 *            behaviour of loading from the classpath with a specific name
+	 *            behavior of loading from the classpath with a specific name
 	 *            will be used
 	 *            </p>
 	 *            <p style="color:red;font-style:italic">
@@ -430,7 +479,7 @@ public abstract class HolidayManager {
 	 *            </p>
 	 * 
 	 */
-	abstract public void init(String country, final String url);
+	abstract public void init(final URL resource);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This

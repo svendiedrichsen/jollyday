@@ -17,9 +17,7 @@ package de.jollyday.impl;
 
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.io.File;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
@@ -254,15 +252,12 @@ public class XMLManager extends HolidayManager {
 	 * with JAXB to some Java classes.
 	 */
 	@Override
-	public void init(final String country, final String url) {
-		// Only use the old way of generating the filename if the url passed in
-		// is null! Otherwise use whatever the library user defined!
-		String configurationFileName = getConfigurationFileName(country);
+	public void init(final String calendar) {
+
+		String configurationFileName = getConfigurationFileName(calendar);
 
 		try {
-			URL urlDestination = url != null ? buildURL(url) : getClass().getClassLoader().getResource(
-					configurationFileName);
-
+			URL urlDestination = getClass().getClassLoader().getResource(configurationFileName);
 			final InputStream inputStream = urlDestination.openStream();
 			configuration = XMLUtil.unmarshallConfiguration(inputStream);
 		} catch (Exception e) {
@@ -272,20 +267,23 @@ public class XMLManager extends HolidayManager {
 		logHierarchy(configuration, 0);
 	}
 
-	private URL buildURL(final String url) throws MalformedURLException {
-		if (!url.contains(":/")) {
-			File f = new File(url);
-			// The user explicitly defined a location for the file.
-			// Maybe he is defining that location as a "file path"
-			// instead of using the correct file:// url type of spec.
-			// Let's try to find the file, and if possible and file
-			// exists, use that resource instead
-			if (f.exists()) {
-				return new URL("file://" + f.getAbsolutePath());
-			}
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Initializes the XMLManager by loading the holidays XML file as resource
+	 * from the classpath. When the XML file is found it will be unmarshalled
+	 * with JAXB to some Java classes.
+	 */
+	@Override
+	public void init(final URL url) {
+		try {
+			final InputStream inputStream = url.openStream();
+			configuration = XMLUtil.unmarshallConfiguration(inputStream);
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot instantiate configuration.", e);
 		}
-
-		return new URL(url);
+		validateConfigurationHierarchy(configuration);
+		logHierarchy(configuration, 0);
 	}
 
 	/**
