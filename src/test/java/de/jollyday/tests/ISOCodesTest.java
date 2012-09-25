@@ -38,7 +38,7 @@ import de.jollyday.util.ResourceUtil;
  */
 public class ISOCodesTest {
 
-	private static final int NUMBER_OF_ISOCOUNTRIES = 245;
+	private static final int NUMBER_OF_ISOCOUNTRIES = 246;
 
 	private Locale defaultLocale;
 
@@ -67,8 +67,7 @@ public class ISOCodesTest {
 		Locale.setDefault(defaultLocale);
 		Set<String> isoCodes = ResourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.",
-				NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
 
 	/**
@@ -78,8 +77,7 @@ public class ISOCodesTest {
 	public void testISOCodesEN() {
 		Set<String> isoCodes = ResourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.",
-				NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
 
 	/**
@@ -90,8 +88,7 @@ public class ISOCodesTest {
 		Locale.setDefault(Locale.GERMANY);
 		Set<String> isoCodes = ResourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.",
-				NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
 
 	/**
@@ -117,16 +114,14 @@ public class ISOCodesTest {
 	 *            the second language
 	 */
 	private void compareL1WithL2(ResourceBundle l1, ResourceBundle l2) {
-		Locale locale = "".equals(l2.getLocale().getCountry()) ? Locale.ENGLISH
-				: l2.getLocale();
+		Locale locale = "".equals(l2.getLocale().getCountry()) ? Locale.ENGLISH : l2.getLocale();
 		Enumeration<String> keys = l1.getKeys();
 		Set<String> l2KeySet = new HashSet<String>(Collections.list(l2.getKeys()));
 		StringBuilder misses = new StringBuilder();
 		while (keys.hasMoreElements()) {
 			String propertyName = keys.nextElement();
 			if (!l2KeySet.contains(propertyName)) {
-				misses.append(locale).append(" misses ").append(propertyName)
-						.append('\n');
+				misses.append(locale).append(" misses ").append(propertyName).append('\n');
 			}
 		}
 		if (misses.length() > 0) {
@@ -148,8 +143,7 @@ public class ISOCodesTest {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	private ResourceBundle load(Locale locale) throws IOException {
-		return ResourceBundle.getBundle("descriptions.country_descriptions",
-				locale);
+		return ResourceBundle.getBundle("descriptions.country_descriptions", locale);
 	}
 
 }
