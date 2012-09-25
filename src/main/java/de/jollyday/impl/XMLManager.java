@@ -109,7 +109,7 @@ public class XMLManager extends HolidayManager {
 		for (int year = interval.getStart().getYear(); year <= interval.getEnd().getYear(); year++) {
 			Set<Holiday> yearHolidays = getHolidays(year, args);
 			for (Holiday h : yearHolidays) {
-				if (interval.contains(h.getDate().toDateMidnight())) {
+				if (interval.contains(h.getDate().toDateTimeAtStartOfDay())) {
 					holidays.add(h);
 				}
 			}
