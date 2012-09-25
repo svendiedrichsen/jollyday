@@ -15,20 +15,19 @@
  */
 package de.jollyday.util;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- * <p>ResourceUtil class.</p>
- *
+ * <p>
+ * ResourceUtil class.
+ * </p>
+ * 
  * @author Sven
  * @version $Id: $
  */
@@ -66,9 +65,10 @@ public class ResourceUtil {
 
 	/**
 	 * The description read with the default locale.
-	 *
+	 * 
 	 * @return holiday description using default locale.
-	 * @param key a {@link java.lang.String} object.
+	 * @param key
+	 *            a {@link java.lang.String} object.
 	 */
 	public static String getHolidayDescription(String key) {
 		return getHolidayDescription(Locale.getDefault(), key);
@@ -76,21 +76,25 @@ public class ResourceUtil {
 
 	/**
 	 * The description read with the provided locale.
-	 *
-	 * @param locale a {@link java.util.Locale} object.
+	 * 
+	 * @param locale
+	 *            a {@link java.util.Locale} object.
 	 * @return holiday description using the provided locale.
-	 * @param key a {@link java.lang.String} object.
+	 * @param key
+	 *            a {@link java.lang.String} object.
 	 */
 	public static String getHolidayDescription(Locale locale, String key) {
-		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key,
-				getHolidayDescriptions(locale));
+		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key, getHolidayDescriptions(locale));
 	}
 
 	/**
-	 * <p>getCountryDescription.</p>
-	 *
+	 * <p>
+	 * getCountryDescription.
+	 * </p>
+	 * 
 	 * @return the description
-	 * @param key a {@link java.lang.String} object.
+	 * @param key
+	 *            a {@link java.lang.String} object.
 	 */
 	public static String getCountryDescription(String key) {
 		return getCountryDescription(Locale.getDefault(), key);
@@ -98,26 +102,25 @@ public class ResourceUtil {
 
 	/**
 	 * Returns the hierarchys description text from the resource bundle.
-	 *
+	 * 
 	 * @param l
 	 *            Locale to return the description text for.
 	 * @return Description text
-	 * @param key a {@link java.lang.String} object.
+	 * @param key
+	 *            a {@link java.lang.String} object.
 	 */
 	public static String getCountryDescription(Locale l, String key) {
-		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key,
-				getCountryDescriptions(l));
+		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key, getCountryDescriptions(l));
 	}
 
 	/**
 	 * Returns a list of ISO codes.
-	 *
+	 * 
 	 * @return 2-digit ISO codes.
 	 */
 	public static final Set<String> getISOCodes() {
 		Set<String> codes = new HashSet<String>();
-		ResourceBundle countryDescriptions = getCountryDescriptions(Locale
-				.getDefault());
+		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
 		for (String property : Collections.list(countryDescriptions.getKeys())) {
 			String[] split = property.split("\\.");
 			if (split != null && split.length > 2) {
@@ -151,8 +154,7 @@ public class ResourceUtil {
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
 	private static ResourceBundle getHolidayDescriptions(Locale l) {
-		return getResourceBundle(l, HOLIDAY_DESCRIPTION_CACHE,
-				HOLIDAY_DESCRIPTIONS_FILE_PREFIX);
+		return getResourceBundle(l, HOLIDAY_DESCRIPTION_CACHE, HOLIDAY_DESCRIPTIONS_FILE_PREFIX);
 	}
 
 	/**
@@ -164,8 +166,7 @@ public class ResourceUtil {
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
 	private static ResourceBundle getCountryDescriptions(Locale l) {
-		return getResourceBundle(l, COUNTRY_DESCRIPTIONS_CACHE,
-				COUNTRY_DESCRIPTIONS_FILE_PREFIX);
+		return getResourceBundle(l, COUNTRY_DESCRIPTIONS_CACHE, COUNTRY_DESCRIPTIONS_FILE_PREFIX);
 	}
 
 	/**
@@ -175,53 +176,52 @@ public class ResourceUtil {
 	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getResourceBundle(Locale l,
-			Map<Locale, ResourceBundle> resourceCache, String filePrefix) {
+	private static ResourceBundle getResourceBundle(Locale l, Map<Locale, ResourceBundle> resourceCache,
+			String filePrefix) {
 		synchronized (resourceCache) {
 			if (!resourceCache.containsKey(l)) {
-				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l,
-						ResourceUtil.class.getClassLoader());
-				if (bundle instanceof PropertyResourceBundle) {
-					bundle = new Utf8PropertyResourceBundle(
-							(PropertyResourceBundle) bundle);
-				}
+				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l, ResourceUtil.class.getClassLoader());
+				// if (bundle instanceof PropertyResourceBundle) {
+				// bundle = new Utf8PropertyResourceBundle(
+				// (PropertyResourceBundle) bundle);
+				// }
 				resourceCache.put(l, bundle);
 			}
 			return resourceCache.get(l);
 		}
 	}
 
-	/**
-	 * Own ResourceBundle implementation to overcome missing UTF-8 support of
-	 * PropertyResourceBundle in a backward compatible way.
-	 * 
-	 * @author svdi1de
-	 * 
-	 */
-	private static class Utf8PropertyResourceBundle extends ResourceBundle {
-		PropertyResourceBundle bundle;
-
-		private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
-			this.bundle = bundle;
-		}
-
-		public Enumeration<String> getKeys() {
-			return bundle.getKeys();
-		}
-
-		protected Object handleGetObject(String key) {
-			String value = (String) bundle.handleGetObject(key);
-			if (value == null) {
-				return null;
-			}
-			try {
-				return new String(value.getBytes("ISO-8859-1"), "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				// should not fail - logging omitted
-				return null;
-			}
-		}
-
-	}
+	// /**
+	// * Own ResourceBundle implementation to overcome missing UTF-8 support of
+	// * PropertyResourceBundle in a backward compatible way.
+	// *
+	// * @author svdi1de
+	// *
+	// */
+	// private static class Utf8PropertyResourceBundle extends ResourceBundle {
+	// PropertyResourceBundle bundle;
+	//
+	// private Utf8PropertyResourceBundle(PropertyResourceBundle bundle) {
+	// this.bundle = bundle;
+	// }
+	//
+	// public Enumeration<String> getKeys() {
+	// return bundle.getKeys();
+	// }
+	//
+	// protected Object handleGetObject(String key) {
+	// String value = (String) bundle.handleGetObject(key);
+	// if (value == null) {
+	// return null;
+	// }
+	// try {
+	// return new String(value.getBytes("ISO-8859-1"), "UTF-8");
+	// } catch (UnsupportedEncodingException e) {
+	// // should not fail - logging omitted
+	// return null;
+	// }
+	// }
+	//
+	// }
 
 }
