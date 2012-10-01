@@ -163,6 +163,15 @@ public abstract class HolidayManager {
 		return m;
 	}
 
+	/**
+	 * Reads the managers implementation class from the properties config file.
+	 * 
+	 * @param calendar
+	 *            the calendar name
+	 * @param props
+	 *            properties to read from
+	 * @return the manager implementation class name
+	 */
 	private static String readManagerImplClassName(final String calendar, Properties props) {
 		String managerImplClassName = null;
 		if (calendar != null && props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + calendar)) {
@@ -176,16 +185,21 @@ public abstract class HolidayManager {
 		return managerImplClassName;
 	}
 
+	/**
+	 * Instantiates the manager implementating class.
+	 * 
+	 * @param managerImplClassName
+	 *            the managers class name
+	 * @return the implementation class instantiated
+	 */
 	private static HolidayManager instantiateManagerImpl(String managerImplClassName) {
-		HolidayManager m;
 		try {
 			Class<?> managerImplClass = ReflectionUtils.loadClass(managerImplClassName);
 			Object managerImplObject = managerImplClass.newInstance();
-			m = HolidayManager.class.cast(managerImplObject);
+			return HolidayManager.class.cast(managerImplObject);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
-		return m;
 	}
 
 	/**
@@ -194,7 +208,7 @@ public abstract class HolidayManager {
 	 * 
 	 * @param url
 	 *            the URL to a file containing the calendar
-	 * @return new
+	 * @return the holiday manager initialized with the provided URL
 	 */
 	private static HolidayManager createManager(final URL url) {
 		if (LOG.isLoggable(Level.FINER)) {
