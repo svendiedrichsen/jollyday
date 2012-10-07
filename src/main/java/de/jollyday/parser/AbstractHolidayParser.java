@@ -27,16 +27,21 @@ import de.jollyday.util.XMLUtil;
 
 /**
  * The abstract base class for all HolidayParser implementations.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
 public abstract class AbstractHolidayParser implements HolidayParser {
-	
+
+	/**
+	 * Calendar utility class.
+	 */
+	protected CalendarUtil calendarUtil = new CalendarUtil();
+
 	/**
 	 * Evaluates if the provided <code>Holiday</code> instance is valid for the
 	 * provided year.
-	 *
+	 * 
 	 * @param h
 	 *            The holiday configuration entry to validate
 	 * @param year
@@ -71,8 +76,8 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 						int cycleYears = 0;
 						if ("2_YEARS".equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 2;
-						}else if ("3_YEARS".equalsIgnoreCase(h.getEvery())) {
-								cycleYears = 3;
+						} else if ("3_YEARS".equalsIgnoreCase(h.getEvery())) {
+							cycleYears = 3;
 						} else if ("4_YEARS".equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 4;
 						} else if ("5_YEARS".equalsIgnoreCase(h.getEvery())) {
@@ -80,12 +85,10 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 						} else if ("6_YEARS".equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 6;
 						} else {
-							throw new IllegalArgumentException(
-									"Cannot handle unknown cycle type '"
-											+ h.getEvery() + "'.");
+							throw new IllegalArgumentException("Cannot handle unknown cycle type '" + h.getEvery()
+									+ "'.");
 						}
-						return (year - h.getValidFrom().intValue())
-								% cycleYears == 0;
+						return (year - h.getValidFrom().intValue()) % cycleYears == 0;
 					}
 				}
 			}
@@ -109,9 +112,11 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	/**
 	 * Moves a date if there are any moving conditions for this holiday and any
 	 * of them fit.
-	 *
-	 * @param fm a {@link de.jollyday.config.MoveableHoliday} object.
-	 * @param fixed a {@link org.joda.time.LocalDate} object.
+	 * 
+	 * @param fm
+	 *            a {@link de.jollyday.config.MoveableHoliday} object.
+	 * @param fixed
+	 *            a {@link org.joda.time.LocalDate} object.
 	 * @return the moved date
 	 */
 	protected LocalDate moveDate(MoveableHoliday fm, LocalDate fixed) {
@@ -126,9 +131,11 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 
 	/**
 	 * Determines if the provided date shall be substituted.
-	 *
-	 * @param fixed a {@link org.joda.time.LocalDate} object.
-	 * @param mc a {@link de.jollyday.config.MovingCondition} object.
+	 * 
+	 * @param fixed
+	 *            a {@link org.joda.time.LocalDate} object.
+	 * @param mc
+	 *            a {@link de.jollyday.config.MovingCondition} object.
 	 * @return a boolean.
 	 */
 	protected boolean shallBeMoved(LocalDate fixed, MovingCondition mc) {
@@ -152,20 +159,24 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	}
 
 	/**
-	 * <p>getEasterSunday.</p>
-	 *
-	 * @param year a int.
-	 * @param ct a {@link de.jollyday.config.ChronologyType} object.
+	 * <p>
+	 * getEasterSunday.
+	 * </p>
+	 * 
+	 * @param year
+	 *            a int.
+	 * @param ct
+	 *            a {@link de.jollyday.config.ChronologyType} object.
 	 * @return a {@link org.joda.time.LocalDate} object.
 	 */
 	protected LocalDate getEasterSunday(int year, ChronologyType ct) {
 		LocalDate easterSunday;
 		if (ct == ChronologyType.JULIAN) {
-			easterSunday = CalendarUtil.getJulianEasterSunday(year);
+			easterSunday = calendarUtil.getJulianEasterSunday(year);
 		} else if (ct == ChronologyType.GREGORIAN) {
-			easterSunday = CalendarUtil.getGregorianEasterSunday(year);
+			easterSunday = calendarUtil.getGregorianEasterSunday(year);
 		} else {
-			easterSunday = CalendarUtil.getEasterSunday(year);
+			easterSunday = calendarUtil.getEasterSunday(year);
 		}
 		return easterSunday;
 	}

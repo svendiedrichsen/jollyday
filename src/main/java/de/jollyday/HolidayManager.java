@@ -81,6 +81,11 @@ public abstract class HolidayManager {
 	private Properties properties = new Properties();
 
 	/**
+	 * Utility for calendar operations
+	 */
+	protected CalendarUtil calendarUtil = new CalendarUtil();
+
+	/**
 	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
 	 * using the default locales country code. code.
 	 * 
@@ -379,7 +384,7 @@ public abstract class HolidayManager {
 	 * @return a boolean.
 	 */
 	public boolean isHoliday(final Calendar c, final String... args) {
-		return isHoliday(CalendarUtil.create(c), args);
+		return isHoliday(calendarUtil.create(c), args);
 	}
 
 	/**
@@ -404,7 +409,7 @@ public abstract class HolidayManager {
 			Set<Holiday> holidays = getHolidays(c.getYear(), args);
 			holidaysPerYear.put(key, holidays);
 		}
-		return CalendarUtil.contains(holidaysPerYear.get(key), c);
+		return calendarUtil.contains(holidaysPerYear.get(key), c);
 	}
 
 	/**

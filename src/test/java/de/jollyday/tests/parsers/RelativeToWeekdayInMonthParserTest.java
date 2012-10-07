@@ -40,6 +40,7 @@ import de.jollyday.util.CalendarUtil;
 public class RelativeToWeekdayInMonthParserTest {
 
 	private RelativeToWeekdayInMonthParser rtwim = new RelativeToWeekdayInMonthParser();
+	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
 	public void testEmpty() {
@@ -82,8 +83,7 @@ public class RelativeToWeekdayInMonthParserTest {
 		config.getRelativeToWeekdayInMonth().add(rule);
 		rtwim.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 7, 12),
-				result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 7, 12), result.iterator().next().getDate());
 	}
 
 }

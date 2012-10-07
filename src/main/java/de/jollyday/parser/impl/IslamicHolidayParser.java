@@ -25,12 +25,11 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.IslamicHoliday;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
  * This parser calculates gregorian dates for the different islamic holidays.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -51,53 +50,34 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			Set<LocalDate> islamicHolidays = null;
 			switch (i.getType()) {
 			case NEWYEAR:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.JANUARY, 1);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 1);
 				break;
 			case ASCHURA:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.JANUARY, 10);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JANUARY, 10);
 				break;
 			case ID_AL_FITR:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.OCTOBER, 1);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.OCTOBER, 1);
 				break;
 			case ID_UL_ADHA:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.DECEMBER, 10);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.DECEMBER, 10);
 				break;
 			case LAILAT_AL_BARAT:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.AUGUST, 15);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.AUGUST, 15);
 				break;
 			case LAILAT_AL_MIRAJ:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.JULY, 27);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.JULY, 27);
 				break;
 			case LAILAT_AL_QADR:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.SEPTEMBER, 27);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 27);
 				break;
 			case MAWLID_AN_NABI:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.MARCH, 12);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.MARCH, 12);
 				break;
 			case RAMADAN:
-				islamicHolidays = CalendarUtil
-						.getIslamicHolidaysInGregorianYear(year,
-								DateTimeConstants.SEPTEMBER, 1);
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, DateTimeConstants.SEPTEMBER, 1);
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown islamic holiday "
-						+ i.getType());
+				throw new IllegalArgumentException("Unknown islamic holiday " + i.getType());
 			}
 			String propertiesKey = "islamic." + i.getType().name();
 			HolidayType type = XMLUtil.getType(i.getLocalizedType());

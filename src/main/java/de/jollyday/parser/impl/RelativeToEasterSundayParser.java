@@ -24,12 +24,11 @@ import de.jollyday.config.HolidayType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToEasterSunday;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
  * This parser creates holidays relative to easter sunday.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -37,7 +36,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * Parses relative to easter sunday holidays.
 	 */
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
@@ -51,21 +50,25 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 			addChrstianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
 	}
-	
+
 	/**
 	 * Adds the given day to the list of holidays.
-	 *
-	 * @param day a {@link org.joda.time.LocalDate} object.
-	 * @param propertiesKey a {@link java.lang.String} object.
-	 * @param holidayType a {@link de.jollyday.config.HolidayType} object.
-	 * @param holidays a {@link java.util.Set} object.
+	 * 
+	 * @param day
+	 *            a {@link org.joda.time.LocalDate} object.
+	 * @param propertiesKey
+	 *            a {@link java.lang.String} object.
+	 * @param holidayType
+	 *            a {@link de.jollyday.config.HolidayType} object.
+	 * @param holidays
+	 *            a {@link java.util.Set} object.
 	 */
-	protected void addChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType, Set<Holiday> holidays){
-		LocalDate convertedDate = CalendarUtil
-				.convertToGregorianDate(day);
+	protected void addChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType,
+			Set<Holiday> holidays) {
+		LocalDate convertedDate = calendarUtil.convertToGregorianDate(day);
 		de.jollyday.HolidayType type = XMLUtil.getType(holidayType);
 		Holiday h = new Holiday(convertedDate, propertiesKey, type);
 		holidays.add(h);
 	}
-	
+
 }
