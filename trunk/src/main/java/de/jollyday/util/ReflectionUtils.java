@@ -18,29 +18,34 @@ package de.jollyday.util;
 import java.util.logging.Logger;
 
 /**
- * <p>ReflectionUtils class.</p>
- *
+ * <p>
+ * ReflectionUtils class.
+ * </p>
+ * 
  * @author José Pedro Pereira - Linkare TI
  * @version $Id: $
  */
 public final class ReflectionUtils {
-	
+
 	private static final Logger LOG = Logger.getLogger(ReflectionUtils.class.getName());
-	
+
 	/**
-	 * <p>loadClass.</p>
-	 *
-	 * @param className a {@link java.lang.String} object.
+	 * Loads the class by class name with the current threads context
+	 * classloader. If there occurs an exception the class will be loaded by
+	 * default classloader.
+	 * 
+	 * @param className
+	 *            a {@link java.lang.String} object.
 	 * @return a {@link java.lang.Class} object.
-	 * @throws java.lang.ClassNotFoundException if any.
+	 * @throws java.lang.ClassNotFoundException
+	 *             if any.
 	 */
-	public static final Class<?> loadClass(String className)
-			throws ClassNotFoundException {
+	public static final Class<?> loadClass(String className) throws ClassNotFoundException {
 		try {
-			return Class.forName(className, true, Thread.currentThread()
-					.getContextClassLoader());
+			return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
 		} catch (Exception e) {
-			LOG.warning("Could not load class with current threads context classloader. Using default. Reason: "+e.getMessage());
+			LOG.warning("Could not load class with current threads context classloader. Using default. Reason: "
+					+ e.getMessage());
 			return Class.forName(className);
 		}
 	}
