@@ -53,31 +53,33 @@ public class HolidayTest {
 	private static final Set<LocalDate> test_days_l2 = new HashSet<LocalDate>();
 	private static final Set<LocalDate> test_days_l11 = new HashSet<LocalDate>();
 
+	private static CalendarUtil calendarUtil = new CalendarUtil();
+
 	static {
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.FEBRUARY, 17));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.AUGUST, 30));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.APRIL, 2));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.APRIL, 5));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 28));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 1));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 18));
-		test_days.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 26));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.FEBRUARY, 17));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.AUGUST, 30));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.APRIL, 2));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.APRIL, 5));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.NOVEMBER, 28));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.JANUARY, 1));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.JANUARY, 18));
+		test_days.add(calendarUtil.create(2010, DateTimeConstants.NOVEMBER, 26));
 		test_days_l1.addAll(test_days);
-		test_days_l1.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 2));
+		test_days_l1.add(calendarUtil.create(2010, DateTimeConstants.JANUARY, 2));
 		test_days_l2.addAll(test_days_l1);
-		test_days_l2.add(CalendarUtil.create(2010, DateTimeConstants.JANUARY, 3));
+		test_days_l2.add(calendarUtil.create(2010, DateTimeConstants.JANUARY, 3));
 
 		test_days_l11.addAll(test_days);
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.JULY, 27));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.JULY, 9));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.FEBRUARY, 26));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.AUGUST, 11));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.SEPTEMBER, 6));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.SEPTEMBER, 10));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER, 8));
-		test_days_l11.add(CalendarUtil.create(2010, DateTimeConstants.DECEMBER, 17));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.JULY, 27));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.JULY, 9));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.FEBRUARY, 26));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.AUGUST, 11));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.SEPTEMBER, 6));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.SEPTEMBER, 10));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.NOVEMBER, 17));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.DECEMBER, 8));
+		test_days_l11.add(calendarUtil.create(2010, DateTimeConstants.DECEMBER, 17));
 	}
 
 	private Locale defaultLocale;
@@ -144,7 +146,7 @@ public class HolidayTest {
 
 	@Test
 	public void testIsHolidayPerformance() throws Exception {
-		LocalDate date = CalendarUtil.create(2010, 1, 1);
+		LocalDate date = calendarUtil.create(2010, 1, 1);
 		int count = 0;
 		long sumDuration = 0;
 		while (date.getYear() < 2011) {
@@ -193,7 +195,7 @@ public class HolidayTest {
 	private void assertDates(Set<LocalDate> expected, Set<Holiday> holidays) {
 		Assert.assertEquals("Wrong number of dates.", expected.size(), holidays.size());
 		for (LocalDate d : expected) {
-			if (!CalendarUtil.contains(holidays, d)) {
+			if (!calendarUtil.contains(holidays, d)) {
 				Assert.fail("Missing " + d + " in " + holidays);
 			}
 		}
@@ -241,7 +243,7 @@ public class HolidayTest {
 
 	@Test
 	public void testHolidayDescription() {
-		Holiday h = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Holiday h = new Holiday(calendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertEquals("Wrong description", "Weihnachten", h.getDescription());
 		Assert.assertEquals("Wrong description", "Christmas", h.getDescription(Locale.ENGLISH));
 		Assert.assertEquals("Wrong description", "Kerstmis", h.getDescription(new Locale("nl")));
@@ -249,16 +251,16 @@ public class HolidayTest {
 
 	@Test
 	public void testHolidayEquals() {
-		Holiday h1 = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Holiday h1 = new Holiday(calendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertTrue("Wrong equals implementation", h1.equals(h1));
-		Holiday h2b = new Holiday(CalendarUtil.create(2011, 2, 2), new String("CHRISTMAS"),
+		Holiday h2b = new Holiday(calendarUtil.create(2011, 2, 2), new String("CHRISTMAS"),
 				LocalizedHolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertTrue("Wrong equals implementation", h1.equals(h2b));
-		Holiday h2 = new Holiday(CalendarUtil.create(2011, 2, 1), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Holiday h2 = new Holiday(calendarUtil.create(2011, 2, 1), "CHRISTMAS", LocalizedHolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertFalse("Wrong equals implementation", h1.equals(h2));
-		Holiday h3 = new Holiday(CalendarUtil.create(2011, 2, 2), "NEW_YEAR", LocalizedHolidayType.OFFICIAL_HOLIDAY);
+		Holiday h3 = new Holiday(calendarUtil.create(2011, 2, 2), "NEW_YEAR", LocalizedHolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertFalse("Wrong equals implementation", h1.equals(h3));
-		Holiday h4 = new Holiday(CalendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.UNOFFICIAL_HOLIDAY);
+		Holiday h4 = new Holiday(calendarUtil.create(2011, 2, 2), "CHRISTMAS", LocalizedHolidayType.UNOFFICIAL_HOLIDAY);
 		Assert.assertFalse("Wrong equals implementation", h1.equals(h4));
 	}
 

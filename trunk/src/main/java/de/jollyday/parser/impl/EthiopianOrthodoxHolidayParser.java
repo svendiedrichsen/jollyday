@@ -24,12 +24,11 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.EthiopianOrthodoxHoliday;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
  * Calculates the ethiopian orthodox holidays.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -50,23 +49,16 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 			Set<LocalDate> ethiopianHolidays = null;
 			switch (h.getType()) {
 			case TIMKAT:
-				ethiopianHolidays = CalendarUtil
-						.getEthiopianOrthodoxHolidaysInGregorianYear(year, 5,
-								10);
+				ethiopianHolidays = calendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 5, 10);
 				break;
 			case ENKUTATASH:
-				ethiopianHolidays = CalendarUtil
-						.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1, 1);
+				ethiopianHolidays = calendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1, 1);
 				break;
 			case MESKEL:
-				ethiopianHolidays = CalendarUtil
-						.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1,
-								17);
+				ethiopianHolidays = calendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 1, 17);
 				break;
 			default:
-				throw new IllegalArgumentException(
-						"Unknown ethiopian orthodox holiday type "
-								+ h.getType());
+				throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type " + h.getType());
 			}
 			String propertiesKey = "ethiopian.orthodox." + h.getType().name();
 			HolidayType type = XMLUtil.getType(h.getLocalizedType());

@@ -37,6 +37,8 @@ public class HolidayDETest extends AbstractCountryTestBase {
 	private static final int YEAR = 2010;
 	private static final String ISO_CODE = "de";
 
+	private CalendarUtil calendarUtil = new CalendarUtil();
+
 	@Test
 	public void testManagerDEStructure() throws Exception {
 		validateCalendarData(ISO_CODE, YEAR);
@@ -46,15 +48,15 @@ public class HolidayDETest extends AbstractCountryTestBase {
 	public void testManagerDEinterval() {
 		try {
 			HolidayManager instance = HolidayManager.getInstance(HolidayCalendar.GERMANY);
-			Interval interval = new Interval(CalendarUtil.create(2010, 10, 1).toDateTimeAtStartOfDay(), CalendarUtil
+			Interval interval = new Interval(calendarUtil.create(2010, 10, 1).toDateTimeAtStartOfDay(), calendarUtil
 					.create(2011, 1, 31).toDateTimeAtStartOfDay());
 			Set<Holiday> holidays = instance.getHolidays(interval);
-			List<LocalDate> expected = Arrays.asList(CalendarUtil.create(2010, 12, 25),
-					CalendarUtil.create(2010, 12, 26), CalendarUtil.create(2010, 10, 3),
-					CalendarUtil.create(2011, 1, 1));
+			List<LocalDate> expected = Arrays.asList(calendarUtil.create(2010, 12, 25),
+					calendarUtil.create(2010, 12, 26), calendarUtil.create(2010, 10, 3),
+					calendarUtil.create(2011, 1, 1));
 			Assert.assertEquals("Wrong number of holidays", expected.size(), holidays.size());
 			for (LocalDate d : expected) {
-				Assert.assertTrue("Expected date " + d + " missing.", CalendarUtil.contains(holidays, d));
+				Assert.assertTrue("Expected date " + d + " missing.", calendarUtil.contains(holidays, d));
 			}
 		} catch (Exception e) {
 			Assert.fail("Unexpected error occurred: " + e.getClass().getName() + " - " + e.getMessage());

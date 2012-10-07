@@ -24,12 +24,11 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.Fixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
  * The Class FixedParser. Parses a fixed date
- *
+ * 
  * @author tboven
  * @version $Id: $
  */
@@ -47,11 +46,10 @@ public class FixedParser extends AbstractHolidayParser {
 			if (!isValid(f, year)) {
 				continue;
 			}
-			LocalDate date = CalendarUtil.create(year, f);
+			LocalDate date = calendarUtil.create(year, f);
 			LocalDate movedDate = moveDate(f, date);
 			HolidayType type = XMLUtil.getType(f.getLocalizedType());
-			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey(),
-					type);
+			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey(), type);
 			holidays.add(h);
 		}
 	}

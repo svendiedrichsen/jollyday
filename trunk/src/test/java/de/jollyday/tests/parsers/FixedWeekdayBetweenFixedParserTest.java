@@ -36,6 +36,7 @@ import de.jollyday.util.CalendarUtil;
 public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 
 	private FixedWeekdayBetweenFixedParser parser = new FixedWeekdayBetweenFixedParser();
+	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
 	public void testEmpty() {
@@ -67,8 +68,7 @@ public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 		config.getFixedWeekdayBetweenFixed().add(e);
 		parser.parse(2011, holidays, config);
 		Assert.assertEquals("Wrong number of results.", 1, holidays.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 19),
-				holidays.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 1, 19), holidays.iterator().next().getDate());
 	}
 
 }

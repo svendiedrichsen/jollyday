@@ -83,8 +83,6 @@ public class XMLManager extends HolidayManager {
 	 * Calls
 	 * <code>Set&lt;LocalDate&gt; getHolidays(int year, Configuration c, String... args)</code>
 	 * with the configuration from initialization.
-	 * 
-	 * @see getHolidays(int year, Configuration c, String... args)
 	 */
 	@Override
 	public Set<Holiday> getHolidays(int year, final String... args) {

@@ -40,6 +40,7 @@ import de.jollyday.util.CalendarUtil;
 public class FixedWeekdayRelativeToFixedParserTest {
 
 	private FixedWeekdayRelativeToFixedParser fwrtf = new FixedWeekdayRelativeToFixedParser();
+	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
 	public void testEmpty() {
@@ -82,8 +83,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 24),
-				result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 1, 24), result.iterator().next().getDate());
 	}
 
 	@Test
@@ -101,8 +101,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 1, 17),
-				result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 1, 17), result.iterator().next().getDate());
 	}
 
 	@Test
@@ -120,8 +119,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 2, 14),
-				result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 2, 14), result.iterator().next().getDate());
 	}
 
 	@Test
@@ -139,8 +137,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
 		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 4, 12),
-				result.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 4, 12), result.iterator().next().getDate());
 	}
 
 }

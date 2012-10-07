@@ -38,6 +38,7 @@ import de.jollyday.util.CalendarUtil;
 public class RelativeToFixedParserTest {
 
 	private RelativeToFixedParser rtfp = new RelativeToFixedParser();
+	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
 	public void testEmpty() {
@@ -72,8 +73,7 @@ public class RelativeToFixedParserTest {
 		config.getRelativeToFixed().add(rule);
 		rtfp.parse(2011, holidays, config);
 		Assert.assertEquals("Number of holidays wrong.", 1, holidays.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 8, 11),
-				holidays.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 8, 11), holidays.iterator().next().getDate());
 	}
 
 	@Test
@@ -90,8 +90,7 @@ public class RelativeToFixedParserTest {
 		config.getRelativeToFixed().add(rule);
 		rtfp.parse(2011, holidays, config);
 		Assert.assertEquals("Number of holidays wrong.", 1, holidays.size());
-		Assert.assertEquals("Wrong date.", CalendarUtil.create(2011, 8, 2),
-				holidays.iterator().next().getDate());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 8, 2), holidays.iterator().next().getDate());
 	}
 
 }

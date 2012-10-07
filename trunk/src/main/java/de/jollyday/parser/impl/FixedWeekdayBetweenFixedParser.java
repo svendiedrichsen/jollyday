@@ -24,12 +24,11 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.FixedWeekdayBetweenFixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
  * Parses the configuration for fixed weekdays between two fixed dates.
- *
+ * 
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -37,18 +36,17 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 
 	/**
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
-		for (FixedWeekdayBetweenFixed fwm : config
-				.getFixedWeekdayBetweenFixed()) {
+		for (FixedWeekdayBetweenFixed fwm : config.getFixedWeekdayBetweenFixed()) {
 			if (!isValid(fwm, year)) {
 				continue;
 			}
-			LocalDate from = CalendarUtil.create(year, fwm.getFrom());
-			LocalDate to = CalendarUtil.create(year, fwm.getTo());
+			LocalDate from = calendarUtil.create(year, fwm.getFrom());
+			LocalDate to = calendarUtil.create(year, fwm.getTo());
 			LocalDate result = null;
 			for (; !from.isAfter(to);) {
 				if (from.getDayOfWeek() == XMLUtil.getWeekday(fwm.getWeekday())) {
@@ -59,8 +57,7 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 			}
 			if (result != null) {
 				HolidayType type = XMLUtil.getType(fwm.getLocalizedType());
-				holidays.add(new Holiday(result, fwm
-						.getDescriptionPropertiesKey(), type));
+				holidays.add(new Holiday(result, fwm.getDescriptionPropertiesKey(), type));
 			}
 		}
 	}

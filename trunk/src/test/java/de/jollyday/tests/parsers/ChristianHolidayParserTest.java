@@ -43,6 +43,7 @@ import de.jollyday.util.CalendarUtil;
 public class ChristianHolidayParserTest {
 
 	private AbstractHolidayParser hp = new ChristianHolidayParser();
+	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
 	public void testEmpty() {
@@ -59,7 +60,7 @@ public class ChristianHolidayParserTest {
 		hp.parse(2011, holidays, config);
 		Assert.assertEquals("Wrong number of holidays.", 1, holidays.size());
 		Holiday easterDate = holidays.iterator().next();
-		LocalDate ed = CalendarUtil.create(2011, 4, 24);
+		LocalDate ed = calendarUtil.create(2011, 4, 24);
 		Assert.assertEquals("Wrong easter date.", ed, easterDate.getDate());
 	}
 
@@ -71,55 +72,49 @@ public class ChristianHolidayParserTest {
 		hp.parse(2011, holidays, config);
 		Assert.assertEquals("Wrong number of holidays.", 0, holidays.size());
 	}
-	
+
 	@Test
-	public void testRelativeToEasterSunday(){
+	public void testRelativeToEasterSunday() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = createConfig(1);
 		RelativeToEasterSundayParser p = new RelativeToEasterSundayParser();
 		p.parse(2011, holidays, config);
 		List<LocalDate> expected = new ArrayList<LocalDate>();
-		expected.add(CalendarUtil.create(2011, 4, 24));
-		Assert.assertEquals("Wrong number of holidays.", expected.size(),
-				holidays.size());
+		expected.add(calendarUtil.create(2011, 4, 24));
+		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
 		Assert.assertEquals("Wrong holiday.", expected.get(0), holidays.iterator().next().getDate());
 	}
 
 	@Test
 	public void testChristianDates() {
 		Set<Holiday> holidays = new HashSet<Holiday>();
-		Holidays config = createConfig(ChristianHolidayType.EASTER,
-				ChristianHolidayType.CLEAN_MONDAY,
-				ChristianHolidayType.EASTER_SATURDAY,
-				ChristianHolidayType.EASTER_TUESDAY,
-				ChristianHolidayType.GENERAL_PRAYER_DAY,
-				ChristianHolidayType.PENTECOST,
+		Holidays config = createConfig(ChristianHolidayType.EASTER, ChristianHolidayType.CLEAN_MONDAY,
+				ChristianHolidayType.EASTER_SATURDAY, ChristianHolidayType.EASTER_TUESDAY,
+				ChristianHolidayType.GENERAL_PRAYER_DAY, ChristianHolidayType.PENTECOST,
 				ChristianHolidayType.SACRED_HEART);
 		hp.parse(2011, holidays, config);
 		List<LocalDate> expected = new ArrayList<LocalDate>();
-		expected.add(CalendarUtil.create(2011, 3, 7));
-		expected.add(CalendarUtil.create(2011, 4, 23));
-		expected.add(CalendarUtil.create(2011, 4, 24));
-		expected.add(CalendarUtil.create(2011, 4, 26));
-		expected.add(CalendarUtil.create(2011, 5, 20));
-		expected.add(CalendarUtil.create(2011, 6, 12));
-		expected.add(CalendarUtil.create(2011, 7, 1));
+		expected.add(calendarUtil.create(2011, 3, 7));
+		expected.add(calendarUtil.create(2011, 4, 23));
+		expected.add(calendarUtil.create(2011, 4, 24));
+		expected.add(calendarUtil.create(2011, 4, 26));
+		expected.add(calendarUtil.create(2011, 5, 20));
+		expected.add(calendarUtil.create(2011, 6, 12));
+		expected.add(calendarUtil.create(2011, 7, 1));
 
-		Assert.assertEquals("Wrong number of holidays.", expected.size(),
-				holidays.size());
+		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
 
 		Collections.sort(expected);
 		List<Holiday> found = new ArrayList<Holiday>(holidays);
 		Collections.sort(found, new HolidayComparator());
 
 		for (int i = 0; i < expected.size(); i++) {
-			Assert.assertEquals("Wrong date.", expected.get(i), found.get(i)
-					.getDate());
+			Assert.assertEquals("Wrong date.", expected.get(i), found.get(i).getDate());
 		}
 
 	}
-	
-	private Holidays createConfig(int...days) {
+
+	private Holidays createConfig(int... days) {
 		Holidays config = new Holidays();
 		for (int day : days) {
 			RelativeToEasterSunday d = new RelativeToEasterSunday();
