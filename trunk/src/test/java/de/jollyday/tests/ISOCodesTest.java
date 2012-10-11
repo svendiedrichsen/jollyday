@@ -42,6 +42,8 @@ public class ISOCodesTest {
 
 	private Locale defaultLocale;
 
+	private ResourceUtil resourceUtil;
+
 	/**
 	 * Inits
 	 */
@@ -49,6 +51,7 @@ public class ISOCodesTest {
 	public void init() {
 		defaultLocale = Locale.getDefault();
 		Locale.setDefault(Locale.ENGLISH);
+		resourceUtil = new ResourceUtil();
 	}
 
 	/**
@@ -65,7 +68,7 @@ public class ISOCodesTest {
 	@Test
 	public void testISOCodes() {
 		Locale.setDefault(defaultLocale);
-		Set<String> isoCodes = ResourceUtil.getISOCodes();
+		Set<String> isoCodes = resourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
 		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
@@ -75,7 +78,7 @@ public class ISOCodesTest {
 	 */
 	@Test
 	public void testISOCodesEN() {
-		Set<String> isoCodes = ResourceUtil.getISOCodes();
+		Set<String> isoCodes = resourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
 		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
@@ -86,7 +89,7 @@ public class ISOCodesTest {
 	@Test
 	public void testISOCodesDE() {
 		Locale.setDefault(Locale.GERMANY);
-		Set<String> isoCodes = ResourceUtil.getISOCodes();
+		Set<String> isoCodes = resourceUtil.getISOCodes();
 		Assert.assertNotNull(isoCodes);
 		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}

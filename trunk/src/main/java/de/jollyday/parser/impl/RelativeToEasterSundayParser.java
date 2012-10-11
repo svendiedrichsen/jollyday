@@ -24,7 +24,6 @@ import de.jollyday.config.HolidayType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToEasterSunday;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * This parser creates holidays relative to easter sunday.
@@ -66,7 +65,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 	protected void addChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType,
 			Set<Holiday> holidays) {
 		LocalDate convertedDate = calendarUtil.convertToGregorianDate(day);
-		de.jollyday.HolidayType type = XMLUtil.getType(holidayType);
+		de.jollyday.HolidayType type = xmlUtil.getType(holidayType);
 		Holiday h = new Holiday(convertedDate, propertiesKey, type);
 		holidays.add(h);
 	}

@@ -24,7 +24,6 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.EthiopianOrthodoxHoliday;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * Calculates the ethiopian orthodox holidays.
@@ -61,7 +60,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 				throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type " + h.getType());
 			}
 			String propertiesKey = "ethiopian.orthodox." + h.getType().name();
-			HolidayType type = XMLUtil.getType(h.getLocalizedType());
+			HolidayType type = xmlUtil.getType(h.getLocalizedType());
 			for (LocalDate d : ethiopianHolidays) {
 				holidays.add(new Holiday(d, propertiesKey, type));
 			}

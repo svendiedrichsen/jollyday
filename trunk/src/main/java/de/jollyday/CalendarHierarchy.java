@@ -31,6 +31,7 @@ public class CalendarHierarchy {
 	private String id;
 	private Map<String, CalendarHierarchy> children = new HashMap<String, CalendarHierarchy>();
 	private final CalendarHierarchy parent;
+	private ResourceUtil resourceUtil = new ResourceUtil();
 
 	/**
 	 * Constructor which takes a eventually existing parent hierarchy node and
@@ -63,7 +64,7 @@ public class CalendarHierarchy {
 	 * @return the description
 	 */
 	public String getDescription() {
-		return ResourceUtil.getCountryDescription(Locale.getDefault(), getPropertiesKey());
+		return resourceUtil.getCountryDescription(Locale.getDefault(), getPropertiesKey());
 	}
 
 	/**
@@ -74,7 +75,7 @@ public class CalendarHierarchy {
 	 * @return Description text
 	 */
 	public String getDescription(Locale l) {
-		return ResourceUtil.getCountryDescription(l, getPropertiesKey());
+		return resourceUtil.getCountryDescription(l, getPropertiesKey());
 	}
 
 	/**

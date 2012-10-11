@@ -37,6 +37,10 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * Calendar utility class.
 	 */
 	protected CalendarUtil calendarUtil = new CalendarUtil();
+	/**
+	 * XML utility class.
+	 */
+	protected XMLUtil xmlUtil = new XMLUtil();
 
 	/**
 	 * Evaluates if the provided <code>Holiday</code> instance is valid for the
@@ -139,7 +143,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @return a boolean.
 	 */
 	protected boolean shallBeMoved(LocalDate fixed, MovingCondition mc) {
-		return fixed.getDayOfWeek() == XMLUtil.getWeekday(mc.getSubstitute());
+		return fixed.getDayOfWeek() == xmlUtil.getWeekday(mc.getSubstitute());
 	}
 
 	/**
@@ -150,7 +154,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @return
 	 */
 	private LocalDate moveDate(MovingCondition mc, LocalDate fixed) {
-		int weekday = XMLUtil.getWeekday(mc.getWeekday());
+		int weekday = xmlUtil.getWeekday(mc.getWeekday());
 		int direction = (mc.getWith() == With.NEXT ? 1 : -1);
 		while (fixed.getDayOfWeek() != weekday) {
 			fixed = fixed.plusDays(direction);

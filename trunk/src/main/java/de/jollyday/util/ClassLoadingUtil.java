@@ -25,9 +25,9 @@ import java.util.logging.Logger;
  * @author José Pedro Pereira - Linkare TI
  * @version $Id: $
  */
-public final class ReflectionUtils {
+public class ClassLoadingUtil {
 
-	private static final Logger LOG = Logger.getLogger(ReflectionUtils.class.getName());
+	private static final Logger LOG = Logger.getLogger(ClassLoadingUtil.class.getName());
 
 	/**
 	 * Loads the class by class name with the current threads context
@@ -40,7 +40,7 @@ public final class ReflectionUtils {
 	 * @throws java.lang.ClassNotFoundException
 	 *             if any.
 	 */
-	public static final Class<?> loadClass(String className) throws ClassNotFoundException {
+	public final Class<?> loadClass(String className) throws ClassNotFoundException {
 		try {
 			return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
 		} catch (Exception e) {

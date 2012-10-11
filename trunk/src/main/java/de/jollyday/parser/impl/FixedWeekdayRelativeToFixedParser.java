@@ -25,7 +25,6 @@ import de.jollyday.config.FixedWeekdayRelativeToFixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.When;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * Parses fixed weekday relative to fixed date.
@@ -51,7 +50,7 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 			do {
 				// move fixed to first occurrence of weekday
 				day = f.getWhen() == When.AFTER ? day.plusDays(1) : day.minusDays(1);
-			} while (day.getDayOfWeek() != XMLUtil.getWeekday(f.getWeekday()));
+			} while (day.getDayOfWeek() != xmlUtil.getWeekday(f.getWeekday()));
 			int days = 0;
 			switch (f.getWhich()) {
 			case SECOND:
@@ -66,7 +65,7 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 			}
 			// move day further if it is second, third or fourth weekday
 			day = f.getWhen() == When.AFTER ? day.plusDays(days) : day.minusDays(days);
-			HolidayType type = XMLUtil.getType(f.getLocalizedType());
+			HolidayType type = xmlUtil.getType(f.getLocalizedType());
 			holidays.add(new Holiday(day, f.getDescriptionPropertiesKey(), type));
 		}
 	}

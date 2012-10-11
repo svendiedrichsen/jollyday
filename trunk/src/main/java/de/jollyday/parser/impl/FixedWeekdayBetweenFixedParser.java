@@ -24,7 +24,6 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.FixedWeekdayBetweenFixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * Parses the configuration for fixed weekdays between two fixed dates.
@@ -49,14 +48,14 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 			LocalDate to = calendarUtil.create(year, fwm.getTo());
 			LocalDate result = null;
 			for (; !from.isAfter(to);) {
-				if (from.getDayOfWeek() == XMLUtil.getWeekday(fwm.getWeekday())) {
+				if (from.getDayOfWeek() == xmlUtil.getWeekday(fwm.getWeekday())) {
 					result = from;
 					break;
 				}
 				from = from.plusDays(1);
 			}
 			if (result != null) {
-				HolidayType type = XMLUtil.getType(fwm.getLocalizedType());
+				HolidayType type = xmlUtil.getType(fwm.getLocalizedType());
 				holidays.add(new Holiday(result, fwm.getDescriptionPropertiesKey(), type));
 			}
 		}

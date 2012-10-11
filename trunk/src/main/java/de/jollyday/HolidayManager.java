@@ -33,7 +33,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.ReadableInterval;
 
 import de.jollyday.util.CalendarUtil;
-import de.jollyday.util.ReflectionUtils;
+import de.jollyday.util.ClassLoadingUtil;
 
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
@@ -84,6 +84,10 @@ public abstract class HolidayManager {
 	 * Utility for calendar operations
 	 */
 	protected CalendarUtil calendarUtil = new CalendarUtil();
+	/**
+	 * Utility to load classes.
+	 */
+	private static ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	/**
 	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
@@ -199,7 +203,7 @@ public abstract class HolidayManager {
 	 */
 	private static HolidayManager instantiateManagerImpl(String managerImplClassName) {
 		try {
-			Class<?> managerImplClass = ReflectionUtils.loadClass(managerImplClassName);
+			Class<?> managerImplClass = classLoadingUtil.loadClass(managerImplClassName);
 			Object managerImplObject = managerImplClass.newInstance();
 			return HolidayManager.class.cast(managerImplObject);
 		} catch (Exception e) {

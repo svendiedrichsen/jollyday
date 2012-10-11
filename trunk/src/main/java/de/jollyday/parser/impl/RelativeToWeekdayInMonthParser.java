@@ -24,11 +24,12 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToWeekdayInMonth;
 import de.jollyday.config.When;
-import de.jollyday.util.XMLUtil;
 
 /**
- * <p>RelativeToWeekdayInMonthParser class.</p>
- *
+ * <p>
+ * RelativeToWeekdayInMonthParser class.
+ * </p>
+ * 
  * @author Sven
  * @version $Id: $
  */
@@ -43,19 +44,17 @@ public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 	/** {@inheritDoc} */
 	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
-		for (RelativeToWeekdayInMonth rtfw : config
-				.getRelativeToWeekdayInMonth()) {
+		for (RelativeToWeekdayInMonth rtfw : config.getRelativeToWeekdayInMonth()) {
 			if (!isValid(rtfw, year)) {
 				continue;
 			}
 			LocalDate date = parse(year, rtfw.getFixedWeekday());
 			int direction = (rtfw.getWhen() == When.BEFORE ? -1 : 1);
-			while (date.getDayOfWeek() != XMLUtil.getWeekday(rtfw.getWeekday())) {
+			while (date.getDayOfWeek() != xmlUtil.getWeekday(rtfw.getWeekday())) {
 				date = date.plusDays(direction);
 			}
-			HolidayType type = XMLUtil.getType(rtfw.getLocalizedType());
-			holidays.add(new Holiday(date, rtfw.getDescriptionPropertiesKey(),
-					type));
+			HolidayType type = xmlUtil.getType(rtfw.getLocalizedType());
+			holidays.add(new Holiday(date, rtfw.getDescriptionPropertiesKey(), type));
 		}
 	}
 
