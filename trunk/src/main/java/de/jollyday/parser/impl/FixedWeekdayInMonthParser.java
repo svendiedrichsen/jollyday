@@ -53,7 +53,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	}
 
 	/**
-	 * Parses the.
+	 * Parses the {@link FixedWeekdayInMonth}.
 	 * 
 	 * @param year
 	 *            the year
@@ -68,10 +68,12 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 			date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
 			direction = -1;
 		}
-		int weekDay = xmlUtil.getWeekday(fwm.getWeekday());
-		while (date.getDayOfWeek() != weekDay) {
-			date = date.plusDays(direction);
-		}
+		date = moveToNextRequestedWeekdayByDirection(fwm, date, direction);
+		date = moveNumberOfRequestedWeeks(fwm, date);
+		return date;
+	}
+
+	private LocalDate moveNumberOfRequestedWeeks(FixedWeekdayInMonth fwm, LocalDate date) {
 		switch (fwm.getWhich()) {
 		case SECOND:
 			date = date.plusDays(7);
@@ -81,6 +83,14 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 			break;
 		case FOURTH:
 			date = date.plusDays(21);
+		}
+		return date;
+	}
+
+	private LocalDate moveToNextRequestedWeekdayByDirection(FixedWeekdayInMonth fwm, LocalDate date, int direction) {
+		int weekDay = xmlUtil.getWeekday(fwm.getWeekday());
+		while (date.getDayOfWeek() != weekDay) {
+			date = date.plusDays(direction);
 		}
 		return date;
 	}
