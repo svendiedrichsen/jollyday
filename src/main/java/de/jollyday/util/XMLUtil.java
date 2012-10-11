@@ -1,4 +1,3 @@
-
 /**
  * Copyright 2010 Sven Diedrichsen
  *
@@ -36,47 +35,47 @@ import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
 import de.jollyday.holidaytype.LocalizedHolidayType;
+
 public class XMLUtil {
 
 	/**
 	 * the package name to search for the generated java classes.
 	 */
 	public static final String PACKAGE = "de.jollyday.config";
-	
+
 	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
 	 * this.
-	 *
-	 * @param stream a {@link java.io.InputStream} object.
+	 * 
+	 * @param stream
+	 *            a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
-	 * @throws java.io.IOException Could not close the provided stream.
+	 * @throws java.io.IOException
+	 *             Could not close the provided stream.
 	 */
-	public static Configuration unmarshallConfiguration(InputStream stream) throws IOException{
+	public Configuration unmarshallConfiguration(InputStream stream) throws IOException {
 		if (stream == null) {
-			throw new IllegalArgumentException(
-					"Stream is NULL. Cannot read XML.");
+			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
 		}
 		try {
 			JAXBContext ctx = null;
-			try{
+			try {
 				ctx = createJAXBContext(Thread.currentThread().getContextClassLoader());
-			}catch(Exception e){
+			} catch (Exception e) {
 				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
 				ctx = null;
 			}
-			if(ctx == null){
+			if (ctx == null) {
 				ctx = createJAXBContext(ObjectFactory.class.getClassLoader());
 			}
 			Unmarshaller um = ctx.createUnmarshaller();
 			@SuppressWarnings("unchecked")
-			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um
-					.unmarshal(stream);
+			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 			return el.getValue();
 		} catch (Exception ue) {
-			throw new IllegalStateException("Cannot parse holidays XML file.",
-					ue);
+			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
 		} finally {
 			stream.close();
 		}
@@ -84,21 +83,24 @@ public class XMLUtil {
 
 	/**
 	 * Loads the JAXB context using the provided classloader.
-	 * @param classLoader The classloader to use
+	 * 
+	 * @param classLoader
+	 *            The classloader to use
 	 * @return JAXBContext
 	 * @throws JAXBException
 	 */
-	private static JAXBContext createJAXBContext(ClassLoader classLoader) throws JAXBException {
+	private JAXBContext createJAXBContext(ClassLoader classLoader) throws JAXBException {
 		return JAXBContext.newInstance(XMLUtil.PACKAGE, classLoader);
 	}
 
 	/**
 	 * Returns the <code>DateTimeConstants</code> value for the given weekday.
-	 *
-	 * @param weekday a {@link de.jollyday.config.Weekday} object.
+	 * 
+	 * @param weekday
+	 *            a {@link de.jollyday.config.Weekday} object.
 	 * @return DateTimeConstants value.
 	 */
-	public static final int getWeekday(Weekday weekday) {
+	public final int getWeekday(Weekday weekday) {
 		switch (weekday) {
 		case MONDAY:
 			return DateTimeConstants.MONDAY;
@@ -121,11 +123,12 @@ public class XMLUtil {
 
 	/**
 	 * Returns the <code>DateTimeConstants</code> value for the given month.
-	 *
-	 * @param month a {@link de.jollyday.config.Month} object.
+	 * 
+	 * @param month
+	 *            a {@link de.jollyday.config.Month} object.
 	 * @return DateTimeConstants value.
 	 */
-	public static int getMonth(Month month) {
+	public int getMonth(Month month) {
 		switch (month) {
 		case JANUARY:
 			return DateTimeConstants.JANUARY;
@@ -158,12 +161,12 @@ public class XMLUtil {
 
 	/**
 	 * Gets the type.
-	 *
+	 * 
 	 * @param type
 	 *            the type of holiday in the config
 	 * @return the type of holiday
 	 */
-	public static HolidayType getType(de.jollyday.config.HolidayType type) {
+	public HolidayType getType(de.jollyday.config.HolidayType type) {
 		switch (type) {
 		case OFFICIAL_HOLIDAY:
 			return LocalizedHolidayType.OFFICIAL_HOLIDAY;

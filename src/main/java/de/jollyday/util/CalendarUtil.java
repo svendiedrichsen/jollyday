@@ -39,6 +39,8 @@ import de.jollyday.config.Fixed;
  */
 public class CalendarUtil {
 
+	private XMLUtil xmlUtil = new XMLUtil();
+
 	/**
 	 * Creates the current date within the gregorian calendar.
 	 * 
@@ -103,7 +105,7 @@ public class CalendarUtil {
 	 * @return A local date instance.
 	 */
 	public LocalDate create(int year, Fixed fixed) {
-		return create(year, XMLUtil.getMonth(fixed.getMonth()), fixed.getDay());
+		return create(year, xmlUtil.getMonth(fixed.getMonth()), fixed.getDay());
 	}
 
 	/**

@@ -24,7 +24,6 @@ import de.jollyday.HolidayType;
 import de.jollyday.config.Fixed;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * The Class FixedParser. Parses a fixed date
@@ -48,7 +47,7 @@ public class FixedParser extends AbstractHolidayParser {
 			}
 			LocalDate date = calendarUtil.create(year, f);
 			LocalDate movedDate = moveDate(f, date);
-			HolidayType type = XMLUtil.getType(f.getLocalizedType());
+			HolidayType type = xmlUtil.getType(f.getLocalizedType());
 			Holiday h = new Holiday(movedDate, f.getDescriptionPropertiesKey(), type);
 			holidays.add(h);
 		}

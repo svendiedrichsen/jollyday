@@ -38,7 +38,7 @@ import de.jollyday.HolidayManager;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
-import de.jollyday.util.ReflectionUtils;
+import de.jollyday.util.ClassLoadingUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
@@ -76,6 +76,14 @@ public class XMLManager extends HolidayManager {
 	 * Configuration parsed on initialization.
 	 */
 	protected Configuration configuration;
+	/**
+	 * Utility class to handle class loading
+	 */
+	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
+	/**
+	 * XML utility class.
+	 */
+	private XMLUtil xmlUtil = new XMLUtil();
 
 	/**
 	 * {@inheritDoc}
@@ -224,7 +232,7 @@ public class XMLManager extends HolidayManager {
 							Properties configProps = getProperties();
 							if (configProps.containsKey(propName)) {
 								String parserClassName = configProps.getProperty(propName);
-								Class<?> parserClass = ReflectionUtils.loadClass(parserClassName);
+								Class<?> parserClass = classLoadingUtil.loadClass(parserClassName);
 								Object parserObject = parserClass.newInstance();
 								HolidayParser hp = HolidayParser.class.cast(parserObject);
 								parserCache.put(className, hp);
@@ -253,16 +261,13 @@ public class XMLManager extends HolidayManager {
 	public void init(final String calendar) {
 
 		String configurationFileName = getConfigurationFileName(calendar);
-
+		URL urlDestination = null;
 		try {
-			URL urlDestination = getClass().getClassLoader().getResource(configurationFileName);
-			final InputStream inputStream = urlDestination.openStream();
-			configuration = XMLUtil.unmarshallConfiguration(inputStream);
+			urlDestination = getClass().getClassLoader().getResource(configurationFileName);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot instantiate configuration.", e);
 		}
-		validateConfigurationHierarchy(configuration);
-		logHierarchy(configuration, 0);
+		init(urlDestination);
 	}
 
 	/**
@@ -276,7 +281,7 @@ public class XMLManager extends HolidayManager {
 	public void init(final URL url) {
 		try {
 			final InputStream inputStream = url.openStream();
-			configuration = XMLUtil.unmarshallConfiguration(inputStream);
+			configuration = xmlUtil.unmarshallConfiguration(inputStream);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot instantiate configuration.", e);
 		}

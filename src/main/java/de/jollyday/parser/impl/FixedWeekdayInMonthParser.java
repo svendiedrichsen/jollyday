@@ -25,7 +25,6 @@ import de.jollyday.config.FixedWeekdayInMonth;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.Which;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * The Class FixedWeekdayInMonthParser.
@@ -48,7 +47,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 				continue;
 			}
 			LocalDate date = parse(year, fwm);
-			HolidayType type = XMLUtil.getType(fwm.getLocalizedType());
+			HolidayType type = xmlUtil.getType(fwm.getLocalizedType());
 			holidays.add(new Holiday(date, fwm.getDescriptionPropertiesKey(), type));
 		}
 	}
@@ -63,13 +62,13 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	 * @return the local date
 	 */
 	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
-		LocalDate date = calendarUtil.create(year, XMLUtil.getMonth(fwm.getMonth()), 1);
+		LocalDate date = calendarUtil.create(year, xmlUtil.getMonth(fwm.getMonth()), 1);
 		int direction = 1;
 		if (fwm.getWhich() == Which.LAST) {
 			date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
 			direction = -1;
 		}
-		int weekDay = XMLUtil.getWeekday(fwm.getWeekday());
+		int weekDay = xmlUtil.getWeekday(fwm.getWeekday());
 		while (date.getDayOfWeek() != weekDay) {
 			date = date.plusDays(direction);
 		}

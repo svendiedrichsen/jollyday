@@ -25,7 +25,6 @@ import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToFixed;
 import de.jollyday.config.When;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.util.XMLUtil;
 
 /**
  * The Class RelativeToFixedParser.
@@ -50,7 +49,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 			LocalDate fixed = calendarUtil.create(year, rf.getDate());
 			if (rf.getWeekday() != null) {
 				// if weekday is set -> move to weekday
-				int day = XMLUtil.getWeekday(rf.getWeekday());
+				int day = xmlUtil.getWeekday(rf.getWeekday());
 				int direction = (rf.getWhen() == When.BEFORE ? -1 : 1);
 				do {
 					fixed = fixed.plusDays(direction);
@@ -59,7 +58,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 				// if number of days set -> move number of days
 				fixed = fixed.plusDays(rf.getWhen() == When.BEFORE ? -rf.getDays() : rf.getDays());
 			}
-			HolidayType type = XMLUtil.getType(rf.getLocalizedType());
+			HolidayType type = xmlUtil.getType(rf.getLocalizedType());
 			holidays.add(new Holiday(fixed, rf.getDescriptionPropertiesKey(), type));
 		}
 	}

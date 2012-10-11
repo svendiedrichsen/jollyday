@@ -70,7 +70,7 @@ public class ResourceUtil {
 	 * @param key
 	 *            a {@link java.lang.String} object.
 	 */
-	public static String getHolidayDescription(String key) {
+	public String getHolidayDescription(String key) {
 		return getHolidayDescription(Locale.getDefault(), key);
 	}
 
@@ -83,7 +83,7 @@ public class ResourceUtil {
 	 * @param key
 	 *            a {@link java.lang.String} object.
 	 */
-	public static String getHolidayDescription(Locale locale, String key) {
+	public String getHolidayDescription(Locale locale, String key) {
 		return getDescription(HOLIDAY_PROPERTY_PREFIX + "." + key, getHolidayDescriptions(locale));
 	}
 
@@ -96,7 +96,7 @@ public class ResourceUtil {
 	 * @param key
 	 *            a {@link java.lang.String} object.
 	 */
-	public static String getCountryDescription(String key) {
+	public String getCountryDescription(String key) {
 		return getCountryDescription(Locale.getDefault(), key);
 	}
 
@@ -109,7 +109,7 @@ public class ResourceUtil {
 	 * @param key
 	 *            a {@link java.lang.String} object.
 	 */
-	public static String getCountryDescription(Locale l, String key) {
+	public String getCountryDescription(Locale l, String key) {
 		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key, getCountryDescriptions(l));
 	}
 
@@ -118,7 +118,7 @@ public class ResourceUtil {
 	 * 
 	 * @return 2-digit ISO codes.
 	 */
-	public static final Set<String> getISOCodes() {
+	public Set<String> getISOCodes() {
 		Set<String> codes = new HashSet<String>();
 		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
 		for (String property : Collections.list(countryDescriptions.getKeys())) {
@@ -138,7 +138,7 @@ public class ResourceUtil {
 	 * @param bundle
 	 * @return description
 	 */
-	private static String getDescription(String key, final ResourceBundle bundle) {
+	private String getDescription(String key, final ResourceBundle bundle) {
 		if (!Collections.list(bundle.getKeys()).contains(key)) {
 			return UNDEFINED;
 		}
@@ -153,7 +153,7 @@ public class ResourceUtil {
 	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getHolidayDescriptions(Locale l) {
+	private ResourceBundle getHolidayDescriptions(Locale l) {
 		return getResourceBundle(l, HOLIDAY_DESCRIPTION_CACHE, HOLIDAY_DESCRIPTIONS_FILE_PREFIX);
 	}
 
@@ -165,7 +165,7 @@ public class ResourceUtil {
 	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getCountryDescriptions(Locale l) {
+	private ResourceBundle getCountryDescriptions(Locale l) {
 		return getResourceBundle(l, COUNTRY_DESCRIPTIONS_CACHE, COUNTRY_DESCRIPTIONS_FILE_PREFIX);
 	}
 
@@ -176,8 +176,7 @@ public class ResourceUtil {
 	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private static ResourceBundle getResourceBundle(Locale l, Map<Locale, ResourceBundle> resourceCache,
-			String filePrefix) {
+	private ResourceBundle getResourceBundle(Locale l, Map<Locale, ResourceBundle> resourceCache, String filePrefix) {
 		synchronized (resourceCache) {
 			if (!resourceCache.containsKey(l)) {
 				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l, ResourceUtil.class.getClassLoader());
