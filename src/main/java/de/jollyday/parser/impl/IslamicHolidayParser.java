@@ -34,6 +34,11 @@ import de.jollyday.parser.AbstractHolidayParser;
  */
 public class IslamicHolidayParser extends AbstractHolidayParser {
 
+	/**
+	 * Properties prefix for islamic holidays.
+	 */
+	private static final String PREFIX_PROPERTY_ISLAMIC = "islamic.";
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -78,7 +83,7 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			default:
 				throw new IllegalArgumentException("Unknown islamic holiday " + i.getType());
 			}
-			String propertiesKey = "islamic." + i.getType().name();
+			String propertiesKey = PREFIX_PROPERTY_ISLAMIC + i.getType().name();
 			HolidayType type = xmlUtil.getType(i.getLocalizedType());
 			for (LocalDate d : islamicHolidays) {
 				holidays.add(new Holiday(d, propertiesKey, type));

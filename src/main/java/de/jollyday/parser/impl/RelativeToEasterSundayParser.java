@@ -34,6 +34,11 @@ import de.jollyday.parser.AbstractHolidayParser;
 public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 
 	/**
+	 * Properties prefix for christian holidays names.
+	 */
+	private static final String PREFIX_PROPERTY_CHRISTIAN = "christian.";
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * Parses relative to easter sunday holidays.
@@ -45,7 +50,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 			}
 			LocalDate easterSunday = getEasterSunday(year, ch.getChronology());
 			easterSunday.plusDays(ch.getDays());
-			String propertiesKey = "christian." + ch.getDescriptionPropertiesKey();
+			String propertiesKey = PREFIX_PROPERTY_CHRISTIAN + ch.getDescriptionPropertiesKey();
 			addChrstianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
 	}

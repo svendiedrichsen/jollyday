@@ -33,6 +33,11 @@ import de.jollyday.parser.AbstractHolidayParser;
  */
 public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 
+	/**
+	 * Ethiopian orthodox properties prefix.
+	 */
+	private static final String PREFIXE_PROPERTY_ETHIOPIAN_ORTHODOX = "ethiopian.orthodox.";
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -59,7 +64,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 			default:
 				throw new IllegalArgumentException("Unknown ethiopian orthodox holiday type " + h.getType());
 			}
-			String propertiesKey = "ethiopian.orthodox." + h.getType().name();
+			String propertiesKey = PREFIXE_PROPERTY_ETHIOPIAN_ORTHODOX + h.getType().name();
 			HolidayType type = xmlUtil.getType(h.getLocalizedType());
 			for (LocalDate d : ethiopianHolidays) {
 				holidays.add(new Holiday(d, propertiesKey, type));

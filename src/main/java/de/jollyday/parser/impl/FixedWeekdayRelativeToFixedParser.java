@@ -45,29 +45,37 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 			if (!isValid(f, year)) {
 				continue;
 			}
-			// parsing fixed day
 			LocalDate day = calendarUtil.create(year, f.getDay());
-			do {
-				// move fixed to first occurrence of weekday
-				day = f.getWhen() == When.AFTER ? day.plusDays(1) : day.minusDays(1);
-			} while (day.getDayOfWeek() != xmlUtil.getWeekday(f.getWeekday()));
-			int days = 0;
-			switch (f.getWhich()) {
-			case SECOND:
-				days = 7;
-				break;
-			case THIRD:
-				days = 14;
-				break;
-			case FOURTH:
-				days = 21;
-				break;
-			}
-			// move day further if it is second, third or fourth weekday
+			day = moveDateToFirstOccurenceOfWeekday(f, day);
+			int days = determineNumberOfDays(f);
 			day = f.getWhen() == When.AFTER ? day.plusDays(days) : day.minusDays(days);
 			HolidayType type = xmlUtil.getType(f.getLocalizedType());
 			holidays.add(new Holiday(day, f.getDescriptionPropertiesKey(), type));
 		}
+	}
+
+	private LocalDate moveDateToFirstOccurenceOfWeekday(FixedWeekdayRelativeToFixed f, LocalDate day) {
+		do {
+			// move fixed to first occurrence of weekday
+			day = f.getWhen() == When.AFTER ? day.plusDays(1) : day.minusDays(1);
+		} while (day.getDayOfWeek() != xmlUtil.getWeekday(f.getWeekday()));
+		return day;
+	}
+
+	private int determineNumberOfDays(FixedWeekdayRelativeToFixed f) {
+		int days = 0;
+		switch (f.getWhich()) {
+		case SECOND:
+			days = 7;
+			break;
+		case THIRD:
+			days = 14;
+			break;
+		case FOURTH:
+			days = 21;
+			break;
+		}
+		return days;
 	}
 
 }
