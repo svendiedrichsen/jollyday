@@ -1,9 +1,21 @@
 API properties
 
   The general API configuration resides within the <<<jollyday.properties>>> file contained
-  in the provided jar file. If you specify a system property <<<de.jollyday.config>>> with an
-  additional configuration file the properties of this file will add to and override the
-  original.
+  in the provided jar file. You have two options to overload these properties.
+  
+  You can specify a comma separated list of URLs with the system property <<<de.jollyday.config.urls>>>
+  which point to properties files to overload the basic properties.
+  
+  Example: <<<-Dde.jollyday.config.urls=file:/some/path/new.properties,http://myserver/some/path/further.properties,jar:file:myLibrary.jar!/my.properties>>>
+  
+  You can specify a comma separated list of classes which implement the ConfigurationProvider interface
+  with the system property <<<de.jollyday.config.providers>>>. This will overload the basic and the
+  URL specified properties.
+  
+  Example: <<<-Dde.jollyday.config.providers=some.package.name.MyConfigurationProvider,some.other.package.AnotherConfigurationProvider>>>
+  
+  You can do both where each will overload the other. The order of loading properties is Base, URLs and
+  ConfigurationProvider. 
   
   * Manager implementation
   

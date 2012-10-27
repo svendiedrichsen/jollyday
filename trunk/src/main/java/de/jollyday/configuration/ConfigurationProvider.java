@@ -30,7 +30,7 @@ public interface ConfigurationProvider {
 	 * {@link ConfigurationProvider} implementations to use for jollyday
 	 * configuration.
 	 */
-	public static final String CONFIG_PROVIDERS_PROPERTY = "de.jollyday.config.provider";
+	public static final String CONFIG_PROVIDERS_PROPERTY = "de.jollyday.config.providers";
 	/**
 	 * System property to define URLs to overriding jollyday configuration
 	 * files.
