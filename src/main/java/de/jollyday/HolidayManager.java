@@ -15,9 +15,6 @@
  */
 package de.jollyday;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -32,6 +29,7 @@ import java.util.logging.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.ReadableInterval;
 
+import de.jollyday.configuration.ConfigurationProviderManager;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.ClassLoadingUtil;
 
@@ -45,22 +43,11 @@ import de.jollyday.util.ClassLoadingUtil;
  */
 public abstract class HolidayManager {
 
-	/**
-	 * Logger.
-	 */
 	private static final Logger LOG = Logger.getLogger(HolidayManager.class.getName());
-	/**
-	 * System property to define overriding configuration file.
-	 */
-	private static final String SYSTEM_CONFIG_PROPERTY = "de.jollyday.config";
 	/**
 	 * Configuration property for the implementing Manager class.
 	 */
 	private static final String MANAGER_IMPL_CLASS_PREFIX = "manager.impl";
-	/**
-	 * The name of the configuration file.
-	 */
-	private static final String CONFIG_FILE = "jollyday.properties";
 	/**
 	 * Signifies if caching of manager instances is enabled. If not every call
 	 * to getInstance will return a newly instantiated and initialized manager.
@@ -88,6 +75,10 @@ public abstract class HolidayManager {
 	 * Utility to load classes.
 	 */
 	private static ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
+	/**
+	 * Manager for configuration providers. Delivers the jollyday configuration.
+	 */
+	private static ConfigurationProviderManager configurationProviderManager = new ConfigurationProviderManager();
 
 	/**
 	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
@@ -161,7 +152,7 @@ public abstract class HolidayManager {
 			LOG.finer("Creating HolidayManager for calendar '" + calendar + "'. Caching enabled: "
 					+ isManagerCachingEnabled());
 		}
-		Properties props = readProperties();
+		Properties props = configurationProviderManager.getConfigurationProperties();
 		String managerImplClassName = readManagerImplClassName(calendar, props);
 		HolidayManager m = instantiateManagerImpl(managerImplClassName);
 		m.setProperties(props);
@@ -223,7 +214,7 @@ public abstract class HolidayManager {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Creating HolidayManager for URL '" + url + "'. Caching enabled: " + isManagerCachingEnabled());
 		}
-		Properties props = readProperties();
+		Properties props = configurationProviderManager.getConfigurationProperties();
 		String managerImplClassName = readManagerImplClassName(null, props);
 		HolidayManager m = instantiateManagerImpl(managerImplClassName);
 		m.setProperties(props);
@@ -304,78 +295,6 @@ public abstract class HolidayManager {
 		synchronized (MANAGER_CHACHE) {
 			MANAGER_CHACHE.clear();
 		}
-	}
-
-	/**
-	 * Reads all configuration properties from classpath and config file and
-	 * merges them.
-	 * 
-	 * @return Merged config properties.
-	 * @throws IOException
-	 */
-	private static Properties readProperties() {
-		Properties props = readPropertiesFromClasspath();
-		props.putAll(readPropertiesFromConfigFile());
-		return props;
-	}
-
-	/**
-	 * Opens the default configuration file from classpath.
-	 * 
-	 * @return Properties
-	 */
-	private static Properties readPropertiesFromClasspath() {
-		Properties props = new Properties();
-		InputStream stream = null;
-		try {
-			try {
-				stream = HolidayManager.class.getClassLoader().getResource(CONFIG_FILE).openStream();
-				if (stream != null) {
-					props.load(stream);
-				} else {
-					LOG.warning("Could not load properties file '" + CONFIG_FILE + "' from classpath.");
-				}
-			} finally {
-				if (stream != null) {
-					stream.close();
-				}
-			}
-		} catch (IOException e) {
-			throw new IllegalStateException("Could not load properties from classpath.", e);
-		}
-		return props;
-	}
-
-	/**
-	 * Tries to read a configuration file from an eventually defined system
-	 * property. Exceptions will be caught and put into the log.
-	 * 
-	 * @return Properties
-	 */
-	private static Properties readPropertiesFromConfigFile() {
-		Properties p = new Properties();
-		Properties systemProps = System.getProperties();
-		if (systemProps.containsKey(SYSTEM_CONFIG_PROPERTY)) {
-			String configFileName = systemProps.getProperty(SYSTEM_CONFIG_PROPERTY);
-			InputStream input = null;
-			try {
-				input = new FileInputStream(configFileName);
-				p.load(input);
-			} catch (IOException e) {
-				if (LOG.isLoggable(Level.WARNING)) {
-					LOG.warning("Cannot read specified configuration file " + configFileName + ". " + e.getMessage());
-				}
-			} finally {
-				if (input != null) {
-					try {
-						input.close();
-					} catch (IOException e) {
-						LOG.warning("Could not close input stream for loading properties " + configFileName + ".");
-					}
-				}
-			}
-		}
-		return p;
 	}
 
 	/**
