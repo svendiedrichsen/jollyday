@@ -48,7 +48,7 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 			String[] strConfigURLs = configURLs.split(",");
 			if (strConfigURLs != null) {
 				for (String strURL : strConfigURLs) {
-					if (strURL == null)
+					if (strURL == null || "".equals(strURL))
 						continue;
 					InputStream inputStream = null;
 					try {
@@ -56,7 +56,8 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 						inputStream = configURL.openStream();
 						properties.load(inputStream);
 					} catch (Exception e) {
-						LOG.warning("Cannot read configuration from " + strURL + ". Invalid URL.");
+						LOG.warning("Cannot read configuration from '" + strURL + "'. " + e.getClass().getSimpleName()
+								+ " (" + e.getMessage() + ").");
 					} finally {
 						if (inputStream != null) {
 							try {
