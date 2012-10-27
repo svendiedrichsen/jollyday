@@ -67,16 +67,17 @@ public class ConfigurationProviderManager {
 			String[] providersClassNames = providersStrList.split(",");
 			if (providersClassNames != null) {
 				for (String providerClassName : providersClassNames) {
-					if (providerClassName == null)
+					if (providerClassName == null || "".equals(providerClassName))
 						continue;
 					try {
-						Class<?> providerClass = Class.forName(providerClassName.trim());
+						Class<?> providerClass = Class.forName(providerClassName.trim(), true, Thread.currentThread()
+								.getContextClassLoader());
 						ConfigurationProvider configurationProvider = ConfigurationProvider.class.cast(providerClass
 								.newInstance());
 						configurationProvider.putConfiguration(properties);
 					} catch (Exception e) {
-						LOG.warning("Cannot load configuration from provider class " + providerClassName + ". "
-								+ e.getClass().getSimpleName());
+						LOG.warning("Cannot load configuration from provider class '" + providerClassName + "'. "
+								+ e.getClass().getSimpleName() + " (" + e.getMessage() + ").");
 					}
 				}
 			}
