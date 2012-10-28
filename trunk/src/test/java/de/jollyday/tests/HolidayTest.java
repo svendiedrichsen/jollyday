@@ -27,9 +27,8 @@ import java.util.logging.Logger;
 import junit.framework.Assert;
 
 import org.joda.time.DateTimeConstants;
-import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
-import org.joda.time.chrono.GregorianChronology;
+import org.joda.time.chrono.ISOChronology;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -86,7 +85,7 @@ public class HolidayTest {
 
 	@Before
 	public void init() {
-		System.setProperty("de.jollyday.config", "./src/test/resources/test.app.properties");
+		System.setProperty("de.jollyday.config.urls", "file:./src/test/resources/test.app.properties");
 		defaultLocale = Locale.getDefault();
 		Locale.setDefault(Locale.GERMAN);
 	}
@@ -94,7 +93,7 @@ public class HolidayTest {
 	@After
 	public void destroy() {
 		Locale.setDefault(defaultLocale);
-		System.clearProperty("de.jollyday.config");
+		System.clearProperty("de.jollyday.config.urls");
 	}
 
 	@Test(expected = IllegalStateException.class)
@@ -176,11 +175,11 @@ public class HolidayTest {
 
 	@Test
 	public void testChronology() throws Exception {
-		GregorianChronology gregorianChronoUTC = GregorianChronology.getInstance(DateTimeZone.UTC);
+		ISOChronology isoChrono = ISOChronology.getInstanceUTC();
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010);
 		for (Holiday d : holidays) {
-			Assert.assertEquals("Wrong chronology.", gregorianChronoUTC, d.getDate().getChronology());
+			Assert.assertEquals("Wrong chronology.", isoChrono, d.getDate().getChronology());
 		}
 	}
 
