@@ -18,7 +18,7 @@
 			descriptionPropertiesKey="CHRISTMAS" />
 		<tns:Fixed month="DECEMBER" day="31"
 			descriptionPropertiesKey="NEW_YEARS_EVE" />
-		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY"
 			chronology="JULIAN" />
 		<tns:ChristianHoliday type="EASTER_MONDAY"

@@ -69,7 +69,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 	 */
 	protected void addChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType,
 			Set<Holiday> holidays) {
-		LocalDate convertedDate = calendarUtil.convertToGregorianDate(day);
+		LocalDate convertedDate = calendarUtil.convertToISODate(day);
 		de.jollyday.HolidayType type = xmlUtil.getType(holidayType);
 		Holiday h = new Holiday(convertedDate, propertiesKey, type);
 		holidays.add(h);

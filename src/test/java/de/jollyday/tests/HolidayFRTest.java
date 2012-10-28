@@ -17,11 +17,9 @@ package de.jollyday.tests;
 
 import java.util.Locale;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import de.jollyday.HolidayCalendar;
-import de.jollyday.HolidayManager;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 
 public class HolidayFRTest extends AbstractCountryTestBase {
@@ -34,12 +32,12 @@ public class HolidayFRTest extends AbstractCountryTestBase {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
 
-	@Test 
+	@Test
 	public void testManagerSameInstanceFR() {
 		validateManagerSameInstance(Locale.FRANCE, HolidayCalendar.FRANCE);
 	}
-	
-	@Test 
+
+	@Test
 	public void testManagerDifferentInstanceFR() {
 		validateManagerDifferentInstance(HolidayCalendar.FRANCE);
 	}

@@ -25,8 +25,7 @@ import junit.framework.Assert;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Interval;
 import org.joda.time.LocalDate;
-import org.joda.time.chrono.GregorianChronology;
-import org.joda.time.chrono.JulianChronology;
+import org.joda.time.chrono.ISOChronology;
 import org.junit.Test;
 
 import de.jollyday.Holiday;
@@ -182,30 +181,18 @@ public class UtilTest {
 	}
 
 	@Test
-	public void testCalendarUtilChronology() {
-		for (int i = 0; i <= 1583; i++) {
-			Assert.assertEquals("Wrong chronology.", JulianChronology.getInstance(), calendarUtil.getChronology(i));
-		}
-		for (int i = 1584; i <= 2500; i++) {
-			Assert.assertEquals("Wrong chronology.", GregorianChronology.getInstance(), calendarUtil.getChronology(i));
-		}
-	}
-
-	@Test
 	public void testCalendarUtilEasterJulian() {
-		Assert.assertEquals("Wrong easter date.", calendarUtil.create(1583, 3, 31, JulianChronology.getInstance()),
-				calendarUtil.getEasterSunday(1583));
+		Assert.assertEquals("Wrong easter date.", calendarUtil.create(1583, 4, 10), calendarUtil.getEasterSunday(1583));
 	}
 
 	@Test
 	public void testCalendarUtilEasterGregorian() {
-		Assert.assertEquals("Wrong easter date.", calendarUtil.create(1584, 4, 1, GregorianChronology.getInstance()),
-				calendarUtil.getEasterSunday(1584));
+		Assert.assertEquals("Wrong easter date.", calendarUtil.create(1584, 4, 1), calendarUtil.getEasterSunday(1584));
 	}
 
 	@Test
 	public void testCalendarUtilToday() {
-		LocalDate today = new LocalDate(Calendar.getInstance(), GregorianChronology.getInstance());
+		LocalDate today = new LocalDate(Calendar.getInstance(), ISOChronology.getInstance());
 		Assert.assertEquals("Wrong date.", today, calendarUtil.create());
 	}
 
