@@ -15,11 +15,14 @@
  */
 package de.jollyday.tests;
 
+import static org.junit.Assert.assertFalse;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +38,7 @@ import org.junit.Test;
 
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
+import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.holidaytype.LocalizedHolidayType;
 import de.jollyday.util.CalendarUtil;
@@ -140,6 +144,22 @@ public class HolidayTest {
 			} else if (hi.getId().equalsIgnoreCase("level11")) {
 				Assert.assertEquals("Wrong number of children on second level of level 11.", 0, hi.getChildren().size());
 			}
+		}
+	}
+
+	@Test
+	public void testHierarchyDescriptionsDefined() {
+		for (HolidayCalendar c : HolidayCalendar.values()) {
+			HolidayManager m = HolidayManager.getInstance(c);
+			assertNotUndefined(c, m.getCalendarHierarchy());
+		}
+	}
+
+	private void assertNotUndefined(HolidayCalendar calendar, CalendarHierarchy c) {
+		assertFalse("Calendar " + calendar + " Hierarchy " + c.getId() + " is lacking a description.",
+				"undefined".equals(c.getDescription()));
+		for (Map.Entry<String, CalendarHierarchy> element : c.getChildren().entrySet()) {
+			assertNotUndefined(calendar, element.getValue());
 		}
 	}
 

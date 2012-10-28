@@ -32,6 +32,7 @@ public class CalendarHierarchy {
 	private Map<String, CalendarHierarchy> children = new HashMap<String, CalendarHierarchy>();
 	private final CalendarHierarchy parent;
 	private ResourceUtil resourceUtil = new ResourceUtil();
+	private String fallbackDescription;
 
 	/**
 	 * Constructor which takes a eventually existing parent hierarchy node and
@@ -64,7 +65,7 @@ public class CalendarHierarchy {
 	 * @return the description
 	 */
 	public String getDescription() {
-		return resourceUtil.getCountryDescription(Locale.getDefault(), getPropertiesKey());
+		return getDescription(Locale.getDefault());
 	}
 
 	/**
@@ -75,7 +76,11 @@ public class CalendarHierarchy {
 	 * @return Description text
 	 */
 	public String getDescription(Locale l) {
-		return resourceUtil.getCountryDescription(l, getPropertiesKey());
+		String descr = resourceUtil.getCountryDescription(l, getPropertiesKey());
+		if (ResourceUtil.UNDEFINED.equals(descr) && fallbackDescription != null) {
+			descr = fallbackDescription;
+		}
+		return descr;
 	}
 
 	/**
@@ -136,6 +141,13 @@ public class CalendarHierarchy {
 	 */
 	public Map<String, CalendarHierarchy> getChildren() {
 		return children;
+	}
+
+	/**
+	 * @param description
+	 */
+	public void setFallbackDescription(String description) {
+		this.fallbackDescription = description;
 	}
 
 }
