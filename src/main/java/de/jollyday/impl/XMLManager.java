@@ -377,6 +377,7 @@ public class XMLManager extends HolidayManager {
 	 */
 	private static CalendarHierarchy createConfigurationHierarchy(final Configuration c, CalendarHierarchy h) {
 		h = new CalendarHierarchy(h, c.getHierarchy());
+		h.setFallbackDescription(c.getDescription());
 		for (Configuration sub : c.getSubConfigurations()) {
 			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
 			h.getChildren().put(subHierarchy.getId(), subHierarchy);

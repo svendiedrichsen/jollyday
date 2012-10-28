@@ -31,12 +31,12 @@
 			<tns:Fixed month="OCTOBER" day="10" descriptionPropertiesKey="PLEBISCITE"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
-	<tns:SubConfigurations hierarchy="nö" description="Niederösterreich">
+	<tns:SubConfigurations hierarchy="la" description="Niederösterreich">
 		<tns:Holidays>
 			<tns:Fixed month="NOVEMBER" day="15" descriptionPropertiesKey="LEOPOLD"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
-	<tns:SubConfigurations hierarchy="oö" description="Oberösterreich">
+	<tns:SubConfigurations hierarchy="ua" description="Oberösterreich">
 		<tns:Holidays>
 			<tns:Fixed month="MAY" day="4" descriptionPropertiesKey="FLORIAN"/>
 		</tns:Holidays>

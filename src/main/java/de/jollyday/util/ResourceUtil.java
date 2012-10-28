@@ -53,7 +53,7 @@ public class ResourceUtil {
 	 * Unknown constant will be returned when there is no description
 	 * configured.
 	 */
-	private static final String UNDEFINED = "undefined";
+	public static final String UNDEFINED = "undefined";
 	/**
 	 * Cache for the holiday descriptions resource bundles.
 	 */
@@ -110,7 +110,10 @@ public class ResourceUtil {
 	 *            a {@link java.lang.String} object.
 	 */
 	public String getCountryDescription(Locale l, String key) {
-		return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key, getCountryDescriptions(l));
+		if (key != null) {
+			return getDescription(COUNTRY_PROPERTY_PREFIX + "." + key.toLowerCase(), getCountryDescriptions(l));
+		}
+		return ResourceUtil.UNDEFINED;
 	}
 
 	/**
