@@ -1,7 +1,7 @@
 API usage
 
   The API usage is very simple. Instantiate a <<<HolidayManager>>> by calling <<<getInstance()>>> for one
-  country and use this manager to determine the holidays for a year/state/district.
+  country or one URL to a holiday xml file and use this manager to determine the holidays for a year/state/district.
   
 Code Example
 
@@ -9,6 +9,12 @@ Code Example
   
 -----------------------
 HolidayManager m = HolidayManager.getInstance(HolidayCalendar.UNITED_STATES);
+
+or
+
+URL url = new URL("file:some/path/MyHolidays.xml");
+HolidayManager m = HolidayManager.getInstance(url);
+
 -----------------------
 
  [[3]] To get the holidays for the state New York:
@@ -29,10 +35,14 @@ HolidayManager m = HolidayManager.getInstance(HolidayCalendar.UNITED_STATES);
   
    [[b]] put your holiday rules into this (for examples please the XML files in the provided JAR file in the folder holidays)
   
-   [[c]] put your <<<Holidays_MyOwn.xml>>> in your applications classpath
+   [[c.1]] put your <<<Holidays_MyOwn.xml>>> in your applications classpath
+   
+   [[c.2]] put your <<<Holidays_MyOwn.xml>>> somewhere and reference it by URL
   
-   [[d]] to use your holiday rules create an <<<HolidayManager>>> instance by calling <<<HolidayManager m = HolidayManager.getInstance("MyOwn");>>>
+   [[d.1]] to use your holiday rules create an <<<HolidayManager>>> instance by calling <<<HolidayManager m = HolidayManager.getInstance("MyOwn");>>>
   
+   [[d.2]] to use your holiday rules create an <<<HolidayManager>>> instance by calling <<<HolidayManager m = HolidayManager.getInstance(url);>>>
+
    [[e]] call <<<Set<Holiday> holidays = m.getHolidays(2010);>>> to retrieve the holidays for 2010.  
   
   
