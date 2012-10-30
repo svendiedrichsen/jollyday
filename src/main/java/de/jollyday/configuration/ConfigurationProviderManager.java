@@ -46,13 +46,18 @@ public class ConfigurationProviderManager {
 	 * {@link URLConfigurationProvider} and any configuration provider specified
 	 * by the system property 'de.jollyday.config.provider'.
 	 * 
+	 * @param properties
+	 *            the configuration {@link Properties} to use
 	 * @return The overall jollyday configuration properties.
 	 */
-	public Properties getConfigurationProperties() {
-		Properties properties = new Properties();
-		addInternalConfigurationProviderProperies(properties);
-		addCustomConfigurationProviderProperties(properties);
-		return properties;
+	public Properties getConfigurationProperties(Properties properties) {
+		Properties unifiedProperties = new Properties();
+		addInternalConfigurationProviderProperies(unifiedProperties);
+		addCustomConfigurationProviderProperties(unifiedProperties);
+		if (properties != null) {
+			unifiedProperties.putAll(properties);
+		}
+		return unifiedProperties;
 	}
 
 	private void addInternalConfigurationProviderProperies(Properties properties) {
