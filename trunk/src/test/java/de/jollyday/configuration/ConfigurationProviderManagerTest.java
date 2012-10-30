@@ -32,14 +32,14 @@ public class ConfigurationProviderManagerTest {
 	@Test
 	public void testGetPropertiesWithEmptyProvidersList() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, "");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties();
+		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
 		assertResult(resultProperties);
 	}
 
 	@Test
 	public void testGetPropertiesWithWrongClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, "java.lang.String");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties();
+		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
 		assertResult(resultProperties);
 	}
 
@@ -47,7 +47,7 @@ public class ConfigurationProviderManagerTest {
 	public void testGetPropertiesWithCorrectClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, getClass().getPackage().getName()
 				+ ".TestProvider");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties();
+		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
 		assertResult(resultProperties);
 		assertEquals("Wrong value for property: key", "value", resultProperties.getProperty("key"));
 	}
@@ -56,9 +56,20 @@ public class ConfigurationProviderManagerTest {
 	public void testGetPropertiesWithWrongAndCorrectClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, getClass().getPackage().getName()
 				+ ".TestProvider,java.lang.String");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties();
+		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
 		assertResult(resultProperties);
 		assertEquals("Wrong value for property: key", "value", resultProperties.getProperty("key"));
+	}
+
+	@Test
+	public void testGetPropertiesWithManualOverride() {
+		Properties manualProps = new Properties();
+		manualProps.setProperty("MANUAL_KEY", "MANUAL_VALUE");
+		manualProps.setProperty("manager.impl", "NewImpl");
+		Properties resultProperties = configurationProviderManager.getConfigurationProperties(manualProps);
+		assertResult(resultProperties);
+		assertEquals("Wrong value for property: MANUAL_KEY", "MANUAL_VALUE", resultProperties.getProperty("MANUAL_KEY"));
+		assertEquals("Wrong value for property: manager.impl", "NewImpl", resultProperties.getProperty("manager.impl"));
 	}
 
 	private void assertResult(Properties resultProperties) {
