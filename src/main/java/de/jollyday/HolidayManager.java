@@ -125,7 +125,7 @@ public abstract class HolidayManager {
 	 * @return HolidayManager
 	 */
 	public static final HolidayManager getInstance(final HolidayCalendar c, Properties properties) {
-		return getInstance(c.getId());
+		return getInstance(c.getId(), properties);
 	}
 
 	/**
