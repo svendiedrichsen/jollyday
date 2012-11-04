@@ -45,6 +45,8 @@ public class XMLUtil {
 
 	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
+	private JAXBContextCreator contextCreator = new JAXBContextCreator();
+
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
 	 * this.
@@ -62,35 +64,23 @@ public class XMLUtil {
 		try {
 			JAXBContext ctx = null;
 			try {
-				ctx = createJAXBContext(Thread.currentThread().getContextClassLoader());
-			} catch (Exception e) {
+				ctx = contextCreator.create(XMLUtil.PACKAGE, Thread.currentThread().getContextClassLoader());
+			} catch (JAXBException e) {
 				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
 				ctx = null;
 			}
 			if (ctx == null) {
-				ctx = createJAXBContext(ObjectFactory.class.getClassLoader());
+				ctx = contextCreator.create(XMLUtil.PACKAGE, ObjectFactory.class.getClassLoader());
 			}
 			Unmarshaller um = ctx.createUnmarshaller();
 			@SuppressWarnings("unchecked")
 			JAXBElement<Configuration> el = (JAXBElement<Configuration>) um.unmarshal(stream);
 			return el.getValue();
-		} catch (Exception ue) {
+		} catch (JAXBException ue) {
 			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
 		} finally {
 			stream.close();
 		}
-	}
-
-	/**
-	 * Loads the JAXB context using the provided classloader.
-	 * 
-	 * @param classLoader
-	 *            The classloader to use
-	 * @return JAXBContext
-	 * @throws JAXBException
-	 */
-	private JAXBContext createJAXBContext(ClassLoader classLoader) throws JAXBException {
-		return JAXBContext.newInstance(XMLUtil.PACKAGE, classLoader);
 	}
 
 	/**
@@ -174,6 +164,12 @@ public class XMLUtil {
 			return LocalizedHolidayType.UNOFFICIAL_HOLIDAY;
 		default:
 			throw new IllegalArgumentException("Unknown type " + type);
+		}
+	}
+
+	public class JAXBContextCreator {
+		public JAXBContext create(String packageName, ClassLoader classLoader) throws JAXBException {
+			return JAXBContext.newInstance(packageName, classLoader);
 		}
 	}
 
