@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="bg" description="Bulgaria"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+		<tns:Fixed month="MARCH" day="3" descriptionPropertiesKey="LIBERATION" />
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY" />
+		<tns:Fixed month="MAY" day="6" descriptionPropertiesKey="ST_GEORGE" />
+		<tns:Fixed month="MAY" day="24" descriptionPropertiesKey="EDU_CULTURE" />
+		<tns:Fixed month="SEPTEMBER" day="6"
+			descriptionPropertiesKey="UNIFICATION" />
+		<tns:Fixed month="SEPTEMBER" day="22"
+			descriptionPropertiesKey="INDEPENDENCE" />
+		<tns:Fixed month="DECEMBER" day="24"
+			descriptionPropertiesKey="CHRISTMAS_EVE" />
+		<tns:Fixed month="DECEMBER" day="25"
+			descriptionPropertiesKey="CHRISTMAS" />
+		<tns:Fixed month="DECEMBER" day="31"
+			descriptionPropertiesKey="NEW_YEARS_EVE" />
+		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"
+			chronology="JULIAN" />
+		<tns:ChristianHoliday type="EASTER_MONDAY"
+			chronology="JULIAN" />
+	</tns:Holidays>
+</tns:Configuration>

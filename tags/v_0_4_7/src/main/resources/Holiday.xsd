@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/Holiday"
+	xmlns:tns="http://www.example.org/Holiday" elementFormDefault="qualified">
+
+	<simpleType name="Weekday">
+		<restriction base="string">
+			<enumeration value="MONDAY"></enumeration>
+			<enumeration value="TUESDAY"></enumeration>
+			<enumeration value="WEDNESDAY"></enumeration>
+			<enumeration value="THURSDAY"></enumeration>
+			<enumeration value="FRIDAY"></enumeration>
+			<enumeration value="SATURDAY"></enumeration>
+			<enumeration value="SUNDAY"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="Month">
+		<restriction base="string">
+			<enumeration value="JANUARY"></enumeration>
+			<enumeration value="FEBRUARY"></enumeration>
+			<enumeration value="MARCH"></enumeration>
+			<enumeration value="MAY"></enumeration>
+			<enumeration value="JUNE"></enumeration>
+			<enumeration value="JULY"></enumeration>
+			<enumeration value="AUGUST"></enumeration>
+			<enumeration value="SEPTEMBER"></enumeration>
+			<enumeration value="OCTOBER"></enumeration>
+			<enumeration value="NOVEMBER"></enumeration>
+			<enumeration value="DECEMBER"></enumeration>
+			<enumeration value="APRIL"></enumeration>
+		</restriction>
+	</simpleType>
+
+
+	<complexType name="RelativeToFixed">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<choice maxOccurs="1" minOccurs="1">
+						<element name="Days" type="int" maxOccurs="1" minOccurs="0">
+						</element>
+						<element name="Weekday" type="tns:Weekday" maxOccurs="1"
+							minOccurs="0">
+						</element>
+					</choice>
+					<element name="When" type="tns:When"></element>
+					<element name="Date" type="tns:Fixed"></element>
+				</sequence>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+
+
+	<complexType name="Holidays">
+		<sequence>
+			<element name="Fixed" type="tns:Fixed" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="RelativeToFixed" type="tns:RelativeToFixed"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="RelativeToWeekdayInMonth"
+				type="tns:RelativeToWeekdayInMonth" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ChristianHoliday" type="tns:ChristianHoliday"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="IslamicHoliday" type="tns:IslamicHoliday"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="FixedWeekdayBetweenFixed"
+				type="tns:FixedWeekdayBetweenFixed" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="FixedWeekdayRelativeToFixed"
+				type="tns:FixedWeekdayRelativeToFixed" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="HinduHoliday" type="tns:HinduHoliday"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="HebrewHoliday" type="tns:HebrewHoliday"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="EthiopianOrthodoxHoliday"
+				type="tns:EthiopianOrthodoxHoliday" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="RelativeToEasterSunday" type="tns:RelativeToEasterSunday" minOccurs="0" maxOccurs="unbounded"></element>
+		</sequence>
+
+
+
+
+	</complexType>
+
+
+	<element name="Configuration" type="tns:Configuration"></element>
+
+	<complexType name="Configuration">
+		<sequence>
+			<element name="Holidays" type="tns:Holidays"></element>
+			<element name="SubConfigurations" type="tns:Configuration"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="hierarchy" type="string"></attribute>
+		<attribute name="description" type="string"></attribute>
+	</complexType>
+
+	<complexType name="Fixed">
+		<complexContent>
+			<extension base="tns:MoveableHoliday">
+				<attribute name="month" type="tns:Month"></attribute>
+
+				<attribute name="day">
+					<simpleType>
+						<restriction base="int">
+							<minInclusive value="1"></minInclusive>
+							<maxInclusive value="31"></maxInclusive>
+						</restriction>
+					</simpleType>
+				</attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<simpleType name="When">
+		<restriction base="string">
+			<enumeration value="BEFORE"></enumeration>
+			<enumeration value="AFTER"></enumeration>
+		</restriction>
+	</simpleType>
+
+
+	<complexType name="FixedWeekdayInMonth">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="which" type="tns:Which"></attribute>
+
+				<attribute name="weekday" type="tns:Weekday"></attribute>
+
+				<attribute name="month" type="tns:Month"></attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="Which">
+		<restriction base="string">
+			<enumeration value="FIRST"></enumeration>
+			<enumeration value="SECOND"></enumeration>
+			<enumeration value="THIRD"></enumeration>
+			<enumeration value="LAST"></enumeration>
+			<enumeration value="FOURTH"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="RelativeToWeekdayInMonth">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="FixedWeekday" type="tns:FixedWeekdayInMonth"></element>
+				</sequence>
+				<attribute name="weekday" type="tns:Weekday"></attribute>
+				<attribute name="when" type="tns:When"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="IslamicHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type" type="tns:IslamicHolidayType">
+				</attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<simpleType name="IslamicHolidayType">
+		<restriction base="string">
+			<enumeration value="NEWYEAR"></enumeration>
+			<enumeration value="ASCHURA"></enumeration>
+			<enumeration value="MAWLID_AN_NABI"></enumeration>
+			<enumeration value="LAILAT_AL_MIRAJ"></enumeration>
+			<enumeration value="LAILAT_AL_BARAT"></enumeration>
+			<enumeration value="RAMADAN"></enumeration>
+			<enumeration value="LAILAT_AL_QADR"></enumeration>
+			<enumeration value="ID_AL_FITR"></enumeration>
+			<enumeration value="ID_UL_ADHA"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ChronologyType">
+		<restriction base="string">
+			<enumeration value="JULIAN"></enumeration>
+			<enumeration value="GREGORIAN"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="ChristianHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type" type="tns:ChristianHolidayType">
+				</attribute>
+
+				<attribute name="chronology" type="tns:ChronologyType">
+				</attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="HolidayType">
+		<restriction base="string">
+			<enumeration value="OFFICIAL_HOLIDAY" />
+			<enumeration value="UNOFFICIAL_HOLIDAY" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ChristianHolidayType">
+		<restriction base="string">
+			<enumeration value="GOOD_FRIDAY"></enumeration>
+			<enumeration value="EASTER_MONDAY"></enumeration>
+			<enumeration value="ASCENSION_DAY"></enumeration>
+			<enumeration value="WHIT_MONDAY"></enumeration>
+			<enumeration value="CORPUS_CHRISTI"></enumeration>
+			<enumeration value="MAUNDY_THURSDAY"></enumeration>
+			<enumeration value="ASH_WEDNESDAY"></enumeration>
+			<enumeration value="MARDI_GRAS"></enumeration>
+			<enumeration value="GENERAL_PRAYER_DAY"></enumeration>
+			<enumeration value="CLEAN_MONDAY"></enumeration>
+			<enumeration value="SHROVE_MONDAY"></enumeration>
+			<enumeration value="PENTECOST"></enumeration>
+			<enumeration value="CARNIVAL"></enumeration>
+			<enumeration value="EASTER_SATURDAY"></enumeration>
+			<enumeration value="EASTER_TUESDAY"></enumeration>
+			<enumeration value="SACRED_HEART"></enumeration>
+			<enumeration value="EASTER"></enumeration>
+			<enumeration value="PENTECOST_MONDAY"></enumeration>
+			<enumeration value="WHIT_SUNDAY"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="FixedWeekdayBetweenFixed">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="from" type="tns:Fixed"></element>
+					<element name="to" type="tns:Fixed"></element>
+				</sequence>
+				<attribute name="weekday" type="tns:Weekday"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="Holiday" abstract="true">
+		<attribute name="validFrom" type="int" use="optional" />
+		<attribute name="validTo" type="int" />
+		<attribute name="every" type="tns:HolidayCycleType" default="EVERY_YEAR" />
+		<attribute name="descriptionPropertiesKey" type="string" />
+		<attribute name="localizedType" type="tns:HolidayType"
+			default="OFFICIAL_HOLIDAY" />
+	</complexType>
+
+
+	<simpleType name="Substituted">
+		<restriction base="string">
+			<enumeration value="ON_SATURDAY"></enumeration>
+			<enumeration value="ON_SUNDAY"></enumeration>
+			<enumeration value="ON_WEEKEND"></enumeration>
+			<enumeration value="ON_TUESDAY"></enumeration>
+			<enumeration value="ON_WEDNESDAY"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="With">
+		<restriction base="string">
+			<enumeration value="NEXT"></enumeration>
+			<enumeration value="PREVIOUS"></enumeration>
+		</restriction>
+	</simpleType>
+
+	
+
+	<complexType name="MovingCondition">
+		<attribute name="substitute" type="tns:Weekday"></attribute>
+		<attribute name="with" type="tns:With"></attribute>
+		<attribute name="weekday" type="tns:Weekday"></attribute>
+	</complexType>
+
+	<simpleType name="HinduHolidayType">
+		<restriction base="string">
+			<enumeration value="HOLI"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="HinduHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type" type="tns:HinduHolidayType"></attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+
+	<complexType name="MoveableHoliday" abstract="true">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="MovingCondition" type="tns:MovingCondition" maxOccurs="unbounded" minOccurs="0"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="HebrewHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type" type="tns:HebrewHolidayType"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="HebrewHolidayType">
+		<restriction base="string">
+			<enumeration value="ROSH_HASHANAH"></enumeration>
+			<enumeration value="ASERET_YEMEI_TESHUVA"></enumeration>
+			<enumeration value="YOM_KIPPUR"></enumeration>
+			<enumeration value="SUKKOT"></enumeration>
+			<enumeration value="SHEMINI_ATZERET"></enumeration>
+			<enumeration value="HANUKKAH"></enumeration>
+			<enumeration value="ASARAH_BETEVET"></enumeration>
+			<enumeration value="TU_BISHVAT"></enumeration>
+			<enumeration value="PURIM"></enumeration>
+			<enumeration value="1_NISAN"></enumeration>
+			<enumeration value="PESACH"></enumeration>
+			<enumeration value="SEFIRAH"></enumeration>
+			<enumeration value="LAG_BAOMER"></enumeration>
+			<enumeration value="SHAVOUT"></enumeration>
+			<enumeration value="17_TAMMUZ"></enumeration>
+			<enumeration value="TISHA_BAV"></enumeration>
+			<enumeration value="1_ELUL"></enumeration>
+			<enumeration value="ROSH_CODESH"></enumeration>
+			<enumeration value="SHABBAT"></enumeration>
+			<enumeration value="YOM_HASHOAH"></enumeration>
+			<enumeration value="YOM_HAZIKARON"></enumeration>
+			<enumeration value="YOM_HAATZAMAUT"></enumeration>
+			<enumeration value="YOM_YERUSHALAIM"></enumeration>
+		</restriction>
+	</simpleType>
+
+
+	<complexType name="EthiopianOrthodoxHoliday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<attribute name="type"
+					type="tns:EthiopianOrthodoxHolidayType">
+				</attribute>
+
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<simpleType name="EthiopianOrthodoxHolidayType">
+    	<restriction base="string">
+    		<enumeration value="TIMKAT"></enumeration>
+    		<enumeration value="ENKUTATASH"></enumeration>
+    		<enumeration value="MESKEL"></enumeration>
+    	</restriction>
+    </simpleType>
+
+	<complexType name="FixedWeekdayRelativeToFixed">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="day" type="tns:Fixed"></element>
+				</sequence>
+				<attribute name="which" type="tns:Which"></attribute>
+				<attribute name="weekday" type="tns:Weekday"></attribute>
+				<attribute name="when" type="tns:When"></attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<simpleType name="HolidayCycleType">
+		<restriction base="string">
+			<enumeration value="EVERY_YEAR"></enumeration>
+			<enumeration value="2_YEARS"></enumeration>
+			<enumeration value="4_YEARS"></enumeration>
+			<enumeration value="5_YEARS"></enumeration>
+			<enumeration value="6_YEARS"></enumeration>
+			<enumeration value="ODD_YEARS"></enumeration>
+			<enumeration value="EVEN_YEARS"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="RelativeToEasterSunday">
+		<complexContent>
+			<extension base="tns:Holiday">
+				<sequence>
+					<element name="chronology"
+						type="tns:ChronologyType">
+					</element>
+					<element name="days" type="int"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+</schema>

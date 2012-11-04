@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="nyse" description="New York Stock Exchange"
+	xmlns:tns="http://www.example.org/Holiday"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd ">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JULY" day="4" descriptionPropertiesKey="INDEPENDENCE">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS">
+			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
+		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
+		<tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="MEMORIAL"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER" descriptionPropertiesKey="THANKSGIVING"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+	</tns:Holidays>
+</tns:Configuration>

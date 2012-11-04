@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="br" description="Brazil"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="APRIL" day="21" descriptionPropertiesKey="TIRADENTES"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="SEPTEMBER" day="7" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="OCTOBER" day="12" validFrom="1980" descriptionPropertiesKey="APARECIDA"/>
+		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS"/>
+		<tns:Fixed month="NOVEMBER" day="15" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="CARNIVAL"/>
+		<tns:ChristianHoliday type="ASH_WEDNESDAY"/>
+		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
+		<tns:ChristianHoliday type="CORPUS_CHRISTI"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="rj" description="Rio de Janeiro">
+		<tns:Holidays>
+			<tns:Fixed month="APRIL" day="23" validFrom="2007" descriptionPropertiesKey="ST_GEORGE"/>
+			<tns:Fixed month="NOVEMBER" day="20" descriptionPropertiesKey="BLACK_AWARENESS"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="crj" description="City of Rio de Janeiro">
+			<tns:Holidays>
+				<tns:Fixed month="JANUARY" day="20" descriptionPropertiesKey="ST_SEBASTIAN"/>
+				<tns:Fixed month="APRIL" day="23" validTo="2006" descriptionPropertiesKey="ST_GEORGE"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="s" description="Sao Paulo">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="9" descriptionPropertiesKey="CONST_REVOLUTION"/>
+			<tns:Fixed month="NOVEMBER" day="20" descriptionPropertiesKey="BLACK_AWARENESS"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="cs" description="City of Sao Paulo">
+			<tns:Holidays>
+				<tns:Fixed month="JANUARY" day="25" descriptionPropertiesKey="FOUNDATION"/>
+				<tns:Fixed month="NOVEMBER" day="4" descriptionPropertiesKey="FOUNDATION"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="mg" description="Minas Gerais">
+		<tns:Holidays></tns:Holidays>
+		<tns:SubConfigurations hierarchy="bh" description="Belo Horizonte">
+			<tns:Holidays>
+				<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="LADY_GOOD_VOYAGE"/>
+				<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="LADY_CONCEICAO"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="ms" description="Mato Grosso do Sul">
+		<tns:Holidays>
+			<tns:Fixed month="OCTOBER" day="11" descriptionPropertiesKey="FOUNDATION"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="cg" description="Campo Grande">
+			<tns:Holidays>
+				<tns:Fixed month="AUGUST" day="26" descriptionPropertiesKey="FOUNDATION"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+		<tns:SubConfigurations hierarchy="do" description="Dourados">
+			<tns:Holidays>
+				<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="LADY_CONCEICAO"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="pr" description="Parana">
+		<tns:Holidays></tns:Holidays>
+		<tns:SubConfigurations hierarchy="cu" description="Curitiba">
+			<tns:Holidays>
+				<tns:Fixed month="SEPTEMBER" day="8" descriptionPropertiesKey="LADY_LIGHT_PINE"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="rs" description="Rio Grande do Sul">
+		<tns:Holidays>
+			<tns:Fixed month="SEPTEMBER" day="20" descriptionPropertiesKey="FARROUS_REVOLUTION"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="sm" description="Santa Maria">
+			<tns:Holidays>
+				<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="LADY_CONCEICAO"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="rn" description="Rio Grande do Norte">
+		<tns:Holidays>
+			<tns:Fixed month="OCTOBER" day="3" descriptionPropertiesKey="MARTYRS_DAY"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="na" description="Natal">
+			<tns:Holidays>
+				<tns:Fixed month="NOVEMBER" day="21" descriptionPropertiesKey="LADY_APRESENTACAO"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="go" description="Goiás">
+		<tns:Holidays>
+			<tns:Fixed month="OCTOBER" day="24" descriptionPropertiesKey="FOUNDATION"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="pe" description="Pernambuco">
+		<tns:Holidays>
+			<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="LADY_CONCEICAO"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>
