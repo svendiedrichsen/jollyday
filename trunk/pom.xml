@@ -19,6 +19,7 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.scm.id>sourceforge</project.scm.id>
 	</properties>
 	<developers>
 		<developer>
