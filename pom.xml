@@ -19,7 +19,7 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.scm.id>sourceforge</project.scm.id>
+		<project.scm.id>sourceforge.net</project.scm.id>
 	</properties>
 	<developers>
 		<developer>
@@ -95,6 +95,13 @@ Besides those there will be more special calendars like currently existing NYSE 
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.1</version>
+					<dependencies>
+					    <dependency>
+					    	<groupId>org.apache.maven.wagon</groupId>
+					    	<artifactId>wagon-ssh</artifactId>
+					    	<version>1.0</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -218,7 +225,7 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</reporting>
 	<distributionManagement>
 		<site>
-			<id>shell.sourceforge.net</id>
+			<id>sourceforge.net</id>
 			<url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/project-web/jollyday/htdocs</url>
 			<name>Sourceforge Site</name>
 		</site>
