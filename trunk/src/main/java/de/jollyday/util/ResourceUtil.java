@@ -15,6 +15,7 @@
  */
 package de.jollyday.util;
 
+import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -62,6 +63,10 @@ public class ResourceUtil {
 	 * Cache for the country descriptions resource bundles.
 	 */
 	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS_CACHE = new HashMap<Locale, ResourceBundle>();
+	/**
+	 * Util class to provide the correct classloader.
+	 */
+	private transient ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	/**
 	 * The description read with the default locale.
@@ -182,10 +187,25 @@ public class ResourceUtil {
 	private ResourceBundle getResourceBundle(Locale l, Map<Locale, ResourceBundle> resourceCache, String filePrefix) {
 		synchronized (resourceCache) {
 			if (!resourceCache.containsKey(l)) {
-				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l, ResourceUtil.class.getClassLoader());
+				ResourceBundle bundle = ResourceBundle.getBundle(filePrefix, l, classLoadingUtil.getClassloader());
 				resourceCache.put(l, bundle);
 			}
 			return resourceCache.get(l);
+		}
+	}
+
+	/**
+	 * Returns the resource by URL.
+	 * 
+	 * @param resourceName
+	 *            the name/path of the resource to load
+	 * @return the URL to the resource
+	 */
+	public URL getResource(String resourceName) {
+		try {
+			return classLoadingUtil.getClassloader().getResource(resourceName);
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot load resource: " + resourceName, e);
 		}
 	}
 

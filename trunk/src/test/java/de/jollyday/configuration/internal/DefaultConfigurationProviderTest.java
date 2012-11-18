@@ -22,14 +22,14 @@ public class DefaultConfigurationProviderTest {
 			"parser.impl.de.jollyday.config.EthiopianOrthodoxHoliday",
 			"parser.impl.de.jollyday.config.RelativeToEasterSunday"));
 
-	private DefaultConfigurationProvider configurationProvider = new DefaultConfigurationProvider();
+	DefaultConfigurationProvider configurationProvider = new DefaultConfigurationProvider();
 
 	@Test
 	public void testPutConfiguration() {
 		Properties p = new Properties();
 		configurationProvider.putConfiguration(p);
 		assertFalse("Properties shouldn't be empty.", p.isEmpty());
-
 		assertEquals("Default properties are not as expected.", KEYS_DEFAULT_CONFIG, p.keySet());
 	}
+
 }

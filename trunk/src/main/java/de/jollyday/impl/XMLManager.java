@@ -39,6 +39,7 @@ import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
 import de.jollyday.util.ClassLoadingUtil;
+import de.jollyday.util.ResourceUtil;
 import de.jollyday.util.XMLUtil;
 
 /**
@@ -84,6 +85,10 @@ public class XMLManager extends HolidayManager {
 	 * XML utility class.
 	 */
 	private XMLUtil xmlUtil = new XMLUtil();
+	/**
+	 * The utility to load resources.
+	 */
+	private ResourceUtil resourceUtil = new ResourceUtil();
 
 	/**
 	 * {@inheritDoc}
@@ -259,14 +264,8 @@ public class XMLManager extends HolidayManager {
 	 */
 	@Override
 	public void init(final String calendar) {
-
 		String configurationFileName = getConfigurationFileName(calendar);
-		URL urlDestination = null;
-		try {
-			urlDestination = getClass().getClassLoader().getResource(configurationFileName);
-		} catch (Exception e) {
-			throw new IllegalStateException("Cannot instantiate configuration.", e);
-		}
+		URL urlDestination = resourceUtil.getResource(configurationFileName);
 		init(urlDestination);
 	}
 

@@ -20,8 +20,8 @@ import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import de.jollyday.HolidayManager;
 import de.jollyday.configuration.ConfigurationProvider;
+import de.jollyday.util.ResourceUtil;
 
 /**
  * Provider which adds jollydays default configuration.
@@ -38,6 +38,10 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 	 * The name of the configuration file.
 	 */
 	private static final String CONFIG_FILE = "jollyday.properties";
+	/**
+	 * The utility to load resources.
+	 */
+	private ResourceUtil resourceUtil = new ResourceUtil();
 
 	/*
 	 * (non-Javadoc)
@@ -47,10 +51,10 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 	 * .util.Properties)
 	 */
 	public void putConfiguration(Properties properties) {
-		InputStream stream = null;
 		try {
+			InputStream stream = null;
 			try {
-				stream = HolidayManager.class.getClassLoader().getResource(CONFIG_FILE).openStream();
+				stream = resourceUtil.getResource(CONFIG_FILE).openStream();
 				if (stream != null) {
 					properties.load(stream);
 				} else {
