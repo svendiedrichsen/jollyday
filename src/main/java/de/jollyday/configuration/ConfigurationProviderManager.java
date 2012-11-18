@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 
 import de.jollyday.configuration.internal.DefaultConfigurationProvider;
 import de.jollyday.configuration.internal.URLConfigurationProvider;
+import de.jollyday.util.ClassLoadingUtil;
 
 /**
  * Manages the configuration provider implementations and thus delivering the
@@ -33,6 +34,7 @@ public class ConfigurationProviderManager {
 
 	private ConfigurationProvider defaultConfigurationProvider = new DefaultConfigurationProvider();
 	private ConfigurationProvider urlConfigurationProvider = new URLConfigurationProvider();
+	private transient ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	/**
 	 * Constructs an instance
@@ -75,8 +77,8 @@ public class ConfigurationProviderManager {
 					if (providerClassName == null || "".equals(providerClassName))
 						continue;
 					try {
-						Class<?> providerClass = Class.forName(providerClassName.trim(), true, Thread.currentThread()
-								.getContextClassLoader());
+						Class<?> providerClass = Class.forName(providerClassName.trim(), true,
+								classLoadingUtil.getClassloader());
 						ConfigurationProvider configurationProvider = ConfigurationProvider.class.cast(providerClass
 								.newInstance());
 						configurationProvider.putConfiguration(properties);

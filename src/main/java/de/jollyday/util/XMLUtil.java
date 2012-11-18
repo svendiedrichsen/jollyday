@@ -46,6 +46,7 @@ public class XMLUtil {
 	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
 	private JAXBContextCreator contextCreator = new JAXBContextCreator();
+	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
@@ -64,7 +65,7 @@ public class XMLUtil {
 		try {
 			JAXBContext ctx = null;
 			try {
-				ctx = contextCreator.create(XMLUtil.PACKAGE, Thread.currentThread().getContextClassLoader());
+				ctx = contextCreator.create(XMLUtil.PACKAGE, classLoadingUtil.getClassloader());
 			} catch (JAXBException e) {
 				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
 				ctx = null;

@@ -40,13 +40,23 @@ public class ClassLoadingUtil {
 	 * @throws java.lang.ClassNotFoundException
 	 *             if any.
 	 */
-	public final Class<?> loadClass(String className) throws ClassNotFoundException {
+	public Class<?> loadClass(String className) throws ClassNotFoundException {
 		try {
-			return Class.forName(className, true, Thread.currentThread().getContextClassLoader());
+			return Class.forName(className, true, getClassloader());
 		} catch (Exception e) {
 			LOG.warning("Could not load class with current threads context classloader. Using default. Reason: "
 					+ e.getMessage());
 			return Class.forName(className);
 		}
+	}
+
+	/**
+	 * Returns the current threads context classloader.
+	 * 
+	 * @see {@link Thread.currentThread()}
+	 * @return the current threads context classloader
+	 */
+	public ClassLoader getClassloader() {
+		return Thread.currentThread().getContextClassLoader();
 	}
 }
