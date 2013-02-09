@@ -48,8 +48,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 			if (!isValid(ch, year)) {
 				continue;
 			}
-			LocalDate easterSunday = getEasterSunday(year, ch.getChronology());
-			easterSunday.plusDays(ch.getDays());
+			LocalDate easterSunday = getEasterSunday(year, ch.getChronology()).plusDays(ch.getDays());
 			String propertiesKey = PREFIX_PROPERTY_CHRISTIAN + ch.getDescriptionPropertiesKey();
 			addChrstianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
