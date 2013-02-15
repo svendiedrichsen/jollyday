@@ -36,10 +36,6 @@ import de.jollyday.parser.impl.ChristianHolidayParser;
 import de.jollyday.parser.impl.RelativeToEasterSundayParser;
 import de.jollyday.util.CalendarUtil;
 
-/**
- * @author svdi1de
- * 
- */
 public class ChristianHolidayParserTest {
 
 	private AbstractHolidayParser hp = new ChristianHolidayParser();
@@ -80,7 +76,7 @@ public class ChristianHolidayParserTest {
 		RelativeToEasterSundayParser p = new RelativeToEasterSundayParser();
 		p.parse(2011, holidays, config);
 		List<LocalDate> expected = new ArrayList<LocalDate>();
-		expected.add(calendarUtil.create(2011, 4, 24));
+		expected.add(calendarUtil.create(2011, 4, 25));
 		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
 		Assert.assertEquals("Wrong holiday.", expected.get(0), holidays.iterator().next().getDate());
 	}
