@@ -17,8 +17,6 @@ package de.jollyday.impl;
 
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -39,36 +37,20 @@ import de.jollyday.config.Configuration;
 import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
 import de.jollyday.util.ClassLoadingUtil;
-import de.jollyday.util.ResourceUtil;
-import de.jollyday.util.XMLUtil;
 
 /**
- * Manager implementation for reading data from XML files. The files with the
- * name pattern Holidays_[country].xml will be read from the system classpath.
+ * Manager implementation for reading data from the configuration datasource. 
  * It uses a list a parsers for parsing the different type of XML nodes.
  * 
  * @author Sven Diedrichsen
- * @version $Id: $
  */
-public class XMLManager extends HolidayManager {
+public class DefaultHolidayManager extends HolidayManager {
 
-	/**
-	 * Logger.
-	 */
-	private static final Logger LOG = Logger.getLogger(XMLManager.class.getName());
+	private static final Logger LOG = Logger.getLogger(DefaultHolidayManager.class.getName());
 	/**
 	 * The configuration prefix for parser implementations.
 	 */
 	private static final String PARSER_IMPL_PREFIX = "parser.impl.";
-	/**
-	 * prefix of the config files.
-	 */
-	private static final String FILE_PREFIX = "holidays/Holidays";
-	/**
-	 * suffix of the config files.
-	 */
-	private static final String FILE_SUFFIX = ".xml";
-
 	/**
 	 * Parser cache by XML class name.
 	 */
@@ -81,14 +63,6 @@ public class XMLManager extends HolidayManager {
 	 * Utility class to handle class loading
 	 */
 	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
-	/**
-	 * XML utility class.
-	 */
-	private XMLUtil xmlUtil = new XMLUtil();
-	/**
-	 * The utility to load resources.
-	 */
-	private ResourceUtil resourceUtil = new ResourceUtil();
 
 	/**
 	 * {@inheritDoc}
@@ -258,32 +232,13 @@ public class XMLManager extends HolidayManager {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * Initializes the XMLManager by loading the holidays XML file as resource
+	 * Initializes the DefaultHolidayManager by loading the holidays XML file as resource
 	 * from the classpath. When the XML file is found it will be unmarshalled
 	 * with JAXB to some Java classes.
 	 */
 	@Override
 	public void init(final String calendar) {
-		String configurationFileName = getConfigurationFileName(calendar);
-		URL urlDestination = resourceUtil.getResource(configurationFileName);
-		init(urlDestination);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * Initializes the XMLManager by loading the holidays XML file as resource
-	 * from the classpath. When the XML file is found it will be unmarshalled
-	 * with JAXB to some Java classes.
-	 */
-	@Override
-	public void init(final URL url) {
-		try {
-			final InputStream inputStream = url.openStream();
-			configuration = xmlUtil.unmarshallConfiguration(inputStream);
-		} catch (Exception e) {
-			throw new IllegalStateException("Cannot instantiate configuration.", e);
-		}
+		configuration = getConfigurationDataSource().getConfiguration(calendar);
 		validateConfigurationHierarchy(configuration);
 		logHierarchy(configuration, 0);
 	}
@@ -307,17 +262,6 @@ public class XMLManager extends HolidayManager {
 				logHierarchy(sub, level + 1);
 			}
 		}
-	}
-
-	/**
-	 * Returns the configuration file name for the country.
-	 * 
-	 * @param country
-	 *            a {@link java.lang.String} object.
-	 * @return file name
-	 */
-	public static String getConfigurationFileName(final String country) {
-		return FILE_PREFIX + "_" + country + FILE_SUFFIX;
 	}
 
 	/**

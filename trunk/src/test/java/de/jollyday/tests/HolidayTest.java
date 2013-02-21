@@ -17,8 +17,6 @@ package de.jollyday.tests;
 
 import static org.junit.Assert.assertFalse;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Locale;
@@ -103,33 +101,6 @@ public class HolidayTest {
 	@Test(expected = IllegalStateException.class)
 	public void testMissingCountry() throws Exception {
 		HolidayManager.getInstance("XXX");
-	}
-
-	@Test
-	public void testMissingCountryWithAbsoluteFilePath() {
-		URL filePathURL = getClass().getResource("/holidays/Holidays_test_al_2010.xml");
-		HolidayManager.getInstance(filePathURL);
-	}
-
-	@Test
-	public void testMissingCountryWithRelativeFilePath() throws MalformedURLException {
-		String filePathURL = getClass().getResource("/holidays/Holidays_test_al_2010.xml").toString();
-		String filePath = filePathURL.substring("file:".length());
-		String currentRunningLocation = System.getProperty("user.dir");
-		URL relativeFilePath = new URL("file:./" + filePath.substring(currentRunningLocation.length()));
-		HolidayManager.getInstance(relativeFilePath);
-	}
-
-	@Test
-	public void testMissingCountryWithURL() {
-		URL filePathURL = getClass().getResource("/holidays/Holidays_test_al_2010.xml");
-		HolidayManager.getInstance(filePathURL);
-	}
-
-	@Test(expected = IllegalStateException.class)
-	public void testMissingCountryWithNonExistingURL() throws Exception {
-		URL filePathURL = new URL("file:///non-existing-file");
-		HolidayManager.getInstance(filePathURL);
 	}
 
 	@Test

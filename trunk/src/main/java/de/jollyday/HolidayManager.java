@@ -15,7 +15,6 @@
  */
 package de.jollyday;
 
-import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -30,6 +29,8 @@ import org.joda.time.LocalDate;
 import org.joda.time.ReadableInterval;
 
 import de.jollyday.configuration.ConfigurationProviderManager;
+import de.jollyday.datasource.ConfigurationDataSource;
+import de.jollyday.datasource.ConfigurationDataSourceManager;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.ClassLoadingUtil;
 
@@ -57,20 +58,6 @@ public abstract class HolidayManager {
 	 * This map represents a cache for manager instances on a per country basis.
 	 */
 	private static final Map<String, HolidayManager> MANAGER_CHACHE = new HashMap<String, HolidayManager>();
-
-	/**
-	 * Caches the holidays for a given year and state/region.
-	 */
-	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
-	/**
-	 * The configuration properties.
-	 */
-	private Properties properties = new Properties();
-
-	/**
-	 * Utility for calendar operations
-	 */
-	protected CalendarUtil calendarUtil = new CalendarUtil();
 	/**
 	 * Utility to load classes.
 	 */
@@ -79,10 +66,30 @@ public abstract class HolidayManager {
 	 * Manager for configuration providers. Delivers the jollyday configuration.
 	 */
 	private static ConfigurationProviderManager configurationProviderManager = new ConfigurationProviderManager();
+	/**
+	 * Manager for providing configuration datasources which return the holiday data.
+	 */
+	private static ConfigurationDataSourceManager configurationDataSourceManager = new ConfigurationDataSourceManager();
+	/**
+	 * Caches the holidays for a given year and state/region.
+	 */
+	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
+	/**
+	 * The configuration properties.
+	 */
+	private Properties properties = new Properties();
+	/**
+	 * Utility for calendar operations
+	 */
+	protected CalendarUtil calendarUtil = new CalendarUtil();
+	/**
+	 * The datasource to get the holiday data from.
+	 */
+	private ConfigurationDataSource configurationDataSource;
 
 	/**
 	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
-	 * using the default locales country code. code.
+	 * using the default locales country code.
 	 * 
 	 * @return default locales HolidayManager
 	 */
@@ -162,41 +169,6 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Creates an HolidayManager instance. The implementing HolidayManager class
-	 * will be read from the jollyday.properties file. If the URL is NULL an
-	 * exception will be thrown.
-	 * 
-	 * @param url
-	 *            the URL to the calendar's file
-	 * @return HolidayManager implementation for the provided country.
-	 */
-	public static final HolidayManager getInstance(final URL url) {
-		return getInstance(url, null);
-	}
-
-	/**
-	 * Creates an HolidayManager instance. The implementing HolidayManager class
-	 * will be read from the jollyday.properties file. If the URL is NULL an
-	 * exception will be thrown.
-	 * 
-	 * @param properties
-	 *            the configuration properties
-	 * @param url
-	 *            the URL to the calendar's file
-	 * @return HolidayManager implementation for the provided country.
-	 */
-	public static final HolidayManager getInstance(final URL url, Properties properties) {
-		if (url == null) {
-			throw new NullPointerException("Missing URL.");
-		}
-		HolidayManager m = isManagerCachingEnabled() ? getFromCache(url.toString()) : null;
-		if (m == null) {
-			m = createManager(url, properties);
-		}
-		return m;
-	}
-
-	/**
 	 * Creates a new <code>HolidayManager</code> instance for the country and
 	 * puts it to the manager cache.
 	 * 
@@ -209,15 +181,16 @@ public abstract class HolidayManager {
 			LOG.finer("Creating HolidayManager for calendar '" + calendar + "'. Caching enabled: "
 					+ isManagerCachingEnabled());
 		}
-		Properties props = configurationProviderManager.getConfigurationProperties(properties);
-		String managerImplClassName = readManagerImplClassName(calendar, props);
-		HolidayManager m = instantiateManagerImpl(managerImplClassName);
-		m.setProperties(props);
-		m.init(calendar);
+		Properties mergedProperties = configurationProviderManager.getConfigurationProperties(properties);
+		String managerImplClassName = readManagerImplClassName(calendar, mergedProperties);
+		HolidayManager manager = instantiateManagerImpl(managerImplClassName);
+		manager.setProperties(mergedProperties);
+		manager.setConfigurationDataSource(configurationDataSourceManager.getConfigurationDataSource(mergedProperties));
+		manager.init(calendar);
 		if (isManagerCachingEnabled()) {
-			putToCache(calendar, m);
+			putToCache(calendar, manager);
 		}
-		return m;
+		return manager;
 	}
 
 	/**
@@ -243,7 +216,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Instantiates the manager implementating class.
+	 * Instantiates the manager implementing class.
 	 * 
 	 * @param managerImplClassName
 	 *            the managers class name
@@ -257,29 +230,6 @@ public abstract class HolidayManager {
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
-	}
-
-	/**
-	 * Creates a new <code>HolidayManager</code> instance for the URL and puts
-	 * it to the manager cache.
-	 * 
-	 * @param url
-	 *            the URL to a file containing the calendar
-	 * @return the holiday manager initialized with the provided URL
-	 */
-	private static HolidayManager createManager(final URL url, Properties properties) {
-		if (LOG.isLoggable(Level.FINER)) {
-			LOG.finer("Creating HolidayManager for URL '" + url + "'. Caching enabled: " + isManagerCachingEnabled());
-		}
-		Properties props = configurationProviderManager.getConfigurationProperties(properties);
-		String managerImplClassName = readManagerImplClassName(null, props);
-		HolidayManager m = instantiateManagerImpl(managerImplClassName);
-		m.setProperties(props);
-		m.init(url);
-		if (isManagerCachingEnabled()) {
-			putToCache(url.toString(), m);
-		}
-		return m;
 	}
 
 	/**
@@ -427,6 +377,21 @@ public abstract class HolidayManager {
 	protected void setProperties(Properties properties) {
 		this.properties.putAll(properties);
 	}
+	
+	/**
+	 * Sets the configuration datasource with this holiday manager.
+	 * @param configurationDataSource the {@link ConfigurationDataSource} to use.
+	 */
+	protected void setConfigurationDataSource(ConfigurationDataSource configurationDataSource){
+		this.configurationDataSource = configurationDataSource;
+	}
+	/**
+	 * Returns the {@link ConfigurationDataSource} to be used to retrieve holiday data.
+	 * @return the {@link ConfigurationDataSource} to use.
+	 */
+	protected ConfigurationDataSource getConfigurationDataSource(){
+		return configurationDataSource;
+	}
 
 	/**
 	 * Returns the holidays for the requested year and hierarchy structure.
@@ -458,27 +423,6 @@ public abstract class HolidayManager {
 	 *            i.e. us, uk, de
 	 */
 	abstract public void init(String calendar);
-
-	/**
-	 * Initializes the implementing manager for the provided URL.
-	 * 
-	 * @param resource
-	 *            the URL, to a file containing the calendar
-	 *            <p style="color:red;font-style:italic">
-	 *            Note 1: This can be omitted, in which case the default
-	 *            behavior of loading from the classpath with a specific name
-	 *            will be used
-	 *            </p>
-	 *            <p style="color:red;font-style:italic">
-	 *            Note 2: If this parameter is not omitted, then it may be a
-	 *            path to a file (relative or absolute) or a URL spec (such as
-	 *            http://somehos/somefile, or ftp://somehost/somefile or
-	 *            whatever is supported by the URL Stream Handlers installed on
-	 *            the JVM)
-	 *            </p>
-	 * 
-	 */
-	abstract public void init(final URL resource);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This

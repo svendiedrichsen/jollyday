@@ -24,14 +24,14 @@ API properties
   used for the specific country the Manager is created for.
   
 --------
-manager.impl=de.jollyday.impl.XMLManager
+manager.impl=de.jollyday.impl.DefaultHolidayManager
 --------
 
   This configuration defines an Manager implementation class used as a default for
   every country. You can define a Manager implementation on a per country base.
 	
 --------
-manager.impl=de.jollyday.impl.XMLManager
+manager.impl=de.jollyday.impl.DefaultHolidayManager
 manager.impl.us=de.jollyday.impl.MyXMLManager
 --------
 	

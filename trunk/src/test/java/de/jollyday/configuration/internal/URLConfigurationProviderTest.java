@@ -64,7 +64,7 @@ public class URLConfigurationProviderTest {
 		Properties props = new Properties();
 		urlConfigurationProvider.putConfiguration(props);
 		assertFalse(props.isEmpty());
-		assertEquals("Wrong new property.", "de.jollyday.impl.XMLManager", props.getProperty("manager.impl.test"));
+		assertEquals("Wrong new property.", "de.jollyday.impl.DefaultHolidayManager", props.getProperty("manager.impl.test"));
 		assertEquals("Wrong overloaded property.", "ManagerOverloaded", props.getProperty("manager.impl"));
 	}
 

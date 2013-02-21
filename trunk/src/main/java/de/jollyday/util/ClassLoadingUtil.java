@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  * <p>
- * ReflectionUtils class.
+ * ClassLoadingUtil class.
  * </p>
  * 
  * @author José Pedro Pereira - Linkare TI
