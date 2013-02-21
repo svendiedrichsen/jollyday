@@ -25,13 +25,13 @@ import de.jollyday.holidaytype.LocalizedHolidayType;
 
 /**
  * <p>
- * XMLManagerJapan class.
+ * JapaneseHolidayManager class.
  * </p>
  * 
  * @author Sven
  * @version $Id: $
  */
-public class XMLManagerJapan extends XMLManager {
+public class JapaneseHolidayManager extends DefaultHolidayManager {
 
 	/**
 	 * The properties key for japanese bridging holidays.
