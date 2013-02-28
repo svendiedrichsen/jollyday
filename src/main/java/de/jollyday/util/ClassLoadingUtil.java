@@ -45,7 +45,7 @@ public class ClassLoadingUtil {
 			return Class.forName(className, true, getClassloader());
 		} catch (Exception e) {
 			LOG.warning("Could not load class with current threads context classloader. Using default. Reason: "
-					+ e.getMessage());
+					+ e.getClass().getSimpleName() + ": " + e.getMessage());
 			return Class.forName(className);
 		}
 	}
