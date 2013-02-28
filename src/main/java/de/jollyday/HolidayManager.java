@@ -18,7 +18,6 @@ package de.jollyday;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -46,10 +45,6 @@ public abstract class HolidayManager {
 
 	private static final Logger LOG = Logger.getLogger(HolidayManager.class.getName());
 	/**
-	 * Configuration property for the implementing Manager class.
-	 */
-	private static final String MANAGER_IMPL_CLASS_PREFIX = "manager.impl";
-	/**
 	 * Signifies if caching of manager instances is enabled. If not every call
 	 * to getInstance will return a newly instantiated and initialized manager.
 	 */
@@ -75,10 +70,6 @@ public abstract class HolidayManager {
 	 */
 	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
 	/**
-	 * The configuration properties.
-	 */
-	private Properties properties = new Properties();
-	/**
 	 * Utility for calendar operations
 	 */
 	protected CalendarUtil calendarUtil = new CalendarUtil();
@@ -86,88 +77,46 @@ public abstract class HolidayManager {
 	 * The datasource to get the holiday data from.
 	 */
 	private ConfigurationDataSource configurationDataSource;
-
 	/**
-	 * Returns a HolidayManager instance by calling getInstance(NULL) and thus
-	 * using the default locales country code.
-	 * 
-	 * @return default locales HolidayManager
+	 *  the manager parameter
 	 */
+	private ManagerParameter managerParameter;
+
 	public static final HolidayManager getInstance() {
 		return getInstance((String) null);
 	}
-
-	/**
-	 * Returns a HolidayManager instance by calling getInstance(NULL,
-	 * Properties) and thus using the default locales country code and the
-	 * provided configuration properties.
-	 * 
-	 * @param properties
-	 *            configuration properties to use
-	 * @return default locales HolidayManager
-	 */
 	public static final HolidayManager getInstance(Properties properties) {
 		return getInstance((String) null, properties);
 	}
-
-	/**
-	 * Returns a HolidayManager for the provided country.
-	 * 
-	 * @param c
-	 *            Country
-	 * @return HolidayManager
-	 */
+	@Deprecated
 	public static final HolidayManager getInstance(final HolidayCalendar c) {
-		return getInstance(c.getId());
+		return getInstance(c, null);
 	}
-
-	/**
-	 * Returns a HolidayManager for the provided country with the provided
-	 * configuration properties.
-	 * 
-	 * @param properties
-	 *            the configuration properties
-	 * @param c
-	 *            Country
-	 * @return HolidayManager
-	 */
+	@Deprecated
 	public static final HolidayManager getInstance(final HolidayCalendar c, Properties properties) {
-		return getInstance(c.getId(), properties);
+		return getInstance(ManagerParameters.create(c, properties));
 	}
-
-	/**
-	 * Creates an HolidayManager instance. The implementing HolidayManager class
-	 * will be read from the jollyday.properties file. If the calendar is NULL
-	 * or an empty string the default locales country code will be used.
-	 * 
-	 * @param calendar
-	 *            a {@link java.lang.String} object.
-	 * @return HolidayManager implementation for the provided country.
-	 */
+	@Deprecated
 	public static final HolidayManager getInstance(final String calendar) {
 		return getInstance(calendar, null);
 	}
-
-	/**
-	 * Creates an HolidayManager instance. The implementing HolidayManager class
-	 * will be read from the configuration properties. If the calendar is NULL
-	 * or an empty string the default locales country code will be used.
-	 * 
-	 * @param properties
-	 *            the configuration properties
-	 * @param calendar
-	 *            a {@link java.lang.String} object.
-	 * @return HolidayManager implementation for the provided country.
-	 */
+	@Deprecated
 	public static final HolidayManager getInstance(final String calendar, Properties properties) {
-		final String calendarName = prepareCalendarName(calendar);
-		HolidayManager m = isManagerCachingEnabled() ? getFromCache(calendarName) : null;
+		return getInstance(ManagerParameters.create(calendar, properties));
+	}
+	
+	/**
+	 * Creates and returns a {@link HolidayManager} for the provided {@link ManagerParameters}
+	 * @param parameters the {@link ManagerParameters} to create the manager with
+	 * @return the {@link HolidayManager} instance
+	 */
+	public static final HolidayManager getInstance(ManagerParameter parameter) {
+		HolidayManager m = isManagerCachingEnabled() ? getFromCache(parameter.createCacheKey()) : null;
 		if (m == null) {
-			m = createManager(calendarName, properties);
+			m = createManager(parameter);
 		}
 		return m;
 	}
-
 	/**
 	 * Creates a new <code>HolidayManager</code> instance for the country and
 	 * puts it to the manager cache.
@@ -176,19 +125,18 @@ public abstract class HolidayManager {
 	 *            <code>HolidayManager</code> instance for the calendar
 	 * @return new
 	 */
-	private static HolidayManager createManager(final String calendar, Properties properties) {
+	private static HolidayManager createManager(ManagerParameter parameter) {
 		if (LOG.isLoggable(Level.FINER)) {
-			LOG.finer("Creating HolidayManager for calendar '" + calendar + "'. Caching enabled: "
+			LOG.finer("Creating HolidayManager for calendar '" + parameter + "'. Caching enabled: "
 					+ isManagerCachingEnabled());
 		}
-		Properties mergedProperties = configurationProviderManager.getConfigurationProperties(properties);
-		String managerImplClassName = readManagerImplClassName(calendar, mergedProperties);
+		configurationProviderManager.mergeConfigurationProperties(parameter);
+		String managerImplClassName = readManagerImplClassName(parameter);
 		HolidayManager manager = instantiateManagerImpl(managerImplClassName);
-		manager.setProperties(mergedProperties);
-		manager.setConfigurationDataSource(configurationDataSourceManager.getConfigurationDataSource(mergedProperties));
-		manager.init(calendar);
+		manager.setConfigurationDataSource(configurationDataSourceManager.getConfigurationDataSource(parameter));
+		manager.init(parameter);
 		if (isManagerCachingEnabled()) {
-			putToCache(calendar, manager);
+			putToCache(parameter.createCacheKey(), manager);
 		}
 		return manager;
 	}
@@ -202,17 +150,13 @@ public abstract class HolidayManager {
 	 *            properties to read from
 	 * @return the manager implementation class name
 	 */
-	private static String readManagerImplClassName(final String calendar, Properties props) {
-		String managerImplClassName = null;
-		if (calendar != null && props.containsKey(MANAGER_IMPL_CLASS_PREFIX + "." + calendar)) {
-			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX + "." + calendar);
-		} else if (props.containsKey(MANAGER_IMPL_CLASS_PREFIX)) {
-			managerImplClassName = props.getProperty(MANAGER_IMPL_CLASS_PREFIX);
-		} else {
-			throw new IllegalStateException("Missing configuration '" + MANAGER_IMPL_CLASS_PREFIX
+	private static String readManagerImplClassName(ManagerParameter parameter) {
+		String className = parameter.getManangerImplClassName();
+		if(className == null){
+			throw new IllegalStateException("Missing configuration '" + ManagerParameter.MANAGER_IMPL_CLASS_PREFIX
 					+ "'. Cannot create manager.");
 		}
-		return managerImplClassName;
+		return className;
 	}
 
 	/**
@@ -230,23 +174,6 @@ public abstract class HolidayManager {
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
-	}
-
-	/**
-	 * Handles NULL or empty country codes and returns the default locals
-	 * country codes for those. For all others the country code will be trimmed
-	 * and set to lower case letters.
-	 * 
-	 * @param calendar
-	 * @return trimmed and lower case country code.
-	 */
-	private static String prepareCalendarName(String calendar) {
-		if (calendar == null || "".equals(calendar.trim())) {
-			calendar = Locale.getDefault().getCountry().toLowerCase();
-		} else {
-			calendar = calendar.trim().toLowerCase();
-		}
-		return calendar;
 	}
 
 	/**
@@ -356,29 +283,6 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * <p>
-	 * Getter for the field <code>properties</code>.
-	 * </p>
-	 * 
-	 * @return the configuration properties
-	 */
-	protected Properties getProperties() {
-		return properties;
-	}
-
-	/**
-	 * <p>
-	 * Setter for the field <code>properties</code>.
-	 * </p>
-	 * 
-	 * @param properties
-	 *            the configuration properties to set
-	 */
-	protected void setProperties(Properties properties) {
-		this.properties.putAll(properties);
-	}
-	
-	/**
 	 * Sets the configuration datasource with this holiday manager.
 	 * @param configurationDataSource the {@link ConfigurationDataSource} to use.
 	 */
@@ -392,6 +296,23 @@ public abstract class HolidayManager {
 	protected ConfigurationDataSource getConfigurationDataSource(){
 		return configurationDataSource;
 	}
+	
+	protected ManagerParameter getManagerParameter(){
+		return managerParameter;
+	}
+	
+	/**
+	 * Initializes the implementing manager for the provided calendar.
+	 * 
+	 * @param calendar
+	 *            i.e. us, uk, de
+	 */
+	public void init(ManagerParameter parameters){
+		this.managerParameter = parameters;
+		this.doInit();
+	}
+
+	abstract public void doInit();
 
 	/**
 	 * Returns the holidays for the requested year and hierarchy structure.
@@ -415,14 +336,6 @@ public abstract class HolidayManager {
 	 * @return list of holidays within the interval
 	 */
 	abstract public Set<Holiday> getHolidays(ReadableInterval interval, String... args);
-
-	/**
-	 * Initializes the implementing manager for the provided calendar.
-	 * 
-	 * @param calendar
-	 *            i.e. us, uk, de
-	 */
-	abstract public void init(String calendar);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This

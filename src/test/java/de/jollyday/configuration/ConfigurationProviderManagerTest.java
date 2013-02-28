@@ -4,14 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 
-import java.util.Properties;
-
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import de.jollyday.ManagerParameter;
+import de.jollyday.ManagerParameters;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ConfigurationProviderManagerTest {
@@ -23,6 +24,8 @@ public class ConfigurationProviderManagerTest {
 
 	@InjectMocks
 	ConfigurationProviderManager configurationProviderManager = new ConfigurationProviderManager();
+	
+	ManagerParameter managerParameter = ManagerParameters.create((String)null);
 
 	@After
 	public void teardown() {
@@ -32,50 +35,51 @@ public class ConfigurationProviderManagerTest {
 	@Test
 	public void testGetPropertiesWithEmptyProvidersList() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, "");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
-		assertResult(resultProperties);
+		configurationProviderManager.mergeConfigurationProperties(managerParameter);
+		assertResult(managerParameter);
 	}
 
 	@Test
 	public void testGetPropertiesWithWrongClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, "java.lang.String");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
-		assertResult(resultProperties);
+		configurationProviderManager.mergeConfigurationProperties(managerParameter);
+		assertResult(managerParameter);
 	}
 
 	@Test
 	public void testGetPropertiesWithCorrectClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, getClass().getPackage().getName()
 				+ ".TestProvider");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
-		assertResult(resultProperties);
-		assertEquals("Wrong value for property: key", "value", resultProperties.getProperty("key"));
+		configurationProviderManager.mergeConfigurationProperties(managerParameter);
+		assertResult(managerParameter);
+		assertEquals("Wrong value for property: key", "value", managerParameter.getProperty("key"));
 	}
 
 	@Test
 	public void testGetPropertiesWithWrongAndCorrectClass() {
 		System.setProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY, getClass().getPackage().getName()
 				+ ".TestProvider,java.lang.String");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties(null);
-		assertResult(resultProperties);
-		assertEquals("Wrong value for property: key", "value", resultProperties.getProperty("key"));
+		configurationProviderManager.mergeConfigurationProperties(managerParameter);
+		assertResult(managerParameter);
+		assertEquals("Wrong value for property: key", "value", managerParameter.getProperty("key"));
 	}
 
 	@Test
 	public void testGetPropertiesWithManualOverride() {
-		Properties manualProps = new Properties();
-		manualProps.setProperty("MANUAL_KEY", "MANUAL_VALUE");
-		manualProps.setProperty("manager.impl", "NewImpl");
-		Properties resultProperties = configurationProviderManager.getConfigurationProperties(manualProps);
-		assertResult(resultProperties);
-		assertEquals("Wrong value for property: MANUAL_KEY", "MANUAL_VALUE", resultProperties.getProperty("MANUAL_KEY"));
-		assertEquals("Wrong value for property: manager.impl", "NewImpl", resultProperties.getProperty("manager.impl"));
+		managerParameter.setProperty("MANUAL_KEY", "MANUAL_VALUE");
+		managerParameter.setProperty("manager.impl", "NewImpl");
+
+		configurationProviderManager.mergeConfigurationProperties(managerParameter);
+
+		assertResult(managerParameter);
+		assertEquals("Wrong value for property: MANUAL_KEY", "MANUAL_VALUE", managerParameter.getProperty("MANUAL_KEY"));
+		assertEquals("Wrong value for property: manager.impl", "NewImpl", managerParameter.getProperty("manager.impl"));
 	}
 
-	private void assertResult(Properties resultProperties) {
-		assertNotNull(resultProperties);
-		verify(defaultConfigurationProvider).putConfiguration(resultProperties);
-		verify(urlConfigurationProvider).putConfiguration(resultProperties);
+	private void assertResult(ManagerParameter parameter) {
+		assertNotNull(parameter);
+		verify(defaultConfigurationProvider).getProperties();
+		verify(urlConfigurationProvider).getProperties();
 	}
 
 }

@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -208,9 +207,8 @@ public class DefaultHolidayManager extends HolidayManager {
 						String className = l.get(0).getClass().getName();
 						if (!parserCache.containsKey(className)) {
 							String propName = PARSER_IMPL_PREFIX + className;
-							Properties configProps = getProperties();
-							if (configProps.containsKey(propName)) {
-								String parserClassName = configProps.getProperty(propName);
+							String parserClassName = getManagerParameter().getProperty(propName);
+							if (parserClassName != null) {
 								Class<?> parserClass = classLoadingUtil.loadClass(parserClassName);
 								Object parserObject = parserClass.newInstance();
 								HolidayParser hp = HolidayParser.class.cast(parserObject);
@@ -237,8 +235,8 @@ public class DefaultHolidayManager extends HolidayManager {
 	 * with JAXB to some Java classes.
 	 */
 	@Override
-	public void init(final String calendar) {
-		configuration = getConfigurationDataSource().getConfiguration(calendar);
+	public void doInit() {
+		configuration = getConfigurationDataSource().getConfiguration(getManagerParameter());
 		validateConfigurationHierarchy(configuration);
 		logHierarchy(configuration, 0);
 	}

@@ -18,6 +18,7 @@ package de.jollyday.configuration;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import de.jollyday.ManagerParameter;
 import de.jollyday.configuration.internal.DefaultConfigurationProvider;
 import de.jollyday.configuration.internal.URLConfigurationProvider;
 import de.jollyday.util.ClassLoadingUtil;
@@ -52,22 +53,17 @@ public class ConfigurationProviderManager {
 	 *            the configuration {@link Properties} to use
 	 * @return The overall jollyday configuration properties.
 	 */
-	public Properties getConfigurationProperties(Properties properties) {
-		Properties unifiedProperties = new Properties();
-		addInternalConfigurationProviderProperies(unifiedProperties);
-		addCustomConfigurationProviderProperties(unifiedProperties);
-		if (properties != null) {
-			unifiedProperties.putAll(properties);
-		}
-		return unifiedProperties;
+	public void mergeConfigurationProperties(ManagerParameter parameter) {
+		addInternalConfigurationProviderProperies(parameter);
+		addCustomConfigurationProviderProperties(parameter);
 	}
 
-	private void addInternalConfigurationProviderProperies(Properties properties) {
-		defaultConfigurationProvider.putConfiguration(properties);
-		urlConfigurationProvider.putConfiguration(properties);
+	private void addInternalConfigurationProviderProperies(ManagerParameter parameter) {
+		parameter.mergeProperties(urlConfigurationProvider.getProperties());
+		parameter.mergeProperties(defaultConfigurationProvider.getProperties());
 	}
 
-	private void addCustomConfigurationProviderProperties(Properties properties) {
+	private void addCustomConfigurationProviderProperties(ManagerParameter parameter) {
 		Properties systemProps = System.getProperties();
 		String providersStrList = systemProps.getProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY);
 		if (providersStrList != null) {
@@ -81,7 +77,7 @@ public class ConfigurationProviderManager {
 								classLoadingUtil.getClassloader());
 						ConfigurationProvider configurationProvider = ConfigurationProvider.class.cast(providerClass
 								.newInstance());
-						configurationProvider.putConfiguration(properties);
+						parameter.mergeProperties(configurationProvider.getProperties());
 					} catch (Exception e) {
 						LOG.warning("Cannot load configuration from provider class '" + providerClassName + "'. "
 								+ e.getClass().getSimpleName() + " (" + e.getMessage() + ").");
