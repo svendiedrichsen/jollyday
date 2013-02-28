@@ -41,7 +41,8 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 	 * de.jollyday.configuration.ConfigurationProvider#addConfiguration(java
 	 * .util.Properties)
 	 */
-	public void putConfiguration(Properties properties) {
+	public Properties getProperties() {
+		Properties properties = new Properties();
 		Properties systemProps = System.getProperties();
 		String configURLs = systemProps.getProperty(CONFIG_URLS_PROPERTY);
 		if (configURLs != null) {
@@ -71,6 +72,7 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 				}
 			}
 		}
+		return properties;
 	}
 
 }

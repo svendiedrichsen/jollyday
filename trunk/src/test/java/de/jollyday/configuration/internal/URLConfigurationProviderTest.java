@@ -32,8 +32,7 @@ public class URLConfigurationProviderTest {
 
 	@Test
 	public void testPutConfigurationWithPropertyNotSet() {
-		Properties props = new Properties();
-		urlConfigurationProvider.putConfiguration(props);
+		Properties props = urlConfigurationProvider.getProperties();
 		assertTrue(props.isEmpty());
 	}
 
@@ -45,24 +44,21 @@ public class URLConfigurationProviderTest {
 	@Test
 	public void testPutConfigurationWithPropertySetEmpty() {
 		System.setProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY, "");
-		Properties props = new Properties();
-		urlConfigurationProvider.putConfiguration(props);
+		Properties props = urlConfigurationProvider.getProperties();
 		assertTrue(props.isEmpty());
 	}
 
 	@Test
 	public void testPutConfigurationWithPropertyWithIllegalURL() {
 		System.setProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY, "TestIllegalData");
-		Properties props = new Properties();
-		urlConfigurationProvider.putConfiguration(props);
+		Properties props = urlConfigurationProvider.getProperties();
 		assertTrue(props.isEmpty());
 	}
 
 	@Test
 	public void testPutConfigurationWithPropertyWithCorrectURL() {
 		System.setProperty(ConfigurationProvider.CONFIG_URLS_PROPERTY, "file:./src/test/resources/url.load.properties");
-		Properties props = new Properties();
-		urlConfigurationProvider.putConfiguration(props);
+		Properties props = urlConfigurationProvider.getProperties();
 		assertFalse(props.isEmpty());
 		assertEquals("Wrong new property.", "de.jollyday.impl.DefaultHolidayManager", props.getProperty("manager.impl.test"));
 		assertEquals("Wrong overloaded property.", "ManagerOverloaded", props.getProperty("manager.impl"));

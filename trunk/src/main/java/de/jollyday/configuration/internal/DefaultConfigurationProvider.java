@@ -50,7 +50,8 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 	 * de.jollyday.configuration.ConfigurationProvider#addConfiguration(java
 	 * .util.Properties)
 	 */
-	public void putConfiguration(Properties properties) {
+	public Properties getProperties() {
+		Properties properties = new Properties();
 		try {
 			InputStream stream = null;
 			try {
@@ -65,6 +66,7 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 					stream.close();
 				}
 			}
+			return properties;
 		} catch (IOException e) {
 			throw new IllegalStateException("Could not load default properties from classpath.", e);
 		}

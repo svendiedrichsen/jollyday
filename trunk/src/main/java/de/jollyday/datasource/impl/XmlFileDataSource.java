@@ -16,11 +16,10 @@
 package de.jollyday.datasource.impl;
 
 import java.io.InputStream;
-import java.net.URL;
 
+import de.jollyday.ManagerParameter;
 import de.jollyday.config.Configuration;
 import de.jollyday.datasource.ConfigurationDataSource;
-import de.jollyday.util.ResourceUtil;
 import de.jollyday.util.XMLUtil;
 /**
  * This {@link ConfigurationDataSource} implementation reads XML files as resources
@@ -28,43 +27,19 @@ import de.jollyday.util.XMLUtil;
  */
 public class XmlFileDataSource implements ConfigurationDataSource {
 	/**
-	 * prefix of the config files.
-	 */
-	private static final String FILE_PREFIX = "holidays/Holidays";
-	/**
-	 * suffix of the config files.
-	 */
-	private static final String FILE_SUFFIX = ".xml";
-	/**
 	 * XML utility class.
 	 */
 	private XMLUtil xmlUtil = new XMLUtil();
-	/**
-	 * The utility to load resources.
-	 */
-	private ResourceUtil resourceUtil = new ResourceUtil();
 
-	public Configuration getConfiguration(String calendar) {
-		String configurationFileName = getConfigurationFileName(calendar);
-		URL urlDestination = resourceUtil.getResource(configurationFileName);
+	public Configuration getConfiguration(ManagerParameter parameter) {
 		try {
-			final InputStream inputStream = urlDestination.openStream();
+			final InputStream inputStream = parameter.createResourceUrl().openStream();
 			return xmlUtil.unmarshallConfiguration(inputStream);
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot instantiate configuration.", e);
 		}
 	}
 	
-	/**
-	 * Returns the configuration file name for the country.
-	 * 
-	 * @param country
-	 *            a {@link java.lang.String} object.
-	 * @return file name
-	 */
-	public static String getConfigurationFileName(final String country) {
-		return FILE_PREFIX + "_" + country + FILE_SUFFIX;
-	}
 
 
 }

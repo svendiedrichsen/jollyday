@@ -38,11 +38,8 @@ public interface ConfigurationProvider {
 	public static final String CONFIG_URLS_PROPERTY = "de.jollyday.config.urls";
 
 	/**
-	 * Adds the configuration for jollyday.
-	 * 
-	 * @param properties
-	 *            properties to add to for configuration purpose.
+	 * Returns the configuration properties for jollyday.
 	 */
-	void putConfiguration(Properties properties);
+	Properties getProperties();
 
 }

@@ -15,6 +15,7 @@
  */
 package de.jollyday.datasource;
 
+import de.jollyday.ManagerParameter;
 import de.jollyday.config.Configuration;
 
 /**
@@ -23,5 +24,5 @@ import de.jollyday.config.Configuration;
  * @author sdiedrichsen
  */
 public interface ConfigurationDataSource {
-	Configuration getConfiguration(String calendar); 
+	Configuration getConfiguration(ManagerParameter parameter); 
 }

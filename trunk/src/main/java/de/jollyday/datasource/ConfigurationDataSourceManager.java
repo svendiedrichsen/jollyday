@@ -15,8 +15,7 @@
  */
 package de.jollyday.datasource;
 
-import java.util.Properties;
-
+import de.jollyday.ManagerParameter;
 import de.jollyday.util.ClassLoadingUtil;
 
 /**
@@ -26,14 +25,12 @@ import de.jollyday.util.ClassLoadingUtil;
  * @author sdiedrichsen
  */
 public class ConfigurationDataSourceManager {
-	
-	static final String CONFIGURATION_DATASOURCE_IMPL_CLASS = "configuration.datasource.impl";
-	
+
 	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
-	public ConfigurationDataSource getConfigurationDataSource(Properties properties){
-		validateConfiguration(properties);
-		String dataSourceClassName = properties.getProperty(CONFIGURATION_DATASOURCE_IMPL_CLASS);
+	public ConfigurationDataSource getConfigurationDataSource(ManagerParameter parameter){
+		validateConfiguration(parameter);
+		String dataSourceClassName = parameter.getProperty(ManagerParameter.CONFIGURATION_DATASOURCE_IMPL_CLASS);
 		return instantiateDataSource(dataSourceClassName);
 	}
 
@@ -47,9 +44,9 @@ public class ConfigurationDataSourceManager {
 		}
 	}
 
-	private void validateConfiguration(Properties properties) {
-		if(!properties.containsKey(CONFIGURATION_DATASOURCE_IMPL_CLASS)){
-			throw new IllegalStateException("Missing holiday configuration datasource implementation class under config key "+CONFIGURATION_DATASOURCE_IMPL_CLASS);
+	private void validateConfiguration(ManagerParameter parameter) {
+		if(parameter.getProperty(ManagerParameter.CONFIGURATION_DATASOURCE_IMPL_CLASS) == null){
+			throw new IllegalStateException("Missing holiday configuration datasource implementation class under config key "+ManagerParameter.CONFIGURATION_DATASOURCE_IMPL_CLASS);
 		}
 	}
 	

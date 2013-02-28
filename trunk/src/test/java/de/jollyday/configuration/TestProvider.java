@@ -22,7 +22,14 @@ import java.util.Properties;
  * 
  */
 public class TestProvider implements ConfigurationProvider {
-	public void putConfiguration(Properties properties) {
+	
+	private Properties properties = new Properties();
+	
+	public TestProvider(){
 		properties.setProperty("key", "value");
+	}
+	
+	public Properties getProperties() {
+		return properties;
 	}
 }

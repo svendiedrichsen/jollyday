@@ -26,8 +26,7 @@ public class DefaultConfigurationProviderTest {
 
 	@Test
 	public void testPutConfiguration() {
-		Properties p = new Properties();
-		configurationProvider.putConfiguration(p);
+		Properties p = configurationProvider.getProperties();
 		assertFalse("Properties shouldn't be empty.", p.isEmpty());
 		assertEquals("Default properties are not as expected.", KEYS_DEFAULT_CONFIG, p.keySet());
 	}
