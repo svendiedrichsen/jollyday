@@ -16,12 +16,9 @@
 package de.jollyday;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,6 +28,8 @@ import org.joda.time.ReadableInterval;
 import de.jollyday.configuration.ConfigurationProviderManager;
 import de.jollyday.datasource.ConfigurationDataSource;
 import de.jollyday.datasource.ConfigurationDataSourceManager;
+import de.jollyday.util.Cache;
+import de.jollyday.util.Cache.ValueHandler;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.ClassLoadingUtil;
 
@@ -52,9 +51,9 @@ public abstract class HolidayManager {
 	 */
 	private static boolean managerCachingEnabled = true;
 	/**
-	 * This map represents a cache for manager instances on a per country basis.
+	 * Cache for manager instances on a per country basis.
 	 */
-	private static final Map<String, HolidayManager> MANAGER_CHACHE = new HashMap<String, HolidayManager>();
+	private static final Cache<HolidayManager> MANAGER_CHACHE = new Cache<HolidayManager>();
 	/**
 	 * Utility to load classes.
 	 */
@@ -69,13 +68,9 @@ public abstract class HolidayManager {
 	 */
 	private static ConfigurationDataSourceManager configurationDataSourceManager = new ConfigurationDataSourceManager();
 	/**
-	 * Caches the holidays for a given year and state/region.
+	 * the holiday cache
 	 */
-	private Map<String, Set<Holiday>> holidaysPerYear = new HashMap<String, Set<Holiday>>();
-	/**
-	 * Lock for accessing the holidaysPerYear map
-	 */
-	private ReentrantReadWriteLock holidayPerYearLock = new ReentrantReadWriteLock();
+	private Cache<Set<Holiday>> holidayCache = new Cache<Set<Holiday>>();
 	/**
 	 * Utility for calendar operations
 	 */
@@ -128,12 +123,7 @@ public abstract class HolidayManager {
 	 * @return the {@link HolidayManager} instance
 	 */
 	public static final HolidayManager getInstance(ManagerParameter parameter) {
-		HolidayManager m = isManagerCachingEnabled() ? getFromCache(parameter
-				.createCacheKey()) : null;
-		if (m == null) {
-			m = createManager(parameter);
-		}
-		return m;
+		return createManager(parameter);
 	}
 
 	/**
@@ -144,21 +134,45 @@ public abstract class HolidayManager {
 	 *            <code>HolidayManager</code> instance for the calendar
 	 * @return new
 	 */
-	private static HolidayManager createManager(ManagerParameter parameter) {
+	private static HolidayManager createManager(final ManagerParameter parameter) {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Creating HolidayManager for calendar '" + parameter
 					+ "'. Caching enabled: " + isManagerCachingEnabled());
 		}
 		configurationProviderManager.mergeConfigurationProperties(parameter);
-		String managerImplClassName = readManagerImplClassName(parameter);
-		HolidayManager manager = instantiateManagerImpl(managerImplClassName);
-		manager.setConfigurationDataSource(configurationDataSourceManager
-				.getConfigurationDataSource(parameter));
-		manager.init(parameter);
-		if (isManagerCachingEnabled()) {
-			putToCache(parameter.createCacheKey(), manager);
+		final String managerImplClassName = readManagerImplClassName(parameter);
+		ValueHandler<HolidayManager> valueCreator = createValueHandler(
+				parameter, managerImplClassName);		
+		if(isManagerCachingEnabled()){
+			return MANAGER_CHACHE.get(valueCreator);
+		}else{
+			return valueCreator.createValue();
 		}
-		return manager;
+	}
+
+	/**
+	 * Creates the {@link ValueHandler} which constructs a {@link HolidayManager}.
+	 * @param parameter the parameters to initialize the {@link HolidayManager}
+	 * @param managerImplClassName the {@link HolidayManager} implementing clss name.
+	 * @return the new {@link HolidayManager} instance
+	 */
+	private static ValueHandler<HolidayManager> createValueHandler(
+			final ManagerParameter parameter, final String managerImplClassName) {
+		ValueHandler<HolidayManager> valueCreator = new ValueHandler<HolidayManager>() {
+			@Override
+			public String getKey() {
+				return parameter.createCacheKey();
+			}				
+			@Override
+			public HolidayManager createValue() {
+				HolidayManager manager = instantiateManagerImpl(managerImplClassName);
+				manager.setConfigurationDataSource(configurationDataSourceManager
+						.getConfigurationDataSource(parameter));
+				manager.init(parameter);
+				return manager;
+			}
+		};
+		return valueCreator;
 	}
 
 	/**
@@ -206,12 +220,14 @@ public abstract class HolidayManager {
 	 * @param country
 	 * @param manager
 	 */
+	/*
 	private static void putToCache(final String country,
 			final HolidayManager manager) {
 		synchronized (MANAGER_CHACHE) {
 			MANAGER_CHACHE.put(country, manager);
 		}
 	}
+	*/
 
 	/**
 	 * Tries to retrieve a manager instance from cache by country.
@@ -219,11 +235,13 @@ public abstract class HolidayManager {
 	 * @param country
 	 * @return Manager instance for this country. NULL if none is cached yet.
 	 */
+	/*
 	private static HolidayManager getFromCache(final String country) {
 		synchronized (MANAGER_CHACHE) {
 			return MANAGER_CHACHE.get(country);
 		}
 	}
+	*/
 
 	/**
 	 * If true, instantiated managers will be cached. If false every call to
@@ -280,50 +298,23 @@ public abstract class HolidayManager {
 	 * @return is a holiday in the state/region
 	 */
 	public boolean isHoliday(final LocalDate c, final String... args) {
-		StringBuilder keyBuilder = new StringBuilder();
+		final StringBuilder keyBuilder = new StringBuilder();
 		keyBuilder.append(c.getYear());
 		for (String arg : args) {
 			keyBuilder.append("_");
 			keyBuilder.append(arg);
 		}
-		String key = keyBuilder.toString();
-		return calendarUtil.contains(getHolidays(c.getYear(), key, args), c);
-	}
-
-	/**
-	 * Returns the eventually cached set of holidays. Using
-	 * {@link ReentrantReadWriteLock} to synchronize access of readers and
-	 * writers.
-	 * 
-	 * @param year
-	 *            the year to check for holidays
-	 * @param key
-	 *            the key used to check for holidays in cache
-	 * @param args
-	 *            the arguments used to search for holidays
-	 * @return the set of holidays for the set of parameters
-	 */
-	private Set<Holiday> getHolidays(final int year, String key,
-			final String... args) {
-		try {
-			holidayPerYearLock.readLock().lock();
-			if (!holidaysPerYear.containsKey(key)) {
-				holidayPerYearLock.readLock().unlock();
-				holidayPerYearLock.writeLock().lock();
-				if (!holidaysPerYear.containsKey(key)) {
-					Set<Holiday> holidays = getHolidays(year, args);
-					holidaysPerYear.put(key, holidays);
-				}
-				holidayPerYearLock.readLock().lock();
-				holidayPerYearLock.writeLock().unlock();
+		Set<Holiday> holidays = holidayCache.get(new ValueHandler<Set<Holiday>>() {
+			@Override
+			public String getKey() {
+				return keyBuilder.toString();
 			}
-			return holidaysPerYear.get(key);
-		} finally {
-			if (holidayPerYearLock.writeLock().isHeldByCurrentThread()) {
-				holidayPerYearLock.writeLock().unlock();
+			@Override
+			public Set<Holiday> createValue() {
+				return getHolidays(c.getYear(), args);
 			}
-			holidayPerYearLock.readLock().unlock();
-		}
+		});
+		return calendarUtil.contains(holidays,c);
 	}
 
 	/**
