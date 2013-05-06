@@ -109,12 +109,6 @@ public class CalendarHierarchy {
 		return super.equals(obj);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	/** {@inheritDoc} */
 	@Override
 	public int hashCode() {
 		return getId().hashCode();

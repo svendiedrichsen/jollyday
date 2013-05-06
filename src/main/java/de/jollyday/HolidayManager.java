@@ -49,7 +49,7 @@ public abstract class HolidayManager {
 	 * Signifies if caching of manager instances is enabled. If not every call
 	 * to getInstance will return a newly instantiated and initialized manager.
 	 */
-	private static boolean managerCachingEnabled = true;
+	private static boolean CACHING_ENABLED = true;
 	/**
 	 * Cache for manager instances on a per country basis.
 	 */
@@ -247,11 +247,11 @@ public abstract class HolidayManager {
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
 	 * 
-	 * @param managerCachingEnabled
-	 *            the managerCachingEnabled to set
+	 * @param CACHING_ENABLED
+	 *            the CACHING_ENABLED to set
 	 */
 	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
-		HolidayManager.managerCachingEnabled = managerCachingEnabled;
+		HolidayManager.CACHING_ENABLED = managerCachingEnabled;
 	}
 
 	/**
@@ -259,10 +259,10 @@ public abstract class HolidayManager {
 	 * isManagerCachingEnabled.
 	 * </p>
 	 * 
-	 * @return the managerCachingEnabled
+	 * @return the CACHING_ENABLED
 	 */
 	public static boolean isManagerCachingEnabled() {
-		return managerCachingEnabled;
+		return CACHING_ENABLED;
 	}
 
 	/**

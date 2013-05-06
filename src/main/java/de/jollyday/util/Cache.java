@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * Cache implementation which handles concurring access to chached values.
+ * Cache implementation which handles concurrent access to cached values.
  * 
  * @author sdiedrichsen
  * 
@@ -13,49 +13,82 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *            the type of cached values
  */
 public class Cache<VALUE> {
-
 	/**
-	 * Map for chaching
+	 * Map for caching
 	 */
 	private Map<String, VALUE> cachingMap = new HashMap<String, VALUE>();
 	/**
 	 * Lock for accessing the map
 	 */
 	private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-
 	/**
 	 * Returns the value defined by the {@link ValueHandler}
 	 * 
-	 * @param valueCreator
+	 * @param valueHandler
 	 *            which creates the key and the value if necessary
 	 * @return the eventually cached value
 	 */
-	public VALUE get(ValueHandler<VALUE> valueCreator) {
-		String key = valueCreator.getKey();
-		boolean isReadLocked = false;
+	public VALUE get(ValueHandler<VALUE> valueHandler) {
+		String key = valueHandler.getKey();
 		try {
-			lock.readLock().lock();
-			isReadLocked = true;
-			if (!cachingMap.containsKey(key)) {
-				lock.readLock().unlock();
-				isReadLocked = false;
-				lock.writeLock().lock();
-				if (!cachingMap.containsKey(key)) {
-					VALUE value = valueCreator.createValue();
-					cachingMap.put(key, value);
+			readLock();
+			if (!containsKey(key)) {
+				readUnlockWriteLock();
+				if (!containsKey(key)) {
+					putValue(key, valueHandler.createValue());
 				}
-				lock.readLock().lock();
-				isReadLocked = true;
-				lock.writeLock().unlock();
+				readLockWriteUnlock();
 			}
-			return cachingMap.get(key);
+			return getValue(key);
 		} finally {
-			if (lock.writeLock().isHeldByCurrentThread()) {
-				lock.writeLock().unlock();
-			}
-			if (isReadLocked) {
-				lock.readLock().unlock();
-			}
+			unlockBoth();
+		}
+	}
+
+	private void unlockBoth() {
+		writeUnlock();
+		readUnlock();
+	}
+
+	private void readLockWriteUnlock() {
+		readLock();
+		writeUnlock();
+	}
+
+	private void readUnlockWriteLock() {
+		readUnlock();
+		writeLock();
+	}
+
+	private VALUE getValue(String key) {
+		return cachingMap.get(key);
+	}
+
+	private void putValue(String key, VALUE value) {
+		cachingMap.put(key, value);
+	}
+
+	private boolean containsKey(String key) {
+		return cachingMap.containsKey(key);
+	}
+
+	private void writeUnlock() {
+		if (lock.isWriteLockedByCurrentThread()) {
+			lock.writeLock().unlock();
+		}
+	}
+
+	private void writeLock() {
+		lock.writeLock().lock();
+	}
+
+	private void readLock() {
+		lock.readLock().lock();
+	}
+
+	private void readUnlock() {
+		if(lock.getReadHoldCount() > 0){
+			lock.readLock().unlock();
 		}
 	}
 
@@ -63,14 +96,13 @@ public class Cache<VALUE> {
 	 * Clears the cache.
 	 */
 	public void clear() {
-		lock.writeLock().lock();
+		writeLock();
 		cachingMap.clear();
-		lock.writeLock().unlock();
+		writeUnlock();
 	}
 
 	public static abstract class ValueHandler<VALUE> {
 		public abstract String getKey();
-
 		public abstract VALUE createValue();
 	}
 
