@@ -23,7 +23,7 @@ import de.jollyday.util.ResourceUtil;
 
 /**
  * Represents the holiday and contains the actual date and an localized
- * desription.
+ * description.
  * 
  * @author Sven Diedrichsen
  * @version $Id: $
@@ -111,14 +111,8 @@ public final class Holiday {
 		return resourceUtil.getHolidayDescription(locale, getPropertiesKey());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
-		/** {@inheritDoc} */
 		if (obj == this) {
 			return true;
 		}
@@ -130,14 +124,8 @@ public final class Holiday {
 		return false;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
-		/** {@inheritDoc} */
 		if (hashCode == 0) {
 			int hash = 1;
 			hash = hash * 31 + date.hashCode();
@@ -148,14 +136,8 @@ public final class Holiday {
 		return hashCode;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		/** {@inheritDoc} */
 		return date.toString() + " (" + getDescription() + ")";
 	}
 
