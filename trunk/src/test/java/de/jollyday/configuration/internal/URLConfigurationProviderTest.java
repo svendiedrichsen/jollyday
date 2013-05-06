@@ -25,6 +25,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import de.jollyday.configuration.ConfigurationProvider;
+import de.jollyday.configuration.impl.URLConfigurationProvider;
 
 public class URLConfigurationProviderTest {
 

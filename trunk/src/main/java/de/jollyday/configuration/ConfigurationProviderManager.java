@@ -19,8 +19,8 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 import de.jollyday.ManagerParameter;
-import de.jollyday.configuration.internal.DefaultConfigurationProvider;
-import de.jollyday.configuration.internal.URLConfigurationProvider;
+import de.jollyday.configuration.impl.DefaultConfigurationProvider;
+import de.jollyday.configuration.impl.URLConfigurationProvider;
 import de.jollyday.util.ClassLoadingUtil;
 
 /**

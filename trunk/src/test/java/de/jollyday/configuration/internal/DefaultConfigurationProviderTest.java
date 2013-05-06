@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import de.jollyday.configuration.impl.DefaultConfigurationProvider;
+
 public class DefaultConfigurationProviderTest {
 
 	private static final Set<String> KEYS_DEFAULT_CONFIG = new HashSet<String>(Arrays.asList("manager.impl",
