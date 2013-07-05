@@ -17,13 +17,11 @@
   <tns:SubConfigurations hierarchy="al" description="Alderney">
 	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>		
-  		<tns:Fixed month="DECEMBER" day="15" descriptionPropertiesKey="HOMECOMING"/>		
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="en" description="England">
 	<tns:Holidays>
-  		<tns:Fixed month="DECEMBER" day="15" descriptionPropertiesKey="HOMECOMING"/>		
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
