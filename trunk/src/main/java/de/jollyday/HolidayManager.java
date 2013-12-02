@@ -93,22 +93,44 @@ public abstract class HolidayManager {
 		return getInstance(ManagerParameters.create((String)null, properties));
 	}
 
+	/**
+	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @param c the {@link HolidayCalendar} to use for creating a {@link HolidayManager} instance
+	 * @return the eventually cached {@link HolidayManager}
+	 */
 	@Deprecated
 	public static final HolidayManager getInstance(final HolidayCalendar c) {
 		return getInstance(ManagerParameters.create(c, null));
 	}
 
+	/**
+	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @param c the {@link HolidayCalendar} to use for creating a {@link HolidayManager} instance
+	 * @param properties the configuration overriding {@link Properties}
+	 * @return the eventually cached {@link HolidayManager}
+	 */
 	@Deprecated
 	public static final HolidayManager getInstance(final HolidayCalendar c,
 			Properties properties) {
 		return getInstance(ManagerParameters.create(c, properties));
 	}
 
+	/**
+	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @param calendar the calendar to use for creating a {@link HolidayManager} instance
+	 * @return the eventually cached {@link HolidayManager}
+	 */
 	@Deprecated
 	public static final HolidayManager getInstance(final String calendar) {
 		return getInstance(ManagerParameters.create(calendar, null));
 	}
 
+	/**
+	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @param calendar the calendar to use for creating a {@link HolidayManager} instance
+	 * @param properties the configuration overriding {@link Properties}
+	 * @return the eventually cached {@link HolidayManager}
+	 */
 	@Deprecated
 	public static final HolidayManager getInstance(final String calendar,
 			Properties properties) {
