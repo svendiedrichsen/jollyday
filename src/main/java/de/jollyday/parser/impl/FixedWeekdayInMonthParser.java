@@ -64,7 +64,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
 		LocalDate date = calendarUtil.create(year, xmlUtil.getMonth(fwm.getMonth()), 1);
 		int direction = 1;
-		if (fwm.getWhich() == Which.LAST) {
+		if (Which.LAST.equals(fwm.getWhich())) {
 			date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
 			direction = -1;
 		}
@@ -76,15 +76,14 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	private LocalDate moveNumberOfRequestedWeeks(FixedWeekdayInMonth fwm, LocalDate date) {
 		switch (fwm.getWhich()) {
 		case SECOND:
-			date = date.plusDays(7);
-			break;
+			return date.plusDays(7);
 		case THIRD:
-			date = date.plusDays(14);
-			break;
+			return date.plusDays(14);
 		case FOURTH:
-			date = date.plusDays(21);
+			return date.plusDays(21);
+		default:
+			return date;
 		}
-		return date;
 	}
 
 	private LocalDate moveToNextRequestedWeekdayByDirection(FixedWeekdayInMonth fwm, LocalDate date, int direction) {

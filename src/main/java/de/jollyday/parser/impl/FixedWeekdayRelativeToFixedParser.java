@@ -35,8 +35,6 @@ import de.jollyday.parser.AbstractHolidayParser;
 public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 
 	/**
-	 * {@inheritDoc}
-	 * 
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */
@@ -54,28 +52,36 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 		}
 	}
 
+	/**
+	 * Moves the day to the first/next occurrence of the weekday and direction specified 
+	 * @param f the specification of the weekday and direction of movement
+	 * @param day the day to move
+	 * @return the day moved to the weekday and in the direction as specified 
+	 */
 	private LocalDate moveDateToFirstOccurenceOfWeekday(FixedWeekdayRelativeToFixed f, LocalDate day) {
+		LocalDate movingDay = day;
 		do {
-			// move fixed to first occurrence of weekday
-			day = f.getWhen() == When.AFTER ? day.plusDays(1) : day.minusDays(1);
-		} while (day.getDayOfWeek() != xmlUtil.getWeekday(f.getWeekday()));
-		return day;
+			movingDay = f.getWhen() == When.AFTER ? movingDay.plusDays(1) : movingDay.minusDays(1);
+		} while (movingDay.getDayOfWeek() != xmlUtil.getWeekday(f.getWeekday()));
+		return movingDay;
 	}
 
+	/**
+	 * Determines the number of days to move from the XML enumeration.
+	 * @param f the enumeration value
+	 * @return the number of days
+	 */
 	private int determineNumberOfDays(FixedWeekdayRelativeToFixed f) {
-		int days = 0;
 		switch (f.getWhich()) {
 		case SECOND:
-			days = 7;
-			break;
+			return 7;
 		case THIRD:
-			days = 14;
-			break;
+			return 14;
 		case FOURTH:
-			days = 21;
-			break;
+			return 21;
+		default:
+			return 0;
 		}
-		return days;
 	}
 
 }

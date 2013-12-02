@@ -25,13 +25,12 @@ import java.util.logging.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.ReadableInterval;
 
+import de.jollyday.caching.HolidayManagerValueHandler;
 import de.jollyday.configuration.ConfigurationProviderManager;
 import de.jollyday.datasource.ConfigurationDataSource;
-import de.jollyday.datasource.ConfigurationDataSourceManager;
 import de.jollyday.util.Cache;
 import de.jollyday.util.Cache.ValueHandler;
 import de.jollyday.util.CalendarUtil;
-import de.jollyday.util.ClassLoadingUtil;
 
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
@@ -55,18 +54,9 @@ public abstract class HolidayManager {
 	 */
 	private static final Cache<HolidayManager> MANAGER_CHACHE = new Cache<HolidayManager>();
 	/**
-	 * Utility to load classes.
-	 */
-	private static ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
-	/**
 	 * Manager for configuration providers. Delivers the jollyday configuration.
 	 */
 	private static ConfigurationProviderManager configurationProviderManager = new ConfigurationProviderManager();
-	/**
-	 * Manager for providing configuration datasources which return the holiday
-	 * data.
-	 */
-	private static ConfigurationDataSourceManager configurationDataSourceManager = new ConfigurationDataSourceManager();
 	/**
 	 * the holiday cache
 	 */
@@ -84,17 +74,28 @@ public abstract class HolidayManager {
 	 */
 	private ManagerParameter managerParameter;
 
+	/**
+	 * Creates a HolidayManager instance for the default locale country using
+	 * the configured properties from the configuration file.
+	 * @return a eventually cached HolidayManager instance
+	 */
 	public static final HolidayManager getInstance() {
-		return getInstance((String) null);
+		return getInstance(ManagerParameters.create((String)null, null));
 	}
 
+	/**
+	 * Creates a HolidayManager instance for the default locale country using
+	 * the provided properties.
+	 * @param properties the overriding configuration properties.
+	 * @return a eventually cached HolidayManager instance
+	 */
 	public static final HolidayManager getInstance(Properties properties) {
-		return getInstance((String) null, properties);
+		return getInstance(ManagerParameters.create((String)null, properties));
 	}
 
 	@Deprecated
 	public static final HolidayManager getInstance(final HolidayCalendar c) {
-		return getInstance(c, null);
+		return getInstance(ManagerParameters.create(c, null));
 	}
 
 	@Deprecated
@@ -105,7 +106,7 @@ public abstract class HolidayManager {
 
 	@Deprecated
 	public static final HolidayManager getInstance(final String calendar) {
-		return getInstance(calendar, null);
+		return getInstance(ManagerParameters.create(calendar, null));
 	}
 
 	@Deprecated
@@ -141,39 +142,15 @@ public abstract class HolidayManager {
 		}
 		configurationProviderManager.mergeConfigurationProperties(parameter);
 		final String managerImplClassName = readManagerImplClassName(parameter);
-		ValueHandler<HolidayManager> valueCreator = createValueHandler(
+		HolidayManagerValueHandler holidayManagerValueHandler = new HolidayManagerValueHandler(
 				parameter, managerImplClassName);		
 		if(isManagerCachingEnabled()){
-			return MANAGER_CHACHE.get(valueCreator);
+			return MANAGER_CHACHE.get(holidayManagerValueHandler);
 		}else{
-			return valueCreator.createValue();
+			return holidayManagerValueHandler.createValue();
 		}
 	}
 
-	/**
-	 * Creates the {@link ValueHandler} which constructs a {@link HolidayManager}.
-	 * @param parameter the parameters to initialize the {@link HolidayManager}
-	 * @param managerImplClassName the {@link HolidayManager} implementing clss name.
-	 * @return the new {@link HolidayManager} instance
-	 */
-	private static ValueHandler<HolidayManager> createValueHandler(
-			final ManagerParameter parameter, final String managerImplClassName) {
-		ValueHandler<HolidayManager> valueCreator = new ValueHandler<HolidayManager>() {
-			@Override
-			public String getKey() {
-				return parameter.createCacheKey();
-			}				
-			@Override
-			public HolidayManager createValue() {
-				HolidayManager manager = instantiateManagerImpl(managerImplClassName);
-				manager.setConfigurationDataSource(configurationDataSourceManager
-						.getConfigurationDataSource(parameter));
-				manager.init(parameter);
-				return manager;
-			}
-		};
-		return valueCreator;
-	}
 
 	/**
 	 * Reads the managers implementation class from the properties config file.
@@ -195,55 +172,6 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Instantiates the manager implementing class.
-	 * 
-	 * @param managerImplClassName
-	 *            the managers class name
-	 * @return the implementation class instantiated
-	 */
-	private static HolidayManager instantiateManagerImpl(
-			String managerImplClassName) {
-		try {
-			Class<?> managerImplClass = classLoadingUtil
-					.loadClass(managerImplClassName);
-			Object managerImplObject = managerImplClass.newInstance();
-			return HolidayManager.class.cast(managerImplObject);
-		} catch (Exception e) {
-			throw new IllegalStateException("Cannot create manager class "
-					+ managerImplClassName, e);
-		}
-	}
-
-	/**
-	 * Caches the manager instance for this country.
-	 * 
-	 * @param country
-	 * @param manager
-	 */
-	/*
-	private static void putToCache(final String country,
-			final HolidayManager manager) {
-		synchronized (MANAGER_CHACHE) {
-			MANAGER_CHACHE.put(country, manager);
-		}
-	}
-	*/
-
-	/**
-	 * Tries to retrieve a manager instance from cache by country.
-	 * 
-	 * @param country
-	 * @return Manager instance for this country. NULL if none is cached yet.
-	 */
-	/*
-	private static HolidayManager getFromCache(final String country) {
-		synchronized (MANAGER_CHACHE) {
-			return MANAGER_CHACHE.get(country);
-		}
-	}
-	*/
-
-	/**
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
 	 * 
@@ -251,7 +179,7 @@ public abstract class HolidayManager {
 	 *            the CACHING_ENABLED to set
 	 */
 	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
-		HolidayManager.CACHING_ENABLED = managerCachingEnabled;
+		CACHING_ENABLED = managerCachingEnabled;
 	}
 
 	/**
@@ -336,7 +264,7 @@ public abstract class HolidayManager {
 	 * @param configurationDataSource
 	 *            the {@link ConfigurationDataSource} to use.
 	 */
-	protected void setConfigurationDataSource(
+	public void setConfigurationDataSource(
 			ConfigurationDataSource configurationDataSource) {
 		this.configurationDataSource = configurationDataSource;
 	}
@@ -347,11 +275,11 @@ public abstract class HolidayManager {
 	 * 
 	 * @return the {@link ConfigurationDataSource} to use.
 	 */
-	protected ConfigurationDataSource getConfigurationDataSource() {
+	public ConfigurationDataSource getConfigurationDataSource() {
 		return configurationDataSource;
 	}
 
-	protected ManagerParameter getManagerParameter() {
+	public ManagerParameter getManagerParameter() {
 		return managerParameter;
 	}
 
