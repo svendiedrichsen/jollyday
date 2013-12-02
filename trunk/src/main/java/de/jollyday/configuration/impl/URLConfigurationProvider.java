@@ -18,6 +18,7 @@ package de.jollyday.configuration.impl;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.jollyday.configuration.ConfigurationProvider;
@@ -25,21 +26,18 @@ import de.jollyday.configuration.ConfigurationProvider;
 /**
  * An {@link ConfigurationProvider} implementation which reads a list of URLs
  * provided by the system property 'de.jollyday.config.urls' in order they are
- * provided.
+ * provided into a {@link Properties} instance.
  * 
- * @author sven
- * 
+ * @author Sven Diedrichsen
  */
 public class URLConfigurationProvider implements ConfigurationProvider {
 
-	private static final Logger LOG = Logger.getLogger(URLConfigurationProvider.class.getName());
+	private static final Logger LOG = Logger
+			.getLogger(URLConfigurationProvider.class.getName());
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * de.jollyday.configuration.ConfigurationProvider#addConfiguration(java
-	 * .util.Properties)
+	/**
+	 * Returns the properties by reading from the URLs provided by the system
+	 * property 'de.jollyday.config.urls'.
 	 */
 	public Properties getProperties() {
 		Properties properties = new Properties();
@@ -49,30 +47,38 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 			String[] strConfigURLs = configURLs.split(",");
 			if (strConfigURLs != null) {
 				for (String strURL : strConfigURLs) {
-					if (strURL == null || "".equals(strURL))
-						continue;
-					InputStream inputStream = null;
-					try {
-						URL configURL = new URL(strURL.trim());
-						inputStream = configURL.openStream();
-						properties.load(inputStream);
-					} catch (Exception e) {
-						LOG.warning("Cannot read configuration from '" + strURL + "'. " + e.getClass().getSimpleName()
-								+ " (" + e.getMessage() + ").");
-					} finally {
-						if (inputStream != null) {
-							try {
-								inputStream.close();
-							} catch (Exception e) {
-								LOG.warning("Cannot close stream for configuration URL " + strURL + ".");
-							}
-						}
-					}
-
+					readPropertiesFromURL(properties, strURL);
 				}
 			}
 		}
 		return properties;
+	}
+
+	private void readPropertiesFromURL(Properties properties, String strURL) {
+		if (strURL == null || "".equals(strURL))
+			return;
+		InputStream inputStream = null;
+		try {
+			URL configURL = new URL(strURL.trim());
+			inputStream = configURL.openStream();
+			properties.load(inputStream);
+		} catch (Exception e) {
+			LOG.log(Level.WARNING, "Cannot read configuration from '" + strURL
+					+ "'.", e);
+		} finally {
+			closeStreamFromURL(strURL, inputStream);
+		}
+	}
+
+	private void closeStreamFromURL(String strURL, InputStream inputStream) {
+		if (inputStream != null) {
+			try {
+				inputStream.close();
+			} catch (Exception e) {
+				LOG.warning("Cannot close stream for configuration URL "
+						+ strURL + ".");
+			}
+		}
 	}
 
 }

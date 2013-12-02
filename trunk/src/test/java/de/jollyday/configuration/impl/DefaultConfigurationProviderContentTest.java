@@ -1,4 +1,4 @@
-package de.jollyday.configuration.internal;
+package de.jollyday.configuration.impl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import de.jollyday.configuration.impl.DefaultConfigurationProvider;
 
-public class DefaultConfigurationProviderTest {
+public class DefaultConfigurationProviderContentTest {
 
 	private static final Set<String> KEYS_DEFAULT_CONFIG = new HashSet<String>(Arrays.asList("manager.impl",
 			"manager.impl.jp","configuration.datasource.impl","parser.impl.de.jollyday.config.Fixed",

@@ -24,15 +24,16 @@ import de.jollyday.configuration.ConfigurationProvider;
 import de.jollyday.util.ResourceUtil;
 
 /**
- * Provider which adds jollydays default configuration.
+ * Provider which adds jollydays default configuration file
+ * 'jollyday.properties' by reading it from the classpath by using the currents
+ * threads classloader.
  * 
- * 
- * @author sven
- * 
+ * @author Sven Diedrichsen
  */
 public class DefaultConfigurationProvider implements ConfigurationProvider {
 
-	private static final Logger LOG = Logger.getLogger(DefaultConfigurationProvider.class.getName());
+	private static final Logger LOG = Logger
+			.getLogger(DefaultConfigurationProvider.class.getName());
 
 	/**
 	 * The name of the configuration file.
@@ -59,16 +60,26 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 				if (stream != null) {
 					properties.load(stream);
 				} else {
-					LOG.warning("Could not load default properties file '" + CONFIG_FILE + "' from classpath.");
+					LOG.warning("Could not load default properties file '"
+							+ CONFIG_FILE + "' from classpath.");
 				}
 			} finally {
-				if (stream != null) {
-					stream.close();
-				}
+				closeStream(stream);
 			}
 			return properties;
 		} catch (IOException e) {
-			throw new IllegalStateException("Could not load default properties from classpath.", e);
+			throw new IllegalStateException(
+					"Could not load default properties from classpath.", e);
+		}
+	}
+
+	private void closeStream(InputStream stream) {
+		if (stream != null) {
+			try {
+				stream.close();
+			} catch (IOException e) {
+				LOG.warning("Could not close configurations input stream.");
+			}
 		}
 	}
 
