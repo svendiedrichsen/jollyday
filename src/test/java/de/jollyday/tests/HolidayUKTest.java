@@ -15,8 +15,18 @@
  */
 package de.jollyday.tests;
 
+import static org.junit.Assert.assertTrue;
+
+import java.util.Set;
+
+import org.joda.time.LocalDate;
+import org.joda.time.chrono.ISOChronology;
 import org.junit.Test;
 
+import de.jollyday.Holiday;
+import de.jollyday.HolidayCalendar;
+import de.jollyday.HolidayManager;
+import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 
 public class HolidayUKTest extends AbstractCountryTestBase {
@@ -28,5 +38,38 @@ public class HolidayUKTest extends AbstractCountryTestBase {
 	public void testManagerUKStructure() throws Exception {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
+	
+	@Test
+	public void testManagerUKChristmasMovingDaysWhenChristimasOnSunday(){
+		doChristmasContainmentTest(2011, 26, 27);		
+	}
 
+	@Test
+	public void testManagerUKChristmasMovingDaysWhenChristimasOnSaturday(){
+		doChristmasContainmentTest(2010, 27, 28);		
+	}
+
+	@Test
+	public void testManagerUKChristmasMovingDaysWhenChristimasOnFriday(){
+		doChristmasContainmentTest(2009, 25, 28);		
+	}
+
+	private void doChristmasContainmentTest(int year, int dayOfChristmas, int dayOfBoxingday) {
+		LocalDate christmas = new LocalDate(year, 12, dayOfChristmas, ISOChronology.getInstance());
+		LocalDate boxingday = new LocalDate(year, 12, dayOfBoxingday, ISOChronology.getInstance());
+		HolidayManager holidayManager = HolidayManager.getInstance(ManagerParameters.create(HolidayCalendar.UNITED_KINGDOM));
+		Set<Holiday> holidays = holidayManager.getHolidays(year);
+		assertTrue("There should be christmas on "+christmas, contains(christmas, holidays));
+		assertTrue("There should be boxing day on "+boxingday, contains(boxingday, holidays));
+	}
+	
+	private boolean contains(LocalDate localDate, Set<Holiday> holidays){
+		for(Holiday h : holidays){
+			if(localDate.equals(h.getDate())){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
