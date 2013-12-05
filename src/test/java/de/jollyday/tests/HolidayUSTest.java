@@ -28,5 +28,5 @@ public class HolidayUSTest extends AbstractCountryTestBase {
 	public void testManagerUSStructure() throws Exception {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
-
+	
 }
