@@ -38,7 +38,7 @@ import de.jollyday.util.ResourceUtil;
  */
 public class ISOCodesTest {
 
-	private static final int NUMBER_OF_ISOCOUNTRIES = 246;
+	private static final int NUMBER_OF_ISOCOUNTRIES = 248;
 
 	private Locale defaultLocale;
 
