@@ -15,5 +15,6 @@
 		<tns:ChristianHoliday type="GENERAL_PRAYER_DAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" />
 		<tns:ChristianHoliday type="WHIT_MONDAY" />
+		<tns:ChristianHoliday type="PENTECOST" />
 	</tns:Holidays>
 </tns:Configuration>
