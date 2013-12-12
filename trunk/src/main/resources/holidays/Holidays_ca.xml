@@ -11,7 +11,7 @@
   <tns:SubConfigurations hierarchy="on" description="Ontario">
   	<tns:Holidays>
   		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -23,7 +23,7 @@
   <tns:SubConfigurations hierarchy="yt" description="Yukon">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -33,7 +33,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="qc" description="Quebec">
   	<tns:Holidays>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -56,7 +56,7 @@
   <tns:SubConfigurations hierarchy="mb" description="Manitoba">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -68,7 +68,7 @@
   <tns:SubConfigurations hierarchy="nt" description="Northwest Territories">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -80,7 +80,7 @@
   <tns:SubConfigurations hierarchy="nu" description="Nunavut">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -92,7 +92,7 @@
   <tns:SubConfigurations hierarchy="bc" description="British Columbia">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -109,7 +109,7 @@
   <tns:SubConfigurations hierarchy="sk" description="Saskatchewan">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
@@ -122,7 +122,7 @@
   <tns:SubConfigurations hierarchy="ab" description="Alberta">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="REMEMBRANCE"/>
-  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORY">
+  		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
   			<tns:Date month="MAY" day="24"/>
