@@ -1,17 +1,17 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday;
 
@@ -36,7 +36,7 @@ import de.jollyday.util.CalendarUtil;
  * Abstract base class for all holiday manager implementations. Upon call of
  * getInstance method the implementing class will be read from the
  * jollyday.properties file and instantiated.
- * 
+ *
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -79,7 +79,7 @@ public abstract class HolidayManager {
 	 * the configured properties from the configuration file.
 	 * @return a eventually cached HolidayManager instance
 	 */
-	public static final HolidayManager getInstance() {
+	public static HolidayManager getInstance() {
 		return getInstance(ManagerParameters.create((String)null, null));
 	}
 
@@ -89,7 +89,7 @@ public abstract class HolidayManager {
 	 * @param properties the overriding configuration properties.
 	 * @return a eventually cached HolidayManager instance
 	 */
-	public static final HolidayManager getInstance(Properties properties) {
+	public static HolidayManager getInstance(Properties properties) {
 		return getInstance(ManagerParameters.create((String)null, properties));
 	}
 
@@ -99,7 +99,7 @@ public abstract class HolidayManager {
 	 * @return the eventually cached {@link HolidayManager}
 	 */
 	@Deprecated
-	public static final HolidayManager getInstance(final HolidayCalendar c) {
+	public static HolidayManager getInstance(final HolidayCalendar c) {
 		return getInstance(ManagerParameters.create(c, null));
 	}
 
@@ -110,7 +110,7 @@ public abstract class HolidayManager {
 	 * @return the eventually cached {@link HolidayManager}
 	 */
 	@Deprecated
-	public static final HolidayManager getInstance(final HolidayCalendar c,
+	public static HolidayManager getInstance(final HolidayCalendar c,
 			Properties properties) {
 		return getInstance(ManagerParameters.create(c, properties));
 	}
@@ -121,7 +121,7 @@ public abstract class HolidayManager {
 	 * @return the eventually cached {@link HolidayManager}
 	 */
 	@Deprecated
-	public static final HolidayManager getInstance(final String calendar) {
+	public static HolidayManager getInstance(final String calendar) {
 		return getInstance(ManagerParameters.create(calendar, null));
 	}
 
@@ -132,7 +132,7 @@ public abstract class HolidayManager {
 	 * @return the eventually cached {@link HolidayManager}
 	 */
 	@Deprecated
-	public static final HolidayManager getInstance(final String calendar,
+	public static HolidayManager getInstance(final String calendar,
 			Properties properties) {
 		return getInstance(ManagerParameters.create(calendar, properties));
 	}
@@ -140,19 +140,19 @@ public abstract class HolidayManager {
 	/**
 	 * Creates and returns a {@link HolidayManager} for the provided
 	 * {@link ManagerParameters}
-	 * 
+	 *
 	 * @param parameters
 	 *            the {@link ManagerParameters} to create the manager with
 	 * @return the {@link HolidayManager} instance
 	 */
-	public static final HolidayManager getInstance(ManagerParameter parameter) {
+	public static HolidayManager getInstance(ManagerParameter parameter) {
 		return createManager(parameter);
 	}
 
 	/**
 	 * Creates a new <code>HolidayManager</code> instance for the country and
 	 * puts it to the manager cache.
-	 * 
+	 *
 	 * @param calendar
 	 *            <code>HolidayManager</code> instance for the calendar
 	 * @return new
@@ -165,7 +165,7 @@ public abstract class HolidayManager {
 		configurationProviderManager.mergeConfigurationProperties(parameter);
 		final String managerImplClassName = readManagerImplClassName(parameter);
 		HolidayManagerValueHandler holidayManagerValueHandler = new HolidayManagerValueHandler(
-				parameter, managerImplClassName);		
+				parameter, managerImplClassName);
 		if(isManagerCachingEnabled()){
 			return MANAGER_CHACHE.get(holidayManagerValueHandler);
 		}else{
@@ -176,7 +176,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Reads the managers implementation class from the properties config file.
-	 * 
+	 *
 	 * @param calendar
 	 *            the calendar name
 	 * @param props
@@ -196,7 +196,7 @@ public abstract class HolidayManager {
 	/**
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
-	 * 
+	 *
 	 * @param CACHING_ENABLED
 	 *            the CACHING_ENABLED to set
 	 */
@@ -208,7 +208,7 @@ public abstract class HolidayManager {
 	 * <p>
 	 * isManagerCachingEnabled.
 	 * </p>
-	 * 
+	 *
 	 * @return the CACHING_ENABLED
 	 */
 	public static boolean isManagerCachingEnabled() {
@@ -226,7 +226,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Calls isHoliday with JODA time object.
-	 * 
+	 *
 	 * @param c
 	 *            a {@link java.util.Calendar} object.
 	 * @param args
@@ -239,7 +239,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Show if the requested date is a holiday.
-	 * 
+	 *
 	 * @param c
 	 *            The potential holiday.
 	 * @param args
@@ -269,7 +269,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns a set of all currently supported calendar codes.
-	 * 
+	 *
 	 * @return Set of supported calendar codes.
 	 */
 	public static Set<String> getSupportedCalendarCodes() {
@@ -282,7 +282,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Sets the configuration datasource with this holiday manager.
-	 * 
+	 *
 	 * @param configurationDataSource
 	 *            the {@link ConfigurationDataSource} to use.
 	 */
@@ -294,7 +294,7 @@ public abstract class HolidayManager {
 	/**
 	 * Returns the {@link ConfigurationDataSource} to be used to retrieve
 	 * holiday data.
-	 * 
+	 *
 	 * @return the {@link ConfigurationDataSource} to use.
 	 */
 	public ConfigurationDataSource getConfigurationDataSource() {
@@ -307,7 +307,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Initializes the implementing manager for the provided calendar.
-	 * 
+	 *
 	 * @param calendar
 	 *            i.e. us, uk, de
 	 */
@@ -320,7 +320,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns the holidays for the requested year and hierarchy structure.
-	 * 
+	 *
 	 * @param year
 	 *            i.e. 2010
 	 * @param args
@@ -332,7 +332,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Returns the holidays for the requested interval and hierarchy structure.
-	 * 
+	 *
 	 * @param interval
 	 *            the interval in which the holidays lie.
 	 * @param args
@@ -346,7 +346,7 @@ public abstract class HolidayManager {
 	 * Returns the configured hierarchy structure for the specific manager. This
 	 * hierarchy shows how the configured holidays are structured and can be
 	 * retrieved.
-	 * 
+	 *
 	 * @return Current calendars hierarchy
 	 */
 	abstract public CalendarHierarchy getCalendarHierarchy();
