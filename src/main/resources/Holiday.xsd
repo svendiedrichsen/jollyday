@@ -211,7 +211,7 @@
 
 	<complexType name="ChristianHoliday">
 		<complexContent>
-			<extension base="tns:Holiday">
+			<extension base="tns:MoveableHoliday">
 				<attribute name="type" type="tns:ChristianHolidayType">
 				</attribute>
 
@@ -292,7 +292,7 @@
 		</restriction>
 	</simpleType>
 
-	
+
 
 	<complexType name="MovingCondition">
 		<attribute name="substitute" type="tns:Weekday"></attribute>

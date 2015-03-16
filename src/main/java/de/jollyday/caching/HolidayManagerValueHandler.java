@@ -9,12 +9,9 @@ import de.jollyday.util.Cache.ValueHandler;
 
 /**
  * Creates the {@link ValueHandler} which constructs a {@link HolidayManager}.
- * @param parameter the parameters to initialize the {@link HolidayManager}
- * @param managerImplClassName the {@link HolidayManager} implementing clss name.
- * @return the new {@link HolidayManager} instance
  */
 public class HolidayManagerValueHandler extends ValueHandler<HolidayManager> {
-	
+
 	private ManagerParameter parameter;
 	private String managerImplClassName;
 
@@ -28,7 +25,7 @@ public class HolidayManagerValueHandler extends ValueHandler<HolidayManager> {
 	 * Utility to load classes.
 	 */
 	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
-	
+
 	public HolidayManagerValueHandler(final ManagerParameter parameter, final String managerImplClassName) {
 		this.parameter = parameter;
 		this.managerImplClassName = managerImplClassName;
@@ -37,8 +34,8 @@ public class HolidayManagerValueHandler extends ValueHandler<HolidayManager> {
 	@Override
 	public String getKey() {
 		return parameter.createCacheKey();
-	}				
-	
+	}
+
 	@Override
 	public HolidayManager createValue() {
 		HolidayManager manager = instantiateManagerImpl(managerImplClassName);
@@ -50,7 +47,7 @@ public class HolidayManagerValueHandler extends ValueHandler<HolidayManager> {
 
 	/**
 	 * Instantiates the manager implementing class.
-	 * 
+	 *
 	 * @param managerImplClassName
 	 *            the managers class name
 	 * @return the implementation class instantiated
