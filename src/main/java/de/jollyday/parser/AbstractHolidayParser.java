@@ -15,7 +15,8 @@
  */
 package de.jollyday.parser;
 
-import org.joda.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holiday;
@@ -154,7 +155,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @return
 	 */
 	private LocalDate moveDate(MovingCondition mc, LocalDate fixed) {
-		int weekday = xmlUtil.getWeekday(mc.getWeekday());
+		DayOfWeek weekday = xmlUtil.getWeekday(mc.getWeekday());
 		int direction = (mc.getWith() == With.NEXT ? 1 : -1);
 		while (fixed.getDayOfWeek() != weekday) {
 			fixed = fixed.plusDays(direction);

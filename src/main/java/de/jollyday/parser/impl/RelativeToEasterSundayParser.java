@@ -15,9 +15,8 @@
  */
 package de.jollyday.parser.impl;
 
+import java.time.LocalDate;
 import java.util.Set;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.config.HolidayType;
@@ -43,6 +42,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 	 * 
 	 * Parses relative to easter sunday holidays.
 	 */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (RelativeToEasterSunday ch : config.getRelativeToEasterSunday()) {
 			if (!isValid(ch, year)) {
@@ -50,7 +50,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 			}
 			LocalDate easterSunday = getEasterSunday(year, ch.getChronology()).plusDays(ch.getDays());
 			String propertiesKey = PREFIX_PROPERTY_CHRISTIAN + ch.getDescriptionPropertiesKey();
-			addChrstianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
+			addChristianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
 	}
 
@@ -66,11 +66,10 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 	 * @param holidays
 	 *            a {@link java.util.Set} object.
 	 */
-	protected void addChrstianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType,
+	protected void addChristianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType,
 			Set<Holiday> holidays) {
-		LocalDate convertedDate = calendarUtil.convertToISODate(day);
 		de.jollyday.HolidayType type = xmlUtil.getType(holidayType);
-		Holiday h = new Holiday(convertedDate, propertiesKey, type);
+		Holiday h = new Holiday(day, propertiesKey, type);
 		holidays.add(h);
 	}
 

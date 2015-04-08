@@ -15,12 +15,12 @@
  */
 package de.jollyday.parser.impl;
 
+import java.time.LocalDate;
+import java.util.Set;
+
 import de.jollyday.Holiday;
 import de.jollyday.config.ChristianHoliday;
 import de.jollyday.config.Holidays;
-import org.joda.time.LocalDate;
-
-import java.util.Set;
 
 /**
  * This parser creates christian holidays for the given year relative to easter
@@ -36,6 +36,7 @@ public class ChristianHolidayParser extends RelativeToEasterSundayParser {
 	 *
 	 * Parses all christian holidays relative to eastern.
 	 */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (ChristianHoliday ch : config.getChristianHoliday()) {
 			if (!isValid(ch, year)) {
@@ -97,7 +98,7 @@ public class ChristianHolidayParser extends RelativeToEasterSundayParser {
 			}
             easterSunday = moveDate(ch, easterSunday);
 			String propertiesKey = "christian." + ch.getType().name();
-			addChrstianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
+			addChristianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
 	}
 

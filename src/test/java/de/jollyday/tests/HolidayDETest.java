@@ -15,6 +15,7 @@
  */
 package de.jollyday.tests;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -22,8 +23,6 @@ import java.util.Set;
 
 import junit.framework.Assert;
 
-import org.joda.time.Interval;
-import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import de.jollyday.Holiday;
@@ -48,9 +47,8 @@ public class HolidayDETest extends AbstractCountryTestBase {
 	public void testManagerDEinterval() {
 		try {
 			HolidayManager instance = HolidayManager.getInstance(HolidayCalendar.GERMANY);
-			Interval interval = new Interval(calendarUtil.create(2010, 10, 1).toDateTimeAtStartOfDay(), calendarUtil
-					.create(2011, 1, 31).toDateTimeAtStartOfDay());
-			Set<Holiday> holidays = instance.getHolidays(interval);
+			Set<Holiday> holidays = instance.getHolidays(calendarUtil.create(2010, 10, 1), calendarUtil
+					.create(2011, 1, 31));
 			List<LocalDate> expected = Arrays.asList(calendarUtil.create(2010, 12, 25),
 					calendarUtil.create(2010, 12, 26), calendarUtil.create(2010, 10, 3),
 					calendarUtil.create(2011, 1, 1));

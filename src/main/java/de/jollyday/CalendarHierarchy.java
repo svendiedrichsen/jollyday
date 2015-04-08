@@ -29,7 +29,7 @@ import de.jollyday.util.ResourceUtil;
  */
 public class CalendarHierarchy {
 	private String id;
-	private Map<String, CalendarHierarchy> children = new HashMap<String, CalendarHierarchy>();
+	private Map<String, CalendarHierarchy> children = new HashMap<>();
 	private final CalendarHierarchy parent;
 	private ResourceUtil resourceUtil = new ResourceUtil();
 	private String fallbackDescription;

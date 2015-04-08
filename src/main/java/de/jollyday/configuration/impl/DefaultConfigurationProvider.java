@@ -51,6 +51,7 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 	 * de.jollyday.configuration.ConfigurationProvider#addConfiguration(java
 	 * .util.Properties)
 	 */
+	@Override
 	public Properties getProperties() {
 		Properties properties = new Properties();
 		try {

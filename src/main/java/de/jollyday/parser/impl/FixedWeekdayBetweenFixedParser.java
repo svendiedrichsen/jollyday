@@ -15,9 +15,8 @@
  */
 package de.jollyday.parser.impl;
 
+import java.time.LocalDate;
 import java.util.Set;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayType;
@@ -39,6 +38,7 @@ public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayBetweenFixed fwm : config.getFixedWeekdayBetweenFixed()) {
 			if (!isValid(fwm, year)) {

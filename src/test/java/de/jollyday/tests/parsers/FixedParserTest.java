@@ -15,6 +15,7 @@
  */
 package de.jollyday.tests.parsers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -22,7 +23,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -49,9 +49,9 @@ public class FixedParserTest {
 	public void testFixedWithValidity() {
 		Holidays h = createHolidays(createFixed(1, Month.JANUARY), createFixed(3, Month.MARCH),
 				createFixed(5, Month.MAY, 2011, null));
-		Set<Holiday> set = new HashSet<Holiday>();
+		Set<Holiday> set = new HashSet<>();
 		fixedParser.parse(2010, set, h);
-		containsAll(new ArrayList<Holiday>(set), calendarUtil.create(2010, 1, 1), calendarUtil.create(2010, 3, 3));
+		containsAll(new ArrayList<>(set), calendarUtil.create(2010, 1, 1), calendarUtil.create(2010, 3, 3));
 	}
 
 	@Test
@@ -59,9 +59,9 @@ public class FixedParserTest {
 		Holidays h = createHolidays(
 				createFixed(8, Month.JANUARY, createMoving(Weekday.SATURDAY, With.PREVIOUS, Weekday.FRIDAY)),
 				createFixed(23, Month.JANUARY, createMoving(Weekday.SUNDAY, With.NEXT, Weekday.MONDAY)));
-		Set<Holiday> set = new HashSet<Holiday>();
+		Set<Holiday> set = new HashSet<>();
 		fixedParser.parse(2011, set, h);
-		containsAll(new ArrayList<Holiday>(set), calendarUtil.create(2011, 1, 7), calendarUtil.create(2011, 1, 24));
+		containsAll(new ArrayList<>(set), calendarUtil.create(2011, 1, 7), calendarUtil.create(2011, 1, 24));
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class FixedParserTest {
 		fixed.setValidFrom(2010);
 		fixed.setEvery("2_YEARS");
 		Holidays holidays = createHolidays(fixed);
-		Set<Holiday> set = new HashSet<Holiday>();
+		Set<Holiday> set = new HashSet<>();
 		fixedParser.parse(2011, set, holidays);
 		Assert.assertTrue("Expected to be empty.", set.isEmpty());
 	}
@@ -81,14 +81,14 @@ public class FixedParserTest {
 		fixed.setValidFrom(2010);
 		fixed.setEvery("3_YEARS");
 		Holidays holidays = createHolidays(fixed);
-		Set<Holiday> set = new HashSet<Holiday>();
+		Set<Holiday> set = new HashSet<>();
 		fixedParser.parse(2013, set, holidays);
 		Assert.assertEquals("Wrong number of holidays.", 1, set.size());
 	}
 
 	private void containsAll(List<Holiday> list, LocalDate... dates) {
 		Assert.assertEquals("Number of holidays.", dates.length, list.size());
-		List<LocalDate> expected = new ArrayList<LocalDate>(Arrays.asList(dates));
+		List<LocalDate> expected = new ArrayList<>(Arrays.asList(dates));
 		Collections.sort(expected);
 		Collections.sort(list, new HolidayComparator());
 		for (int i = 0; i < expected.size(); i++) {

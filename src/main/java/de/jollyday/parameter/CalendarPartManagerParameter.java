@@ -28,14 +28,17 @@ public class CalendarPartManagerParameter extends BaseManagerParameter {
 		this.calendarPart = calendarPart;
 	}
 
+	@Override
 	public String createCacheKey() {
 		return calendarPart;
 	}
 
+	@Override
 	public String getDisplayName() {
 		return calendarPart;
 	}
 
+	@Override
 	public URL createResourceUrl() {
 		String configurationFileName = getConfigurationFileName(calendarPart);
 		return resourceUtil.getResource(configurationFileName);

@@ -40,6 +40,7 @@ public class HolidayDescriptionTest {
 		Assert.assertTrue(folder.isDirectory());
 		File[] descriptions = folder.listFiles(new FilenameFilter() {
 
+			@Override
 			public boolean accept(File dir, String name) {
 				return name.startsWith("holiday_descriptions") && name.endsWith(".properties");
 			}
@@ -47,8 +48,8 @@ public class HolidayDescriptionTest {
 		Assert.assertNotNull(descriptions);
 		Assert.assertTrue(descriptions.length > 0);
 
-		Set<String> propertiesNames = new HashSet<String>();
-		Map<String, Properties> descriptionProperties = new HashMap<String, Properties>();
+		Set<String> propertiesNames = new HashSet<>();
+		Map<String, Properties> descriptionProperties = new HashMap<>();
 
 		for (File descriptionFile : descriptions) {
 			Properties props = new Properties();
@@ -57,11 +58,11 @@ public class HolidayDescriptionTest {
 			descriptionProperties.put(descriptionFile.getName(), props);
 		}
 
-		Map<String, Set<String>> missingProperties = new HashMap<String, Set<String>>();
+		Map<String, Set<String>> missingProperties = new HashMap<>();
 
 		for (Map.Entry<String, Properties> entry : descriptionProperties.entrySet()) {
 			if (!entry.getValue().stringPropertyNames().containsAll(propertiesNames)) {
-				Set<String> remainingProps = new HashSet<String>(propertiesNames);
+				Set<String> remainingProps = new HashSet<>(propertiesNames);
 				remainingProps.removeAll(entry.getValue().stringPropertyNames());
 				missingProperties.put(entry.getKey(), remainingProps);
 			}

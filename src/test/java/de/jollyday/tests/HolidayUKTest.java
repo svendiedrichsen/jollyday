@@ -17,10 +17,9 @@ package de.jollyday.tests;
 
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.Set;
 
-import org.joda.time.LocalDate;
-import org.joda.time.chrono.ISOChronology;
 import org.junit.Test;
 
 import de.jollyday.Holiday;
@@ -55,8 +54,8 @@ public class HolidayUKTest extends AbstractCountryTestBase {
 	}
 
 	private void doChristmasContainmentTest(int year, int dayOfChristmas, int dayOfBoxingday) {
-		LocalDate christmas = new LocalDate(year, 12, dayOfChristmas, ISOChronology.getInstance());
-		LocalDate boxingday = new LocalDate(year, 12, dayOfBoxingday, ISOChronology.getInstance());
+		LocalDate christmas = LocalDate.of(year, 12, dayOfChristmas);
+		LocalDate boxingday = LocalDate.of(year, 12, dayOfBoxingday);
 		HolidayManager holidayManager = HolidayManager.getInstance(ManagerParameters.create(HolidayCalendar.UNITED_KINGDOM));
 		Set<Holiday> holidays = holidayManager.getHolidays(year);
 		assertTrue("There should be christmas on "+christmas, contains(christmas, holidays));

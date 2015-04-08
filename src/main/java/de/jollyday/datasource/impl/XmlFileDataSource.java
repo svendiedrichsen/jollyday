@@ -31,6 +31,7 @@ public class XmlFileDataSource implements ConfigurationDataSource {
 	 */
 	private XMLUtil xmlUtil = new XMLUtil();
 
+	@Override
 	public Configuration getConfiguration(ManagerParameter parameter) {
 		try {
 			final InputStream inputStream = parameter.createResourceUrl().openStream();

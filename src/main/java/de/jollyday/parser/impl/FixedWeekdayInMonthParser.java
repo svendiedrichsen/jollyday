@@ -15,9 +15,11 @@
  */
 package de.jollyday.parser.impl;
 
-import java.util.Set;
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
-import org.joda.time.LocalDate;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Set;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayType;
@@ -41,6 +43,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	 * de.jollyday.config.Holidays)
 	 */
 	/** {@inheritDoc} */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayInMonth fwm : config.getFixedWeekday()) {
 			if (!isValid(fwm, year)) {
@@ -65,7 +68,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 		LocalDate date = calendarUtil.create(year, xmlUtil.getMonth(fwm.getMonth()), 1);
 		int direction = 1;
 		if (Which.LAST.equals(fwm.getWhich())) {
-			date = date.withDayOfMonth(date.dayOfMonth().getMaximumValue());
+			date = date.with(lastDayOfMonth());
 			direction = -1;
 		}
 		date = moveToNextRequestedWeekdayByDirection(fwm, date, direction);
@@ -87,7 +90,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	}
 
 	private LocalDate moveToNextRequestedWeekdayByDirection(FixedWeekdayInMonth fwm, LocalDate date, int direction) {
-		int weekDay = xmlUtil.getWeekday(fwm.getWeekday());
+		DayOfWeek weekDay = xmlUtil.getWeekday(fwm.getWeekday());
 		while (date.getDayOfWeek() != weekDay) {
 			date = date.plusDays(direction);
 		}

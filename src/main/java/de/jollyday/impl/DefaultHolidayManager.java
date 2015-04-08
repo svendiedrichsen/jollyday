@@ -17,17 +17,17 @@ package de.jollyday.impl;
 
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.joda.time.ReadableInterval;
 
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
@@ -53,7 +53,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	/**
 	 * Parser cache by XML class name.
 	 */
-	private final Map<String, HolidayParser> parserCache = new HashMap<String, HolidayParser>();
+	private final Map<String, HolidayParser> parserCache = new HashMap<>();
 	/**
 	 * Configuration parsed on initialization.
 	 */
@@ -85,15 +85,14 @@ public class DefaultHolidayManager extends HolidayManager {
 	 * interval.
 	 */
 	@Override
-	public Set<Holiday> getHolidays(ReadableInterval interval, final String... args) {
-		if (interval == null) {
-			throw new IllegalArgumentException("Interval is NULL.");
-		}
-		Set<Holiday> holidays = new HashSet<Holiday>();
-		for (int year = interval.getStart().getYear(); year <= interval.getEnd().getYear(); year++) {
+	public Set<Holiday> getHolidays(LocalDate startDateInclusive, LocalDate endDateInclusive, final String... args) {
+		Objects.requireNonNull(startDateInclusive, "startDateInclusive is null");
+		Objects.requireNonNull(endDateInclusive, "endInclusive is null");
+		Set<Holiday> holidays = new HashSet<>();
+		for (int year = startDateInclusive.getYear(); year <= endDateInclusive.getYear(); year++) {
 			Set<Holiday> yearHolidays = getHolidays(year, args);
 			for (Holiday h : yearHolidays) {
-				if (interval.contains(h.getDate().toDateTimeAtStartOfDay())) {
+				if (!startDateInclusive.isAfter(h.getDate()) && !endDateInclusive.isBefore(h.getDate())) {
 					holidays.add(h);
 				}
 			}
@@ -183,6 +182,7 @@ public class DefaultHolidayManager extends HolidayManager {
 			this.parser = parser;
 		}
 
+		@Override
 		public void run() {
 			parser.parse(year, holidays, config);
 		}
@@ -197,7 +197,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	 * @return A list of parsers to for this configuration.
 	 */
 	private Collection<HolidayParser> getParsers(final Holidays config) {
-		Collection<HolidayParser> parsers = new HashSet<HolidayParser>();
+		Collection<HolidayParser> parsers = new HashSet<>();
 		try {
 			PropertyDescriptor[] propertiesDescs = Introspector.getBeanInfo(config.getClass()).getPropertyDescriptors();
 			for (PropertyDescriptor propertyDescriptor : propertiesDescs) {
@@ -271,8 +271,8 @@ public class DefaultHolidayManager extends HolidayManager {
 	 *            a {@link de.jollyday.config.Configuration} object.
 	 */
 	protected static void validateConfigurationHierarchy(final Configuration c) {
-		Map<String, Integer> hierarchyMap = new HashMap<String, Integer>();
-		Set<String> multipleHierarchies = new HashSet<String>();
+		Map<String, Integer> hierarchyMap = new HashMap<>();
+		Set<String> multipleHierarchies = new HashSet<>();
 		for (Configuration subConfig : c.getSubConfigurations()) {
 			String hierarchy = subConfig.getHierarchy();
 			if (!hierarchyMap.containsKey(hierarchy)) {

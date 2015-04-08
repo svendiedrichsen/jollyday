@@ -14,6 +14,7 @@ public abstract class BaseManagerParameter implements ManagerParameter {
 		}
 	}
 	
+	@Override
 	public void mergeProperties(Properties properties) {
 		if(properties != null){
 			Properties mergedProperties = new Properties();
@@ -23,14 +24,17 @@ public abstract class BaseManagerParameter implements ManagerParameter {
 		}
 	}
 	
+	@Override
 	public String getProperty(String key){
 		return properties.getProperty(key);
 	}
 	
+	@Override
 	public void setProperty(String key, String value){
 		this.properties.setProperty(key, value);
 	}
 	
+	@Override
 	public String getManangerImplClassName() {
 		return getProperty(MANAGER_IMPL_CLASS_PREFIX);
 	}

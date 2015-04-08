@@ -15,9 +15,8 @@
  */
 package de.jollyday.parser.impl;
 
+import java.time.LocalDate;
 import java.util.Set;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayType;
@@ -45,6 +44,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 	 * de.jollyday.config.Holidays)
 	 */
 	/** {@inheritDoc} */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, Holidays config) {
 		for (EthiopianOrthodoxHoliday h : config.getEthiopianOrthodoxHoliday()) {
 			if (!isValid(h, year)) {

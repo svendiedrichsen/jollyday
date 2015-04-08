@@ -15,9 +15,8 @@
  */
 package de.jollyday.parser.impl;
 
+import java.time.LocalDate;
 import java.util.Set;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayType;
@@ -38,6 +37,7 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 	 * Parses the provided configuration and creates holidays for the provided
 	 * year.
 	 */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayRelativeToFixed f : config.getFixedWeekdayRelativeToFixed()) {
 			if (!isValid(f, year)) {

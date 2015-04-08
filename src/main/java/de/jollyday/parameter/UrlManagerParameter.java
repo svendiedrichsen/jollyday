@@ -12,14 +12,17 @@ public class UrlManagerParameter extends BaseManagerParameter {
 		this.calendarFileUrl = calendarFileUrl;
 	}
 
+	@Override
 	public String createCacheKey() {
 		return calendarFileUrl.toString();
 	}
 
+	@Override
 	public String getDisplayName() {
 		return calendarFileUrl.toString();
 	}
 
+	@Override
 	public URL createResourceUrl() {
 		return calendarFileUrl;
 	}

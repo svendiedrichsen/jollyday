@@ -44,7 +44,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		fwrtf.parse(2011, result, config);
 		Assert.assertTrue("Result is not empty.", result.isEmpty());
@@ -52,7 +52,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 
 	@Test
 	public void testInvalid() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.FIRST);
@@ -70,7 +70,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 
 	@Test
 	public void testParserFirstBefore() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.FIRST);
@@ -88,7 +88,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 
 	@Test
 	public void testParserSecondBefore() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.SECOND);
@@ -106,7 +106,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 
 	@Test
 	public void testParserThirdAfter() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.THIRD);
@@ -124,7 +124,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 
 	@Test
 	public void testParserFourthAfter() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayRelativeToFixed rule = new FixedWeekdayRelativeToFixed();
 		rule.setWhich(Which.FOURTH);
