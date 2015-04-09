@@ -91,7 +91,7 @@ public class UtilTest {
 	@Test
 	public void testCalendarIslamicIdAlFitr2008() {
 		Set<LocalDate> expected = new HashSet<>();
-		expected.add(LocalDate.of(2008, OCTOBER, 2));
+		expected.add(LocalDate.of(2008, OCTOBER, 1));
 		Set<LocalDate> holidays = calendarUtil.getIslamicHolidaysInGregorianYear(2008, 10, 1);
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of islamic IdAlFitr holidays in 2008.", expected.size(), holidays.size());
@@ -101,7 +101,7 @@ public class UtilTest {
 	@Test
 	public void testCalendarIslamicIdAlFitr2009() {
 		Set<LocalDate> expected = new HashSet<>();
-		expected.add(LocalDate.of(2009, SEPTEMBER, 21));
+		expected.add(LocalDate.of(2009, SEPTEMBER, 20));
 		Set<LocalDate> holidays = calendarUtil.getIslamicHolidaysInGregorianYear(2009, 10, 1);
 		Assert.assertNotNull(holidays);
 		Assert.assertEquals("Wrong number of islamic IdAlFitr holidays in 2009.", expected.size(), holidays.size());

@@ -102,9 +102,9 @@ public class HolidayTest {
 		test_days_l11.add(LocalDate.of(2010, NOVEMBER,
 				17));
 		test_days_l11.add(LocalDate.of(2010, DECEMBER,
-				8));
+				7));
 		test_days_l11.add(LocalDate.of(2010, DECEMBER,
-				17));
+				16));
 	}
 
 	private Locale defaultLocale;
