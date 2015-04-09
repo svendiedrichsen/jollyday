@@ -83,9 +83,14 @@
     </issueManagement>
     <inceptionYear>18.01.2010</inceptionYear>
     <scm>
+        <connection>scm:git:git@github.com:svendiedrichsen/jollyday.git</connection>
+        <url>scm:git:git@github.com:svendiedrichsen/jollyday.git</url>
+        <developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
+<!--
         <connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</connection>
         <developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</developerConnection>
         <url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</url>
+-->
     </scm>
     <build>
         <pluginManagement>
