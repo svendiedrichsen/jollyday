@@ -20,14 +20,13 @@ package de.jollyday.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.DayOfWeek;
 import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-
-import org.joda.time.DateTimeConstants;
 
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
@@ -89,28 +88,11 @@ public class XMLUtil {
 	 * 
 	 * @param weekday
 	 *            a {@link de.jollyday.config.Weekday} object.
-	 * @return DateTimeConstants value.
+	 * @return a DayOfWeek instance.
 	 */
-	public final int getWeekday(Weekday weekday) {
-		switch (weekday) {
-		case MONDAY:
-			return DateTimeConstants.MONDAY;
-		case TUESDAY:
-			return DateTimeConstants.TUESDAY;
-		case WEDNESDAY:
-			return DateTimeConstants.WEDNESDAY;
-		case THURSDAY:
-			return DateTimeConstants.THURSDAY;
-		case FRIDAY:
-			return DateTimeConstants.FRIDAY;
-		case SATURDAY:
-			return DateTimeConstants.SATURDAY;
-		case SUNDAY:
-			return DateTimeConstants.SUNDAY;
-		default:
-			throw new IllegalArgumentException("Unknown weekday " + weekday);
+	public final DayOfWeek getWeekday(Weekday weekday) {
+		return DayOfWeek.valueOf(weekday.value());
 		}
-	}
 
 	/**
 	 * Returns the <code>DateTimeConstants</code> value for the given month.
@@ -122,29 +104,29 @@ public class XMLUtil {
 	public int getMonth(Month month) {
 		switch (month) {
 		case JANUARY:
-			return DateTimeConstants.JANUARY;
+			return 1;
 		case FEBRUARY:
-			return DateTimeConstants.FEBRUARY;
+			return 2;
 		case MARCH:
-			return DateTimeConstants.MARCH;
+			return 3;
 		case APRIL:
-			return DateTimeConstants.APRIL;
+			return 4;
 		case MAY:
-			return DateTimeConstants.MAY;
+			return 5;
 		case JUNE:
-			return DateTimeConstants.JUNE;
+			return 6;
 		case JULY:
-			return DateTimeConstants.JULY;
+			return 7;
 		case AUGUST:
-			return DateTimeConstants.AUGUST;
+			return 8;
 		case SEPTEMBER:
-			return DateTimeConstants.SEPTEMBER;
+			return 9;
 		case OCTOBER:
-			return DateTimeConstants.OCTOBER;
+			return 10;
 		case NOVEMBER:
-			return DateTimeConstants.NOVEMBER;
+			return 11;
 		case DECEMBER:
-			return DateTimeConstants.DECEMBER;
+			return 12;
 		default:
 			throw new IllegalArgumentException("Unknown month " + month);
 		}

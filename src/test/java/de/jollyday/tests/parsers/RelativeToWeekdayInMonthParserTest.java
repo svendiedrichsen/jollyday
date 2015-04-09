@@ -44,7 +44,7 @@ public class RelativeToWeekdayInMonthParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		rtwim.parse(2011, result, config);
 		Assert.assertTrue("Result is not empty.", result.isEmpty());
@@ -52,7 +52,7 @@ public class RelativeToWeekdayInMonthParserTest {
 
 	@Test
 	public void testInvalid() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
 		rule.setWeekday(Weekday.TUESDAY);
@@ -70,7 +70,7 @@ public class RelativeToWeekdayInMonthParserTest {
 
 	@Test
 	public void testTueAfter2ndMondayJuly() {
-		Set<Holiday> result = new HashSet<Holiday>();
+		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
 		rule.setWeekday(Weekday.TUESDAY);

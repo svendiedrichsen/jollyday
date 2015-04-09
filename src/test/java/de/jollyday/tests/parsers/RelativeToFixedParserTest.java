@@ -42,7 +42,7 @@ public class RelativeToFixedParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		rtfp.parse(2010, holidays, config);
 		Assert.assertTrue("Expected to be empty.", holidays.isEmpty());
@@ -50,7 +50,7 @@ public class RelativeToFixedParserTest {
 
 	@Test
 	public void testInvalid() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
 		rule.setValidFrom(2011);
@@ -61,7 +61,7 @@ public class RelativeToFixedParserTest {
 
 	@Test
 	public void testWeekday() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
 		rule.setWeekday(Weekday.THURSDAY);
@@ -78,7 +78,7 @@ public class RelativeToFixedParserTest {
 
 	@Test
 	public void testNumberOfDays() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
 		rule.setDays(3);

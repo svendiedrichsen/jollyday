@@ -36,7 +36,7 @@ public class FixedWeekdayInMonthParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
 		Assert.assertTrue("Expected to be empty.", holidays.isEmpty());
@@ -44,7 +44,7 @@ public class FixedWeekdayInMonthParserTest {
 
 	@Test
 	public void testInvalid() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayInMonth e = new FixedWeekdayInMonth();
 		e.setValidFrom(2011);

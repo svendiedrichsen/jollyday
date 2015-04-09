@@ -32,6 +32,7 @@ public enum LocalizedHolidayType implements HolidayType {
 		 * 
 		 * @see de.jollyday.HolidayType#isOfficialHoliday()
 		 */
+		@Override
 		public boolean isOfficialHoliday() {
 			return true;
 		}
@@ -42,6 +43,7 @@ public enum LocalizedHolidayType implements HolidayType {
 		 * 
 		 * @see de.jollyday.HolidayType#isOfficialHoliday()
 		 */
+		@Override
 		public boolean isOfficialHoliday() {
 			return false;
 		}

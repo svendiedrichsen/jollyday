@@ -1,23 +1,23 @@
 package de.jollyday.tests.parsers;
 
-import de.jollyday.config.*;
-
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import de.jollyday.Holiday;
+import de.jollyday.config.Holidays;
+import de.jollyday.config.RelativeToEasterSunday;
 import de.jollyday.parser.impl.RelativeToEasterSundayParser;
 import de.jollyday.util.CalendarUtil;
 
 public class RelativeToEasterSundayParserTest {
 
 	RelativeToEasterSundayParser parser = new RelativeToEasterSundayParser();
-	Set<Holiday> holidays = new HashSet<Holiday>();	
+	Set<Holiday> holidays = new HashSet<>();	
 	CalendarUtil calendarUtil = new CalendarUtil();
 	
 	@Test

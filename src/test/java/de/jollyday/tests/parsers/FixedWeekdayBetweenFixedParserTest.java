@@ -40,7 +40,7 @@ public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
 		Assert.assertTrue("Expected to be empty.", holidays.isEmpty());
@@ -48,7 +48,7 @@ public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 
 	@Test
 	public void testInvalid() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayBetweenFixed e = new FixedWeekdayBetweenFixed();
 		e.setValidTo(2009);
@@ -59,7 +59,7 @@ public class FixedWeekdayBetweenFixedParserTest extends FixedParserTest {
 
 	@Test
 	public void testWednesday() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		FixedWeekdayBetweenFixed e = new FixedWeekdayBetweenFixed();
 		e.setFrom(createFixed(17, Month.JANUARY));

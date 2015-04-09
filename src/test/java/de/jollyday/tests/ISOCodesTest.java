@@ -119,7 +119,7 @@ public class ISOCodesTest {
 	private void compareL1WithL2(ResourceBundle l1, ResourceBundle l2) {
 		Locale locale = "".equals(l2.getLocale().getCountry()) ? Locale.ENGLISH : l2.getLocale();
 		Enumeration<String> keys = l1.getKeys();
-		Set<String> l2KeySet = new HashSet<String>(Collections.list(l2.getKeys()));
+		Set<String> l2KeySet = new HashSet<>(Collections.list(l2.getKeys()));
 		StringBuilder misses = new StringBuilder();
 		while (keys.hasMoreElements()) {
 			String propertyName = keys.nextElement();

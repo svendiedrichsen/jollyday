@@ -15,13 +15,13 @@
  */
 package de.jollyday.tests.parsers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -43,7 +43,7 @@ public class ChristianHolidayParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		hp.parse(2010, holidays, config);
 		Assert.assertTrue("Expected to be empty.", holidays.isEmpty());
@@ -51,7 +51,7 @@ public class ChristianHolidayParserTest {
 
 	@Test
 	public void testEaster() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER);
 		hp.parse(2011, holidays, config);
 		Assert.assertEquals("Wrong number of holidays.", 1, holidays.size());
@@ -62,7 +62,7 @@ public class ChristianHolidayParserTest {
 
 	@Test
 	public void testChristianInvalidDate() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER);
 		config.getChristianHoliday().get(0).setValidTo(2010);
 		hp.parse(2011, holidays, config);
@@ -71,11 +71,11 @@ public class ChristianHolidayParserTest {
 
 	@Test
 	public void testRelativeToEasterSunday() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(1);
 		RelativeToEasterSundayParser p = new RelativeToEasterSundayParser();
 		p.parse(2011, holidays, config);
-		List<LocalDate> expected = new ArrayList<LocalDate>();
+		List<LocalDate> expected = new ArrayList<>();
 		expected.add(calendarUtil.create(2011, 4, 25));
 		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
 		Assert.assertEquals("Wrong holiday.", expected.get(0), holidays.iterator().next().getDate());
@@ -83,13 +83,13 @@ public class ChristianHolidayParserTest {
 
 	@Test
 	public void testChristianDates() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER, ChristianHolidayType.CLEAN_MONDAY,
 				ChristianHolidayType.EASTER_SATURDAY, ChristianHolidayType.EASTER_TUESDAY,
 				ChristianHolidayType.GENERAL_PRAYER_DAY, ChristianHolidayType.PENTECOST,
 				ChristianHolidayType.SACRED_HEART);
 		hp.parse(2011, holidays, config);
-		List<LocalDate> expected = new ArrayList<LocalDate>();
+		List<LocalDate> expected = new ArrayList<>();
 		expected.add(calendarUtil.create(2011, 3, 7));
 		expected.add(calendarUtil.create(2011, 4, 23));
 		expected.add(calendarUtil.create(2011, 4, 24));
@@ -101,7 +101,7 @@ public class ChristianHolidayParserTest {
 		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
 
 		Collections.sort(expected);
-		List<Holiday> found = new ArrayList<Holiday>(holidays);
+		List<Holiday> found = new ArrayList<>(holidays);
 		Collections.sort(found, new HolidayComparator());
 
 		for (int i = 0; i < expected.size(); i++) {

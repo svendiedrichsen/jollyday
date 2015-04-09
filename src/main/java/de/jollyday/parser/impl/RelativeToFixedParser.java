@@ -15,9 +15,9 @@
  */
 package de.jollyday.parser.impl;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.Set;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayType;
@@ -41,6 +41,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 	 * de.jollyday.config.Holidays)
 	 */
 	/** {@inheritDoc} */
+	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (RelativeToFixed rf : config.getRelativeToFixed()) {
 			if (!isValid(rf, year)) {
@@ -49,7 +50,7 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 			LocalDate fixed = calendarUtil.create(year, rf.getDate());
 			if (rf.getWeekday() != null) {
 				// if weekday is set -> move to weekday
-				int day = xmlUtil.getWeekday(rf.getWeekday());
+				DayOfWeek day = xmlUtil.getWeekday(rf.getWeekday());
 				int direction = (rf.getWhen() == When.BEFORE ? -1 : 1);
 				while (fixed.getDayOfWeek() != day){
 					fixed = fixed.plusDays(direction);

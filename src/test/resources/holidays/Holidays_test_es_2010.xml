@@ -31,7 +31,7 @@
 		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="SEPTEMBER" day="2"/>
   		<tns:Fixed month="APRIL" day="1" />
-  		<tns:Fixed month="NOVEMBER" day="17" />
+  		<tns:Fixed month="NOVEMBER" day="16" />
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ml" description="Melilla">
@@ -39,7 +39,7 @@
   		<tns:Fixed month="MARCH" day="19"/>
 		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="APRIL" day="1" />
-  		<tns:Fixed month="NOVEMBER" day="17" />
+  		<tns:Fixed month="NOVEMBER" day="16" />
   	</tns:Holidays>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="cl" description="Castile and Leon">

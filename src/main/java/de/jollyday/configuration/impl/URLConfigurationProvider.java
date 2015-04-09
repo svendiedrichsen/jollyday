@@ -39,6 +39,7 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 	 * Returns the properties by reading from the URLs provided by the system
 	 * property 'de.jollyday.config.urls'.
 	 */
+	@Override
 	public Properties getProperties() {
 		Properties properties = new Properties();
 		Properties systemProps = System.getProperties();

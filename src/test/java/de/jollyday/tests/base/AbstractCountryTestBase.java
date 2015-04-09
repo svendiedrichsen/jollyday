@@ -60,7 +60,7 @@ public abstract class AbstractCountryTestBase {
 	 */
 	protected void compareData(HolidayManager expected, HolidayManager found, int year) {
 		CalendarHierarchy expectedHierarchy = expected.getCalendarHierarchy();
-		ArrayList<String> args = new ArrayList<String>();
+		ArrayList<String> args = new ArrayList<>();
 		compareDates(expected, found, expectedHierarchy, args, year);
 	}
 
@@ -75,7 +75,7 @@ public abstract class AbstractCountryTestBase {
 			}
 		}
 		for (String id : h.getChildren().keySet()) {
-			ArrayList<String> newArgs = new ArrayList<String>(args);
+			ArrayList<String> newArgs = new ArrayList<>(args);
 			newArgs.add(id);
 			compareDates(expected, found, h.getChildren().get(id), newArgs, year);
 		}

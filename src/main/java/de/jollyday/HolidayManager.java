@@ -15,15 +15,13 @@
  */
 package de.jollyday;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.joda.time.LocalDate;
-import org.joda.time.ReadableInterval;
 
 import de.jollyday.caching.HolidayManagerValueHandler;
 import de.jollyday.configuration.ConfigurationProviderManager;
@@ -52,7 +50,7 @@ public abstract class HolidayManager {
 	/**
 	 * Cache for manager instances on a per country basis.
 	 */
-	private static final Cache<HolidayManager> MANAGER_CHACHE = new Cache<HolidayManager>();
+	private static final Cache<HolidayManager> MANAGER_CHACHE = new Cache<>();
 	/**
 	 * Manager for configuration providers. Delivers the jollyday configuration.
 	 */
@@ -60,7 +58,7 @@ public abstract class HolidayManager {
 	/**
 	 * the holiday cache
 	 */
-	private Cache<Set<Holiday>> holidayCache = new Cache<Set<Holiday>>();
+	private Cache<Set<Holiday>> holidayCache = new Cache<>();
 	/**
 	 * Utility for calendar operations
 	 */
@@ -273,7 +271,7 @@ public abstract class HolidayManager {
 	 * @return Set of supported calendar codes.
 	 */
 	public static Set<String> getSupportedCalendarCodes() {
-		Set<String> supportedCalendars = new HashSet<String>();
+		Set<String> supportedCalendars = new HashSet<>();
 		for (HolidayCalendar c : HolidayCalendar.values()) {
 			supportedCalendars.add(c.getId());
 		}
@@ -333,14 +331,16 @@ public abstract class HolidayManager {
 	/**
 	 * Returns the holidays for the requested interval and hierarchy structure.
 	 *
-	 * @param interval
-	 *            the interval in which the holidays lie.
+	 * @param startDateInclusive 
+	 *            the start date of the interval in which holidays lie, inclusive 
+	 * @param endDateInclusive 
+	 *            the end date of the interval in which holidays lie, inclusive
 	 * @param args
 	 *            a {@link java.lang.String} object.
 	 * @return list of holidays within the interval
 	 */
-	abstract public Set<Holiday> getHolidays(ReadableInterval interval,
-			String... args);
+	abstract public Set<Holiday> getHolidays(LocalDate startDateInclusive, 
+			LocalDate endDateInclusive, String... args);
 
 	/**
 	 * Returns the configured hierarchy structure for the specific manager. This

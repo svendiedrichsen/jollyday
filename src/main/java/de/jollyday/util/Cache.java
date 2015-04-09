@@ -29,7 +29,7 @@ public class Cache<VALUE> {
 	/**
 	 * Map for caching
 	 */
-	private Map<String, VALUE> cachingMap = new HashMap<String, VALUE>();
+	private Map<String, VALUE> cachingMap = new HashMap<>();
 	/**
 	 * Lock for accessing the map
 	 */

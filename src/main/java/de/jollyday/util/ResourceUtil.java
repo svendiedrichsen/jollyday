@@ -58,11 +58,11 @@ public class ResourceUtil {
 	/**
 	 * Cache for the holiday descriptions resource bundles.
 	 */
-	private static final Map<Locale, ResourceBundle> HOLIDAY_DESCRIPTION_CACHE = new HashMap<Locale, ResourceBundle>();
+	private static final Map<Locale, ResourceBundle> HOLIDAY_DESCRIPTION_CACHE = new HashMap<>();
 	/**
 	 * Cache for the country descriptions resource bundles.
 	 */
-	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS_CACHE = new HashMap<Locale, ResourceBundle>();
+	private final static Map<Locale, ResourceBundle> COUNTRY_DESCRIPTIONS_CACHE = new HashMap<>();
 	/**
 	 * Util class to provide the correct classloader.
 	 */
@@ -127,7 +127,7 @@ public class ResourceUtil {
 	 * @return 2-digit ISO codes.
 	 */
 	public Set<String> getISOCodes() {
-		Set<String> codes = new HashSet<String>();
+		Set<String> codes = new HashSet<>();
 		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
 		for (String property : Collections.list(countryDescriptions.getKeys())) {
 			String[] split = property.split("\\.");

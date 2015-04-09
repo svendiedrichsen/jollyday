@@ -15,10 +15,10 @@
  */
 package de.jollyday.tests.parsers;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -40,7 +40,7 @@ public class EthiopianOrthodoxHolidayParserTest {
 
 	@Test
 	public void testEmpty() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		parser.parse(2010, holidays, config);
 		Assert.assertTrue("Expected to be empty.", holidays.isEmpty());
@@ -48,7 +48,7 @@ public class EthiopianOrthodoxHolidayParserTest {
 
 	@Test
 	public void testAllHolidays() {
-		Set<Holiday> holidays = new HashSet<Holiday>();
+		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		config.getEthiopianOrthodoxHoliday().add(createHoliday(EthiopianOrthodoxHolidayType.ENKUTATASH));
 		config.getEthiopianOrthodoxHoliday().add(createHoliday(EthiopianOrthodoxHolidayType.MESKEL));

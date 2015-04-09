@@ -29,6 +29,7 @@ public class TestProvider implements ConfigurationProvider {
 		properties.setProperty("key", "value");
 	}
 	
+	@Override
 	public Properties getProperties() {
 		return properties;
 	}

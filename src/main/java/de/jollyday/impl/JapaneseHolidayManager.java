@@ -15,10 +15,9 @@
  */
 package de.jollyday.impl;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.Holiday;
 import de.jollyday.holidaytype.LocalizedHolidayType;
@@ -47,7 +46,7 @@ public class JapaneseHolidayManager extends DefaultHolidayManager {
 	@Override
 	public Set<Holiday> getHolidays(int year, final String... args) {
 		Set<Holiday> holidays = super.getHolidays(year, args);
-		Set<Holiday> additionalHolidays = new HashSet<Holiday>();
+		Set<Holiday> additionalHolidays = new HashSet<>();
 		for (Holiday d : holidays) {
 			LocalDate twoDaysLater = d.getDate().plusDays(2);
 			if (calendarUtil.contains(holidays, twoDaysLater)) {

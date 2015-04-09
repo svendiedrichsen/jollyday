@@ -15,9 +15,8 @@
  */
 package de.jollyday;
 
+import java.time.LocalDate;
 import java.util.Locale;
-
-import org.joda.time.LocalDate;
 
 import de.jollyday.util.ResourceUtil;
 
