@@ -301,7 +301,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	 * {@inheritDoc}
 	 * 
 	 * Returns the configurations hierarchy.<br>
-	 * i.e. Hierarchy 'us' -> Children 'al','ak','ar', ... ,'wv','wy'. Every
+	 * i.e. Hierarchy 'us' -&gt; Children 'al','ak','ar', ... ,'wv','wy'. Every
 	 * child might itself have children. The ids be used to call
 	 * getHolidays()/isHoliday().
 	 */

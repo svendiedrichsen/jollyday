@@ -138,7 +138,7 @@ public class CalendarHierarchy {
 	}
 
 	/**
-	 * @param description
+	 * @param description the fallback description
 	 */
 	public void setFallbackDescription(String description) {
 		this.fallbackDescription = description;

@@ -92,7 +92,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link #getInstance(ManagerParameter)} instead.
 	 * @param c the {@link HolidayCalendar} to use for creating a {@link HolidayManager} instance
 	 * @return the eventually cached {@link HolidayManager}
 	 */
@@ -102,7 +102,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link #getInstance(ManagerParameter)} instead.
 	 * @param c the {@link HolidayCalendar} to use for creating a {@link HolidayManager} instance
 	 * @param properties the configuration overriding {@link Properties}
 	 * @return the eventually cached {@link HolidayManager}
@@ -114,7 +114,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link #getInstance(ManagerParameter)} instead.
 	 * @param calendar the calendar to use for creating a {@link HolidayManager} instance
 	 * @return the eventually cached {@link HolidayManager}
 	 */
@@ -124,7 +124,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link #getInstance(ManagerParameter)} instead.
 	 * @param calendar the calendar to use for creating a {@link HolidayManager} instance
 	 * @param properties the configuration overriding {@link Properties}
 	 * @return the eventually cached {@link HolidayManager}
@@ -139,7 +139,7 @@ public abstract class HolidayManager {
 	 * Creates and returns a {@link HolidayManager} for the provided
 	 * {@link ManagerParameters}
 	 *
-	 * @param parameters
+	 * @param parameter
 	 *            the {@link ManagerParameters} to create the manager with
 	 * @return the {@link HolidayManager} instance
 	 */
@@ -195,8 +195,8 @@ public abstract class HolidayManager {
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
 	 *
-	 * @param CACHING_ENABLED
-	 *            the CACHING_ENABLED to set
+	 * @param managerCachingEnabled
+	 *            the managerCachingEnabled to set
 	 */
 	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
 		CACHING_ENABLED = managerCachingEnabled;
@@ -241,7 +241,7 @@ public abstract class HolidayManager {
 	 * @param c
 	 *            The potential holiday.
 	 * @param args
-	 *            Hierarchy to request the holidays for. i.e. args = {'ny'} ->
+	 *            Hierarchy to request the holidays for. i.e. args = {'ny'} -&gt;
 	 *            New York holidays
 	 * @return is a holiday in the state/region
 	 */
@@ -306,7 +306,7 @@ public abstract class HolidayManager {
 	/**
 	 * Initializes the implementing manager for the provided calendar.
 	 *
-	 * @param calendar
+	 * @param parameters
 	 *            i.e. us, uk, de
 	 */
 	public void init(ManagerParameter parameters) {
@@ -322,7 +322,7 @@ public abstract class HolidayManager {
 	 * @param year
 	 *            i.e. 2010
 	 * @param args
-	 *            i.e. args = {'ny'}. returns US/New York holidays. No args ->
+	 *            i.e. args = {'ny'}. returns US/New York holidays. No args -&gt;
 	 *            holidays common to whole country
 	 * @return the list of holidays for the requested year
 	 */
