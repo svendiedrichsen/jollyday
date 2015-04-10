@@ -55,7 +55,7 @@ public final class Holiday {
 	 * retrieve the description with.
 	 * 
 	 * @param date
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @param propertiesKey
 	 *            a {@link java.lang.String} object.
 	 * @param type

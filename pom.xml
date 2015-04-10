@@ -7,9 +7,9 @@
 	<description>
 		This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday calendar XML file or use any of the provided ones.
 
-Currently there are 63 countries supported like the following: United States, most european countries, Russia, India, Australia.
+		Currently there are 63 countries supported like the following: United States, most european countries, Russia, India, Australia.
 
-Besides those there will be more special calendars like currently existing NYSE calendar (New York Stock Exchange).
+		Besides those there will be more special calendars like currently existing NYSE calendar (New York Stock Exchange).
 	</description>
 	<url>http://sourceforge.net/projects/jollyday</url>
 	<parent>
@@ -104,10 +104,10 @@ Besides those there will be more special calendars like currently existing NYSE 
 					<artifactId>maven-site-plugin</artifactId>
 					<version>3.4</version>
 					<dependencies>
-					    <dependency>
-					    	<groupId>org.apache.maven.wagon</groupId>
-					    	<artifactId>wagon-ssh</artifactId>
-					    	<version>2.6</version>
+						<dependency>
+							<groupId>org.apache.maven.wagon</groupId>
+							<artifactId>wagon-ssh</artifactId>
+							<version>2.6</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -154,7 +154,7 @@ Besides those there will be more special calendars like currently existing NYSE 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
+				<version>2.10.2</version>
 				<executions>
 					<execution>
 						<id>jar-javadoc</id>
@@ -164,9 +164,9 @@ Besides those there will be more special calendars like currently existing NYSE 
 						</goals>
 					</execution>
 				</executions>
-                                <configuration>
-                                    <additionalparam>-Xdoclint:none</additionalparam>
-                                </configuration>
+				<configuration>
+					<additionalparam>-Xdoclint:none</additionalparam>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -47,6 +47,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * Evaluates if the provided <code>Holiday</code> instance is valid for the
 	 * provided year.
 	 * 
+	 * @param <T> a {@link Holiday} subclass
 	 * @param h
 	 *            The holiday configuration entry to validate
 	 * @param year
@@ -121,7 +122,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * @param fm
 	 *            a {@link de.jollyday.config.MoveableHoliday} object.
 	 * @param fixed
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @return the moved date
 	 */
 	protected LocalDate moveDate(MoveableHoliday fm, LocalDate fixed) {
@@ -138,7 +139,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * Determines if the provided date shall be substituted.
 	 * 
 	 * @param fixed
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @param mc
 	 *            a {@link de.jollyday.config.MovingCondition} object.
 	 * @return a boolean.
@@ -172,7 +173,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 *            a int.
 	 * @param ct
 	 *            a {@link de.jollyday.config.ChronologyType} object.
-	 * @return a {@link org.joda.time.LocalDate} object.
+	 * @return a {@link LocalDate} object.
 	 */
 	protected LocalDate getEasterSunday(int year, ChronologyType ct) {
 		LocalDate easterSunday;

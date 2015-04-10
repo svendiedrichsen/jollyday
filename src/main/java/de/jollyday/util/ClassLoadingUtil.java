@@ -53,7 +53,7 @@ public class ClassLoadingUtil {
 	/**
 	 * Returns the current threads context classloader.
 	 * 
-	 * @see {@link Thread.currentThread()}
+	 * @see Thread#currentThread() 
 	 * @return the current threads context classloader
 	 */
 	public ClassLoader getClassloader() {

@@ -38,7 +38,7 @@ public interface ConfigurationProvider {
 	public static final String CONFIG_URLS_PROPERTY = "de.jollyday.config.urls";
 
 	/**
-	 * Returns the configuration properties for jollyday.
+	 * @return the configuration properties for jollyday.
 	 */
 	Properties getProperties();
 

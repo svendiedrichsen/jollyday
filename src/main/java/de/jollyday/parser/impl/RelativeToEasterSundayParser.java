@@ -58,7 +58,7 @@ public class RelativeToEasterSundayParser extends AbstractHolidayParser {
 	 * Adds the given day to the list of holidays.
 	 * 
 	 * @param day
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @param propertiesKey
 	 *            a {@link java.lang.String} object.
 	 * @param holidayType

@@ -182,7 +182,7 @@ public class CalendarUtil {
 	 * Returns if this date is on a wekkend.
 	 * 
 	 * @param date
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @return is weekend
 	 */
 	public boolean isWeekend(final LocalDate date) {
@@ -265,7 +265,7 @@ public class CalendarUtil {
 	 * @param holidays
 	 *            a {@link java.util.Set} object.
 	 * @param date
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @return contains this date
 	 */
 	public boolean contains(final Set<Holiday> holidays, final LocalDate date) {
