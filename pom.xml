@@ -78,7 +78,6 @@ Besides those there will be more special calendars like currently existing NYSE 
 		<connection>scm:git:https://github.com/svendiedrichsen/jollyday.git</connection>
 		<developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
 		<url>https://github.com/svendiedrichsen/jollyday.git</url>
-		<tag>v_0_4_8</tag>
 	</scm>
 	<build>
 		<pluginManagement>
