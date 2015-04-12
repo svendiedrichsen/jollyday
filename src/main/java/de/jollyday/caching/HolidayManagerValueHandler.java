@@ -4,13 +4,13 @@ import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameter;
 import de.jollyday.datasource.ConfigurationDataSource;
 import de.jollyday.datasource.ConfigurationDataSourceManager;
+import de.jollyday.util.Cache;
 import de.jollyday.util.ClassLoadingUtil;
-import de.jollyday.util.Cache.ValueHandler;
 
 /**
- * Creates the {@link ValueHandler} which constructs a {@link HolidayManager}.
+ * Creates the {@link Cache.ValueHandler} which constructs a {@link HolidayManager}.
  */
-public class HolidayManagerValueHandler extends ValueHandler<HolidayManager> {
+public class HolidayManagerValueHandler implements Cache.ValueHandler<HolidayManager> {
 
 	private ManagerParameter parameter;
 	private String managerImplClassName;
