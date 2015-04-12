@@ -19,17 +19,19 @@
  */
 package de.jollyday.parser;
 
-import java.util.Set;
-
 import de.jollyday.Holiday;
 import de.jollyday.config.Holidays;
+
+import java.util.Set;
+
 public interface HolidayParser {
 	/**
-	 * <p>parse.</p>
+	 * Parses for the provided year using the {@link Holidays} config and adds
+	 * to the set of holidays.
 	 *
-	 * @param year a int.
-	 * @param holidays a {@link java.util.Set} object.
-	 * @param config a {@link de.jollyday.config.Holidays} object.
+	 * @param year the year to parse the holiday for
+	 * @param holidays set to add the holiday to
+	 * @param config the {@link Holidays} config to use for parsing
 	 */
 	void parse(int year, Set<Holiday> holidays, Holidays config);
 }

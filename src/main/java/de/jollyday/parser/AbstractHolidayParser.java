@@ -1,38 +1,42 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.parser;
+
+import de.jollyday.config.*;
+import de.jollyday.util.CalendarUtil;
+import de.jollyday.util.XMLUtil;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-import de.jollyday.config.ChronologyType;
-import de.jollyday.config.Holiday;
-import de.jollyday.config.MoveableHoliday;
-import de.jollyday.config.MovingCondition;
-import de.jollyday.config.With;
-import de.jollyday.util.CalendarUtil;
-import de.jollyday.util.XMLUtil;
-
 /**
  * The abstract base class for all HolidayParser implementations.
- * 
+ *
  * @author Sven Diedrichsen
- * @version $Id: $
  */
 public abstract class AbstractHolidayParser implements HolidayParser {
+
+	private static final String EVERY_YEAR = "EVERY_YEAR";
+	private static final String ODD_YEARS = "ODD_YEARS";
+	private static final String EVEN_YEARS = "EVEN_YEARS";
+	private static final String TWO_YEARS = "2_YEARS";
+	private static final String THREE_YEARS = "3_YEARS";
+	private static final String FOUR_YEARS = "4_YEARS";
+	private static final String FIVE_YEARS = "5_YEARS";
+	private static final String SIX_YEARS = "6_YEARS";
 
 	/**
 	 * Calendar utility class.
@@ -46,7 +50,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	/**
 	 * Evaluates if the provided <code>Holiday</code> instance is valid for the
 	 * provided year.
-	 * 
+	 *
 	 * @param <T> a {@link Holiday} subclass
 	 * @param h
 	 *            The holiday configuration entry to validate
@@ -61,40 +65,36 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	/**
 	 * Checks cyclic holidays and checks if the requested year is hit within the
 	 * cycles.
-	 * 
-	 * @param <T>
-	 *            Holiday
-	 * @param h
-	 *            Holiday
-	 * @param year
-	 *            the year to check against
+	 *
+	 * @param h Holiday to be valid in cycle
+	 * @param year the year for the holiday to be valid in
 	 * @return is valid
 	 */
 	private <T extends Holiday> boolean isValidForCycle(T h, int year) {
 		if (h.getEvery() != null) {
-			if (!"EVERY_YEAR".equals(h.getEvery())) {
-				if ("ODD_YEARS".equals(h.getEvery())) {
+			if (!EVERY_YEAR.equals(h.getEvery())) {
+				if (ODD_YEARS.equals(h.getEvery())) {
 					return year % 2 != 0;
-				} else if ("EVEN_YEARS".equals(h.getEvery())) {
+				} else if (EVEN_YEARS.equals(h.getEvery())) {
 					return year % 2 == 0;
 				} else {
 					if (h.getValidFrom() != null) {
-						int cycleYears = 0;
-						if ("2_YEARS".equalsIgnoreCase(h.getEvery())) {
+						int cycleYears;
+						if (TWO_YEARS.equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 2;
-						} else if ("3_YEARS".equalsIgnoreCase(h.getEvery())) {
+						} else if (THREE_YEARS.equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 3;
-						} else if ("4_YEARS".equalsIgnoreCase(h.getEvery())) {
+						} else if (FOUR_YEARS.equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 4;
-						} else if ("5_YEARS".equalsIgnoreCase(h.getEvery())) {
+						} else if (FIVE_YEARS.equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 5;
-						} else if ("6_YEARS".equalsIgnoreCase(h.getEvery())) {
+						} else if (SIX_YEARS.equalsIgnoreCase(h.getEvery())) {
 							cycleYears = 6;
 						} else {
 							throw new IllegalArgumentException("Cannot handle unknown cycle type '" + h.getEvery()
 									+ "'.");
 						}
-						return (year - h.getValidFrom().intValue()) % cycleYears == 0;
+						return (year - h.getValidFrom()) % cycleYears == 0;
 					}
 				}
 			}
@@ -104,21 +104,20 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 
 	/**
 	 * Checks whether the holiday is within the valid date range.
-	 * 
-	 * @param <T>
-	 * @param h
-	 * @param year
-	 * @return is valid.
+	 *
+	 * @param h the holiday to check for validity
+	 * @param year the year to check the holiday to be valid in
+	 * @return the holiday is valid
 	 */
 	private <T extends Holiday> boolean isValidInYear(T h, int year) {
-		return (h.getValidFrom() == null || h.getValidFrom().intValue() <= year)
-				&& (h.getValidTo() == null || h.getValidTo().intValue() >= year);
+		return (h.getValidFrom() == null || h.getValidFrom() <= year)
+				&& (h.getValidTo() == null || h.getValidTo() >= year);
 	}
 
 	/**
 	 * Moves a date if there are any moving conditions for this holiday and any
 	 * of them fit.
-	 * 
+	 *
 	 * @param fm
 	 *            a {@link de.jollyday.config.MoveableHoliday} object.
 	 * @param fixed
@@ -137,7 +136,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 
 	/**
 	 * Determines if the provided date shall be substituted.
-	 * 
+	 *
 	 * @param fixed
 	 *            a {@link LocalDate} object.
 	 * @param mc
@@ -150,10 +149,10 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 
 	/**
 	 * Moves the date using the FixedMoving information
-	 * 
-	 * @param mc
-	 * @param fixed
-	 * @return
+	 *
+	 * @param mc the moving condition
+	 * @param fixed the date to move
+	 * @return the eventually moved date
 	 */
 	private LocalDate moveDate(MovingCondition mc, LocalDate fixed) {
 		DayOfWeek weekday = xmlUtil.getWeekday(mc.getWeekday());
@@ -168,7 +167,7 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 * <p>
 	 * getEasterSunday.
 	 * </p>
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @param ct
