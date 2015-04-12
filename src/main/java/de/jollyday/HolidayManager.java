@@ -15,6 +15,13 @@
  */
 package de.jollyday;
 
+import de.jollyday.caching.HolidayManagerValueHandler;
+import de.jollyday.configuration.ConfigurationProviderManager;
+import de.jollyday.datasource.ConfigurationDataSource;
+import de.jollyday.util.Cache;
+import de.jollyday.util.Cache.ValueHandler;
+import de.jollyday.util.CalendarUtil;
+
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -22,13 +29,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import de.jollyday.caching.HolidayManagerValueHandler;
-import de.jollyday.configuration.ConfigurationProviderManager;
-import de.jollyday.datasource.ConfigurationDataSource;
-import de.jollyday.util.Cache;
-import de.jollyday.util.Cache.ValueHandler;
-import de.jollyday.util.CalendarUtil;
 
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
@@ -50,11 +50,11 @@ public abstract class HolidayManager {
 	/**
 	 * Cache for manager instances on a per country basis.
 	 */
-	private static final Cache<HolidayManager> MANAGER_CHACHE = new Cache<>();
+	private static final Cache<HolidayManager> HOLIDAY_MANAGER_CACHE = new Cache<>();
 	/**
 	 * Manager for configuration providers. Delivers the jollyday configuration.
 	 */
-	private static ConfigurationProviderManager configurationProviderManager = new ConfigurationProviderManager();
+	private static ConfigurationProviderManager CONFIGURATION_MANAGER_PROVIDER = new ConfigurationProviderManager();
 	/**
 	 * the holiday cache
 	 */
@@ -151,21 +151,20 @@ public abstract class HolidayManager {
 	 * Creates a new <code>HolidayManager</code> instance for the country and
 	 * puts it to the manager cache.
 	 *
-	 * @param calendar
-	 *            <code>HolidayManager</code> instance for the calendar
-	 * @return new
+	 * @param parameter the parameter will be merged into the current configuration
+	 * @return created or cached holiday manager
 	 */
 	private static HolidayManager createManager(final ManagerParameter parameter) {
 		if (LOG.isLoggable(Level.FINER)) {
 			LOG.finer("Creating HolidayManager for calendar '" + parameter
 					+ "'. Caching enabled: " + isManagerCachingEnabled());
 		}
-		configurationProviderManager.mergeConfigurationProperties(parameter);
+		CONFIGURATION_MANAGER_PROVIDER.mergeConfigurationProperties(parameter);
 		final String managerImplClassName = readManagerImplClassName(parameter);
 		HolidayManagerValueHandler holidayManagerValueHandler = new HolidayManagerValueHandler(
 				parameter, managerImplClassName);
 		if(isManagerCachingEnabled()){
-			return MANAGER_CHACHE.get(holidayManagerValueHandler);
+			return HOLIDAY_MANAGER_CACHE.get(holidayManagerValueHandler);
 		}else{
 			return holidayManagerValueHandler.createValue();
 		}
@@ -174,11 +173,7 @@ public abstract class HolidayManager {
 
 	/**
 	 * Reads the managers implementation class from the properties config file.
-	 *
-	 * @param calendar
-	 *            the calendar name
-	 * @param props
-	 *            properties to read from
+	 * @param parameter the parameter to read the manager implementation class from
 	 * @return the manager implementation class name
 	 */
 	private static String readManagerImplClassName(ManagerParameter parameter) {
@@ -217,8 +212,8 @@ public abstract class HolidayManager {
 	 * Clears the manager cache from all cached manager instances.
 	 */
 	public static void clearManagerCache() {
-		synchronized (MANAGER_CHACHE) {
-			MANAGER_CHACHE.clear();
+		synchronized (HOLIDAY_MANAGER_CACHE) {
+			HOLIDAY_MANAGER_CACHE.clear();
 		}
 	}
 
@@ -331,15 +326,15 @@ public abstract class HolidayManager {
 	/**
 	 * Returns the holidays for the requested interval and hierarchy structure.
 	 *
-	 * @param startDateInclusive 
-	 *            the start date of the interval in which holidays lie, inclusive 
-	 * @param endDateInclusive 
+	 * @param startDateInclusive
+	 *            the start date of the interval in which holidays lie, inclusive
+	 * @param endDateInclusive
 	 *            the end date of the interval in which holidays lie, inclusive
 	 * @param args
 	 *            a {@link java.lang.String} object.
 	 * @return list of holidays within the interval
 	 */
-	abstract public Set<Holiday> getHolidays(LocalDate startDateInclusive, 
+	abstract public Set<Holiday> getHolidays(LocalDate startDateInclusive,
 			LocalDate endDateInclusive, String... args);
 
 	/**
