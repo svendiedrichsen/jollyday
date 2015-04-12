@@ -70,9 +70,15 @@ Besides those there will be more special calendars like currently existing NYSE 
 	</issueManagement>
 	<inceptionYear>18.01.2010</inceptionYear>
 	<scm>
+<!--
 		<connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</connection>
 		<developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</developerConnection>
 		<url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</url>
+-->
+		<connection>scm:git:https://github.com/svendiedrichsen/jollyday.git</connection>
+		<developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
+		<url>https://github.com/svendiedrichsen/jollyday.git</url>
+		<tag>v_0_4_8</tag>
 	</scm>
 	<build>
 		<pluginManagement>
