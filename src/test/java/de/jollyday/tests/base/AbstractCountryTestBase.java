@@ -1,36 +1,35 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.tests.base;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-
-import org.junit.Assert;
 
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
+import org.junit.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
 
 /**
  * @author Sven
- * 
+ *
  */
 public abstract class AbstractCountryTestBase {
 
@@ -38,7 +37,7 @@ public abstract class AbstractCountryTestBase {
 
 	/**
 	 * Compares two hierarchy structure by traversing down.
-	 * 
+	 *
 	 * @param expected
 	 *            This is the test structure which is how it should be.
 	 * @param found
@@ -54,10 +53,6 @@ public abstract class AbstractCountryTestBase {
 		}
 	}
 
-	/**
-	 * @param testManager
-	 * @param m
-	 */
 	protected void compareData(HolidayManager expected, HolidayManager found, int year) {
 		CalendarHierarchy expectedHierarchy = expected.getCalendarHierarchy();
 		ArrayList<String> args = new ArrayList<>();
@@ -95,10 +90,10 @@ public abstract class AbstractCountryTestBase {
 	/**
 	 * Validate Country calendar and Default calendar is same if local default
 	 * is set to country local
-	 * 
+	 *
 	 * @param countryLocale
 	 * @param countryCalendar
-	 * 
+	 *
 	 */
 	protected void validateManagerSameInstance(Locale countryLocale, HolidayCalendar countryCalendar) {
 		Locale defaultLocale = Locale.getDefault();

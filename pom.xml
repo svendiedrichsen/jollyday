@@ -17,11 +17,6 @@
         Exchange).
     </description>
     <url>http://sourceforge.net/projects/jollyday</url>
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.scm.id>sourceforge.net</project.scm.id>
@@ -83,15 +78,16 @@
     </issueManagement>
     <inceptionYear>18.01.2010</inceptionYear>
     <scm>
-        <connection>scm:git:git@github.com:svendiedrichsen/jollyday.git</connection>
-        <url>scm:git:git@github.com:svendiedrichsen/jollyday.git</url>
+        <!--
+                <connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</connection>
+                <developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</developerConnection>
+                <url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</url>
+        -->
+        <connection>scm:git:https://github.com/svendiedrichsen/jollyday.git</connection>
         <developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
-<!--
-        <connection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</connection>
-        <developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</developerConnection>
-        <url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</url>
--->
-    </scm>
+        <url>https://github.com/svendiedrichsen/jollyday.git</url>
+      <tag>HEAD</tag>
+  </scm>
     <build>
         <pluginManagement>
             <plugins>
@@ -132,9 +128,23 @@
                     <version>2.4</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>1.6.3</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.10.2</version>
+                    <configuration>
+                        <excludePackageNames>de.jollyday.config</excludePackageNames>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -182,9 +192,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <excludePackageNames>de.jollyday.config</excludePackageNames>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -252,6 +259,14 @@
         </plugins>
     </reporting>
     <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
         <site>
             <id>sourceforge.net</id>
             <url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/project-web/jollyday/htdocs</url>
