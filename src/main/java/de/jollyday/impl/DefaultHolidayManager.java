@@ -61,7 +61,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	/**
 	 * Utility class to handle class loading
 	 */
-	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
+	private final ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	/**
 	 * {@inheritDoc}
@@ -72,7 +72,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	 */
 	@Override
 	public Set<Holiday> getHolidays(int year, final String... args) {
-		Set<Holiday> holidaySet = Collections.synchronizedSet(new HashSet<Holiday>());
+		Set<Holiday> holidaySet = Collections.synchronizedSet(new HashSet<>());
 		getHolidays(year, configuration, holidaySet, args);
 		return holidaySet;
 	}
@@ -163,7 +163,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	}
 
 	/**
-	 * Private class which is used to asyncronisly parse holiday configuration.
+	 * Private class which is used to asynchronously parse holiday configuration.
 	 * 
 	 * @author Sven
 	 * 
@@ -175,7 +175,7 @@ public class DefaultHolidayManager extends HolidayManager {
 		private final Holidays config;
 		private final HolidayParser parser;
 
-		public HolidayParserRunner(int year, Set<Holiday> holidays, final Holidays config, HolidayParser parser) {
+		HolidayParserRunner(int year, Set<Holiday> holidays, final Holidays config, HolidayParser parser) {
 			this.year = year;
 			this.holidays = holidays;
 			this.config = config;
@@ -285,10 +285,11 @@ public class DefaultHolidayManager extends HolidayManager {
 		}
 		if (multipleHierarchies.size() > 0) {
 			StringBuilder msg = new StringBuilder();
-			msg.append("Configuration for " + c.getHierarchy()
-					+ " contains  multiple SubConfigurations with the same hierarchy id. ");
+			msg.append("Configuration for ").append(c.getHierarchy())
+					.append(" contains  multiple SubConfigurations with the same hierarchy id. ");
 			for (String hierarchy : multipleHierarchies) {
-				msg.append(hierarchy + " " + hierarchyMap.get(hierarchy).toString() + " times ");
+				msg.append(hierarchy).append(" ").append(hierarchyMap.get(hierarchy)
+						.toString()).append(" times ");
 			}
 			throw new IllegalArgumentException(msg.toString().trim());
 		}

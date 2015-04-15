@@ -36,7 +36,7 @@ public enum HolidayCalendar {
 			"SI"), SOUTH_AFRICA("ZA"), SPAIN("ES"), SWEDEN("SE"), SWITZERLAND("CH"), TARGET("TARGET"), UKRAINE("UA"), UNITED_STATES(
 			Locale.US.getCountry()), UNITED_KINGDOM("UK"), URUGUAY("UY"), VENEZUELA("VE"), NYSE("NYSE");
 
-	private String id;
+	private final String id;
 
 	private HolidayCalendar(String id) {
 		this.id = id;

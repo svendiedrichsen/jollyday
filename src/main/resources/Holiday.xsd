@@ -19,6 +19,7 @@
 			<enumeration value="JANUARY"></enumeration>
 			<enumeration value="FEBRUARY"></enumeration>
 			<enumeration value="MARCH"></enumeration>
+			<enumeration value="APRIL"></enumeration>
 			<enumeration value="MAY"></enumeration>
 			<enumeration value="JUNE"></enumeration>
 			<enumeration value="JULY"></enumeration>
@@ -27,7 +28,6 @@
 			<enumeration value="OCTOBER"></enumeration>
 			<enumeration value="NOVEMBER"></enumeration>
 			<enumeration value="DECEMBER"></enumeration>
-			<enumeration value="APRIL"></enumeration>
 		</restriction>
 	</simpleType>
 

@@ -45,7 +45,7 @@ import de.jollyday.config.Fixed;
  */
 public class CalendarUtil {
 
-	private XMLUtil xmlUtil = new XMLUtil();
+	private final XMLUtil xmlUtil = new XMLUtil();
 
 	/**
 	 * Creates the current date within the gregorian calendar.
@@ -260,7 +260,7 @@ public class CalendarUtil {
 	}
 
 	/**
-	 * Shows if the requested dat is contained in the Set of holidays.
+	 * Shows if the requested date is contained in the Set of holidays.
 	 * 
 	 * @param holidays
 	 *            a {@link java.util.Set} object.
@@ -269,12 +269,7 @@ public class CalendarUtil {
 	 * @return contains this date
 	 */
 	public boolean contains(final Set<Holiday> holidays, final LocalDate date) {
-		for (Holiday h : holidays) {
-			if (h.getDate().equals(date)) {
-				return true;
-			}
-		}
-		return false;
+		return holidays.stream().anyMatch(h -> h.getDate().equals(date));
 	}
 
 }

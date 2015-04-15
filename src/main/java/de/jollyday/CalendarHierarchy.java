@@ -28,10 +28,10 @@ import de.jollyday.util.ResourceUtil;
  * @version $Id: $
  */
 public class CalendarHierarchy {
-	private String id;
+	private final String id;
 	private Map<String, CalendarHierarchy> children = new HashMap<>();
 	private final CalendarHierarchy parent;
-	private ResourceUtil resourceUtil = new ResourceUtil();
+	private final ResourceUtil resourceUtil = new ResourceUtil();
 	private String fallbackDescription;
 
 	/**

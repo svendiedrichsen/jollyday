@@ -62,7 +62,7 @@ public class XMLUtil {
 			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
 		}
 		try {
-			JAXBContext ctx = null;
+			JAXBContext ctx;
 			try {
 				ctx = contextCreator.create(XMLUtil.PACKAGE, classLoadingUtil.getClassloader());
 			} catch (JAXBException e) {
@@ -84,10 +84,10 @@ public class XMLUtil {
 	}
 
 	/**
-	 * Returns the <code>DateTimeConstants</code> value for the given weekday.
+	 * Returns the {@link DayOfWeek} equivalent for the given weekday.
 	 * 
 	 * @param weekday
-	 *            a {@link de.jollyday.config.Weekday} object.
+	 *            a {@link Weekday} object.
 	 * @return a DayOfWeek instance.
 	 */
 	public final DayOfWeek getWeekday(Weekday weekday) {
@@ -95,41 +95,14 @@ public class XMLUtil {
 		}
 
 	/**
-	 * Returns the <code>DateTimeConstants</code> value for the given month.
+	 * Returns the value for the given month.
 	 * 
 	 * @param month
-	 *            a {@link de.jollyday.config.Month} object.
-	 * @return DateTimeConstants value.
+	 *            a {@link Month} object.
+	 * @return a 1-12 value.
 	 */
 	public int getMonth(Month month) {
-		switch (month) {
-		case JANUARY:
-			return 1;
-		case FEBRUARY:
-			return 2;
-		case MARCH:
-			return 3;
-		case APRIL:
-			return 4;
-		case MAY:
-			return 5;
-		case JUNE:
-			return 6;
-		case JULY:
-			return 7;
-		case AUGUST:
-			return 8;
-		case SEPTEMBER:
-			return 9;
-		case OCTOBER:
-			return 10;
-		case NOVEMBER:
-			return 11;
-		case DECEMBER:
-			return 12;
-		default:
-			throw new IllegalArgumentException("Unknown month " + month);
-		}
+		return month.ordinal() + 1;
 	}
 
 	/**

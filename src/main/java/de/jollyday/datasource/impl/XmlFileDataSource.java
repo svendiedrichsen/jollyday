@@ -15,6 +15,7 @@
  */
 package de.jollyday.datasource.impl;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import de.jollyday.ManagerParameter;
@@ -29,7 +30,7 @@ public class XmlFileDataSource implements ConfigurationDataSource {
 	/**
 	 * XML utility class.
 	 */
-	private XMLUtil xmlUtil = new XMLUtil();
+	private final XMLUtil xmlUtil = new XMLUtil();
 
 	@Override
 	public Configuration getConfiguration(ManagerParameter parameter) {

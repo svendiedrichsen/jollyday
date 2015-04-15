@@ -12,19 +12,19 @@ import de.jollyday.util.ClassLoadingUtil;
  */
 public class HolidayManagerValueHandler implements Cache.ValueHandler<HolidayManager> {
 
-	private ManagerParameter parameter;
-	private String managerImplClassName;
+	private final ManagerParameter parameter;
+	private final String managerImplClassName;
 
 	/**
 	 * Manager for providing configuration data sources which return the holiday
 	 * data.
 	 */
-	private ConfigurationDataSourceManager configurationDataSourceManager = new ConfigurationDataSourceManager();
+	private final ConfigurationDataSourceManager configurationDataSourceManager = new ConfigurationDataSourceManager();
 
 	/**
 	 * Utility to load classes.
 	 */
-	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
+	private final ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	public HolidayManagerValueHandler(final ManagerParameter parameter, final String managerImplClassName) {
 		this.parameter = parameter;

@@ -48,7 +48,7 @@ public final class Holiday {
 	/**
 	 * Utility for accessing resources.
 	 */
-	private ResourceUtil resourceUtil = new ResourceUtil();
+	private final ResourceUtil resourceUtil = new ResourceUtil();
 
 	/**
 	 * Constructs a holiday for a date using the provided properties key to

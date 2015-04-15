@@ -26,7 +26,7 @@ import de.jollyday.util.ClassLoadingUtil;
  */
 public class ConfigurationDataSourceManager {
 
-	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
+	private final ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	public ConfigurationDataSource getConfigurationDataSource(ManagerParameter parameter){
 		validateConfiguration(parameter);

@@ -54,11 +54,11 @@ public abstract class HolidayManager {
 	/**
 	 * Manager for configuration providers. Delivers the jollyday configuration.
 	 */
-	private static ConfigurationProviderManager CONFIGURATION_MANAGER_PROVIDER = new ConfigurationProviderManager();
+	private static final ConfigurationProviderManager CONFIGURATION_MANAGER_PROVIDER = new ConfigurationProviderManager();
 	/**
 	 * the holiday cache
 	 */
-	private Cache<Set<Holiday>> holidayCache = new Cache<>();
+	private final Cache<Set<Holiday>> holidayCache = new Cache<>();
 	/**
 	 * Utility for calendar operations
 	 */
