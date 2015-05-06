@@ -18,9 +18,9 @@ public class CalendarPartManagerParameter extends BaseManagerParameter {
 	/**
 	 * The utility to load resources.
 	 */
-	private ResourceUtil resourceUtil = new ResourceUtil();
+	private final ResourceUtil resourceUtil = new ResourceUtil();
 
-	private String calendarPart;
+	private final String calendarPart;
 
 	public CalendarPartManagerParameter(String calendarPart,
 			Properties properties) {

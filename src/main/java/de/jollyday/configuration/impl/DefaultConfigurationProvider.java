@@ -42,7 +42,7 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 	/**
 	 * The utility to load resources.
 	 */
-	private ResourceUtil resourceUtil = new ResourceUtil();
+	private final ResourceUtil resourceUtil = new ResourceUtil();
 
 	/*
 	 * (non-Javadoc)

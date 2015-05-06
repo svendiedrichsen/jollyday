@@ -66,7 +66,7 @@ public class ResourceUtil {
 	/**
 	 * Util class to provide the correct classloader.
 	 */
-	private transient ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
+	private final transient ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
 
 	/**
 	 * The description read with the default locale.

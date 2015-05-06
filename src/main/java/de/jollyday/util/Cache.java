@@ -29,11 +29,11 @@ public class Cache<VALUE> {
 	/**
 	 * Map for caching
 	 */
-	private Map<String, VALUE> cachingMap = new HashMap<>();
+	private final Map<String, VALUE> cachingMap = new HashMap<>();
 	/**
 	 * Lock for accessing the map
 	 */
-	private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+	private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 	/**
 	 * Returns the value defined by the {@link ValueHandler}
 	 *
