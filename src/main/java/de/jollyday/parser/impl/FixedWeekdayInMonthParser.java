@@ -15,7 +15,9 @@
  */
 package de.jollyday.parser.impl;
 
+import static java.time.temporal.TemporalAdjusters.dayOfWeekInMonth;
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.previousOrSame;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -65,36 +67,13 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 	 * @return the local date
 	 */
 	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
-		LocalDate date = calendarUtil.create(year, xmlUtil.getMonth(fwm.getMonth()), 1);
-		int direction = 1;
-		if (Which.LAST.equals(fwm.getWhich())) {
-			date = date.with(lastDayOfMonth());
-			direction = -1;
-		}
-		date = moveToNextRequestedWeekdayByDirection(fwm, date, direction);
-		date = moveNumberOfRequestedWeeks(fwm, date);
-		return date;
-	}
+		final DayOfWeek weekday = xmlUtil.getWeekday(fwm.getWeekday());
+		final LocalDate date = LocalDate.of(year, xmlUtil.getMonth(fwm.getMonth()), 1);
 
-	private LocalDate moveNumberOfRequestedWeeks(FixedWeekdayInMonth fwm, LocalDate date) {
-		switch (fwm.getWhich()) {
-		case SECOND:
-			return date.plusDays(7);
-		case THIRD:
-			return date.plusDays(14);
-		case FOURTH:
-			return date.plusDays(21);
-		default:
-			return date;
+		if (Which.LAST == fwm.getWhich()) {
+			return date.with(lastDayOfMonth()).with(previousOrSame(weekday));
 		}
-	}
 
-	private LocalDate moveToNextRequestedWeekdayByDirection(FixedWeekdayInMonth fwm, LocalDate date, int direction) {
-		DayOfWeek weekDay = xmlUtil.getWeekday(fwm.getWeekday());
-		while (date.getDayOfWeek() != weekDay) {
-			date = date.plusDays(direction);
-		}
-		return date;
+		return date.with(dayOfWeekInMonth(fwm.getWhich().ordinal() + 1, weekday));
 	}
-
 }

@@ -15,6 +15,9 @@
  */
 package de.jollyday.parser;
 
+import static java.time.temporal.TemporalAdjusters.nextOrSame;
+import static java.time.temporal.TemporalAdjusters.previousOrSame;
+
 import de.jollyday.config.*;
 import de.jollyday.util.CalendarUtil;
 import de.jollyday.util.XMLUtil;
@@ -156,11 +159,9 @@ public abstract class AbstractHolidayParser implements HolidayParser {
 	 */
 	private LocalDate moveDate(MovingCondition mc, LocalDate fixed) {
 		DayOfWeek weekday = xmlUtil.getWeekday(mc.getWeekday());
-		int direction = (mc.getWith() == With.NEXT ? 1 : -1);
-		while (fixed.getDayOfWeek() != weekday) {
-			fixed = fixed.plusDays(direction);
-		}
-		return fixed;
+		
+		return fixed.with(mc.getWith() == With.NEXT ? nextOrSame(weekday) : 
+				previousOrSame(weekday));
 	}
 
 	/**

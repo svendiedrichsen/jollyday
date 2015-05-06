@@ -160,8 +160,8 @@
 			<enumeration value="FIRST"></enumeration>
 			<enumeration value="SECOND"></enumeration>
 			<enumeration value="THIRD"></enumeration>
-			<enumeration value="LAST"></enumeration>
 			<enumeration value="FOURTH"></enumeration>
+			<enumeration value="LAST"></enumeration>
 		</restriction>
 	</simpleType>
 

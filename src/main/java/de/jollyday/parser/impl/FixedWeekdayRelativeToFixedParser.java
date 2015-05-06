@@ -15,6 +15,10 @@
  */
 package de.jollyday.parser.impl;
 
+import static java.time.temporal.TemporalAdjusters.next;
+import static java.time.temporal.TemporalAdjusters.previous;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -33,10 +37,7 @@ import de.jollyday.parser.AbstractHolidayParser;
  */
 public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 
-	/**
-	 * Parses the provided configuration and creates holidays for the provided
-	 * year.
-	 */
+	/** {@inheritDoc} */
 	@Override
 	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
 		for (FixedWeekdayRelativeToFixed f : config.getFixedWeekdayRelativeToFixed()) {
@@ -44,7 +45,7 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 				continue;
 			}
 			LocalDate day = calendarUtil.create(year, f.getDay());
-			day = moveDateToFirstOccurenceOfWeekday(f, day);
+			day = moveDateToFirstOccurrenceOfWeekday(f, day);
 			int days = determineNumberOfDays(f);
 			day = f.getWhen() == When.AFTER ? day.plusDays(days) : day.minusDays(days);
 			HolidayType type = xmlUtil.getType(f.getLocalizedType());
@@ -58,12 +59,9 @@ public class FixedWeekdayRelativeToFixedParser extends AbstractHolidayParser {
 	 * @param day the day to move
 	 * @return the day moved to the weekday and in the direction as specified 
 	 */
-	private LocalDate moveDateToFirstOccurenceOfWeekday(FixedWeekdayRelativeToFixed f, LocalDate day) {
-		LocalDate movingDay = day;
-		do {
-			movingDay = f.getWhen() == When.AFTER ? movingDay.plusDays(1) : movingDay.minusDays(1);
-		} while (movingDay.getDayOfWeek() != xmlUtil.getWeekday(f.getWeekday()));
-		return movingDay;
+	private LocalDate moveDateToFirstOccurrenceOfWeekday(FixedWeekdayRelativeToFixed f, LocalDate day) {
+		final DayOfWeek weekday = xmlUtil.getWeekday(f.getWeekday());
+		return day.with(f.getWhen() == When.AFTER ? next(weekday) : previous(weekday));
 	}
 
 	/**
