@@ -15,22 +15,21 @@
  */
 package de.jollyday;
 
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Properties;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.joda.time.LocalDate;
-import org.joda.time.ReadableInterval;
-
 import de.jollyday.caching.HolidayManagerValueHandler;
 import de.jollyday.configuration.ConfigurationProviderManager;
 import de.jollyday.datasource.ConfigurationDataSource;
 import de.jollyday.util.Cache;
 import de.jollyday.util.Cache.ValueHandler;
 import de.jollyday.util.CalendarUtil;
+import org.joda.time.LocalDate;
+import org.joda.time.ReadableInterval;
+
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Properties;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Abstract base class for all holiday manager implementations. Upon call of
@@ -94,7 +93,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link HolidayManager#getInstance(ManagerParameter parameter)} instead.
 	 * @param c the {@link HolidayCalendar} to use for creating a {@link HolidayManager} instance
 	 * @return the eventually cached {@link HolidayManager}
 	 */
@@ -104,7 +103,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link HolidayManager#getInstance(ManagerParameter parameter)} instead.
 	 * @param c the {@link HolidayCalendar} to use for creating a {@link HolidayManager} instance
 	 * @param properties the configuration overriding {@link Properties}
 	 * @return the eventually cached {@link HolidayManager}
@@ -116,7 +115,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link HolidayManager#getInstance(ManagerParameter parameter)} instead.
 	 * @param calendar the calendar to use for creating a {@link HolidayManager} instance
 	 * @return the eventually cached {@link HolidayManager}
 	 */
@@ -126,7 +125,7 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * @deprecated Use {@link HolidayManager.getInstance(ManagerParameter parameter)} instead.
+	 * @deprecated Use {@link HolidayManager#getInstance(ManagerParameter parameter)} instead.
 	 * @param calendar the calendar to use for creating a {@link HolidayManager} instance
 	 * @param properties the configuration overriding {@link Properties}
 	 * @return the eventually cached {@link HolidayManager}
@@ -141,7 +140,7 @@ public abstract class HolidayManager {
 	 * Creates and returns a {@link HolidayManager} for the provided
 	 * {@link ManagerParameters}
 	 *
-	 * @param parameters
+	 * @param parameter
 	 *            the {@link ManagerParameters} to create the manager with
 	 * @return the {@link HolidayManager} instance
 	 */
@@ -153,9 +152,8 @@ public abstract class HolidayManager {
 	 * Creates a new <code>HolidayManager</code> instance for the country and
 	 * puts it to the manager cache.
 	 *
-	 * @param calendar
-	 *            <code>HolidayManager</code> instance for the calendar
-	 * @return new
+	 * @param parameter
+	 * @return HolidayManager
 	 */
 	private static HolidayManager createManager(final ManagerParameter parameter) {
 		if (LOG.isLoggable(Level.FINER)) {
@@ -177,10 +175,8 @@ public abstract class HolidayManager {
 	/**
 	 * Reads the managers implementation class from the properties config file.
 	 *
-	 * @param calendar
-	 *            the calendar name
-	 * @param props
-	 *            properties to read from
+	 * @param parameter
+	 *            the parameter
 	 * @return the manager implementation class name
 	 */
 	private static String readManagerImplClassName(ManagerParameter parameter) {
@@ -197,7 +193,7 @@ public abstract class HolidayManager {
 	 * If true, instantiated managers will be cached. If false every call to
 	 * getInstance will create new manager. True by default.
 	 *
-	 * @param CACHING_ENABLED
+	 * @param managerCachingEnabled
 	 *            the CACHING_ENABLED to set
 	 */
 	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
@@ -233,9 +229,13 @@ public abstract class HolidayManager {
 	 *            a {@link java.lang.String} object.
 	 * @return a boolean.
 	 */
-	public boolean isHoliday(final Calendar c, final String... args) {
-		return isHoliday(calendarUtil.create(c), args);
+	public boolean isHoliday(final Calendar c, HolidayType holidayType, final String... args) {
+		return isHoliday(calendarUtil.create(c), holidayType, args);
 	}
+
+    public boolean isHoliday(final Calendar c, final String... args){
+        return isHoliday(c, null, args);
+    }
 
 	/**
 	 * Show if the requested date is a holiday.
@@ -247,7 +247,7 @@ public abstract class HolidayManager {
 	 *            New York holidays
 	 * @return is a holiday in the state/region
 	 */
-	public boolean isHoliday(final LocalDate c, final String... args) {
+	public boolean isHoliday(final LocalDate c, HolidayType holidayType, final String... args) {
 		final StringBuilder keyBuilder = new StringBuilder();
 		keyBuilder.append(c.getYear());
 		for (String arg : args) {
@@ -264,8 +264,12 @@ public abstract class HolidayManager {
 				return getHolidays(c.getYear(), args);
 			}
 		});
-		return calendarUtil.contains(holidays,c);
+		return calendarUtil.contains(holidays, c, holidayType);
 	}
+
+    public boolean isHoliday(final LocalDate c, final String... args){
+        return isHoliday(c, null, args);
+    }
 
 	/**
 	 * Returns a set of all currently supported calendar codes.
@@ -306,10 +310,9 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Initializes the implementing manager for the provided calendar.
+	 * Initializes the implementing manager for the provided ManagerParameter.
 	 *
-	 * @param calendar
-	 *            i.e. us, uk, de
+	 * @param parameters
 	 */
 	public void init(ManagerParameter parameters) {
 		this.managerParameter = parameters;
