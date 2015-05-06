@@ -218,16 +218,19 @@ public abstract class HolidayManager {
 	}
 
 	/**
-	 * Calls isHoliday with JODA time object.
+	 * Calls isHoliday with {@link LocalDate} object.
 	 *
-	 * @param c
-	 *            a {@link java.util.Calendar} object.
-	 * @param args
-	 *            a {@link java.lang.String} object.
-	 * @return a boolean.
+	 * @param c {@link java.util.Calendar} to check.
+	 * @param holidayType type holidays to be considered. NULL checks any.
+	 * @param args a {@link java.lang.String} object.
+	 * @return if the date is a holiday
 	 */
+	public boolean isHoliday(final Calendar c, HolidayType holidayType, final String... args) {
+		return isHoliday(calendarUtil.create(c), holidayType, args);
+	}
+
 	public boolean isHoliday(final Calendar c, final String... args) {
-		return isHoliday(calendarUtil.create(c), args);
+		return isHoliday(c, null, args);
 	}
 
 	/**
@@ -240,7 +243,7 @@ public abstract class HolidayManager {
 	 *            New York holidays
 	 * @return is a holiday in the state/region
 	 */
-	public boolean isHoliday(final LocalDate c, final String... args) {
+	public boolean isHoliday(final LocalDate c, HolidayType holidayType, final String... args) {
 		final StringBuilder keyBuilder = new StringBuilder();
 		keyBuilder.append(c.getYear());
 		for (String arg : args) {
@@ -257,7 +260,11 @@ public abstract class HolidayManager {
 				return getHolidays(c.getYear(), args);
 			}
 		});
-		return calendarUtil.contains(holidays,c);
+		return calendarUtil.contains(holidays, c, holidayType);
+	}
+
+	public boolean isHoliday(final LocalDate c, final String... args){
+		return isHoliday(c, null, args);
 	}
 
 	/**

@@ -1,17 +1,17 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.util;
 
@@ -31,6 +31,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import de.jollyday.HolidayType;
 import org.threeten.extra.chrono.CopticChronology;
 import org.threeten.extra.chrono.JulianChronology;
 
@@ -39,7 +40,7 @@ import de.jollyday.config.Fixed;
 
 /**
  * Utility class for date operations.
- * 
+ *
  * @author Sven Diedrichsen
  * @version $Id: $
  */
@@ -49,7 +50,7 @@ public class CalendarUtil {
 
 	/**
 	 * Creates the current date within the gregorian calendar.
-	 * 
+	 *
 	 * @return today
 	 */
 	public LocalDate create() {
@@ -58,7 +59,7 @@ public class CalendarUtil {
 
 	/**
 	 * Creates the date within the ISO chronology.
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @param month
@@ -73,7 +74,7 @@ public class CalendarUtil {
 
 	/**
 	 * Creates the date within the provided chronology.
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @param month
@@ -90,7 +91,7 @@ public class CalendarUtil {
 
 	/**
 	 * Creates the date from the month/day within the specified year.
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @param fixed
@@ -103,7 +104,7 @@ public class CalendarUtil {
 
 	/**
 	 * Creates a LocalDate. Does not use the Chronology of the Calendar.
-	 * 
+	 *
 	 * @param c
 	 *            a {@link java.util.Calendar} object.
 	 * @return The local date representing the provided date.
@@ -116,7 +117,7 @@ public class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday for a given year.
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @return Easter sunday.
@@ -131,7 +132,7 @@ public class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday within the julian chronology.
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @return julian easter sunday
@@ -152,7 +153,7 @@ public class CalendarUtil {
 
 	/**
 	 * Returns the easter sunday within the gregorian chronology.
-	 * 
+	 *
 	 * @param year
 	 *            a int.
 	 * @return gregorian easter sunday.
@@ -180,7 +181,7 @@ public class CalendarUtil {
 
 	/**
 	 * Returns if this date is on a wekkend.
-	 * 
+	 *
 	 * @param date
 	 *            a {@link LocalDate} object.
 	 * @return is weekend
@@ -195,7 +196,7 @@ public class CalendarUtil {
 	 * than the gregorian there may be more than one occurrence of an islamic
 	 * date in an gregorian year. i.e.: In the gregorian year 2008 there were
 	 * two 1/1. They occurred on 1/10 and 12/29.
-	 * 
+	 *
 	 * @param gregorianYear
 	 *            a int.
 	 * @param islamicMonth
@@ -214,7 +215,7 @@ public class CalendarUtil {
 	 * ethiopian orthodox month and day. Because the ethiopian orthodox year
 	 * different from the gregorian there may be more than one occurrence of an
 	 * ethiopian orthodox date in an gregorian year.
-	 * 
+	 *
 	 * @param gregorianYear
 	 *            a int.
 	 * @return List of gregorian dates for the ethiopian orthodox month/day.
@@ -230,7 +231,7 @@ public class CalendarUtil {
 	/**
 	 * Searches for the occurrences of a month/day in one chronology within one
 	 * gregorian year.
-	 * 
+	 *
 	 * @param targetMonth
 	 * @param targetDay
 	 * @param gregorianYear
@@ -261,15 +262,19 @@ public class CalendarUtil {
 
 	/**
 	 * Shows if the requested date is contained in the Set of holidays.
-	 * 
+	 *
 	 * @param holidays
 	 *            a {@link java.util.Set} object.
 	 * @param date
 	 *            a {@link LocalDate} object.
 	 * @return contains this date
 	 */
+	public boolean contains(final Set<Holiday> holidays, final LocalDate date, final HolidayType holidayType) {
+		return holidays.stream().anyMatch(h -> h.getDate().equals(date) && (holidayType == null || h.getType() == holidayType));
+	}
+
 	public boolean contains(final Set<Holiday> holidays, final LocalDate date) {
-		return holidays.stream().anyMatch(h -> h.getDate().equals(date));
+		return contains(holidays, date, null);
 	}
 
 }

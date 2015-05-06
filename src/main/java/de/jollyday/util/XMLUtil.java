@@ -18,22 +18,20 @@
  */
 package de.jollyday.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.time.DayOfWeek;
-import java.util.logging.Logger;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
-import de.jollyday.holidaytype.LocalizedHolidayType;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.DayOfWeek;
+import java.util.logging.Logger;
 
 public class XMLUtil {
 
@@ -50,7 +48,7 @@ public class XMLUtil {
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
 	 * this.
-	 * 
+	 *
 	 * @param stream
 	 *            a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
@@ -85,7 +83,7 @@ public class XMLUtil {
 
 	/**
 	 * Returns the {@link DayOfWeek} equivalent for the given weekday.
-	 * 
+	 *
 	 * @param weekday
 	 *            a {@link Weekday} object.
 	 * @return a DayOfWeek instance.
@@ -96,7 +94,7 @@ public class XMLUtil {
 
 	/**
 	 * Returns the value for the given month.
-	 * 
+	 *
 	 * @param month
 	 *            a {@link Month} object.
 	 * @return a 1-12 value.
@@ -107,7 +105,7 @@ public class XMLUtil {
 
 	/**
 	 * Gets the type.
-	 * 
+	 *
 	 * @param type
 	 *            the type of holiday in the config
 	 * @return the type of holiday
@@ -115,9 +113,9 @@ public class XMLUtil {
 	public HolidayType getType(de.jollyday.config.HolidayType type) {
 		switch (type) {
 		case OFFICIAL_HOLIDAY:
-			return LocalizedHolidayType.OFFICIAL_HOLIDAY;
+			return HolidayType.OFFICIAL_HOLIDAY;
 		case UNOFFICIAL_HOLIDAY:
-			return LocalizedHolidayType.UNOFFICIAL_HOLIDAY;
+			return HolidayType.UNOFFICIAL_HOLIDAY;
 		default:
 			throw new IllegalArgumentException("Unknown type " + type);
 		}
