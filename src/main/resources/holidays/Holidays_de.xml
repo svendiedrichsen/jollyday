@@ -19,7 +19,7 @@
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="bw" description="Baden-Württenberg">
+  <tns:SubConfigurations hierarchy="bw" description="Baden-Württemberg">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
