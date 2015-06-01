@@ -263,6 +263,12 @@ public abstract class HolidayManager {
 		return calendarUtil.contains(holidays, c, holidayType);
 	}
 
+	/**
+	 * Calls #isHoliday(c, null, args)
+	 * @param c the date to check
+	 * @param args the arguments to find the calendar
+	 * @return whether the date is a holiday
+	 */
 	public boolean isHoliday(final LocalDate c, final String... args){
 		return isHoliday(c, null, args);
 	}

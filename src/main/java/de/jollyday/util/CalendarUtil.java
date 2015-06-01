@@ -15,12 +15,11 @@
  */
 package de.jollyday.util;
 
-import static java.time.DayOfWeek.SATURDAY;
-import static java.time.DayOfWeek.SUNDAY;
-import static java.time.Month.APRIL;
-import static java.time.Month.DECEMBER;
-import static java.time.Month.JANUARY;
-import static java.time.Month.MARCH;
+import de.jollyday.Holiday;
+import de.jollyday.HolidayType;
+import de.jollyday.config.Fixed;
+import org.threeten.extra.chrono.CopticChronology;
+import org.threeten.extra.chrono.JulianChronology;
 
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
@@ -31,12 +30,9 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import de.jollyday.HolidayType;
-import org.threeten.extra.chrono.CopticChronology;
-import org.threeten.extra.chrono.JulianChronology;
-
-import de.jollyday.Holiday;
-import de.jollyday.config.Fixed;
+import static java.time.DayOfWeek.SATURDAY;
+import static java.time.DayOfWeek.SUNDAY;
+import static java.time.Month.*;
 
 /**
  * Utility class for date operations.
@@ -273,6 +269,12 @@ public class CalendarUtil {
 		return holidays.stream().anyMatch(h -> h.getDate().equals(date) && (holidayType == null || h.getType() == holidayType));
 	}
 
+	/**
+	 * Calls #contains(holidays, date, null)
+	 * @param holidays the holidays to search through
+	 * @param date the date to look for
+	 * @return the date is contained in the set of holidays
+	 */
 	public boolean contains(final Set<Holiday> holidays, final LocalDate date) {
 		return contains(holidays, date, null);
 	}
