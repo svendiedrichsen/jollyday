@@ -64,7 +64,7 @@ public class XMLUtil {
 			try {
 				ctx = contextCreator.create(XMLUtil.PACKAGE, classLoadingUtil.getClassloader());
 			} catch (JAXBException e) {
-				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
+				LOG.warning("Could not create JAXB context using the current threads context classloader. Falling back to ObjectFactory class classloader.");
 				ctx = null;
 			}
 			if (ctx == null) {
@@ -76,8 +76,6 @@ public class XMLUtil {
 			return el.getValue();
 		} catch (JAXBException ue) {
 			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
-		} finally {
-			stream.close();
 		}
 	}
 
