@@ -16,8 +16,7 @@
 package de.jollyday.parser.impl;
 
 import static java.time.temporal.TemporalAdjusters.dayOfWeekInMonth;
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
-import static java.time.temporal.TemporalAdjusters.previousOrSame;
+import static java.time.temporal.TemporalAdjusters.lastInMonth;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -71,7 +70,7 @@ public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
 		final LocalDate date = LocalDate.of(year, xmlUtil.getMonth(fwm.getMonth()), 1);
 
 		if (Which.LAST == fwm.getWhich()) {
-			return date.with(lastDayOfMonth()).with(previousOrSame(weekday));
+			return date.with(lastInMonth(weekday));
 		}
 
 		return date.with(dayOfWeekInMonth(fwm.getWhich().ordinal() + 1, weekday));
