@@ -5,7 +5,7 @@ import java.util.Properties;
 
 public class UrlManagerParameter extends BaseManagerParameter {
 
-	private URL calendarFileUrl;
+	private final URL calendarFileUrl;
 
 	public UrlManagerParameter(URL calendarFileUrl, Properties properties) {
 		super(properties);

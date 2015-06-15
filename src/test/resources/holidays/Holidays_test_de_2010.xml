@@ -16,7 +16,7 @@
   		<tns:Fixed month="OCTOBER" day="31"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="bw" description="Baden-Württenberg">
+  <tns:SubConfigurations hierarchy="bw" description="Baden-Württemberg">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6"/>
   		<tns:Fixed month="NOVEMBER" day="1"/>

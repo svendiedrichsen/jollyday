@@ -1,60 +1,42 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.tests;
 
-import static java.time.Month.APRIL;
-import static java.time.Month.AUGUST;
-import static java.time.Month.DECEMBER;
-import static java.time.Month.FEBRUARY;
-import static java.time.Month.JANUARY;
-import static java.time.Month.JULY;
-import static java.time.Month.NOVEMBER;
-import static java.time.Month.SEPTEMBER;
-import static org.junit.Assert.assertFalse;
+import de.jollyday.*;
+import de.jollyday.util.CalendarUtil;
+import junit.framework.Assert;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
-import junit.framework.Assert;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import de.jollyday.CalendarHierarchy;
-import de.jollyday.Holiday;
-import de.jollyday.HolidayCalendar;
-import de.jollyday.HolidayManager;
-import de.jollyday.holidaytype.LocalizedHolidayType;
-import de.jollyday.util.CalendarUtil;
+import static java.time.Month.*;
+import static org.junit.Assert.assertFalse;
 
 /**
  * @author Sven
- * 
+ *
  */
 public class HolidayTest {
 
@@ -272,7 +254,7 @@ public class HolidayTest {
 	@Test
 	public void testHolidayDescription() {
 		Holiday h = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
-				LocalizedHolidayType.OFFICIAL_HOLIDAY);
+				HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertEquals("Wrong description", "Weihnachten",
 				h.getDescription());
 		Assert.assertEquals("Wrong description", "Christmas",
@@ -284,19 +266,19 @@ public class HolidayTest {
 	@Test
 	public void testHolidayEquals() {
 		Holiday h1 = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
-				LocalizedHolidayType.OFFICIAL_HOLIDAY);
+				HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertTrue("Wrong equals implementation", h1.equals(h1));
 		Holiday h2b = new Holiday(LocalDate.of(2011, 2, 2), new String(
-				"CHRISTMAS"), LocalizedHolidayType.OFFICIAL_HOLIDAY);
+				"CHRISTMAS"), HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertTrue("Wrong equals implementation", h1.equals(h2b));
 		Holiday h2 = new Holiday(LocalDate.of(2011, 2, 1), "CHRISTMAS",
-				LocalizedHolidayType.OFFICIAL_HOLIDAY);
+				HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertFalse("Wrong equals implementation", h1.equals(h2));
 		Holiday h3 = new Holiday(LocalDate.of(2011, 2, 2), "NEW_YEAR",
-				LocalizedHolidayType.OFFICIAL_HOLIDAY);
+				HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertFalse("Wrong equals implementation", h1.equals(h3));
 		Holiday h4 = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
-				LocalizedHolidayType.UNOFFICIAL_HOLIDAY);
+				HolidayType.UNOFFICIAL_HOLIDAY);
 		Assert.assertFalse("Wrong equals implementation", h1.equals(h4));
 	}
 

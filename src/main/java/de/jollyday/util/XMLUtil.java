@@ -18,22 +18,20 @@
  */
 package de.jollyday.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.time.DayOfWeek;
-import java.util.logging.Logger;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
-import de.jollyday.holidaytype.LocalizedHolidayType;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.DayOfWeek;
+import java.util.logging.Logger;
 
 public class XMLUtil {
 
@@ -50,7 +48,7 @@ public class XMLUtil {
 	/**
 	 * Unmarshalls the configuration from the stream. Uses <code>JAXB</code> for
 	 * this.
-	 * 
+	 *
 	 * @param stream
 	 *            a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
@@ -62,11 +60,11 @@ public class XMLUtil {
 			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
 		}
 		try {
-			JAXBContext ctx = null;
+			JAXBContext ctx;
 			try {
 				ctx = contextCreator.create(XMLUtil.PACKAGE, classLoadingUtil.getClassloader());
 			} catch (JAXBException e) {
-				LOG.warning("Could not create JAXB context using the current threads context classloader. Defaulting to ObjectFactory classloader.");
+				LOG.warning("Could not create JAXB context using the current threads context classloader. Falling back to ObjectFactory class classloader.");
 				ctx = null;
 			}
 			if (ctx == null) {
@@ -78,16 +76,14 @@ public class XMLUtil {
 			return el.getValue();
 		} catch (JAXBException ue) {
 			throw new IllegalStateException("Cannot parse holidays XML file.", ue);
-		} finally {
-			stream.close();
 		}
 	}
 
 	/**
-	 * Returns the <code>DateTimeConstants</code> value for the given weekday.
-	 * 
+	 * Returns the {@link DayOfWeek} equivalent for the given weekday.
+	 *
 	 * @param weekday
-	 *            a {@link de.jollyday.config.Weekday} object.
+	 *            a {@link Weekday} object.
 	 * @return a DayOfWeek instance.
 	 */
 	public final DayOfWeek getWeekday(Weekday weekday) {
@@ -95,46 +91,19 @@ public class XMLUtil {
 		}
 
 	/**
-	 * Returns the <code>DateTimeConstants</code> value for the given month.
-	 * 
+	 * Returns the value for the given month.
+	 *
 	 * @param month
-	 *            a {@link de.jollyday.config.Month} object.
-	 * @return DateTimeConstants value.
+	 *            a {@link Month} object.
+	 * @return a 1-12 value.
 	 */
 	public int getMonth(Month month) {
-		switch (month) {
-		case JANUARY:
-			return 1;
-		case FEBRUARY:
-			return 2;
-		case MARCH:
-			return 3;
-		case APRIL:
-			return 4;
-		case MAY:
-			return 5;
-		case JUNE:
-			return 6;
-		case JULY:
-			return 7;
-		case AUGUST:
-			return 8;
-		case SEPTEMBER:
-			return 9;
-		case OCTOBER:
-			return 10;
-		case NOVEMBER:
-			return 11;
-		case DECEMBER:
-			return 12;
-		default:
-			throw new IllegalArgumentException("Unknown month " + month);
-		}
+		return month.ordinal() + 1;
 	}
 
 	/**
 	 * Gets the type.
-	 * 
+	 *
 	 * @param type
 	 *            the type of holiday in the config
 	 * @return the type of holiday
@@ -142,9 +111,9 @@ public class XMLUtil {
 	public HolidayType getType(de.jollyday.config.HolidayType type) {
 		switch (type) {
 		case OFFICIAL_HOLIDAY:
-			return LocalizedHolidayType.OFFICIAL_HOLIDAY;
+			return HolidayType.OFFICIAL_HOLIDAY;
 		case UNOFFICIAL_HOLIDAY:
-			return LocalizedHolidayType.UNOFFICIAL_HOLIDAY;
+			return HolidayType.UNOFFICIAL_HOLIDAY;
 		default:
 			throw new IllegalArgumentException("Unknown type " + type);
 		}
