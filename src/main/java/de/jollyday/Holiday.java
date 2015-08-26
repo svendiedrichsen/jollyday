@@ -1,34 +1,34 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday;
+
+import de.jollyday.util.ResourceUtil;
 
 import java.util.Locale;
 
 import org.joda.time.LocalDate;
 
-import de.jollyday.util.ResourceUtil;
-
 /**
  * Represents the holiday and contains the actual date and an localized
  * description.
- * 
+ *
  * @author Sven Diedrichsen
  * @version $Id: $
  */
-public final class Holiday {
+public final class Holiday implements Comparable<Holiday> {
 	/**
 	 * The calculated hashcode cached for performance.
 	 */
@@ -54,9 +54,9 @@ public final class Holiday {
 	/**
 	 * Constructs a holiday for a date using the provided properties key to
 	 * retrieve the description with.
-	 * 
+	 *
 	 * @param date
-	 *            a {@link org.joda.time.LocalDate} object.
+	 *            a {@link LocalDate} object.
 	 * @param propertiesKey
 	 *            a {@link java.lang.String} object.
 	 * @param type
@@ -73,7 +73,7 @@ public final class Holiday {
 	 * <p>
 	 * Getter for the field <code>date</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return the holiday date
 	 */
 	public LocalDate getDate() {
@@ -84,7 +84,7 @@ public final class Holiday {
 	 * <p>
 	 * Getter for the field <code>propertiesKey</code>.
 	 * </p>
-	 * 
+	 *
 	 * @return the holidays properties key
 	 */
 	public String getPropertiesKey() {
@@ -93,7 +93,7 @@ public final class Holiday {
 
 	/**
 	 * The description read with the default locale.
-	 * 
+	 *
 	 * @return Description for this holiday
 	 */
 	public String getDescription() {
@@ -102,7 +102,7 @@ public final class Holiday {
 
 	/**
 	 * The description read with the provided locale.
-	 * 
+	 *
 	 * @param locale
 	 *            a {@link java.util.Locale} object.
 	 * @return Description for this holiday
@@ -143,10 +143,22 @@ public final class Holiday {
 
 	/**
 	 * Gets the type holiday.
-	 * 
+	 *
 	 * @return the type holiday
 	 */
 	public HolidayType getType() {
 		return type;
+	}
+
+	/**
+	 * Compares this holiday to another holiday.
+	 *
+	 * The comparison is primarily based on the date, from earliest to latest by using the LocalDate comparator.
+	 *
+	 * @param other the other holiday to compare to, not null
+	 * @return the comparator value, negative if less, positive if greater
+	 */
+	public int compareTo(Holiday other) {
+		return this.getDate().compareTo(other.getDate());
 	}
 }
