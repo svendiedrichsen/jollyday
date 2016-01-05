@@ -7,6 +7,8 @@
 	  <tns:Fixed month="OCTOBER" day="3" validFrom="1990"  descriptionPropertiesKey="UNIFICATION"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
+	  <tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE" localizedType="UNOFFICIAL_HOLIDAY"/>
+	  <tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE" localizedType="UNOFFICIAL_HOLIDAY"/>
       <tns:ChristianHoliday type="EASTER" />
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
