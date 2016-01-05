@@ -49,8 +49,9 @@ public class HolidayDETest extends AbstractCountryTestBase {
 			HolidayManager instance = HolidayManager.getInstance(HolidayCalendar.GERMANY);
 			Set<Holiday> holidays = instance.getHolidays(calendarUtil.create(2010, 10, 1), calendarUtil
 					.create(2011, 1, 31));
-			List<LocalDate> expected = Arrays.asList(calendarUtil.create(2010, 12, 25),
-					calendarUtil.create(2010, 12, 26), calendarUtil.create(2010, 10, 3),
+			List<LocalDate> expected = Arrays.asList(calendarUtil.create(2010, 12, 24),
+					calendarUtil.create(2010, 12, 25), calendarUtil.create(2010, 12, 26),
+					calendarUtil.create(2010, 12, 31), calendarUtil.create(2010, 10, 3),
 					calendarUtil.create(2011, 1, 1));
 			Assert.assertEquals("Wrong number of holidays", expected.size(), holidays.size());
 			for (LocalDate d : expected) {
