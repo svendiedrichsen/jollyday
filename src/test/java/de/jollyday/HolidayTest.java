@@ -79,6 +79,7 @@ public class HolidayTest {
             List<Holiday> holidayList = new LinkedList<>();
             for (Holiday h : holidays) {
                 holidayList.add(h);
+
             }
 
             Collections.sort(holidayList, new Comparator<Holiday>() {
@@ -98,7 +99,7 @@ public class HolidayTest {
             System.out.println("## " + country);
             System.out.println();
             for (Holiday holiday : holidays) {
-                System.out.println(holiday.toString());
+                System.out.println("* " +  holiday.toString() + (holiday.getType()==HolidayType.UNOFFICIAL_HOLIDAY ? " unofficial" : "") );
             }
             System.out.println();
         }
