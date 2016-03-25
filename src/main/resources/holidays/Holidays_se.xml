@@ -14,6 +14,10 @@
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" />
 		<tns:ChristianHoliday type="PENTECOST" />
+		<tns:FixedWeekdayBetweenFixed weekday="SATURDAY" descriptionPropertiesKey="MIDSUMMER_EVE">
+			<tns:from month="JUNE" day="19"/>
+			<tns:to month="JUNE" day="25"/>
+		</tns:FixedWeekdayBetweenFixed>
 		<tns:FixedWeekdayBetweenFixed weekday="SATURDAY" descriptionPropertiesKey="MIDSUMMER">
 			<tns:from month="JUNE" day="20"/>
 			<tns:to month="JUNE" day="26"/>
