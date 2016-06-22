@@ -33,6 +33,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="qc" description="Quebec">
   	<tns:Holidays>
+  		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="SAINT_JEAN_BAPTISTE_DAY"/>
   		<tns:RelativeToFixed descriptionPropertiesKey="VICTORIA_DAY">
   			<tns:Weekday>MONDAY</tns:Weekday>
   			<tns:When>BEFORE</tns:When>
