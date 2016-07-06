@@ -26,7 +26,7 @@ import java.util.Locale;
 public enum HolidayCalendar {
 
 	ALBANIA("AL"), ARGENTINA("AR"), AUSTRIA("AT"), AUSTRALIA("AU"), BOSNIA_HERZIGOWINA("BA"), BELGIUM("BE"), BULGARIA(
-			"BG"), BOLIVIA("BO"), BRAZIL("BR"), BELARUS("BY"), CANADA(Locale.CANADA.getCountry()), CHILE("CL"), COOMBIA(
+			"BG"), BOLIVIA("BO"), BRAZIL("BR"), BELARUS("BY"), CANADA(Locale.CANADA.getCountry()), CHILE("CL"), COLOMBIA(
 			"CO"), COSTA_RICA("CR"), CROATIA("HR"), CZECH_REPUBLIC("CZ"), DENMARK("DK"), ECUADOR("EC"), ESTONIA("EE"), ETHIOPIA(
 			"ET"), FINLAND("FI"), FRANCE(Locale.FRANCE.getCountry()), GERMANY(Locale.GERMANY.getCountry()), GREECE("GR"), HUNGARY(
 			"HU"), ICELAND("IS"), IRELAND("IE"), ITALY(Locale.ITALY.getCountry()), JAPAN("JP"), KAZAKHSTAN("KZ"), LATVIA(
@@ -38,7 +38,7 @@ public enum HolidayCalendar {
 
 	private final String id;
 
-	private HolidayCalendar(String id) {
+	HolidayCalendar(String id) {
 		this.id = id;
 	}
 
