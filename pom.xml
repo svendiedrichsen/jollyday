@@ -161,10 +161,8 @@
                         <configuration>
                             <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
                             <target>2.1</target>
-                            <sources>
-                                <source>src/main/resources/Holiday.xsd</source>
-                            </sources>
                             <packageName>de.jollyday.config</packageName>
+                            <xsdPathWithinArtifact>/</xsdPathWithinArtifact>
                         </configuration>
                     </execution>
                 </executions>
