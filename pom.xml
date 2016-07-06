@@ -163,6 +163,7 @@
                             <target>2.1</target>
                             <packageName>de.jollyday.config</packageName>
                             <xsdPathWithinArtifact>/</xsdPathWithinArtifact>
+                            <verbose>true</verbose>
                         </configuration>
                     </execution>
                 </executions>
