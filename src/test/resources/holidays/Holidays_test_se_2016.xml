@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="se" description="Sweden" xmlns:tns="http://www.example.org/Holiday"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+    <tns:Holidays>
+        <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEARS_DAY"/>
+        <tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
+        <tns:Fixed month="MARCH" day="25" descriptionPropertiesKey="GOOD_FRIDAY"/>
+        <tns:Fixed month="MARCH" day="27" descriptionPropertiesKey="EASTER"/>
+        <tns:Fixed month="MARCH" day="28" descriptionPropertiesKey="EASTER_MONDAY"/>
+        <tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+        <tns:Fixed month="MAY" day="5" descriptionPropertiesKey="ASCENSION"/>
+        <tns:Fixed month="MAY" day="15" descriptionPropertiesKey="PENTECOST"/>
+        <tns:Fixed month="JUNE" day="6" descriptionPropertiesKey="NATIONAL_DAY"/>
+        <tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="MIDSUMMERS_EVE"/>
+        <tns:Fixed month="JUNE" day="25" descriptionPropertiesKey="MIDSUMMERS_DAY"/>
+        <tns:Fixed month="NOVEMBER" day="5" descriptionPropertiesKey="ALL_SAINTS_DAY"/>
+        <tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+        <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+        <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+        <tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+    </tns:Holidays>
+</tns:Configuration>

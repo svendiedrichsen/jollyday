@@ -103,4 +103,16 @@
 			<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="LADY_CONCEICAO"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
+	<tns:SubConfigurations hierarchy="pb" description="Paraíba">
+		<tns:Holidays>
+			<tns:Fixed month="JULY" day="26" descriptionPropertiesKey="JOAO_PESSOA_DAY"/>
+			<tns:Fixed month="AUGUST" day="5" descriptionPropertiesKey="FOUNDATION"/>
+		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="jpa" description="João Pessoa">
+			<tns:Holidays>
+				<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="ST_JOHN"/>
+				<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="LADY_CONCEICAO"/>
+			</tns:Holidays>
+		</tns:SubConfigurations>
+	</tns:SubConfigurations>
 </tns:Configuration>

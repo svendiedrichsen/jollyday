@@ -8,7 +8,8 @@ Code Example
  [[3]] To get a <<<HolidayManager>>> instance for US holidays:
   
 -----------------------
-HolidayManager m = HolidayManager.getInstance(HolidayCalendar.UNITED_STATES);
+ManagerParameter params = ManagerParameters.create(HolidayCalendar.UNITED_STATES);
+HolidayManager m = HolidayManager.getInstance(params);
 
 or
 

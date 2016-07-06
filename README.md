@@ -1,4 +1,4 @@
-jollyday
+Jollyday
 ========
 
 [![Build Status](https://travis-ci.org/svendiedrichsen/jollyday.svg)](https://travis-ci.org/svendiedrichsen/jollyday)
