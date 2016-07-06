@@ -160,7 +160,7 @@
                         </goals>
                         <configuration>
                             <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
-                            <target>2.2</target>
+                            <target>2.1</target>
                             <sources>
                                 <source>src/main/resources/Holiday.xsd</source>
                             </sources>
