@@ -51,6 +51,8 @@ public class RelativeToFixedParser extends AbstractHolidayParser {
 				// if weekday is set -> move to weekday
 				int day = xmlUtil.getWeekday(rf.getWeekday());
 				int direction = (rf.getWhen() == When.BEFORE ? -1 : 1);
+				// don't test start day
+				fixed = fixed.plusDays(direction);
 				while (fixed.getDayOfWeek() != day){
 					fixed = fixed.plusDays(direction);
 				}
