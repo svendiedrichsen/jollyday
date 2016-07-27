@@ -77,6 +77,23 @@ public class RelativeToFixedParserTest {
 	}
 
 	@Test
+	public void testSameWeekday() {
+		Set<Holiday> holidays = new HashSet<>();
+		Holidays config = new Holidays();
+		RelativeToFixed rule = new RelativeToFixed();
+		rule.setWeekday(Weekday.WEDNESDAY);
+		rule.setWhen(When.BEFORE);
+		Fixed date = new Fixed();
+		date.setDay(23);
+		date.setMonth(Month.NOVEMBER);
+		rule.setDate(date);
+		config.getRelativeToFixed().add(rule);
+		rtfp.parse(2016, holidays, config);
+		Assert.assertEquals("Number of holidays wrong.", 1, holidays.size());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2016, 11, 16), holidays.iterator().next().getDate());
+	}
+	
+	@Test
 	public void testNumberOfDays() {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
