@@ -236,8 +236,8 @@ public abstract class HolidayManager {
 	/**
 	 * Show if the requested date is a holiday.
 	 *
-	 * @param c
-	 *            The potential holiday.
+	 * @param c The potential holiday.
+	 * @param holidayType a {@link HolidayType} object
 	 * @param args
 	 *            Hierarchy to request the holidays for. i.e. args = {'ny'} -&gt;
 	 *            New York holidays

@@ -5,8 +5,14 @@
 	  <tns:Fixed month="APRIL" day="27" validFrom="2014" descriptionPropertiesKey="KINGS_DAY">
 		  <tns:MovingCondition substitute="SUNDAY" with="PREVIOUS" weekday="SATURDAY"/>
 	  </tns:Fixed>
-	  <tns:Fixed month="APRIL" day="30" validTo="2013" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
-	  <tns:Fixed month="MAY" day="5" validFrom="2000" every="5_YEARS" descriptionPropertiesKey="LIBERATION"/>
+	  <tns:Fixed month="AUGUST" day="31" validFrom="1885" validTo="1947" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+	  <tns:Fixed month="APRIL" day="30" validFrom="1948" validTo="1979" descriptionPropertiesKey="QUEENS_BIRTHDAY">
+	  	<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+	  </tns:Fixed>
+	  <tns:Fixed month="APRIL" day="30" validFrom="1980" validTo="2013" descriptionPropertiesKey="QUEENS_BIRTHDAY">
+	  	<tns:MovingCondition substitute="SUNDAY" with="PREVIOUS" weekday="SATURDAY"/>
+	  </tns:Fixed>
+	  <tns:Fixed month="MAY" day="5" validFrom="1990" descriptionPropertiesKey="LIBERATION"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:ChristianHoliday type="EASTER" />

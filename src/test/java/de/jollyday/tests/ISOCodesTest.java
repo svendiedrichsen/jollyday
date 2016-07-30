@@ -15,21 +15,15 @@
  */
 package de.jollyday.tests;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Set;
-
-import junit.framework.Assert;
-
+import de.jollyday.util.ResourceUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.jollyday.util.ResourceUtil;
+import java.io.IOException;
+import java.util.*;
+
+import static org.junit.Assert.*;
 
 /**
  * The Class ISOCodesTest.
@@ -69,8 +63,8 @@ public class ISOCodesTest {
 	public void testISOCodes() {
 		Locale.setDefault(defaultLocale);
 		Set<String> isoCodes = resourceUtil.getISOCodes();
-		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		assertNotNull(isoCodes);
+		assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
 
 	/**
@@ -79,8 +73,8 @@ public class ISOCodesTest {
 	@Test
 	public void testISOCodesEN() {
 		Set<String> isoCodes = resourceUtil.getISOCodes();
-		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		assertNotNull(isoCodes);
+		assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
 
 	/**
@@ -90,8 +84,8 @@ public class ISOCodesTest {
 	public void testISOCodesDE() {
 		Locale.setDefault(Locale.GERMANY);
 		Set<String> isoCodes = resourceUtil.getISOCodes();
-		Assert.assertNotNull(isoCodes);
-		Assert.assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		assertNotNull(isoCodes);
+		assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
 	}
 
 	/**
@@ -128,15 +122,13 @@ public class ISOCodesTest {
 			}
 		}
 		if (misses.length() > 0) {
-			Assert.fail(misses.toString());
+			fail(misses.toString());
 		}
 	}
 
 	/**
 	 * Load.
 	 *
-	 * @param filename
-	 *            the filename
 	 * @param locale
 	 *            the locale
 	 *

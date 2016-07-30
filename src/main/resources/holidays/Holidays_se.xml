@@ -7,13 +7,19 @@
 		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="JUNE" day="6" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" />
 		<tns:ChristianHoliday type="PENTECOST" />
+		<tns:FixedWeekdayBetweenFixed weekday="FRIDAY" descriptionPropertiesKey="MIDSUMMER_EVE">
+			<tns:from month="JUNE" day="19"/>
+			<tns:to month="JUNE" day="25"/>
+		</tns:FixedWeekdayBetweenFixed>
 		<tns:FixedWeekdayBetweenFixed weekday="SATURDAY" descriptionPropertiesKey="MIDSUMMER">
 			<tns:from month="JUNE" day="20"/>
 			<tns:to month="JUNE" day="26"/>
