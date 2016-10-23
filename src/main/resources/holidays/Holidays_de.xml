@@ -8,15 +8,15 @@
 	  <tns:Fixed month="OCTOBER" day="31" validFrom="2017" validTo="2017" descriptionPropertiesKey="REFORMATION_DAY"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
-      <tns:ChristianHoliday type="EASTER" />
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
-	  <tns:ChristianHoliday type="WHIT_SUNDAY" />
 	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
   	<tns:Holidays>
+        <tns:ChristianHoliday type="EASTER"/>
+        <tns:ChristianHoliday type="WHIT_SUNDAY"/>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
