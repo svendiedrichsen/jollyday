@@ -27,7 +27,7 @@
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="by" description="Bayern">
+    <tns:SubConfigurations hierarchy="by" description="Bavaria">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
@@ -60,7 +60,7 @@
   		</tns:Holidays>
   	</tns:SubConfigurations>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="he" description="Hessen">
+    <tns:SubConfigurations hierarchy="he" description="Hesse">
   	<tns:Holidays>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
@@ -70,13 +70,13 @@
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="nw" description="Nordrhein-Westfalen">
+    <tns:SubConfigurations hierarchy="nw" description="North Rhine-Westphalia">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="rp" description="Rheinland-Pfalz">
+    <tns:SubConfigurations hierarchy="rp" description="Rhineland-Palatinate">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
@@ -89,7 +89,7 @@
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="sn" description="Sachsen">
+    <tns:SubConfigurations hierarchy="sn" description="Saxony">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   		<tns:RelativeToFixed descriptionPropertiesKey="REPENTANCE_PRAYER">
@@ -99,13 +99,13 @@
   		</tns:RelativeToFixed>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="st" description="Sachsen-Anhalt">
+    <tns:SubConfigurations hierarchy="st" description="Saxony-Anhalt">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="th" description="Thüringen">
+    <tns:SubConfigurations hierarchy="th" description="Thuringia">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
