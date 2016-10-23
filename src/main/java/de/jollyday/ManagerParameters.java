@@ -8,14 +8,18 @@ import de.jollyday.parameter.CalendarPartManagerParameter;
 import de.jollyday.parameter.UrlManagerParameter;
 
 public final class ManagerParameters {
-	
+
 	private ManagerParameters(){
 	}
 	
 	public static ManagerParameter create(String calendarPart){
 		return create(calendarPart, null);
 	}
-		
+
+	public static ManagerParameter create(Locale lc) {
+		return create(lc.getCountry().toLowerCase(), null);
+	}
+
 	public static ManagerParameter create(HolidayCalendar calendar){
 		return create(calendar, null);
 	}
@@ -34,8 +38,8 @@ public final class ManagerParameters {
 
 	public static ManagerParameter create(URL calendarFileUrl, Properties properties){
 		return new UrlManagerParameter(calendarFileUrl, properties);
-	}	
-	
+	}
+
 	private static String prepareCalendarName(String calendar) {
 		if (calendar == null || "".equals(calendar.trim())) {
 			calendar = Locale.getDefault().getCountry().toLowerCase();
