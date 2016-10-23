@@ -6,8 +6,8 @@
 	  <tns:Fixed month="JUNE" day="17" validFrom="1954" validTo="1990" descriptionPropertiesKey="UNIFICATION"/>
 	  <tns:Fixed month="OCTOBER" day="3" validFrom="1990"  descriptionPropertiesKey="UNIFICATION"/>
 	  <tns:Fixed month="OCTOBER" day="31" validFrom="2017" validTo="2017" descriptionPropertiesKey="REFORMATION_DAY"/>
-	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
-	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
+      <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="FIRST_CHRISTMAS_DAY"/>
+      <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="SECOND_CHRISTMAS_DAY"/>
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
