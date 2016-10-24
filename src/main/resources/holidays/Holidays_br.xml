@@ -37,7 +37,6 @@
 		<tns:SubConfigurations hierarchy="cs" description="City of Sao Paulo">
 			<tns:Holidays>
 				<tns:Fixed month="JANUARY" day="25" descriptionPropertiesKey="FOUNDATION"/>
-				<tns:Fixed month="NOVEMBER" day="4" descriptionPropertiesKey="FOUNDATION"/>
 			</tns:Holidays>
 		</tns:SubConfigurations>
 	</tns:SubConfigurations>
