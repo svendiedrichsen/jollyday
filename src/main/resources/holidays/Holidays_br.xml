@@ -29,15 +29,14 @@
 			</tns:Holidays>
 		</tns:SubConfigurations>
 	</tns:SubConfigurations>
-	<tns:SubConfigurations hierarchy="s" description="Sao Paulo">
+	<tns:SubConfigurations hierarchy="sp" description="Sao Paulo">
 		<tns:Holidays>
 			<tns:Fixed month="JULY" day="9" descriptionPropertiesKey="CONST_REVOLUTION"/>
 			<tns:Fixed month="NOVEMBER" day="20" descriptionPropertiesKey="BLACK_AWARENESS"/>
 		</tns:Holidays>
-		<tns:SubConfigurations hierarchy="cs" description="City of Sao Paulo">
+		<tns:SubConfigurations hierarchy="csp" description="City of Sao Paulo">
 			<tns:Holidays>
 				<tns:Fixed month="JANUARY" day="25" descriptionPropertiesKey="FOUNDATION"/>
-				<tns:Fixed month="NOVEMBER" day="4" descriptionPropertiesKey="FOUNDATION"/>
 			</tns:Holidays>
 		</tns:SubConfigurations>
 	</tns:SubConfigurations>
