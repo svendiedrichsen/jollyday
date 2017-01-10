@@ -85,6 +85,7 @@
         <connection>scm:git:git://github.com/svendiedrichsen/jollyday.git</connection>
         <developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
         <url>https://github.com/svendiedrichsen/jollyday.git</url>
+        <tag>HEAD</tag>
     </scm>
     <build>
         <pluginManagement>
