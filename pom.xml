@@ -82,7 +82,7 @@
                 <developerConnection>scm:svn:https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</developerConnection>
                 <url>https://jollyday.svn.sourceforge.net/svnroot/jollyday/trunk</url>
         -->
-        <connection>scm:git:https://github.com/svendiedrichsen/jollyday.git</connection>
+        <connection>scm:git:git://github.com/svendiedrichsen/jollyday.git</connection>
         <developerConnection>scm:git:git@github.com:svendiedrichsen/jollyday.git</developerConnection>
         <url>https://github.com/svendiedrichsen/jollyday.git</url>
     </scm>
