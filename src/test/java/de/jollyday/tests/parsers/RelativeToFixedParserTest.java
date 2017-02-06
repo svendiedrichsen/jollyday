@@ -15,21 +15,15 @@
  */
 package de.jollyday.tests.parsers;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import de.jollyday.Holiday;
+import de.jollyday.config.*;
+import de.jollyday.parser.impl.RelativeToFixedParser;
+import de.jollyday.util.CalendarUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.jollyday.Holiday;
-import de.jollyday.config.Fixed;
-import de.jollyday.config.Holidays;
-import de.jollyday.config.Month;
-import de.jollyday.config.RelativeToFixed;
-import de.jollyday.config.Weekday;
-import de.jollyday.config.When;
-import de.jollyday.parser.impl.RelativeToFixedParser;
-import de.jollyday.util.CalendarUtil;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Sven
@@ -78,7 +72,7 @@ public class RelativeToFixedParserTest {
 
 	@Test
 	public void testSameWeekday() {
-		Set<Holiday> holidays = new HashSet<>();
+		Set<Holiday> holidays = new HashSet<Holiday>();
 		Holidays config = new Holidays();
 		RelativeToFixed rule = new RelativeToFixed();
 		rule.setWeekday(Weekday.WEDNESDAY);
