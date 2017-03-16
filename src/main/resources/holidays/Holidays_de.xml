@@ -15,9 +15,9 @@
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
   	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
         <tns:ChristianHoliday type="EASTER"/>
         <tns:ChristianHoliday type="WHIT_SUNDAY"/>
-  		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="bw" description="Baden-Württemberg">
