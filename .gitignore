@@ -8,3 +8,7 @@
 # Ignore the maven target directory
 target/
 
+# Ignore eclipse files
+.classpath
+.settings/
+.project
