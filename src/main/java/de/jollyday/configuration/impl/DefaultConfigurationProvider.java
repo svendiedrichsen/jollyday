@@ -17,6 +17,7 @@ package de.jollyday.configuration.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -57,7 +58,11 @@ public class DefaultConfigurationProvider implements ConfigurationProvider {
 		try {
 			InputStream stream = null;
 			try {
-				stream = resourceUtil.getResource(CONFIG_FILE).openStream();
+				URL config = resourceUtil.getResource(CONFIG_FILE);
+				if (config == null) {
+				    throw new IllegalStateException("Properties file " + CONFIG_FILE + " not found on classpath");
+				}
+                                stream = config.openStream();
 				if (stream != null) {
 					properties.load(stream);
 				} else {
