@@ -3,8 +3,8 @@
   <tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 	  <tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-	  <tns:Fixed month="JUNE" day="17" validFrom="1954" validTo="1990" descriptionPropertiesKey="UNIFICATION"/>
-	  <tns:Fixed month="OCTOBER" day="3" validFrom="1990"  descriptionPropertiesKey="UNIFICATION"/>
+	  <tns:Fixed month="JUNE" day="17" validFrom="1954" validTo="1990" descriptionPropertiesKey="UNIFICATION"/><!-- Tag der deutschen Einheit bis 1990 -->
+	  <tns:Fixed month="OCTOBER" day="3" validFrom="1990"  descriptionPropertiesKey="UNIFICATION_GERMANY"/><!-- Tag der Deutschen Einheit ab 1990 -->
 	  <tns:Fixed month="OCTOBER" day="31" validFrom="2017" validTo="2017" descriptionPropertiesKey="REFORMATION_DAY"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
@@ -14,12 +14,13 @@
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
-	  <tns:ChristianHoliday type="WHIT_SUNDAY" />
 	  <tns:ChristianHoliday type="WHIT_MONDAY" />
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
+        <tns:ChristianHoliday type="EASTER"/>
+        <tns:ChristianHoliday type="WHIT_SUNDAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="bw" description="Baden-Württemberg">
@@ -29,7 +30,7 @@
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="by" description="Bayern">
+    <tns:SubConfigurations hierarchy="by" description="Bavaria">
   	<tns:Holidays>
   		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
@@ -62,7 +63,7 @@
   		</tns:Holidays>
   	</tns:SubConfigurations>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="he" description="Hessen">
+    <tns:SubConfigurations hierarchy="he" description="Hesse">
   	<tns:Holidays>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
@@ -72,13 +73,13 @@
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="nw" description="Nordrhein-Westfalen">
+    <tns:SubConfigurations hierarchy="nw" description="North Rhine-Westphalia">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="rp" description="Rheinland-Pfalz">
+    <tns:SubConfigurations hierarchy="rp" description="Rhineland-Palatinate">
   	<tns:Holidays>
   		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
@@ -91,7 +92,7 @@
   		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="sn" description="Sachsen">
+    <tns:SubConfigurations hierarchy="sn" description="Saxony">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   		<tns:RelativeToFixed descriptionPropertiesKey="REPENTANCE_PRAYER">
@@ -101,13 +102,13 @@
   		</tns:RelativeToFixed>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="st" description="Sachsen-Anhalt">
+    <tns:SubConfigurations hierarchy="st" description="Saxony-Anhalt">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
-  <tns:SubConfigurations hierarchy="th" description="Thüringen">
+    <tns:SubConfigurations hierarchy="th" description="Thuringia">
   	<tns:Holidays>
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>

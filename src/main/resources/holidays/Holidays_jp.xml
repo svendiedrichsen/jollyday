@@ -18,6 +18,7 @@
   	<tns:Fixed month="FEBRUARY" day="24" validFrom="1989" validTo="1989" descriptionPropertiesKey="IMPERIAL_DAY"/>
   	<tns:Fixed month="NOVEMBER" day="12" validFrom="1990" validTo="1990" descriptionPropertiesKey="IMPERIAL_DAY"/>
   	<tns:Fixed month="JUNE" day="9" validFrom="1993" validTo="1993" descriptionPropertiesKey="IMPERIAL_DAY"/>
+	<tns:Fixed month="AUGUST" day="11" validFrom="2016" descriptionPropertiesKey="MOUNTAIN_DAY"/>
   	<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JANUARY" validFrom="2000" descriptionPropertiesKey="COMING_OF_AGE"/>
   	<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JULY" validFrom="2003" descriptionPropertiesKey="NAVY_DAY"/>
   	<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="SEPTEMBER" validFrom="2003" descriptionPropertiesKey="RESPECT_AGED_DAY"/>
