@@ -28,7 +28,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
 import java.io.InputStream;
 import java.time.DayOfWeek;
 import java.util.logging.Logger;
@@ -52,10 +51,8 @@ public class XMLUtil {
 	 * @param stream
 	 *            a {@link java.io.InputStream} object.
 	 * @return The unmarshalled configuration.
-	 * @throws java.io.IOException
-	 *             Could not close the provided stream.
 	 */
-	public Configuration unmarshallConfiguration(InputStream stream) throws IOException {
+	public Configuration unmarshallConfiguration(InputStream stream) {
 		if (stream == null) {
 			throw new IllegalArgumentException("Stream is NULL. Cannot read XML.");
 		}

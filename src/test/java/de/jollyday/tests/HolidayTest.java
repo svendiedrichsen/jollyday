@@ -17,8 +17,8 @@ package de.jollyday.tests;
 
 import de.jollyday.*;
 import de.jollyday.util.CalendarUtil;
-import junit.framework.Assert;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -268,8 +268,8 @@ public class HolidayTest {
 		Holiday h1 = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertTrue("Wrong equals implementation", h1.equals(h1));
-		Holiday h2b = new Holiday(LocalDate.of(2011, 2, 2), new String(
-				"CHRISTMAS"), HolidayType.OFFICIAL_HOLIDAY);
+		Holiday h2b = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
+				HolidayType.OFFICIAL_HOLIDAY);
 		Assert.assertTrue("Wrong equals implementation", h1.equals(h2b));
 		Holiday h2 = new Holiday(LocalDate.of(2011, 2, 1), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);

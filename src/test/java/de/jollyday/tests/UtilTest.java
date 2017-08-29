@@ -1,44 +1,37 @@
 /**
- * Copyright 2010 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2010 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.tests;
-
-import static java.time.Month.DECEMBER;
-import static java.time.Month.JANUARY;
-import static java.time.Month.MARCH;
-import static java.time.Month.OCTOBER;
-import static java.time.Month.SEPTEMBER;
-
-import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
-
-import junit.framework.Assert;
-
-import org.junit.Test;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
+
+import static java.time.Month.*;
 
 /**
  * @author Sven
- * 
+ *
  */
 public class UtilTest {
 

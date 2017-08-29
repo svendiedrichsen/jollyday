@@ -10,15 +10,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class UrlManagerParameterTest {
-	
+
 	private UrlManagerParameter urlManagerParameter;
 	private URL url;
-	private Properties properties;
-	
+
 	@Before
 	public void setup() throws MalformedURLException{
 		url = new URL("http://www.google.de");
-		properties = new Properties();
+		Properties properties = new Properties();
 		urlManagerParameter = new UrlManagerParameter(url, properties);
 	}
 
