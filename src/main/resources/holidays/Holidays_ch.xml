@@ -26,7 +26,6 @@
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="WHIT_MONDAY" />
 	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
-	  <tns:ChristianHoliday type="CORPUS_CHRISTI" />
   	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ar" description="Appenzell Ausserrhoden">
@@ -74,10 +73,13 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="ge" description="Genf">
   	<tns:Holidays>
-	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
+      <tns:RelativeToWeekdayInMonth weekday="THURSDAY" when="AFTER" descriptionPropertiesKey="GENEVAN_FAST">
+        <tns:FixedWeekday which="FIRST" weekday="SUNDAY" month="SEPTEMBER"/>
+      </tns:RelativeToWeekdayInMonth>
+      <tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="WHIT_MONDAY" />
-  	</tns:Holidays>
+	</tns:Holidays>
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="gl" description="Glarus">
   	<tns:Holidays>
@@ -238,6 +240,9 @@
   <tns:SubConfigurations hierarchy="vd" description="Waadt">
   	<tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="2" descriptionPropertiesKey="ST_BERCHTHOLD"/>
+      <tns:RelativeToWeekdayInMonth weekday="MONDAY" when="AFTER" descriptionPropertiesKey="FEDERAL_DAY_THANKSGIVING_MON">
+        <tns:FixedWeekday which="THIRD" weekday="SUNDAY" month="SEPTEMBER"/>
+      </tns:RelativeToWeekdayInMonth>
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
 	  <tns:ChristianHoliday type="EASTER_MONDAY"/>
 	  <tns:ChristianHoliday type="WHIT_MONDAY" />
