@@ -45,18 +45,18 @@ public class CalendarPartManagerParameter extends BaseManagerParameter {
 	}
 
 	@Override
-	public String getManangerImplClassName() {
+	public String getManagerImplClassName() {
 		String className = getProperty(MANAGER_IMPL_CLASS_PREFIX + "."
 				+ calendarPart);
 		if (className == null) {
-			className = super.getManangerImplClassName();
+			className = super.getManagerImplClassName();
 		}
 		return className;
 	}
 
 	/**
 	 * Returns the configuration file name for the country.
-	 * 
+	 *
 	 * @param country
 	 *            a {@link java.lang.String} object.
 	 * @return file name

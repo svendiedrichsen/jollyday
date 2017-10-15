@@ -12,7 +12,7 @@ public interface ManagerParameter {
 	String getProperty(String key);
 	void setProperty(String key, String value);
 
-	String getManangerImplClassName();
+	String getManagerImplClassName();
 	String createCacheKey();
 	String getDisplayName();
 	URL createResourceUrl();

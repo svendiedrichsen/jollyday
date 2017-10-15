@@ -177,7 +177,7 @@ public abstract class HolidayManager {
 	 * @return the manager implementation class name
 	 */
 	private static String readManagerImplClassName(ManagerParameter parameter) {
-		String className = parameter.getManangerImplClassName();
+		String className = parameter.getManagerImplClassName();
 		if (className == null) {
 			throw new IllegalStateException("Missing configuration '"
 					+ ManagerParameter.MANAGER_IMPL_CLASS_PREFIX
