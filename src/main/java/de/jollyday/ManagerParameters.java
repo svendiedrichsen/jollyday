@@ -11,7 +11,7 @@ public final class ManagerParameters {
 
 	private ManagerParameters(){
 	}
-	
+
 	public static ManagerParameter create(String calendarPart){
 		return create(calendarPart, null);
 	}
@@ -23,15 +23,15 @@ public final class ManagerParameters {
 	public static ManagerParameter create(HolidayCalendar calendar){
 		return create(calendar, null);
 	}
-	
+
 	public static ManagerParameter create(HolidayCalendar calendar, Properties properties){
 		return  create(calendar.getId(), properties);
-	}	
-	
+	}
+
 	public static ManagerParameter create(URL calendarFileUrl){
 		return create(calendarFileUrl, null);
 	}
-	
+
 	public static ManagerParameter create(String calendarPart, Properties properties){
 		return  new CalendarPartManagerParameter(prepareCalendarName(calendarPart), properties);
 	}
@@ -42,11 +42,10 @@ public final class ManagerParameters {
 
 	private static String prepareCalendarName(String calendar) {
 		if (calendar == null || "".equals(calendar.trim())) {
-			calendar = Locale.getDefault().getCountry().toLowerCase();
+			return Locale.getDefault().getCountry().toLowerCase();
 		} else {
-			calendar = calendar.trim().toLowerCase();
+			return calendar.trim().toLowerCase();
 		}
-		return calendar;
 	}
-	
+
 }
