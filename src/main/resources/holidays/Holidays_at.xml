@@ -22,7 +22,7 @@
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="b" description="Burgenland">
 		<tns:Holidays>
-			<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="MARTINS_TAG"/>
+			<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="MARTINS_DAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="k" description="Kärnten">
