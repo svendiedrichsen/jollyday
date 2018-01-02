@@ -249,6 +249,11 @@
                 <configuration>
                     <format>xml</format>
                     <maxmem>256m</maxmem>
+                    <instrumentation>
+                        <ignores>
+                            <ignore>de.jollyday.config.*</ignore>
+                        </ignores>
+                    </instrumentation>
                 </configuration>
             </plugin>
         </plugins>

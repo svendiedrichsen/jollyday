@@ -68,14 +68,10 @@ public class CalendarUtil {
     /**
      * Creates the date within the provided chronology.
      *
-     * @param year
-     *            a int.
-     * @param month
-     *            a int.
-     * @param day
-     *            a int.
-     * @param chronology
-     *            the chronology to use
+     * @param year       a int.
+     * @param month      a int.
+     * @param day        a int.
+     * @param chronology the chronology to use
      * @return date the {@link LocalDate}
      */
     public ChronoLocalDate create(int year, int month, int day, Chronology chronology) {
@@ -85,10 +81,8 @@ public class CalendarUtil {
     /**
      * Creates the date from the month/day within the specified year.
      *
-     * @param year
-     *            a int.
-     * @param fixed
-     *            a {@link de.jollyday.config.Fixed} object.
+     * @param year  a int.
+     * @param fixed a {@link de.jollyday.config.Fixed} object.
      * @return A local date instance.
      */
     public LocalDate create(int year, Fixed fixed) {
@@ -98,12 +92,10 @@ public class CalendarUtil {
     /**
      * Creates a LocalDate. Does not use the Chronology of the Calendar.
      *
-     * @param c
-     *            a {@link java.util.Calendar} object.
+     * @param c a {@link java.util.Calendar} object.
      * @return The local date representing the provided date.
      */
     public LocalDate create(final Calendar c) {
-        //TODO: javadoc needs updating
         return LocalDate.of(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c
                 .get(Calendar.DAY_OF_MONTH));
     }
@@ -111,8 +103,7 @@ public class CalendarUtil {
     /**
      * Returns the easter sunday for a given year.
      *
-     * @param year
-     *            a int.
+     * @param year a int.
      * @return Easter sunday.
      */
     public LocalDate getEasterSunday(int year) {
@@ -126,8 +117,7 @@ public class CalendarUtil {
     /**
      * Returns the easter sunday within the julian chronology.
      *
-     * @param year
-     *            a int.
+     * @param year a int.
      * @return julian easter sunday
      */
     public LocalDate getJulianEasterSunday(int year) {
@@ -147,8 +137,7 @@ public class CalendarUtil {
     /**
      * Returns the easter sunday within the gregorian chronology.
      *
-     * @param year
-     *            a int.
+     * @param year a int.
      * @return gregorian easter sunday.
      */
     public LocalDate getGregorianEasterSunday(int year) {
@@ -175,8 +164,7 @@ public class CalendarUtil {
     /**
      * Returns if this date is on a wekkend.
      *
-     * @param date
-     *            a {@link LocalDate} object.
+     * @param date a {@link LocalDate} object.
      * @return is weekend
      */
     public boolean isWeekend(final LocalDate date) {
@@ -190,12 +178,9 @@ public class CalendarUtil {
      * date in an gregorian year. i.e.: In the gregorian year 2008 there were
      * two 1/1. They occurred on 1/10 and 12/29.
      *
-     * @param gregorianYear
-     *            a int.
-     * @param islamicMonth
-     *            a int.
-     * @param islamicDay
-     *            a int.
+     * @param gregorianYear a int.
+     * @param islamicMonth  a int.
+     * @param islamicDay    a int.
      * @return List of gregorian dates for the islamic month/day.
      */
     public Set<LocalDate> getIslamicHolidaysInGregorianYear(int gregorianYear, int islamicMonth, int islamicDay) {
@@ -209,13 +194,10 @@ public class CalendarUtil {
      * different from the gregorian there may be more than one occurrence of an
      * ethiopian orthodox date in an gregorian year.
      *
-     * @param gregorianYear
-     *            a int.
+     * @param gregorianYear a int.
+     * @param eoMonth       a int.
+     * @param eoDay         a int.
      * @return List of gregorian dates for the ethiopian orthodox month/day.
-     * @param eoMonth
-     *            a int.
-     * @param eoDay
-     *            a int.
      */
     public Set<LocalDate> getEthiopianOrthodoxHolidaysInGregorianYear(int gregorianYear, int eoMonth, int eoDay) {
         return getDatesFromChronologyWithinGregorianYear(eoMonth, eoDay, gregorianYear, CopticChronology.INSTANCE);
@@ -243,7 +225,7 @@ public class CalendarUtil {
         int targetYear = firstTargetDate.get(ChronoField.YEAR);
         final int lastYear = lastTargetDate.get(ChronoField.YEAR);
 
-        for (; targetYear <= lastYear; ) {
+        while (targetYear <= lastYear) {
             ChronoLocalDate d = targetChrono.date(targetYear, targetMonth, targetDay);
             if (!firstGregorianDate.isAfter(d) && !lastGregorianDate.isBefore(d)) {
                 holidays.add(LocalDate.from(d));
@@ -256,8 +238,8 @@ public class CalendarUtil {
     /**
      * Shows if the requested date is contained in the Set of holidays.
      *
-     * @param holidays a {@link java.util.Set} object.
-     * @param date a {@link LocalDate} object.
+     * @param holidays    a {@link java.util.Set} object.
+     * @param date        a {@link LocalDate} object.
      * @param holidayType a {@link HolidayType} object
      * @return contains this date
      */
@@ -267,8 +249,9 @@ public class CalendarUtil {
 
     /**
      * Calls #contains(holidays, date, null)
+     *
      * @param holidays the holidays to search through
-     * @param date the date to look for
+     * @param date     the date to look for
      * @return the date is contained in the set of holidays
      */
     public boolean contains(final Set<Holiday> holidays, final LocalDate date) {
