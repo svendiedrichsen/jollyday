@@ -42,8 +42,7 @@ public class URLConfigurationProvider implements ConfigurationProvider {
 	@Override
 	public Properties getProperties() {
 		Properties properties = new Properties();
-		Properties systemProps = System.getProperties();
-		String configURLs = systemProps.getProperty(CONFIG_URLS_PROPERTY);
+		String configURLs = System.getProperty(CONFIG_URLS_PROPERTY);
 		if (configURLs != null) {
 			String[] strConfigURLs = configURLs.split(",");
 			for (String strURL : strConfigURLs) {

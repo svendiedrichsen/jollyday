@@ -20,7 +20,6 @@ import de.jollyday.configuration.impl.DefaultConfigurationProvider;
 import de.jollyday.configuration.impl.URLConfigurationProvider;
 import de.jollyday.util.ClassLoadingUtil;
 
-import java.util.Properties;
 import java.util.logging.Logger;
 
 /**
@@ -57,8 +56,7 @@ public class ConfigurationProviderManager {
 	}
 
 	private void addCustomConfigurationProviderProperties(ManagerParameter parameter) {
-		Properties systemProps = System.getProperties();
-		String providersStrList = systemProps.getProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY);
+		String providersStrList = System.getProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY);
 		if (providersStrList != null) {
 			String[] providersClassNames = providersStrList.split(",");
 			for (String providerClassName : providersClassNames) {
