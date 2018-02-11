@@ -167,6 +167,10 @@
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>3.0.2</version>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -254,6 +258,14 @@
                             <ignore>de.jollyday.config.*</ignore>
                         </ignores>
                     </instrumentation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <configuration>
+                    <rules>
+                        <requireMavenVersion>3.0.5</requireMavenVersion>
+                    </rules>
                 </configuration>
             </plugin>
         </plugins>
