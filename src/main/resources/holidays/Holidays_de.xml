@@ -110,4 +110,9 @@
   		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="sh" description="Schleswig-Holstein">
+  	<tns:Holidays>
+  		<tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
+  	</tns:Holidays>
+  </tns:SubConfigurations>
 </tns:Configuration>
