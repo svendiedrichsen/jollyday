@@ -27,10 +27,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-/**
- * @author Sven
- *
- */
 public abstract class AbstractCountryTestBase {
 
 	private CalendarUtil calendarUtil = new CalendarUtil();
@@ -55,7 +51,7 @@ public abstract class AbstractCountryTestBase {
 
 	protected void compareData(HolidayManager expected, HolidayManager found, int year) {
 		CalendarHierarchy expectedHierarchy = expected.getCalendarHierarchy();
-		ArrayList<String> args = new ArrayList<>();
+		List<String> args = new ArrayList<>();
 		compareDates(expected, found, expectedHierarchy, args, year);
 	}
 
@@ -76,7 +72,7 @@ public abstract class AbstractCountryTestBase {
 		}
 	}
 
-	protected void validateCalendarData(final String countryCode, int year) throws Exception {
+	protected void validateCalendarData(final String countryCode, int year) {
 		HolidayManager dataManager = HolidayManager.getInstance(countryCode);
 		HolidayManager testManager = HolidayManager.getInstance("test_" + countryCode + "_" + Integer.toString(year));
 

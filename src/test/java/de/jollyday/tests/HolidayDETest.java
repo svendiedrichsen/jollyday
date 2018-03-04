@@ -37,12 +37,12 @@ public class HolidayDETest extends AbstractCountryTestBase {
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test
-	public void testManagerDEStructure() throws Exception {
+	public void testManagerDEStructure() {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
 
 	@Test
-	public void testManagerDEinterval() {
+	public void testManagerDEInterval() {
 		try {
 			HolidayManager instance = HolidayManager.getInstance(HolidayCalendar.GERMANY);
 			Set<Holiday> holidays = instance.getHolidays(calendarUtil.create(2010, 10, 1), calendarUtil
