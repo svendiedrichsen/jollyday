@@ -157,18 +157,14 @@ public class HolidayTest {
 		ExecutorService executorService = Executors.newCachedThreadPool();
 		while (date.getYear() < 2013) {
 			final LocalDate localDate = date;
-			executorService.submit(new Runnable() {
-				@Override
-				public void run() {
-					long start = System.currentTimeMillis();
-					HolidayManager m = HolidayManager.getInstance("test");
-					m.isHoliday(localDate);
-					long duration = System.currentTimeMillis() - start;
-					duration = System.currentTimeMillis() - start;
-					count.incrementAndGet();
-					sumDuration.addAndGet(duration);
-				}
-			});
+			executorService.submit(() -> {
+        long start = System.currentTimeMillis();
+        HolidayManager m = HolidayManager.getInstance("test");
+        m.isHoliday(localDate);
+        long duration = System.currentTimeMillis() - start;
+        count.incrementAndGet();
+        sumDuration.addAndGet(duration);
+      });
 			date = date.plusDays(1);
 		}
 		executorService.shutdown();

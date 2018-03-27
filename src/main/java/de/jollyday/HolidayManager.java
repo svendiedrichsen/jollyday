@@ -40,8 +40,7 @@ import java.util.logging.Logger;
  */
 public abstract class HolidayManager {
 
-	private static final Logger LOG = Logger.getLogger(HolidayManager.class
-			.getName());
+	private static final Logger LOG = Logger.getLogger(HolidayManager.class.getName());
 	/**
 	 * Signifies if caching of manager instances is enabled. If not every call
 	 * to getInstance will return a newly instantiated and initialized manager.
@@ -212,9 +211,7 @@ public abstract class HolidayManager {
 	 * Clears the manager cache from all cached manager instances.
 	 */
 	public static void clearManagerCache() {
-		synchronized (HOLIDAY_MANAGER_CACHE) {
-			HOLIDAY_MANAGER_CACHE.clear();
-		}
+		HOLIDAY_MANAGER_CACHE.clear();
 	}
 
 	/**

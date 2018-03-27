@@ -15,9 +15,8 @@
  */
 package de.jollyday.util;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Cache implementation which handles concurrent access to cached values.
@@ -29,11 +28,7 @@ public class Cache<VALUE> {
 	/**
 	 * Map for caching
 	 */
-	private final Map<String, VALUE> cachingMap = new HashMap<>();
-	/**
-	 * Lock for accessing the map
-	 */
-	private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+	private final Map<String, VALUE> cachingMap = new ConcurrentHashMap<>();
 	/**
 	 * Returns the value defined by the {@link ValueHandler}
 	 *
@@ -42,76 +37,14 @@ public class Cache<VALUE> {
 	 * @return the eventually cached value
 	 */
 	public VALUE get(ValueHandler<VALUE> valueHandler) {
-		String key = valueHandler.getKey();
-		try {
-			readLock();
-			if (!containsKey(key)) {
-				readUnlockWriteLock();
-				if (!containsKey(key)) {
-					putValue(key, valueHandler.createValue());
-				}
-				readLockWriteUnlock();
-			}
-			return getValue(key);
-		} finally {
-			unlockBoth();
-		}
-	}
-
-	private void unlockBoth() {
-		writeUnlock();
-		readUnlock();
-	}
-
-	private void readLockWriteUnlock() {
-		readLock();
-		writeUnlock();
-	}
-
-	private void readUnlockWriteLock() {
-		readUnlock();
-		writeLock();
-	}
-
-	private VALUE getValue(String key) {
-		return cachingMap.get(key);
-	}
-
-	private void putValue(String key, VALUE value) {
-		cachingMap.put(key, value);
-	}
-
-	private boolean containsKey(String key) {
-		return cachingMap.containsKey(key);
-	}
-
-	private void writeUnlock() {
-		if (lock.isWriteLockedByCurrentThread()) {
-			lock.writeLock().unlock();
-		}
-	}
-
-	private void writeLock() {
-		lock.writeLock().lock();
-	}
-
-	private void readLock() {
-		lock.readLock().lock();
-	}
-
-	private void readUnlock() {
-		if(lock.getReadHoldCount() > 0){
-			lock.readLock().unlock();
-		}
+		return cachingMap.computeIfAbsent(valueHandler.getKey(), k -> valueHandler.createValue());
 	}
 
 	/**
 	 * Clears the cache.
 	 */
 	public void clear() {
-		writeLock();
 		cachingMap.clear();
-		writeUnlock();
 	}
 
 	public interface ValueHandler<VALUE> {

@@ -38,13 +38,8 @@ public class HolidayDescriptionTest {
 
 		File folder = new File("src/main/resources/descriptions");
 		Assert.assertTrue(folder.isDirectory());
-		File[] descriptions = folder.listFiles(new FilenameFilter() {
-
-			@Override
-			public boolean accept(File dir, String name) {
-				return name.startsWith("holiday_descriptions") && name.endsWith(".properties");
-			}
-		});
+		File[] descriptions = folder.listFiles(
+			(dir, name) -> name.startsWith("holiday_descriptions") && name.endsWith(".properties"));
 		Assert.assertNotNull(descriptions);
 		Assert.assertTrue(descriptions.length > 0);
 
