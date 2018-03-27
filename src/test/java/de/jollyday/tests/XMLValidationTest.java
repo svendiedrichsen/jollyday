@@ -38,7 +38,7 @@ public class XMLValidationTest {
     @Test
     public void testHolidayFilesAreValid()throws Exception {
         final Path holidaysFolder = Paths.get("src/main/resources/holidays/");
-        Files.list(holidaysFolder).forEach(path -> validateHolidayFile(path));
+        Files.list(holidaysFolder).forEach(this::validateHolidayFile);
     }
 
     private void validateHolidayFile(Path path){

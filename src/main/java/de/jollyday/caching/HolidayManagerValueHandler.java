@@ -52,18 +52,14 @@ public class HolidayManagerValueHandler implements Cache.ValueHandler<HolidayMan
 	 *            the managers class name
 	 * @return the implementation class instantiated
 	 */
-	private HolidayManager instantiateManagerImpl(
-			String managerImplClassName) {
+	private HolidayManager instantiateManagerImpl(String managerImplClassName) {
 		try {
-			Class<?> managerImplClass = classLoadingUtil
-					.loadClass(managerImplClassName);
-			Object managerImplObject = managerImplClass.newInstance();
+			Class<?> managerImplClass = classLoadingUtil.loadClass(managerImplClassName);
+			Object managerImplObject = managerImplClass.getDeclaredConstructor().newInstance();
 			return HolidayManager.class.cast(managerImplObject);
 		} catch (Exception e) {
-			throw new IllegalStateException("Cannot create manager class "
-					+ managerImplClassName, e);
+			throw new IllegalStateException("Cannot create manager class " + managerImplClassName, e);
 		}
 	}
-
 
 }
