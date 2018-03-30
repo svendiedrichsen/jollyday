@@ -175,7 +175,7 @@ public class DefaultHolidayManager extends HolidayManager {
 							String parserClassName = getManagerParameter().getProperty(propName);
 							if (parserClassName != null) {
 								Class<?> parserClass = classLoadingUtil.loadClass(parserClassName);
-								Object parserObject = parserClass.newInstance();
+								Object parserObject = parserClass.getDeclaredConstructor().newInstance();
 								HolidayParser hp = HolidayParser.class.cast(parserObject);
 								parserCache.put(className, hp);
 							}

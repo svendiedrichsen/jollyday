@@ -65,8 +65,7 @@ public class ConfigurationProviderManager {
 				try {
 					Class<?> providerClass = Class.forName(providerClassName.trim(), true,
 							classLoadingUtil.getClassloader());
-					ConfigurationProvider configurationProvider = ConfigurationProvider.class.cast(providerClass
-							.newInstance());
+					ConfigurationProvider configurationProvider = ConfigurationProvider.class.cast(providerClass.getDeclaredConstructor().newInstance());
 					parameter.mergeProperties(configurationProvider.getProperties());
 				} catch (Exception e) {
 					LOG.warning("Cannot load configuration from provider class '" + providerClassName + "'. "

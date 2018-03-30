@@ -50,7 +50,7 @@ public class EthiopianOrthodoxHolidayParser extends AbstractHolidayParser {
 			if (!isValid(h, year)) {
 				continue;
 			}
-			Set<LocalDate> ethiopianHolidays = null;
+			final Set<LocalDate> ethiopianHolidays;
 			switch (h.getType()) {
 			case TIMKAT:
 				ethiopianHolidays = calendarUtil.getEthiopianOrthodoxHolidaysInGregorianYear(year, 5, 10);

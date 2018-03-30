@@ -39,7 +39,7 @@ public class XMLUtil {
 	 */
 	public static final String PACKAGE = "de.jollyday.config";
 
-	private static Logger LOG = Logger.getLogger(XMLUtil.class.getName());
+	private static final Logger LOG = Logger.getLogger(XMLUtil.class.getName());
 
 	private JAXBContextCreator contextCreator = new JAXBContextCreator();
 	private ClassLoadingUtil classLoadingUtil = new ClassLoadingUtil();
