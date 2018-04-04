@@ -37,7 +37,10 @@ public class Cache<VALUE> {
 	 * @return the eventually cached value
 	 */
 	public VALUE get(ValueHandler<VALUE> valueHandler) {
-		return cachingMap.computeIfAbsent(valueHandler.getKey(), k -> valueHandler.createValue());
+		final String key = valueHandler.getKey();
+		// Try to first get the value which is most likely cached to avoid creating a lambda.
+		final VALUE value = cachingMap.get(key);
+		return value != null ? value : cachingMap.computeIfAbsent(key, k -> valueHandler.createValue());
 	}
 
 	/**

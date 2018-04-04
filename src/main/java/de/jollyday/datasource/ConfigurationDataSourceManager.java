@@ -38,7 +38,7 @@ public class ConfigurationDataSourceManager {
 			String dataSourceClassName) {
 		try{
 			Class<?> dataSourceClass = classLoadingUtil.loadClass(dataSourceClassName);
-			return ConfigurationDataSource.class.cast(dataSourceClass.newInstance());
+			return ConfigurationDataSource.class.cast(dataSourceClass.getDeclaredConstructor().newInstance());
 		}catch(Exception e){
 			throw new IllegalStateException("Cannot instantiate datasource instance of "+dataSourceClassName,e);
 		}
