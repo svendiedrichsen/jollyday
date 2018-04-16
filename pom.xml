@@ -362,16 +362,18 @@
         </plugins>
     </reporting>
     <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Releases</name>
-            <url>http://archiva.argentiere.ch:8888/repository/releases</url>
-        </repository>
-        <!-- use the following if you ARE using a snapshot version. -->
         <snapshotRepository>
-            <id>snapshots</id>
-            <name>Shapshots</name>
-            <url>http://archiva.argentiere.ch:8888/repository/snapshots</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <site>
+            <id>sourceforge.net</id>
+            <url>scp://diedrichsen,jollyday@shell.sourceforge.net/home/project-web/jollyday/htdocs</url>
+            <name>Sourceforge Site</name>
+        </site>
     </distributionManagement>
 </project>

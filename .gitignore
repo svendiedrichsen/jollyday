@@ -1,3 +1,14 @@
-**/*.iml
-.idea
-target/**
+# OS X
+.DS_Store
+
+# JetBrain IDE
+.idea/
+*.iml
+
+# Ignore the maven target directory
+target/
+
+# Ignore eclipse files
+.classpath
+.settings/
+.project
