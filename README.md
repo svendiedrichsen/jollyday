@@ -10,6 +10,15 @@ Jollyday
 File encoding: Please use UTF-8 as your default file encoding.
 Code formatting: Please use the provided code-formatter.xml as your project code formatter.
 
+## 0.4 Branch
+Uses Joda-Time
+
+## 0.5 Branch
+Uses Java Time API + Threeten-Extra library
+
+## 0.6 Branch planned
+Planning to replace usage of JAXB with JiBX
+
 ## License
 
 [Apache License, Version 2.0](LICENSE.md)
