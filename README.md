@@ -17,7 +17,7 @@ Uses Joda-Time
 Uses Java Time API + Threeten-Extra library
 
 ## 0.6 Branch planned
-Planning to replace usage of JAXB with JiBX
+Planning to replace usage of JAXB with JiBX/XStream
 
 ## License
 
