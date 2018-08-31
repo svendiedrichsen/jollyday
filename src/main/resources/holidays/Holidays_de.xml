@@ -124,4 +124,14 @@
             <tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY" validFrom="2018"/>
         </tns:Holidays>
     </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="hb" description="Bremen">
+        <tns:Holidays>
+            <tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY" validFrom="2018"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="ni" description="Lower-Saxony">
+        <tns:Holidays>
+            <tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY" validFrom="2018"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
 </tns:Configuration>
