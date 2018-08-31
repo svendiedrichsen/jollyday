@@ -112,4 +112,12 @@
         <tns:Holidays>
         </tns:Holidays>
     </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="hb" description="Bremen">
+        <tns:Holidays>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="ni" description="Lower-Saxony">
+        <tns:Holidays>
+        </tns:Holidays>
+    </tns:SubConfigurations>
 </tns:Configuration>
