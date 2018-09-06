@@ -16,8 +16,17 @@ public final class ManagerParameters {
 		return create(calendarPart, null);
 	}
 
+	/**
+	 * Uses the locales country if it exists or its language otherwise.
+	 * @param lc The locale to create parameters from.
+	 * @return parameters
+	 */
 	public static ManagerParameter create(Locale lc) {
-		return create(lc.getCountry().toLowerCase(), null);
+		String calendarPart =
+				"".equals(lc.getCountry())
+				? lc.getLanguage()
+				: lc.getCountry();
+		return create(calendarPart, null);
 	}
 
 	public static ManagerParameter create(HolidayCalendar calendar){
