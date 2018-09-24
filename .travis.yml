@@ -3,5 +3,10 @@ language: java
 jdk:
   - oraclejdk8
 
-script: 
+addons:
+  sonarcloud:
+    organization: "svendiedrichsen-github" # the key of the org you chose at step #3
+
+script:
   - mvn clean package cobertura:cobertura coveralls:report
+  - mvn org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar
