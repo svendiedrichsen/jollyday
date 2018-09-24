@@ -170,18 +170,9 @@ public class DefaultHolidayManager extends HolidayManager {
 					List<?> l = (List<?>) propertyDescriptor.getReadMethod().invoke(config);
 					if (!l.isEmpty()) {
 						String className = l.get(0).getClass().getName();
-						if (!parserCache.containsKey(className)) {
-							String propName = PARSER_IMPL_PREFIX + className;
-							String parserClassName = getManagerParameter().getProperty(propName);
-							if (parserClassName != null) {
-								Class<?> parserClass = classLoadingUtil.loadClass(parserClassName);
-								Object parserObject = parserClass.getDeclaredConstructor().newInstance();
-								HolidayParser hp = HolidayParser.class.cast(parserObject);
-								parserCache.put(className, hp);
-							}
-						}
-						if (parserCache.containsKey(className)) {
-							parsers.add(parserCache.get(className));
+						HolidayParser holidayParser = instantiateParser(className);
+						if (holidayParser != null) {
+							parsers.add(holidayParser);
 						}
 					}
 				}
@@ -190,6 +181,20 @@ public class DefaultHolidayManager extends HolidayManager {
 			throw new IllegalStateException("Cannot create parsers.", e);
 		}
 		return parsers;
+	}
+
+	private HolidayParser instantiateParser(String className) throws ClassNotFoundException, InstantiationException, IllegalAccessException, java.lang.reflect.InvocationTargetException, NoSuchMethodException {
+		HolidayParser holidayParser = parserCache.get(className);
+		if (holidayParser == null) {
+			String propName = PARSER_IMPL_PREFIX + className;
+			String parserClassName = getManagerParameter().getProperty(propName);
+			if (parserClassName != null) {
+				Class<?> parserClass = classLoadingUtil.loadClass(parserClassName);
+				holidayParser = (HolidayParser) parserClass.getDeclaredConstructor().newInstance();
+				parserCache.put(className, holidayParser);
+			}
+		}
+		return holidayParser;
 	}
 
 	/**
