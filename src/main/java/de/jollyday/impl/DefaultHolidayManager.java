@@ -252,7 +252,7 @@ public class DefaultHolidayManager extends HolidayManager {
 				multipleHierarchies.add(hierarchy);
 			}
 		}
-		if (multipleHierarchies.size() > 0) {
+		if (!multipleHierarchies.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
 			msg.append("Configuration for ").append(c.getHierarchy())
 					.append(" contains  multiple SubConfigurations with the same hierarchy id. ");

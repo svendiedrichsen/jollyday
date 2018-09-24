@@ -45,7 +45,7 @@ public abstract class HolidayManager {
 	 * Signifies if caching of manager instances is enabled. If not every call
 	 * to getInstance will return a newly instantiated and initialized manager.
 	 */
-	private static boolean CACHING_ENABLED = true;
+	private static boolean cachingEnabled = true;
 	/**
 	 * Cache for manager instances on a per country basis.
 	 */
@@ -193,7 +193,7 @@ public abstract class HolidayManager {
 	 *            the managerCachingEnabled to set
 	 */
 	public static void setManagerCachingEnabled(boolean managerCachingEnabled) {
-		CACHING_ENABLED = managerCachingEnabled;
+		cachingEnabled = managerCachingEnabled;
 	}
 
 	/**
@@ -204,7 +204,7 @@ public abstract class HolidayManager {
 	 * @return the CACHING_ENABLED
 	 */
 	public static boolean isManagerCachingEnabled() {
-		return CACHING_ENABLED;
+		return cachingEnabled;
 	}
 
 	/**
@@ -319,7 +319,7 @@ public abstract class HolidayManager {
 		this.doInit();
 	}
 
-	abstract public void doInit();
+	public abstract void doInit();
 
 	/**
 	 * Returns the holidays for the requested year and hierarchy structure.
@@ -331,7 +331,7 @@ public abstract class HolidayManager {
 	 *            holidays common to whole country
 	 * @return the list of holidays for the requested year
 	 */
-	abstract public Set<Holiday> getHolidays(int year, String... args);
+	public abstract Set<Holiday> getHolidays(int year, String... args);
 
 	/**
 	 * Returns the holidays for the requested interval and hierarchy structure.
@@ -344,7 +344,7 @@ public abstract class HolidayManager {
 	 *            a {@link java.lang.String} object.
 	 * @return list of holidays within the interval
 	 */
-	abstract public Set<Holiday> getHolidays(LocalDate startDateInclusive,
+	public abstract Set<Holiday> getHolidays(LocalDate startDateInclusive,
 			LocalDate endDateInclusive, String... args);
 
 	/**
@@ -354,6 +354,6 @@ public abstract class HolidayManager {
 	 *
 	 * @return Current calendars hierarchy
 	 */
-	abstract public CalendarHierarchy getCalendarHierarchy();
+	public abstract CalendarHierarchy getCalendarHierarchy();
 
 }
