@@ -9,4 +9,9 @@ addons:
     organization: "svendiedrichsen-github"
 
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package cobertura:cobertura coveralls:report sonar:sonar
+  -|
+    if [ $TRAVIS_BRANCH == "master" && $TRAVIS_PULL_REQUEST == "false" ]; then
+      mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package cobertura:cobertura coveralls:report
+    else
+      mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package cobertura:cobertura coveralls:report sonar:sonar
+    fi
