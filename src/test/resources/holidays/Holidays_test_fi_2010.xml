@@ -17,4 +17,9 @@
 		<tns:Fixed month="JUNE" day="26" />
 		<tns:Fixed month="NOVEMBER" day="6" />
 	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="ax" description="Aland">
+		<tns:Holidays>
+			<tns:Fixed month="JUNE" day="9" descriptionPropertiesKey="SELF_GOVERNANCE"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
 </tns:Configuration>
