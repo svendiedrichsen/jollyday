@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="zh" description="China"
+				   xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.example.org/Holiday/Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="OCTOBER" day="1" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:ChineseHoliday type="NEW_YEAR" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:ChineseHoliday type="QING_MING" descriptionPropertiesKey="QING_MING"/>
+		<tns:ChineseHoliday type="DRAGON_BOAT" descriptionPropertiesKey="DRAGON_BOAT"/>
+		<tns:ChineseHoliday type="MID_AUTUMN" descriptionPropertiesKey="MID_AUTUMN"/>
+	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="hk" description="Hongkong">
+		<tns:Holidays>
+			<tns:ChineseHoliday type="CHUNG_YEUNG"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
+</tns:Configuration>
