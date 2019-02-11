@@ -14,7 +14,7 @@
 	  <tns:FixedWeekday which="LAST" weekday="MONDAY" month="MAY" validFrom="1968" descriptionPropertiesKey="MEMORIAL_DAY"/>
 	  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" validFrom="1895" descriptionPropertiesKey="LABOR_DAY"/>
 	  <tns:FixedWeekday which="SECOND" weekday="MONDAY" month="OCTOBER" validFrom="1937" descriptionPropertiesKey="COLUMBUS_DAY"/>
-	  <tns:RelativeToWeekdayInMonth which="FIRST" weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION_DAY" every="EVEN_YEARS">
+	  <tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION_DAY" every="EVEN_YEARS">
 		  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
 	  </tns:RelativeToWeekdayInMonth>
 	  <tns:FixedWeekday which="FOURTH" weekday="THURSDAY" month="NOVEMBER" validFrom="1863" descriptionPropertiesKey="THANKSGIVING"/>
@@ -404,7 +404,7 @@
   		<tns:Fixed month="FEBRUARY" day="22" validFrom="1879" validTo="1967" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="JANUARY" validFrom="1986" descriptionPropertiesKey="MARTIN_LUTHER_KING"/>
   		<tns:FixedWeekday which="THIRD" weekday="MONDAY" month="FEBRUARY" validFrom="1968" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY"/>
-		<tns:RelativeToWeekdayInMonth which="FIRST" weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION_DAY">
+		<tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION_DAY">
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
 		</tns:RelativeToWeekdayInMonth>
   	</tns:Holidays>
