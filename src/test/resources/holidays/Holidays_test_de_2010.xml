@@ -13,6 +13,10 @@
         <tns:Fixed month="MAY" day="13"/>
         <tns:Fixed month="MAY" day="24"/>
     </tns:Holidays>
+    <tns:SubConfigurations hierarchy="be" description="Berlin">
+        <tns:Holidays>
+        </tns:Holidays>
+    </tns:SubConfigurations>
     <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
         <tns:Holidays>
             <tns:Fixed month="OCTOBER" day="31"/>
