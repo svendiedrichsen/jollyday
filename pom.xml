@@ -305,6 +305,11 @@
     </profiles>
     <dependencies>
         <dependency>
+            <groupId>net.time4j</groupId>
+            <artifactId>time4j-base</artifactId>
+            <version>5.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.threeten</groupId>
             <artifactId>threeten-extra</artifactId>
             <version>1.4</version>
