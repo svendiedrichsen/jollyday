@@ -9,7 +9,7 @@
 		<tns:Fixed month="MAY" day="3" descriptionPropertiesKey="CONSTITUTION_DAY"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
 		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
-		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
 		<tns:ChristianHoliday type="EASTER" />

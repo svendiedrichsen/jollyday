@@ -6,7 +6,7 @@
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="HEROES"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="15" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="MAY" day="15" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="JUNE" day="12" descriptionPropertiesKey="CHACO_ARMISTICE"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="FOUNDING_ASUNCION"/>
 		<tns:Fixed month="SEPTEMBER" day="29" descriptionPropertiesKey="VICTORY"/>

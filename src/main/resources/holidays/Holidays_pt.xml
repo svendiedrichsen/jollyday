@@ -10,7 +10,7 @@
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
 		<tns:Fixed month="OCTOBER" day="5" descriptionPropertiesKey="REPUBLIC_DAY"/>
 		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
-		<tns:Fixed month="DECEMBER" day="1" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="DECEMBER" day="1" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:ChristianHoliday type="EASTER" />
@@ -336,7 +336,7 @@
         	<tns:Fixed month="AUGUST" day="31" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="CRS" description="Carregal do Sal">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -353,7 +353,7 @@
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="CPR" description="Castanheira de Pera">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -436,7 +436,7 @@
         	<tns:Fixed month="AUGUST" day="17" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
   	<tns:SubConfigurations hierarchy="CRV" description="Corvo">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -673,7 +673,7 @@
         	<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="LOU" description="Lousada">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -885,7 +885,7 @@
         	<tns:ChristianHoliday type="EASTER_MONDAY" />
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="NRD" description="Nordeste">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -917,7 +917,7 @@
         	<!-- Second Monday of August -->
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="OLH" description="Olhão da Restauração">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -984,7 +984,7 @@
         	<tns:Fixed month="AUGUST" day="10" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="PGR" description="Pedrógão Grande">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -1001,7 +1001,7 @@
         	<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="PCT" description="Penalva do Castelo">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -1238,7 +1238,7 @@
         	<tns:Fixed month="OCTOBER" day="11" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!--     
+<!--
     <tns:SubConfigurations hierarchy="SJP" description="São João da Pesqueira">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -1285,7 +1285,7 @@
         	<tns:Fixed month="MAY" day="3" descriptionPropertiesKey="CITY_DAY"/>
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="SRP" description="Serpa">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>
@@ -1457,7 +1457,7 @@
         	<!-- Monday after the first Sunday of October -->
         </tns:Holidays>
   	</tns:SubConfigurations>
-<!-- 
+<!--
     <tns:SubConfigurations hierarchy="VLR" description="Vila de Rei">
   		<tns:Holidays>
         	<tns:Fixed month="JUNE" day="13" descriptionPropertiesKey="CITY_DAY"/>

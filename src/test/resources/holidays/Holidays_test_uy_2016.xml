@@ -11,7 +11,7 @@
 			<tns:MovingCondition substitute="THURSDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="FRIDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>		
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="18" descriptionPropertiesKey="LAS_PIEDRAS">
 			<tns:MovingCondition substitute="TUESDAY" with="PREVIOUS" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="WEDNESDAY" with="PREVIOUS" weekday="MONDAY"/>
@@ -20,7 +20,7 @@
 		</tns:Fixed>
 		<tns:Fixed month="JUNE" day="19" descriptionPropertiesKey="ARTIGAS"/>
 		<tns:Fixed month="JULY" day="18" descriptionPropertiesKey="CONSTITUTION_DAY"/>
-		<tns:Fixed month="AUGUST" day="25" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="AUGUST" day="25" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="RACE">

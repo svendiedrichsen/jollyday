@@ -6,7 +6,7 @@
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="APRIL" day="21" descriptionPropertiesKey="TIRADENTES"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="SEPTEMBER" day="7" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="SEPTEMBER" day="7" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="OCTOBER" day="12" validFrom="1980" descriptionPropertiesKey="APARECIDA"/>
 		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS"/>
 		<tns:Fixed month="NOVEMBER" day="15" descriptionPropertiesKey="NATIONAL_DAY"/>

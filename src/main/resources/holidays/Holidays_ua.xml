@@ -10,7 +10,7 @@
 		<tns:Fixed month="MAY" day="2" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY"/>
 		<tns:Fixed month="JUNE" day="28" descriptionPropertiesKey="CONSTITUTION_DAY"/>
-		<tns:Fixed month="AUGUST" day="24" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="AUGUST" day="24" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="PENTECOST" chronology="JULIAN"/>

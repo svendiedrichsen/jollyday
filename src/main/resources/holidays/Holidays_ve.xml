@@ -9,7 +9,7 @@
 		<tns:Fixed month="APRIL" day="19" descriptionPropertiesKey="REPUBLIC_DAY"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="CARABOBO"/>
-		<tns:Fixed month="JULY" day="5" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="JULY" day="5" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="JULY" day="24" descriptionPropertiesKey="NAVY_DAY"/>
 		<tns:Fixed month="AUGUST" day="3" validFrom="2006" descriptionPropertiesKey="FLAG_DAY"/>
 		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="INDIGENOUS_RESISTANCE"/>

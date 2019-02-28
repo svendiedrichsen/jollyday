@@ -9,7 +9,7 @@
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT"
 				weekday="MONDAY" />
 		</tns:Fixed>
-		<tns:Fixed month="JULY" day="4" descriptionPropertiesKey="INDEPENDENCE">
+		<tns:Fixed month="JULY" day="4" descriptionPropertiesKey="INDEPENDENCE_DAY">
 			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS"
 				weekday="FRIDAY" />
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT"
@@ -39,7 +39,7 @@
 		<tns:FixedWeekday which="THIRD" weekday="MONDAY"
 			month="FEBRUARY" descriptionPropertiesKey="WASHINGTONS_BIRTHDAY" />
 		<tns:FixedWeekday which="LAST" weekday="MONDAY"
-			month="MAY" descriptionPropertiesKey="MEMORIAL" />
+			month="MAY" descriptionPropertiesKey="MEMORIAL_DAY" />
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY"
 			month="SEPTEMBER" descriptionPropertiesKey="LABOUR_DAY" />
 		<tns:FixedWeekday which="FOURTH" weekday="THURSDAY"

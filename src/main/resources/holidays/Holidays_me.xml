@@ -7,7 +7,7 @@
 		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="21" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="MAY" day="21" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="JULY" day="13" descriptionPropertiesKey="STATEHOOD"/>
 		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="GOOD_FRIDAY" chronology="JULIAN" />

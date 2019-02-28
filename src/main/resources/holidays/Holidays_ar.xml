@@ -8,7 +8,7 @@
 		<tns:Fixed month="APRIL" day="2" validFrom="2001" descriptionPropertiesKey="MALVINAS"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="25" descriptionPropertiesKey="MAY_REVOLUTION"/>
-		<tns:Fixed month="JULY" day="9" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="JULY" day="9" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="OCTOBER" day="12" descriptionPropertiesKey="COLUMBUS_DAY">
 			<tns:MovingCondition substitute="TUESDAY" with="PREVIOUS" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="WEDNESDAY" with="PREVIOUS" weekday="MONDAY"/>

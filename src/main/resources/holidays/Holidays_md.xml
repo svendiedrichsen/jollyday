@@ -8,7 +8,7 @@
 		<tns:Fixed month="JANUARY" day="8" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY"/>
-		<tns:Fixed month="AUGUST" day="27" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="AUGUST" day="27" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="AUGUST" day="31" descriptionPropertiesKey="LANGUAGE_DAY"/>
 		<tns:ChristianHoliday type="EASTER" chronology="JULIAN" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN" />

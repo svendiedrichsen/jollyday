@@ -5,10 +5,10 @@
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="4" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="MAY" day="4" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="JUNE" day="23" descriptionPropertiesKey="MIDSUMMER_EVE"/>
 		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="MIDSUMMER"/>
-		<tns:Fixed month="NOVEMBER" day="18" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="NOVEMBER" day="18" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>

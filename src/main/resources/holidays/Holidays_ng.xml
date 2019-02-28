@@ -7,7 +7,7 @@
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="27" descriptionPropertiesKey="CHILDRENS_DAY"/>
 		<tns:Fixed month="MAY" day="29" descriptionPropertiesKey="FREEDOM_DEMOCRACY"/>
-		<tns:Fixed month="OCTOBER" day="1" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="OCTOBER" day="1" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
 		<tns:ChristianHoliday type="EASTER" />
@@ -20,7 +20,7 @@
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="lag" description="Lagos">
 		<tns:Holidays>
-			<tns:Fixed month="JUNE" day="12" descriptionPropertiesKey="ELECTION"/>
+			<tns:Fixed month="JUNE" day="12" descriptionPropertiesKey="ELECTION_DAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 </tns:Configuration>

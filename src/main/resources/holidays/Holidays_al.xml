@@ -23,7 +23,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:Fixed month="NOVEMBER" day="28" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="NOVEMBER" day="28" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="NOVEMBER" day="29" descriptionPropertiesKey="LIBERATION"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:ChristianHoliday type="EASTER" />

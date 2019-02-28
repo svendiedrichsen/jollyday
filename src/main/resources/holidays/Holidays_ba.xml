@@ -30,7 +30,7 @@
   </tns:SubConfigurations>
   <tns:SubConfigurations hierarchy="fbh" description="Federation of Bosnia and Herzegovina">
   	<tns:Holidays>
-		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="NOVEMBER" day="25" descriptionPropertiesKey="NATIONAL_DAY"/>
   	</tns:Holidays>
   </tns:SubConfigurations>

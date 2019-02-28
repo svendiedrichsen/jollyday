@@ -10,7 +10,7 @@
 		<tns:Fixed month="JUNE" day="25" descriptionPropertiesKey="NATIONAL_DAY" />
 		<tns:Fixed month="AUGUST" day="5" descriptionPropertiesKey="VICTORY" />
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_MARY" />
-		<tns:Fixed month="OCTOBER" day="8" descriptionPropertiesKey="INDEPENDENCE" />
+		<tns:Fixed month="OCTOBER" day="8" descriptionPropertiesKey="INDEPENDENCE_DAY" />
 		<tns:Fixed month="NOVEMBER" day="1"
 			descriptionPropertiesKey="ALL_SAINTS" />
 		<tns:Fixed month="DECEMBER" day="25"

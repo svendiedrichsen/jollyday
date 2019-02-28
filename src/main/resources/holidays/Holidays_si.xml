@@ -17,7 +17,7 @@
 		<tns:Fixed month="NOVEMBER" day="11" descriptionPropertiesKey="ST_MARTIN" localizedType="UNOFFICIAL_HOLIDAY"/>
 		<tns:Fixed month="DECEMBER" day="6" descriptionPropertiesKey="ST_NICHOLAS" />
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
-		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 		<tns:ChristianHoliday type="CARNIVAL" localizedType="UNOFFICIAL_HOLIDAY"/>

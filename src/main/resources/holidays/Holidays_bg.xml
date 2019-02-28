@@ -11,7 +11,7 @@
 		<tns:Fixed month="SEPTEMBER" day="6"
 			descriptionPropertiesKey="UNIFICATION" />
 		<tns:Fixed month="SEPTEMBER" day="22"
-			descriptionPropertiesKey="INDEPENDENCE" />
+			descriptionPropertiesKey="INDEPENDENCE_DAY" />
 		<tns:Fixed month="DECEMBER" day="24"
 			descriptionPropertiesKey="CHRISTMAS_EVE" />
 		<tns:Fixed month="DECEMBER" day="25"

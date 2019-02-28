@@ -12,7 +12,7 @@
 		<tns:Fixed month="JUNE" day="29" descriptionPropertiesKey="ST_PETER_PAUL"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_MARY"/>
 		<tns:Fixed month="SEPTEMBER" day="8" descriptionPropertiesKey="VICTORY"/>
-		<tns:Fixed month="SEPTEMBER" day="21" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="SEPTEMBER" day="21" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
 		<tns:Fixed month="DECEMBER" day="13" descriptionPropertiesKey="REPUBLIC_DAY"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>

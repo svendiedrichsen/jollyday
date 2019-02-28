@@ -16,7 +16,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:Fixed month="SEPTEMBER" day="16" descriptionPropertiesKey="INDEPENDENCE">
+		<tns:Fixed month="SEPTEMBER" day="16" descriptionPropertiesKey="INDEPENDENCE_DAY">
 			<tns:MovingCondition substitute="SATURDAY" with="PREVIOUS" weekday="FRIDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>

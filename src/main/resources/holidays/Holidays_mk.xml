@@ -9,7 +9,7 @@
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:Fixed month="MAY" day="24" descriptionPropertiesKey="CYRUS_METHODIUS"/>
 		<tns:Fixed month="AUGUST" day="2" descriptionPropertiesKey="REPUBLIC_DAY"/>
-		<tns:Fixed month="SEPTEMBER" day="8" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="SEPTEMBER" day="8" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="OCTOBER" day="11" descriptionPropertiesKey="REVOLUTION"/>
 		<tns:Fixed month="OCTOBER" day="23" descriptionPropertiesKey="NATIONAL_DAY"/>
 		<tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="SAINT_CLEMENT"/>

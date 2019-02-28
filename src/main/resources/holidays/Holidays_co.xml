@@ -29,7 +29,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
 		</tns:Fixed>
-		<tns:Fixed month="JULY" day="20" descriptionPropertiesKey="INDEPENDENCE"/>
+		<tns:Fixed month="JULY" day="20" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 		<tns:Fixed month="AUGUST" day="7" descriptionPropertiesKey="BOYACA"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_MARY">
 			<tns:MovingCondition substitute="TUESDAY" with="NEXT" weekday="MONDAY" />
