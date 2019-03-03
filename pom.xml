@@ -158,11 +158,6 @@
                     <version>4.3.0</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>cobertura-maven-plugin</artifactId>
-                    <version>2.7</version>
-                </plugin>
-                <plugin>
                     <groupId>biz.aQute.bnd</groupId>
                     <artifactId>bnd-maven-plugin</artifactId>
                     <version>4.1.0</version>
@@ -175,6 +170,16 @@
                 <plugin>
                     <artifactId>maven-enforcer-plugin</artifactId>
                     <version>3.0.0-M2</version>
+                </plugin>
+                <plugin>
+               		<groupId>org.jacoco</groupId>
+               		<artifactId>jacoco-maven-plugin</artifactId>
+               		<version>0.8.3</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>de.jollyday.config.*</exclude>
+                        </excludes>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -263,19 +268,6 @@
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <configuration>
                     <repoToken>0bXE4PtLRrYe3KEJVWFbKjodK7GTPsuQD</repoToken>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <configuration>
-                    <format>xml</format>
-                    <maxmem>256m</maxmem>
-                    <instrumentation>
-                        <ignores>
-                            <ignore>de.jollyday.config.*</ignore>
-                        </ignores>
-                    </instrumentation>
                 </configuration>
             </plugin>
             <plugin>
