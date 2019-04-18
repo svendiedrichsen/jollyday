@@ -5,7 +5,6 @@
   <tns:Holidays>
 	  <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 	  <tns:Fixed month="MAY" day="30" validFrom="1869" validTo="1967" descriptionPropertiesKey="MEMORIAL_DAY"/>
-	  <tns:Fixed month="JUNE" day="14" validFrom="1946" descriptionPropertiesKey="FLAG_DAY"/>
 	  <tns:Fixed month="JULY" day="4" validFrom="1776" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 	  <tns:Fixed month="NOVEMBER" day="11" validFrom="1938" descriptionPropertiesKey="VETERANS_DAY"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
