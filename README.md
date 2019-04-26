@@ -10,10 +10,25 @@ File encoding: Please use UTF-8 as your default file encoding.
 Code formatting: Please use the provided code-formatter.xml as your project code formatter.
 
 ## 0.4 Branch
-Uses Joda-Time
+To use latest release based on **Joda-Time** add this to your `pom.xml`:
+```
+<dependency>
+    <groupId>de.jollyday</groupId>
+    <artifactId>jollyday</artifactId>
+    <version>0.4.9</version>
+</dependency>
+```
 
 ## 0.5 Branch
-Uses Java Time API + Threeten-Extra library
+To use latest release based on **Java Time API** and **Threeten-Extra library** add this to your `pom.xml`:
+```
+<dependency>
+    <groupId>de.jollyday</groupId>
+    <artifactId>jollyday</artifactId>
+    <version>0.5.8</version>
+</dependency>
+
+```
 
 ## 0.6 Branch planned
 Planning to replace usage of JAXB with JiBX/XStream
