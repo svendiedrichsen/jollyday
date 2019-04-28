@@ -72,6 +72,10 @@
 		<tns:Fixed month="AUGUST" day="15"/>
   		<tns:Fixed month="APRIL" day="5" />
   	</tns:Holidays>
+	 <tns:SubConfigurations hierarchy="bcn" description="Barcelona">
+		 <tns:Holidays>
+		 </tns:Holidays>
+	 </tns:SubConfigurations>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ex" description="Extremadura">
   	<tns:Holidays>

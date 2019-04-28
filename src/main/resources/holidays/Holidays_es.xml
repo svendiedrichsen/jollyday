@@ -77,8 +77,14 @@
   		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="ST_JOHN"/>
   		<tns:Fixed month="SEPTEMBER" day="11" descriptionPropertiesKey="REGIONAL"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
   		<tns:ChristianHoliday type="EASTER_MONDAY"/>
   	</tns:Holidays>
+	<tns:SubConfigurations hierarchy="bcn" description="Barcelona">
+		<tns:Holidays>
+			<tns:ChristianHoliday type="WHIT_MONDAY"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="ex" description="Extremadura">
   	<tns:Holidays>
