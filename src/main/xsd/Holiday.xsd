@@ -205,7 +205,6 @@
 			<enumeration value="ID_UL_ADHA"></enumeration>
 			<enumeration value="ID_UL_ADHA_2"></enumeration>
 			<enumeration value="ID_UL_ADHA_3"></enumeration>
-			<enumeration value="ID_UL_ADHA_4"></enumeration>
 		</restriction>
 	</simpleType>
 

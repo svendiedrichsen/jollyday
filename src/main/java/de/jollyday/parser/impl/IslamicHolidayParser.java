@@ -82,9 +82,6 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			case ID_UL_ADHA_3:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 12);
 				break;
-			case ID_UL_ADHA_4:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 13);
-				break;
 			case LAILAT_AL_BARAT:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 8, 15);
 				break;
