@@ -58,11 +58,32 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			case ASCHURA:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 1, 10);
 				break;
+			case RAMADAN_END:
+				islamicHolidays = calendarUtil.getRelativeIslamicHolidaysInGregorianYear(year, 10, 1, -1);
+				break;
 			case ID_AL_FITR:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 10, 1);
 				break;
+			case ID_AL_FITR_2:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 10, 2);
+				break;
+			case ID_AL_FITR_3:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 10, 3);
+				break;
+			case ARAFAAT:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 9);
+				break;
 			case ID_UL_ADHA:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 10);
+				break;
+			case ID_UL_ADHA_2:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 11);
+				break;
+			case ID_UL_ADHA_3:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 12);
+				break;
+			case ID_UL_ADHA_4:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 13);
 				break;
 			case LAILAT_AL_BARAT:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 8, 15);
