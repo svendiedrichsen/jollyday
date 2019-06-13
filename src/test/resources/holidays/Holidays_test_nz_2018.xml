@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="nz" description="New Zealand"
+    xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.example.org/Holiday ../../../main/xsd/Holiday.xsd">
+    <tns:Holidays>
+        <!-- New Year's Day -->
+        <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR" />
+        <!-- Day after New Year's Day -->
+        <tns:Fixed month="JANUARY" day="2" descriptionPropertiesKey="DAY_AFTER_NEW_YEAR" />
+        <!-- Waitangi Day -->
+        <tns:Fixed month="FEBRUARY" day="6" descriptionPropertiesKey="WAITANGI_DAY" />
+        <!-- Good Friday -->
+        <tns:Fixed month="MARCH" day="30"/>
+        <!-- Easter Monday -->
+        <tns:Fixed month="APRIL" day="2" />
+        <!-- ANZAC Day -->
+        <tns:Fixed month="APRIL" day="25" descriptionPropertiesKey="ANZAC" />
+        <!-- Queen's Birthday -->
+        <tns:Fixed month="JUNE" day="4" descriptionPropertiesKey="QUEENS_BIRTHDAY" />
+        <!-- Labour Day -->
+        <tns:Fixed month="OCTOBER" day="22" descriptionPropertiesKey="LABOUR_DAY" />
+        <!-- Christmas Day -->
+        <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS" />
+        <!-- Boxing Day -->
+        <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY" />
+    </tns:Holidays>
+</tns:Configuration>
