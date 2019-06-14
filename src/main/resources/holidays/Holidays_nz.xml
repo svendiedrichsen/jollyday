@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tns:Configuration hierarchy="nz" description="New Zealand"
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	xsi:schemaLocation="http://www.example.org/Holiday ../../../xsd/Holiday.xsd">
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY" />
@@ -36,4 +36,97 @@
 		<tns:ChristianHoliday type="GOOD_FRIDAY" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" />
 	</tns:Holidays>
+    <tns:SubConfigurations hierarchy="auk" description="Auckland">
+      <tns:Holidays>
+        <tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="AUCKLAND_ANNIVERSARY">
+          <tns:day month="JANUARY" day="29" />
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="tki" description="Taranaki">
+      <tns:Holidays>
+        <!-- 31 March, but moves to 2nd Monday in March to avoid Easter. -->
+        <tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="TARANAKI_ANNIVERSARY"/>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="hkb" description="Hawke's Bay">
+      <tns:Holidays>
+        <!-- 1 November, but moves to Friday before Labour Day. -->
+        <tns:RelativeToWeekdayInMonth weekday="FRIDAY" when="BEFORE" descriptionPropertiesKey="HAWKES_BAY_ANNIVERSARY">
+          <tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="LABOUR_DAY"/>
+        </tns:RelativeToWeekdayInMonth>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="wgn" description="Wellington">
+      <tns:Holidays>
+        <tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="WELLINGTON_ANNIVERSARY">
+          <tns:day month="JANUARY" day="22"/>
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="mbh" description="Marlborough">
+      <tns:Holidays>
+        <!-- 1 November, but observed 1st Monday after Labour Day. -->
+        <tns:RelativeToWeekdayInMonth weekday="MONDAY" when="AFTER" descriptionPropertiesKey="MARLBOROUGH_ANNIVERSARY">
+          <tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="LABOUR_DAY"/>
+        </tns:RelativeToWeekdayInMonth>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="nsn" description="Nelson">
+      <tns:Holidays>
+        <tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="NELSON_ANNIVERSARY">
+          <tns:day month="FEBRUARY" day="1"/>
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="can" description="Canterbury">
+      <tns:Holidays>
+        <!-- 16 December, but Northern & Central Canterbury areas observe Christchurch Show Day.
+             The definition for the Canterbury Anniversary Day celebration as decided by Christchurch City
+             is the second Friday after the first Tuesday in November each year.
+         -->
+         <!-- 
+         <tns:RelativeToWeekdayInMonth which="SECOND" weekday="FRIDAY", when="AFTER" descriptionPropertiesKey="CANTERBURY_SOUTH_ANNIVERSARY">
+            <tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" />
+         </tns:RelativeToWeekdayInMonth>
+        -->
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="cans" description="Canterbury (South)">
+      <tns:Holidays>
+        <!-- 16 December, but South Canterbury observes Dominion Day, the 4th Monday in September. -->
+        <tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="SEPTEMBER" descriptionPropertiesKey="CANTERBURY_SOUTH_ANNIVERSARY" />
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="wtc" description="Westland">
+      <tns:Holidays>
+        <!-- Varies throughout Westland, but Greymouth observes the official day. -->
+        <tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="WESTLAND_ANNIVERSARY">
+          <tns:day month="DECEMBER" day="1"/>
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="ota" description="Otago">
+      <tns:Holidays>
+        <tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="OTAGO_ANNIVERSARY">
+          <tns:day month="MARCH" day="23"/>
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="stl" description="Southland">
+      <tns:Holidays>
+        <!-- In December 2011 the three southern Mayors decided Southland Anniversary Day will be celebrated on Easter Tuesday. -->
+        <tns:ChristianHoliday validFrom="2012" type="EASTER_TUESDAY" descriptionPropertiesKey="SOUTHLAND_ANNIVERSARY"/>
+        <tns:FixedWeekdayRelativeToFixed validTo="2011" which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="SOUTHLAND_ANNIVERSARY">
+          <tns:day month="JANUARY" day="17"/>
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="cit" description="Chatham Islands">
+      <tns:Holidays>
+        <tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="MONDAY" when="CLOSEST" descriptionPropertiesKey="CHATHAM_ISLANDS_ANNIVERSARY">
+          <tns:day month="NOVEMBER" day="30"/>
+        </tns:FixedWeekdayRelativeToFixed>
+      </tns:Holidays>
+    </tns:SubConfigurations>
 </tns:Configuration>
