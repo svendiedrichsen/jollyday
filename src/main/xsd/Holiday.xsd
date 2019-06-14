@@ -138,6 +138,7 @@
 		<restriction base="string">
 			<enumeration value="BEFORE"></enumeration>
 			<enumeration value="AFTER"></enumeration>
+			<enumeration value="CLOSEST"></enumeration>
 		</restriction>
 	</simpleType>
 
