@@ -19,6 +19,11 @@
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT"
 				weekday="MONDAY" />
 		</tns:Fixed>
+
+        <!-- The 2020 bank holiday was moved from the 4th to the 8th of May -->
+        <tns:Fixed month="MAY" day="8" validFrom="2020" validTo="2020"
+                   descriptionPropertiesKey="BANK_HOLIDAY"></tns:Fixed>
+
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY"
 			month="MAY" descriptionPropertiesKey="BANK_HOLIDAY" />
 		<tns:FixedWeekday which="LAST" weekday="MONDAY"
