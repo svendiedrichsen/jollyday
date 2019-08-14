@@ -197,8 +197,14 @@
 			<enumeration value="LAILAT_AL_BARAT"></enumeration>
 			<enumeration value="RAMADAN"></enumeration>
 			<enumeration value="LAILAT_AL_QADR"></enumeration>
+			<enumeration value="RAMADAN_END"></enumeration>
 			<enumeration value="ID_AL_FITR"></enumeration>
+			<enumeration value="ID_AL_FITR_2"></enumeration>
+			<enumeration value="ID_AL_FITR_3"></enumeration>
+			<enumeration value="ARAFAAT"></enumeration>
 			<enumeration value="ID_UL_ADHA"></enumeration>
+			<enumeration value="ID_UL_ADHA_2"></enumeration>
+			<enumeration value="ID_UL_ADHA_3"></enumeration>
 		</restriction>
 	</simpleType>
 

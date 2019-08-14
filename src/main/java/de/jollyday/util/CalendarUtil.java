@@ -26,6 +26,7 @@ import java.time.chrono.ChronoLocalDate;
 import java.time.chrono.Chronology;
 import java.time.chrono.HijrahChronology;
 import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -187,6 +188,24 @@ public class CalendarUtil {
         return getDatesFromChronologyWithinGregorianYear(islamicMonth, islamicDay, gregorianYear,
                 HijrahChronology.INSTANCE);
     }
+    
+    /**
+     * Returns a set of gregorian dates within a gregorian year which equal the
+     * islamic month and day with a relative shift. Because the islamic year is
+     * about 11 days shorter than the gregorian there may be more than one occurrence
+     * of an islamic date in an gregorian year. i.e.: In the gregorian year 2008
+     * there were two 1/1. They occurred on 1/10 and 12/29.
+     *
+     * @param gregorianYear a int.
+     * @param islamicMonth  a int.
+     * @param islamicDay    a int.
+     * @param relativeShift a int.
+     * @return List of gregorian dates for the islamic month/day shifted by relative shift days.
+     */
+    public Set<LocalDate> getRelativeIslamicHolidaysInGregorianYear(int gregorianYear, int islamicMonth, int islamicDay, int relativeShift) {
+        return getRelativeDatesFromChronologyWithinGregorianYear(islamicMonth, islamicDay, gregorianYear,
+                HijrahChronology.INSTANCE, relativeShift);
+    }
 
     /**
      * Returns a set of gregorian dates within a gregorian year which equal the
@@ -215,18 +234,36 @@ public class CalendarUtil {
      */
     private Set<LocalDate> getDatesFromChronologyWithinGregorianYear(int targetMonth, int targetDay, int gregorianYear,
                                                                      Chronology targetChrono) {
+        return getRelativeDatesFromChronologyWithinGregorianYear(targetMonth, targetDay, gregorianYear, targetChrono, 0);
+    }
+    
+    /**
+     * Searches for the occurrences of a month/day +- relative shift in one
+     * chronology within one gregorian year.
+     *
+     * @param targetMonth
+     * @param targetDay
+     * @param gregorianYear
+     * @param targetChrono
+     * @param relativeShift
+     * @return the list of gregorian dates.
+     */
+    private Set<LocalDate> getRelativeDatesFromChronologyWithinGregorianYear(int targetMonth, int targetDay,
+            int gregorianYear, Chronology targetChrono, int relativeShift) {
+        int absoluteShift = Math.abs(relativeShift);
         Set<LocalDate> holidays = new HashSet<>();
         LocalDate firstGregorianDate = LocalDate.of(gregorianYear, JANUARY, 1);
         LocalDate lastGregorianDate = LocalDate.of(gregorianYear, DECEMBER, 31);
 
-        ChronoLocalDate firstTargetDate = targetChrono.date(firstGregorianDate);
-        ChronoLocalDate lastTargetDate = targetChrono.date(lastGregorianDate);
+        ChronoLocalDate firstTargetDate = targetChrono.date(firstGregorianDate.minusDays(absoluteShift));
+        ChronoLocalDate lastTargetDate = targetChrono.date(lastGregorianDate.plusDays(absoluteShift));
 
         int targetYear = firstTargetDate.get(ChronoField.YEAR);
         final int lastYear = lastTargetDate.get(ChronoField.YEAR);
 
         while (targetYear <= lastYear) {
-            ChronoLocalDate d = targetChrono.date(targetYear, targetMonth, targetDay);
+            ChronoLocalDate d = targetChrono.date(targetYear, targetMonth, targetDay).plus(relativeShift,
+                    ChronoUnit.DAYS);
             if (!firstGregorianDate.isAfter(d) && !lastGregorianDate.isBefore(d)) {
                 holidays.add(LocalDate.from(d));
             }
