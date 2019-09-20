@@ -116,6 +116,7 @@
     </tns:SubConfigurations>
     <tns:SubConfigurations hierarchy="th" description="Thuringia">
         <tns:Holidays>
+            <tns:Fixed month="SEPTEMBER" day="20" descriptionPropertiesKey="CHILDRENS_DAY" validFrom="2019"/>
             <tns:Fixed month="OCTOBER" day="31" descriptionPropertiesKey="REFORMATION_DAY"/>
         </tns:Holidays>
     </tns:SubConfigurations>
