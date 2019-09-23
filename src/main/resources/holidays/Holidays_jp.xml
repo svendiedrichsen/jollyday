@@ -11,7 +11,9 @@
   	<tns:Fixed month="JULY" day="20" validTo="2002" descriptionPropertiesKey="NAVY_DAY"/>
   	<tns:Fixed month="SEPTEMBER" day="15" validFrom="1966" validTo="2002" descriptionPropertiesKey="RESPECT_AGED_DAY"/>
   	<tns:Fixed month="OCTOBER" day="10" validFrom="1966" validTo="1999" descriptionPropertiesKey="HEALTH_SPORTS"/>
-  	<tns:Fixed month="NOVEMBER" day="3" validFrom="1948" descriptionPropertiesKey="CULTURE_DAY"/>
+  	<tns:Fixed month="NOVEMBER" day="3" validFrom="1948" descriptionPropertiesKey="CULTURE_DAY">
+		<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY" />
+	</tns:Fixed>
   	<tns:Fixed month="NOVEMBER" day="23" validFrom="1948" descriptionPropertiesKey="LABOUR_DAY"/>
   	<tns:Fixed month="DECEMBER" day="23" validFrom="1990" descriptionPropertiesKey="EMPERORS_BIRTHDAY"/>
   	<tns:Fixed month="APRIL" day="10" validFrom="1959" validTo="1959" descriptionPropertiesKey="IMPERIAL_DAY"/>
