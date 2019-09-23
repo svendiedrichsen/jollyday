@@ -4,6 +4,7 @@
     <artifactId>jollyday</artifactId>
     <name>Jollyday</name>
     <version>0.5.9-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <description>
         This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is
         stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday
@@ -22,6 +23,15 @@
         <maven.site.skip>true</maven.site.skip>
         <maven.site.deploy.skip>true</maven.site.deploy.skip>
     </properties>
+
+    <modules>
+        <module>jollyday-api</module>
+        <module>jollyday-holidays</module>
+        <module>jollyday-jackson</module>
+        <module>jollyday-jaxb</module>
+        <module>jollyday-xstream</module>
+    </modules>
+
     <developers>
         <developer>
             <id>diedrichsen</id>

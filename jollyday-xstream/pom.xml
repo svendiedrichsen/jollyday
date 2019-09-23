@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>jollyday-xstream</artifactId>
+    <name>XStream</name>
+    <description>XStream based implementation</description>
+
+    <parent>
+        <groupId>de.jollyday</groupId>
+        <artifactId>jollyday</artifactId>
+        <version>0.5.9-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.jollyday</groupId>
+            <artifactId>jollyday-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>
