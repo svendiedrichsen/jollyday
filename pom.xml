@@ -3,7 +3,7 @@
     <groupId>de.jollyday</groupId>
     <artifactId>jollyday</artifactId>
     <name>Jollyday</name>
-    <version>0.5.9-SNAPSHOT</version>
+    <version>0.5.10-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>
         This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is
@@ -374,24 +374,24 @@
         <dependency>
             <groupId>org.threeten</groupId>
             <artifactId>threeten-extra</artifactId>
-            <version>1.4</version>
+            <version>1.5.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13-beta-2</version>
+            <version>4.13-beta-3</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.24.5</version>
+            <version>3.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.xmlunit</groupId>
             <artifactId>xmlunit-core</artifactId>
-            <version>2.6.2</version>
+            <version>2.6.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
