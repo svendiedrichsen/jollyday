@@ -47,7 +47,7 @@ public class RelativeToWeekdayInMonthParser extends FixedWeekdayInMonthParser {
 			if (!isValid(rtfw, year)) {
 				continue;
 			}
-			LocalDate date = parse(year, rtfw.getFixedWeekday());
+			LocalDate date = parse(year, rtfw.getFixedWeekday()).plusDays(1);
 			int direction = (rtfw.getWhen() == When.BEFORE ? -1 : 1);
 			while (date.getDayOfWeek() != xmlUtil.getWeekday(rtfw.getWeekday())) {
 				date = date.plusDays(direction);

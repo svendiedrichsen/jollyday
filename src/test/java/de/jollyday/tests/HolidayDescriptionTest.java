@@ -17,11 +17,11 @@ package de.jollyday.tests;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -38,33 +38,45 @@ public class HolidayDescriptionTest {
 
 		File folder = new File("src/main/resources/descriptions");
 		Assert.assertTrue(folder.isDirectory());
+
+		final String baseName = "descriptions.holiday_descriptions";
+		Set<String> props = getLocalisedResourceBundleKeys();
+		ResourceBundle root = getRootResourceBundle(baseName);
+
+		// Test that the ROOT bundle contains the superset of keys
+		Set<String> missingProps = new HashSet<>();
+
+		for (String prop: props) {
+			if (!root.containsKey(prop)) {
+				missingProps.add(prop);
+			}
+		}
+
+		Assert.assertTrue("Root bundle is lacking properties: " + missingProps, missingProps.isEmpty());
+	}
+
+	protected Set<String> getLocalisedResourceBundleKeys() throws IOException {
+		File folder = new File("src/main/resources/descriptions");
+		Assert.assertTrue(folder.isDirectory());
+		// Collect all localised descriptions
 		File[] descriptions = folder.listFiles(
-			(dir, name) -> name.startsWith("holiday_descriptions") && name.endsWith(".properties"));
+			(dir, name) -> name.startsWith("holiday_descriptions_") && name.endsWith(".properties"));
 		Assert.assertNotNull(descriptions);
 		Assert.assertTrue(descriptions.length > 0);
 
 		Set<String> propertiesNames = new HashSet<>();
-		Map<String, Properties> descriptionProperties = new HashMap<>();
 
 		for (File descriptionFile : descriptions) {
 			Properties props = new Properties();
 			props.load(new FileInputStream(descriptionFile));
 			propertiesNames.addAll(props.stringPropertyNames());
-			descriptionProperties.put(descriptionFile.getName(), props);
 		}
 
-		Map<String, Set<String>> missingProperties = new HashMap<>();
+		return propertiesNames;
+	}
 
-		for (Map.Entry<String, Properties> entry : descriptionProperties.entrySet()) {
-			if (!entry.getValue().stringPropertyNames().containsAll(propertiesNames)) {
-				Set<String> remainingProps = new HashSet<>(propertiesNames);
-				remainingProps.removeAll(entry.getValue().stringPropertyNames());
-				missingProperties.put(entry.getKey(), remainingProps);
-			}
-		}
-
-		Assert.assertTrue("Following files are lacking properties: " + missingProperties, missingProperties.isEmpty());
-
+	protected ResourceBundle getRootResourceBundle(String baseName) {
+		return ResourceBundle.getBundle(baseName, Locale.ROOT);
 	}
 
 }
