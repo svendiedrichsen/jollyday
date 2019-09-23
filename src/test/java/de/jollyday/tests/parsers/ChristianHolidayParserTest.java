@@ -110,6 +110,23 @@ public class ChristianHolidayParserTest {
 
 	}
 
+	@Test
+	public void testCustomPropertiesKey() {
+		Set<Holiday> holidays = new HashSet<>();
+		Holidays config = createConfig(ChristianHolidayType.EASTER_TUESDAY);
+		config.getChristianHoliday().get(0).setDescriptionPropertiesKey("CUSTOM_KEY");
+		hp.parse(2019, holidays, config);
+
+		String expectedPropertiesKey = "CUSTOM_KEY";
+		LocalDate expectedDate = calendarUtil.create(2019, 4, 23);
+
+		Assert.assertEquals("Wrong number of holidays.", 1, holidays.size());
+
+		Holiday easterTuesday = holidays.iterator().next();
+		Assert.assertEquals("Wrong holiday date.", expectedDate, easterTuesday.getDate());
+		Assert.assertEquals("Wrong holiday key.", expectedPropertiesKey, easterTuesday.getPropertiesKey());
+	}
+
 	private Holidays createConfig(int... days) {
 		Holidays config = new Holidays();
 		for (int day : days) {

@@ -78,4 +78,22 @@ public class RelativeToWeekdayInMonthParserTest {
 		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 7, 12), result.iterator().next().getDate());
 	}
 
+	@Test
+	public void testMonAfter4thMondayOctober() {
+		Set<Holiday> result = new HashSet<>();
+		Holidays config = new Holidays();
+		RelativeToWeekdayInMonth rule = new RelativeToWeekdayInMonth();
+		rule.setWeekday(Weekday.MONDAY);
+		rule.setWhen(When.AFTER);
+		FixedWeekdayInMonth date = new FixedWeekdayInMonth();
+		date.setWhich(Which.FOURTH);
+		date.setWeekday(Weekday.MONDAY);
+		date.setMonth(Month.OCTOBER);
+		rule.setFixedWeekday(date);
+		config.getRelativeToWeekdayInMonth().add(rule);
+		rtwim.parse(2018, result, config);
+		Assert.assertEquals("Wrong number of dates.", 1, result.size());
+		Assert.assertEquals("Wrong date.", calendarUtil.create(2018, 10, 29), result.iterator().next().getDate());
+	}
+
 }
