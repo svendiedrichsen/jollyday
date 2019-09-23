@@ -97,7 +97,14 @@ public class ChristianHolidayParser extends RelativeToEasterSundayParser {
 						"Unknown christian holiday type " + ch.getType());
 			}
             easterSunday = moveDate(ch, easterSunday);
-			String propertiesKey = "christian." + ch.getType().name();
+
+			String propertiesKey = ch.getDescriptionPropertiesKey();
+			String defaultPropertiesKey = "christian." + ch.getType().name();
+
+			if (propertiesKey == null || propertiesKey.isEmpty()) {
+				propertiesKey = defaultPropertiesKey;
+			}
+
 			addChristianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
 		}
 	}
