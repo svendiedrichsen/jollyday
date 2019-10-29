@@ -15,40 +15,24 @@
  */
 package de.jollyday;
 
-import de.jollyday.util.ResourceUtil;
-
 import java.time.LocalDate;
-import java.util.Locale;
 
 /**
- * Represents the holiday and contains the actual date and an localized
+ * Represents the holiday and contains the actual date and a localized
  * description.
  *
  * @author Sven Diedrichsen
  * @version $Id: $
  */
-public final class Holiday implements Comparable<Holiday> {
-	/**
-	 * The calculated hashcode cached for performance.
-	 */
-	private int hashCode = 0;
+public final class Holiday extends AbstractI18nObject implements Comparable<Holiday> {
 	/**
 	 * The date the holiday occurs.
 	 */
 	private final LocalDate date;
 	/**
-	 * The properties key to retrieve the description with.
-	 */
-	private final String propertiesKey;
-
-	/**
 	 * The type of holiday. e.g. official holiday or not.
-	 * */
-	private final HolidayType type;
-	/**
-	 * Utility for accessing resources.
 	 */
-	private final ResourceUtil resourceUtil = new ResourceUtil();
+	private final HolidayType type;
 
 	/**
 	 * Constructs a holiday for a date using the provided properties key to
@@ -62,10 +46,9 @@ public final class Holiday implements Comparable<Holiday> {
 	 *            a {@link de.jollyday.HolidayType} object.
 	 */
 	public Holiday(LocalDate date, String propertiesKey, HolidayType type) {
-		super();
-		this.type = type;
+		super(propertiesKey == null ? "" : propertiesKey);
 		this.date = date;
-		this.propertiesKey = propertiesKey == null ? "" : propertiesKey;
+		this.type = type;
 	}
 
 	/**
@@ -79,37 +62,6 @@ public final class Holiday implements Comparable<Holiday> {
 		return date;
 	}
 
-	/**
-	 * <p>
-	 * Getter for the field <code>propertiesKey</code>.
-	 * </p>
-	 *
-	 * @return the holidays properties key
-	 */
-	public String getPropertiesKey() {
-		return propertiesKey;
-	}
-
-	/**
-	 * The description read with the default locale.
-	 *
-	 * @return Description for this holiday
-	 */
-	public String getDescription() {
-		return resourceUtil.getHolidayDescription(Locale.getDefault(), getPropertiesKey());
-	}
-
-	/**
-	 * The description read with the provided locale.
-	 *
-	 * @param locale
-	 *            a {@link java.util.Locale} object.
-	 * @return Description for this holiday
-	 */
-	public String getDescription(Locale locale) {
-		return resourceUtil.getHolidayDescription(locale, getPropertiesKey());
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this) {
@@ -117,8 +69,7 @@ public final class Holiday implements Comparable<Holiday> {
 		}
 		if (obj instanceof Holiday) {
 			Holiday other = (Holiday) obj;
-			return other.date.equals(this.date) && other.propertiesKey.equals(this.propertiesKey)
-					&& type.equals(other.type);
+			return date.equals(other.date) && propertiesKey.equals(other.propertiesKey) && type.equals(other.type);
 		}
 		return false;
 	}
@@ -152,13 +103,15 @@ public final class Holiday implements Comparable<Holiday> {
 	/**
 	 * Compares this holiday to another holiday.
 	 *
-	 * The comparison is primarily based on the date, from earliest to latest by using the LocalDate comparator.
+	 * The comparison is primarily based on the date, from earliest to latest by
+	 * using the LocalDate comparator.
 	 *
-	 * @param other the other holiday to compare to, not null
+	 * @param other
+	 *            the other holiday to compare to, not null
 	 * @return the comparator value, negative if less, positive if greater
 	 */
 	@Override
 	public int compareTo(Holiday other) {
-		return this.getDate().compareTo(other.getDate());
+		return date.compareTo(other.date);
 	}
 }
