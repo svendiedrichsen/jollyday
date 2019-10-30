@@ -17,17 +17,12 @@ package de.jollyday.util;
 
 import java.net.URL;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import de.jollyday.City;
-import de.jollyday.Country;
-import de.jollyday.Region;
 
 /**
  * <p>
@@ -42,9 +37,9 @@ public class ResourceUtil {
 	 * Property prefix for country descriptions.
 	 */
 	private static final String COUNTRY_PROPERTY_PREFIX = "country.description";
-	private static final int COUNTRY_INDEX = 2;
-	private static final int REGION_INDEX = 3;
-	private static final int CITY_INDEX = 4;
+	public static final int COUNTRY_INDEX = 2;
+	public static final int REGION_INDEX = 3;
+	public static final int CITY_INDEX = 4;
 	/**
 	 * Property prefix for holiday descriptions.
 	 */
@@ -146,78 +141,6 @@ public class ResourceUtil {
 	}
 
 	/**
-	 * TODO
-	 *
-	 * @return
-	 */
-	public Set<Country> getCountries() {
-		Set<Country> contries = new HashSet<>();
-		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
-		for (String property : Collections.list(countryDescriptions.getKeys())) {
-			String[] split = property.split("\\.");
-			if (split.length > COUNTRY_INDEX) {
-				contries.add(new Country(split[COUNTRY_INDEX].toLowerCase()));
-			}
-		}
-		return contries;
-	}
-
-	/**
-	 * TODO
-	 *
-	 * @return
-	 */
-	public Map<String, Set<Region>> getRegions(String isoCode) {
-		Map<String, Set<Region>> regions = new HashMap<>();
-		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
-		for (String property : Collections.list(countryDescriptions.getKeys())) {
-			String[] split = property.split("\\.");
-			if (split.length > REGION_INDEX) {
-				String countryCode = split[COUNTRY_INDEX].toLowerCase();
-				if (isoCode.equals(countryCode)) {
-					Region region = new Region(countryCode, split[REGION_INDEX].toLowerCase());
-					if (regions.containsKey(region.getISOCode())) {
-						regions.get(region.getISOCode()).add(region);
-					} else {
-						Set<Region> internalRegions = new HashSet<>();
-						internalRegions.add(region);
-						regions.put(region.getISOCode(), internalRegions);
-					}
-				}
-			}
-		}
-		return regions;
-	}
-
-	/**
-	 * TODO
-	 *
-	 * @return
-	 */
-	public Map<String, Set<City>> getCitys(String regionCode) {
-		Map<String, Set<City>> cities = new HashMap<>();
-		ResourceBundle countryDescriptions = getCountryDescriptions(Locale.getDefault());
-		for (String property : Collections.list(countryDescriptions.getKeys())) {
-			String[] split = property.split("\\.");
-			if (split.length > CITY_INDEX) {
-				String internalRegionCode = split[REGION_INDEX].toLowerCase();
-				if (regionCode.equals(internalRegionCode)) {
-					City city = new City(split[COUNTRY_INDEX].toLowerCase(), internalRegionCode,
-							split[CITY_INDEX].toLowerCase());
-					if (cities.containsKey(city.getRegionCode())) {
-						cities.get(city.getRegionCode()).add(city);
-					} else {
-						Set<City> internalCities = new HashSet<>();
-						internalCities.add(city);
-						cities.put(city.getRegionCode(), internalCities);
-					}
-				}
-			}
-		}
-		return cities;
-	}
-
-	/**
 	 * Returns the description from the resource bundle if the key is contained.
 	 * It will return 'undefined' otherwise.
 	 *
@@ -254,7 +177,7 @@ public class ResourceUtil {
 	 *            Locale to retrieve the descriptions for.
 	 * @return ResourceBundle containing the descriptions for the locale.
 	 */
-	private ResourceBundle getCountryDescriptions(Locale l) {
+	public ResourceBundle getCountryDescriptions(Locale l) {
 		return getResourceBundle(l, COUNTRY_DESCRIPTIONS_CACHE, COUNTRY_DESCRIPTIONS_FILE_PREFIX);
 	}
 

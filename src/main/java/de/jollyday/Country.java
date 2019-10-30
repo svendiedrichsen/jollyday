@@ -15,9 +15,10 @@
  */
 package de.jollyday;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a country. It contains the ISO code, a localized description and a
@@ -32,9 +33,9 @@ public final class Country extends AbstractI18nObject implements Comparable<Coun
 	 */
 	private final String isoCode;
 	/**
-	 * A list of regions inside this country
+	 * A map of regions inside this country
 	 */
-	private final Set<Region> regions = new HashSet<>(0);
+	private final Map<String, Region> regions = new HashMap<>(0);
 
 	/**
 	 * Constructs a country using the provided ISO code to retrieve the
@@ -66,16 +67,27 @@ public final class Country extends AbstractI18nObject implements Comparable<Coun
 	 *            a {@link Region} object.
 	 */
 	public void addRegion(Region region) {
-		regions.add(region);
+		regions.put(region.getCode(), region);
 	}
 
 	/**
 	 * The {@link Region}s of this country.
 	 *
-	 * @return an unmodifiable set of {@link Region}s of this country
+	 * @return an unmodifiable list of all {@link Region}s of this country
 	 */
-	public Set<Region> getRegions() {
-		return Collections.unmodifiableSet(regions);
+	public Collection<Region> getRegions() {
+		return Collections.unmodifiableCollection(regions.values());
+	}
+
+	/**
+	 * Returns a specific {@link Region}s of this country.
+	 *
+	 * @param regionCode
+	 *            {@link java.lang.String}the region code.
+	 * @return a {@link Region} (could be <code>null</code>)
+	 */
+	public Region getRegion(String regionCode) {
+		return regions.get(regionCode);
 	}
 
 	@Override

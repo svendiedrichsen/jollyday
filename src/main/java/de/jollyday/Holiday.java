@@ -16,6 +16,7 @@
 package de.jollyday;
 
 import java.time.LocalDate;
+import java.util.Locale;
 
 /**
  * Represents the holiday and contains the actual date and a localized
@@ -72,6 +73,11 @@ public final class Holiday extends AbstractI18nObject implements Comparable<Holi
 			return date.equals(other.date) && propertiesKey.equals(other.propertiesKey) && type.equals(other.type);
 		}
 		return false;
+	}
+
+	@Override
+	public String getDescription(Locale locale) {
+		return resourceUtil.getHolidayDescription(locale, propertiesKey);
 	}
 
 	@Override

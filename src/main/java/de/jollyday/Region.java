@@ -15,9 +15,10 @@
  */
 package de.jollyday;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents a region. It contains the region code, a localized description and
@@ -36,9 +37,9 @@ public final class Region extends AbstractI18nObject implements Comparable<Regio
 	 */
 	private final String code;
 	/**
-	 * A list of cities inside this region
+	 * A map of cities inside this region
 	 */
-	private final Set<City> cities = new HashSet<>(0);
+	private final Map<String, City> cities = new HashMap<>(0);
 
 	/**
 	 * Constructs a region using the provided code to retrieve the description
@@ -84,16 +85,27 @@ public final class Region extends AbstractI18nObject implements Comparable<Regio
 	 *            a {@link City} object.
 	 */
 	public void addCity(City city) {
-		cities.add(city);
+		cities.put(city.getCode(), city);
 	}
 
 	/**
 	 * The {@link City Cities} of this region.
 	 *
-	 * @return an unmodifiable set of {@link City Cities} of this region
+	 * @return an unmodifiable list of all {@link City Cities} of this region
 	 */
-	public Set<City> getCities() {
-		return Collections.unmodifiableSet(cities);
+	public Collection<City> getCities() {
+		return Collections.unmodifiableCollection(cities.values());
+	}
+
+	/**
+	 * Returns a specific {@link City} of this region.
+	 *
+	 * @param cityCode
+	 *            {@link java.lang.String} the city code.
+	 * @return a {@link City} (could be <code>null</code>)
+	 */
+	public City getCity(String cityCode) {
+		return cities.get(cityCode);
 	}
 
 	@Override

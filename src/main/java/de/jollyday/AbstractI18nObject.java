@@ -38,7 +38,7 @@ public abstract class AbstractI18nObject {
 	/**
 	 * Utility for accessing resources.
 	 */
-	private final ResourceUtil resourceUtil = new ResourceUtil();
+	protected final ResourceUtil resourceUtil = new ResourceUtil();
 
 	/**
 	 * Constructs a country using the provided ISO code to retrieve the
@@ -69,7 +69,7 @@ public abstract class AbstractI18nObject {
 	 * @return Description for this object
 	 */
 	public String getDescription() {
-		return resourceUtil.getHolidayDescription(Locale.getDefault(), propertiesKey);
+		return getDescription(Locale.getDefault());
 	}
 
 	/**
@@ -80,7 +80,7 @@ public abstract class AbstractI18nObject {
 	 * @return Description for this object
 	 */
 	public String getDescription(Locale locale) {
-		return resourceUtil.getHolidayDescription(locale, propertiesKey);
+		return resourceUtil.getCountryDescription(locale, propertiesKey);
 	}
 
 	@Override
