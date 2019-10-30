@@ -3,14 +3,43 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
-		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
-		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS"/>
-		<tns:Fixed month="MARCH" day="8" descriptionPropertiesKey="INTERNATIONAL_WOMAN"/>
-		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="2" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY"/>
-		<tns:Fixed month="JUNE" day="28" descriptionPropertiesKey="CONSTITUTION_DAY"/>
-		<tns:Fixed month="AUGUST" day="24" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JANUARY" day="7" descriptionPropertiesKey="CHRISTMAS">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MARCH" day="8" descriptionPropertiesKey="INTERNATIONAL_WOMAN">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="2" validTo="2018" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:Fixed month="MAY" day="9" descriptionPropertiesKey="VICTORY">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JUNE" day="28" descriptionPropertiesKey="CONSTITUTION_DAY">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="AUGUST" day="24" descriptionPropertiesKey="INDEPENDENCE_DAY">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="OCTOBER" day="14" validFrom="2018" descriptionPropertiesKey="DEFENDER_FATHERLAND">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25" validFrom="2018" descriptionPropertiesKey="CHRISTMAS">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
 		<tns:ChristianHoliday type="EASTER" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="EASTER_MONDAY" chronology="JULIAN"/>
 		<tns:ChristianHoliday type="PENTECOST" chronology="JULIAN"/>
