@@ -36,7 +36,7 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:Fixed month="OCTOBER" day="14" descriptionPropertiesKey="DEFENDER_FATHERLAND" validFrom="2015">
+		<tns:Fixed month="OCTOBER" day="14" descriptionPropertiesKey="DEFENDER_OF_UKRAINE" validFrom="2015">
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
