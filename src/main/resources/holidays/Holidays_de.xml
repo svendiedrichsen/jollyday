@@ -20,6 +20,7 @@
     <tns:SubConfigurations hierarchy="be" description="Berlin">
         <tns:Holidays>
             <tns:Fixed month="MARCH" day="8" descriptionPropertiesKey="INTERNATIONAL_WOMAN" validFrom="2019"/>
+            <tns:Fixed month="MAY" day="8" descriptionPropertiesKey="LIBERATION" validFrom="2020" validTo="2020" />
         </tns:Holidays>
     </tns:SubConfigurations>
     <tns:SubConfigurations hierarchy="bb" description="Brandenburg">
