@@ -30,6 +30,7 @@
         <module>jollyday-jackson</module>
         <module>jollyday-jaxb</module>
         <module>jollyday-xstream</module>
+        <module>jollyday-test</module>
     </modules>
 
     <developers>
@@ -177,39 +178,6 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
-                <groupId>com.github.davidmoten</groupId>
-                <artifactId>jax-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>xjc</goal>
-                        </goals>
-                        <configuration>
-                            <systemProperties>
-                                <enableExternalEntityProcessing>true</enableExternalEntityProcessing>
-                            </systemProperties>
-                            <jvmArguments>
-                                <jvmArgument>-Xms32m</jvmArgument>
-                            </jvmArguments>
-                            <arguments>
-                                <!-- These are the arguments you would normally
-                                    have put with a call to xjc -->
-                                <argument>-verbose</argument>
-                                <argument>-d</argument>
-                                <argument>${project.build.directory}/generated-sources/jaxb</argument>
-                                <argument>-target</argument>
-                                <argument>2.1</argument>
-                                <argument>-p</argument>
-                                <argument>de.jollyday.config</argument>
-                                <argument>${project.basedir}/src/main/xsd/Holiday.xsd</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>biz.aQute.bnd</groupId>
                 <artifactId>bnd-maven-plugin</artifactId>

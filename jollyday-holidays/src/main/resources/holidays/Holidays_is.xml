@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="is" description="Iceland"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="JANUARY" day="6" descriptionPropertiesKey="EPIPHANY"/>
+		<tns:Fixed month="FEBRUARY" day="18" descriptionPropertiesKey="INTERNATIONAL_WOMAN"/>
+		<tns:Fixed month="MARCH" day="1" descriptionPropertiesKey="BEER_DAY"/>
+		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="MAY_DAY"/>
+		<tns:Fixed month="MAY" day="13" descriptionPropertiesKey="MOTHERS_DAY"/>
+		<tns:Fixed month="JUNE" day="17" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:Fixed month="JUNE" day="24" descriptionPropertiesKey="JONSMESSA"/>
+		<tns:Fixed month="NOVEMBER" day="16" descriptionPropertiesKey="LANGUAGE_DAY"/>
+		<tns:Fixed month="DECEMBER" day="1" descriptionPropertiesKey="SELF_GOVERNANCE"/>
+		<tns:Fixed month="DECEMBER" day="24" descriptionPropertiesKey="CHRISTMAS_EVE"/>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+		<tns:Fixed month="DECEMBER" day="31" descriptionPropertiesKey="NEW_YEARS_EVE"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="COMMERCE_DAY"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:FixedWeekdayBetweenFixed weekday="FRIDAY" descriptionPropertiesKey="HUSBANDS_DAY">
+			<tns:from month="JANUARY" day="19" />
+			<tns:to month="JANUARY" day="25" />
+		</tns:FixedWeekdayBetweenFixed>
+		<tns:FixedWeekdayRelativeToFixed which="FIRST" weekday="THURSDAY" when="AFTER" descriptionPropertiesKey="FIRST_DAY_SUMMER">
+			<tns:day month="APRIL" day="18"/>
+		</tns:FixedWeekdayRelativeToFixed>
+	</tns:Holidays>
+</tns:Configuration>

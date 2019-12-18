@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="za" description="South Africa"
+	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JANUARY" day="2" validFrom="2000" validTo="2000" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MARCH" day="21" descriptionPropertiesKey="HUMAN_RIGHTS">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="APRIL" day="6" validFrom="1952" validTo="1974" descriptionPropertiesKey="RIEBEECK"/>
+		<tns:Fixed month="APRIL" day="6" validFrom="1980" validTo="1994" descriptionPropertiesKey="FOUNDATION"/>
+		<tns:Fixed month="APRIL" day="27" descriptionPropertiesKey="FREEDOM">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="1" validFrom="1990" descriptionPropertiesKey="LABOUR_DAY">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="2" validFrom="2008" validTo="2008" descriptionPropertiesKey="HUMAN_RIGHTS">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="24" validFrom="1910" validTo="1951" descriptionPropertiesKey="EMPIRE"/>
+		<tns:Fixed month="MAY" day="31" validFrom="1910" validTo="1993" descriptionPropertiesKey="REPUBLIC_DAY"/>
+		<tns:Fixed month="JUNE" day="16" descriptionPropertiesKey="YOUTH">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JULY" day="10" validFrom="1961" validTo="1974"/>
+		<tns:Fixed month="AUGUST" day="9" descriptionPropertiesKey="INTERNATIONAL_WOMAN">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="SEPTEMBER" day="24" descriptionPropertiesKey="HERITAGE">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="OCTOBER" day="10" validFrom="1952" validTo="1993" descriptionPropertiesKey="KRUGER"/>
+		<tns:Fixed month="DECEMBER" day="16" descriptionPropertiesKey="RECONCILIATION">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="GOODWILL">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="31" validFrom="1999" validTo="1999" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:FixedWeekday which="FIRST" weekday="FRIDAY" month="MAY" validFrom="1987" validTo="1989" descriptionPropertiesKey="LABOUR_DAY"/>
+		<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JULY" validFrom="1952" validTo="1960" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" validTo="1951" descriptionPropertiesKey="KINGS_DAY"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="SEPTEMBER" validFrom="1952" validTo="1979" descriptionPropertiesKey="SETTLER"/>
+		<tns:ChristianHoliday type="EASTER" />
+		<tns:ChristianHoliday type="GOOD_FRIDAY" />
+		<tns:ChristianHoliday type="EASTER_MONDAY" />
+		<tns:ChristianHoliday type="ASCENSION_DAY" validFrom="1910" validTo="1993"/>
+	</tns:Holidays>
+</tns:Configuration>
