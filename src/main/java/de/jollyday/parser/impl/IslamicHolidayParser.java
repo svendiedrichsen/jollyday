@@ -94,6 +94,9 @@ public class IslamicHolidayParser extends AbstractHolidayParser {
 			case MAWLID_AN_NABI:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 3, 12);
 				break;
+			case MAWLID_AN_NABI_2:
+				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 3, 13);
+				break;
 			case RAMADAN:
 				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 9, 1);
 				break;

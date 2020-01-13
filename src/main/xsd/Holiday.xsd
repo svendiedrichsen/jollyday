@@ -194,6 +194,7 @@
 			<enumeration value="NEWYEAR"></enumeration>
 			<enumeration value="ASCHURA"></enumeration>
 			<enumeration value="MAWLID_AN_NABI"></enumeration>
+			<enumeration value="MAWLID_AN_NABI_2"></enumeration>
 			<enumeration value="LAILAT_AL_MIRAJ"></enumeration>
 			<enumeration value="LAILAT_AL_BARAT"></enumeration>
 			<enumeration value="RAMADAN"></enumeration>
