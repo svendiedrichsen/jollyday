@@ -32,6 +32,10 @@ public class HolidayMATest extends AbstractCountryTestBase {
     public void test11ofJanuary() {
         testHolidayForKey("INDEPENDENCE_MANIFESTO", calendarUtil.create(YEAR, 1, 11));
     }
+    @Test
+    public void testMawlidNabiDay2() {
+        testHolidayForKey("islamic.MAWLID_AN_NABI_2", calendarUtil.create(YEAR, 10, 30));
+    }
 
     @Test
     public void testThroneDay() {
