@@ -10,9 +10,9 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class HolidayMATest extends AbstractCountryTestBase {
 
@@ -25,13 +25,52 @@ public class HolidayMATest extends AbstractCountryTestBase {
         final HolidayManager holidayManager = HolidayManager
                 .getInstance(ManagerParameters.create(MOROCCAN_CALENDAR));
         Set<Holiday> holidays = holidayManager.getHolidays(YEAR);
-        assertEquals(17, holidays.size());
+        assertEquals(16, holidays.size());
     }
 
     @Test
     public void test11ofJanuary() {
         testHolidayForKey("INDEPENDENCE_MANIFESTO", calendarUtil.create(YEAR, 1, 11));
     }
+
+    @Test
+    public void testGreenMarch() {
+        testHolidayForKey("GREEN_MARCH_DAY", calendarUtil.create(YEAR, 11, 6));
+    }
+
+    @Test
+    public void testAidElFitr() {
+        Set<LocalDate> dates = calendarUtil.getIslamicHolidaysInGregorianYear(YEAR, 10, 1);
+        final HolidayManager holidayManager = HolidayManager
+                .getInstance(ManagerParameters.create(MOROCCAN_CALENDAR));
+        Set<Holiday> holidays = holidayManager.getHolidays(YEAR);
+        Set<LocalDate> holidayTests = holidays
+                .stream()
+                .map(Holiday::getDate)
+                .collect(Collectors.toSet());
+        assertTrue(holidayTests.containsAll(dates));
+
+    }
+
+    @Test
+    public void testInvalidAidElFitr() {
+        Set<LocalDate> dates = calendarUtil.getIslamicHolidaysInGregorianYear(2002, 10, 1);
+        final HolidayManager holidayManager = HolidayManager
+                .getInstance(ManagerParameters.create(MOROCCAN_CALENDAR));
+        Set<Holiday> holidays = holidayManager.getHolidays(2002);
+        Set<LocalDate> holidayTests = holidays
+                .stream()
+                .map(Holiday::getDate)
+                .collect(Collectors.toSet());
+        assertFalse(holidayTests.containsAll(dates));
+
+    }
+
+    @Test
+    public void testYouthDay() {
+        testHolidayForKey("MOROCCO_YOUTH_DAY", calendarUtil.create(YEAR, 8, 21));
+    }
+
     @Test
     public void testMawlidNabiDay2() {
         testHolidayForKey("islamic.MAWLID_AN_NABI_2", calendarUtil.create(YEAR, 10, 30));

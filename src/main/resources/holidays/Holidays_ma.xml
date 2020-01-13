@@ -12,14 +12,13 @@
         <tns:Fixed month="AUGUST" day="21" descriptionPropertiesKey="MOROCCO_YOUTH_DAY"/>
         <tns:Fixed month="NOVEMBER" day="6" descriptionPropertiesKey="GREEN_MARCH_DAY"/>
         <tns:Fixed month="NOVEMBER" day="18" descriptionPropertiesKey="INDEPENDENCE_DAY_OF_MOROCCO"/>
-        <tns:IslamicHoliday type="RAMADAN_END"/>
-        <tns:IslamicHoliday type="ID_AL_FITR"/>
-        <tns:IslamicHoliday type="ID_AL_FITR_2"/>
-        <tns:IslamicHoliday type="ID_UL_ADHA"/>
-        <tns:IslamicHoliday type="ID_UL_ADHA_2"/>
-        <tns:IslamicHoliday type="NEWYEAR"/>
-        <tns:IslamicHoliday type="MAWLID_AN_NABI"/>
-        <tns:IslamicHoliday type="MAWLID_AN_NABI_2"/>
+        <tns:IslamicHoliday type="ID_AL_FITR"  validFrom="2004"/>
+        <tns:IslamicHoliday type="ID_AL_FITR_2" validFrom="2004"/>
+        <tns:IslamicHoliday type="ID_UL_ADHA" validFrom="2004"/>
+        <tns:IslamicHoliday type="ID_UL_ADHA_2" validFrom="2004"/>
+        <tns:IslamicHoliday type="NEWYEAR" validFrom="2004"/>
+        <tns:IslamicHoliday type="MAWLID_AN_NABI" validFrom="2004"/>
+        <tns:IslamicHoliday type="MAWLID_AN_NABI_2" validFrom="2004"/>
     </tns:Holidays>
 
 </tns:Configuration>
