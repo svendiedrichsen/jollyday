@@ -9,7 +9,7 @@
         <tns:Fixed month="JULY" day="30" descriptionPropertiesKey="THRONE_DAY"/>
         <tns:Fixed month="AUGUST" day="14" descriptionPropertiesKey="OUED_ED_DAHAB_DAY"/>
         <tns:Fixed month="AUGUST" day="20" descriptionPropertiesKey="REVOLUTION_DAY"/>
-        <tns:Fixed month="AUGUST" day="21" descriptionPropertiesKey="BIRTHDAY_OF_KING"/>
+        <tns:Fixed month="AUGUST" day="21" descriptionPropertiesKey="MOROCCO_YOUTH_DAY"/>
         <tns:Fixed month="NOVEMBER" day="6" descriptionPropertiesKey="GREEN_MARCH_DAY"/>
         <tns:Fixed month="NOVEMBER" day="18" descriptionPropertiesKey="INDEPENDENCE_DAY_OF_MOROCCO"/>
         <tns:IslamicHoliday type="RAMADAN_END"/>
