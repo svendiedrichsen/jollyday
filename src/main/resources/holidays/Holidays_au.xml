@@ -3,18 +3,38 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
+		<tns:Fixed month="JANUARY" day="1" validTo="2007" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="JANUARY" day="1" validFrom="2020" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="JANUARY" day="1" validFrom="2020" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
 		<tns:Fixed month="JANUARY" day="26" validTo="2007" descriptionPropertiesKey="NATIONAL_DAY"/>
 		<tns:Fixed month="JANUARY" day="26" validFrom="2008" descriptionPropertiesKey="NATIONAL_DAY">
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="ANZAC"/>
-		<tns:Fixed month="JANUARY" day="1" validTo="2007" descriptionPropertiesKey="NEW_YEAR"/>
+		<tns:Fixed month="APRIL" day="25" validFrom="2020" descriptionPropertiesKey="ANZAC"/>
 		<tns:Fixed month="DECEMBER" day="25" validTo="2007" descriptionPropertiesKey="CHRISTMAS">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="DECEMBER" day="26" validTo="2007" descriptionPropertiesKey="BOXING_DAY">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="25" validFrom="2020" descriptionPropertiesKey="CHRISTMAS"/>
+		<tns:Fixed month="DECEMBER" day="25" validFrom="2020" descriptionPropertiesKey="CHRISTMAS">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="26" validFrom="2020" descriptionPropertiesKey="BOXING_DAY"/>
+		<tns:Fixed month="DECEMBER" day="26" validFrom="2020" descriptionPropertiesKey="BOXING_DAY">
+			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="TUESDAY"/>
+			<tns:MovingCondition substitute="MONDAY" with="NEXT" weekday="TUESDAY"/>
 		</tns:Fixed>
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
@@ -23,7 +43,7 @@
 	</tns:Holidays>
 	<tns:SubConfigurations hierarchy="act" description="Australian Capital Territory">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
@@ -31,54 +51,65 @@
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="APRIL" day="25" validFrom="2020" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="CANBERRA_DAY"/>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="LABOUR_DAY"/>
-			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" descriptionPropertiesKey="FAMILY_COMMUNITY"/>
+			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" validTo="2019" descriptionPropertiesKey="FAMILY_COMMUNITY"/>
+			<tns:FixedWeekdayRelativeToFixed validFrom="2020" which="FIRST" weekday="MONDAY" when="AFTER" descriptionPropertiesKey="RECONCILIATION">
+				<tns:day month="MAY" day="26"/>
+			</tns:FixedWeekdayRelativeToFixed>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="nsw" description="New South Wales">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="LABOUR_DAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" validFrom="2020" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="nt" description="Nothern Territory">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="APRIL" day="25" validFrom="2020" descriptionPropertiesKey="ANZAC">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
@@ -89,38 +120,59 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="qld" description="Queensland">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="APRIL" day="25" validFrom="2020" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="LABOUR_DAY"/>
-			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" validTo="2019" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="OCTOBER" validFrom="2020" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 		</tns:Holidays>
+		<tns:SubConfigurations hierarchy="br" description="Brisbane Area">
+			<tns:Holidays>
+				<tns:FixedWeekdayBetweenFixed weekday="WEDNESDAY" validFrom="2020" descriptionPropertiesKey="EKKA">
+					<tns:from month="AUGUST" day="10" />
+					<tns:to month="AUGUST" day="16" />
+				</tns:FixedWeekdayBetweenFixed>
+			</tns:Holidays>
+		</tns:SubConfigurations>
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="sa" description="South Australia">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
+			<tns:Fixed month="JANUARY" day="26" validFrom="2020" descriptionPropertiesKey="NATIONAL_DAY"/>
 			<tns:Fixed month="APRIL" day="25" validTo="2007" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="APRIL" day="25" validFrom="2020" descriptionPropertiesKey="ANZAC">
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="PROCLAMATION">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="PROCLAMATION">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2020" descriptionPropertiesKey="PROCLAMATION">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="TUESDAY"/>
+				<tns:MovingCondition substitute="MONDAY" with="NEXT" weekday="TUESDAY"/>
 			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="ADELAIDE_CUP"/>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
@@ -129,16 +181,16 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="tas" description="Tasmania">
 		<tns:Holidays>
-			<tns:Fixed month="APRIL" day="25" descriptionPropertiesKey="ANZAC"/>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="APRIL" day="25" validTo="2019" descriptionPropertiesKey="ANZAC"/>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
@@ -146,12 +198,12 @@
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 			<tns:ChristianHoliday type="EASTER_TUESDAY"/>
 		</tns:Holidays>
-		<tns:SubConfigurations hierarchy="ho" description="Hobard Area">
+		<tns:SubConfigurations hierarchy="ho" description="Hobart Area">
 			<tns:Holidays>
 				<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="FEBRUARY" descriptionPropertiesKey="HOBART"/>
 			</tns:Holidays>
 		</tns:SubConfigurations>
-		<tns:SubConfigurations hierarchy="nh" description="Non-Hobard Area">
+		<tns:SubConfigurations hierarchy="nh" description="Non-Hobart Area">
 			<tns:Holidays>
 				<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" descriptionPropertiesKey="RECREATION"/>
 			</tns:Holidays>
@@ -159,26 +211,27 @@
 	</tns:SubConfigurations>
 	<tns:SubConfigurations hierarchy="vic" description="Victoria">
 		<tns:Holidays>
-			<tns:Fixed month="APRIL" day="25" descriptionPropertiesKey="ANZAC"/>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="APRIL" day="25" validTo="2019" descriptionPropertiesKey="ANZAC"/>
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="LABOUR_DAY"/>
 			<tns:FixedWeekday which="SECOND" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 			<tns:FixedWeekday which="FIRST" weekday="TUESDAY" month="NOVEMBER" descriptionPropertiesKey="MELBOURNE_CUP"/>
+			<tns:FixedWeekday which="LAST" weekday="FRIDAY" month="SEPTEMBER" validFrom="2020" descriptionPropertiesKey="AFL"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
-	<tns:SubConfigurations hierarchy="wa" description="West Australia">
+	<tns:SubConfigurations hierarchy="wa" description="Western Australia">
 		<tns:Holidays>
-			<tns:Fixed month="JANUARY" day="1" validFrom="2008" descriptionPropertiesKey="NEW_YEAR">
+			<tns:Fixed month="JANUARY" day="1" validFrom="2008" validTo="2019" descriptionPropertiesKey="NEW_YEAR">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
@@ -186,17 +239,22 @@
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" descriptionPropertiesKey="CHRISTMAS">
+			<tns:Fixed month="APRIL" day="25" validFrom="2020" descriptionPropertiesKey="ANZAC">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
-			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" descriptionPropertiesKey="BOXING_DAY">
+			<tns:Fixed month="DECEMBER" day="25" validFrom="2008" validTo="2019" descriptionPropertiesKey="CHRISTMAS">
+				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
+				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+			</tns:Fixed>
+			<tns:Fixed month="DECEMBER" day="26" validFrom="2008" validTo="2019" descriptionPropertiesKey="BOXING_DAY">
 				<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 				<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 			</tns:Fixed>
 			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MARCH" descriptionPropertiesKey="LABOUR_DAY"/>
-			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="FOUNDATION"/>
-			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="SEPTEMBER"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" validTo="2019" descriptionPropertiesKey="FOUNDATION"/>
+			<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" validFrom="2020" descriptionPropertiesKey="WESTERN_AUSTRALIA"/>
+			<tns:FixedWeekday which="LAST" weekday="MONDAY" month="SEPTEMBER" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 		</tns:Holidays>
 	</tns:SubConfigurations>
 </tns:Configuration>

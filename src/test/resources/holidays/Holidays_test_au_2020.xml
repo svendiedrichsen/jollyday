@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="au" description="Australia"
+                   xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.example.org/Holiday ../../../main/xsd/Holiday.xsd">
+    <tns:Holidays>
+        <!-- New Year's Day -->
+        <tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
+        <!-- Australia Day -->
+        <tns:Fixed month="JANUARY" day="27" descriptionPropertiesKey="NATIONAL_DAY"/>
+        <!-- Good Friday -->
+        <tns:Fixed month="APRIL" day="10" descriptionPropertiesKey="christian.GOOD_FRIDAY"/>
+        <!-- Easter Saturday -->
+        <tns:Fixed month="APRIL" day="11" descriptionPropertiesKey="christian.EASTER_SATURDAY"/>
+        <!-- Easter Sunday -->
+        <tns:Fixed month="APRIL" day="12" descriptionPropertiesKey="christian.EASTER"/>
+        <!-- Easter Monday -->
+        <tns:Fixed month="APRIL" day="13" descriptionPropertiesKey="christian.EASTER_MONDAY"/>
+        <!-- ANZAC Day -->
+        <tns:Fixed month="APRIL" day="25" descriptionPropertiesKey="ANZAC"/>
+        <!-- Christmas Day -->
+        <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+        <!-- Boxing Day -->
+        <tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="BOXING_DAY"/>
+        <!-- Additional Boxing Day -->
+        <tns:Fixed month="DECEMBER" day="28" descriptionPropertiesKey="BOXING_DAY"/>
+    </tns:Holidays>
+    <tns:SubConfigurations hierarchy="act" description="Australian Capital Territory">
+        <tns:Holidays>
+            <!-- Anzac Day -->
+            <tns:Fixed month="APRIL" day="27" descriptionPropertiesKey="ANZAC"/>
+            <!-- Canberra Day -->
+            <tns:Fixed month="MARCH" day="9" descriptionPropertiesKey="CANBERRA_DAY"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="JUNE" day="8" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- Labour Day -->
+            <tns:Fixed month="OCTOBER" day="5" descriptionPropertiesKey="LABOUR_DAY"/>
+            <!-- Reconciliation Day -->
+            <tns:Fixed month="JUNE" day="1" descriptionPropertiesKey="RECONCILIATION"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="nsw" description="New South Wales">
+        <tns:Holidays>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="JUNE" day="8" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- Labour Day -->
+            <tns:Fixed month="OCTOBER" day="5" descriptionPropertiesKey="LABOUR_DAY"/>
+            <!-- Bank -->
+            <tns:Fixed month="AUGUST" day="3" descriptionPropertiesKey="BANK_HOLIDAY"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="nt" description="Nothern Territory">
+        <tns:Holidays>
+            <!-- May Day -->
+            <tns:Fixed month="MAY" day="4" descriptionPropertiesKey="MAY_DAY"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="JUNE" day="8" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- Picnic -->
+            <tns:Fixed month="AUGUST" day="3" descriptionPropertiesKey="PICNIC"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="qld" description="Queensland">
+        <tns:Holidays>
+            <!-- Labour Day -->
+            <tns:Fixed month="MAY" day="4" descriptionPropertiesKey="LABOUR_DAY"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="OCTOBER" day="5" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+        </tns:Holidays>
+        <tns:SubConfigurations hierarchy="br" description="Brisbane Area">
+            <tns:Holidays>
+                <!-- Ekka Day -->
+                <tns:Fixed month="AUGUST" day="12" descriptionPropertiesKey="EKKA"/>
+            </tns:Holidays>
+        </tns:SubConfigurations>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="sa" description="South Australia">
+        <tns:Holidays>
+            <!-- Australia Day -->
+            <tns:Fixed month="JANUARY" day="26" descriptionPropertiesKey="NATIONAL_DAY"/>
+            <!-- Proclamation Day -->
+            <tns:Fixed month="DECEMBER" day="28" descriptionPropertiesKey="PROCLAMATION"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="JUNE" day="8" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- Labour Day -->
+            <tns:Fixed month="OCTOBER" day="5" descriptionPropertiesKey="LABOUR_DAY"/>
+            <!-- Adelaide Cup -->
+            <tns:Fixed month="MARCH" day="9" descriptionPropertiesKey="ADELAIDE_CUP"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="tas" description="Tasmania">
+        <tns:Holidays>
+            <!-- Eight Hour Day -->
+            <tns:Fixed month="MARCH" day="9" descriptionPropertiesKey="EIGHT"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="JUNE" day="8" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- Easter Tuesday -->
+            <tns:Fixed month="APRIL" day="14" descriptionPropertiesKey="christian.EASTER_TUESDAY"/>
+        </tns:Holidays>
+        <tns:SubConfigurations hierarchy="ho" description="Hobart Area">
+            <tns:Holidays>
+                <tns:Fixed month="FEBRUARY" day="10" descriptionPropertiesKey="HOBART"/>
+            </tns:Holidays>
+        </tns:SubConfigurations>
+        <tns:SubConfigurations hierarchy="nh" description="Non-Hobart Area">
+            <tns:Holidays>
+                <tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="RECREATION"/>
+            </tns:Holidays>
+        </tns:SubConfigurations>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="vic" description="Victoria">
+        <tns:Holidays>
+            <!-- Labour Day -->
+            <tns:Fixed month="MARCH" day="9" descriptionPropertiesKey="LABOUR_DAY"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="JUNE" day="8" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- AFL Grand Final Friday -->
+            <tns:Fixed month="SEPTEMBER" day="25" descriptionPropertiesKey="AFL"/>
+            <!-- Melbourne Cup -->
+            <tns:Fixed month="NOVEMBER" day="3" descriptionPropertiesKey="MELBOURNE_CUP"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+    <tns:SubConfigurations hierarchy="wa" description="Western Australia">
+        <tns:Holidays>
+            <!-- Anzac Day -->
+            <tns:Fixed month="APRIL" day="27" descriptionPropertiesKey="ANZAC"/>
+            <!-- Western Australia Day -->
+            <tns:Fixed month="JUNE" day="1" descriptionPropertiesKey="WESTERN_AUSTRALIA"/>
+            <!-- Queen's Birthday -->
+            <tns:Fixed month="SEPTEMBER" day="28" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
+            <!-- Labour Day -->
+            <tns:Fixed month="MARCH" day="2" descriptionPropertiesKey="LABOUR_DAY"/>
+        </tns:Holidays>
+    </tns:SubConfigurations>
+</tns:Configuration>

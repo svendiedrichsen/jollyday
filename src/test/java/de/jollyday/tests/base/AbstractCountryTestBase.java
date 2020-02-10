@@ -20,6 +20,8 @@ import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.junit.Assert;
 
 import java.util.ArrayList;
@@ -49,14 +51,15 @@ public abstract class AbstractCountryTestBase {
 		}
 	}
 
-	protected void compareData(HolidayManager expected, HolidayManager found, int year) {
+	protected void compareData(HolidayManager expected, HolidayManager found, int year,
+			boolean assertAllHolidaysChecked) {
 		CalendarHierarchy expectedHierarchy = expected.getCalendarHierarchy();
 		List<String> args = new ArrayList<>();
-		compareDates(expected, found, expectedHierarchy, args, year);
+		compareDates(expected, found, expectedHierarchy, args, year, assertAllHolidaysChecked);
 	}
 
 	private void compareDates(HolidayManager expected, HolidayManager found, CalendarHierarchy h,
-			final List<String> args, int year) {
+			final List<String> args, int year, boolean assertAllHolidaysChecked) {
 		Set<Holiday> expectedHolidays = expected.getHolidays(year, args.toArray(new String[] {}));
 		Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[] {}));
 		for (Holiday expectedHoliday : expectedHolidays) {
@@ -65,14 +68,26 @@ public abstract class AbstractCountryTestBase {
 				Assert.fail("Could not find " + expectedHoliday + " in " + h.getDescription() + " - " + foundHolidays);
 			}
 		}
+
+		if (assertAllHolidaysChecked) {
+			foundHolidays.removeAll(expectedHolidays);
+			MatcherAssert.assertThat(
+					"Not all found holidays were expected. Leftover in " + found.getCalendarHierarchy().getDescription()
+							+ args.toString() + " : " + foundHolidays, foundHolidays.isEmpty(), CoreMatchers.is(true));
+		}
+
 		for (String id : h.getChildren().keySet()) {
 			ArrayList<String> newArgs = new ArrayList<>(args);
 			newArgs.add(id);
-			compareDates(expected, found, h.getChildren().get(id), newArgs, year);
+			compareDates(expected, found, h.getChildren().get(id), newArgs, year, assertAllHolidaysChecked);
 		}
 	}
 
 	protected void validateCalendarData(final String countryCode, int year) {
+		validateCalendarData(countryCode, year, false);
+	}
+
+	protected void validateCalendarData(final String countryCode, int year, boolean assertAllHolidaysChecked) {
 		HolidayManager dataManager = HolidayManager.getInstance(countryCode);
 		HolidayManager testManager = HolidayManager.getInstance("test_" + countryCode + "_" + Integer.toString(year));
 
@@ -80,7 +95,7 @@ public abstract class AbstractCountryTestBase {
 		CalendarHierarchy testHierarchy = testManager.getCalendarHierarchy();
 
 		compareHierarchies(testHierarchy, dataHierarchy);
-		compareData(testManager, dataManager, year);
+		compareData(testManager, dataManager, year, assertAllHolidaysChecked);
 	}
 
 	/**
