@@ -15,13 +15,14 @@
  */
 package de.jollyday.spi;
 
-import java.time.MonthDay;
+import java.time.chrono.Chronology;
 
 /**
  * @author sdiedrichsen
  * @version $
- * @since 01.11.19
+ * @since 10.03.20
  */
-public interface Fixed extends Described, Officiality, Movable, Limited {
-    MonthDay day();
+public interface ChristianHoliday extends Limited, Described {
+    ChristianHolidayType type();
+    Chronology chronology();
 }

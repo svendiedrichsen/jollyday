@@ -15,13 +15,12 @@
  */
 package de.jollyday.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import de.jollyday.Holiday;
-import de.jollyday.HolidayType;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.spi.Fixed;
+
+import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * The Class FixedParser. Parses a fixed date
@@ -45,7 +44,7 @@ public class FixedParser extends AbstractHolidayParser {
 		}
 		LocalDate date = calendarUtil.create(year, fixed);
 		LocalDate movedDate = moveDate(fixed, date);
-		Holiday h = new Holiday(movedDate, fixed.descriptionPropertiesKey(), fixed.type());
+		Holiday h = new Holiday(movedDate, fixed.descriptionPropertiesKey(), fixed.officiality());
 		holidays.add(h);
 	}
 

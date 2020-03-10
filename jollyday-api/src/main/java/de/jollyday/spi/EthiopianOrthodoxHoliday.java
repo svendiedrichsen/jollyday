@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Sven Diedrichsen
+ * Copyright 2020 Sven Diedrichsen
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,11 @@
  */
 package de.jollyday.spi;
 
-import de.jollyday.HolidayType;
-
 /**
  * @author sdiedrichsen
  * @version $
- * @since 03.11.19
+ * @since 10.03.20
  */
-public interface Typed {
-    HolidayType type();
+public interface EthiopianOrthodoxHoliday extends Described, Limited, Officiality {
+    EthiopianOrthodoxHolidayType type();
 }

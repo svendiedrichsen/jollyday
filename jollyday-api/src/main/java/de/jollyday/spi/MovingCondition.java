@@ -15,13 +15,15 @@
  */
 package de.jollyday.spi;
 
-import java.time.MonthDay;
+import java.time.DayOfWeek;
 
 /**
  * @author sdiedrichsen
  * @version $
- * @since 01.11.19
+ * @since 10.03.20
  */
-public interface Fixed extends Described, Officiality, Movable, Limited {
-    MonthDay day();
+public interface MovingCondition {
+    DayOfWeek substitute();
+    With with();
+    DayOfWeek weekday();
 }

@@ -15,13 +15,29 @@
  */
 package de.jollyday.spi;
 
-import java.time.MonthDay;
-
 /**
  * @author sdiedrichsen
  * @version $
- * @since 01.11.19
+ * @since 10.03.20
  */
-public interface Fixed extends Described, Officiality, Movable, Limited {
-    MonthDay day();
+public enum ChristianHolidayType {
+    GOOD_FRIDAY,
+    EASTER_MONDAY,
+    ASCENSION_DAY,
+    WHIT_MONDAY,
+    CORPUS_CHRISTI,
+    MAUNDY_THURSDAY,
+    ASH_WEDNESDAY,
+    MARDI_GRAS,
+    GENERAL_PRAYER_DAY,
+    CLEAN_MONDAY,
+    SHROVE_MONDAY,
+    PENTECOST,
+    CARNIVAL,
+    EASTER_SATURDAY,
+    EASTER_TUESDAY,
+    SACRED_HEART,
+    EASTER,
+    PENTECOST_MONDAY,
+    WHIT_SUNDAY;
 }

@@ -15,13 +15,13 @@
  */
 package de.jollyday.spi;
 
-import java.time.MonthDay;
+import de.jollyday.HolidayType;
 
 /**
  * @author sdiedrichsen
  * @version $
- * @since 01.11.19
+ * @since 03.11.19
  */
-public interface Fixed extends Described, Officiality, Movable, Limited {
-    MonthDay day();
+public interface Officiality {
+    HolidayType officiality();
 }
