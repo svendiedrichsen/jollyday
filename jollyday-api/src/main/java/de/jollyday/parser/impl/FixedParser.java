@@ -17,10 +17,10 @@ package de.jollyday.parser.impl;
 
 import de.jollyday.Holiday;
 import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.spi.Fixed;
+import de.jollyday.spi.Holidays;
 
-import java.time.LocalDate;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * The Class FixedParser. Parses a fixed date
@@ -30,22 +30,12 @@ import java.util.Set;
  */
 public class FixedParser extends AbstractHolidayParser {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
-	 * de.jollyday.config.Holidays)
-	 */
-	/** {@inheritDoc} */
 	@Override
-	public void parse(int year, Set<Holiday> holidays, final Fixed fixed) {
-		if (!isValid(fixed, year)) {
-			continue;
-		}
-		LocalDate date = calendarUtil.create(year, fixed);
-		LocalDate movedDate = moveDate(fixed, date);
-		Holiday h = new Holiday(movedDate, fixed.descriptionPropertiesKey(), fixed.officiality());
-		holidays.add(h);
+	public Set<Holiday> parse(int year, Holidays holidays) {
+		return holidays.fixed().stream()
+				.filter(fixed -> isValid(fixed, year))
+				.map(fixed -> new Holiday(moveDate(fixed, calendarUtil.create(year, fixed)), fixed.descriptionPropertiesKey(), fixed.officiality()))
+				.collect(Collectors.toSet());
 	}
 
 }
