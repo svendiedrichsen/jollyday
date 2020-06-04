@@ -21,7 +21,6 @@
 		<tns:ChristianHoliday type="EASTER" localizedType="OFFICIAL_HOLIDAY" />
 		<tns:ChristianHoliday type="EASTER_MONDAY" localizedType="OFFICIAL_HOLIDAY" />
 		<tns:ChristianHoliday type="ASCENSION_DAY" localizedType="OFFICIAL_HOLIDAY" />
-		<tns:ChristianHoliday type="WHIT_MONDAY" localizedType="OFFICIAL_HOLIDAY" />
 		<tns:ChristianHoliday type="PENTECOST" localizedType="OFFICIAL_HOLIDAY" />
 		<tns:ChristianHoliday type="PENTECOST_MONDAY" localizedType="OFFICIAL_HOLIDAY" />
 	</tns:Holidays>
