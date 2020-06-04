@@ -15,18 +15,17 @@
  */
 package de.jollyday.parser.impl;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.Set;
-
 import de.jollyday.Holiday;
-import de.jollyday.HolidayType;
-import de.jollyday.config.Holidays;
-import de.jollyday.config.RelativeToFixed;
-import de.jollyday.config.When;
-import de.jollyday.parser.AbstractHolidayParser;
+import de.jollyday.parser.functions.CreateHoliday;
+import de.jollyday.parser.functions.FixedToLocalDate;
+import de.jollyday.parser.predicates.ValidLimitation;
 import de.jollyday.spi.Relation;
 import de.jollyday.spi.RelativeToFixed;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * The Class RelativeToFixedParser.
@@ -34,35 +33,35 @@ import de.jollyday.spi.RelativeToFixed;
  * @author tboven
  * @version $Id: $
  */
-public class RelativeToFixedParser extends AbstractHolidayParser {
+public class RelativeToFixedParser implements Function<Integer, Stream<Holiday>> {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
-	 * de.jollyday.config.Holidays)
-	 */
-	/** {@inheritDoc} */
+	private Stream<RelativeToFixed> relativeToFixed;
+
+	public RelativeToFixedParser(Stream<RelativeToFixed> relativeToFixed) {
+		this.relativeToFixed = relativeToFixed;
+	}
+
 	@Override
-	public void parse(int year, Set<Holiday> holidays, final RelativeToFixed rf) {
-		if (!isValid(rf, year)) {
-			continue;
-		}
-		LocalDate fixed = calendarUtil.create(year, rf.date());
-		if (rf.weekday() != null) {
-			// if weekday is set -> move to weekday
-			DayOfWeek day = rf.weekday();
-			int direction = (rf.when() == Relation.BEFORE ? -1 : 1);
-			// don't test start day
-			fixed = fixed.plusDays(direction);
-			while (fixed.getDayOfWeek() != day){
-				fixed = fixed.plusDays(direction);
-			}
-		} else if (rf.days() != null) {
-			// if number of days set -> move number of days
-			fixed = fixed.plusDays(rf.when() == Relation.BEFORE ? -rf.days() : rf.days());
-		}
-		holidays.add(new Holiday(fixed, rf.descriptionPropertiesKey(), rf.type()));
+	public Stream<Holiday> apply(Integer year) {
+		return relativeToFixed
+				.filter(new ValidLimitation(year))
+				.map(rf -> {
+					LocalDate fixed = new FixedToLocalDate(year).apply(rf.date());
+					if (rf.weekday() != null) {
+						// if weekday is set -> move to weekday
+						DayOfWeek day = rf.weekday();
+						int direction = (rf.when() == Relation.BEFORE ? -1 : 1);
+						// don't test start day
+						fixed = fixed.plusDays(direction);
+						while (fixed.getDayOfWeek() != day){
+							fixed = fixed.plusDays(direction);
+						}
+					} else if (rf.days() != null) {
+						// if number of days set -> move number of days
+						fixed = fixed.plus(rf.when() == Relation.BEFORE ? rf.days().negated() : rf.days());
+					}
+					return new CreateHoliday(fixed).apply(rf);
+				});
 	}
 
 }

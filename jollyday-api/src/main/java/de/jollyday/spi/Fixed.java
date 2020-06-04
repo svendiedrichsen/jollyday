@@ -22,6 +22,6 @@ import java.time.MonthDay;
  * @version $
  * @since 01.11.19
  */
-public interface Fixed extends Described, Officiality, Movable, Limited {
+public interface Fixed extends Described, Movable, Limited {
     MonthDay day();
 }

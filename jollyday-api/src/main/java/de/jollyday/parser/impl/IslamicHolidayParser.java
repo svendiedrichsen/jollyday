@@ -15,14 +15,16 @@
  */
 package de.jollyday.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import de.jollyday.Holiday;
-import de.jollyday.HolidayType;
-import de.jollyday.config.Holidays;
-import de.jollyday.config.IslamicHoliday;
-import de.jollyday.parser.AbstractHolidayParser;
+import de.jollyday.parser.functions.CalculateRelativeDatesFromChronologyWithinGregorianYear;
+import de.jollyday.parser.functions.CreateHoliday;
+import de.jollyday.parser.predicates.ValidLimitation;
+import de.jollyday.spi.IslamicHoliday;
+
+import java.time.LocalDate;
+import java.time.chrono.HijrahChronology;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * This parser calculates gregorian dates for the different islamic holidays.
@@ -30,82 +32,71 @@ import de.jollyday.parser.AbstractHolidayParser;
  * @author Sven Diedrichsen
  * @version $Id: $
  */
-public class IslamicHolidayParser extends AbstractHolidayParser {
+public class IslamicHolidayParser implements Function<Integer, Stream<Holiday>> {
 
-	/**
-	 * Properties prefix for islamic holidays.
-	 */
-	private static final String PREFIX_PROPERTY_ISLAMIC = "islamic.";
+	private Stream<IslamicHoliday> islamicHolidayStream;
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
-	 * de.jollyday.config.Holidays)
-	 */
-	/** {@inheritDoc} */
+	public IslamicHolidayParser(Stream<IslamicHoliday> islamicHolidayStream) {
+		this.islamicHolidayStream = islamicHolidayStream;
+	}
+
 	@Override
-	public void parse(int year, Set<Holiday> holidays, final Holidays config) {
-		for (IslamicHoliday i : config.getIslamicHoliday()) {
-			if (!isValid(i, year)) {
-				continue;
-			}
-			Set<LocalDate> islamicHolidays;
-			switch (i.getType()) {
-			case NEWYEAR:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 1, 1);
-				break;
-			case ASCHURA:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 1, 10);
-				break;
-			case RAMADAN_END:
-				islamicHolidays = calendarUtil.getRelativeIslamicHolidaysInGregorianYear(year, 10, 1, -1);
-				break;
-			case ID_AL_FITR:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 10, 1);
-				break;
-			case ID_AL_FITR_2:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 10, 2);
-				break;
-			case ID_AL_FITR_3:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 10, 3);
-				break;
-			case ARAFAAT:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 9);
-				break;
-			case ID_UL_ADHA:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 10);
-				break;
-			case ID_UL_ADHA_2:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 11);
-				break;
-			case ID_UL_ADHA_3:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 12, 12);
-				break;
-			case LAILAT_AL_BARAT:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 8, 15);
-				break;
-			case LAILAT_AL_MIRAJ:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 7, 27);
-				break;
-			case LAILAT_AL_QADR:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 9, 27);
-				break;
-			case MAWLID_AN_NABI:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 3, 12);
-				break;
-			case RAMADAN:
-				islamicHolidays = calendarUtil.getIslamicHolidaysInGregorianYear(year, 9, 1);
-				break;
-			default:
-				throw new IllegalArgumentException("Unknown islamic holiday " + i.getType());
-			}
-			String propertiesKey = PREFIX_PROPERTY_ISLAMIC + i.getType().name();
-			HolidayType type = xmlUtil.getType(i.getLocalizedType());
-			for (LocalDate d : islamicHolidays) {
-				holidays.add(new Holiday(d, propertiesKey, type));
-			}
-		}
+	public Stream<Holiday> apply(Integer year) {
+		return islamicHolidayStream
+				.filter(new ValidLimitation(year))
+				.flatMap(ih -> {
+					Stream<LocalDate> islamicHolidays;
+					switch (ih.type()) {
+						case NEWYEAR:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(1,1, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ASCHURA:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(1,10, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case RAMADAN_END:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(10,1, HijrahChronology.INSTANCE, -1).apply(year);
+							break;
+						case ID_AL_FITR:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(10,1, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ID_AL_FITR_2:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(10,2, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ID_AL_FITR_3:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(10,3, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ARAFAAT:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(12,9, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ID_UL_ADHA:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(12,10, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ID_UL_ADHA_2:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(12,11, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case ID_UL_ADHA_3:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(12,12, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case LAILAT_AL_BARAT:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(8,15, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case LAILAT_AL_MIRAJ:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(7,27, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case LAILAT_AL_QADR:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(9,27, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case MAWLID_AN_NABI:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(3,12, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						case RAMADAN:
+							islamicHolidays = new CalculateRelativeDatesFromChronologyWithinGregorianYear(9,1, HijrahChronology.INSTANCE, 0).apply(year);
+							break;
+						default:
+							throw new IllegalArgumentException("Unknown islamic holiday " + ih.type());
+					}
+					return islamicHolidays.map(date -> new CreateHoliday(date).apply(ih));
+				});
 	}
 
 }

@@ -16,26 +16,34 @@
 package de.jollyday.parser.impl;
 
 import de.jollyday.Holiday;
-import de.jollyday.parser.AbstractHolidayParser;
-import de.jollyday.spi.Holidays;
+import de.jollyday.parser.functions.CreateHoliday;
+import de.jollyday.parser.functions.FixedToLocalDate;
+import de.jollyday.parser.functions.MoveDateRelative;
+import de.jollyday.parser.predicates.ValidLimitation;
+import de.jollyday.spi.Fixed;
 
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
- * The Class FixedParser. Parses a fixed date
+ * The Class FixedParser. Parses a fixed date to create a Holiday.
  *
  * @author tboven
  * @version $Id: $
  */
-public class FixedParser extends AbstractHolidayParser {
+public class FixedParser implements Function<Integer, Stream<Holiday>> {
+
+	private Stream<Fixed> fixed;
+
+	public FixedParser(Stream<Fixed> fixed) {
+		this.fixed = fixed;
+	}
 
 	@Override
-	public Set<Holiday> parse(int year, Holidays holidays) {
-		return holidays.fixed().stream()
-				.filter(fixed -> isValid(fixed, year))
-				.map(fixed -> new Holiday(moveDate(fixed, calendarUtil.create(year, fixed)), fixed.descriptionPropertiesKey(), fixed.officiality()))
-				.collect(Collectors.toSet());
+	public Stream<Holiday> apply(final Integer year) {
+		return fixed.filter(new ValidLimitation(year))
+				.map(fixed -> new DescribedDateHolder(fixed, new MoveDateRelative(new FixedToLocalDate(year).apply(fixed)).apply(fixed)))
+				.map(describedDateHolder -> new CreateHoliday(describedDateHolder.getDate()).apply(describedDateHolder.getDescribed()));
 	}
 
 }

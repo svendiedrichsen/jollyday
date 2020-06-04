@@ -8,14 +8,13 @@ import org.junit.Test;
 
 import de.jollyday.ManagerParameter;
 import de.jollyday.ManagerParameters;
-import de.jollyday.datasource.impl.XmlFileDataSource;
 
 public class ConfigurationDataSourceManagerTest {
 
 	ConfigurationDataSourceManager configurationDataSourceManager = new ConfigurationDataSourceManager();
 	Properties properties = new Properties();
 	ManagerParameter managerParameter = ManagerParameters.create((String)null, properties);
-	
+
 	@Test(expected=IllegalStateException.class)
 	public void testGetConfigurationDataSourceMissingConfig() {
 		configurationDataSourceManager.getConfigurationDataSource(managerParameter);

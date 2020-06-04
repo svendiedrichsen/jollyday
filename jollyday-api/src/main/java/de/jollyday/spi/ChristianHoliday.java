@@ -22,7 +22,7 @@ import java.time.chrono.Chronology;
  * @version $
  * @since 10.03.20
  */
-public interface ChristianHoliday extends Limited, Described {
+public interface ChristianHoliday extends Limited, Described, Movable {
     ChristianHolidayType type();
     Chronology chronology();
 }

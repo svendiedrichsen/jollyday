@@ -22,7 +22,7 @@ import java.time.DayOfWeek;
  * @version $
  * @since 03.11.19
  */
-public interface FixedWeekdayRelativeToFixed extends Described, Officiality, Limited {
+public interface FixedWeekdayRelativeToFixed extends Described, Limited {
     Fixed day();
     Occurrance which();
     DayOfWeek weekday();

@@ -16,13 +16,14 @@
  * @author sven
  * @version $Id: $
  */
-package de.jollyday.util;
+package de.jollyday.jaxb;
 
 import de.jollyday.HolidayType;
 import de.jollyday.config.Configuration;
 import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
+import de.jollyday.util.ClassLoadingUtil;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;

@@ -15,12 +15,15 @@
  */
 package de.jollyday.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import de.jollyday.Holiday;
-import de.jollyday.parser.AbstractHolidayParser;
+import de.jollyday.parser.functions.CreateHoliday;
+import de.jollyday.parser.functions.FindWeekDayBetween;
+import de.jollyday.parser.functions.FixedToLocalDate;
+import de.jollyday.parser.predicates.ValidLimitation;
 import de.jollyday.spi.FixedWeekdayBetweenFixed;
+
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * Parses the configuration for fixed weekdays between two fixed dates.
@@ -28,32 +31,26 @@ import de.jollyday.spi.FixedWeekdayBetweenFixed;
  * @author Sven Diedrichsen
  * @version $Id: $
  */
-public class FixedWeekdayBetweenFixedParser extends AbstractHolidayParser {
+public class FixedWeekdayBetweenFixedParser implements Function<Integer, Stream<Holiday>> {
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Parses the provided configuration and creates holidays for the provided
-	 * year.
-	 */
+	private Stream<FixedWeekdayBetweenFixed> fixedWeekdayBetweenFixed;
+
+	public FixedWeekdayBetweenFixedParser(Stream<FixedWeekdayBetweenFixed> fixedWeekdayBetweenFixed) {
+		this.fixedWeekdayBetweenFixed = fixedWeekdayBetweenFixed;
+	}
+
 	@Override
-	public void parse(int year, Set<Holiday> holidays, FixedWeekdayBetweenFixed fwm) {
-		if (!isValid(fwm, year)) {
-			continue;
-		}
-		LocalDate from = calendarUtil.create(year, fwm.from());
-		LocalDate to = calendarUtil.create(year, fwm.to());
-		LocalDate result = null;
-		while (!from.isAfter(to)) {
-			if (from.getDayOfWeek() == fwm.weekday()) {
-				result = from;
-				break;
-			}
-			from = from.plusDays(1);
-		}
-		if (result != null) {
-			holidays.add(new Holiday(result, fwm.descriptionPropertiesKey(), fwm.type()));
-		}
+	public Stream<Holiday> apply(Integer year) {
+		return fixedWeekdayBetweenFixed
+				.filter(new ValidLimitation(year))
+				.map(fwm -> new DescribedDateHolder(fwm,
+								new FindWeekDayBetween(
+										new FixedToLocalDate(year).apply(fwm.from()),
+										new FixedToLocalDate(year).apply(fwm.to())
+								).apply(fwm)
+							)
+				)
+				.map(holder -> new CreateHoliday(holder.getDate()).apply(holder.getDescribed()));
 	}
 
 }

@@ -18,9 +18,9 @@ package de.jollyday.impl;
 import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayManager;
-import de.jollyday.config.Configuration;
-import de.jollyday.config.Holidays;
 import de.jollyday.parser.HolidayParser;
+import de.jollyday.spi.Configuration;
+import de.jollyday.spi.Holidays;
 import de.jollyday.util.ClassLoadingUtil;
 
 import java.beans.Introspector;
@@ -104,17 +104,16 @@ public class DefaultHolidayManager extends HolidayManager {
 	 */
 	private void getHolidays(int year, final Configuration c, Set<Holiday> holidaySet, final String... args) {
 		if (LOG.isLoggable(Level.FINER)) {
-			LOG.finer("Adding holidays for " + c.getDescription());
+			LOG.finer("Adding holidays for " + c.description());
 		}
-		parseHolidays(year, holidaySet, c.getHolidays());
+		parseHolidays(year, holidaySet, c.holidays());
 		if (args != null && args.length > 0) {
 			String hierarchy = args[0];
-			for (Configuration config : c.getSubConfigurations()) {
-				if (hierarchy.equalsIgnoreCase(config.getHierarchy())) {
-					getHolidays(year, config, holidaySet, copyOfRange(args, 1, args.length));
-					break;
-				}
-			}
+			c.subConfigurations()
+					.filter(sub -> hierarchy.equalsIgnoreCase(sub.hierarchy()))
+					.forEach( config ->
+						getHolidays(year, config, holidaySet, copyOfRange(args, 1, args.length))
+					);
 		}
 	}
 
@@ -150,7 +149,7 @@ public class DefaultHolidayManager extends HolidayManager {
 	private void parseHolidays(int year, Set<Holiday> holidays, final Holidays config) {
 		Collection<HolidayParser> parsers = getParsers(config);
 		for (HolidayParser p : parsers) {
-			p.parse(year, holidays, config);
+			holidays.addAll(p.parse(year, config));
 		}
 	}
 
@@ -225,10 +224,10 @@ public class DefaultHolidayManager extends HolidayManager {
 			for (int i = 0; i < level; i++) {
 				space.append("-");
 			}
-			LOG.finer(space + " " + c.getDescription() + "(" + c.getHierarchy() + ").");
-			for (Configuration sub : c.getSubConfigurations()) {
-				logHierarchy(sub, level + 1);
-			}
+			LOG.finer(space + " " + c.description() + "(" + c.hierarchy() + ").");
+			c.subConfigurations().forEach(
+				config -> logHierarchy(config, level + 1)
+			);
 		}
 	}
 
@@ -237,24 +236,25 @@ public class DefaultHolidayManager extends HolidayManager {
 	 * multiple hierarchy entries within one configuration. It traverses down
 	 * the configuration tree.
 	 *
-	 * @param c a {@link de.jollyday.config.Configuration} object.
+	 * @param c a {@link Configuration} object.
 	 */
 	protected static void validateConfigurationHierarchy(final Configuration c) {
 		Map<String, Integer> hierarchyMap = new HashMap<>();
 		Set<String> multipleHierarchies = new HashSet<>();
-		for (Configuration subConfig : c.getSubConfigurations()) {
-			String hierarchy = subConfig.getHierarchy();
-			if (!hierarchyMap.containsKey(hierarchy)) {
-				hierarchyMap.put(hierarchy, 1);
-			} else {
-				int count = hierarchyMap.get(hierarchy);
-				hierarchyMap.put(hierarchy, ++count);
-				multipleHierarchies.add(hierarchy);
+		c.subConfigurations().forEach( subConfig ->	{
+				String hierarchy = subConfig.hierarchy();
+				if (!hierarchyMap.containsKey(hierarchy)) {
+					hierarchyMap.put(hierarchy, 1);
+				} else {
+					int count = hierarchyMap.get(hierarchy);
+					hierarchyMap.put(hierarchy, ++count);
+					multipleHierarchies.add(hierarchy);
+				}
 			}
-		}
+		);
 		if (!multipleHierarchies.isEmpty()) {
 			StringBuilder msg = new StringBuilder();
-			msg.append("Configuration for ").append(c.getHierarchy())
+			msg.append("Configuration for ").append(c.hierarchy())
 					.append(" contains  multiple SubConfigurations with the same hierarchy id. ");
 			for (String hierarchy : multipleHierarchies) {
 				msg.append(hierarchy).append(" ").append(hierarchyMap.get(hierarchy)
@@ -262,9 +262,7 @@ public class DefaultHolidayManager extends HolidayManager {
 			}
 			throw new IllegalArgumentException(msg.toString().trim());
 		}
-		for (Configuration subConfig : c.getSubConfigurations()) {
-			validateConfigurationHierarchy(subConfig);
-		}
+		c.subConfigurations().forEach(DefaultHolidayManager::validateConfigurationHierarchy);
 	}
 
 	/**
@@ -287,14 +285,15 @@ public class DefaultHolidayManager extends HolidayManager {
      * @param h the calendars hierarchy
 	 * @return configuration hierarchy
 	 */
-	private static CalendarHierarchy createConfigurationHierarchy(final Configuration c, CalendarHierarchy h) {
-		h = new CalendarHierarchy(h, c.getHierarchy());
-		h.setFallbackDescription(c.getDescription());
-		for (Configuration sub : c.getSubConfigurations()) {
-			CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub, h);
-			h.getChildren().put(subHierarchy.getId(), subHierarchy);
-		}
-		return h;
+	private static CalendarHierarchy createConfigurationHierarchy(final Configuration c, final CalendarHierarchy h) {
+		CalendarHierarchy hierarchy = new CalendarHierarchy(h, c.hierarchy());
+		hierarchy.setFallbackDescription(c.description());
+		c.subConfigurations().forEach(sub -> {
+				CalendarHierarchy subHierarchy = createConfigurationHierarchy(sub, hierarchy);
+				hierarchy.getChildren().put(subHierarchy.getId(), subHierarchy);
+			}
+		);
+		return hierarchy;
 	}
 
 }

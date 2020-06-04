@@ -1,6 +1,6 @@
 package de.jollyday.spi;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @author sdiedrichsen
@@ -9,29 +9,18 @@ import java.util.List;
  */
 public interface Holidays {
 
-    List<Fixed> fixed();
-
-    List<RelativeToFixed> relativeToFixed();
-
-    List<RelativeToWeekdayInMonth> relativeToWeekdayInMonth();
-
-    List<FixedWeekdayInMonth> fixedWeekday();
-
-    List<ChristianHoliday> christianHoliday();
-
-    List<IslamicHoliday> islamicHoliday();
-
-    List<FixedWeekdayBetweenFixed> fixedWeekdayBetweenFixed();
-
-    List<FixedWeekdayRelativeToFixed> fixedWeekdayRelativeToFixed();
-
-    List<HinduHoliday> hinduHoliday();
-
+    Stream<Fixed> fixed();
+    Stream<RelativeToFixed> relativeToFixed();
+    Stream<RelativeToWeekdayInMonth> relativeToWeekdayInMonth();
+    Stream<FixedWeekdayInMonth> fixedWeekdays();
+    Stream<ChristianHoliday> christianHolidays();
+    Stream<IslamicHoliday> islamicHolidays();
+    Stream<FixedWeekdayBetweenFixed> fixedWeekdayBetweenFixed();
+    Stream<FixedWeekdayRelativeToFixed> fixedWeekdayRelativeToFixed();
+    Stream<HinduHoliday> hinduHolidays();
     // TODO: ? is this used anywhere?
-    // List<HebrewHoliday> hebrewHoliday();
-
-    List<EthiopianOrthodoxHoliday> ethiopianOrthodoxHoliday();
-
-    List<RelativeToEasterSunday> relativeToEasterSunday();
+    // Stream<HebrewHoliday> hebrewHolidays();
+    Stream<EthiopianOrthodoxHoliday> ethiopianOrthodoxHolidays();
+    Stream<RelativeToEasterSunday> relativeToEasterSunday();
 
 }

@@ -15,15 +15,17 @@
  */
 package de.jollyday.parser.impl;
 
-import java.time.LocalDate;
-import java.util.Set;
-
 import de.jollyday.Holiday;
-import de.jollyday.config.HolidayType;
-import de.jollyday.config.Holidays;
-import de.jollyday.config.RelativeToEasterSunday;
-import de.jollyday.parser.AbstractHolidayParser;
+import de.jollyday.parser.functions.CalculateEasterSunday;
+import de.jollyday.parser.functions.CreateHoliday;
+import de.jollyday.parser.predicates.ValidLimitation;
 import de.jollyday.spi.RelativeToEasterSunday;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * This parser creates holidays relative to easter sunday.
@@ -31,45 +33,20 @@ import de.jollyday.spi.RelativeToEasterSunday;
  * @author Sven Diedrichsen
  * @version $Id: $
  */
-public class RelativeToEasterSundayParser extends AbstractHolidayParser {
+public class RelativeToEasterSundayParser implements Function<Integer, Stream<Holiday>> {
 
-	/**
-	 * Properties prefix for christian holidays names.
-	 */
-	private static final String PREFIX_PROPERTY_CHRISTIAN = "christian.";
+	private Stream<RelativeToEasterSunday> relativeToEasterSundays;
 
-	/**
-	 * {@inheritDoc}
-	 *
-	 * Parses relative to easter sunday holidays.
-	 */
-	@Override
-	public void parse(int year, Set<Holiday> holidays, RelativeToEasterSunday ch) {
-		if (!isValid(ch, year)) {
-			continue;
-		}
-		LocalDate easterSunday = getEasterSunday(year, ch.getChronology()).plusDays(ch.getDays());
-		String propertiesKey = PREFIX_PROPERTY_CHRISTIAN + ch.getDescriptionPropertiesKey();
-		addChristianHoliday(easterSunday, propertiesKey, ch.getLocalizedType(), holidays);
+	public RelativeToEasterSundayParser(Stream<RelativeToEasterSunday> relativeToEasterSundays) {
+		this.relativeToEasterSundays = relativeToEasterSundays;
 	}
 
-	/**
-	 * Adds the given day to the list of holidays.
-	 *
-	 * @param day
-	 *            a {@link LocalDate} object.
-	 * @param propertiesKey
-	 *            a {@link java.lang.String} object.
-	 * @param holidayType
-	 *            a {@link de.jollyday.config.HolidayType} object.
-	 * @param holidays
-	 *            a {@link java.util.Set} object.
-	 */
-	protected void addChristianHoliday(LocalDate day, String propertiesKey, HolidayType holidayType,
-			Set<Holiday> holidays) {
-		de.jollyday.HolidayType type = xmlUtil.getType(holidayType);
-		Holiday h = new Holiday(day, propertiesKey, type);
-		holidays.add(h);
+	@Override
+	public Stream<Holiday> apply(Integer year) {
+		return relativeToEasterSundays
+				.filter(new ValidLimitation(year))
+				.map(res -> new DescribedDateHolder(res, new CalculateEasterSunday(year).apply(res.chronology()).plus(res.days())))
+				.map(holder -> new CreateHoliday(holder.getDate()).apply(holder.getDescribed()));
 	}
 
 }

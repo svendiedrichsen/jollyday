@@ -1,17 +1,17 @@
 /**
- * Copyright 2011 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2011 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.tests.parsers;
 
@@ -31,14 +31,13 @@ import de.jollyday.config.ChristianHolidayType;
 import de.jollyday.config.ChronologyType;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToEasterSunday;
-import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.parser.impl.ChristianHolidayParser;
 import de.jollyday.parser.impl.RelativeToEasterSundayParser;
 import de.jollyday.util.CalendarUtil;
 
 public class ChristianHolidayParserTest {
 
-	private AbstractHolidayParser hp = new ChristianHolidayParser();
+	private ChristianHolidayParser hp = new ChristianHolidayParser();
 	private CalendarUtil calendarUtil = new CalendarUtil();
 
 	@Test

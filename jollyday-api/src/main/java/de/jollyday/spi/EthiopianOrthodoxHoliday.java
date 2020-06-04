@@ -20,6 +20,6 @@ package de.jollyday.spi;
  * @version $
  * @since 10.03.20
  */
-public interface EthiopianOrthodoxHoliday extends Described, Limited, Officiality {
+public interface EthiopianOrthodoxHoliday extends Described, Limited {
     EthiopianOrthodoxHolidayType type();
 }

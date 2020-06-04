@@ -3,7 +3,7 @@
     <groupId>de.jollyday</groupId>
     <artifactId>jollyday</artifactId>
     <name>Jollyday</name>
-    <version>0.5.10-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>
         This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is
@@ -30,7 +30,7 @@
         <module>jollyday-jackson</module>
         <module>jollyday-jaxb</module>
         <module>jollyday-xstream</module>
-        <module>jollyday-test</module>
+        <!--<module>jollyday-test</module> temporarily disabled-->
     </modules>
 
     <developers>

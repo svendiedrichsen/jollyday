@@ -16,16 +16,16 @@
 package de.jollyday.parser.impl;
 
 import de.jollyday.Holiday;
-import de.jollyday.parser.AbstractHolidayParser;
+import de.jollyday.parser.functions.CreateHoliday;
+import de.jollyday.parser.functions.FindWeekDayInMonth;
+import de.jollyday.parser.predicates.ValidLimitation;
 import de.jollyday.spi.FixedWeekdayInMonth;
-import de.jollyday.spi.Occurrance;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Set;
-
-import static java.time.temporal.TemporalAdjusters.dayOfWeekInMonth;
-import static java.time.temporal.TemporalAdjusters.lastInMonth;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The Class FixedWeekdayInMonthParser.
@@ -33,41 +33,20 @@ import static java.time.temporal.TemporalAdjusters.lastInMonth;
  * @author tboven
  * @version $Id: $
  */
-public class FixedWeekdayInMonthParser extends AbstractHolidayParser {
+public class FixedWeekdayInMonthParser implements Function<Integer, Stream<Holiday>> {
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see de.jollyday.parser.HolidayParser#parse(int, java.util.Set,
-	 * de.jollyday.config.Holidays)
-	 */
-	/** {@inheritDoc} */
+	private Stream<FixedWeekdayInMonth> fixedWeekdayInMonths;
+
+	public FixedWeekdayInMonthParser(Stream<FixedWeekdayInMonth> fixedWeekdayInMonths) {
+		this.fixedWeekdayInMonths = fixedWeekdayInMonths;
+	}
+
 	@Override
-	public void parse(int year, Set<Holiday> holidays, FixedWeekdayInMonth fwm) {
-		if (!isValid(fwm, year)) {
-			continue;
-		}
-		LocalDate date = parse(year, fwm);
-		holidays.add(new Holiday(date, fwm.descriptionPropertiesKey(), fwm.type()));
+	public Stream<Holiday> apply(Integer year) {
+		return fixedWeekdayInMonths
+				.filter(new ValidLimitation(year))
+				.map(fwm -> new DescribedDateHolder(fwm, new FindWeekDayInMonth(year).apply(fwm)))
+				.map(holder -> new CreateHoliday(holder.getDate()).apply(holder.getDescribed()));
 	}
 
-	/**
-	 * Parses the {@link FixedWeekdayInMonth}.
-	 *
-	 * @param year
-	 *            the year
-	 * @param fwm
-	 *            the fwm
-	 * @return the local date
-	 */
-	protected LocalDate parse(int year, FixedWeekdayInMonth fwm) {
-		final DayOfWeek weekday = fwm.weekday();
-		final LocalDate date = LocalDate.of(year, fwm.month(), 1);
-
-		if (Occurrance.LAST == fwm.which()) {
-			return date.with(lastInMonth(weekday));
-		}
-
-		return date.with(dayOfWeekInMonth(fwm.which().ordinal() + 1, weekday));
-	}
 }

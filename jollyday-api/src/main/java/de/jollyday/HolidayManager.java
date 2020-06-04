@@ -18,6 +18,7 @@ package de.jollyday;
 import de.jollyday.caching.HolidayManagerValueHandler;
 import de.jollyday.configuration.ConfigurationProviderManager;
 import de.jollyday.datasource.ConfigurationDataSource;
+import de.jollyday.parser.functions.CalendarToLocalDate;
 import de.jollyday.util.Cache;
 import de.jollyday.util.Cache.ValueHandler;
 import de.jollyday.util.CalendarUtil;
@@ -223,7 +224,7 @@ public abstract class HolidayManager {
 	 * @return if the date is a holiday
 	 */
 	public boolean isHoliday(final Calendar c, HolidayType holidayType, final String... args) {
-		return isHoliday(calendarUtil.create(c), holidayType, args);
+		return isHoliday(new CalendarToLocalDate().apply(c), holidayType, args);
 	}
 
 	public boolean isHoliday(final Calendar c, final String... args) {
