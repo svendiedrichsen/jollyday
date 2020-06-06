@@ -6,6 +6,7 @@
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 	  <tns:ChristianHoliday type="ASCENSION_DAY"/>
 	  <tns:ChristianHoliday type="EASTER" />
+	  <tns:ChristianHoliday type="WHIT_SUNDAY" />
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="ag" description="Aargau">
   	<tns:Holidays>
