@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Configuration hierarchy="sa" description="Saudi Arabia" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday/Holiday.xsd">
+	<tns:Holidays>
+		<tns:Fixed month="SEPTEMBER" day="23" descriptionPropertiesKey="NATIONAL_DAY"/>
+		<tns:IslamicHoliday type="RAMADAN_END"/>
+		<tns:IslamicHoliday type="ID_AL_FITR"/>
+		<tns:IslamicHoliday type="ID_AL_FITR_2"/>
+		<tns:IslamicHoliday type="ID_AL_FITR_3"/>
+		<tns:IslamicHoliday type="ARAFAAT"/>
+		<tns:IslamicHoliday type="ID_UL_ADHA"/>
+		<tns:IslamicHoliday type="ID_UL_ADHA_2"/>
+		<tns:IslamicHoliday type="ID_UL_ADHA_3"/>
+	</tns:Holidays>
+</tns:Configuration>
