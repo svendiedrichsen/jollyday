@@ -15,12 +15,8 @@
  */
 package de.jollyday.tests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDate;
 import java.util.Set;
-
-import org.junit.Test;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
@@ -28,6 +24,9 @@ import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 import de.jollyday.util.CalendarUtil;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HolidayNZTest extends AbstractCountryTestBase {
 
@@ -51,8 +50,7 @@ public class HolidayNZTest extends AbstractCountryTestBase {
 
 		boolean found = holidays.stream().anyMatch(holiday -> holiday.getPropertiesKey().equals("SOUTHLAND_ANNIVERSARY")
 				&& holiday.getDate().equals(expected));
-		assertTrue("Did not find expected Southland Anniversary day at " + expected + " in 2011: " + holidays + "",
-				found);
+		assertTrue(found, "Did not find expected Southland Anniversary day at " + expected + " in 2011: " + holidays);
 	}
 
 	@Test
@@ -63,8 +61,7 @@ public class HolidayNZTest extends AbstractCountryTestBase {
 
 		boolean found = holidays.stream().anyMatch(holiday -> holiday.getPropertiesKey().equals("SOUTHLAND_ANNIVERSARY")
 				&& holiday.getDate().equals(expected));
-		assertTrue("Did not find expected Southland Anniversary day at " + expected + " in 2012: " + holidays + "",
-				found);
+		assertTrue(found, "Did not find expected Southland Anniversary day at " + expected + " in 2012: " + holidays);
 	}
 
 }

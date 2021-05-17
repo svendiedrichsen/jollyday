@@ -20,14 +20,15 @@ import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.util.CalendarUtil;
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class AbstractCountryTestBase {
 
@@ -42,11 +43,11 @@ public abstract class AbstractCountryTestBase {
 	 *            This is the real live data structure.
 	 */
 	protected void compareHierarchies(CalendarHierarchy expected, CalendarHierarchy found) {
-		Assert.assertNotNull("Null description", found.getDescription());
-		Assert.assertEquals("Wrong hierarchy id.", expected.getId(), found.getId());
-		Assert.assertEquals("Number of children wrong.", expected.getChildren().size(), found.getChildren().size());
+		assertNotNull(found.getDescription(), "Null description");
+		assertEquals(expected.getId(), found.getId(), "Wrong hierarchy id.");
+		assertEquals(expected.getChildren().size(), found.getChildren().size(), "Number of children wrong.");
 		for (String id : expected.getChildren().keySet()) {
-			Assert.assertTrue("Missing " + id + " within " + found.getId(), found.getChildren().containsKey(id));
+			assertTrue(found.getChildren().containsKey(id), "Missing " + id + " within " + found.getId());
 			compareHierarchies(expected.getChildren().get(id), found.getChildren().get(id));
 		}
 	}
@@ -63,17 +64,17 @@ public abstract class AbstractCountryTestBase {
 		Set<Holiday> expectedHolidays = expected.getHolidays(year, args.toArray(new String[] {}));
 		Set<Holiday> foundHolidays = found.getHolidays(year, args.toArray(new String[] {}));
 		for (Holiday expectedHoliday : expectedHolidays) {
-			Assert.assertNotNull("Description is null.", expectedHoliday.getDescription());
+			assertNotNull(expectedHoliday.getDescription(), "Description is null.");
 			if (!calendarUtil.contains(foundHolidays, expectedHoliday.getDate())) {
-				Assert.fail("Could not find " + expectedHoliday + " in " + h.getDescription() + " - " + foundHolidays);
+				fail("Could not find " + expectedHoliday + " in " + h.getDescription() + " - " + foundHolidays);
 			}
 		}
 
 		if (assertAllHolidaysChecked) {
 			foundHolidays.removeAll(expectedHolidays);
-			MatcherAssert.assertThat(
+			assertThat(
 					"Not all found holidays were expected. Leftover in " + found.getCalendarHierarchy().getDescription()
-							+ args.toString() + " : " + foundHolidays, foundHolidays.isEmpty(), CoreMatchers.is(true));
+							+ args.toString() + " : " + foundHolidays, foundHolidays.isEmpty(), is(true));
 		}
 
 		for (String id : h.getChildren().keySet()) {
@@ -112,9 +113,9 @@ public abstract class AbstractCountryTestBase {
 		try {
 			HolidayManager defaultManager = HolidayManager.getInstance();
 			HolidayManager countryManager = HolidayManager.getInstance(countryCalendar);
-			Assert.assertEquals("Unexpected manager found", defaultManager, countryManager);
+			assertEquals(defaultManager, countryManager, "Unexpected manager found");
 		} catch (Exception e) {
-			Assert.fail("Unexpected error occurred: " + e.getClass().getName() + " - " + e.getMessage());
+			fail("Unexpected error occurred: " + e.getClass().getName() + " - " + e.getMessage());
 		} finally {
 			Locale.setDefault(defaultLocale);
 		}
@@ -130,9 +131,9 @@ public abstract class AbstractCountryTestBase {
 		try {
 			HolidayManager defaultManager = HolidayManager.getInstance();
 			HolidayManager countryManager = HolidayManager.getInstance(countryCalendar);
-			Assert.assertNotSame("Unexpected manager found", defaultManager, countryManager);
+			assertNotSame(defaultManager, countryManager, "Unexpected manager found");
 		} catch (Exception e) {
-			Assert.fail("Unexpected error occurred: " + e.getClass().getName() + " - " + e.getMessage());
+			fail("Unexpected error occurred: " + e.getClass().getName() + " - " + e.getMessage());
 		} finally {
 			Locale.setDefault(defaultLocale);
 		}

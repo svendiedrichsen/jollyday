@@ -20,12 +20,12 @@ import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HolidayUKTest extends AbstractCountryTestBase {
 
@@ -57,8 +57,8 @@ public class HolidayUKTest extends AbstractCountryTestBase {
 		LocalDate boxingday = LocalDate.of(year, 12, dayOfBoxingday);
 		HolidayManager holidayManager = HolidayManager.getInstance(ManagerParameters.create(HolidayCalendar.UNITED_KINGDOM));
 		Set<Holiday> holidays = holidayManager.getHolidays(year);
-		assertTrue("There should be christmas on "+christmas, contains(christmas, holidays));
-		assertTrue("There should be boxing day on "+boxingday, contains(boxingday, holidays));
+		assertTrue(contains(christmas, holidays), "There should be christmas on "+christmas);
+		assertTrue(contains(boxingday, holidays), "There should be boxing day on "+boxingday);
 	}
 
 	private boolean contains(LocalDate localDate, Set<Holiday> holidays){
