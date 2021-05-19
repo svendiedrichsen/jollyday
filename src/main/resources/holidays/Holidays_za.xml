@@ -3,10 +3,33 @@
 	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
 	<tns:Holidays>
-		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
+		<!-- Once-off holidays including election days (see https://en.wikipedia.org/wiki/Public_holidays_in_South_Africa) -->
+		<tns:Fixed month="JUNE" day="2" validFrom="1999" validTo="1999" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="APRIL" day="14" validFrom="2004" validTo="2004" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="MARCH" day="1" validFrom="2006" validTo="2006" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="APRIL" day="22" validFrom="2009" validTo="2009" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="MAY" day="18" validFrom="2011" validTo="2011" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="MAY" day="7" validFrom="2014" validTo="2014" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="AUGUST" day="3" validFrom="2016" validTo="2016" descriptionPropertiesKey="ELECTION_DAY"/>
+		<tns:Fixed month="MAY" day="8" validFrom="2019" validTo="2019" descriptionPropertiesKey="ELECTION_DAY"/>
+
+		<tns:Fixed month="DECEMBER" day="31" validFrom="1999" validTo="1999" descriptionPropertiesKey="NEW_YEAR">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="JANUARY" day="2" validFrom="2000" validTo="2000" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="MAY" day="2" validFrom="2008" validTo="2008" descriptionPropertiesKey="HUMAN_RIGHTS">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="27" validFrom="2011" validTo="2011" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<tns:Fixed month="DECEMBER" day="27" validFrom="2016" validTo="2016" descriptionPropertiesKey="NEW_YEAR">
+			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
+		</tns:Fixed>
+		<!-- End of once-off holidays -->
+		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="MARCH" day="21" descriptionPropertiesKey="HUMAN_RIGHTS">
@@ -18,9 +41,6 @@
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="MAY" day="1" validFrom="1990" descriptionPropertiesKey="LABOUR_DAY">
-			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:Fixed>
-		<tns:Fixed month="MAY" day="2" validFrom="2008" validTo="2008" descriptionPropertiesKey="HUMAN_RIGHTS">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="MAY" day="24" validFrom="1910" validTo="1951" descriptionPropertiesKey="EMPIRE"/>
@@ -43,9 +63,6 @@
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="GOODWILL">
-			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
-		</tns:Fixed>
-		<tns:Fixed month="DECEMBER" day="31" validFrom="1999" validTo="1999" descriptionPropertiesKey="NEW_YEAR">
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
 		<tns:FixedWeekday which="FIRST" weekday="FRIDAY" month="MAY" validFrom="1987" validTo="1989" descriptionPropertiesKey="LABOUR_DAY"/>
