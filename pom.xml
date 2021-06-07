@@ -21,6 +21,7 @@
         <project.scm.id>sourceforge.net</project.scm.id>
         <maven.site.skip>true</maven.site.skip>
         <maven.site.deploy.skip>true</maven.site.deploy.skip>
+        <argLine /> <!-- this hack is required because of the JDK 9 build profile - JaCoCo vs. Surefire: @{argLine} -->
     </properties>
     <developers>
         <developer>
@@ -162,7 +163,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.3</version>
+                    <version>0.8.7</version>
                     <configuration>
                         <excludes>
                             <exclude>de.jollyday.config.*</exclude>
