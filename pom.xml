@@ -344,7 +344,8 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <argLine>--add-opens de.jollyday/de.jollyday.config=java.xml.bind
+                            <argLine>@{argLine}
+							         --add-opens de.jollyday/de.jollyday.config=java.xml.bind
                                      --add-opens de.jollyday/de.jollyday.configuration=ALL-UNNAMED
                                      --add-opens de.jollyday/de.jollyday.datasource.impl=ALL-UNNAMED
                                      --add-opens de.jollyday/de.jollyday.util=ALL-UNNAMED
