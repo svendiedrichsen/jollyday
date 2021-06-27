@@ -11,6 +11,7 @@
 		<tns:Fixed month="JULY" day="6" descriptionPropertiesKey="STATEHOOD"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
 		<tns:Fixed month="NOVEMBER" day="1" descriptionPropertiesKey="ALL_SAINTS"/>
+		<tns:Fixed month="NOVEMBER" day="2" descriptionPropertiesKey="ALL_SOULS" validFrom="2020" />
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS_EVE"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:ChristianHoliday type="EASTER" />
