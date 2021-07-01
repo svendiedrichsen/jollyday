@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tns:Configuration hierarchy="tr" description="Turkey"
-	xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.example.org/Holiday /Holiday.xsd">
+<tns:Configuration hierarchy="tr" description="Turkey" xmlns:tns="http://www.example.org/Holiday" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Holiday/Holiday.xsd">
 	<tns:Holidays>
 		<tns:Fixed month="JANUARY" day="1" descriptionPropertiesKey="NEW_YEAR"/>
 		<tns:Fixed month="APRIL" day="23" descriptionPropertiesKey="TURKEY_CHILDRENS_DAY"/>
 		<tns:Fixed month="MAY" day="1" descriptionPropertiesKey="LABOUR_DAY"/>
-		<tns:Fixed month="MAY" day="19" descriptionPropertiesKey="TURKEY_REMEMBRANCE_OF_ATATURK"/>
+		<tns:Fixed month="MAY" day="19" descriptionPropertiesKey="TURKEY_COMMEMORATION_OF_ATATURK"/>
 		<tns:Fixed month="JULY" day="15" descriptionPropertiesKey="TURKEY_DEMOCRATIC_UNITY_DAY"/>
 		<tns:Fixed month="AUGUST" day="30" descriptionPropertiesKey="TURKEY_VICTORY_DAY"/>
 		<tns:Fixed month="OCTOBER" day="29" descriptionPropertiesKey="TURKEY_REPUBLIC_DAY"/>
