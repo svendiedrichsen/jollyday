@@ -20,18 +20,17 @@ import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Tests for Uruguay holidays agreed with Law N. 17.414
- * 
+ *
  * @see <a href="http://www.impo.com.uy/bases/leyes/17414-2001">Ley Nº
  *      17.414<a/>
  * @author jmoreno
@@ -40,7 +39,7 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 
 	private HolidayManager holidayManager;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		holidayManager = HolidayManager.getInstance(ManagerParameters.create(HolidayCalendar.URUGUAY));
 	}
@@ -54,46 +53,48 @@ public class HolidayUYTest extends AbstractCountryTestBase {
 	public void testManagerUYLanding33EasternersMovingDaysWhenLanding33EasternersOnTuesday() {
 		int year = 2016;
 		LocalDate landing33Easterners = LocalDate.of(year, 4, 18);
-		assertTrue("There should be LANDING_33_EASTERNERS on " + landing33Easterners,
-				contains(landing33Easterners, holidayManager.getHolidays(year)));
+		assertTrue(contains(landing33Easterners, holidayManager.getHolidays(year)),
+				"There should be LANDING_33_EASTERNERS on " + landing33Easterners);
 	}
 
 	@Test
 	public void testManagerUYLanding33EasternersMovingDaysWhenLanding33EasternersOnThursday() {
 		int year = 2007;
 		LocalDate landing33Easterners = LocalDate.of(year, 4, 23);
-		assertTrue("There should be LANDING_33_EASTERNERS on " + landing33Easterners,
-				contains(landing33Easterners, holidayManager.getHolidays(year)));
+		assertTrue(contains(landing33Easterners, holidayManager.getHolidays(year)),
+				"There should be LANDING_33_EASTERNERS on " + landing33Easterners);
 	}
 
 	@Test
 	public void testManagerUYRaceMovingDaysWhenRaceOnWednesday() {
 		int year = 2016;
 		LocalDate race = LocalDate.of(year, 10, 10);
-		assertTrue("There should be RACE on " + race, contains(race, holidayManager.getHolidays(year)));
+		assertTrue(contains(race, holidayManager.getHolidays(year)),
+				"There should be RACE on " + race);
 	}
 
 	@Test
 	public void testManagerUYRaceMovingDaysWhenRaceOnFriday() {
 		int year = 2007;
 		LocalDate race = LocalDate.of(year, 10, 15);
-		assertTrue("There should be RACE on " + race, contains(race, holidayManager.getHolidays(year)));
+		assertTrue(contains(race, holidayManager.getHolidays(year)),
+				"There should be RACE on " + race);
 	}
 
 	@Test
 	public void testManagerUYLasPiedrasMovingDaysWhenLasPiedrasOnTuesday() {
 		int year = 2016;
 		LocalDate lasPiedras = LocalDate.of(year, 5, 16);
-		assertTrue("There should be LAS_PIEDRAS on " + lasPiedras,
-				contains(lasPiedras, holidayManager.getHolidays(year)));
+		assertTrue(contains(lasPiedras, holidayManager.getHolidays(year)),
+				"There should be LAS_PIEDRAS on " + lasPiedras);
 	}
 
 	@Test
 	public void testManagerUYLasPiedrasMovingDaysWhenLasPiedrasOnFriday() {
 		int year = 2007;
 		LocalDate lasPiedras = LocalDate.of(year, 5, 21);
-		assertTrue("There should be LAS_PIEDRAS on " + lasPiedras,
-				contains(lasPiedras, holidayManager.getHolidays(year)));
+		assertTrue(contains(lasPiedras, holidayManager.getHolidays(year)),
+				"There should be LAS_PIEDRAS on " + lasPiedras);
 	}
 
 	private boolean contains(LocalDate localDate, Set<Holiday> holidays) {

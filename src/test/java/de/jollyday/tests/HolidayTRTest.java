@@ -6,13 +6,13 @@ import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 import de.jollyday.util.CalendarUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HolidayTRTest extends AbstractCountryTestBase {
 
@@ -48,7 +48,7 @@ public class HolidayTRTest extends AbstractCountryTestBase {
                 }
             }
         }
-        assertTrue("Wrong / missing holiday for Ramazan", found);
+        assertTrue(found, "Wrong / missing holiday for Ramazan");
     }
 
     @Test
@@ -65,6 +65,6 @@ public class HolidayTRTest extends AbstractCountryTestBase {
                 }
             }
         }
-        assertTrue("Wrong / missing holiday for Kurban", found);
+        assertTrue(found, "Wrong / missing holiday for Kurban");
     }
 }

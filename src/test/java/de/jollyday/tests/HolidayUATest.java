@@ -15,17 +15,8 @@
  */
 package de.jollyday.tests;
 
-import de.jollyday.Holiday;
-import de.jollyday.HolidayCalendar;
-import de.jollyday.HolidayManager;
-import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
-import org.junit.Test;
-
-import java.time.LocalDate;
-import java.util.Set;
-
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 public class HolidayUATest extends AbstractCountryTestBase {
 

@@ -16,14 +16,14 @@
 package de.jollyday.tests;
 
 import de.jollyday.util.ResourceUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The Class ISOCodesTest.
@@ -41,7 +41,7 @@ public class ISOCodesTest {
 	/**
 	 * Inits
 	 */
-	@Before
+	@BeforeEach
 	public void init() {
 		defaultLocale = Locale.getDefault();
 		Locale.setDefault(Locale.ENGLISH);
@@ -51,7 +51,7 @@ public class ISOCodesTest {
 	/**
 	 * Cleanup.
 	 */
-	@After
+	@AfterEach
 	public void cleanup() {
 		Locale.setDefault(defaultLocale);
 	}
@@ -64,7 +64,7 @@ public class ISOCodesTest {
 		Locale.setDefault(defaultLocale);
 		Set<String> isoCodes = resourceUtil.getISOCodes();
 		assertNotNull(isoCodes);
-		assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		assertEquals(NUMBER_OF_ISOCOUNTRIES, isoCodes.size(), "Wrong number of ISO codes.");
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class ISOCodesTest {
 	public void testISOCodesEN() {
 		Set<String> isoCodes = resourceUtil.getISOCodes();
 		assertNotNull(isoCodes);
-		assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		assertEquals(NUMBER_OF_ISOCOUNTRIES, isoCodes.size(), "Wrong number of ISO codes.");
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class ISOCodesTest {
 		Locale.setDefault(Locale.GERMANY);
 		Set<String> isoCodes = resourceUtil.getISOCodes();
 		assertNotNull(isoCodes);
-		assertEquals("Wrong number of ISO codes.", NUMBER_OF_ISOCOUNTRIES, isoCodes.size());
+		assertEquals(NUMBER_OF_ISOCOUNTRIES, isoCodes.size(), "Wrong number of ISO codes.");
 	}
 
 	/**

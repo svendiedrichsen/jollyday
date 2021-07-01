@@ -16,11 +16,11 @@
 package de.jollyday.util;
 
 import de.jollyday.config.Configuration;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -29,11 +29,12 @@ import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class XMLUtilTest {
 
 	@Mock
@@ -44,17 +45,17 @@ public class XMLUtilTest {
 	@InjectMocks
 	XMLUtil xmlUtil = new XMLUtil();
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testUnmarshallConfigurationNullCheck() throws IOException {
-		xmlUtil.unmarshallConfiguration(null);
+	@Test
+	public void testUnmarshallConfigurationNullCheck() {
+		assertThrows(IllegalArgumentException.class, () -> xmlUtil.unmarshallConfiguration(null));
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testUnmarshallConfigurationException() throws IOException, JAXBException {
 		when(contextCreator.create(eq(XMLUtil.PACKAGE), any(ClassLoader.class))).thenThrow(new JAXBException(""))
 				.thenThrow(new JAXBException(""));
-		xmlUtil.unmarshallConfiguration(inputStream);
-		verify(inputStream).close();
+		assertThrows(IllegalStateException.class, () -> xmlUtil.unmarshallConfiguration(inputStream));
+		verify(inputStream, never()).close();
 	}
 
 	@Test

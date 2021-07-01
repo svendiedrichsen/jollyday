@@ -1,12 +1,7 @@
 package de.jollyday.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import java.time.LocalDate;
 import java.util.Set;
-
-import org.junit.Test;
 
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
@@ -14,6 +9,10 @@ import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
 import de.jollyday.util.CalendarUtil;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HolidayAETest extends AbstractCountryTestBase {
 
@@ -36,9 +35,9 @@ public class HolidayAETest extends AbstractCountryTestBase {
 				.getInstance(ManagerParameters.create(HolidayCalendar.UNITED_ARAB_EMIRATES));
 		Set<Holiday> holidays = holidayManager.getHolidays(YEAR);
 		assertEquals(13, holidays.size());
-		assertTrue("Wrong / missing holiday for Ramadan End",
-				holidays.stream().filter(holiday -> holiday.getPropertiesKey().equals("islamic.RAMADAN_END")
-						&& holiday.getDate().equals(expected)).count() == 1);
+		assertTrue(holidays.stream().filter(holiday -> holiday.getPropertiesKey().equals("islamic.RAMADAN_END")
+						&& holiday.getDate().equals(expected)).count() == 1,
+				"Wrong / missing holiday for Ramadan End");
 	}
 
 }

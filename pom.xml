@@ -21,6 +21,7 @@
         <project.scm.id>sourceforge.net</project.scm.id>
         <maven.site.skip>true</maven.site.skip>
         <maven.site.deploy.skip>true</maven.site.deploy.skip>
+        <argLine /> <!-- this hack is required because of the JDK 9 build profile - JaCoCo vs. Surefire: @{argLine} -->
     </properties>
     <developers>
         <developer>
@@ -88,6 +89,11 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M5</version>
+                </plugin>
+                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>jaxb2-maven-plugin</artifactId>
                     <version>2.4</version>
@@ -143,7 +149,7 @@
                 <plugin>
                     <groupId>biz.aQute.bnd</groupId>
                     <artifactId>bnd-maven-plugin</artifactId>
-                    <version>4.1.0</version>
+                    <version>5.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -155,14 +161,19 @@
                     <version>3.0.0-M2</version>
                 </plugin>
                 <plugin>
-               		<groupId>org.jacoco</groupId>
-               		<artifactId>jacoco-maven-plugin</artifactId>
-               		<version>0.8.3</version>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.7</version>
                     <configuration>
                         <excludes>
                             <exclude>de.jollyday.config.*</exclude>
                         </excludes>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.eclipse.transformer</groupId>
+                    <artifactId>org.eclipse.transformer.maven</artifactId>
+                    <version>0.2.0</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -180,6 +191,7 @@
                         <configuration>
                             <systemProperties>
                                 <enableExternalEntityProcessing>true</enableExternalEntityProcessing>
+                                <user.language>en_US</user.language>
                             </systemProperties>
                             <jvmArguments>
                                 <jvmArgument>-Xms32m</jvmArgument>
@@ -258,9 +270,9 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>javax.xml.bind</groupId>
-                        <artifactId>jaxb-api</artifactId>
-                        <version>2.4.0-b180830.0359</version>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>2.3.3</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -278,6 +290,22 @@
                                     <version>3.0.5</version>
                                 </requireMavenVersion>
                             </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.transformer</groupId>
+                <artifactId>org.eclipse.transformer.maven</artifactId>
+                <executions>
+                    <execution>
+                        <id>jakarta-ee</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <classifier>jakarta</classifier>
                         </configuration>
                     </execution>
                 </executions>
@@ -307,6 +335,31 @@
             </build>
         </profile>
         <profile>
+            <id>jdk9</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <argLine>@{argLine}
+							         --add-opens de.jollyday/de.jollyday.config=java.xml.bind
+                                     --add-opens de.jollyday/de.jollyday.configuration=ALL-UNNAMED
+                                     --add-opens de.jollyday/de.jollyday.datasource.impl=ALL-UNNAMED
+                                     --add-opens de.jollyday/de.jollyday.util=ALL-UNNAMED
+                                     --add-opens de.jollyday/holidays=ALL-UNNAMED</argLine>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.basedir}/src/main/resources</additionalClasspathElement>
+                            </additionalClasspathElements>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>jdk11</id>
             <activation>
                 <jdk>[11,)</jdk>
@@ -316,7 +369,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.0</version>
+                        <version>3.8.1</version>
                         <configuration>
                             <source>11</source>
                             <target>11</target>
@@ -326,14 +379,14 @@
             </build>
             <dependencies>
                 <dependency>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                    <version>2.4.0-b180830.0359</version>
+                    <groupId>jakarta.xml.bind</groupId>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                    <version>2.3.3</version>
                 </dependency>
                 <dependency>
                     <groupId>org.glassfish.jaxb</groupId>
                     <artifactId>jaxb-runtime</artifactId>
-                    <version>2.4.0-b180830.0438</version>
+                    <version>2.3.4</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -364,24 +417,42 @@
         <dependency>
             <groupId>org.threeten</groupId>
             <artifactId>threeten-extra</artifactId>
-            <version>1.5.0</version>
+            <version>1.6.0</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13-rc-2</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.2.4</version>
+            <version>3.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>3.10.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.xmlunit</groupId>
             <artifactId>xmlunit-core</artifactId>
-            <version>2.6.3</version>
+            <version>2.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

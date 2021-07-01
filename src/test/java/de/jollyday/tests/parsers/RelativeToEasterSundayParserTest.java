@@ -1,25 +1,24 @@
 package de.jollyday.tests.parsers;
 
-import static org.junit.Assert.*;
-
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.junit.Test;
-
 import de.jollyday.Holiday;
 import de.jollyday.config.Holidays;
 import de.jollyday.config.RelativeToEasterSunday;
 import de.jollyday.parser.impl.RelativeToEasterSundayParser;
 import de.jollyday.util.CalendarUtil;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RelativeToEasterSundayParserTest {
 
 	RelativeToEasterSundayParser parser = new RelativeToEasterSundayParser();
-	Set<Holiday> holidays = new HashSet<>();	
+	Set<Holiday> holidays = new HashSet<>();
 	CalendarUtil calendarUtil = new CalendarUtil();
-	
+
 	@Test
 	public void testForEasterMonday() {
 		doTest(2013, 1);
@@ -34,10 +33,10 @@ public class RelativeToEasterSundayParserTest {
 		Holidays holidaysConfig = new Holidays();
 		addRelativeToEasterHoliday(holidaysConfig, days);
 		parser.parse(year, holidays, holidaysConfig);
-		assertEquals("Missing holiday.", 1, holidays.size());
+		assertEquals(1, holidays.size(), "Missing holiday.");
 		Holiday h = holidays.iterator().next();
-		LocalDate targetDate = calendarUtil.getEasterSunday(year).plusDays(days);	
-		assertEquals("Wrong date found.", targetDate, h.getDate());
+		LocalDate targetDate = calendarUtil.getEasterSunday(year).plusDays(days);
+		assertEquals(targetDate, h.getDate(), "Wrong date found.");
 	}
 
 	private void addRelativeToEasterHoliday(Holidays holidaysConfig, int days) {

@@ -1,40 +1,33 @@
 /**
- * Copyright 2011 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2011 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.tests.parsers;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import de.jollyday.Holiday;
-import de.jollyday.config.ChristianHoliday;
-import de.jollyday.config.ChristianHolidayType;
-import de.jollyday.config.ChronologyType;
-import de.jollyday.config.Holidays;
-import de.jollyday.config.RelativeToEasterSunday;
+import de.jollyday.config.*;
 import de.jollyday.parser.AbstractHolidayParser;
 import de.jollyday.parser.impl.ChristianHolidayParser;
 import de.jollyday.parser.impl.RelativeToEasterSundayParser;
 import de.jollyday.util.CalendarUtil;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ChristianHolidayParserTest {
 
@@ -46,7 +39,7 @@ public class ChristianHolidayParserTest {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = new Holidays();
 		hp.parse(2010, holidays, config);
-		Assert.assertTrue("Expected to be empty.", holidays.isEmpty());
+		assertTrue(holidays.isEmpty(), "Expected to be empty.");
 	}
 
 	@Test
@@ -54,10 +47,10 @@ public class ChristianHolidayParserTest {
 		Set<Holiday> holidays = new HashSet<>();
 		Holidays config = createConfig(ChristianHolidayType.EASTER);
 		hp.parse(2011, holidays, config);
-		Assert.assertEquals("Wrong number of holidays.", 1, holidays.size());
+		assertEquals(1, holidays.size(), "Wrong number of holidays.");
 		Holiday easterDate = holidays.iterator().next();
 		LocalDate ed = calendarUtil.create(2011, 4, 24);
-		Assert.assertEquals("Wrong easter date.", ed, easterDate.getDate());
+		assertEquals(ed, easterDate.getDate(), "Wrong easter date.");
 	}
 
 	@Test
@@ -66,7 +59,7 @@ public class ChristianHolidayParserTest {
 		Holidays config = createConfig(ChristianHolidayType.EASTER);
 		config.getChristianHoliday().get(0).setValidTo(2010);
 		hp.parse(2011, holidays, config);
-		Assert.assertEquals("Wrong number of holidays.", 0, holidays.size());
+		assertEquals(0, holidays.size(), "Wrong number of holidays.");
 	}
 
 	@Test
@@ -77,8 +70,8 @@ public class ChristianHolidayParserTest {
 		p.parse(2011, holidays, config);
 		List<LocalDate> expected = new ArrayList<>();
 		expected.add(calendarUtil.create(2011, 4, 25));
-		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
-		Assert.assertEquals("Wrong holiday.", expected.get(0), holidays.iterator().next().getDate());
+		assertEquals(expected.size(), holidays.size(), "Wrong number of holidays.");
+		assertEquals(expected.get(0), holidays.iterator().next().getDate(), "Wrong holiday.");
 	}
 
 	@Test
@@ -98,14 +91,14 @@ public class ChristianHolidayParserTest {
 		expected.add(calendarUtil.create(2011, 6, 12));
 		expected.add(calendarUtil.create(2011, 7, 1));
 
-		Assert.assertEquals("Wrong number of holidays.", expected.size(), holidays.size());
+		assertEquals(expected.size(), holidays.size(), "Wrong number of holidays.");
 
 		Collections.sort(expected);
 		List<Holiday> found = new ArrayList<>(holidays);
 		Collections.sort(found, new HolidayComparator());
 
 		for (int i = 0; i < expected.size(); i++) {
-			Assert.assertEquals("Wrong date.", expected.get(i), found.get(i).getDate());
+			assertEquals(expected.get(i), found.get(i).getDate(), "Wrong date.");
 		}
 
 	}
@@ -120,11 +113,11 @@ public class ChristianHolidayParserTest {
 		String expectedPropertiesKey = "CUSTOM_KEY";
 		LocalDate expectedDate = calendarUtil.create(2019, 4, 23);
 
-		Assert.assertEquals("Wrong number of holidays.", 1, holidays.size());
+		assertEquals(1, holidays.size(), "Wrong number of holidays.");
 
 		Holiday easterTuesday = holidays.iterator().next();
-		Assert.assertEquals("Wrong holiday date.", expectedDate, easterTuesday.getDate());
-		Assert.assertEquals("Wrong holiday key.", expectedPropertiesKey, easterTuesday.getPropertiesKey());
+		assertEquals(expectedDate, easterTuesday.getDate(), "Wrong holiday date.");
+		assertEquals(expectedPropertiesKey, easterTuesday.getPropertiesKey(), "Wrong holiday key.");
 	}
 
 	private Holidays createConfig(int... days) {
