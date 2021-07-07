@@ -9,7 +9,6 @@
 	  <tns:Fixed month="DECEMBER" day="6" validFrom="1978" descriptionPropertiesKey="CONSTITUTION_DAY"/>
 	  <tns:Fixed month="DECEMBER" day="8" descriptionPropertiesKey="IMMACULATE_CONCEPTION"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
-	  <tns:ChristianHoliday type="EASTER" />
 	  <tns:ChristianHoliday type="GOOD_FRIDAY"/>
   </tns:Holidays>
   <tns:SubConfigurations hierarchy="an" description="Andalucia">
@@ -122,10 +121,16 @@
  <tns:SubConfigurations hierarchy="m" description="Madrid">
   	<tns:Holidays>
   		<tns:Fixed month="MARCH" day="19" descriptionPropertiesKey="ST_JOSEPH"/>
+  		<tns:Fixed month="MAY" day="2" descriptionPropertiesKey="REGIONAL"/>
 		<tns:Fixed month="AUGUST" day="15" descriptionPropertiesKey="ASSUMPTION_DAY"/>
-  		<tns:ChristianHoliday type="CORPUS_CHRISTI" />
   		<tns:ChristianHoliday type="MAUNDY_THURSDAY"/>
   	</tns:Holidays>
+  	<tns:SubConfigurations hierarchy="mad" description="Madrid city">
+		<tns:Holidays>
+      <tns:Fixed month="MAY" day="15" descriptionPropertiesKey="SAINT_ISIDORE"/>
+      <tns:Fixed month="NOVEMBER" day="9" descriptionPropertiesKey="ALMUDENA_DAY"/>
+		</tns:Holidays>
+	</tns:SubConfigurations>
  </tns:SubConfigurations>
  <tns:SubConfigurations hierarchy="mu" description="Murcia">
   	<tns:Holidays>
@@ -178,3 +183,6 @@
   	</tns:Holidays>
  </tns:SubConfigurations>
 </tns:Configuration>
+
+
+
