@@ -6,7 +6,7 @@ jdk:
   - openjdk11
 
 git:
-  depth: false
+  depth: 3
 
 addons:
   sonarcloud:
