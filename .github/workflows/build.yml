@@ -1,0 +1,43 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: build and analyse
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        java: [ '8', '11', '17' ]
+        distribution: [ 'temurin', 'adopt-hotspot', 'zulu' ]
+    env:
+      MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up ${{ matrix.Java }}
+        uses: actions/setup-java@v2
+        with:
+          distribution: ${{ matrix.Distribution }}
+          java-version: ${{ matrix.Java }}
+      - name: Cache pom dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.m2/repository
+            node/
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build
+        run: >
+          ./mvnw $MAVEN_CLI_OPTS
+          dependency:go-offline
+          clean package
