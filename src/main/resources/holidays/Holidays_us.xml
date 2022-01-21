@@ -8,6 +8,7 @@
 	  <tns:Fixed month="JULY" day="4" validFrom="1776" descriptionPropertiesKey="INDEPENDENCE_DAY"/>
 	  <tns:Fixed month="NOVEMBER" day="11" validFrom="1938" descriptionPropertiesKey="VETERANS_DAY"/>
 	  <tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
+	  <tns:Fixed month="JUNE" day="19" descriptionPropertiesKey="JUNETEENTH"/>
 	  <tns:RelativeToWeekdayInMonth weekday="TUESDAY" when="AFTER" descriptionPropertiesKey="ELECTION_DAY" every="EVEN_YEARS">
 		  <tns:FixedWeekday which="FIRST" weekday="MONDAY" month="NOVEMBER" />
 	  </tns:RelativeToWeekdayInMonth>
