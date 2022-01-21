@@ -1,8 +1,7 @@
 package de.jollyday.tests;
 
-import org.junit.Test;
-
 import de.jollyday.tests.base.AbstractCountryTestBase;
+import org.junit.jupiter.api.Test;
 
 public class HolidaySETest extends AbstractCountryTestBase {
 

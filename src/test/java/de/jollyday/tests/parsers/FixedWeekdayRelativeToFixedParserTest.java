@@ -15,20 +15,20 @@
  */
 package de.jollyday.tests.parsers;
 
-import static org.junit.Assert.assertEquals;
-
 import de.jollyday.Holiday;
 import de.jollyday.config.*;
 import de.jollyday.parser.impl.FixedWeekdayRelativeToFixedParser;
 import de.jollyday.util.CalendarUtil;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjuster;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Sven
@@ -44,7 +44,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		Set<Holiday> result = new HashSet<>();
 		Holidays config = new Holidays();
 		fwrtf.parse(2011, result, config);
-		Assert.assertTrue("Result is not empty.", result.isEmpty());
+		assertTrue(result.isEmpty(), "Result is not empty.");
 	}
 
 	@Test
@@ -62,7 +62,7 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		rule.setValidTo(2010);
 		fwrtf.parse(2011, result, config);
-		Assert.assertTrue("Result is not empty.", result.isEmpty());
+		assertTrue(result.isEmpty(), "Result is not empty.");
 	}
 
 	@Test
@@ -79,8 +79,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		rule.setDay(fixed);
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
-		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 1, 24), result.iterator().next().getDate());
+		assertEquals(1, result.size(), "Wrong number of dates.");
+		assertEquals(calendarUtil.create(2011, 1, 24), result.iterator().next().getDate(), "Wrong date.");
 	}
 
 	@Test
@@ -97,8 +97,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		rule.setDay(fixed);
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
-		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 1, 17), result.iterator().next().getDate());
+		assertEquals(1, result.size(), "Wrong number of dates.");
+		assertEquals(calendarUtil.create(2011, 1, 17), result.iterator().next().getDate(), "Wrong date.");
 	}
 
 	@Test
@@ -115,8 +115,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		rule.setDay(fixed);
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
-		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 2, 14), result.iterator().next().getDate());
+		assertEquals(1, result.size(), "Wrong number of dates.");
+		assertEquals(calendarUtil.create(2011, 2, 14), result.iterator().next().getDate(), "Wrong date.");
 	}
 
 	@Test
@@ -133,8 +133,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		rule.setDay(fixed);
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2011, result, config);
-		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", calendarUtil.create(2011, 4, 12), result.iterator().next().getDate());
+		assertEquals(1, result.size(), "Wrong number of dates.");
+		assertEquals(calendarUtil.create(2011, 4, 12), result.iterator().next().getDate(), "Wrong date.");
 	}
 
 	@Test
@@ -151,8 +151,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		rule.setDay(fixed);
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2019, result, config);
-		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", calendarUtil.create(2019, 6, 11), result.iterator().next().getDate());
+		assertEquals(1, result.size(), "Wrong number of dates.");
+		assertEquals(calendarUtil.create(2019, 6, 11), result.iterator().next().getDate(), "Wrong date.");
 	}
 
 	@Test
@@ -170,8 +170,8 @@ public class FixedWeekdayRelativeToFixedParserTest {
 		rule.setDay(fixed);
 		config.getFixedWeekdayRelativeToFixed().add(rule);
 		fwrtf.parse(2019, result, config);
-		Assert.assertEquals("Wrong number of dates.", 1, result.size());
-		Assert.assertEquals("Wrong date.", calendarUtil.create(2019, 6, 11), result.iterator().next().getDate());
+		assertEquals(1, result.size(), "Wrong number of dates.");
+		assertEquals(calendarUtil.create(2019, 6, 11), result.iterator().next().getDate(), "Wrong date.");
 	}
 
 	@Test

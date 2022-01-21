@@ -2,18 +2,18 @@ package de.jollyday.configuration;
 
 import de.jollyday.ManagerParameter;
 import de.jollyday.ManagerParameters;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class ConfigurationProviderManagerTest {
 
 	@Mock
@@ -26,7 +26,7 @@ public class ConfigurationProviderManagerTest {
 
 	ManagerParameter managerParameter = ManagerParameters.create((String)null);
 
-	@After
+	@AfterEach
 	public void teardown() {
 		System.clearProperty(ConfigurationProvider.CONFIG_PROVIDERS_PROPERTY);
 	}
@@ -51,7 +51,7 @@ public class ConfigurationProviderManagerTest {
 				+ ".TestProvider");
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
 		assertResult(managerParameter);
-		assertEquals("Wrong value for property: key", "value", managerParameter.getProperty("key"));
+		assertEquals("value", managerParameter.getProperty("key"), "Wrong value for property: key");
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class ConfigurationProviderManagerTest {
 				+ ".TestProvider,java.lang.String");
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
 		assertResult(managerParameter);
-		assertEquals("Wrong value for property: key", "value", managerParameter.getProperty("key"));
+		assertEquals( "value", managerParameter.getProperty("key"), "Wrong value for property: key");
 	}
 
 	@Test
@@ -71,8 +71,8 @@ public class ConfigurationProviderManagerTest {
 		configurationProviderManager.mergeConfigurationProperties(managerParameter);
 
 		assertResult(managerParameter);
-		assertEquals("Wrong value for property: MANUAL_KEY", "MANUAL_VALUE", managerParameter.getProperty("MANUAL_KEY"));
-		assertEquals("Wrong value for property: manager.impl", "NewImpl", managerParameter.getProperty("manager.impl"));
+		assertEquals("MANUAL_VALUE", managerParameter.getProperty("MANUAL_KEY"), "Wrong value for property: MANUAL_KEY");
+		assertEquals("NewImpl", managerParameter.getProperty("manager.impl"), "Wrong value for property: manager.impl");
 	}
 
 	private void assertResult(ManagerParameter parameter) {

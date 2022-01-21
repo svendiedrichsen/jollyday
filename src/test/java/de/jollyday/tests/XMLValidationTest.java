@@ -1,7 +1,7 @@
 package de.jollyday.tests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.xmlunit.validation.Languages;
 import org.xmlunit.validation.ValidationResult;
 import org.xmlunit.validation.Validator;
@@ -14,14 +14,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class XMLValidationTest {
 
     private File schemaFile;
     private Validator validator;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         schemaFile = new File("src/main/xsd/Holiday.xsd");
         validator = Validator.forLanguage(Languages.W3C_XML_SCHEMA_NS_URI);
@@ -30,9 +30,9 @@ public class XMLValidationTest {
 
     @Test
     public void testSchemaIsValid() throws Exception {
-        assertTrue("Schema file "+schemaFile+" does not exist.", schemaFile.exists());
+        assertTrue(schemaFile.exists(), "Schema file "+schemaFile+" does not exist.");
         final ValidationResult validationResult = validator.validateSchema();
-        assertTrue("Schema '"+ schemaFile +"' is not valid: "+validationResult.getProblems(), validationResult.isValid());
+        assertTrue(validationResult.isValid(), "Schema '"+ schemaFile +"' is not valid: "+validationResult.getProblems());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class XMLValidationTest {
 
         try {
             final ValidationResult validationResult = validator.validateInstance(new StreamSource(new FileInputStream(path.toFile())));
-            assertTrue("Validation of holiday file '"+path+" failed: "+validationResult.getProblems(), validationResult.isValid());
+            assertTrue(validationResult.isValid(), "Validation of holiday file '"+path+" failed: "+validationResult.getProblems());
         } catch (FileNotFoundException e) {
             throw new IllegalStateException("Cannot validate holiday file "+path);
         }

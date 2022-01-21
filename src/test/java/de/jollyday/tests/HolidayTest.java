@@ -17,10 +17,9 @@ package de.jollyday.tests;
 
 import de.jollyday.*;
 import de.jollyday.util.CalendarUtil;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -32,7 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static java.time.Month.*;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Sven
@@ -91,7 +90,7 @@ public class HolidayTest {
 
 	private Locale defaultLocale;
 
-	@Before
+	@BeforeEach
 	public void init() {
 		System.setProperty("de.jollyday.config.urls",
 				"file:./src/test/resources/test.app.properties");
@@ -99,33 +98,28 @@ public class HolidayTest {
 		Locale.setDefault(Locale.GERMAN);
 	}
 
-	@After
+	@AfterEach
 	public void destroy() {
 		Locale.setDefault(defaultLocale);
 		System.clearProperty("de.jollyday.config.urls");
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test
 	public void testMissingCountry() throws Exception {
-		HolidayManager.getInstance("XXX");
+		assertThrows(IllegalStateException.class, () -> HolidayManager.getInstance("XXX"));
 	}
 
 	@Test
 	public void testBaseStructure() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		CalendarHierarchy h = m.getCalendarHierarchy();
-		Assert.assertEquals("Wrong id.", "test", h.getId());
-		Assert.assertEquals("Wrong number of children on first level.", 2, h
-				.getChildren().size());
+		assertEquals("test", h.getId(), "Wrong id.");
+		assertEquals( 2, h.getChildren().size(), "Wrong number of children on first level.");
 		for (CalendarHierarchy hi : h.getChildren().values()) {
 			if (hi.getId().equalsIgnoreCase("level1")) {
-				Assert.assertEquals(
-						"Wrong number of children on second level of level 1.",
-						1, hi.getChildren().size());
+				assertEquals(1, hi.getChildren().size(), "Wrong number of children on second level of level 1.");
 			} else if (hi.getId().equalsIgnoreCase("level11")) {
-				Assert.assertEquals(
-						"Wrong number of children on second level of level 11.",
-						0, hi.getChildren().size());
+				assertEquals(0, hi.getChildren().size(), "Wrong number of children on second level of level 11.");
 			}
 		}
 	}
@@ -140,9 +134,8 @@ public class HolidayTest {
 
 	private void assertNotUndefined(HolidayCalendar calendar,
 			CalendarHierarchy c) {
-		assertFalse("Calendar " + calendar + " Hierarchy " + c.getId()
-				+ " is lacking a description.",
-				"undefined".equals(c.getDescription()));
+		assertFalse("undefined".equals(c.getDescription()),
+				"Calendar " + calendar + " Hierarchy " + c.getId() + " is lacking a description.");
 		for (Map.Entry<String, CalendarHierarchy> element : c.getChildren()
 				.entrySet()) {
 			assertNotUndefined(calendar, element.getValue());
@@ -182,25 +175,26 @@ public class HolidayTest {
 		c.set(Calendar.YEAR, 2010);
 		c.set(Calendar.MONTH, Calendar.FEBRUARY);
 		c.set(Calendar.DAY_OF_MONTH, 16);
-		Assert.assertFalse("This date should NOT be a holiday.", m.isHoliday(c));
+		assertFalse(m.isHoliday(c), "This date should NOT be a holiday.");
 		c.add(Calendar.DAY_OF_YEAR, 1);
-		Assert.assertTrue("This date should be a holiday.", m.isHoliday(c));
+		assertTrue(m.isHoliday(c), "This date should be a holiday.");
 	}
 
 	@Test
 	public void testBaseDates() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010);
-		Assert.assertNotNull(holidays);
+		assertNotNull(holidays);
 		assertDates(test_days, holidays);
 	}
 
 	private void assertDates(Set<LocalDate> expected, Set<Holiday> holidays) {
-		Assert.assertEquals("Wrong number of dates.", expected.size(),
-				holidays.size());
+		assertEquals(expected.size(),
+				holidays.size(),
+				"Wrong number of dates.");
 		for (LocalDate d : expected) {
 			if (!calendarUtil.contains(holidays, d)) {
-				Assert.fail("Missing " + d + " in " + holidays);
+				fail("Missing " + d + " in " + holidays);
 			}
 		}
 	}
@@ -209,7 +203,7 @@ public class HolidayTest {
 	public void testLevel1() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1");
-		Assert.assertNotNull(holidays);
+		assertNotNull(holidays);
 		assertDates(test_days_l1, holidays);
 	}
 
@@ -217,7 +211,7 @@ public class HolidayTest {
 	public void testLevel2() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level1", "level2");
-		Assert.assertNotNull(holidays);
+		assertNotNull(holidays);
 		assertDates(test_days_l2, holidays);
 	}
 
@@ -225,25 +219,24 @@ public class HolidayTest {
 	public void testLevel11() throws Exception {
 		HolidayManager m = HolidayManager.getInstance("test");
 		Set<Holiday> holidays = m.getHolidays(2010, "level11");
-		Assert.assertNotNull(holidays);
+		assertNotNull(holidays);
 		assertDates(test_days_l11, holidays);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testFail() throws Exception {
-		HolidayManager.getInstance("test_fail");
+		assertThrows(IllegalArgumentException.class, () -> HolidayManager.getInstance("test_fail"));
 	}
 
 	@Test
 	public void testAllAvailableManagers() throws Exception {
 		Set<String> supportedCalendarCodes = HolidayManager
 				.getSupportedCalendarCodes();
-		Assert.assertNotNull(supportedCalendarCodes);
-		Assert.assertFalse(supportedCalendarCodes.isEmpty());
+		assertNotNull(supportedCalendarCodes);
+		assertFalse(supportedCalendarCodes.isEmpty());
 		for (String calendar : supportedCalendarCodes) {
 			HolidayManager manager = HolidayManager.getInstance(calendar);
-			Assert.assertNotNull("Manager for calendar " + calendar
-					+ " is NULL.", manager);
+			assertNotNull(manager, "Manager for calendar " + calendar + " is NULL.");
 		}
 	}
 
@@ -251,31 +244,34 @@ public class HolidayTest {
 	public void testHolidayDescription() {
 		Holiday h = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
-		Assert.assertEquals("Wrong description", "Weihnachten",
-				h.getDescription());
-		Assert.assertEquals("Wrong description", "Christmas",
-				h.getDescription(Locale.ENGLISH));
-		Assert.assertEquals("Wrong description", "Kerstmis",
-				h.getDescription(new Locale("nl")));
+		assertEquals("Weihnachten",
+				h.getDescription(),
+				"Wrong description");
+		assertEquals("Christmas",
+				h.getDescription(Locale.ENGLISH),
+				"Wrong description");
+		assertEquals("Kerstmis",
+				h.getDescription(new Locale("nl")),
+				"Wrong description");
 	}
 
 	@Test
 	public void testHolidayEquals() {
 		Holiday h1 = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
-		Assert.assertTrue("Wrong equals implementation", h1.equals(h1));
+		assertTrue(h1.equals(h1), "Wrong equals implementation");
 		Holiday h2b = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
-		Assert.assertTrue("Wrong equals implementation", h1.equals(h2b));
+		assertTrue(h1.equals(h2b), "Wrong equals implementation");
 		Holiday h2 = new Holiday(LocalDate.of(2011, 2, 1), "CHRISTMAS",
 				HolidayType.OFFICIAL_HOLIDAY);
-		Assert.assertFalse("Wrong equals implementation", h1.equals(h2));
+		assertFalse(h1.equals(h2), "Wrong equals implementation");
 		Holiday h3 = new Holiday(LocalDate.of(2011, 2, 2), "NEW_YEAR",
 				HolidayType.OFFICIAL_HOLIDAY);
-		Assert.assertFalse("Wrong equals implementation", h1.equals(h3));
+		assertFalse(h1.equals(h3), "Wrong equals implementation");
 		Holiday h4 = new Holiday(LocalDate.of(2011, 2, 2), "CHRISTMAS",
 				HolidayType.UNOFFICIAL_HOLIDAY);
-		Assert.assertFalse("Wrong equals implementation", h1.equals(h4));
+		assertFalse(h1.equals(h4), "Wrong equals implementation");
 	}
 
 }

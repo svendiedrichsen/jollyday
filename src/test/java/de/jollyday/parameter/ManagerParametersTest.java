@@ -1,16 +1,18 @@
 package de.jollyday.parameter;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameter;
 import de.jollyday.ManagerParameters;
+import org.junit.jupiter.api.Test;
+
 import java.util.Calendar;
 import java.util.Locale;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ManagerParametersTest {
+
     @Test
     public void testCreateParameterFromLocale() {
         ManagerParameter params = ManagerParameters.create(Locale.GERMANY);
@@ -19,6 +21,6 @@ public class ManagerParametersTest {
         Calendar thirdOfOctober = Calendar.getInstance();
         thirdOfOctober.set(Calendar.MONTH, Calendar.OCTOBER);
         thirdOfOctober.set(Calendar.DAY_OF_MONTH, 3);
-        assertTrue("Oct 3rd should be a holiday in " + Locale.GERMANY, manager.isHoliday(thirdOfOctober));
+        assertTrue(manager.isHoliday(thirdOfOctober), "Oct 3rd should be a holiday in " + Locale.GERMANY);
     }
 }

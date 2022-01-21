@@ -1,16 +1,14 @@
 package de.jollyday.configuration.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-import org.junit.Test;
-
-import de.jollyday.configuration.impl.DefaultConfigurationProvider;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DefaultConfigurationProviderContentTest {
 
@@ -29,8 +27,8 @@ public class DefaultConfigurationProviderContentTest {
 	@Test
 	public void testPutConfiguration() {
 		Properties p = configurationProvider.getProperties();
-		assertFalse("Properties shouldn't be empty.", p.isEmpty());
-		assertEquals("Default properties are not as expected.", KEYS_DEFAULT_CONFIG, p.keySet());
+		assertFalse(p.isEmpty(), "Properties shouldn't be empty.");
+		assertEquals(KEYS_DEFAULT_CONFIG, p.keySet(), "Default properties are not as expected.");
 	}
 
 }

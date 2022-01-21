@@ -1,44 +1,35 @@
 /**
- * Copyright 2011 Sven Diedrichsen 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- * http://www.apache.org/licenses/LICENSE-2.0 
- * 
- * Unless required by applicable law or agreed to in writing, software 
- * distributed under the License is distributed on an 
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the License for the specific language 
- * governing permissions and limitations under the License. 
+ * Copyright 2011 Sven Diedrichsen
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  */
 package de.jollyday.tests.parsers;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.junit.Assert;
-import org.junit.Test;
-
 import de.jollyday.Holiday;
-import de.jollyday.config.Fixed;
-import de.jollyday.config.Holidays;
-import de.jollyday.config.Month;
-import de.jollyday.config.MovingCondition;
-import de.jollyday.config.Weekday;
-import de.jollyday.config.With;
+import de.jollyday.config.*;
 import de.jollyday.parser.impl.FixedParser;
 import de.jollyday.util.CalendarUtil;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Sven
- * 
+ *
  */
 public class FixedParserTest {
 
@@ -72,7 +63,7 @@ public class FixedParserTest {
 		Holidays holidays = createHolidays(fixed);
 		Set<Holiday> set = new HashSet<>();
 		fixedParser.parse(2011, set, holidays);
-		Assert.assertTrue("Expected to be empty.", set.isEmpty());
+		assertTrue(set.isEmpty(), "Expected to be empty.");
 	}
 
 	@Test
@@ -83,16 +74,16 @@ public class FixedParserTest {
 		Holidays holidays = createHolidays(fixed);
 		Set<Holiday> set = new HashSet<>();
 		fixedParser.parse(2013, set, holidays);
-		Assert.assertEquals("Wrong number of holidays.", 1, set.size());
+		assertEquals(1, set.size(), "Wrong number of holidays.");
 	}
 
 	private void containsAll(List<Holiday> list, LocalDate... dates) {
-		Assert.assertEquals("Number of holidays.", dates.length, list.size());
+		assertEquals(dates.length, list.size(), "Number of holidays.");
 		List<LocalDate> expected = new ArrayList<>(Arrays.asList(dates));
 		Collections.sort(expected);
 		Collections.sort(list, new HolidayComparator());
 		for (int i = 0; i < expected.size(); i++) {
-			Assert.assertEquals("Missing date.", expected.get(i), list.get(i).getDate());
+			assertEquals(expected.get(i), list.get(i).getDate(), "Missing date.");
 		}
 	}
 

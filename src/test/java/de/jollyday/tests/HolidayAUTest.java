@@ -19,7 +19,7 @@ import de.jollyday.CalendarHierarchy;
 import de.jollyday.HolidayManager;
 import de.jollyday.ManagerParameters;
 import de.jollyday.tests.base.AbstractCountryTestBase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HolidayAUTest extends AbstractCountryTestBase {
 
