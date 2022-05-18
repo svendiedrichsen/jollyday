@@ -16,6 +16,7 @@
 package de.jollyday.tests;
 
 import de.jollyday.tests.base.AbstractCountryTestBase;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class HolidayESTest extends AbstractCountryTestBase {
@@ -24,7 +25,8 @@ public class HolidayESTest extends AbstractCountryTestBase {
 	private static final int YEAR = 2010;
 
 	@Test
-	public void testManagerESStructure() throws Exception {
+	@Disabled
+	public void testManagerESStructure() {
 		validateCalendarData(ISO_CODE, YEAR);
 	}
 

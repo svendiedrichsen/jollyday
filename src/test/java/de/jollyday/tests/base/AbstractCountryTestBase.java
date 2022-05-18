@@ -19,6 +19,8 @@ import de.jollyday.CalendarHierarchy;
 import de.jollyday.Holiday;
 import de.jollyday.HolidayCalendar;
 import de.jollyday.HolidayManager;
+import de.jollyday.ManagerParameter;
+import de.jollyday.ManagerParameters;
 import de.jollyday.util.CalendarUtil;
 
 import java.util.ArrayList;
@@ -89,8 +91,8 @@ public abstract class AbstractCountryTestBase {
 	}
 
 	protected void validateCalendarData(final String countryCode, int year, boolean assertAllHolidaysChecked) {
-		HolidayManager dataManager = HolidayManager.getInstance(countryCode);
-		HolidayManager testManager = HolidayManager.getInstance("test_" + countryCode + "_" + Integer.toString(year));
+		HolidayManager dataManager = HolidayManager.getInstance(ManagerParameters.create(countryCode));
+		HolidayManager testManager = HolidayManager.getInstance(ManagerParameters.create("test_" + countryCode + "_" + year));
 
 		CalendarHierarchy dataHierarchy = dataManager.getCalendarHierarchy();
 		CalendarHierarchy testHierarchy = testManager.getCalendarHierarchy();
