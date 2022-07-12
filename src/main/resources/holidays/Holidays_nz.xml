@@ -30,6 +30,39 @@
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="TUESDAY" />
 		</tns:Fixed>
 
+    <!-- https://www.mbie.govt.nz/assets/matariki-dates-2022-to-2052-matariki-advisory-group.pdf -->
+    <tns:Fixed month="JUNE" day="24" validFrom="2022" validTo="2022" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="14" validFrom="2023" validTo="2023" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="28" validFrom="2024" validTo="2024" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="20" validFrom="2025" validTo="2025" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="10" validFrom="2026" validTo="2026" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="25" validFrom="2027" validTo="2027" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="14" validFrom="2028" validTo="2028" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="6"  validFrom="2029" validTo="2029" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="21" validFrom="2030" validTo="2030" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="11" validFrom="2031" validTo="2031" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="2"  validFrom="2032" validTo="2032" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="24" validFrom="2033" validTo="2033" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="7"  validFrom="2034" validTo="2034" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="29" validFrom="2035" validTo="2035" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="18" validFrom="2036" validTo="2036" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="10" validFrom="2037" validTo="2037" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="25" validFrom="2038" validTo="2038" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="15" validFrom="2039" validTo="2039" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="6"  validFrom="2040" validTo="2040" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="19" validFrom="2041" validTo="2041" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="11" validFrom="2042" validTo="2042" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="3"  validFrom="2043" validTo="2043" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="24" validFrom="2044" validTo="2044" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="7"  validFrom="2045" validTo="2045" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="29" validFrom="2046" validTo="2046" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="19" validFrom="2047" validTo="2047" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="3"  validFrom="2048" validTo="2048" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="25" validFrom="2049" validTo="2049" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JULY" day="15" validFrom="2050" validTo="2050" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="30" validFrom="2051" validTo="2051" descriptionPropertiesKey="MATARIKI"/>
+    <tns:Fixed month="JUNE" day="21" validFrom="2052" validTo="2052" descriptionPropertiesKey="MATARIKI"/>
+
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="LABOUR_DAY"/>
 
