@@ -36,6 +36,7 @@
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="TUESDAY"/>
 			<tns:MovingCondition substitute="MONDAY" with="NEXT" weekday="TUESDAY"/>
 		</tns:Fixed>
+		<tns:Fixed month="SEPTEMBER" day="22" validFrom="2022" validTo="2022" descriptionPropertiesKey="NATIONAL_MOURNING"/>
 		<tns:ChristianHoliday type="EASTER" />
 		<tns:ChristianHoliday type="GOOD_FRIDAY"/>
 		<tns:ChristianHoliday type="EASTER_SATURDAY"/>
