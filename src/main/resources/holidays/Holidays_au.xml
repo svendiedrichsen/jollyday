@@ -12,8 +12,8 @@
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
-		<tns:Fixed month="JANUARY" day="26" validTo="2007" descriptionPropertiesKey="NATIONAL_DAY"/>
-		<tns:Fixed month="JANUARY" day="26" validFrom="2008" descriptionPropertiesKey="NATIONAL_DAY">
+		<tns:Fixed month="JANUARY" day="26" validTo="2007" descriptionPropertiesKey="AUSTRALIA_DAY"/>
+		<tns:Fixed month="JANUARY" day="26" validFrom="2008" descriptionPropertiesKey="AUSTRALIA_DAY">
 			<tns:MovingCondition substitute="SATURDAY" with="NEXT" weekday="MONDAY"/>
 			<tns:MovingCondition substitute="SUNDAY" with="NEXT" weekday="MONDAY"/>
 		</tns:Fixed>
