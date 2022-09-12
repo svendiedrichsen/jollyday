@@ -63,6 +63,8 @@
     <tns:Fixed month="JUNE" day="30" validFrom="2051" validTo="2051" descriptionPropertiesKey="MATARIKI"/>
     <tns:Fixed month="JUNE" day="21" validFrom="2052" validTo="2052" descriptionPropertiesKey="MATARIKI"/>
 
+    <tns:Fixed month="SEPTEMBER" day="26" validFrom="2022" validTo="2022" descriptionPropertiesKey="QEII_MEMORIAL_DAY"/>
+
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="QUEENS_BIRTHDAY"/>
 		<tns:FixedWeekday which="FOURTH" weekday="MONDAY" month="OCTOBER" descriptionPropertiesKey="LABOUR_DAY"/>
 
