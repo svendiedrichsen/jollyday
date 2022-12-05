@@ -3,7 +3,7 @@
     <groupId>de.jollyday</groupId>
     <artifactId>jollyday</artifactId>
     <name>Jollyday</name>
-    <version>0.5.11-SNAPSHOT</version>
+    <version>0.6.0-SNAPSHOT</version>
     <description>
         This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is
         stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday
@@ -101,7 +101,7 @@
                 <plugin>
                     <groupId>com.github.davidmoten</groupId>
                     <artifactId>jax-maven-plugin</artifactId>
-                    <version>0.1.5</version>
+                    <version>0.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -206,7 +206,7 @@
                                 <argument>-d</argument>
                                 <argument>${project.build.directory}/generated-sources/jaxb</argument>
                                 <argument>-target</argument>
-                                <argument>2.1</argument>
+                                <argument>3.0</argument>
                                 <argument>-p</argument>
                                 <argument>de.jollyday.config</argument>
                                 <argument>${project.basedir}/src/main/xsd/Holiday.xsd</argument>
@@ -338,31 +338,6 @@
             </build>
         </profile>
         <profile>
-            <id>jdk9</id>
-            <activation>
-                <jdk>[9,)</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <configuration>
-                            <argLine>@{argLine}
-							         --add-opens de.jollyday/de.jollyday.config=java.xml.bind
-                                     --add-opens de.jollyday/de.jollyday.configuration=ALL-UNNAMED
-                                     --add-opens de.jollyday/de.jollyday.datasource.impl=ALL-UNNAMED
-                                     --add-opens de.jollyday/de.jollyday.util=ALL-UNNAMED
-                                     --add-opens de.jollyday/holidays=ALL-UNNAMED</argLine>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.basedir}/src/main/resources</additionalClasspathElement>
-                            </additionalClasspathElements>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>jdk11</id>
             <activation>
                 <jdk>[11,)</jdk>
@@ -384,36 +359,14 @@
                 <dependency>
                     <groupId>jakarta.xml.bind</groupId>
                     <artifactId>jakarta.xml.bind-api</artifactId>
-                    <version>2.3.3</version>
+                    <version>4.0.0</version>
                 </dependency>
                 <dependency>
                     <groupId>org.glassfish.jaxb</groupId>
                     <artifactId>jaxb-runtime</artifactId>
-                    <version>2.3.4</version>
+                    <version>4.0.1</version>
                 </dependency>
             </dependencies>
-        </profile>
-        <profile>
-            <id>jdk1</id>
-            <activation>
-                <jdk>(,1.8]</jdk>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.0</version>
-                        <configuration>
-                            <excludes>
-                                <exclude>module-info.java</exclude>
-                            </excludes>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
     </profiles>
     <dependencies>

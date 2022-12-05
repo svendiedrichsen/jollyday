@@ -31,7 +31,8 @@ To use latest release based on **Java Time API** and **Threeten-Extra library** 
 ```
 
 ## 0.6 Branch planned
-Planning to replace usage of JAXB with JiBX/XStream
+
+moved to jakarta.xml.* instead of javax.xml
 
 ## License
 
