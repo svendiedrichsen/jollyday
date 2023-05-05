@@ -24,6 +24,11 @@
 		<tns:Fixed month="MAY" day="8"
 				   validFrom="2020" validTo="2020"
 				   descriptionPropertiesKey="BANK_HOLIDAY" />
+		
+		<!-- King's Coronation gained an extra bank holiday -->
+		<tns:Fixed month="MAY" day="8"
+			   	validFrom="2023" validTo="2023"
+			   	descriptionPropertiesKey="BANK_HOLIDAY" />
 
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" validFrom="1900" validTo="2019"
 						  month="MAY" descriptionPropertiesKey="BANK_HOLIDAY" />
