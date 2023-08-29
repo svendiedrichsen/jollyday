@@ -24,10 +24,10 @@ import de.jollyday.config.Month;
 import de.jollyday.config.ObjectFactory;
 import de.jollyday.config.Weekday;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import java.io.InputStream;
 import java.time.DayOfWeek;
 import java.util.logging.Logger;
