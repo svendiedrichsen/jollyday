@@ -5,6 +5,7 @@
     <name>Jollyday</name>
     <version>0.5.11-SNAPSHOT</version>
     <description>
+        
         This API determines the holidays for a given year, country/name and eventually state/region. The holiday data is
         stored in XML files (one for each country) and will be read from the classpath. You can provide your own holiday
         calendar XML file or use any of the provided ones.
@@ -73,6 +74,14 @@
                 <role>Developer</role>
             </roles>
         </developer>
+        <developer>
+            <id>mitovman</id>
+            <email>mitovman@yahoo.com</email>
+            <name>Ivo Mitov</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
     </developers>
     <issueManagement>
         <system>Sourceforge</system>
@@ -94,14 +103,9 @@
                     <version>3.0.0-M5</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>jaxb2-maven-plugin</artifactId>
-                    <version>2.4</version>
-                </plugin>
-                <plugin>
                     <groupId>com.github.davidmoten</groupId>
                     <artifactId>jax-maven-plugin</artifactId>
-                    <version>0.1.5</version>
+                    <version>0.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -205,8 +209,6 @@
                                 <argument>-verbose</argument>
                                 <argument>-d</argument>
                                 <argument>${project.build.directory}/generated-sources/jaxb</argument>
-                                <argument>-target</argument>
-                                <argument>2.1</argument>
                                 <argument>-p</argument>
                                 <argument>de.jollyday.config</argument>
                                 <argument>${project.basedir}/src/main/xsd/Holiday.xsd</argument>
@@ -215,6 +217,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/jaxb/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+             </plugin>
             <plugin>
                 <groupId>biz.aQute.bnd</groupId>
                 <artifactId>bnd-maven-plugin</artifactId>
@@ -349,7 +369,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <argLine>@{argLine}
-							         --add-opens de.jollyday/de.jollyday.config=java.xml.bind
+                                     --add-opens de.jollyday/de.jollyday.config=java.xml.bind
                                      --add-opens de.jollyday/de.jollyday.configuration=ALL-UNNAMED
                                      --add-opens de.jollyday/de.jollyday.datasource.impl=ALL-UNNAMED
                                      --add-opens de.jollyday/de.jollyday.util=ALL-UNNAMED
@@ -384,12 +404,13 @@
                 <dependency>
                     <groupId>jakarta.xml.bind</groupId>
                     <artifactId>jakarta.xml.bind-api</artifactId>
-                    <version>2.3.3</version>
+                    <version>4.0.0</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.glassfish.jaxb</groupId>
-                    <artifactId>jaxb-runtime</artifactId>
-                    <version>2.3.4</version>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                    <version>4.0.3</version>
+                    <scope>runtime</scope>
                 </dependency>
             </dependencies>
         </profile>
