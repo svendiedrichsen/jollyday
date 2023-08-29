@@ -369,7 +369,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <argLine>@{argLine}
-                                     --add-opens de.jollyday/de.jollyday.config=java.xml.bind
+                                     --add-opens de.jollyday/de.jollyday.config=jakarta.xml.bind
                                      --add-opens de.jollyday/de.jollyday.configuration=ALL-UNNAMED
                                      --add-opens de.jollyday/de.jollyday.datasource.impl=ALL-UNNAMED
                                      --add-opens de.jollyday/de.jollyday.util=ALL-UNNAMED
