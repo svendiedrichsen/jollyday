@@ -72,6 +72,7 @@
     </tns:SubConfigurations>
     <tns:SubConfigurations hierarchy="he" description="Hesse">
         <tns:Holidays>
+            <tns:ChristianHoliday type="EASTER"/>
             <tns:ChristianHoliday type="CORPUS_CHRISTI"/>
         </tns:Holidays>
     </tns:SubConfigurations>
