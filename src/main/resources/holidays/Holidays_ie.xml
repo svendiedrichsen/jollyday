@@ -7,6 +7,7 @@
 		<tns:Fixed month="MARCH" day="17" descriptionPropertiesKey="ST_PATRICK"/>
 		<tns:Fixed month="DECEMBER" day="25" descriptionPropertiesKey="CHRISTMAS"/>
 		<tns:Fixed month="DECEMBER" day="26" descriptionPropertiesKey="STEPHENS"/>
+		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="FEBRUARY" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="MAY" descriptionPropertiesKey="LABOUR_DAY"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="JUNE" descriptionPropertiesKey="BANK_HOLIDAY"/>
 		<tns:FixedWeekday which="FIRST" weekday="MONDAY" month="AUGUST" descriptionPropertiesKey="BANK_HOLIDAY"/>
